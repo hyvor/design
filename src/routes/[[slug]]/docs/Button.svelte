@@ -1,8 +1,7 @@
 <script>
     import Button from "$lib/components/Button/Button.svelte";
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
-    import Search from 'svelte-bootstrap-icons/lib/Search.svelte';
-
+    import Search from '$lib/icons/Search.svelte';
 </script>
 <h1>Button</h1>
 

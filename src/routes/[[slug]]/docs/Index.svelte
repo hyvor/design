@@ -20,7 +20,7 @@
         Font: <a href="https://fonts.bunny.net/family/readex-pro" target="_blank">Readex Pro</a> (via <a href="https://www.npmjs.com/package/@fontsource/readex-pro">@fontsource/readex-pro</a>)
     </li>
     <li>
-        Icons: <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> (via <a href="https://www.npmjs.com/package/svelte-bootstrap-icons" target="_blank">svelte-bootstrap-icons</a>)
+        Icons: <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a>
     </li>
 </ul>
 

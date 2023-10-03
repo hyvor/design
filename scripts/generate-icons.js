@@ -1,4 +1,4 @@
-const svelvg = require('svelvg');
-svelvg.generateIcons('bootstrap-icons', {
+import svelvg from 'svelvg';
+svelvg.createLibrary('bootstrap-icons', {
     outDir: 'icons',
 });

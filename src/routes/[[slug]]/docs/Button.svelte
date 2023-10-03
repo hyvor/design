@@ -3,6 +3,8 @@
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
     import Search from '$lib/icons/Search.svelte';
     import CaretDown from "$lib/icons/CaretDown.svelte";
+    import BoxArrowUpRight from '$lib/icons/BoxArrowUpRight.svelte';
+    import Loader from "$lib/components/Loader/Loader.svelte";
 </script>
 <h1>Button</h1>
 
@@ -21,6 +23,10 @@
     </li>
     <li>
         <code>block</code> - Whether the button should be displayed as a block element.
+    </li>
+    <li>
+        <code>align</code> - The alignment of the content when using <code>block</code>. Can be <code>start</code> or <code>center</code> (default). 
+    </li>
     <li>
         <code>as</code> - The element to render the button as. Can be <code>button</code> or <code>a</code>.
     </li>
@@ -171,3 +177,43 @@ All other properties will be forwarded to the underlying element.
         </Button>
     </li>
 </ul>
+
+<h2 id="examples">Examples</h2>
+
+<h3 id="button-link">Button Link</h3>
+
+<p>
+    The <code>as</code> property can be used to render the button as a link.
+</p>
+
+<CodeBlock 
+    code={`
+        <Button as="a" href="https://hyvor.com" target="_blank">
+            HYVOR <BoxArrowUpRight slot="end" />
+        </Button>
+    `}
+/>
+
+<Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
+    HYVOR <BoxArrowUpRight slot="end" />
+</Button>
+
+<h3 id="button-with-loader">Button with Loader</h3>
+
+<p>
+    The <a href="/loader">Loader</a> component can be used to indicate a loading state.
+</p>
+
+<CodeBlock 
+    code={`
+        <Button>
+            Submit
+            <Loader slot="action" size="small" invert />
+        </Button>
+    `}
+/>
+
+<Button>
+    Submit
+    <Loader slot="action" size="small" invert />
+</Button>

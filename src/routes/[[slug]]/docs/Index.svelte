@@ -49,3 +49,17 @@ Each HYVOR product has a different accent color scheme, while most of the other 
         <code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds. Must be closer to white.
     </li>
 </ul>
+
+<h2 id="icons">Icons</h2>
+
+<p>
+    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons. You can import SVG icons from <code>@hyvor/design/icons/{"{Name}"}.svelte</code>. Any SVG property, like <code>width</code>, can be set in the component.
+</p>
+
+<CodeBlock code={`
+    <script>
+        import Search from "@hyvor/design/icons/Search.svelte";
+    </script>
+
+    <Search width={14} />
+`} />

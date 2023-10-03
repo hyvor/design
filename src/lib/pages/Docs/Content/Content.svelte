@@ -78,12 +78,12 @@
     }
 
     content :global(code) {
-        font-size: 13px;
+        font-size: 14px;
         padding: 0.2em 0.4em;
         display: inline-block;
-        background-color: #f1f1f1;
-        color: #eb5757;
-        font-family: Consolas,monospace;
+        background-color: #f4f2f0;
+        color: #905;
+        font-family: inherit;
         border-radius: 4px;
         line-height: normal;
         font-weight: 400;
@@ -106,7 +106,7 @@
     content :global(pre code) {
         all: unset;
         font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.5;
         tab-size: 4;
         hyphens: none;

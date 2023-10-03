@@ -24,6 +24,7 @@
             <NavItem href="/checkbox">Checkbox</NavItem>
             <NavItem href="/text-input">Text Input</NavItem>
             <NavItem href="/table">Table</NavItem>
+            <NavItem href="/form-control">Form Control</NavItem>
             <NavItem href="/split-control">Split Control</NavItem>
             <NavItem href="/loader">Loader</NavItem>
         </NavCategory>

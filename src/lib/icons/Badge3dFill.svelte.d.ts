@@ -1,1 +1,0 @@
-export { Badge3dFill as default } from "./index.js";

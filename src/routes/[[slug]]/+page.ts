@@ -1,5 +1,6 @@
 import Button from "./docs/Button.svelte";
 import Callout from "./docs/Callout.svelte";
+import FormControl from "./docs/FormControl.svelte";
 import Index from "./docs/Index.svelte";
 import Loader from "./docs/Loader.svelte";
 import SplitControl from "./docs/SplitControl.svelte";
@@ -14,6 +15,7 @@ const nav = {
     table: Table,
     callout: Callout,
     "split-control": SplitControl,
+    'form-control': FormControl,
     'text-input': TextInput,
     loader: Loader
 }

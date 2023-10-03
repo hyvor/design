@@ -2,6 +2,7 @@
     import Button from "$lib/components/Button/Button.svelte";
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
     import Search from '$lib/icons/Search.svelte';
+    import CaretDown from "$lib/icons/CaretDown.svelte";
 </script>
 <h1>Button</h1>
 
@@ -18,6 +19,8 @@
     <li>
         <code>color</code> - The <a href="#color">color</a> of the button.
     </li>
+    <li>
+        <code>block</code> - Whether the button should be displayed as a block element.
     <li>
         <code>as</code> - The element to render the button as. Can be <code>button</code> or <code>a</code>.
     </li>
@@ -110,8 +113,9 @@ All other properties will be forwarded to the underlying element.
             <code>default</code> - The content (label) of the button.
         </p>
         <CodeBlock 
-            code={`<Button>Content</Button>`}
+            code={`<Button>Search</Button>`}
         />
+        <Button>Search</Button>
     </li>
     <li>
         <code>start</code> - Placed before the content (e.g. icon). 
@@ -148,6 +152,22 @@ All other properties will be forwarded to the underlying element.
         </Button>
     </li>
     <li>
-        <code>action</code> - Placed after the content, locked to the right side of the button.
+        <code>action</code> - Placed after the content, locked to the right side of the button. This is useful with the <code>block</code> property.
+
+        <CodeBlock 
+            code={`
+                <Button block color="soft">
+                    <Search slot="start" />
+                    Search
+                    <CaretDown slot="action" />
+                </Button>
+            `}
+        />
+
+        <Button block color="soft">
+            <Search slot="start" />
+            Search
+            <CaretDown slot="action" />
+        </Button>
     </li>
 </ul>

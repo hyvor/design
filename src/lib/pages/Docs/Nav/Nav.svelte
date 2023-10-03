@@ -14,7 +14,7 @@
 
     .docs-nav {
         width: 220px;
-        top: var(--header-height);
+        top: var(--header-height, 0);
         padding: 25px 0;
         position: sticky;
         flex-shrink: 0;

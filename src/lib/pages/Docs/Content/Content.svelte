@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
     import Box from "$lib/components/Box/Box.svelte";
+    import {page} from '$app/stores';
 
     function linkifyHeadings() {
         var hs = document.querySelectorAll("h2[id],h3[id],h4[id]");

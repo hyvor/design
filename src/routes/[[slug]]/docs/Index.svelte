@@ -14,7 +14,7 @@
 
 <ul>
     <li>
-        UI Library: <a href="https://svelte.dev" target="_blank">Svelte</a>
+        Front-end: <a href="https://svelte.dev" target="_blank">Svelte</a> and <a href="https://kit.svelte.dev/" target="_blank">SvelteKit</a> (static only)
     </li>
     <li>
         Font: <a href="https://fonts.bunny.net/family/readex-pro" target="_blank">Readex Pro</a> (via <a href="https://www.npmjs.com/package/@fontsource/readex-pro">@fontsource/readex-pro</a>)

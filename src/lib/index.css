@@ -15,6 +15,16 @@ body {
 }
 
 button, a {
-    all: unset;
+    background-color: transparent;
+    border: none;
+    color: inherit;
+    appearance: none;
+    padding: 0;
+    text-decoration: none;
     cursor: pointer;
+}
+
+
+* {
+    box-sizing: border-box;
 }

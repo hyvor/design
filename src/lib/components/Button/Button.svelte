@@ -2,22 +2,35 @@
     export let as: 'button' | 'a' = 'button';
     export let size : 'small' | 'medium' | 'large' = 'medium';
     export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
+    export let block : boolean = false;
+    export let align: 'start' | 'center' = 'center';
 </script>
 
 <svelte:element 
     this={as}
-    class="button {size} {color}"
+    class="button {size} {color} {align}"
+    class:block={block}
     {...$$restProps}
 >
 
-    {#if $$slots.start}
-        <span class="slot start"><slot name="start" /></span>
-    {/if}
+    <span class="button-content">
 
-    <slot></slot>
+        {#if $$slots.start}
+            <span class="slot start"><slot name="start" /></span>
+        {/if}
 
-    {#if $$slots.end}
-        <span class="slot end"><slot name="end" /></span>
+        <slot></slot>
+
+        {#if $$slots.end}
+            <span class="slot end"><slot name="end" /></span>
+        {/if}
+
+    </span>
+
+    {#if $$slots.action}
+        <span class="action">
+            <slot name="action" />
+        </span>
     {/if}
 
 </svelte:element>
@@ -46,13 +59,49 @@
         border-radius: 20px;
         cursor: pointer;
 
-        --local-hover-shadow-size: 2px;
+        --local-hover-shadow-size: 2.5px;
+        &:active {
+            --local-hover-shadow-size: 4px;
+        }
+
+        &.block {
+            display: flex;
+            width: 100%;
+        }
+
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--link);
+        }
+
+    }
+
+    .button-content {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+    }
+    .button.start .button-content {
+        justify-content: flex-start;
+    }
+
+    .action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 6px;
     }
 
     /* Sizes */
     .button.small {
         height: 26px;
         padding: 0 12px;
+
+        --local-hover-shadow-size: 2px;
+        &:active {
+            --local-hover-shadow-size: 3px;
+        }
 
         .slot.start {
             margin-right: 4px;
@@ -69,8 +118,10 @@
         height: 36px;
         padding: 0 20px;
         --local-hover-shadow-size: 3px;
+        &:active {
+            --local-hover-shadow-size: 5px;
+        }
     }
-
 
     /* styles */
     .button.accent {
@@ -87,7 +138,7 @@
         color: var(--accent);
         transition: .2s box-shadow;
         &:hover {
-            box-shadow: 0 0 0 2.5px #eee;
+            box-shadow: 0 0 0 var(--local-hover-shadow-size) #eee;
         }
     }
 

@@ -1,0 +1,49 @@
+/* variables */
+:root {
+
+    /**
+    * Each app should have its own accent colors
+    * --accent should be usable with light text
+    * --accent-light and --accent-lightest should be usable with dark text
+    */
+    --accent: #000;
+	--accent-light: #bdbdbd;
+	--accent-lightest: #fafafa;
+
+
+	--border: #e1e1e1;
+
+    --text: #000;
+    --text-light: #777;
+	--text-white: #fff;
+
+
+    /* 
+    * Generally used colors
+    * In most cases, no need to extend these colors
+    */
+    --green-light: #cadfca;
+    --green: #5d995d;
+    --green-dark: #335c33;
+
+    --red-dark:#ab2525;
+    --red:#db7474;
+    --red-light:#ffdfdf;
+
+    --blue-dark: #334b81;
+    --blue:#5875b9;
+    --blue-light: #dae5ff;
+
+    --orange-dark: #8b5b04;
+    --orange: #f1c40f;
+    --orange-light: #efe3b4;
+
+    --hover: #fafafa;
+	--link: #1d85d2;
+
+    --box-shadow: 0 0 30px #0000000d;
+    --box-shadow-light: 0 0 10px 6px rgba(0,0,0,.06);
+    --box-radius: 20px;
+    --box-background: #fff;
+
+}

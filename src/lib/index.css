@@ -1,0 +1,20 @@
+
+/* font */
+:root {
+    font-family: 'Readex Pro', Avenir, Inter, Helvetica, Arial, sans-serif;
+	font-size: 16px;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--accent-lightest);
+}
+
+button, a {
+    all: unset;
+    cursor: pointer;
+}

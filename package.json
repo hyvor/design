@@ -33,6 +33,7 @@
 		"sass": "^1.68.0",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
+		"svelvg": "^0.12.1",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
 		"vite": "^4.4.2"

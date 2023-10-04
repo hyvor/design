@@ -1,12 +1,72 @@
-<script>
+<script lang="ts">
+    import Table from "$lib/components/Table/Table.svelte";
+    import TableRow from "$lib/components/Table/TableRow.svelte";
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
-
+    import ColorDot from "./Helper/ColorDot.svelte";
 </script>
 <h1>HDS</h1>
 
 <p>
     HDS, Hyvor Design System, is a collection of <a href="https://svelte.dev" target="_blank">Svelte</a> UI components for building HYVOR products. It is open-source and you can view the source code on <a href="https://github.com/hyvor/design" target="_blank">Github</a>. However, as it is not a general purpose UI library, it is not recommended to use it in non-HYVOR products.
 </p>
+
+<h2 id="usage">Usage</h2>
+
+<p>
+    Here is the usage of HDS in HYVOR products.
+</p>
+
+<Table columns="1fr 1fr 1fr">
+    <TableRow head>
+        <div>Product</div>
+        <div>Usage</div>
+        <div>Accent Colors</div>
+    </TableRow>
+    <TableRow>
+        <div>
+            <a href="https://talk.hyvor.com" target="_blank">Hyvor Talk</a>
+        </div>
+        <div>Low (Svelte)</div>
+        <div class="color-dots">
+            <ColorDot color="#ffd969" />
+            <ColorDot color="#fff1cb" />
+            <ColorDot color="#fffaec" />
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            <a href="https://blogs.hyvor.com" target="_blank">Hyvor Blogs</a>
+        </div>
+        <div>No (React)</div>
+        <div class="color-dots">
+            <ColorDot color="#896c6b" />
+            <ColorDot color="#f1e8e8" />
+            <ColorDot color="#fffaf8" />
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            <a href="https://reader.hyvor.com" target="_blank">Hyvor Reader</a>
+        </div>
+        <div>100%</div>
+        <div class="color-dots">
+            <ColorDot color="#354f52" />
+            <ColorDot color="#bdc5c6" />
+            <ColorDot color="#eaebe9" />
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            <a href="https://shield.hyvor.com" target="_blank">Hyvor Shield</a>
+        </div>
+        <div>100%</div>
+        <div class="color-dots">
+            <ColorDot color="#836096" />
+            <ColorDot color="#DFCCFB" />
+            <ColorDot color="#fbf7ff" />
+        </div>
+    </TableRow>
+</Table>
 
 <h2 id="dependencies">
     Dependencies
@@ -63,3 +123,9 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 
     <Search width={14} />
 `} />
+
+<style>
+    .color-dots {
+        display: flex;
+    }
+</style>

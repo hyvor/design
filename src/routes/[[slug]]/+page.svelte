@@ -27,6 +27,7 @@
             <NavItem href="/form-control">Form Control</NavItem>
             <NavItem href="/split-control">Split Control</NavItem>
             <NavItem href="/loader">Loader</NavItem>
+            <NavItem href="/tooltip">Tooltip</NavItem>
         </NavCategory>
 
         <NavCategory name="Pages">

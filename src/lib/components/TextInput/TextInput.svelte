@@ -3,7 +3,7 @@
     export let size : 'small' | 'medium' | 'large' = 'medium';
     export let block : boolean = false;
 
-    let input;
+    let input: HTMLInputElement;
 </script>
 
 

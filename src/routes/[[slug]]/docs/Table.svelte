@@ -11,10 +11,10 @@
 
 <ul>
     <li>
-        <code>Table</code>
+        <code>{"<Table>"}</code>
     </li>
     <li>
-        <code>TableRow</code>
+        <code>{"<TableRow>"}</code>
     </li>
 </ul>
 

@@ -47,6 +47,9 @@
     content {
         display: block;
         padding: 30px 50px;
+    }
+
+    content :global(p) {
         line-height: 26px;
     }
 

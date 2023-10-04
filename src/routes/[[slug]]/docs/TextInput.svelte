@@ -90,7 +90,7 @@
 <h3 id="with-ending-slot">with Ending Slot</h3>
 
 <CodeBlock code={`
-    <TextInput placeholder="Delay">
+    <TextInput placeholder="Delay" type="number">
         <span slot="end">minutes</span>
     </TextInput>
 `} />

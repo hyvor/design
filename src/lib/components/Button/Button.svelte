@@ -49,7 +49,6 @@
         align-items: center;
     }
 
-
     .button {
         position: relative;
         display: inline-flex;
@@ -126,7 +125,7 @@
     /* styles */
     .button.accent {
         background-color: var(--accent);
-        color: var(--text-white);
+        color: var(--accent-text);
         transition: .2s box-shadow;
         &:hover {
             box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--accent-light);

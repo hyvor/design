@@ -1,4 +1,4 @@
-<label>
+<label {...$$restProps}>
     <slot />
 </label>
 

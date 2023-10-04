@@ -1,6 +1,6 @@
 import Button from "./docs/Button.svelte";
-import ButtonGroup from "./docs/ButtonGroup.svelte";
 import Callout from "./docs/Callout.svelte";
+import Checkbox from "./docs/Checkbox.svelte";
 import FormControl from "./docs/FormControl.svelte";
 import Index from "./docs/Index.svelte";
 import Loader from "./docs/Loader.svelte";
@@ -14,9 +14,9 @@ export const prerender = true;
 const nav = {
     index: Index,
     button: Button,
-    'button-group': ButtonGroup,
     table: Table,
     callout: Callout,
+    checkbox: Checkbox,
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,

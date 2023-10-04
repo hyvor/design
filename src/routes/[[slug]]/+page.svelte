@@ -19,7 +19,6 @@
 
         <NavCategory name="Components">
             <NavItem href="/button">Button</NavItem>
-            <NavItem href="/button-group">Button Group</NavItem>
             <NavItem href="/callout">Callout</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
             <NavItem href="/text-input">Text Input</NavItem>

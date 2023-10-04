@@ -58,7 +58,7 @@
         height: 32px;
         padding: 0 15px;
         border-radius: 20px;
-        background: #f5f5f5;
+        background: var(--input);
         transition: .2s box-shadow;
         font-size: 14px;
         --local-shadow-size: 2px;

@@ -49,7 +49,7 @@
         padding: 30px 50px;
     }
 
-    content :global(p) {
+    content :global(p), content :global(li) {
         line-height: 26px;
     }
 

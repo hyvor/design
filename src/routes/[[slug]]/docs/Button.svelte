@@ -1,5 +1,6 @@
 <script>
     import Button from "$lib/components/Button/Button.svelte";
+    import ButtonGroup from "$lib/components/Button/ButtonGroup.svelte";
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
     import Search from '$lib/icons/Search.svelte';
     import CaretDown from "$lib/icons/CaretDown.svelte";
@@ -217,3 +218,23 @@ All other properties will be forwarded to the underlying element.
     Submit
     <Loader slot="action" size="small" invert />
 </Button>
+
+<h2 id="group">Button Group</h2>
+
+<p>
+    You can use the <code>ButtonGroup</code> component to group buttons together.
+</p>
+
+<CodeBlock code={`
+    <ButtonGroup>
+        <Button>Button 1</Button>
+        <Button>Button 2</Button>
+        <Button>Button 3</Button>
+    </ButtonGroup>
+`} />
+
+<ButtonGroup>
+    <Button>Button 1</Button>
+    <Button>Button 2</Button>
+    <Button>Button 3</Button>
+</ButtonGroup>

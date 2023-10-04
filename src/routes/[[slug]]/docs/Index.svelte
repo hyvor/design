@@ -88,7 +88,9 @@
     Variables
 </h2>
 
+<p>
 Each HYVOR product has a different accent color scheme, while most of the other colors are the same. See <code>src/lib/variables.css</code> for all available variables. In most cases, you will only have to change the following variables for each product:
+</p>
 
 <CodeBlock code={`
     :root {

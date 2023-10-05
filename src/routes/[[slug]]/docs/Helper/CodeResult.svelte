@@ -5,8 +5,8 @@
 <div 
     class="results"
     class:gap={!!gap}
+    style="{gap ? `gap: ${gap}px` : ''}"
     {...$$props}
-    style:gap={gap ? `${gap}px` : undefined}
 >
     <slot />
 </div>

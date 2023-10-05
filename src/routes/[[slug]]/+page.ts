@@ -4,7 +4,9 @@ import Checkbox from "./docs/Checkbox.svelte";
 import FormControl from "./docs/FormControl.svelte";
 import Index from "./docs/Index.svelte";
 import Loader from "./docs/Loader.svelte";
+import Radio from "./docs/Radio.svelte";
 import SplitControl from "./docs/SplitControl.svelte";
+import Switch from "./docs/Switch.svelte";
 import Table from "./docs/Table.svelte";
 import TextInput from "./docs/TextInput.svelte";
 import Tooltip from "./docs/Tooltip.svelte";
@@ -17,6 +19,8 @@ const nav = {
     table: Table,
     callout: Callout,
     checkbox: Checkbox,
+    switch: Switch,
+    radio: Radio,
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,

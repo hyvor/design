@@ -5,6 +5,7 @@
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import Callout from "$lib/components/Callout/Callout.svelte";
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 
 <h1>Tooltip</h1>
@@ -104,9 +105,11 @@
     </Tooltip>
 `} />
 
-<Tooltip text="This is a tooltip">
-    <Button>Hover me</Button>
-</Tooltip>
+<CodeResult>
+    <Tooltip text="This is a tooltip">
+        <Button>Hover me</Button>
+    </Tooltip>
+</CodeResult>
 
 <h3 id="positions">Positions</h3>
 
@@ -117,22 +120,24 @@
     <Tooltip position="bottom" />
 `} />
 
-<div class="position-wrap">
+<CodeResult>
+    <div class="position-wrap">
 
-    <div class="top">
-        <Tooltip text="Top tooltip"><Button color="soft">Top</Button></Tooltip>
+        <div class="top">
+            <Tooltip text="Top tooltip"><Button color="soft">Top</Button></Tooltip>
+        </div>
+
+        <div class="horizontal">
+            <Tooltip text="Left tooltip" position="left"><Button color="soft">Left</Button></Tooltip>
+            <Tooltip text="Right tooltip" position="right"><Button color="soft">Right</Button></Tooltip>
+        </div>
+
+        <div class="bottom">
+            <Tooltip text="Bottom tooltip" position="bottom"><Button color="soft">Bottom</Button></Tooltip>
+        </div>
+
     </div>
-
-    <div class="horizontal">
-        <Tooltip text="Left tooltip" position="left"><Button color="soft">Left</Button></Tooltip>
-        <Tooltip text="Right tooltip" position="right"><Button color="soft">Right</Button></Tooltip>
-    </div>
-
-    <div class="bottom">
-        <Tooltip text="Bottom tooltip" position="bottom"><Button color="soft">Bottom</Button></Tooltip>
-    </div>
-
-</div>
+</CodeResult>
 
 
 <h3 id="colors">Colors</h3>
@@ -145,12 +150,14 @@
 `} />
 
 
-<div class="colors-wrap">
-    <Tooltip text="Soft tooltip" color="soft"><Button color="soft">Soft</Button></Tooltip>
-    <Tooltip text="Black tooltip" color="black"><Button color="soft">Black</Button></Tooltip>
-    <Tooltip text="Accent tooltip" color="accent"><Button color="soft">Accent</Button></Tooltip>
-    <Tooltip text="Danger tooltip" color="danger"><Button color="soft">Danger</Button></Tooltip>
-</div>
+<CodeResult>
+    <div class="colors-wrap">
+        <Tooltip text="Soft tooltip" color="soft"><Button color="soft">Soft</Button></Tooltip>
+        <Tooltip text="Black tooltip" color="black"><Button color="soft">Black</Button></Tooltip>
+        <Tooltip text="Accent tooltip" color="accent"><Button color="soft">Accent</Button></Tooltip>
+        <Tooltip text="Danger tooltip" color="danger"><Button color="soft">Danger</Button></Tooltip>
+    </div>
+</CodeResult>
 
 <h3 id="slot">with Slot</h3>
 
@@ -168,13 +175,15 @@
     </Tooltip>
 `} />
 
-<Tooltip>
-    <Button>Hover me</Button>
-    <div slot="tooltip">
-        <div>This is a tooltip</div>
-        <Callout type="info">It can contain any content</Callout>
-    </div>
-</Tooltip>
+<CodeResult>
+    <Tooltip>
+        <Button>Hover me</Button>
+        <div slot="tooltip">
+            <div>This is a tooltip</div>
+            <Callout type="info">It can contain any content</Callout>
+        </div>
+    </Tooltip>
+</CodeResult>
 
 <h3 id="long">Long Text</h3>
 
@@ -191,9 +200,11 @@
     </Tooltip>
 `} />
 
-<Tooltip text="This is a very long text with a lot of characters and words. Let's see how this is displayed in a tooltip" maxWidth={200}>
-    <Button>Hover me</Button>
-</Tooltip>
+<CodeResult>
+    <Tooltip text="This is a very long text with a lot of characters and words. Let's see how this is displayed in a tooltip" maxWidth={200}>
+        <Button>Hover me</Button>
+    </Tooltip>
+</CodeResult>
 
 <style>
     .position-wrap {
@@ -210,7 +221,6 @@
         justify-content: space-around;
     }
     .colors-wrap {
-        padding: 10px 0;
         display: flex;
         flex-direction: column;
         gap: 5px;

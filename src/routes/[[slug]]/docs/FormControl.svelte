@@ -7,6 +7,7 @@
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
     import InputGroup from "$lib/components/FormControl/InputGroup.svelte";
     import Checkbox from "$lib/components/Checkbox/Checkbox.svelte";
+    import CodeResult from './Helper/CodeResult.svelte';
 </script>
 <h1>Form Control</h1>
 
@@ -33,10 +34,12 @@
     <Caption>Enter your name</Caption>
 `} />
 
-<div>
-    <Label>Name</Label>
-    <Caption>Enter your name</Caption>
-</div>
+<CodeResult>
+    <div>
+        <Label>Name</Label>
+        <Caption>Enter your name</Caption>
+    </div>
+</CodeResult>
 
 <h2 id="validation">Validation</h2>
 
@@ -46,11 +49,13 @@
     <Validation state="success">Email sent</Validation>
 `} />
 
-<div style="display:flex;flex-direction:column;gap:10px;margin-top:15px;">
-    <Validation state="error">This field is required</Validation>
-    <Validation state="warning">This action is irreversible</Validation>
-    <Validation state="success">Email sent</Validation>
-</div>
+<CodeResult>
+    <div style="display:flex;flex-direction:column;gap:10px;">
+        <Validation state="error">This field is required</Validation>
+        <Validation state="warning">This action is irreversible</Validation>
+        <Validation state="success">Email sent</Validation>
+    </div>
+</CodeResult>
 
 <h2 id="full-form-control">Full Form Control</h2>
 
@@ -67,13 +72,14 @@
     </FormControl>
 `} />
 
-<FormControl>
-    <Label for="fc-input-id">Name</Label>
-    <Caption>Enter your name</Caption>
-    <TextInput type="text" id="fc-input-id" state="error" />
-    <Validation state="error">This field is required</Validation>
-</FormControl>
-
+<CodeResult>
+    <FormControl>
+        <Label for="fc-input-id">Name</Label>
+        <Caption>Enter your name</Caption>
+        <TextInput type="text" id="fc-input-id" state="error" />
+        <Validation state="error">This field is required</Validation>
+    </FormControl>
+</CodeResult>
 
 <h2 id="input-group">Input Group</h2>
 
@@ -92,11 +98,13 @@
     </FormControl>
 `} />
 
-<FormControl>
-    <Label for="input-id">Email Preferences</Label>
-    <Caption>When to receive emails</Caption>
-    <InputGroup>
-        <Checkbox>on replies</Checkbox>
-        <Checkbox>on mentions</Checkbox>
-    </InputGroup>
-</FormControl>
+<CodeResult>
+    <FormControl>
+        <Label for="input-id">Email Preferences</Label>
+        <Caption>When to receive emails</Caption>
+        <InputGroup>
+            <Checkbox>on replies</Checkbox>
+            <Checkbox>on mentions</Checkbox>
+        </InputGroup>
+    </FormControl>
+</CodeResult>

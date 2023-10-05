@@ -21,7 +21,10 @@
             <NavItem href="/button">Button</NavItem>
             <NavItem href="/callout">Callout</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
+            <NavItem href="/radio">Radio</NavItem>
+            <NavItem href="/switch">Switch</NavItem>
             <NavItem href="/text-input">Text Input</NavItem>
+            <NavItem href="/textarea">Textarea</NavItem>
             <NavItem href="/table">Table</NavItem>
             <NavItem href="/form-control">Form Control</NavItem>
             <NavItem href="/split-control">Split Control</NavItem>
@@ -29,10 +32,8 @@
             <NavItem href="/tooltip">Tooltip</NavItem>
         </NavCategory>
 
-        <NavCategory name="Pages">
-            <NavItem href="/learn/rss">Docs</NavItem>
-            <NavItem href="/learn/atom">Atom</NavItem>
-            <NavItem href="/learn/opml">OPML</NavItem>
+        <NavCategory name="Marketing">
+            <NavItem href="/docs">Docs</NavItem>
         </NavCategory>
 
     </Nav>

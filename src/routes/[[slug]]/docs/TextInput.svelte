@@ -2,6 +2,7 @@
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
     import Search from "$lib/icons/Search.svelte";
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 
 <h1>Text Input</h1>
@@ -21,11 +22,13 @@
     <TextInput placeholder="Large" size="large" />
 `} />
 
-<div class="sizes">
-    <TextInput placeholder="Small" size="small" />
-    <TextInput placeholder="Medium (default)" />
-    <TextInput placeholder="Large" size="large" />
-</div>
+<CodeResult>
+    <div class="sizes">
+        <TextInput placeholder="Small" size="small" />
+        <TextInput placeholder="Medium (default)" />
+        <TextInput placeholder="Large" size="large" />
+    </div>
+</CodeResult>
 
 <h3 id="states">States</h3>
 
@@ -52,25 +55,27 @@
     />
 `} />
 
-<div class="states">
-    <TextInput placeholder="This is a default text input" state="default" block />
-    <TextInput placeholder="This is a success text input" state="success" block />
-    <TextInput placeholder="This is a warning text input" state="warning" block />
-    <TextInput placeholder="This is an error text input" state="error" block />
-</div>
+<CodeResult>
+    <div class="states">
+        <TextInput placeholder="This is a default text input" state="default" block />
+        <TextInput placeholder="This is a success text input" state="success" block />
+        <TextInput placeholder="This is a warning text input" state="warning" block />
+        <TextInput placeholder="This is an error text input" state="error" block />
+    </div>
+</CodeResult>
 
 <style>
     .sizes {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 10px;
     }
     .sizes :global(.input-wrap) {
-        margin-bottom: 10px;
         width: 300px;
         max-width: 100%;
     }
-    .states :global(.input-wrap) {
+    .states :global(.input-wrap:not(:last-child)) {
         margin-bottom: 15px;
     }
 </style>
@@ -83,9 +88,11 @@
     </TextInput>
 `} />
 
-<TextInput placeholder="Search">
-    <Search slot="start" />
-</TextInput>
+<CodeResult>
+    <TextInput placeholder="Search">
+        <Search slot="start" />
+    </TextInput>
+</CodeResult>
 
 <h3 id="with-ending-slot">with Ending Slot</h3>
 
@@ -95,9 +102,11 @@
     </TextInput>
 `} />
 
-<TextInput placeholder="Delay" type="number">
-    <span slot="end">minutes</span>
-</TextInput>
+<CodeResult>
+    <TextInput placeholder="Delay" type="number">
+        <span slot="end">minutes</span>
+    </TextInput>
+</CodeResult>
 
 <p>
     The ending slot is useful with the <a href="/loader">Loader</a> component to indicate a loading state, for example in a search input.

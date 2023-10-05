@@ -112,10 +112,45 @@ Each HYVOR product has a different accent color scheme, while most of the other 
     </li>
 </ul>
 
+<h2 id="usage">Usage</h2>
+
+<p>
+    First, install the package:
+</p>
+
+<CodeBlock code={`
+    npm i @hyvor/design
+`} />
+
+<p>
+    Then,
+</p>
+
+<ul>
+    <li>
+        Import basic components from <code>@hyvor/design/components</code>
+    </li>
+    <li>
+        Import marketing components from <code>@hyvor/design/marketing</code>
+    </li>
+    <li>
+        Import icons as <code>@hyvor/design/icons/{"{Name.svelte}"}</code>. See <a href="#icons">Icons</a> below for more information.
+    </li>
+</ul>
+
+<CodeBlock code={`
+    <script>
+        import { TextInput, Checkbox } from "@hyvor/design/components";
+        import { DocsNav, Header } from '@hyvor/design/marketing';
+    </script>
+
+    <Search width={14} />
+`} />
+
 <h2 id="icons">Icons</h2>
 
 <p>
-    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons. You can import SVG icons from <code>@hyvor/design/icons/{"{Name}"}.svelte</code>. Any SVG property, like <code>width</code>, can be set in the component.
+    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons, which contains over 2000 icons. You should import SVG icons as <code>@hyvor/design/icons/{"{Name}"}.svelte</code> to reduce bundle size. Any SVG property, like <code>width</code>, can be set in the component.
 </p>
 
 <CodeBlock code={`

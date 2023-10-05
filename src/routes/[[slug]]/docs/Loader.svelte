@@ -4,6 +4,7 @@
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import Button from "../../../lib/components/Button/Button.svelte";
     import CodeBlock from "../../../lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 
 <h1>Loader</h1>
@@ -98,13 +99,15 @@
     <Loader size={48} />
 `} />
 
-<div class="loaders-display">
-    <Loader size={12} />
-    <Loader size="small" />
-    <Loader size="medium" />
-    <Loader size="large" />
-    <Loader size={48} />
-</div>
+<CodeResult>
+    <div class="loaders-display">
+        <Loader size={12} />
+        <Loader size="small" />
+        <Loader size="medium" />
+        <Loader size="large" />
+        <Loader size={48} />
+    </div>
+</CodeResult>
 
 
 <h3 id="colors">Colors</h3>
@@ -115,11 +118,13 @@
     <Loader color="var(--orange)" colorTrack="var(--orange-light)" />
 `} />
 
-<div class="loaders-display">
-    <Loader color="var(--red)" colorTrack="var(--red-light)" />
-    <Loader color="var(--green)" colorTrack="var(--green-light)" />
-    <Loader color="var(--orange)" colorTrack="var(--orange-light)" />
-</div>
+<CodeResult>
+    <div class="loaders-display">
+        <Loader color="var(--red)" colorTrack="var(--red-light)" />
+        <Loader color="var(--green)" colorTrack="var(--green-light)" />
+        <Loader color="var(--orange)" colorTrack="var(--orange-light)" />
+    </div>
+</CodeResult>
 
 <h3 id="invert">Inverted Colors</h3>
 
@@ -136,10 +141,12 @@
     `}
 />
 
-<Button>
-    Submit
-    <Loader slot="action" size="small" invert />
-</Button>
+<CodeResult>
+    <Button>
+        Submit
+        <Loader slot="action" size="small" invert />
+    </Button>
+</CodeResult>
 
 
 <h3 id="block">Block Loader</h3>
@@ -156,9 +163,11 @@
     `}
 />
 
-<Loader block>
-    Loading...
-</Loader>
+<CodeResult>
+    <Loader block>
+        Loading...
+    </Loader>
+</CodeResult>
 
 <p>
     You can also set <code>padding={"{number}"}</code> or <code>padding="small|medium|large"</code> to add padding to the loader. By default, <code>padding="medium"</code> is used.
@@ -171,7 +180,7 @@
         flex-direction: column;
         align-items: flex-start;
     }
-    .loaders-display > :global(div) {
+    .loaders-display > :global(div:not(:last-child)) {
         margin-bottom: 10px;
     }
 </style>
@@ -189,4 +198,6 @@
     `}
 />
 
-<Loader>Loading...</Loader>
+<CodeResult>
+    <Loader>Loading...</Loader>
+</CodeResult>

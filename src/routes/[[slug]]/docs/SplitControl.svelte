@@ -6,6 +6,8 @@
     import Caption from "$lib/components/FormControl/Caption.svelte";
     import Table from "../../../lib/components/Table/Table.svelte";
     import TableRow from "../../../lib/components/Table/TableRow.svelte";
+    import Switch from "$lib/components/Switch/Switch.svelte";
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 
 <h1>Split Control</h1>
@@ -91,16 +93,18 @@
 `}
 />
 
-<SplitControl 
-    label="Language"
-    caption="The language to use for the site."
->
-    <TextInput 
-        type="text" 
-        block 
-        value="English"
-    />
-</SplitControl>
+<CodeResult>
+    <SplitControl 
+        label="Language"
+        caption="The language to use for the site."
+    >
+        <TextInput 
+            type="text" 
+            block 
+            value="English"
+        />
+    </SplitControl>
+</CodeResult>
 
 <h3 id="splots-for-label-caption">Using Slots for Label and Caption</h3>
 
@@ -116,11 +120,13 @@
     </SplitControl>
 `} />
 
-<SplitControl>
-    <Label slot="label">Spam Detection</Label>
-    <Caption slot="caption">Check for spam in comments</Caption>
-    <TextInput />
-</SplitControl>
+<CodeResult>
+    <SplitControl>
+        <Label slot="label">Spam Detection</Label>
+        <Caption slot="caption">Check for spam in comments</Caption>
+        <Switch />
+    </SplitControl>
+</CodeResult>
 
 <h3 id="nested">Nested Split Controls</h3>
 
@@ -141,11 +147,16 @@
 `} />
 
 
-<SplitControl label="Guest Commenting" caption="Comment without logging in">
-    <input type="checkbox" />
-    <div slot="nested">
-        <SplitControl label="Guest Comment Moderation" caption="Moderate guest comments before they are published.">
-            <input type="checkbox" />
-        </SplitControl>
-    </div>
-</SplitControl>
+<CodeResult>
+    <SplitControl 
+        label="Guest Commenting" 
+        caption="Comment without logging in"
+    >
+        <Switch />
+        <div slot="nested">
+            <SplitControl label="Guest Comment Moderation" caption="Moderate guest comments before they are published.">
+                <Switch />
+            </SplitControl>
+        </div>
+    </SplitControl>
+</CodeResult>

@@ -1,6 +1,4 @@
 <script lang="ts">
-    import Label from '../FormControl/Label.svelte';
-
     export let checked : boolean | undefined = undefined;
     export let group : (number | string)[] = [];
     export let value: string | number = 'on';
@@ -73,6 +71,7 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+        vertical-align: middle;
     }
 
     .checkbox-wrap label {
@@ -98,8 +97,8 @@
         position: relative;
     }
 
-    span.placeholder:focus {
-        box-shadow: 0 0 0 2px var(--accent-light);
+    span.placeholder:focus-visible {
+        box-shadow: 0 0 0 4px var(--accent-light);
     }
 
     /* the check icon */
@@ -116,10 +115,11 @@
         border: solid var(--accent-text);
         border-width: 0 3px 3px 0;
         transform: rotate(45deg);
+        transition: .2s box-shadow;
     }
     
     .checkbox-wrap:hover span.placeholder {
-        background-color: var(--input-hover);
+        box-shadow: 0 0 0 3px var(--accent-light);
     }
     
     input:checked ~ span.placeholder {

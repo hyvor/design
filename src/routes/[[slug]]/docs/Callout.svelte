@@ -3,6 +3,7 @@
     import TableRow from '$lib/components/Table/TableRow.svelte';
     import CodeBlock from '$lib/pages/Docs/Content/CodeBlock.svelte';
     import Callout from '$lib/components/Callout/Callout.svelte';
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 
 <h1>Callout</h1>
@@ -68,11 +69,13 @@
     <Callout type="danger">This is a danger callout.</Callout>
 `}/>
 
-<Callout type="soft">This is a soft callout.</Callout>
-<Callout type="info">This is an info callout.</Callout>
-<Callout type="warning">This is a warning callout.</Callout>
-<Callout type="success">This is a success callout.</Callout>
-<Callout type="danger">This is a danger callout.</Callout>
+<CodeResult style="gap:10px;display:flex;flex-direction:column">
+    <Callout type="soft">This is a soft callout.</Callout>
+    <Callout type="info">This is an info callout.</Callout>
+    <Callout type="warning">This is a warning callout.</Callout>
+    <Callout type="success">This is a success callout.</Callout>
+    <Callout type="danger">This is a danger callout.</Callout>
+</CodeResult>
 
 <h3 id="examples-with-title">Callout with Title</h3>
 
@@ -83,10 +86,12 @@
     </Callout>
 `}/>
 
-<Callout type="info">
-    <div slot="title">This is a title</div>
-    This is a callout with a title.
-</Callout>
+<CodeResult>
+    <Callout type="info">
+        <div slot="title">This is a title</div>
+        This is a callout with a title.
+    </Callout>
+</CodeResult>
 
 <h3 id="examples-with-icon">Callout with Icon</h3>
 
@@ -97,10 +102,12 @@
     </Callout>
 `}/>
 
-<Callout type="info">
-    <div slot="icon">👋</div>
-    This is a callout with an icon.
-</Callout>
+<CodeResult>
+    <Callout type="info">
+        <div slot="icon">👋</div>
+        This is a callout with an icon.
+    </Callout>
+</CodeResult>
 
 <h3 id="examples-with-icon-and-title">Callout with Icon and Title</h3>
 
@@ -112,8 +119,10 @@
     </Callout>
 `}/>
 
-<Callout type="danger">
-    <div slot="icon">⛔️</div>
-    <div slot="title">This is a title</div>
-    This is a callout with an icon and a title.
-</Callout>
+<CodeResult>
+    <Callout type="danger">
+        <div slot="icon">⛔️</div>
+        <div slot="title">This is a title</div>
+        This is a callout with an icon and a title.
+    </Callout>
+</CodeResult>

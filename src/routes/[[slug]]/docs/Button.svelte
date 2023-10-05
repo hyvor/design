@@ -6,6 +6,9 @@
     import CaretDown from "$lib/icons/CaretDown.svelte";
     import BoxArrowUpRight from '$lib/icons/BoxArrowUpRight.svelte';
     import Loader from "$lib/components/Loader/Loader.svelte";
+    import Table from "$lib/components/Table/Table.svelte";
+    import TableRow from "$lib/components/Table/TableRow.svelte";
+    import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 <h1>Button</h1>
 
@@ -15,102 +18,100 @@
 
 <h2 id="props">Properties</h2>
 
-<ul>
-    <li>
-        <code>size</code> - The <a href="#size">size</a> of the button.
-    </li>
-    <li>
-        <code>color</code> - The <a href="#color">color</a> of the button.
-    </li>
-    <li>
-        <code>block</code> - Whether the button should be displayed as a block element.
-    </li>
-    <li>
-        <code>align</code> - The alignment of the content when using <code>block</code>. Can be <code>start</code> or <code>center</code> (default). 
-    </li>
-    <li>
-        <code>as</code> - The element to render the button as. Can be <code>button</code> or <code>a</code>.
-    </li>
-</ul>
+<Table columns="2fr 2fr 3fr">
+
+    <TableRow head>
+        <div>Name</div>
+        <div>Default</div>
+        <div>Description</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>size</code></div>
+        <div><code>medium</code></div>
+        <div>
+            The <a href="#size">size</a> of the button. One of:
+
+            <ul>
+                <li><code>small</code></li>
+                <li><code>medium</code></li>
+                <li><code>large</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>color</code></div>
+        <div><code>accent</code></div>
+        <div>
+            The <a href="#color">color</a> of the button. One of:
+        
+            <ul>
+                <li><code>accent</code></li>
+                <li><code>soft</code></li>
+                <li><code>invisible</code></li>
+                <li><code>danger</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>block</code></div>
+        <div><code>false</code></div>
+        <div>
+            Whether the button should be displayed as a block element.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>align</code></div>
+        <div><code>center</code></div>
+        <div>
+            The alignment of the content when using <code>block</code>. Can be <code>start</code> or <code>center</code>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>as</code></div>
+        <div><code>button</code></div>
+        <div>
+            The element to render the button as. Can be <code>button</code> or <code>a</code>.
+        </div>
+    </TableRow>
+
+</Table>
 
 All other properties will be forwarded to the underlying element.
 
 <h3 id="size">Size</h3>
 
-<p>
-    The size can be one of the following:
-</p>
+<CodeBlock code={`
+    <Button size="small">Small Button</Button>
+    <Button size="medium">Medium Button</Button>
+    <Button size="large">Large Button</Button>
+`} />
 
-<ul>
-    <li>
-        <p>
-            <code>small</code>
-        </p>
-        <Button size="small">
-            Small Button
-        </Button>
-    </li>
-    <li>
-        <p>
-            <code>medium</code> (default)
-        </p>
-        <Button size="medium">
-            Medium Button
-        </Button>
-    </li>
-    <li>
-        <p>
-            <code>large</code>
-        </p>
-        <Button size="large">
-            Large Button
-        </Button>
-    </li>
-</ul>
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start">
+    <Button size="small">Small Button</Button>
+    <Button size="medium">Medium Button</Button>
+    <Button size="large">Large Button</Button>
+</CodeResult>
 
 <h3 id="color">Color</h3>
 
-<p>
-    The color can be one of the following:
-</p>
+<CodeBlock code={`
+    <Button color="accent">Accent Button</Button>
+    <Button color="soft">Soft Button</Button>
+    <Button color="invisible">Invisible Button</Button>
+    <Button color="danger">Danger Button</Button>
+`} />
 
-<ul>
-
-    <li>
-        <p>
-            <code>accent</code> (default)
-        </p>
-        <Button color="accent">
-            Accent Button
-        </Button>
-    </li>
-    <li>
-        <p>
-            <code>soft</code>
-        </p>
-        <Button color="soft">
-            Soft Button
-        </Button>
-    </li>
-    <li>
-        <p>
-            <code>invisible</code>
-        </p>
-        <Button color="invisible">
-            Invisible Button
-        </Button>
-    </li>
-    <li>
-        <p>
-            <code>danger</code>
-        </p>
-        <Button color="danger">
-            Danger Button
-        </Button>
-    </li>
-
-</ul>
-
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start">
+    <Button color="accent">Accent Button</Button>
+    <Button color="soft">Soft Button</Button>
+    <Button color="invisible">Invisible Button</Button>
+    <Button color="danger">Danger Button</Button>
+</CodeResult>
 
 <h2 id="slots">Slots</h2>
 
@@ -122,7 +123,9 @@ All other properties will be forwarded to the underlying element.
         <CodeBlock 
             code={`<Button>Search</Button>`}
         />
-        <Button>Search</Button>
+        <CodeResult>
+            <Button>Search</Button>
+        </CodeResult>
     </li>
     <li>
         <code>start</code> - Placed before the content (e.g. icon). 
@@ -136,10 +139,12 @@ All other properties will be forwarded to the underlying element.
             `}
         />
 
-        <Button>
-            <Search slot="start" />
-            Search
-        </Button>
+        <CodeResult>
+            <Button>
+                <Search slot="start" />
+                Search
+            </Button>
+        </CodeResult>
     </li>
     <li>
         <code>end</code> - Placed after the content (e.g. icon).
@@ -153,10 +158,12 @@ All other properties will be forwarded to the underlying element.
             `}
         />
 
-        <Button>
-            Search
-            <Search slot="end" />
-        </Button>
+        <CodeResult>
+            <Button>
+                Search
+                <Search slot="end" />
+            </Button>
+        </CodeResult>
     </li>
     <li>
         <code>action</code> - Placed after the content, locked to the right side of the button. This is useful with the <code>block</code> property.
@@ -171,11 +178,13 @@ All other properties will be forwarded to the underlying element.
             `}
         />
 
-        <Button block color="soft">
-            <Search slot="start" />
-            Search
-            <CaretDown slot="action" />
-        </Button>
+        <CodeResult>
+            <Button block color="soft">
+                <Search slot="start" />
+                Search
+                <CaretDown slot="action" />
+            </Button>
+        </CodeResult>
     </li>
 </ul>
 
@@ -195,9 +204,11 @@ All other properties will be forwarded to the underlying element.
     `}
 />
 
-<Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
-    HYVOR <BoxArrowUpRight slot="end" />
-</Button>
+<CodeResult>
+    <Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
+        HYVOR <BoxArrowUpRight slot="end" />
+    </Button>
+</CodeResult>
 
 <h3 id="button-with-loader">Button with Loader</h3>
 
@@ -214,10 +225,12 @@ All other properties will be forwarded to the underlying element.
     `}
 />
 
-<Button>
-    Submit
-    <Loader slot="action" size="small" invert />
-</Button>
+<CodeResult>
+    <Button>
+        Submit
+        <Loader slot="action" size="small" invert />
+    </Button>
+</CodeResult>
 
 <h2 id="group">Button Group</h2>
 
@@ -233,8 +246,10 @@ All other properties will be forwarded to the underlying element.
     </ButtonGroup>
 `} />
 
-<ButtonGroup>
-    <Button>Button 1</Button>
-    <Button>Button 2</Button>
-    <Button>Button 3</Button>
-</ButtonGroup>
+<CodeResult>
+    <ButtonGroup>
+        <Button>Button 1</Button>
+        <Button>Button 2</Button>
+        <Button>Button 3</Button>
+    </ButtonGroup>
+</CodeResult>

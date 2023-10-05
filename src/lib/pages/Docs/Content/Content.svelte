@@ -50,7 +50,7 @@
     }
 
     content :global(p), content :global(li) {
-        line-height: 26px;
+        line-height: var(--line-height-content);
     }
 
     content :global(h1) {
@@ -78,6 +78,10 @@
     }
     content :global(li) {
         margin-bottom: 8px;
+    }
+
+    content :global(.table) {
+        margin: 20px 0;
     }
 
     content :global(code) {

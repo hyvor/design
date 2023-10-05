@@ -40,7 +40,7 @@
     .callout {
         padding: 15px 25px;
         border-radius: var(--box-radius);    
-        margin: 15px 0;
+        line-height: var(--line-height-content);
     }
 
     .callout.soft {

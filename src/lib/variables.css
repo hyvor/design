@@ -42,12 +42,14 @@
     --hover: #fafafa;
 	--link: #1d85d2;
 
-    --input: #f5f5f5;
+    --input: #e6e6e6;
     --input-hover: #ccc; /* checkbox/radio */
 
     --box-shadow: 0 0 30px #0000000d;
     --box-shadow-light: 0 0 10px 6px rgba(0,0,0,.06);
     --box-radius: 20px;
     --box-background: #fff;
+
+    --line-height-content: 26px;
 
 }

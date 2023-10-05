@@ -131,3 +131,26 @@ Each HYVOR product has a different accent color scheme, while most of the other 
         display: flex;
     }
 </style>
+
+<h2 id="events">Events</h2>
+
+<p>
+    Form elements in HDS forward the following events from the underlying HTML elements:
+</p>
+
+<ul>
+    <li><code>on:keyup</code></li>
+    <li><code>on:keydown</code></li>
+    <li><code>on:keypress</code></li>
+    <li><code>on:focus</code></li>
+    <li><code>on:blur</code></li>
+    <li><code>on:click</code></li>
+    <li><code>on:mouseover</code></li>
+    <li><code>on:mouseenter</code></li>
+    <li><code>on:mouseleave</code></li>
+    <li><code>on:change</code></li>
+</ul>
+
+<CodeBlock code={`
+    <Checkbox on:change={handleFocus} />
+`} />

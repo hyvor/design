@@ -12,8 +12,9 @@
         margin-bottom: 8px;
     }
 
-    .form-control :global(label) {
+    .form-control > :global(label) {
         margin-bottom: 8px;
+        font-weight: 600;
     }
 
     .form-control :global(label + .caption) {

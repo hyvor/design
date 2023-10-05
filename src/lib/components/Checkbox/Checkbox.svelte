@@ -1,32 +1,65 @@
 <script lang="ts">
+    import Label from '../FormControl/Label.svelte';
+
     export let checked : boolean | undefined = undefined;
+    export let group : (number | string)[] = [];
+    export let value: string | number = 'on';
+
     let input: HTMLInputElement;
+
+    /* 
+    * From https://github.com/themesberg/flowbite-svelte/blob/main/src/lib/forms/Checkbox.svelte
+    */
+    function handleChange() {
+        const index = group.indexOf(value);
+        if (checked === undefined) checked = index >= 0;
+        if (checked) {
+            if (index < 0) {
+                group.push(value);
+                group = group;
+            }
+        } else {
+            if (index >= 0) {
+                group.splice(index, 1);
+                group = group;
+            }
+        }
+    }
+
 </script>
 
 <span 
     class="checkbox-wrap"
-    on:click={() => input.click()}
-    on:keyup={(e) => {
-        if (e.key === 'Enter') {
-            input.click();
-        }
-    }}
-    role="checkbox"
-    tabindex="0"
-    aria-checked="false"
 >
-    <input
-        type="checkbox"
-        bind:checked
-        {...$$restProps}
-        bind:this={input}
-    />
-    <span class="placeholder" />
-    {#if $$slots.default}
-        <span class="label">
-            <slot />
-        </span>
-    {/if}
+    <label>
+        <input
+            type="checkbox"
+            bind:checked
+            bind:this={input}
+
+            on:keyup
+            on:keydown
+            on:keypress
+            on:focus
+            on:blur
+            on:click
+            on:mouseover
+            on:mouseenter
+            on:mouseleave
+            on:change
+
+            {...$$restProps}
+
+            on:change={handleChange}
+
+        />
+        <span class="placeholder" />
+        {#if $$slots.default}
+            <span class="label">
+                <slot />
+            </span>
+        {/if}
+    </label>
 </span>
 
 <style>
@@ -40,6 +73,12 @@
         cursor: pointer;
         display: inline-flex;
         align-items: center;
+    }
+
+    .checkbox-wrap label {
+        display: inline-flex;
+        align-items: center;
+        cursor: pointer;
     }
 
     input {
@@ -85,6 +124,10 @@
     
     input:checked ~ span.placeholder {
         background-color: var(--accent)!important;
+    }
+
+    input:focus ~ span.placeholder {
+        box-shadow: 0 0 0 4px var(--accent-light);
     }
 
     input:checked ~ span.placeholder:after {

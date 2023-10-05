@@ -24,6 +24,10 @@ button, a {
     cursor: pointer;
 }
 
+:focus-visible {
+    outline: 2px solid var(--accent-light);
+}
+
 
 * {
     box-sizing: border-box;

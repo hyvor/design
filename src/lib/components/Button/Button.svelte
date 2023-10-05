@@ -59,6 +59,7 @@
         cursor: pointer;
 
         --local-hover-shadow-size: 2.5px;
+        --local-hover-shadow-color: var(--accent-light);
         &:active {
             --local-hover-shadow-size: 4px;
         }
@@ -68,10 +69,15 @@
             width: 100%;
         }
 
-        &:focus {
-            outline: none;
-            box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--link);
+        &:hover {
+            box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--local-hover-shadow-color);
         }
+
+        &:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px) var(--local-hover-shadow-color);
+        }
+        
 
     }
 
@@ -127,18 +133,14 @@
         background-color: var(--accent);
         color: var(--accent-text);
         transition: .2s box-shadow;
-        &:hover {
-            box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--accent-light);
-        }
+        --local-hover-shadow-color: var(--accent-light);
     }
 
     .button.soft {
         background-color: var(--accent-light);
         color: var(--accent);
         transition: .2s box-shadow;
-        &:hover {
-            box-shadow: 0 0 0 var(--local-hover-shadow-size) #eee;
-        }
+        --local-hover-shadow-color: #eee;
     }
 
     .button.invisible {
@@ -146,6 +148,7 @@
         color: var(--text);
         &:hover {
             background-color: var(--accent-light);
+            box-shadow: none!important;
         }
     }
 
@@ -153,9 +156,7 @@
         background-color: var(--red-dark);
         color: var(--text-white);
         transition: .2s box-shadow;
-        &:hover {
-            box-shadow: 0 0 0 var(--local-hover-shadow-size) var(--red-light);
-        }
+        --local-hover-shadow-color: var(--red-light);
     }
 
 </style>

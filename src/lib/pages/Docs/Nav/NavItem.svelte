@@ -8,6 +8,7 @@
 <a 
     href={href}
     class:active={href === $page.url.pathname}
+    aria-current={href === $page.url.pathname ? "page" : undefined}
 >
     <slot />
 </a>

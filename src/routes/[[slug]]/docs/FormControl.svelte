@@ -5,6 +5,8 @@
     import Validation from "$lib/components/FormControl/Validation.svelte";
     import FormControl from "$lib/components/FormControl/FormControl.svelte";
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
+    import InputGroup from "$lib/components/FormControl/InputGroup.svelte";
+    import Checkbox from "$lib/components/Checkbox/Checkbox.svelte";
 </script>
 <h1>Form Control</h1>
 
@@ -17,6 +19,7 @@
     <li><code>{"<Caption>"}</code></li>
     <li><code>{"<Validation>"}</code></li>
     <li><code>{"<FormControl>"}</code></li>
+    <li><code>{"<InputGroup>"}</code></li>
 </ul>
 
 <p>
@@ -69,4 +72,31 @@
     <Caption>Enter your name</Caption>
     <TextInput type="text" id="fc-input-id" state="error" />
     <Validation state="error">This field is required</Validation>
+</FormControl>
+
+
+<h2 id="input-group">Input Group</h2>
+
+<p>
+    The <code>{"<InputGroup>"}</code> component can be used to group multiple inputs together. It will automatically add spacing between the elements. It can be used to group checkboxes, radio buttons, text inputs, etc.
+</p>
+
+<CodeBlock code={`
+    <FormControl>
+        <Label for="input-id">Email Preferences</Label>
+        <Caption>When to receive emails</Caption>
+        <InputGroup>
+            <Checkbox>on replies</Checkbox>
+            <Checkbox>on mentions</Checkbox>
+        </InputGroup>
+    </FormControl>
+`} />
+
+<FormControl>
+    <Label for="input-id">Email Preferences</Label>
+    <Caption>When to receive emails</Caption>
+    <InputGroup>
+        <Checkbox>on replies</Checkbox>
+        <Checkbox>on mentions</Checkbox>
+    </InputGroup>
 </FormControl>

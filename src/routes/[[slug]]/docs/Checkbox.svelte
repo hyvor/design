@@ -5,12 +5,11 @@
     import FormControl from '$lib/components/FormControl/FormControl.svelte';
     import Label from '$lib/components/FormControl/Label.svelte';
     import Caption from '$lib/components/FormControl/Caption.svelte';
-    import Validation from '$lib/components/FormControl/Validation.svelte';
     import Callout from '$lib/components/Callout/Callout.svelte';
     import CodeResult from "./Helper/CodeResult.svelte";
 
     let x = true;
-    let a = [];
+    let a : string[] = [];
 </script>
 
 <h1>Checkbox</h1>

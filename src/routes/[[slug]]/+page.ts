@@ -9,6 +9,7 @@ import SplitControl from "./docs/SplitControl.svelte";
 import Switch from "./docs/Switch.svelte";
 import Table from "./docs/Table.svelte";
 import TextInput from "./docs/TextInput.svelte";
+import Textarea from "./docs/Textarea.svelte";
 import Tooltip from "./docs/Tooltip.svelte";
 
 export const prerender = true;
@@ -24,6 +25,7 @@ const nav = {
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,
+    textarea: Textarea,
     loader: Loader,
     tooltip: Tooltip
 }

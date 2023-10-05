@@ -1,4 +1,13 @@
-<div class="results" {...$$props}>
+<script lang="ts">
+    export let gap : number | undefined = undefined;
+</script>
+
+<div 
+    class="results"
+    class:gap={!!gap}
+    {...$$props}
+    style:gap={gap ? `${gap}px` : undefined}
+>
     <slot />
 </div>
 
@@ -8,5 +17,10 @@
         background-color: #fbfbfb;
         border-radius: 20px;
         border: 1px solid #eee;
+    }
+    .results.gap {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
     }
 </style>

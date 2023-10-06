@@ -1,7 +1,7 @@
 <script lang="ts">
     import Tooltip from "$lib/components/Tooltip/Tooltip.svelte";
     import Button from "$lib/components/Button/Button.svelte";
-    import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import Callout from "$lib/components/Callout/Callout.svelte";

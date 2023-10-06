@@ -146,6 +146,7 @@
     .button.invisible {
         background-color: transparent;
         color: var(--text);
+        transition: .2s background-color;
         &:hover {
             background-color: var(--accent-light);
             box-shadow: none!important;

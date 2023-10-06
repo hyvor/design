@@ -1,16 +1,29 @@
 <script lang="ts">
-	import DarkToggle from './../../lib/components/Dark/DarkToggle.svelte';
+	import Header from '$lib/marketing/Header/Header.svelte';
+	import DarkToggle from '$lib/components/Dark/DarkToggle.svelte';
     import '$lib/index';
-	import Content from "$lib/pages/Docs/Content/Content.svelte";
-    import Docs from "$lib/pages/Docs/Docs.svelte";
-	import Nav from "$lib/pages/Docs/Nav/Nav.svelte";
-	import NavCategory from "$lib/pages/Docs/Nav/NavCategory.svelte";
-	import NavItem from "$lib/pages/Docs/Nav/NavItem.svelte";
+	import Content from "$lib/marketing/Docs/Content/Content.svelte";
+    import Docs from "$lib/marketing/Docs/Docs.svelte";
+	import Nav from "$lib/marketing/Docs/Nav/Nav.svelte";
+	import NavCategory from "$lib/marketing/Docs/Nav/NavCategory.svelte";
+	import NavItem from "$lib/marketing/Docs/Nav/NavItem.svelte";
+
+    import logo from '../img/logo/hyvor.svg';
 
     export let data;
 </script>
 
-<DarkToggle />
+
+<Header
+    logo={logo}
+    name="HYVOR"
+>
+
+    <div slot="end">
+        <DarkToggle />
+    </div>
+
+</Header>
 
 <Docs>
 
@@ -23,6 +36,7 @@
         <NavCategory name="Components">
             <NavItem href="/avatar">Avatar</NavItem>
             <NavItem href="/button">Button</NavItem>
+            <NavItem href="/icon-button">Icon Button</NavItem>
             <NavItem href="/dark">Dark Mode</NavItem>
             <NavItem href="/callout">Callout</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>

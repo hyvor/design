@@ -1,6 +1,6 @@
 <script>
     import InputGroup from "$lib/components/FormControl/InputGroup.svelte";
-    import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
     import Radio from "$lib/components/Radio/Radio.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import SplitControl from "$lib/components/SplitControl/SplitControl.svelte";

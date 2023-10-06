@@ -1,7 +1,7 @@
 <script>
     import Caption from "$lib/components/FormControl/Caption.svelte";
     import Label from "$lib/components/FormControl/Label.svelte";
-    import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
     import Validation from "$lib/components/FormControl/Validation.svelte";
     import FormControl from "$lib/components/FormControl/FormControl.svelte";
     import TextInput from "$lib/components/TextInput/TextInput.svelte";

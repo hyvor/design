@@ -4,6 +4,7 @@ import Callout from "./docs/Callout.svelte";
 import Checkbox from "./docs/Checkbox.svelte";
 import Dark from "./docs/Dark.svelte";
 import FormControl from "./docs/FormControl.svelte";
+import IconButton from "./docs/IconButton.svelte";
 import Index from "./docs/Index.svelte";
 import Loader from "./docs/Loader.svelte";
 import Radio from "./docs/Radio.svelte";
@@ -20,6 +21,7 @@ const nav = {
     index: Index,
     avatar: Avatar,
     button: Button,
+    'icon-button': IconButton,
     table: Table,
     callout: Callout,
     checkbox: Checkbox,

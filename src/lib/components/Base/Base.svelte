@@ -1,8 +1,8 @@
 <script lang="ts">
-	import DarkServiceProvider from './../Dark/DarkServiceProvider.svelte';
+	import DarkProvider from './../Dark/DarkProvider.svelte';
 </script>
 
-<DarkServiceProvider />
+<DarkProvider />
 
 <div id="base">
     <slot />

@@ -1,6 +1,6 @@
 <script lang="ts">
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
-    import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
     import Search from "$lib/icons/Search.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
 </script>

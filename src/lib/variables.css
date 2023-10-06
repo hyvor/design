@@ -51,6 +51,7 @@
     --box-background: #fff;
 
     --line-height-content: 26px;
+    --header-height: 55px;
 
 }
 
@@ -65,6 +66,7 @@
     --accent-light: #555;
     --accent-lightest: #333;
 
+    --border: #4a4a4a;
     --link: #7cb6e1;
     --hover: #232323;
 

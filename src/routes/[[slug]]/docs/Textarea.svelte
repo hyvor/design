@@ -1,7 +1,7 @@
 <script>
 	import Textarea from './../../../lib/components/Textarea/Textarea.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import CodeBlock from './../../../lib/pages/Docs/Content/CodeBlock.svelte';
+	import CodeBlock from './../../../lib/marketing/Docs/Content/CodeBlock.svelte';
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
 

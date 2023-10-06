@@ -1,7 +1,7 @@
 <script>
     import Button from "$lib/components/Button/Button.svelte";
     import ButtonGroup from "$lib/components/Button/ButtonGroup.svelte";
-    import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
     import Search from '$lib/icons/Search.svelte';
     import CaretDown from "$lib/icons/CaretDown.svelte";
     import BoxArrowUpRight from '$lib/icons/BoxArrowUpRight.svelte';

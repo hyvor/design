@@ -1,7 +1,7 @@
 <script lang="ts">
     import SplitControl from "$lib/components/SplitControl/SplitControl.svelte";
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
-    import CodeBlock from "../../../lib/pages/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "../../../lib/marketing/Docs/Content/CodeBlock.svelte";
     import Label from "$lib/components/FormControl/Label.svelte";
     import Caption from "$lib/components/FormControl/Caption.svelte";
     import Table from "../../../lib/components/Table/Table.svelte";

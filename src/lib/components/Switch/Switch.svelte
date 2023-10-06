@@ -64,21 +64,19 @@
 		right: 0;
 		bottom: 0;
 		background-color: var(--input);
-		transition: .4s;
-		-webkit-transition: .4s;
+		transition: .2s;
 		border-radius: 30px;
-		-webkit-border-radius: 30px;
 	}
 
     .slider:hover {
-        box-shadow: 0 0 0 3px var(--accent-light);
+        box-shadow: 0 0 0 2px var(--accent-light);
     }
 	
 	.slider:before {
 		position: absolute;
 		content: "";
 		border-radius: 50%;
-		background-color: #fff;
+		background-color: var(--accent-text);
 		transition: .1s;
         width:18px;
         height:18px;
@@ -92,11 +90,11 @@
 	}
 	
 	input:focus-visible + .slider {
-		box-shadow: 0 0 0 4px var(--accent-light);
+		box-shadow: 0 0 0 3px var(--accent-light);
 	}
 
-    input:active + .slider {
-        box-shadow: 0 0 0 4px var(--accent-light);
+    .switch:active .slider, input:active + .slider {
+        box-shadow: 0 0 0 3px var(--accent-light);
     }
 	
 	input:checked + .slider:before {

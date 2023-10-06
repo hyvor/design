@@ -23,4 +23,8 @@
         flex-direction: column;
         align-items: flex-start;
     }
+    :global(:root.dark) .results {
+        background-color: #1e1e1e;
+        border-color: #333;
+    }
 </style>

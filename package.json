@@ -44,6 +44,7 @@
 	"types": "./dist/index.d.ts",
 	"type": "module",
 	"dependencies": {
-		"@fontsource/readex-pro": "^5.0.8"
+		"@fontsource/readex-pro": "^5.0.8",
+		"prism-svelte": "^0.5.0"
 	}
 }

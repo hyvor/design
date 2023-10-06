@@ -23,7 +23,7 @@
     </div>
 </div>
 
-<style>
+<style lang="scss">
     .validation {
         display: flex;
         align-items: center;
@@ -40,5 +40,17 @@
     }
     .validation.success {
         color: var(--green-dark);
+    }
+
+    :global(:root.dark) {
+        .validation.error {
+            color: var(--red);
+        }
+        .validation.warning {
+            color: var(--orange);
+        }
+        .validation.success {
+            color: var(--green);
+        }
     }
 </style>

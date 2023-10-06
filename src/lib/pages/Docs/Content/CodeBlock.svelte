@@ -1,14 +1,15 @@
 <script lang="ts">
 
-    import './prism.css';
+    import './prism.scss';
 
     export let code: string;
     export let language: 
-        'html' | 'js' | 'css'
+        'html' | 'js' | 'css' | 'svelte'
         = 'html';
 
     // @ts-ignore
     import Prism from 'prismjs';
+    import 'prism-svelte';
 
     function getCode() {
 

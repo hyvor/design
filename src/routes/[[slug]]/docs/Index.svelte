@@ -4,16 +4,17 @@
     import CodeBlock from "$lib/pages/Docs/Content/CodeBlock.svelte";
     import ColorDot from "./Helper/ColorDot.svelte";
 </script>
-<h1>HDS</h1>
+
+<h1>Hyvor Design System (HDS)</h1>
 
 <p>
-    HDS, Hyvor Design System, is a collection of <a href="https://svelte.dev" target="_blank">Svelte</a> UI components for building HYVOR products. It is open-source and you can view the source code on <a href="https://github.com/hyvor/design" target="_blank">Github</a>. However, as it is not a general purpose UI library, it is not recommended to use it in non-HYVOR products.
+    Hyvor Design System, HDS, is a collection of <a href="https://svelte.dev" target="_blank">Svelte</a> UI components for building HYVOR products. It is open-source and you can view the source code on <a href="https://github.com/hyvor/design" target="_blank">Github</a>. However, it is not recommended to use HDS on non-HYVOR projects as it is not designed to be a general-purpose UI library.
 </p>
 
-<h2 id="usage">Usage</h2>
+<h2 id="adoption">HDS across HYVOR</h2>
 
 <p>
-    Here is the usage of HDS in HYVOR products.
+    We are incrementally adopting HDS in our products. Here is the current status:
 </p>
 
 <Table columns="1fr 1fr 1fr">
@@ -123,7 +124,22 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 `} />
 
 <p>
-    Then,
+    Next, wrap the main layout with <code>{"<Base>"}</code>. This component handles a few features like <a href="/dark">dark mode</a>.
+</p>
+
+<CodeBlock code={`
+    // src/routes/+layout.svelte
+    <script>
+        import { Base } from "@hyvor/design/components";
+    </script>
+
+    <Base>
+        <slot />
+    </Base>
+`} />
+
+<p>
+    Then, use the other components as you need!
 </p>
 
 <ul>

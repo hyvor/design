@@ -1,4 +1,5 @@
 <script lang="ts">
+	import DarkToggle from './../../lib/components/Dark/DarkToggle.svelte';
     import '$lib/index';
 	import Content from "$lib/pages/Docs/Content/Content.svelte";
     import Docs from "$lib/pages/Docs/Docs.svelte";
@@ -9,6 +10,8 @@
     export let data;
 </script>
 
+<DarkToggle />
+
 <Docs>
 
     <Nav slot="nav">
@@ -18,7 +21,9 @@
         </NavCategory>
 
         <NavCategory name="Components">
+            <NavItem href="/avatar">Avatar</NavItem>
             <NavItem href="/button">Button</NavItem>
+            <NavItem href="/dark">Dark Mode</NavItem>
             <NavItem href="/callout">Callout</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
             <NavItem href="/radio">Radio</NavItem>

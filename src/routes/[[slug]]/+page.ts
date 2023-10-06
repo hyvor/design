@@ -1,6 +1,8 @@
+import Avatar from "./docs/Avatar.svelte";
 import Button from "./docs/Button.svelte";
 import Callout from "./docs/Callout.svelte";
 import Checkbox from "./docs/Checkbox.svelte";
+import Dark from "./docs/Dark.svelte";
 import FormControl from "./docs/FormControl.svelte";
 import Index from "./docs/Index.svelte";
 import Loader from "./docs/Loader.svelte";
@@ -16,6 +18,7 @@ export const prerender = true;
 
 const nav = {
     index: Index,
+    avatar: Avatar,
     button: Button,
     table: Table,
     callout: Callout,
@@ -27,7 +30,8 @@ const nav = {
     'text-input': TextInput,
     textarea: Textarea,
     loader: Loader,
-    tooltip: Tooltip
+    tooltip: Tooltip,
+    dark: Dark,
 }
 
 export async function load({ params }) {

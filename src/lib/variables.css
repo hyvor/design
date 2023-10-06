@@ -53,3 +53,19 @@
     --line-height-content: 26px;
 
 }
+
+:root.dark {
+
+    --background: #000;
+
+    --text: #fff;
+    --text-light: #999;
+    --box-background: #1c1c1c;
+
+    --accent-light: #555;
+    --accent-lightest: #333;
+
+    --link: #7cb6e1;
+    --hover: #232323;
+
+}

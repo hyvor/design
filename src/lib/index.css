@@ -11,7 +11,8 @@
 }
 
 body {
-    background-color: var(--accent-lightest);
+    background-color: var(--background, var(--accent-lightest));
+    color: var(--text);
 }
 
 button, a {

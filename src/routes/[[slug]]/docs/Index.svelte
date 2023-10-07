@@ -155,7 +155,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 </ul>
 
 <CodeBlock code={`
-    <script>
+    <` + `script>
         import { TextInput, Checkbox } from "@hyvor/design/components";
         import { DocsNav, Header } from '@hyvor/design/marketing';
     </script>
@@ -170,7 +170,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 </p>
 
 <CodeBlock code={`
-    <script>
+    <` + `script>
         import Search from "@hyvor/design/icons/Search.svelte";
     </script>
 

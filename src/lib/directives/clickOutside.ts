@@ -6,19 +6,19 @@ interface Options {
 
 type Input = Options | Function;
 
-export default function clickOutside(node: HTMLElement, input: Input) {
+export function clickOutside(node: HTMLElement, input: Input) {
 
-    input = (typeof input === "function" ? { callback: input } : input) as Input;
+    const options : Options = (typeof input === "function" ? { callback: input } : input);
 
-    const enabled = input.enabled === undefined ? true : input.enabled;
+    const enabled = options.enabled === undefined ? true : options.enabled;
     if (!enabled) return;
 
 	const handleClick = (event: MouseEvent) => {
 		if (!node.contains((event.target as HTMLElement))) {
-			if (input.stopPropagation)
+			if (options.stopPropagation)
             	event.stopPropagation();
 			
-			input.callback();
+			options.callback();
 		}
 	};
 

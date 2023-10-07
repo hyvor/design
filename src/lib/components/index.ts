@@ -1,3 +1,7 @@
+export { default as ActionList } from './ActionList/ActionList.svelte';
+export { default as ActionListItem } from './ActionList/ActionListItem.svelte';
+export { default as ActionListGroup } from './ActionList/ActionListGroup.svelte';
+
 export { default as Avatar } from './Avatar/Avatar.svelte';
 export { default as AvatarStack } from './Avatar/AvatarStack.svelte';
 
@@ -12,6 +16,8 @@ export { default as Callout } from './Callout/Callout.svelte';
 export { default as Checkbox } from './Checkbox/Checkbox.svelte';
 
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
+
+export { default as Dropdown } from './Dropdown/Dropdown.svelte';
 
 export { default as Caption } from './FormControl/Caption.svelte';
 export { default as FormControl } from './FormControl/FormControl.svelte';

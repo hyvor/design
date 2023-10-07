@@ -1,5 +1,5 @@
 <script lang="ts">
-    import clickOutside from "../directives/clickOutside.js";
+    import clickOutside from "../../directives/clickOutside.js";
 	import Box from './../Box/Box.svelte';
 
     export let show = false;

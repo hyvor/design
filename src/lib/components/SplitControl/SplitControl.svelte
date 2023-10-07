@@ -74,10 +74,6 @@
         flex: 3;
     }
 
-    .label {
-        font-weight: 600;
-    }
-
     .caption-wrap {
         margin-top: 4px;
     }

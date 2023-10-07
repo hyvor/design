@@ -29,7 +29,7 @@
 </p>
 
 <CodeBlock code={`
-    <script>
+    <`+`script>
         import { dark } from "@hyvor/design/stores";
     </script>
 

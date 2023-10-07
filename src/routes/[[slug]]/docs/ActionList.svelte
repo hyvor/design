@@ -13,10 +13,10 @@
     import HandThumbsUp from "$lib/icons/HandThumbsUp.svelte";
 
     let x1 = 1;
-    let x2 = [];
+    let x2 : number[] = [];
 
     let x3 = 1;
-    let x4 = [];
+    let x4 : number[] = [];
 
 </script>
 <h1>Action List</h1>

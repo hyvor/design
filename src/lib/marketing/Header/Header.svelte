@@ -102,10 +102,6 @@
 		vertical-align: middle;
 	}
 
-	.nav-left {
-		
-	}
-
 	.nav-center {
 		flex: 1;
 		display: flex;
@@ -118,9 +114,5 @@
 		display: flex;
 		align-items: center;
 		gap: 6px;
-	}
-
-	.learn-button {
-		margin-right: 10px;
 	}
 </style>

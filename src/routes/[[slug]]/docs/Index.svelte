@@ -129,7 +129,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 
 <CodeBlock code={`
     // src/routes/+layout.svelte
-    <script>
+    <`+`script>
         import { Base } from "@hyvor/design/components";
     </script>
 

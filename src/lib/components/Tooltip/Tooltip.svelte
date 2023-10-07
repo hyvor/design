@@ -7,8 +7,8 @@
     export let show = false;
     export let maxWidth : number = 300;
 
-    let wrap;
-    let tooltip
+    let wrap: HTMLDivElement;
+    let tooltip: HTMLDivElement;
 
     function positionTooltip() {
         if (wrap && tooltip && show) {

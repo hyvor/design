@@ -90,7 +90,4 @@
         font-size: 18px;
     }
 
-    .title {
-    }
-
 </style>

@@ -1,7 +1,12 @@
 <script lang="ts">
     export let as: 'button' | 'a' = 'button';
     export let size : 'small' | 'medium' | 'large' = 'medium';
-    export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
+    export let color : 
+        'accent' | 
+        'soft' | 
+        'light' |
+        'invisible' | 
+        'danger' = 'accent';
     export let block : boolean = false;
     export let align: 'start' | 'center' = 'center';
 </script>
@@ -10,6 +15,21 @@
     this={as}
     class="button {size} {color} {align}"
     class:block={block}
+
+    on:keyup
+    on:keydown
+    on:keypress
+    on:focus
+    on:blur
+    on:click
+    on:mouseover
+    on:mouseenter
+    on:mouseleave
+    on:change
+
+    role="button"
+    tabindex="0"
+
     {...$$restProps}
 >
 
@@ -141,6 +161,16 @@
         color: var(--accent);
         transition: .2s box-shadow;
         --local-hover-shadow-color: #eee;
+    }
+    
+    .button.light {
+        background-color: #f5f5f5;
+        color: var(--text);
+        transition: .2s box-shadow;
+        --local-hover-shadow-color: var(--accent-light);
+    }
+    :global(:root.dark) .button.light {
+        background-color: #2e2e2e;
     }
 
     .button.invisible {

@@ -65,7 +65,7 @@
 
 <h2 id="examples">Examples</h2>
 
-<h3 id="sizes">Sizes</h3>
+<h3 id="size">Sizes</h3>
 
 <CodeBlock code={`
     <IconButton size="small"><Search /></IconButton>
@@ -79,7 +79,7 @@
 <IconButton size="large"><Search /></IconButton>
 </CodeResult>
 
-<h3 id="colors">Colors</h3>
+<h3 id="color">Colors</h3>
 
 <CodeBlock code={`
     <IconButton color="accent"><Search /></IconButton>

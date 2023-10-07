@@ -81,7 +81,7 @@
         background: var(--accent);
         margin-top: 10px;
     }   
-    content :global(a) {
+    content :global(a:not(.no-link-color a)) {
         color: var(--link);
         text-decoration: underline;
     }

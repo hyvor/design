@@ -19,7 +19,7 @@
         display: block;
         padding: 4px 25px;
         color: var(--text-light);
-        font-size: 0.9rem;
+        font-size: 14px;
         letter-spacing: .3px;
         border-left: 3px solid transparent;
     }

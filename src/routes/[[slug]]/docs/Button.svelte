@@ -49,6 +49,7 @@
             <ul>
                 <li><code>accent</code></li>
                 <li><code>soft</code></li>
+                <li><code>light</code></li>
                 <li><code>invisible</code></li>
                 <li><code>danger</code></li>
             </ul>
@@ -102,13 +103,15 @@ All other properties will be forwarded to the underlying element.
 <CodeBlock code={`
     <Button color="accent">Accent Button</Button>
     <Button color="soft">Soft Button</Button>
+    <Button color="light">Light Button</Button>
     <Button color="invisible">Invisible Button</Button>
     <Button color="danger">Danger Button</Button>
 `} />
 
-<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start">
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
     <Button color="accent">Accent Button</Button>
     <Button color="soft">Soft Button</Button>
+    <Button color="light">Light Button</Button>
     <Button color="invisible">Invisible Button</Button>
     <Button color="danger">Danger Button</Button>
 </CodeResult>

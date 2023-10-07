@@ -1,25 +1,37 @@
 <script lang="ts">
 	import Container from './../Container/Container.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
+    import DarkToggle from "../../components/Dark/DarkToggle.svelte";
 
     export let logo : string;
     export let name : string;
+
+	export let darkToggle : boolean = true;
+
 </script>
 
 <header>
 
 	<Container as="nav">
 
-		<div class="nav-left">
+		<div class="nav-start">
             <a class="nav-brand" href="/">
                 <img src={logo} alt="Hyvor Logo" width="30" height="30" />
                 <span class="brand-name">{name}</span>
             </a>
         </div>
 
-		<div class="nav-right">
+		<div class="nav-center">
+			<slot name="center" />
+		</div>
+
+		<div class="nav-end">
 
             <slot name="end" />
+
+			{#if darkToggle}
+				<DarkToggle />
+			{/if}
 
 			<!-- <a href="/find">
 				<Button active={$page.url.pathname === '/find'}>
@@ -91,7 +103,21 @@
 	}
 
 	.nav-left {
+		
+	}
+
+	.nav-center {
 		flex: 1;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		justify-content: center;
+	}
+
+	.nav-end {
+		display: flex;
+		align-items: center;
+		gap: 6px;
 	}
 
 	.learn-button {

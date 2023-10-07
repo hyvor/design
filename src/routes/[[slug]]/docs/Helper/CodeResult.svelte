@@ -1,10 +1,12 @@
 <script lang="ts">
     export let gap : number | undefined = undefined;
+    export let white = false;
 </script>
 
 <div 
     class="results"
     class:gap={!!gap}
+    class:white
     style="{gap ? `gap: ${gap}px` : ''}"
     {...$$props}
 >
@@ -17,6 +19,9 @@
         background-color: #fbfbfb;
         border-radius: 20px;
         border: 1px solid #eee;
+    }
+    .results.white {
+        background-color: #fff;
     }
     .results.gap {
         display: flex;

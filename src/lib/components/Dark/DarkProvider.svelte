@@ -12,7 +12,6 @@
         // to prevent white screen on page load
         // until the dark mode is initialized from the store
         const isDarkMode = !!localStorage.getItem("scheme-dark");
-        console.log(isDarkMode);
         if (isDarkMode) {
             document.documentElement.classList.add('dark');
         }

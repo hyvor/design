@@ -13,7 +13,6 @@
     export let data;
 </script>
 
-
 <Header
     logo={logo}
     name="HYVOR"

@@ -1,6 +1,6 @@
 <script lang="ts">
     import Switch from "$lib/components/Switch/Switch.svelte";
-    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from './Helper/CodeResult.svelte';
 </script>
 

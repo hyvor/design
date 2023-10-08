@@ -1,7 +1,7 @@
 <script lang="ts">
     import DarkToggle from "../../../lib/components/Dark/DarkToggle.svelte";
 
-    import CodeBlock from './../../../lib/marketing/Docs/Content/CodeBlock.svelte';
+    import CodeBlock from '../../../lib/components/CodeBlock/CodeBlock.svelte';
     import CodeResult from "./Helper/CodeResult.svelte";
 </script>
 <h1>Dark Mode</h1>

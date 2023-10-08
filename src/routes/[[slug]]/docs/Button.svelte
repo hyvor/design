@@ -1,7 +1,7 @@
 <script>
     import Button from "$lib/components/Button/Button.svelte";
     import ButtonGroup from "$lib/components/Button/ButtonGroup.svelte";
-    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import Loader from "$lib/components/Loader/Loader.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";

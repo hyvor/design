@@ -1,6 +1,6 @@
 <script>
 	import Avatar from "$lib/components/Avatar/Avatar.svelte";
-    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
 
     import hyvorLogo from "../../img/logo/hyvor-social.png";

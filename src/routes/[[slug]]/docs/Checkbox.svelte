@@ -1,7 +1,7 @@
 <script lang="ts">
     import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
     import InputGroup from '$lib/components/FormControl/InputGroup.svelte';
-    import CodeBlock from '$lib/marketing/Docs/Content/CodeBlock.svelte';
+    import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
     import FormControl from '$lib/components/FormControl/FormControl.svelte';
     import Label from '$lib/components/FormControl/Label.svelte';
     import Caption from '$lib/components/FormControl/Caption.svelte';

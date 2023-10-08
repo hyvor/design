@@ -7,3 +7,4 @@ export { default as Docs } from './Docs/Docs.svelte';
 export { default as DocsNav } from './Docs/Nav/Nav.svelte';
 export { default as DocsNavItem } from './Docs/Nav/NavItem.svelte';
 export { default as DocsNavCategory } from './Docs/Nav/NavCategory.svelte';
+export { default as DocsContent } from './Docs/Content/Content.svelte';

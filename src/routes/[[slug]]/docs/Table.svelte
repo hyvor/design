@@ -1,5 +1,5 @@
 <script>
-    import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
 </script>

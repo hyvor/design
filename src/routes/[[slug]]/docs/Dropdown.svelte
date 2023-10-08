@@ -8,7 +8,7 @@
     import hyvorBlogsLogo from "../../img/logo/hyvor-blogs-social.png";
     import Avatar from "../../../lib/components/Avatar/Avatar.svelte";
     import Text from "../../../lib/components/Text/Text.svelte";
-    import CodeBlock from "../../../lib/marketing/Docs/Content/CodeBlock.svelte";
+    import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import ActionListGroup from "../../../lib/components/ActionList/ActionListGroup.svelte";
     import { IconCaretDown } from "@hyvor/icons";

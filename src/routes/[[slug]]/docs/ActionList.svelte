@@ -6,7 +6,7 @@
     import CodeResult from "./Helper/CodeResult.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
-    import CodeBlock from '$lib/marketing/Docs/Content/CodeBlock.svelte';
+    import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
     import { IconHandThumbsUp, IconPencil, IconTrash } from "@hyvor/icons";
 
     let x1 = 1;

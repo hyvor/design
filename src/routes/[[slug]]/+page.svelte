@@ -1,8 +1,6 @@
 <script lang="ts">
 	import NavItem from './../../lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
-	import DarkToggle from '$lib/components/Dark/DarkToggle.svelte';
-    import '$lib/index';
 	import Content from "$lib/marketing/Docs/Content/Content.svelte";
     import Docs from "$lib/marketing/Docs/Docs.svelte";
 	import Nav from "$lib/marketing/Docs/Nav/Nav.svelte";

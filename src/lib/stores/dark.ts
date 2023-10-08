@@ -2,8 +2,6 @@ import { writable } from "svelte/store";
 
 export const dark = writable(false);
 
-
-
 export function setInitialState() {
 
     const isDark = isDarkScheme();
@@ -28,9 +26,7 @@ export function setInitialState() {
 
 
 function isDarkScheme() {
-    if (import.meta.env.SSR)
-        return;
-    
+
     const localStorageData = window.localStorage.getItem("scheme-dark");
     if (localStorageData) {
         return !!localStorageData

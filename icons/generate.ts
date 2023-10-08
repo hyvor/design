@@ -16,8 +16,9 @@ create();
 async function create() {
 
     const svgFiles = await glob('node_modules/bootstrap-icons/icons/*.svg');
+    const modules : string[] = [];
 
-    [svgFiles[0]].forEach((filePath) => {
+    svgFiles.forEach((filePath) => {
 
         const source = fs.readFileSync(filePath, 'utf-8');
         const { name } = path.parse(filePath);
@@ -27,11 +28,18 @@ async function create() {
 
         fs.writeFileSync(`src/lib/${moduleName}.svelte`, svelte);
 
+        modules.push(moduleName);
+
     });
+
+    const indexContent = modules
+        .map(name => `export { default as ${name} } from './${name}.svelte';`)
+        .join('\n');
+
+    fs.writeFileSync('src/lib/index.ts', indexContent);
 
 }
 
-svgFileToSvelte(svg, 'test.svg');
 
 function svgFileToSvelte(source: string, filename: string) {
 
@@ -65,10 +73,9 @@ function svgFileToSvelte(source: string, filename: string) {
     }
 
     const svelte = `<script lang="ts">
-        export let size: number = 16;
-    </script>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width={size} height={size} {...$$restProps}>${content.trim()}</svg>`;
-
+    export let size: number = 16;
+</script>
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width={size} height={size} {...$$restProps}>${content.trim()}</svg>`;
 
     return svelte;
 

@@ -113,14 +113,15 @@ Each HYVOR product has a different accent color scheme, while most of the other 
     </li>
 </ul>
 
-<h2 id="usage">Usage</h2>
+<h2 id="install">Installation</h2>
 
 <p>
-    First, install the package:
+    First, install these two packages:
 </p>
 
 <CodeBlock code={`
     npm i @hyvor/design
+    npm i @hyvor/icons
 `} />
 
 <p>
@@ -150,7 +151,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
         Import marketing components from <code>@hyvor/design/marketing</code>
     </li>
     <li>
-        Import icons as <code>@hyvor/design/icons/{"{Name.svelte}"}</code>. See <a href="#icons">Icons</a> below for more information.
+        Import icons from <code>@hyvor/icons</code>. See <a href="#icons">Icons</a> below for more information.
     </li>
 </ul>
 
@@ -158,23 +159,24 @@ Each HYVOR product has a different accent color scheme, while most of the other 
     <` + `script>
         import { TextInput, Checkbox } from "@hyvor/design/components";
         import { DocsNav, Header } from '@hyvor/design/marketing';
+        import { IconSearch } from '@hyvor/icons';
     </script>
 
-    <Search width={14} />
+    <IconSearch size={14} />
 `} />
 
 <h2 id="icons">Icons</h2>
 
 <p>
-    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons, which contains over 2000 icons. You should import SVG icons as <code>@hyvor/design/icons/{"{Name}"}.svelte</code> to reduce bundle size. Any SVG property, like <code>width</code>, can be set in the component.
+    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons, which contains over 2000 icons. Svelte components for each icon are available in the <code>@hyvor/icons</code> package. In addition to general SVG attributes, the svelte component supports <code>size</code> to set the width and height of the icon.
 </p>
 
 <CodeBlock code={`
     <` + `script>
-        import Search from "@hyvor/design/icons/Search.svelte";
+        import { IconSearch } from "@hyvor/icons";
     </script>
 
-    <Search width={14} />
+    <Search size={14} />
 `} />
 
 <style>

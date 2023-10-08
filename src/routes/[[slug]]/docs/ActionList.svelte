@@ -2,15 +2,12 @@
 	import Text from './../../../lib/components/Text/Text.svelte';
 	import ActionListGroup from './../../../lib/components/ActionList/ActionListGroup.svelte';
 	import ActionListItem from './../../../lib/components/ActionList/ActionListItem.svelte';
-    import Trash from "../../../lib/icons/Trash.svelte";
-    import Pencil from "../../../lib/icons/Pencil.svelte";
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
     import CodeResult from "./Helper/CodeResult.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
-    import Caption from "$lib/components/FormControl/Caption.svelte";
     import CodeBlock from '$lib/marketing/Docs/Content/CodeBlock.svelte';
-    import HandThumbsUp from "$lib/icons/HandThumbsUp.svelte";
+    import { IconHandThumbsUp, IconPencil, IconTrash } from "@hyvor/icons";
 
     let x1 = 1;
     let x2 : number[] = [];
@@ -433,17 +430,17 @@
 <CodeBlock code={`
     <ActionList>
         <ActionListItem>
-            <HandThumbsUp slot="start" />
+            <IconHandThumbsUp slot="start" />
             Vote
             <Text light slot="end">⌘⇧V</Text>
         </ActionListItem>
         <ActionListItem>
-            <Pencil slot="start" />
+            <IconPencil slot="start" />
             Edit
             <Text light slot="end">⌘⇧E</Text>
         </ActionListItem>
         <ActionListItem type="danger">
-            <Trash slot="start" />
+            <IconTrash slot="start" />
             Delete
             <Text light slot="end">⌘⇧D</Text>
         </ActionListItem>
@@ -454,17 +451,17 @@
 
     <ActionList>
         <ActionListItem>
-            <HandThumbsUp slot="start" />
+            <IconHandThumbsUp slot="start" />
             Vote
             <Text light slot="end">⌘⇧V</Text>
         </ActionListItem>
         <ActionListItem>
-            <Pencil slot="start" />
+            <IconPencil slot="start" />
             Edit
             <Text light slot="end">⌘⇧E</Text>
         </ActionListItem>
         <ActionListItem type="danger">
-            <Trash slot="start" />
+            <IconTrash slot="start" />
             Delete
             <Text light slot="end">⌘⇧D</Text>
         </ActionListItem>
@@ -477,19 +474,19 @@
 <CodeBlock code={`
     <ActionList>
         <ActionListItem>
-            <HandThumbsUp slot="start" />
+            <IconHandThumbsUp slot="start" />
             Vote
             <div slot="description">Add a vote to this comment.</div>
             <Text light slot="end">⌘⇧V</Text>
         </ActionListItem>
         <ActionListItem>
-            <Pencil slot="start" />
+            <IconPencil slot="start" />
             Edit
             <div slot="description">Edit this comment.</div>
             <Text light slot="end">⌘⇧E</Text>
         </ActionListItem>
         <ActionListItem type="danger">
-            <Trash slot="start" />
+            <IconTrash slot="start" />
             Delete
             <div slot="description">Delete this comment.</div>
             <Text light slot="end">⌘⇧D</Text>
@@ -501,19 +498,19 @@
 
     <ActionList>
         <ActionListItem>
-            <HandThumbsUp slot="start" />
+            <IconHandThumbsUp slot="start" />
             Vote
             <div slot="description">Add a vote to this comment.</div>
             <Text light slot="end">⌘⇧V</Text>
         </ActionListItem>
         <ActionListItem>
-            <Pencil slot="start" />
+            <IconPencil slot="start" />
             Edit
             <div slot="description">Edit this comment.</div>
             <Text light slot="end">⌘⇧E</Text>
         </ActionListItem>
         <ActionListItem type="danger">
-            <Trash slot="start" />
+            <IconTrash slot="start" />
             Delete
             <div slot="description">Delete this comment.</div>
             <Text light slot="end">⌘⇧D</Text>

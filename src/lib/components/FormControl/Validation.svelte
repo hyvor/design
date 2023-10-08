@@ -1,7 +1,5 @@
 <script lang="ts">
-    import ExclamationTriangleFill from '$lib/icons/ExclamationTriangleFill.svelte';
-    import InfoCircleFill from '$lib/icons/InfoCircleFill.svelte';
-    import CheckCircleFill from '$lib/icons/CheckCircleFill.svelte';
+    import { IconCheckCircleFill, IconExclamationTriangleFill, IconInfoCircleFill } from "@hyvor/icons";
 
     export let state : 'error' | 'warning' | 'success' = 'error';
 </script>
@@ -10,11 +8,11 @@
     <div class="icon">
 
         {#if state === 'error'}
-            <ExclamationTriangleFill />
+            <IconExclamationTriangleFill />
         {:else if state === 'warning'}
-            <InfoCircleFill />
+            <IconInfoCircleFill />
         {:else}
-            <CheckCircleFill />
+            <IconCheckCircleFill />
         {/if}
 
     </div>

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Container from './../Container/Container.svelte';
     import DarkToggle from "../../components/Dark/DarkToggle.svelte";
-    import List from "../../icons/List.svelte";
     import IconButton from "../../components/IconButton/IconButton.svelte";
     import Dropdown from "../../components/Dropdown/Dropdown.svelte";
+    import { IconList } from "@hyvor/icons";
 
     export let logo : string;
     export let name : string = "HYVOR";
@@ -50,7 +50,7 @@
 						color="invisible" 
 						slot="trigger"
 					>
-						<List width={18} height={18} />
+						<IconList size={18} />
 					</IconButton>
 					<div slot="content" class="mobile-content">
 						<div class="mobile-inner center">

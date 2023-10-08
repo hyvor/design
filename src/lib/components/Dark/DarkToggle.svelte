@@ -1,6 +1,5 @@
 <script lang="ts">
-    import MoonStarsFill from "../../icons/MoonStarsFill.svelte";
-    import SunFill from "../../icons/SunFill.svelte";
+    import { IconMoonStarsFill, IconSunFill } from "@hyvor/icons";
     import IconButton from "../IconButton/IconButton.svelte";
     import { dark } from './../../stores/dark.js';
     
@@ -14,8 +13,8 @@
     color="invisible"
 >
     {#if $dark}
-        <MoonStarsFill width={18} height={18} />
+        <IconMoonStarsFill size={18} />
     {:else}
-        <SunFill width={18} height={18} />
+        <IconSunFill size={18} />
     {/if}
 </IconButton>

@@ -1,11 +1,10 @@
 <script lang="ts">
-	import BoxArrowUpRight from './../../../lib/icons/BoxArrowUpRight.svelte';
-	import House from './../../../lib/icons/House.svelte';
 	import Link from '$lib/components/Link/Link.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import CodeBlock from './../../../lib/marketing/Docs/Content/CodeBlock.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
+    import { IconBoxArrowUpRight, IconHouse } from "@hyvor/icons";
 
 </script>
 
@@ -73,18 +72,18 @@
 <h3 id="start">Start Slot</h3>
 
 <CodeBlock code={`
-    <Link href="/"><House slot="start" />Home</Link>
-    <Link href="/" underline={false}><House slot="start" />Home</Link>
+    <Link href="/"><IconHouse slot="start" />Home</Link>
+    <Link href="/" underline={false}><IconHouse slot="start" />Home</Link>
 `} />
 
 <div class="no-link-color">
     <CodeResult gap={6}>
         <Link href="/">
-            <House slot="start" />
+            <IconHouse slot="start" />
             Home
         </Link>
         <Link href="/" underline={false}>
-            <House slot="start" />
+            <IconHouse slot="start" />
             Home
         </Link>
     </CodeResult>
@@ -95,17 +94,17 @@
 <CodeBlock code={`
     <Link href="/" target="_blank">
         Open
-        <BoxArrowUpRight slot="end" />
+        <IconBoxArrowUpRight slot="end" />
     </Link>
     <Link href="/" target="_blank" underline={false} >
         Open
-        <BoxArrowUpRight slot="end" />
+        <IconBoxArrowUpRight slot="end" />
     </Link>
 `} />
 
 <div class="no-link-color">
     <CodeResult gap={6}>
-        <Link href="/" target="_blank">Open<BoxArrowUpRight slot="end" /></Link>
-        <Link href="/" underline={false} target="_blank">Open<BoxArrowUpRight slot="end" /></Link>
+        <Link href="/" target="_blank">Open<IconBoxArrowUpRight slot="end" /></Link>
+        <Link href="/" underline={false} target="_blank">Open<IconBoxArrowUpRight slot="end" /></Link>
     </CodeResult>
 </div>

@@ -7,7 +7,7 @@
 <h1>Dark Mode</h1>
 
 <p>
-    HDS comes with in-built dark mode support. This is enabled by the <code>{"<Base>"}</code> component (See <a href="/#usage">Usage</a> for more details).
+    HDS comes with in-built dark mode support. This is enabled by the <code>{"<Base>"}</code> component (See <a href="/#install">Usage</a> for more details).
 </p>
 
 <h2 id="css">CSS</h2>

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import { setInitialState } from "$lib/stores/dark.js";
+    import { setInitialState } from "../../stores/dark.js";
 
     onMount(() => {
         setInitialState();

@@ -1,8 +1,7 @@
 <script lang="ts">
+	import { IconBoxArrowUpRight } from '@hyvor/icons';
 	import NavItem from './../../lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
-	import DarkToggle from '$lib/components/Dark/DarkToggle.svelte';
-    import '$lib/index';
 	import Content from "$lib/marketing/Docs/Content/Content.svelte";
     import Docs from "$lib/marketing/Docs/Docs.svelte";
 	import Nav from "$lib/marketing/Docs/Nav/Nav.svelte";
@@ -10,11 +9,9 @@
 
     import logo from '../img/logo/hyvor.svg';
     import Button from "../../lib/components/Button/Button.svelte";
-    import BoxArrowUpRight from "../../lib/icons/BoxArrowUpRight.svelte";
 
     export let data;
 </script>
-
 
 <Header
     logo={logo}
@@ -24,7 +21,7 @@
 
     <div slot="center">
         <Button as="a" href="https://hyvor.com" color="invisible" target="_blank">
-            hyvor.com <BoxArrowUpRight slot="end" />
+            hyvor.com <IconBoxArrowUpRight slot="end" size={14} />
         </Button>
     </div>
 

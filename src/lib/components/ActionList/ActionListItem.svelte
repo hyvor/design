@@ -1,7 +1,7 @@
 <script lang="ts">
     import { getContext, createEventDispatcher } from 'svelte';
-    import Check from '$lib/icons/Check.svelte';
     import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
+    import { IconCheck } from "@hyvor/icons";
 
     const selection : 'none' | 'single' | 'multi' = getContext('action-list-selection');
 
@@ -41,7 +41,7 @@
                 </span>
             {:else}
                 {#if selected}
-                    <Check />
+                    <IconCheck />
                 {/if}
             {/if}
         </span>

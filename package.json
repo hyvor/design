@@ -50,7 +50,7 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
-		"@hyvor/icons": "^0.0.1",
+		"@hyvor/icons": "^0.0.2",
 		"prism-svelte": "^0.5.0"
 	},
 	"publishConfig": {

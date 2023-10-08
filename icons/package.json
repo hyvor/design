@@ -44,5 +44,8 @@
 	},
 	"svelte": "./dist/index.js",
 	"types": "./dist/index.d.ts",
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"@hyvor/icons": "^0.0.2"
+	}
 }

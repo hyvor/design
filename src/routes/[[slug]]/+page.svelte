@@ -21,7 +21,7 @@
 
     <div slot="center">
         <Button as="a" href="https://hyvor.com" color="invisible" target="_blank">
-            hyvor.com <IconBoxArrowUpRight slot="end" />
+            hyvor.com <IconBoxArrowUpRight slot="end" size={14} />
         </Button>
     </div>
 

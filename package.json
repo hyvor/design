@@ -35,7 +35,6 @@
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.25.1",
 		"@sveltejs/package": "^2.0.0",
-		"bootstrap-icons": "^1.11.1",
 		"prismjs": "^1.29.0",
 		"publint": "^0.1.9",
 		"sass": "^1.68.0",

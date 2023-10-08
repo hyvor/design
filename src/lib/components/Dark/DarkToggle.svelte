@@ -13,8 +13,8 @@
     color="invisible"
 >
     {#if $dark}
-        <IconMoonStarsFill width={18} height={18} />
+        <IconMoonStarsFill size={18} />
     {:else}
-        <IconSunFill width={18} height={18} />
+        <IconSunFill size={18} />
     {/if}
 </IconButton>

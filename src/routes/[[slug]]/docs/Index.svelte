@@ -159,20 +159,21 @@ Each HYVOR product has a different accent color scheme, while most of the other 
     <` + `script>
         import { TextInput, Checkbox } from "@hyvor/design/components";
         import { DocsNav, Header } from '@hyvor/design/marketing';
+        import { IconSearch } from '@hyvor/icons';
     </script>
 
-    <Search width={14} />
+    <IconSearch size={14} />
 `} />
 
 <h2 id="icons">Icons</h2>
 
 <p>
-    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons, which contains over 2000 icons. Svelte components for each icon are available in <code>@hyvor/icons</code>. In addition to general SVG attributes, the svelte component supports <code>size</code> to set the width and height of the icon.
+    HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a> for icons, which contains over 2000 icons. Svelte components for each icon are available in the <code>@hyvor/icons</code> package. In addition to general SVG attributes, the svelte component supports <code>size</code> to set the width and height of the icon.
 </p>
 
 <CodeBlock code={`
     <` + `script>
-        import Search from "@hyvor/design/icons/Search.svelte";
+        import { IconSearch } from "@hyvor/icons";
     </script>
 
     <Search size={14} />

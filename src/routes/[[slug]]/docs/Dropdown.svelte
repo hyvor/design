@@ -3,7 +3,6 @@
 	import ActionList from './../../../lib/components/ActionList/ActionList.svelte';
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
     import Button from '$lib/components/Button/Button.svelte';
-    import CaretDown from '$lib/icons/CaretDown.svelte';
 
     import hyvorTalkLogo from "../../img/logo/hyvor-talk-social.png";
     import hyvorBlogsLogo from "../../img/logo/hyvor-blogs-social.png";
@@ -12,6 +11,7 @@
     import CodeBlock from "../../../lib/marketing/Docs/Content/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import ActionListGroup from "../../../lib/components/ActionList/ActionListGroup.svelte";
+    import { IconCaretDown } from "@hyvor/icons";
 
     let x1 = 'talk';
     let x2 : string[] = [];
@@ -59,7 +59,7 @@
 <CodeBlock code={`
     <Dropdown bind:show={showDropdown}>
         <Button slot="trigger" color="light">
-            Page <CaretDown slot="end" />
+            Page <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
             {#each [1,2,3] as i}
@@ -74,7 +74,7 @@
 <CodeResult>
     <Dropdown bind:show={s1} relative closeOnOutsideClick={false}>
         <Button slot="trigger" color="light">
-            Page <CaretDown slot="end" />
+            Page <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
             {#each [1,2,3] as i}
@@ -105,7 +105,7 @@
                 <Text normal style="margin-left:5px;">Hyvor Blogs</Text>
             {/if}
 
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content" selection="single">
             <ActionListItem 
@@ -141,7 +141,7 @@
                 <Text normal style="margin-left:5px;">Hyvor Blogs</Text>
             {/if}
 
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content" selection="single">
             <ActionListItem selected={x1 === 'talk'} on:select={() => {x1 = 'talk'}}>
@@ -170,7 +170,7 @@
     <Dropdown bind:show={showDropdown} width={350}>
         <Button slot="trigger" color="light">
             Select Products ({currentProducts.length})
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content" selection="multi">
             <ActionListItem 
@@ -210,7 +210,7 @@
     <Dropdown bind:show={s3} relative width={350} closeOnOutsideClick={false}>
         <Button slot="trigger" color="light">
             Select Products ({x2.length})
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content" selection="multi">
             <ActionListItem selected={x2.includes('talk')} on:select={() => handleX2Select('talk')}>
@@ -240,7 +240,7 @@
     <Dropdown bind:show={showDropdown} width={350}>
         <Button slot="trigger" color="light">
             Filter Results
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
             <ActionListGroup selection="multi" title="Product">
@@ -278,7 +278,7 @@
     <Dropdown bind:show={s4} relative width={350} closeOnOutsideClick={false}>
         <Button slot="trigger" color="light">
             Filter Results
-            <CaretDown slot="end" />
+            <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
             <ActionListGroup selection="multi" title="Product">

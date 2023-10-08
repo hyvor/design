@@ -2,13 +2,11 @@
     import Button from "$lib/components/Button/Button.svelte";
     import ButtonGroup from "$lib/components/Button/ButtonGroup.svelte";
     import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
-    import Search from '$lib/icons/Search.svelte';
-    import CaretDown from "$lib/icons/CaretDown.svelte";
-    import BoxArrowUpRight from '$lib/icons/BoxArrowUpRight.svelte';
     import Loader from "$lib/components/Loader/Loader.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
+    import { IconSearch, IconCaretDown, IconBoxArrowDownRight } from "@hyvor/icons";
 </script>
 <h1>Button</h1>
 
@@ -136,7 +134,7 @@ All other properties will be forwarded to the underlying element.
         <CodeBlock 
             code={`
                 <Button>
-                    <Search slot="start" />
+                    <IconSearch slot="start" />
                     Search
                 </Button>
             `}
@@ -144,7 +142,7 @@ All other properties will be forwarded to the underlying element.
 
         <CodeResult>
             <Button>
-                <Search slot="start" />
+                <IconSearch slot="start" />
                 Search
             </Button>
         </CodeResult>
@@ -156,7 +154,7 @@ All other properties will be forwarded to the underlying element.
             code={`
                 <Button>
                     Search
-                    <Search slot="end" />
+                    <IconSearch slot="end" />
                 </Button>
             `}
         />
@@ -164,7 +162,7 @@ All other properties will be forwarded to the underlying element.
         <CodeResult>
             <Button>
                 Search
-                <Search slot="end" />
+                <IconSearch slot="end" />
             </Button>
         </CodeResult>
     </li>
@@ -174,18 +172,18 @@ All other properties will be forwarded to the underlying element.
         <CodeBlock 
             code={`
                 <Button block color="soft">
-                    <Search slot="start" />
+                    <IconSearch slot="start" />
                     Search
-                    <CaretDown slot="action" />
+                    <IconCaretDown slot="action" />
                 </Button>
             `}
         />
 
         <CodeResult>
             <Button block color="soft">
-                <Search slot="start" />
+                <IconSearch slot="start" />
                 Search
-                <CaretDown slot="action" />
+                <IconCaretDown slot="action" />
             </Button>
         </CodeResult>
     </li>
@@ -202,14 +200,14 @@ All other properties will be forwarded to the underlying element.
 <CodeBlock 
     code={`
         <Button as="a" href="https://hyvor.com" target="_blank">
-            HYVOR <BoxArrowUpRight slot="end" />
+            HYVOR <IconBoxArrowDownRight slot="end" />
         </Button>
     `}
 />
 
 <CodeResult>
     <Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
-        HYVOR <BoxArrowUpRight slot="end" />
+        HYVOR <IconBoxArrowDownRight slot="end" />
     </Button>
 </CodeResult>
 

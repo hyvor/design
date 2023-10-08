@@ -1,8 +1,8 @@
 <script lang="ts">
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
     import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
-    import Search from "$lib/icons/Search.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
+    import { IconSearch } from "@hyvor/icons";
 </script>
 
 <h1>Text Input</h1>
@@ -84,13 +84,13 @@
 
 <CodeBlock code={`
     <TextInput placeholder="Search">
-        <Search slot="start" />
+        <IconSearch slot="start" />
     </TextInput>
 `} />
 
 <CodeResult>
     <TextInput placeholder="Search">
-        <Search slot="start" />
+        <IconSearch slot="start" />
     </TextInput>
 </CodeResult>
 

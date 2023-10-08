@@ -2,9 +2,8 @@
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
-    import BoxArrowUpRight from '$lib/icons/BoxArrowUpRight.svelte';
-    import Search from '$lib/icons/Search.svelte';
     import CodeBlock from "$lib/marketing/Docs/Content/CodeBlock.svelte";
+    import { IconBoxArrowUpRight, IconSearch } from '@hyvor/icons';
     import CodeResult from './Helper/CodeResult.svelte';
 
 </script>
@@ -68,31 +67,31 @@
 <h3 id="size">Sizes</h3>
 
 <CodeBlock code={`
-    <IconButton size="small"><Search /></IconButton>
-    <IconButton size="medium"><Search /></IconButton>
-    <IconButton size="large"><Search /></IconButton>
+    <IconButton size="small"><IconSearch /></IconButton>
+    <IconButton size="medium"><IconSearch /></IconButton>
+    <IconButton size="large"><IconSearch /></IconButton>
 `} />
 
 <CodeResult gap={8}>
-<IconButton size="small"><Search /></IconButton>
-<IconButton size="medium"><Search /></IconButton>
-<IconButton size="large"><Search /></IconButton>
+<IconButton size="small"><IconSearch /></IconButton>
+<IconButton size="medium"><IconSearch /></IconButton>
+<IconButton size="large"><IconSearch /></IconButton>
 </CodeResult>
 
 <h3 id="color">Colors</h3>
 
 <CodeBlock code={`
-    <IconButton color="accent"><Search /></IconButton>
-    <IconButton color="soft"><Search /></IconButton>
-    <IconButton color="invisible"><Search /></IconButton>
-    <IconButton color="danger"><Search /></IconButton>
+    <IconButton color="accent"><IconSearch /></IconButton>
+    <IconButton color="soft"><IconSearch /></IconButton>
+    <IconButton color="invisible"><IconSearch /></IconButton>
+    <IconButton color="danger"><IconSearch /></IconButton>
 `} />
 
 <CodeResult gap={8}>
-    <IconButton color="accent"><Search /></IconButton>
-    <IconButton color="soft"><Search /></IconButton>
-    <IconButton color="invisible"><Search /></IconButton>
-    <IconButton color="danger"><Search /></IconButton>
+    <IconButton color="accent"><IconSearch /></IconButton>
+    <IconButton color="soft"><IconSearch /></IconButton>
+    <IconButton color="invisible"><IconSearch /></IconButton>
+    <IconButton color="danger"><IconSearch /></IconButton>
 </CodeResult>
 
 <h3 id="link">Link</h3>
@@ -102,7 +101,7 @@
         as="a" 
         href="https://hyvor.com" 
         target="_blank"
-    ><BoxArrowUpRight /></IconButton>
+    ><IconBoxArrowUpRight /></IconButton>
 `} />
 
 <CodeResult gap={8}>
@@ -110,6 +109,6 @@
         as="a" 
         href="https://hyvor.com" 
         target="_blank"
-    ><BoxArrowUpRight /></IconButton>
+    ><IconBoxArrowUpRight /></IconButton>
 </CodeResult>
 

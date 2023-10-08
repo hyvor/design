@@ -10,6 +10,7 @@
 
     import logo from '../img/logo/hyvor.svg';
     import Button from "../../lib/components/Button/Button.svelte";
+    import BoxArrowUpRight from "../../lib/icons/BoxArrowUpRight.svelte";
 
     export let data;
 </script>
@@ -18,14 +19,12 @@
 <Header
     logo={logo}
     name="HYVOR"
+    subName="Design System"
 >
 
     <div slot="center">
-        <Button as="a" href="https://talk.hyvor.com/pricing" color="invisible">
-            Docs
-        </Button>
-        <Button as="a" href="https://talk.hyvor.com/pricing" color="invisible">
-            Pricing
+        <Button as="a" href="https://hyvor.com" color="invisible" target="_blank">
+            hyvor.com <BoxArrowUpRight slot="end" />
         </Button>
     </div>
 
@@ -61,6 +60,7 @@
         </NavCategory>
 
         <NavCategory name="Marketing">
+            <NavItem href="/page-structure">Page Structure</NavItem>
             <NavItem href="/docs">Docs</NavItem>
         </NavCategory>
 

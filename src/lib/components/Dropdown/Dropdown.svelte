@@ -8,6 +8,8 @@
     export let relative = false;
     export let closeOnOutsideClick = true;
 
+    export let align : 'start' | 'center' | 'end' = 'start';
+
 </script>
 
 <span 
@@ -17,7 +19,7 @@
 
     <span 
         class="trigger"
-        on:click={() => show = !show}
+        on:click|stopPropagation={() => show = !show}
         role="listbox"
         tabindex="0"
         on:keyup={e => {
@@ -31,7 +33,7 @@
 
     {#if show}
         <div
-            class="content-wrap"
+            class="content-wrap {align}"
             use:clickOutside={{
                 enabled: closeOnOutsideClick,
                 callback: () => show = false
@@ -57,6 +59,16 @@
         margin-top: 5px;
         left: 0;
         z-index: 1;
+    }
+
+    .content-wrap.end {
+        left: auto;
+        right: 0;
+    }
+
+    .content-wrap.center {
+        left: 50%;
+        transform: translateX(-50%);
     }
 
     .content-wrap > :global(.content) {

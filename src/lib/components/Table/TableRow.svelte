@@ -5,7 +5,7 @@
 <style>
     div {
         display: grid;
-        padding: 6px 18px;
+        padding: 8px 18px;
         border-radius: 20px;
         align-items: flex-start;
         grid-template-columns: var(--local-columns);

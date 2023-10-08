@@ -23,11 +23,11 @@ export function clickOutside(node: HTMLElement, input: Input) {
 	};
 
 
-	document.addEventListener("click", handleClick, true);
+	document.addEventListener("click", handleClick);
 
 	return {
 		destroy() {
-			document.removeEventListener("click", handleClick, true);
+			document.removeEventListener("click", handleClick);
 		},
 	};
 }

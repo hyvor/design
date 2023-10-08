@@ -11,6 +11,7 @@ import Index from "./docs/Index.svelte";
 import Link from "./docs/Link.svelte";
 import Loader from "./docs/Loader.svelte";
 import Radio from "./docs/Radio.svelte";
+import PageStructure from "./docs/PageStructure.svelte";
 import SplitControl from "./docs/SplitControl.svelte";
 import Switch from "./docs/Switch.svelte";
 import Table from "./docs/Table.svelte";
@@ -40,6 +41,8 @@ const nav = {
     link: Link,
     tooltip: Tooltip,
     dark: Dark,
+
+    'page-structure': PageStructure,
 }
 
 export async function load({ params }) {

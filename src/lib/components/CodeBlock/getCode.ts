@@ -1,19 +1,15 @@
-import Prism from 'prismjs';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import css from 'highlight.js/lib/languages/css';
+import ts from 'highlight.js/lib/languages/typescript';
 
-/**
- * This is to prevent Prism not defined error in development
- * in SvelteKit
- */
-if (typeof window !== 'undefined') {
-    // @ts-ignore
-    window.Prism = Prism;
-}
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('xml', xml);
+hljs.registerLanguage('css', css);
+hljs.registerLanguage('ts', ts);
 
-import 'prismjs/components/prism-typescript.js';
-import 'prismjs/components/prism-jsx.js';
-import 'prismjs/components/prism-tsx.js';
-
-export type Language = 'html' | 'css' | 'js' | 'ts' | 'jsx' | 'tsx';
+export type Language = 'html' | 'css' | 'js' | 'ts';
 
 export default function getCode(code: string, language: Language) {
 
@@ -46,6 +42,6 @@ export default function getCode(code: string, language: Language) {
 
     ret = lines.join("\n");
 
-    return Prism.highlight(ret, Prism.languages[language], language);
+    return hljs.highlight(ret, { language }).value;
 
 }

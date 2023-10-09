@@ -41,6 +41,7 @@
             <NavItem href="/button">Button</NavItem>
             <NavItem href="/icon-button">Icon Button</NavItem>
             <NavItem href="/callout">Callout</NavItem>
+            <NavItem href="/code-block">Code Block</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
             <NavItem href="/dark">Dark Mode</NavItem>
             <NavItem href="/dropdown">Dropdown</NavItem>

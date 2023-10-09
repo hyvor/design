@@ -35,8 +35,6 @@
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/kit": "^1.25.1",
 		"@sveltejs/package": "^2.0.0",
-		"@types/prismjs": "^1.26.1",
-		"prismjs": "^1.29.0",
 		"publint": "^0.1.9",
 		"sass": "^1.68.0",
 		"svelte": "^4.0.5",
@@ -50,7 +48,8 @@
 	"type": "module",
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
-		"@hyvor/icons": "^0.0.2"
+		"@hyvor/icons": "^0.0.2",
+		"highlight.js": "^11.9.0"
 	},
 	"publishConfig": {
 		"access": "public"

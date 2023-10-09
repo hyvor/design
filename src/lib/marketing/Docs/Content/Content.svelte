@@ -105,14 +105,11 @@
         font-weight: 400;
     }
     :global(:root.dark) content :global(code) {
-        background-color: #262626;
-        color: #ce9178;
+        background-color: #282c34;
+        color: #e06c75;
     }
 
     content :global(pre) {
-        color: #000;
-        background: #f5f2f0;
-        text-shadow: 0 1px #fff;
         text-align: left;
         white-space: pre;
         word-spacing: normal;

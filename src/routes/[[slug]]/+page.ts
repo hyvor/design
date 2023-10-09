@@ -18,6 +18,7 @@ import Table from "./docs/Table.svelte";
 import TextInput from "./docs/TextInput.svelte";
 import Textarea from "./docs/Textarea.svelte";
 import Tooltip from "./docs/Tooltip.svelte";
+import CodeBlock from "./docs/CodeBlock.svelte";
 
 export const prerender = true;
 
@@ -29,6 +30,7 @@ const nav = {
     'icon-button': IconButton,
     table: Table,
     callout: Callout,
+    'code-block': CodeBlock,
     checkbox: Checkbox,
     dropdown: Dropdown,
     switch: Switch,

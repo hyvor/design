@@ -1,19 +1,28 @@
 <script lang="ts">
 
-    import './prism.scss';
+    //import './prism.scss';
+    import './hljs.scss';
 
-    type InputLanguage = 'html' | 'ts' | 'css' | 'svelte' | 'jsx';
+    type InputLanguage = 
+        'html' |
+        'css' |
+        'js' |
+        'ts' |
+        
+        'svelte' |
+        'jsx';
 
     export let code: string;
     export let language: InputLanguage = 'html';
 
     const languagesMap : Partial<Record<InputLanguage, Language>> = {
-        svelte: 'tsx',
+        svelte: 'html',
+        jsx: 'js'
     }
     const languageCode = (languagesMap[language] || language) as Language;
 
-    import getCode, { type Language } from './prism.js';
+    import getCode, { type Language } from './getCode.js';
 
 </script>
 
-<pre class="language-{languageCode}"><code>{@html getCode(code, languageCode)}</code></pre>
+<pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>

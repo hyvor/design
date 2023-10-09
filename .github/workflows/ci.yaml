@@ -18,8 +18,11 @@ jobs:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Check
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.HYVOR_ORG_NPM_TOKEN }}
+        run: |
+          npm ci
+          npm run check
+      - name: Check Icons
+        working-directory: icons
         run: |
           npm ci
           npm run check

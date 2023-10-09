@@ -2,13 +2,18 @@
 
     import './prism.scss';
 
-    export let code: string;
-    export let language: 
-        'html' | 'js' | 'css' | 'svelte'
-        = 'html';
+    type InputLanguage = 'html' | 'js' | 'css' | 'svelte' | 'jsx';
 
-    import getCode from './prism.js';
+    export let code: string;
+    export let language: InputLanguage = 'html';
+
+    const languagesMap : Partial<Record<InputLanguage, Language>> = {
+        svelte: 'jsx',
+    }
+    const languageCode = (languagesMap[language] || language) as Language;
+
+    import getCode, { type Language } from './prism.js';
 
 </script>
 
-<pre class="language-{language}"><code>{@html getCode(code, language)}</code></pre>
+<pre class="language-{language}"><code>{@html getCode(code, languageCode)}</code></pre>

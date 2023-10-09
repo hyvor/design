@@ -1,7 +1,9 @@
 import Prism from 'prismjs';
-import 'prism-svelte';
+import 'prismjs/components/prism-jsx.js';
 
-export default function getCode(code: string, language: string) {
+export type Language = 'html' | 'css' | 'js' | 'jsx';
+
+export default function getCode(code: string, language: Language) {
 
     let ret = code;
 

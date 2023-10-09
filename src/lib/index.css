@@ -13,6 +13,8 @@
 body {
     background-color: var(--background, var(--accent-lightest));
     color: var(--text);
+    margin: 0;
+    padding: 0;
 }
 
 button, a {

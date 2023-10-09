@@ -1,4 +1,14 @@
 import Prism from 'prismjs';
+
+/**
+ * This is to prevent Prism not defined error in development
+ * in SvelteKit
+ */
+if (typeof window !== 'undefined') {
+    // @ts-ignore
+    window.Prism = Prism;
+}
+
 import 'prismjs/components/prism-typescript.js';
 import 'prismjs/components/prism-jsx.js';
 import 'prismjs/components/prism-tsx.js';

@@ -1,7 +1,9 @@
 import Prism from 'prismjs';
+import 'prismjs/components/prism-typescript.js';
 import 'prismjs/components/prism-jsx.js';
+import 'prismjs/components/prism-tsx.js';
 
-export type Language = 'html' | 'css' | 'js' | 'jsx';
+export type Language = 'html' | 'css' | 'js' | 'ts' | 'jsx' | 'tsx';
 
 export default function getCode(code: string, language: Language) {
 

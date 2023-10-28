@@ -18,12 +18,14 @@
         padding: 25px 0;
         position: sticky;
         flex-shrink: 0;
-        align-self: flex-start;;
+        align-self: flex-start;
+        max-height: calc(100vh - var(--header-height));
     }
 
     .docs-nav :global(.nav-inner) {
         padding: 15px 0;
         overflow-y: auto;
+        max-height: calc(100vh - var(--header-height) - 50px);
     }
 
 </style>

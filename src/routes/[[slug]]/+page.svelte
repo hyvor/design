@@ -9,9 +9,29 @@
 
     import logo from '../img/logo/hyvor.svg';
     import Button from "../../lib/components/Button/Button.svelte";
-
+    import { onMount } from "svelte";
+    import { page } from '$app/stores';
+ 
     export let data;
+
+    let title = 'Hyvor Design';
+
+    onMount(() => {
+        const unsubscribe = page.subscribe(() => {
+            const h1 = document.querySelector('h1');
+            if (h1 && h1.textContent) {
+                title = h1.textContent + ' - HDS';
+            }
+        })
+
+        return unsubscribe;
+    })
+
 </script>
+
+<svelte:head>
+    <title>{title}</title>
+</svelte:head>
 
 <Header
     logo={logo}

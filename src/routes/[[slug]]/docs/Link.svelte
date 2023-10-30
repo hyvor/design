@@ -33,6 +33,7 @@
             <ul>
                 <li><code>link</code></li>
                 <li><code>accent</code></li>
+                <li><code>text</code></li>
             </ul>
         </div>
     </TableRow>
@@ -56,6 +57,7 @@
 <CodeBlock code={`
     <Link href="/" color="link">Link</Link>
     <Link href="/" color="accent">Accent Link</Link>
+    <Link href="/" color="text">Text Link</Link>
     <Link href="/" color="link" underline={false}>No underline</Link>
 `} />
 
@@ -63,6 +65,7 @@
     <CodeResult gap={5}>
         <Link href="/" color="link">Link</Link>
         <Link href="/" color="accent">Accent Link</Link>
+        <Link href="/" color="text">Text Link</Link>
         <Link href="/" color="link" underline={false}>No underline</Link>
     </CodeResult>
 </div>

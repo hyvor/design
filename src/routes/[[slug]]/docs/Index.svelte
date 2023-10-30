@@ -125,7 +125,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
 `} />
 
 <p>
-    Next, wrap the main layout with <code>{"<Base>"}</code>. This component handles a few features like <a href="/dark">dark mode</a>.
+    Next, wrap the main layout with <code>{"<Base>"}</code>. This component handles a few features like <a href="/dark">dark mode</a> and <a href="/i18n">internationalization</a>.
 </p>
 
 <CodeBlock code={`

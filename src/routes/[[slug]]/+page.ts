@@ -19,6 +19,7 @@ import TextInput from "./docs/TextInput.svelte";
 import Textarea from "./docs/Textarea.svelte";
 import Tooltip from "./docs/Tooltip.svelte";
 import CodeBlock from "./docs/CodeBlock.svelte";
+import Internationalization from "./docs/Internationalization.svelte";
 
 export const prerender = true;
 
@@ -43,6 +44,7 @@ const nav = {
     link: Link,
     tooltip: Tooltip,
     dark: Dark,
+    i18n: Internationalization,
 
     'page-structure': PageStructure,
 }

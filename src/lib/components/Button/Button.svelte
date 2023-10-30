@@ -1,6 +1,6 @@
 <script lang="ts">
     export let as: 'button' | 'a' = 'button';
-    export let size : 'small' | 'medium' | 'large' = 'medium';
+    export let size : 'x-small' | 'small' | 'medium' | 'large' = 'medium';
     export let color : 
         'accent' | 
         'soft' | 
@@ -119,6 +119,16 @@
     }
 
     /* Sizes */
+    .button.x-small {
+        height: 20px;
+        padding: 0 8px;
+        font-size: 12px;
+        --local-hover-shadow-size: 1px;
+        &:active {
+            --local-hover-shadow-size: 2px;
+        }
+    }
+
     .button.small {
         height: 26px;
         padding: 0 12px;

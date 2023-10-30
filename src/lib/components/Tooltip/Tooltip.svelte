@@ -48,6 +48,14 @@
         show = false;
     }
 
+    $: {
+        if (text) {
+            tick().then(() => {
+                positionTooltip();
+            })
+        }
+    }
+
     onMount(() => {
         positionTooltip();
         document.addEventListener('scroll', positionTooltip);

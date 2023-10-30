@@ -1,6 +1,6 @@
 <script lang="ts">
     export let href: string;
-    export let color : 'link' | 'accent' = 'link';
+    export let color : 'link' | 'accent' | 'text' = 'link';
     export let underline : boolean = true;
 </script>
 
@@ -47,6 +47,9 @@
     }
     a.color-accent {
         --local-color: var(--accent);
+    }
+    a.color-text {
+        --local-color: var(--text);
     }
     a.underline {
         text-decoration: underline;

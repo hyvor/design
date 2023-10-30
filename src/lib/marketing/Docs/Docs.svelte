@@ -18,7 +18,7 @@
         margin: auto;
         width: 1150px;
         max-width: 100%;
-        padding-bottom: 100px;
+        padding-bottom: 40px;
         /* min-height: calc(100vh - var(--header-height)); */
     }
 

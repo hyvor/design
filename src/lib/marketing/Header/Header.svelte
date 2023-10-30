@@ -3,6 +3,7 @@
     import DarkToggle from "../../components/Dark/DarkToggle.svelte";
     import IconButton from "../../components/IconButton/IconButton.svelte";
     import Dropdown from "../../components/Dropdown/Dropdown.svelte";
+	import Tooltip from "../../components/Tooltip/Tooltip.svelte";
     import { IconList } from "@hyvor/icons";
 
     export let logo : string;
@@ -135,13 +136,20 @@
 		align-items: center;
 		gap: 6px;
 	}
-	.dark-toggle-wrap {
-		margin-left: 8px;
-	}
 
 	.mobile-nav-wrap {
 		display: none;
 	}
+
+	.dark-mobile {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	.dark-toggle-wrap {
+		margin-left: 8px;
+	}
+
 
 	@media screen and (max-width: 992px) {
 		.nav-center {

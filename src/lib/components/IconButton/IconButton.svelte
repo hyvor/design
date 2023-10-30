@@ -34,6 +34,7 @@
         align-items: center;
         justify-content: center;
         transition: .2s box-shadow;
+        font-size: 1em;
         
         --local-hover-shadow-size: 2.5px;
         --local-hover-shadow-color: var(--accent-light);

@@ -6,7 +6,7 @@
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
-    import { IconSearch, IconCaretDown, IconBoxArrowDownRight } from "@hyvor/icons";
+    import { IconSearch, IconCaretDown, IconBoxArrowUpRight } from "@hyvor/icons";
 </script>
 <h1>Button</h1>
 
@@ -31,6 +31,7 @@
             The <a href="#size">size</a> of the button. One of:
 
             <ul>
+                <li><code>x-small</code></li>
                 <li><code>small</code></li>
                 <li><code>medium</code></li>
                 <li><code>large</code></li>
@@ -85,12 +86,14 @@ All other properties will be forwarded to the underlying element.
 <h3 id="size">Size</h3>
 
 <CodeBlock code={`
+    <Button size="x-small">X-Small Button</Button>
     <Button size="small">Small Button</Button>
     <Button size="medium">Medium Button</Button>
     <Button size="large">Large Button</Button>
 `} />
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start">
+    <Button size="x-small">X-Small Button</Button>
     <Button size="small">Small Button</Button>
     <Button size="medium">Medium Button</Button>
     <Button size="large">Large Button</Button>
@@ -200,14 +203,14 @@ All other properties will be forwarded to the underlying element.
 <CodeBlock 
     code={`
         <Button as="a" href="https://hyvor.com" target="_blank">
-            HYVOR <IconBoxArrowDownRight slot="end" />
+            HYVOR <IconBoxArrowUpRight slot="end" />
         </Button>
     `}
 />
 
 <CodeResult>
     <Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
-        HYVOR <IconBoxArrowDownRight slot="end" />
+        HYVOR <IconBoxArrowUpRight slot="end" />
     </Button>
 </CodeResult>
 

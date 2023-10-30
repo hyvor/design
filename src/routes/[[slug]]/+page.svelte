@@ -1,7 +1,10 @@
 <script lang="ts">
+	import Link from './../../lib/components/Link/Link.svelte';
+	import FooterLinkList from './../../lib/marketing/Footer/FooterLinkList.svelte';
 	import { IconBoxArrowUpRight } from '@hyvor/icons';
 	import NavItem from './../../lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
+    import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import Content from "$lib/marketing/Docs/Content/Content.svelte";
     import Docs from "$lib/marketing/Docs/Docs.svelte";
 	import Nav from "$lib/marketing/Docs/Nav/Nav.svelte";
@@ -53,6 +56,8 @@
 
         <NavCategory name="Design System">
             <NavItem href="/">Overview</NavItem>
+            <NavItem href="/dark">Dark Mode</NavItem>
+            <NavItem href="/i18n">i18n</NavItem>
         </NavCategory>
 
         <NavCategory name="Components">
@@ -63,7 +68,6 @@
             <NavItem href="/callout">Callout</NavItem>
             <NavItem href="/code-block">Code Block</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
-            <NavItem href="/dark">Dark Mode</NavItem>
             <NavItem href="/dropdown">Dropdown</NavItem>
             <NavItem href="/radio">Radio</NavItem>
             <NavItem href="/switch">Switch</NavItem>
@@ -89,3 +93,28 @@
     </Content>
 
 </Docs>
+
+<Footer
+    email="foss@hyvor.com"
+    social={{
+        x: 'https://twitter.com'
+    }}
+>
+
+    <div slot="center">
+
+        <div style="display:flex">
+            <FooterLinkList title="Product">
+                <a href="pricing" target="_blank">Pricing</a>
+                <a href="docs" target="_blank">Docs</a>
+                <a href="customers" target="_blank">Customers</a>
+            </FooterLinkList>
+
+            <FooterLinkList title="HYVOR">
+                <a href="https://hyvor.com" target="_blank">hyvor.com</a>
+            </FooterLinkList>
+        </div>
+
+    </div>
+
+</Footer>

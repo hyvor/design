@@ -49,7 +49,12 @@
                             { email }
                         </Link>
                         <Tooltip text={emailCopied ? "Copied!" : "Copy email"} position="top">
-                            <IconButton size="small" color="invisible" on:click={handleCopy}>
+                            <IconButton 
+                                size="small" 
+                                color="invisible" 
+                                on:click={handleCopy}
+                                on:mouseleave={() => emailCopied = false}
+                            >
                                 <IconCopy size={12} />
                             </IconButton>
                         </Tooltip>

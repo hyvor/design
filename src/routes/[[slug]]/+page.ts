@@ -20,6 +20,7 @@ import Textarea from "./docs/Textarea.svelte";
 import Tooltip from "./docs/Tooltip.svelte";
 import CodeBlock from "./docs/CodeBlock.svelte";
 import Internationalization from "./docs/Internationalization.svelte";
+import NavLink from "./docs/NavLink.svelte";
 
 export const prerender = true;
 
@@ -39,6 +40,7 @@ const nav = {
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,
+    "nav-link": NavLink,
     textarea: Textarea,
     loader: Loader,
     link: Link,

@@ -14,6 +14,7 @@
     import Button from "../../lib/components/Button/Button.svelte";
     import { onMount } from "svelte";
     import { page } from '$app/stores';
+    import NavLink from './docs/NavLink.svelte';
  
     export let data;
 
@@ -69,6 +70,7 @@
             <NavItem href="/code-block">Code Block</NavItem>
             <NavItem href="/checkbox">Checkbox</NavItem>
             <NavItem href="/dropdown">Dropdown</NavItem>
+            <NavItem href="/nav-link">Nav Link</NavItem>
             <NavItem href="/radio">Radio</NavItem>
             <NavItem href="/switch">Switch</NavItem>
             <NavItem href="/text-input">Text Input</NavItem>

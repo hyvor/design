@@ -133,7 +133,7 @@
     <CodeResult gap={5} white>
         <Box style="width:100%">
             <div style="padding: 15px 0">
-                <NavLink href ="javascript:void(0)" active={active2 === 'overview'} on:click={() => active2 = 'overview'} slot>
+                <NavLink href ="javascript:void(0)" active={active2 === 'overview'} on:click={() => active2 = 'overview'}>
                     <IconColumns slot="start"></IconColumns>
                     Overview
                 </NavLink>

@@ -11,7 +11,7 @@ const config = {
 		adapter: adapter(),
 		prerender: {
 			entries: ['/', '*']
-		}
+		},
 	}
 };
 

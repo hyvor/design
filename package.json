@@ -1,6 +1,6 @@
 {
 	"name": "@hyvor/design",
-	"version": "0.0.9",
+	"version": "0.0.10",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
@@ -29,22 +29,24 @@
 	],
 	"peerDependencies": {
 		"svelte": "^4.0.0",
-		"@sveltejs/kit": "^1.25.1"
+		"@sveltejs/kit": "^1.25.1",
+		"sass": "^1.68.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^2.0.0",
 		"@sveltejs/adapter-static": "^2.0.3",
 		"@sveltejs/package": "^2.0.0",
 		"publint": "^0.1.9",
-		"sass": "^1.68.0",
 		"svelte": "^4.0.5",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
-		"vite": "^4.4.2",
-		"@hyvor/icons": "^0.0.3",
+		"vite": "^4.4.2"
+	},
+	"dependencies": {
+		"@fontsource/readex-pro": "^5.0.8",
 		"highlight.js": "^11.9.0",
-		"@fontsource/readex-pro": "^5.0.8"
+		"@hyvor/icons": "^0.0.3"
 	},
 	"type": "module",
 	"publishConfig": {

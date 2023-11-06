@@ -5,29 +5,18 @@
     import NavLink from "$lib/components/NavLink/NavLink.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import Box from "$lib/components/Box/Box.svelte";
-    import { IconSearch } from "@hyvor/icons";
-    import { IconColumns } from "@hyvor/icons";
-    import Text from "$lib/components/Text/Text.svelte";
-    import { IconChat } from "@hyvor/icons";
-    import {IconFile} from "@hyvor/icons";
-    import {IconCoin} from "@hyvor/icons";
-    import {IconExclamationCircle} from "@hyvor/icons";
+    import { IconColumns, IconChat, IconFile, IconCoin, IconExclamationCircle } from "@hyvor/icons";
 
     let active = 'overview';
     let active2 = 'overview'
 
 </script>
 
-<!-- <Search size={14} /> -->
 <h1>Nav Link</h1>
 
 <p>
-    The Nav Link component is used in navigation to link to other pages. All properties are sent directly to the underlying HTML <code>{"<a>"}</code> element. 
+    The <code>{"<NavLink>"}</code> component is used in navigation (ex: in Console). All additional properties are sent directly to the underlying HTML <code>{"<a>"}</code> element. 
 </p>
-
-    <ul>
-        <li><code>{"<NavLink>"}</code> - The tag</li>
-    </ul>
 
 
 <h2 id="props">Properties</h2>

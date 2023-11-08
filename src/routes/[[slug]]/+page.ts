@@ -21,6 +21,7 @@ import Tooltip from "./docs/Tooltip.svelte";
 import CodeBlock from "./docs/CodeBlock.svelte";
 import Internationalization from "./docs/Internationalization.svelte";
 import NavLink from "./docs/NavLink.svelte";
+import Divider from "./docs/Divider.svelte";
 
 export const prerender = true;
 
@@ -35,6 +36,7 @@ const nav = {
     'code-block': CodeBlock,
     checkbox: Checkbox,
     dropdown: Dropdown,
+    divider: Divider,
     switch: Switch,
     radio: Radio,
     "split-control": SplitControl,

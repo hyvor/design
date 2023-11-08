@@ -73,11 +73,11 @@
     <p>The divider can be customized according to a prefered way.</p>
 
     <CodeBlock code={`
-        <Divider color=var(--red-light) height="3" width="50%" margin="3" />
+        <Divider color=var(--red-light) height="3" width="50" margin="3" />
     `} />
 
     <CodeResult style="background-color:var(-accent-light)">
-        <Divider color=var(--red-light) height="3" width="50%" margin="3" />
+        <Divider color=var(--red-light) height="3" width="50" margin="3" />
     </CodeResult>
 
     <style>

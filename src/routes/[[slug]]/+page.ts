@@ -21,6 +21,7 @@ import Tooltip from "./docs/Tooltip.svelte";
 import CodeBlock from "./docs/CodeBlock.svelte";
 import Internationalization from "./docs/Internationalization.svelte";
 import NavLink from "./docs/NavLink.svelte";
+import Text from "./docs/Text.svelte";
 
 export const prerender = true;
 
@@ -40,6 +41,7 @@ const nav = {
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,
+    text: Text,
     "nav-link": NavLink,
     textarea: Textarea,
     loader: Loader,

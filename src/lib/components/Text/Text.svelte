@@ -2,12 +2,14 @@
     export let small = false;
     export let light = false;
     export let normal = false; // weight
+    export let bold = false;
 </script>
 
 <span
     class:light
     class:small
     class:normal
+    class:bold
 
     {...$$restProps}
 >
@@ -23,5 +25,8 @@
     }
     span.normal {
         font-weight: 400;
+    }
+    span.bold {
+        font-weight: 600;
     }
 </style>

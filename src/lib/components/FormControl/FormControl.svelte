@@ -1,4 +1,4 @@
-<div class="form-control">
+<div class="form-control" {...$$restProps}>
     <slot />
 </div>
 

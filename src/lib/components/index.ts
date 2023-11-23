@@ -1,3 +1,6 @@
+import Nav from '$lib/marketing/Docs/Nav/Nav.svelte';
+import NavLink from './NavLink/NavLink.svelte';
+
 export { default as ActionList } from './ActionList/ActionList.svelte';
 export { default as ActionListItem } from './ActionList/ActionListItem.svelte';
 export { default as ActionListGroup } from './ActionList/ActionListGroup.svelte';
@@ -20,6 +23,8 @@ export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
+
+export { default as Divider } from './Divider/Divider.svelte';   
 
 export { default as Caption } from './FormControl/Caption.svelte';
 export { default as FormControl } from './FormControl/FormControl.svelte';

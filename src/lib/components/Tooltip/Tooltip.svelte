@@ -93,7 +93,7 @@
 
 <style>
     .tooltip-wrap {
-        display: inline-block;
+        display: inline-flex;
         position: relative;
 
         --local-bg: #24292f;

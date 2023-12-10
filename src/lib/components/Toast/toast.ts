@@ -59,7 +59,7 @@ function createHandler(type: ToastType) {
 type ToastFunctionSignature = ReturnType<typeof createHandler>;
 
 interface ToastSignature {
-    (message: ToastMessageType): number,
+    (message: ToastMessageType, options?: Partial<Toast>): number,
     success: ToastFunctionSignature,
     error: ToastFunctionSignature,
     warning: ToastFunctionSignature,

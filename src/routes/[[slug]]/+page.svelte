@@ -14,7 +14,6 @@
     import Button from "../../lib/components/Button/Button.svelte";
     import { onMount } from "svelte";
     import { page } from '$app/stores';
-    import NavLink from './docs/NavLink.svelte';
     
     const components = [
         { href: "/action-list", label: "Action List" },
@@ -38,6 +37,7 @@
         { href: "/loader", label: "Loader" },
         { href: "/link", label: "Link" },
         { href: "/tooltip", label: "Tooltip" },
+        { href: "/toast", label: "Toast" }
     ];
 
     const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));
@@ -89,30 +89,8 @@
 
         <NavCategory name="Components">
             {#each sortedComponents as component}
-            <NavItem href={component.href}>{component.label}</NavItem>
-        {/each}
-            <!-- <NavItem href="/action-list">Action List</NavItem>
-            <NavItem href="/avatar">Avatar</NavItem>
-            <NavItem href="/button">Button</NavItem>
-            <NavItem href="/icon-button">Icon Button</NavItem>
-            <NavItem href="/callout">Callout</NavItem>
-            <NavItem href="/code-block">Code Block</NavItem>
-            <NavItem href="/checkbox">Checkbox</NavItem>
-            <NavItem href="/divider">Divider</NavItem>
-            <NavItem href="/dropdown">Dropdown</NavItem>
-            <NavItem href="/nav-link">Nav Link</NavItem>
-            <NavItem href="/radio">Radio</NavItem>
-            <NavItem href="/switch">Switch</NavItem>
-            <NavItem href="/textarea">Textarea</NavItem>
-            <NavItem href="/table">Table</NavItem>
-            <NavItem href="/text">Text</NavItem>
-            <NavItem href="/text-input">Text Input</NavItem>
-            <NavItem href="/toast">Toast</NavItem>
-            <NavItem href="/form-control">Form Control</NavItem>
-            <NavItem href="/split-control">Split Control</NavItem>
-            <NavItem href="/loader">Loader</NavItem>
-            <NavItem href="/link">Link</NavItem>
-            <NavItem href="/tooltip">Tooltip</NavItem> -->
+                <NavItem href={component.href}>{component.label}</NavItem>
+            {/each}
         </NavCategory>
 
         <NavCategory name="Marketing">

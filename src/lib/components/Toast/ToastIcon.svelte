@@ -7,12 +7,12 @@
 
     export let toast: Toast;
 
-    $: color = {
+    $: color = ({
         success: 'var(--green)',
         error: 'var(--red)',
         warning: 'var(--orange)',
         info: 'var(--blue)',
-    }[toast.type as any] || 'inherit'
+    } as any)[toast.type] || 'inherit'
 
 </script>
 

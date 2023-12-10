@@ -9,12 +9,13 @@
     export let closeOnOutsideClick = true;
 
     export let align : 'start' | 'center' | 'end' = 'start';
+    export let position : 'left' | 'right' | 'bottom' | 'top' = 'bottom';
 
 </script>
 
 <span 
-    class="dropdown"
-    class:relative
+class="dropdown"
+class:relative
 >
 
     <span 
@@ -33,7 +34,7 @@
 
     {#if show}
         <div
-            class="content-wrap {align}"
+            class="content-wrap {align} {position}"
             use:clickOutside={{
                 enabled: closeOnOutsideClick,
                 callback: () => show = false
@@ -47,7 +48,7 @@
 
 </span>
 
-<style>
+<style lang="scss">
     .dropdown {
         position: relative;
         display: inline-block;
@@ -55,21 +56,70 @@
 
     .dropdown .content-wrap {
         position: absolute;
-        top: 100%;
-        margin-top: 5px;
         left: 0;
         z-index: 1;
+        
     }
 
-    .content-wrap.end {
-        left: auto;
-        right: 0;
+    .content-wrap.bottom {
+        top: 100%;
+        margin-top: 5px;
+        &.end {
+            left: auto;
+            right: 0;
+        }
+        &.center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
 
-    .content-wrap.center {
-        left: 50%;
-        transform: translateX(-50%);
+    .content-wrap.top {
+        
+        bottom: 100%;
+        margin-bottom: 5px;
+        &.end {
+            left: auto;
+            right: 0;
+        }
+        &.center {
+            left: 50%;
+            transform: translateX(-50%);
+        }
     }
+
+    .content-wrap.left {
+         right: 100%;
+         left:auto; //to remove the prvious left positioning
+        margin-right: 5px; 
+        top: 0;
+            bottom: auto;
+        &.end {
+            top: auto;
+            bottom: 0;
+        }
+        &.center {
+            top: 50%;
+            transform: translateY(-50%); 
+            
+        }
+    }
+
+    .content-wrap.right {
+        left: 100%;
+        margin-left: 5px;
+        top: 0;
+        bottom: auto;
+        &.end {
+            bottom: 0;
+            top: auto;
+        }
+        &.center {
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+
 
     .content-wrap > :global(.content) {
         padding: 10px;
@@ -80,3 +130,7 @@
     }
 
 </style>
+
+
+
+

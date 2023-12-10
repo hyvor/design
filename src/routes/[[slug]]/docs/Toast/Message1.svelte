@@ -6,9 +6,12 @@
     export let toast: Toast;
 </script>
 
-This is a Svelte Component notification
-<Button 
-    on:click={() => toastService.close(toast.id)} 
-    size="small"
-    style="margin-left: 4px;"
->Close</Button>
+This is a Svelte Component notification with a long text message and a button to close it.
+
+<div style="margin-top:10px;text-align:center">
+    <Button 
+        on:click={() => toastService.close(toast.id)} 
+        size="small"
+        style="margin-left: 4px;"
+    >Close</Button>
+</div>

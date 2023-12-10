@@ -37,6 +37,7 @@
         padding: 8px 20px;
         display: flex;
         align-items: center;
+        max-width: 350px;
     }
     .toast:first-child {
         margin-top: 10px;

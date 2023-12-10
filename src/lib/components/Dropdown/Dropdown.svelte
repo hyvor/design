@@ -14,7 +14,8 @@
 </script>
 
 <span 
-    class="dropdown {relative ? 'relative' : ''}"
+class="dropdown"
+class:relative
 >
 
     <span 

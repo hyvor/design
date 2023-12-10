@@ -40,9 +40,8 @@
         { href: "/tooltip", label: "Tooltip" },
     ];
 
-    const sortedComponents = components.slice().sort((a, b) => a.label.localeCompare(b.label));
+    const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));
 
- 
     export let data;
 
     let title = 'Hyvor Design';

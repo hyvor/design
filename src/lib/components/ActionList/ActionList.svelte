@@ -6,9 +6,13 @@
     $: setContext('action-list-selection', selection);
 </script>
 
-<div class="action-list">
+
+
+
+<div class="action-list" {...$$restProps}>
     <slot />
 </div>
+
 
 
 <style></style>

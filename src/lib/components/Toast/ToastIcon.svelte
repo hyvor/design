@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Toast } from './toast.ts';
-    import { Loader } from '$lib/components';
+    import Loader from '$lib/components/Loader/Loader.svelte';
     import { 
         IconCheckCircleFill, IconXCircleFill, IconExclamationCircleFill, IconInfoCircleFill 
     } from '@hyvor/icons';
@@ -12,7 +12,7 @@
         error: 'var(--red)',
         warning: 'var(--orange)',
         info: 'var(--blue)',
-    }[toast.type] || 'inherit'
+    }[toast.type as any] || 'inherit'
 
 </script>
 

@@ -1,16 +1,14 @@
-<script>
-  import { IconInfoCircleFill } from '@hyvor/icons';
-
-  import { IconCheckCircleFill, IconExclamationCircleFill, IconXCircleFill } from '@hyvor/icons';
-
+<script lang="ts">
+    import { IconInfoCircleFill } from '@hyvor/icons';
+    import { IconCheckCircleFill, IconExclamationCircleFill, IconXCircleFill } from '@hyvor/icons';
 	import Message1 from './Message1.svelte';
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from '../Helper/CodeResult.svelte';
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import Button from "$lib/components/Button/Button.svelte";
-    import toast from '$lib/components/Toast/toast.ts';
-  import Loader from '$lib/components/Loader/Loader.svelte';
+    import toast from '$lib/components/Toast/toast.js';
+    import Loader from '$lib/components/Loader/Loader.svelte';
 </script>
 
 <h1>Toast</h1>

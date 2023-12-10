@@ -23,6 +23,7 @@ import Internationalization from "./docs/Internationalization.svelte";
 import NavLink from "./docs/NavLink.svelte";
 import Divider from "./docs/Divider.svelte";
 import Text from "./docs/Text.svelte";
+import Toast from "./docs/Toast/Toast.svelte";
 
 export const prerender = true;
 
@@ -44,6 +45,7 @@ const nav = {
     'form-control': FormControl,
     'text-input': TextInput,
     text: Text,
+    toast: Toast,
     "nav-link": NavLink,
     textarea: Textarea,
     loader: Loader,

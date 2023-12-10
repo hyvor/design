@@ -107,6 +107,7 @@
             <NavItem href="/table">Table</NavItem>
             <NavItem href="/text">Text</NavItem>
             <NavItem href="/text-input">Text Input</NavItem>
+            <NavItem href="/toast">Toast</NavItem>
             <NavItem href="/form-control">Form Control</NavItem>
             <NavItem href="/split-control">Split Control</NavItem>
             <NavItem href="/loader">Loader</NavItem>

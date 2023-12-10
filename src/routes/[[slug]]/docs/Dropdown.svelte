@@ -12,6 +12,11 @@
     import CodeResult from "./Helper/CodeResult.svelte";
     import ActionListGroup from "../../../lib/components/ActionList/ActionListGroup.svelte";
     import { IconCaretDown } from "@hyvor/icons";
+    import Table from "../../../lib/components/Table/Table.svelte";
+    import TableRow from "../../../lib/components/Table/TableRow.svelte";
+    import InputGroup from "$lib/components/FormControl/InputGroup.svelte";
+    import Radio from "../../../lib/components/Radio/Radio.svelte";
+    import SplitControl from "../../../lib/components/SplitControl/SplitControl.svelte";
 
     let x1 = 'talk';
     let x2 : string[] = [];
@@ -23,6 +28,10 @@
     let s2 = true;
     let s3 = true;
     let s4 = true;
+
+    //dropdown align and position states
+    let paAlign: 'start' | 'center' | 'end' = 'start';
+    let paPosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
 
 
     function handleX2Select(val: string) {
@@ -47,6 +56,68 @@
 <p>
     Dropdowns are used to show a list of options when a user clicks on a button. Use the <a href="action-list">Action List</a> component to show the actions in the dropdown.
 </p>
+
+
+<h2 id="props">Properties</h2>
+
+<Table columns="2fr 2fr 3fr">
+    <TableRow head>
+        <div>Name</div>
+        <div>Default</div>
+        <div>Description</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>align</code></div>
+        <div><code>start</code></div>
+        <div>Alignment of the dropdown. One of: 
+            <ul>
+                <li><code>start</code></li>
+                <li><code>center</code></li>
+                <li><code>end</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>position</code></div>
+        <div><code>bottom</code></div>
+        <div>Position of the dropdown. One of:
+            <ul>
+                <li><code>top</code></li>
+                <li><code>bottom</code></li>
+                <li><code>left</code></li>
+                <li><code>right</code></li>
+            </ul>   
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>closeOnOutsideClick</code></div>
+        <div><code>true</code></div>
+        <div>Whether the dropdown should be closed when the user clicks outside of the dropdown.</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>show</code></div>
+        <div><code>false</code></div>
+        <div>Whether the dropdown should be shown or not. Use this property to control the dropdown.</div> 
+    </TableRow>
+
+    <TableRow>
+        <div><code>width</code></div>
+        <div><code>225</code></div>
+        <div>Width of the dropdown.</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>relative</code></div>
+        <div><code>false</code></div>
+        <div>Whether the dropdown should be positioned relative to the trigger element.</div>
+    </TableRow>
+
+</Table>
+
 
 <h2 id="examples">Examples</h2>
 
@@ -311,3 +382,56 @@
     </Dropdown>
 
 </CodeResult>
+
+
+
+<h2 id="">positioning and Alignment</h2>
+
+<CodeResult>
+
+    <SplitControl
+    label="Position"
+    caption="Position of the dropdown"
+>
+
+    <InputGroup>
+        <Radio name="paPosition" value="top" bind:group={paPosition}>Top</Radio>
+        <Radio name="paPosition" value="bottom" bind:group={paPosition}>Bottom</Radio>
+        <Radio name="paPosition" value="left" bind:group={paPosition}>Left</Radio>
+        <Radio name="paPosition" value="right" bind:group={paPosition}>Right</Radio>
+    </InputGroup>
+    </SplitControl>
+    
+    <SplitControl
+    label="Align"
+    caption="Alignment of the dropdown"
+>
+
+    <InputGroup>
+        <Radio name="paAlign" value="start" bind:group={paAlign}>Start</Radio>
+        <Radio name="paAlign" value="center" bind:group={paAlign}>Center</Radio>
+        <Radio name="paAlign" value="end" bind:group={paAlign}>End</Radio>
+    </InputGroup>
+    </SplitControl>
+
+
+    <div style="margin-top:120px; left:auto; margin-bottom:120px; text-align: center;">
+        <Dropdown bind:show={s1}  closeOnOutsideClick={false} align={paAlign} position={paPosition}>
+            <Button slot="trigger" color="light">
+                Filter Results
+                <IconCaretDown slot="end" />
+            </Button>
+    
+            <ActionList slot="content">
+                {#each [1,2,3] as i}
+                    <ActionListItem on:select={() => {s1 = false}}>
+                        Action {i}
+                    </ActionListItem>
+                {/each}
+            </ActionList>
+        </Dropdown>
+    </div>
+
+</CodeResult>
+
+

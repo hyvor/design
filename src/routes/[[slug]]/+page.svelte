@@ -16,6 +16,32 @@
     import { page } from '$app/stores';
     import NavLink from './docs/NavLink.svelte';
     
+    const components = [
+        { href: "/action-list", label: "Action List" },
+        { href: "/avatar", label: "Avatar" },
+        { href: "/button", label: "Button" },
+        { href: "/icon-button", label: "Icon Button" },
+        { href: "/callout", label: "Callout" },
+        { href: "/code-block", label: "Code Block" },
+        { href: "/checkbox", label: "Checkbox" },
+        { href: "/divider", label: "Divider" },
+        { href: "/dropdown", label: "Dropdown" },
+        { href: "/nav-link", label: "Nav Link" },
+        { href: "/radio", label: "Radio" },
+        { href: "/switch", label: "Switch" },
+        { href: "/textarea", label: "Textarea" },
+        { href: "/table", label: "Table" },
+        { href: "/text", label: "Text" },
+        { href: "/text-input", label: "Text Input" },
+        { href: "/form-control", label: "Form Control" },
+        { href: "/split-control", label: "Split Control" },
+        { href: "/loader", label: "Loader" },
+        { href: "/link", label: "Link" },
+        { href: "/tooltip", label: "Tooltip" },
+    ];
+
+    const sortedComponents = components.slice().sort((a, b) => a.label.localeCompare(b.label));
+
  
     export let data;
 
@@ -63,7 +89,10 @@
         </NavCategory>
 
         <NavCategory name="Components">
-            <NavItem href="/action-list">Action List</NavItem>
+            {#each sortedComponents as component}
+            <NavItem href={component.href}>{component.label}</NavItem>
+        {/each}
+            <!-- <NavItem href="/action-list">Action List</NavItem>
             <NavItem href="/avatar">Avatar</NavItem>
             <NavItem href="/button">Button</NavItem>
             <NavItem href="/icon-button">Icon Button</NavItem>
@@ -83,7 +112,7 @@
             <NavItem href="/split-control">Split Control</NavItem>
             <NavItem href="/loader">Loader</NavItem>
             <NavItem href="/link">Link</NavItem>
-            <NavItem href="/tooltip">Tooltip</NavItem>
+            <NavItem href="/tooltip">Tooltip</NavItem> -->
         </NavCategory>
 
         <NavCategory name="Marketing">

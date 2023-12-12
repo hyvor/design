@@ -2,6 +2,7 @@
     import {clickOutside} from "../../directives/clickOutside.js";
     import { IconX } from '@hyvor/icons';
     import IconButton from './../IconButton/IconButton.svelte';
+	import { scale } from 'svelte/transition';
 
     export let show = false;
     export let title = "";
@@ -28,6 +29,7 @@
                 enabled: closeOnOutsideClick,
                 callback: () => show = false
             }}
+            in:scale={{duration: 100, start: 0.9, opacity: 0.9}}
         >
 
             <div class="header">
@@ -100,7 +102,6 @@
         font-weight: 600;
         display: flex;
         align-items: center;
-        border-bottom: 1px solid var(--border);
     }
 
     .title {
@@ -113,7 +114,6 @@
 
     .footer {
         padding: 20px 25px;
-        border-top: 1px solid var(--border);
         display: flex;
         align-items: center;
         justify-content: flex-end;

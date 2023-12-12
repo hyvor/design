@@ -37,7 +37,8 @@
         { href: "/loader", label: "Loader" },
         { href: "/link", label: "Link" },
         { href: "/tooltip", label: "Tooltip" },
-        { href: "/toast", label: "Toast" }
+        { href: "/toast", label: "Toast" },
+        { href: "/modal", label: "Modal" }
     ];
 
     const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));

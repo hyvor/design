@@ -23,7 +23,9 @@ export function clickOutside(node: HTMLElement, input: Input) {
 	};
 
 
-	document.addEventListener("click", handleClick);
+	setTimeout(() => {
+		document.addEventListener("click", handleClick);
+	}, 0);
 
 	return {
 		destroy() {

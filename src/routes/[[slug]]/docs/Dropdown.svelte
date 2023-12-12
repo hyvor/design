@@ -384,8 +384,7 @@
 </CodeResult>
 
 
-
-<h2 id="">positioning and Alignment</h2>
+<h2 id="">Positioning and Alignment</h2>
 
 <CodeResult>
 

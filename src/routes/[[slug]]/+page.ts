@@ -24,6 +24,7 @@ import NavLink from "./docs/NavLink.svelte";
 import Divider from "./docs/Divider.svelte";
 import Text from "./docs/Text.svelte";
 import Toast from "./docs/Toast/Toast.svelte";
+import Modal from "./docs/Modal.svelte";
 
 export const prerender = true;
 
@@ -47,6 +48,7 @@ const nav = {
     text: Text,
     toast: Toast,
     "nav-link": NavLink,
+    modal: Modal,
     textarea: Textarea,
     loader: Loader,
     link: Link,

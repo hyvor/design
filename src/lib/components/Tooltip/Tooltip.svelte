@@ -73,6 +73,7 @@
     on:mouseleave={handleMouseLeave}
     role="tooltip"
     bind:this={wrap}
+    {...$$restProps}
 >
     <slot />
 
@@ -93,7 +94,7 @@
 
 <style>
     .tooltip-wrap {
-        display: inline-flex;
+        display: inline;
         position: relative;
 
         --local-bg: #24292f;

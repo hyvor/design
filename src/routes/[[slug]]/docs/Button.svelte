@@ -236,6 +236,22 @@ All other properties will be forwarded to the underlying element.
     </Button>
 </CodeResult>
 
+<!--Code example for disabled button -->
+
+<h3>Disabled Button</h3>
+
+<p>
+    You can use the <code>disabled</code> attribute to disable a button. </p>
+<CodeBlock code={`
+    <Button disabled>Disabled Button</Button>
+`} /> 
+
+<CodeResult>
+    <Button disabled>
+        Disabled Button
+    </Button>
+</CodeResult>
+
 <h2 id="group">Button Group</h2>
 
 <p>

@@ -3,6 +3,8 @@
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import { IconSearch } from "@hyvor/icons";
+
+    let value1 = '';
 </script>
 
 <h1>Text Input</h1>
@@ -13,6 +15,20 @@
 
 
 <h2 id="examples">Examples</h2>
+
+<h3 id="basic">Basic</h3>
+
+<CodeBlock code={`
+    <TextInput placeholder="Basic text input" bind:value={myValue} />
+    The value is "{myValue}"
+`} />
+
+<CodeResult>
+    <TextInput placeholder="Basic text input" bind:value={value1} />
+    <div style="margin-top: 5px;">
+        The value is "{value1}"
+    </div>
+</CodeResult>
 
 <h3 id="sizes">Sizes</h3>
 

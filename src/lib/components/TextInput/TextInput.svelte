@@ -2,6 +2,7 @@
     export let state : 'default' | 'error' | 'success' | 'warning' = 'default';
     export let size : 'small' | 'medium' | 'large' = 'medium';
     export let block : boolean = false;
+    export let value: any = undefined;
 
     let input: HTMLInputElement;
 </script>
@@ -28,6 +29,7 @@
 
     <input
         {...$$restProps}
+        bind:value={value}
         bind:this={input}
 
         on:keyup

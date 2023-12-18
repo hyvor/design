@@ -109,27 +109,6 @@
         color: #e06c75;
     }
 
-    content :global(pre) {
-        text-align: left;
-        white-space: pre;
-        word-spacing: normal;
-        word-break: normal;
-        word-wrap: normal;
-        overflow: auto;
-        border-radius: 20px;
-        padding: 20px;
-        line-height: 1.1;
-    }
-    content :global(pre code) {
-        all: unset;
-        font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
-        font-size: 14px;
-        line-height: 1.5;
-        tab-size: 4;
-        hyphens: none;
-    }
-
-
     content :global(a.heading-anchor-link) {
         position:absolute;
         right:100%;

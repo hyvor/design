@@ -200,4 +200,11 @@
         --local-hover-shadow-color: var(--red-light);
     }
 
+    /*Styles for button disabled state*/
+    .button[disabled] {
+        cursor: not-allowed;
+        opacity: 0.2;
+        box-shadow: none!important;
+    }   
+
 </style>

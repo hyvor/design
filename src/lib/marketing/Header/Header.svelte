@@ -45,7 +45,7 @@
 				</span>
 			{/if}
 
-			<span class="mobile-nav-wrap">
+			<!-- <span class="mobile-nav-wrap">
 				<Dropdown align="end" width={300}>
 					<IconButton 
 						color="invisible" 
@@ -62,9 +62,28 @@
 						</div>
 					</div>
 				</Dropdown>
-			</span>
+			</span> -->
 
 		</div>
+
+		<span class="mobile-nav-wrap">
+			<Dropdown align="end" width={300}>
+				<IconButton 
+					color="invisible" 
+					slot="trigger"
+				>
+					<IconList size={18} />
+				</IconButton>
+				<div slot="content" class="mobile-content">
+					<div class="mobile-inner center">
+						<slot name="center" />
+					</div>
+					<div class="mobile-inner end">
+						<slot name="end" />
+					</div>
+				</div>
+			</Dropdown>
+		</span>
 
 	</Container>
 
@@ -164,6 +183,7 @@
 		.dark-mobile {
 			flex: 1;
 			text-align: right;
+			display: inline-block;
 		}
 	}
 
@@ -178,5 +198,9 @@
 	.mobile-content :global(.button) {
 		display: flex;
 	}
+
+
+
+
 
 </style>

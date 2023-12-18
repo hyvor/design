@@ -122,3 +122,89 @@
 
 <h2 id="footer">Footer</h2>
 
+<h3 id="props">Properties</h3>
+
+<Table columns="2fr 2fr 3fr">
+    <TableRow head>
+        <div>Name</div>
+        <div>Default</div>
+        <div>Description</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>email</code></div>
+        <div>null</div>
+        <div>
+            The email address to show in the footer.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>social</code></div>
+        <div>null</div>
+        <div>
+            An object with social media links. The keys should be the names of the social media, and the values should be the URLs. The accepted keys are 
+            <ul>
+                <li><code>x</code></li>
+                <li><code>discord</code></li>
+                <li><code>github</code></li>
+                <li><code>youtube</code></li>
+                <li><code>linkedin</code></li>
+            </ul>
+            
+
+        </div>
+    </TableRow>   
+</Table>
+
+<h3 id="slots">Slots</h3>
+
+<Table columns="2fr 3fr">
+    <TableRow head>
+        <div>Name</div>
+        
+        <div>Description</div>
+    </TableRow>
+   
+    <TableRow>
+        <div><code>center</code></div>
+        <div>
+            The content in the center of the footer. Usually, the navigation links like "Contact Us", "Pricing", etc.
+        </div>
+    </TableRow>
+</Table>
+
+<h3 id="examples">Example</h3>
+<p>
+    The following example shows how to use the <code>Footer</code> and <code>FooterLinkList</code> components to create a footer with two columns.
+</p>
+
+<CodeBlock code={` 
+<Footer
+    email="foss@hyvor.com"
+    social={{
+        x: 'https://twitter.com'
+    }}
+>
+
+    <div slot="center">
+
+        <div style="display:flex">
+            <FooterLinkList title="Product">
+                <a href="pricing" target="_blank">Pricing</a>
+                <a href="docs" target="_blank">Docs</a>
+                <a href="customers" target="_blank">Customers</a>
+            </FooterLinkList>
+
+            <FooterLinkList title="HYVOR">
+                <a href="https://hyvor.com" target="_blank">hyvor.com</a>
+            </FooterLinkList>
+        </div>
+
+    </div>
+
+</Footer>
+           
+    
+                `}
+/>

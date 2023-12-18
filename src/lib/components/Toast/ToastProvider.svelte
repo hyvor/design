@@ -18,10 +18,11 @@
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 9999;
+        z-index: 10000;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        pointer-events: none;
     }
 </style>

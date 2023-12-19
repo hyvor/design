@@ -2,6 +2,7 @@
 - Button disabled state
 - Local code block styles
 - Footer export and docs
+- Header mobile friendly
 
 ## 0.0.18
 - Fix TextInput value not binding bug

@@ -1,3 +1,6 @@
+## 0.0.20
+- Upgrade to sveltekit 2.0
+
 ## 0.0.19
 - Button disabled state
 - Local code block styles

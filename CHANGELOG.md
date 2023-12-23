@@ -1,3 +1,6 @@
+## 0.0.22
+- Fixed exporting <Tag> component
+
 ## 0.0.21
 - Added <Tag> component
 - NavLink align-items:center

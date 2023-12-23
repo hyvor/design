@@ -58,6 +58,14 @@
         <div>
             Set to <code>true</code> to use the outline style.
         </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>fill</code></div>
+        <div><code>false</code></div>
+        <div>
+            Used with <code>outline</code>. Set to <code>true</code> to use the outline fill style.
+        </div>
     </TableRow> 
     
     <TableRow>
@@ -108,6 +116,26 @@
     <Tag outline color="orange">Orange</Tag>
 </CodeResult>
 
+<h3 id="outline-fill-style">
+    Outline fill style
+</h3>
+
+<CodeBlock code={`
+    <Tag outline fill>Default</Tag>
+    <Tag outline fill color="green">Green</Tag>
+    <Tag outline fill color="red">Red</Tag>
+    <Tag outline fill color="blue">Blue</Tag>
+    <Tag outline fill color="orange">Orange</Tag>
+`} />
+
+<CodeResult white>
+    <Tag outline fill>Default</Tag>
+    <Tag outline fill color="green">Green</Tag>
+    <Tag outline fill color="red">Red</Tag>
+    <Tag outline fill color="blue">Blue</Tag>
+    <Tag outline fill color="orange">Orange</Tag>
+</CodeResult>
+
 <h3 id="sizes">
     Sizes
 </h3>
@@ -144,7 +172,7 @@
 <CodeResult white>
 
     <div style="margin-bottom: 10px;">
-        <Tag size="x-small">
+        <Tag size="x-small" color="orange">
             <IconJournalText slot="start" size={10} />
             Draft
         </Tag>
@@ -159,7 +187,7 @@
     </div>
 
     <div style="margin-bottom: 10px;">
-        <Tag size="small">
+        <Tag size="small" color="orange">
             <IconJournalText slot="start" size={11} />
             Draft
         </Tag>
@@ -175,7 +203,7 @@
 
 
     <div style="margin-bottom: 10px;">
-        <Tag>
+        <Tag color="orange">
             <IconJournalText slot="start" size={12} />
             Draft
         </Tag>
@@ -190,7 +218,7 @@
     </div>
 
     <div style="margin-bottom: 10px;">
-        <Tag size="large">
+        <Tag size="large" color="orange">
             <IconJournalText slot="start" size={14} />
             Draft
         </Tag>

@@ -12,14 +12,21 @@
 
     export let interactive: boolean = false;
     export let outline : boolean = false;
+    export let fill: boolean = false;
+
+    let styleClass = 'default';
+    if (outline) {
+        styleClass = fill ? 'outline-fill' : 'outline';
+    }
 
 </script>
 
 <span
-    class="color-{color} style-{outline ? 'outline' : 'default'} size-{size}"
+    class="color-{color} style-{styleClass} size-{size}"
     class:interactive
     class:has-start={$$slots.start}
     class:has-end={$$slots.end}
+    {...$$restProps}
 >
 
     {#if $$slots.start}
@@ -131,6 +138,40 @@
         }
 
         &.color-orange {
+            color: var(--orange-dark);
+            border: 1px solid var(--orange-dark);
+        }
+
+    }
+
+    span.style-outline-fill {
+
+        &.color-default {
+            background-color: var(--gray-light);
+            color: var(--gray-dark);
+            border: 1px solid var(--gray);
+        }
+
+        &.color-green {
+            background-color: var(--green-light);
+            color: var(--green-dark);
+            border: 1px solid var(--green-dark);
+        }
+
+        &.color-red {
+            background-color: var(--red-light);
+            color: var(--red-dark);
+            border: 1px solid var(--red-dark);
+        }
+
+        &.color-blue {
+            background-color: var(--blue-light);
+            color: var(--blue-dark);
+            border: 1px solid var(--blue-dark);
+        }
+
+        &.color-orange {
+            background-color: var(--orange-light);
             color: var(--orange-dark);
             border: 1px solid var(--orange-dark);
         }

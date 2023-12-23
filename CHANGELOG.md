@@ -1,3 +1,7 @@
+## 0.0.23 - 2023-12-23
+- Added fill prop to Tag
+- Added $$restProps to Tag
+
 ## 0.0.22
 - Fixed exporting <Tag> component
 

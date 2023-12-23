@@ -38,6 +38,7 @@
         display: flex;
         align-items: center;
         max-width: 350px;
+        pointer-events: initial;
     }
     .toast:first-child {
         margin-top: 10px;

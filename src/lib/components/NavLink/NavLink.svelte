@@ -48,7 +48,7 @@
         letter-spacing: .3px;
         border-left: 3px solid transparent;
         cursor: pointer;
-        /* align-items: center; */
+        align-items: center; 
     }
 
     a:hover {

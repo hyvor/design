@@ -30,6 +30,7 @@
             handleClick();
         }
     }}
+    {...$$restProps}
 >
 
     {#if selection !== 'none'}

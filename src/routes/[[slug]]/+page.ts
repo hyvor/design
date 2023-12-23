@@ -25,6 +25,7 @@ import Divider from "./docs/Divider.svelte";
 import Text from "./docs/Text.svelte";
 import Toast from "./docs/Toast/Toast.svelte";
 import Modal from "./docs/Modal.svelte";
+import Box from "./docs/Box.svelte";
 import Tag from "./docs/Tag.svelte";
 
 export const prerender = true;
@@ -57,6 +58,7 @@ const nav = {
     tooltip: Tooltip,
     dark: Dark,
     i18n: Internationalization,
+    box: Box,
 
     'page-structure': PageStructure,
 }

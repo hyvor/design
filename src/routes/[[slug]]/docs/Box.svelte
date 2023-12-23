@@ -37,13 +37,13 @@
 
 <CodeBlock code={`
     <div class="hds-box">
-        <p>Some text</p>
+        Some text
     </div>
 `} />
 
 <CodeResult>
-    <div class="hds-box">
-        <p>Some text</p>
+    <div class="hds-box" style="padding: 15px 20px">
+        Some text
     </div>
 </CodeResult>
 

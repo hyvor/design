@@ -11,11 +11,3 @@
 >
     <slot />
 </svelte:element>
-
-<style>
-    :global(.hds-box) {
-        box-shadow: var(--box-shadow);
-        border-radius: var(--box-radius);
-        background-color: var(--box-background);
-    }
-</style>

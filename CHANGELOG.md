@@ -1,3 +1,6 @@
+## 0.0.24 - 2023-12-23
+- Moved .hds-box class to index.css
+
 ## 0.0.23 - 2023-12-23
 - Added fill prop to Tag
 - Added $$restProps to Tag

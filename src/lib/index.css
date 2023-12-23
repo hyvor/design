@@ -35,3 +35,10 @@ button, a {
 * {
     box-sizing: border-box;
 }
+
+
+.hds-box {
+    box-shadow: var(--box-shadow);
+    border-radius: var(--box-radius);
+    background-color: var(--box-background);
+}

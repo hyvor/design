@@ -19,6 +19,7 @@
         { href: "/action-list", label: "Action List" },
         { href: "/avatar", label: "Avatar" },
         { href: "/button", label: "Button" },
+        {href: "/box", label: "Box" },
         { href: "/icon-button", label: "Icon Button" },
         { href: "/callout", label: "Callout" },
         { href: "/code-block", label: "Code Block" },

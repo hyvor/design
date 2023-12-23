@@ -1,3 +1,9 @@
+## 0.0.21
+- Added <Tag> component
+- NavLink align-items:center
+- Added .hds-box class
+- Fixed Toast message pointer events issue fixed
+
 ## 0.0.20
 - Upgrade to sveltekit 2.0
 

@@ -25,7 +25,8 @@ import Divider from "./docs/Divider.svelte";
 import Text from "./docs/Text.svelte";
 import Toast from "./docs/Toast/Toast.svelte";
 import Modal from "./docs/Modal.svelte";
-import Box from "./docs/Box.svelte";  
+import Box from "./docs/Box.svelte";
+import Tag from "./docs/Tag.svelte";
 
 export const prerender = true;
 
@@ -46,6 +47,7 @@ const nav = {
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,
+    tag: Tag,
     text: Text,
     toast: Toast,
     "nav-link": NavLink,

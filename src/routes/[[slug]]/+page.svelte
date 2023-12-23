@@ -37,6 +37,7 @@
         { href: "/split-control", label: "Split Control" },
         { href: "/loader", label: "Loader" },
         { href: "/link", label: "Link" },
+        { href: "/tag", label: "Tag" },
         { href: "/tooltip", label: "Tooltip" },
         { href: "/toast", label: "Toast" },
         { href: "/modal", label: "Modal" }

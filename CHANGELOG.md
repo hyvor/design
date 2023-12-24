@@ -1,3 +1,6 @@
+## 0.0.27 - 2023-12-25
+- Added oninput events to TextInput and Textarea
+
 ## 0.0.26 - 2023-12-24
 - Added tab nav
 

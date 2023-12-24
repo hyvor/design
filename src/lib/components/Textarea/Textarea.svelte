@@ -19,6 +19,7 @@
     on:mouseenter
     on:mouseleave
     on:change
+    on:input
 
     {rows}
     {cols}

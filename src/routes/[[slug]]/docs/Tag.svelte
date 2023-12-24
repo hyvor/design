@@ -75,6 +75,22 @@
             Set to <code>true</code> to make the tag interactive (hover effect and pointer cursor).
         </div>
     </TableRow> 
+
+    <TableRow>
+        <div><code>bg</code></div>
+        <div></div>
+        <div>
+            Custom background color
+        </div>
+    </TableRow> 
+
+    <TableRow>
+        <div><code>fg</code></div>
+        <div></div>
+        <div>
+            Custom text color
+        </div>
+    </TableRow>
 </Table>
 
 
@@ -82,6 +98,7 @@
 
 <CodeBlock code={`
     <Tag>Default</Tag>
+    <Tag color="accent">Accent</Tag>
     <Tag color="green">Green</Tag>
     <Tag color="red">Red</Tag>
     <Tag color="blue">Blue</Tag>
@@ -90,6 +107,7 @@
 
 <CodeResult white>
     <Tag>Default</Tag>
+    <Tag color="accent">Accent</Tag>
     <Tag color="green">Green</Tag>
     <Tag color="red">Red</Tag>
     <Tag color="blue">Blue</Tag>
@@ -102,6 +120,7 @@
 
 <CodeBlock code={`
     <Tag outline>Default</Tag>
+    <Tag outline color="accent">Accent</Tag>
     <Tag outline color="green">Green</Tag>
     <Tag outline color="red">Red</Tag>
     <Tag outline color="blue">Blue</Tag>
@@ -110,6 +129,7 @@
 
 <CodeResult white>
     <Tag outline>Default</Tag>
+    <Tag outline color="accent">Accent</Tag>
     <Tag outline color="green">Green</Tag>
     <Tag outline color="red">Red</Tag>
     <Tag outline color="blue">Blue</Tag>
@@ -122,6 +142,7 @@
 
 <CodeBlock code={`
     <Tag outline fill>Default</Tag>
+    <Tag outline fill color="accent">Accent</Tag>
     <Tag outline fill color="green">Green</Tag>
     <Tag outline fill color="red">Red</Tag>
     <Tag outline fill color="blue">Blue</Tag>
@@ -130,6 +151,7 @@
 
 <CodeResult white>
     <Tag outline fill>Default</Tag>
+    <Tag outline fill color="accent">Accent</Tag>
     <Tag outline fill color="green">Green</Tag>
     <Tag outline fill color="red">Red</Tag>
     <Tag outline fill color="blue">Blue</Tag>
@@ -271,6 +293,7 @@
 
 <CodeResult white>
     <Tag interactive>Default</Tag>
+    <Tag interactive color="accent">Accent</Tag>
     <Tag interactive color="green">Green</Tag>
     <Tag interactive color="red">Red</Tag>
     <Tag interactive color="blue">Blue</Tag>
@@ -279,8 +302,32 @@
     <div style:height="10px"></div>
 
     <Tag interactive outline>Default</Tag>
+    <Tag interactive outline color="accent">Accent</Tag>
     <Tag interactive outline color="green">Green</Tag>
     <Tag interactive outline color="red">Red</Tag>
     <Tag interactive outline color="blue">Blue</Tag>
     <Tag interactive outline color="orange">Orange</Tag>
+</CodeResult>
+
+
+<h3 id="custom">
+    Custom colors
+</h3>
+
+<p>
+    You can use the <code>bg</code> and <code>fg</code> properties to set custom background and text colors.
+</p>
+
+<CodeBlock code={`
+    <Tag 
+        bg="var(--green-light)" 
+        fg="var(--green)"
+    >Custom</Tag>
+`} />
+
+<CodeResult white>
+    <Tag 
+        bg="var(--green-light)" 
+        fg="var(--green)"
+    >Custom</Tag>
 </CodeResult>

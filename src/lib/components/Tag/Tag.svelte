@@ -4,6 +4,7 @@
 
     export let color : 
         'default' | // default tag (categories)
+        'accent' |
         'green' |
         'red' | 
         'blue' |
@@ -13,6 +14,9 @@
     export let interactive: boolean = false;
     export let outline : boolean = false;
     export let fill: boolean = false;
+
+    export let bg: string | undefined = undefined;
+    export let fg: string | undefined = undefined;
 
     let styleClass = 'default';
     if (outline) {
@@ -27,6 +31,9 @@
     class:has-start={$$slots.start}
     class:has-end={$$slots.end}
     {...$$restProps}
+
+    style:background-color={bg}
+    style:color={fg}
 >
 
     {#if $$slots.start}
@@ -93,6 +100,11 @@
             color: var(--gray-dark);
         }
 
+        &.color-accent {
+            background-color: var(--accent-light);
+            color: var(--accent);
+        }
+
         &.color-green {
             background-color: var(--green-light);
             color: var(--green-dark);
@@ -120,6 +132,11 @@
         &.color-default {
             color: var(--gray-dark);
             border: 1px solid var(--gray-dark);
+        }
+
+        &.color-accent {
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
 
         &.color-green {
@@ -150,6 +167,12 @@
             background-color: var(--gray-light);
             color: var(--gray-dark);
             border: 1px solid var(--gray);
+        }
+
+        &.color-accent {
+            background-color: var(--accent-light);
+            color: var(--accent);
+            border: 1px solid var(--accent);
         }
 
         &.color-green {

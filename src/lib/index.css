@@ -25,6 +25,8 @@ button, a {
     padding: 0;
     text-decoration: none;
     cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
 }
 
 :focus-visible {

@@ -30,6 +30,7 @@
         { href: "/radio", label: "Radio" },
         { href: "/switch", label: "Switch" },
         { href: "/textarea", label: "Textarea" },
+        { href: '/tab-nav', label: 'Tab Nav' },
         { href: "/table", label: "Table" },
         { href: "/text", label: "Text" },
         { href: "/text-input", label: "Text Input" },

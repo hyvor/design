@@ -48,6 +48,9 @@ export { default as Switch } from './Switch/Switch.svelte';
 export { default as Table } from './Table/Table.svelte';
 export { default as TableRow } from './Table/TableRow.svelte';
 
+export { default as TabNav } from './TabNav/TabNav.svelte';
+export { default as TabNavItem } from './TabNav/TabNavItem.svelte';
+
 export { default as Tag } from './Tag/Tag.svelte';
 
 export { default as Textarea } from './Textarea/Textarea.svelte';

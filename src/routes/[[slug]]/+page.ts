@@ -27,6 +27,7 @@ import Toast from "./docs/Toast/Toast.svelte";
 import Modal from "./docs/Modal.svelte";
 import Box from "./docs/Box.svelte";
 import Tag from "./docs/Tag.svelte";
+import TabNav from "./docs/TabNav.svelte";
 
 export const prerender = true;
 
@@ -47,6 +48,7 @@ const nav = {
     "split-control": SplitControl,
     'form-control': FormControl,
     'text-input': TextInput,
+    'tab-nav': TabNav,
     tag: Tag,
     text: Text,
     toast: Toast,

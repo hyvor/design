@@ -1,3 +1,6 @@
+## 0.0.26 - 2023-12-24
+- Added tab nav
+
 ## 0.0.25 - 2023-12-24
 - Added color="accent" to <Tag>
 - Added custom colors to <Tag>

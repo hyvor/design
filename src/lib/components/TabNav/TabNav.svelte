@@ -2,7 +2,7 @@
     import { setContext } from 'svelte'
     import { writable } from 'svelte/store';
 
-    export let active: string = null;
+    export let active: string;
 
     const activeStore = writable(active);
     setContext('tab-nav-active', activeStore);

@@ -202,6 +202,7 @@ Each HYVOR product has a different accent color scheme, while most of the other 
     <li><code>on:mouseenter</code></li>
     <li><code>on:mouseleave</code></li>
     <li><code>on:change</code></li>
+    <li><code>on:input</code> (only <code>{"<TextInput>"}</code> and <code>{"<Textarea>"}</code>)</li>
 </ul>
 
 <CodeBlock code={`

@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { setContext, getContext, createEventDispatcher } from 'svelte'
+    import { getContext } from 'svelte'
+    import type { Writable } from "svelte/store";
 
     export let active = false;
     export let name: string;
 
-    const activeStore = getContext('tab-nav-active');
+    const activeStore = getContext('tab-nav-active') as Writable<string>;
     
     $: isActive = $activeStore === name || active;
 
     function handleClick() {
-        console.log('settings', name)
         activeStore.set(name);
     }
 </script>

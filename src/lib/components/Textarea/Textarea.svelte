@@ -31,7 +31,7 @@
 
     <textarea 
         bind:value={value}
-        bind:this={input}
+        
 
         on:keyup
         on:keydown

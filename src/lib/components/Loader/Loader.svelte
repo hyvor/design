@@ -1,6 +1,7 @@
 <script lang="ts">
 
     export let block : boolean = false;
+    export let full: boolean = false;
     export let padding : 'none' | 'small' | 'medium' | 'large' | number = 'medium';
 
     export let size : 'small' | 'medium' | 'large' | number = 'medium';
@@ -45,6 +46,7 @@
 <div 
     class="loader"
     class:block
+    class:full
 
     style:--local-size={size + "px"}
     style:padding={block ? padding + "px" : undefined}
@@ -99,6 +101,19 @@
     }
 
     .loader.block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        .message {
+            margin-top: 10px;
+        }
+    }
+
+    .loader.full {
+        width: 100%;
+        height: 100%;
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -23,7 +23,7 @@
     The value is "{myValue}"
 `} />
 
-<CodeResult>
+<CodeResult white>
     <TextInput placeholder="Basic text input" bind:value={value1} />
     <div style="margin-top: 5px;">
         The value is "{value1}"
@@ -39,7 +39,7 @@
     <TextInput placeholder="Large" size="large" />
 `} />
 
-<CodeResult>
+<CodeResult white>
     <div class="sizes">
         <TextInput placeholder="X-Small" size="x-small" />
         <TextInput placeholder="Small" size="small" />
@@ -73,7 +73,7 @@
     />
 `} />
 
-<CodeResult>
+<CodeResult white>
     <div class="states">
         <TextInput placeholder="This is a default text input" state="default" block />
         <TextInput placeholder="This is a success text input" state="success" block />
@@ -106,7 +106,7 @@
     </TextInput>
 `} />
 
-<CodeResult>
+<CodeResult white>
     <TextInput placeholder="Search">
         <IconSearch slot="start" />
     </TextInput>
@@ -120,7 +120,7 @@
     </TextInput>
 `} />
 
-<CodeResult>
+<CodeResult white>
     <TextInput placeholder="Delay" type="number">
         <span slot="end">minutes</span>
     </TextInput>

@@ -71,6 +71,13 @@
     </TableRow>
 
     <TableRow>
+        <div><code>full</code></div>
+        <div><code>false</code></div>   
+        <div>
+            If true, the loader will take up the full width and height of its parent. The loader and the message will be centered.
+    </TableRow>
+
+    <TableRow>
         <div><code>padding</code></div>
         <div><code>medium</code> (block only)</div>   
         <div>
@@ -170,8 +177,32 @@
 </CodeResult>
 
 <p>
-    You can also set <code>padding={"{number}"}</code> or <code>padding="small|medium|large"</code> to add padding to the loader. By default, <code>padding="medium"</code> is used.
+    You can set <code>padding={"{number}"}</code> or <code>padding="small|medium|large"</code> to add padding to the loader. By default, <code>padding="medium"</code> is used.
 </p>
+
+<h3 id="full loader">Full Loader</h3>
+
+<p>
+    You can set <code>full</code> prop to true to make the loader take up the full width and height of its parent. Padding is not applied in this case.
+</p>
+
+<CodeBlock 
+    code={`
+        <div style="height=200px">
+            <Loader full>
+                Loading...
+            </Loader>
+        </div>
+    `} 
+/>
+
+<CodeResult>
+    <div style="height: 200px">
+        <Loader full>
+            Full Loader (200px height, centered)
+        </Loader>
+    </div>
+</CodeResult>
 
 
 <style>

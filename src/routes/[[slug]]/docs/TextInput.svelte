@@ -36,6 +36,7 @@
     <TextInput placeholder="Small" size="small" />
     <TextInput placeholder="Medium (default)" />
     <TextInput placeholder="Large" size="large" />
+    <TextInput placeholder="X-Small" size="x-small" />
 `} />
 
 <CodeResult>
@@ -43,6 +44,7 @@
         <TextInput placeholder="Small" size="small" />
         <TextInput placeholder="Medium (default)" />
         <TextInput placeholder="Large" size="large" />
+        <TextInput placeholder="X-Small" size="x-small" />
     </div>
 </CodeResult>
 

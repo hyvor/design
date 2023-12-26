@@ -5,7 +5,7 @@
     export let cols : number = 40;
     export let state : "default" | "success" | "warning" | "error" = "default";
 
-    let input: HTMLInputElement;
+    let input: HTMLTextAreaElement;
 </script>
 
 
@@ -31,6 +31,7 @@
 
     <textarea 
         bind:value={value}
+        bind:this={input}
         
 
         on:keyup

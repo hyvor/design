@@ -40,7 +40,7 @@
 
                 <div class="close-wrap">
                     <IconButton
-                        color="invisible"
+                        variant="invisible"
                         on:click={() => show = false}
                     >
                         <IconX size={25} />

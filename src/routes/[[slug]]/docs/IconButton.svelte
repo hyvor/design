@@ -30,9 +30,10 @@
             The <a href="#size">size</a> of the button. One of:
 
             <ul>
-                <li><code>small</code></li>
-                <li><code>medium</code></li>
-                <li><code>large</code></li>
+                <li><code>small</code> (26px)</li>
+                <li><code>medium</code> (30px)</li>
+                <li><code>large</code> (36px)</li>
+                <li>a number in pixels</li>
             </ul>
         </div>
     </TableRow>
@@ -45,9 +46,26 @@
         
             <ul>
                 <li><code>accent</code></li>
-                <li><code>soft</code></li>
+                <li><code>gray</code></li>
+                <li><code>green</code></li>
+                <li><code>red</code></li>
+                <li><code>blue</code></li>
+                <li><code>orange</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>variant</code></div>
+        <div><code>fill</code></div>
+        <div>
+            The <a href="#variant">variant</a> of the button. One of:
+        
+            <ul>
+                <li><code>fill</code></li>
+                <li><code>outline</code></li>
+                <li><code>outline-fill</code></li>
                 <li><code>invisible</code></li>
-                <li><code>danger</code></li>
             </ul>
         </div>
     </TableRow>
@@ -70,29 +88,117 @@
     <IconButton size="small"><IconSearch /></IconButton>
     <IconButton size="medium"><IconSearch /></IconButton>
     <IconButton size="large"><IconSearch /></IconButton>
+    <IconButton size={50}><IconSearch /></IconButton>
 `} />
 
 <CodeResult gap={8}>
 <IconButton size="small"><IconSearch /></IconButton>
 <IconButton size="medium"><IconSearch /></IconButton>
 <IconButton size="large"><IconSearch /></IconButton>
+<IconButton size={50}><IconSearch /></IconButton>
 </CodeResult>
 
 <h3 id="color">Colors</h3>
 
 <CodeBlock code={`
     <IconButton color="accent"><IconSearch /></IconButton>
-    <IconButton color="soft"><IconSearch /></IconButton>
-    <IconButton color="invisible"><IconSearch /></IconButton>
-    <IconButton color="danger"><IconSearch /></IconButton>
+    <IconButton color="gray"><IconSearch /></IconButton>
+    <IconButton color="green"><IconSearch /></IconButton>
+    <IconButton color="red"><IconSearch /></IconButton>
+    <IconButton color="blue"><IconSearch /></IconButton>
+    <IconButton color="orange"><IconSearch /></IconButton>
 `} />
 
 <CodeResult gap={8}>
     <IconButton color="accent"><IconSearch /></IconButton>
-    <IconButton color="soft"><IconSearch /></IconButton>
-    <IconButton color="invisible"><IconSearch /></IconButton>
-    <IconButton color="danger"><IconSearch /></IconButton>
+    <IconButton color="gray"><IconSearch /></IconButton>
+    <IconButton color="green"><IconSearch /></IconButton>
+    <IconButton color="red"><IconSearch /></IconButton>
+    <IconButton color="blue"><IconSearch /></IconButton>
+    <IconButton color="orange"><IconSearch /></IconButton>
 </CodeResult>
+
+
+<h3 id="variant">Variants</h3>
+
+<h4>Fill</h4>
+<CodeBlock code={`
+    <IconButton variant="fill" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="green"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="red"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="orange"><IconSearch /></IconButton>
+`} />
+`
+
+<CodeResult gap={8} white>
+    <IconButton variant="fill" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="green"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="red"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="orange"><IconSearch /></IconButton>
+</CodeResult>
+
+<h4>Outline</h4>
+<CodeBlock code={`
+    <IconButton variant="outline" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="green"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="red"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="orange"><IconSearch /></IconButton>
+`} />
+
+<CodeResult gap={8}>
+    <IconButton variant="outline" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="green"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="red"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="outline" color="orange"><IconSearch /></IconButton>
+</CodeResult>
+
+<h4>Outline Fill</h4>
+<CodeBlock code={`
+    <IconButton variant="outline-fill" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="green"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="red"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="orange"><IconSearch /></IconButton>
+`} />
+
+<CodeResult gap={8}>
+    <IconButton variant="outline-fill" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="green"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="red"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="outline-fill" color="orange"><IconSearch /></IconButton>
+</CodeResult>
+
+<h4>Invisible</h4>
+<CodeBlock code={`
+    <IconButton variant="invisible" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="green"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="red"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="orange"><IconSearch /></IconButton>
+`} />
+
+<CodeResult gap={8}>
+    <IconButton variant="invisible" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="green"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="red"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="orange"><IconSearch /></IconButton>
+</CodeResult>
+
+
 
 <h3 id="link">Link</h3>
 
@@ -111,4 +217,6 @@
         target="_blank"
     ><IconBoxArrowUpRight /></IconButton>
 </CodeResult>
+
+
 

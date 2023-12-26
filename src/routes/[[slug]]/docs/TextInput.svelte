@@ -33,6 +33,7 @@
 <h3 id="sizes">Sizes</h3>
 
 <CodeBlock code={`
+    <TextInput placeholder="X-Small" size="x-small" />
     <TextInput placeholder="Small" size="small" />
     <TextInput placeholder="Medium (default)" />
     <TextInput placeholder="Large" size="large" />
@@ -40,6 +41,7 @@
 
 <CodeResult>
     <div class="sizes">
+        <TextInput placeholder="X-Small" size="x-small" />
         <TextInput placeholder="Small" size="small" />
         <TextInput placeholder="Medium (default)" />
         <TextInput placeholder="Large" size="large" />

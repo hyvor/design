@@ -1,6 +1,6 @@
 <script lang="ts">
     export let state : 'default' | 'error' | 'success' | 'warning' = 'default';
-    export let size : 'small' | 'medium' | 'large' = 'medium';
+    export let size : 'small' | 'medium' | 'large' | 'x-small' = 'medium';
     export let block : boolean = false;
     export let value: any = undefined;
 
@@ -99,6 +99,13 @@
         &:focus {
             outline: none;
         }
+    }
+
+    .input-wrap.size-x-small {
+        padding: 0 15px;
+        height: 26px;
+        font-size: 12px;
+        --local-shadow-size: 1px;
     }
 
     .input-wrap.size-small {

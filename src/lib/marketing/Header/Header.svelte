@@ -69,7 +69,7 @@
 		<span class="mobile-nav-wrap">
 			<Dropdown align="end" width={300}>
 				<IconButton 
-					color="invisible" 
+					variant="invisible" 
 					slot="trigger"
 				>
 					<IconList size={18} />

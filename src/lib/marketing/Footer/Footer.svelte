@@ -51,7 +51,7 @@
                         <Tooltip text={emailCopied ? "Copied!" : "Copy email"} position="top">
                             <IconButton 
                                 size="small" 
-                                color="invisible" 
+                                variant="invisible" 
                                 on:click={handleCopy}
                                 on:mouseleave={() => emailCopied = false}
                             >

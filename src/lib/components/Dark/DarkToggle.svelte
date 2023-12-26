@@ -10,7 +10,7 @@
 
 <IconButton
     on:click={handleClick}
-    color="invisible"
+    variant="invisible"
 >
     {#if $dark}
         <IconMoonStarsFill size={18} />

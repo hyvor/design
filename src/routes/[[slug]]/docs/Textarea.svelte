@@ -4,6 +4,8 @@
 	import CodeBlock from '../../../lib/components/CodeBlock/CodeBlock.svelte';
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
+    import { IconPen } from '@hyvor/icons';
+    import Loader from './../../../lib/components/Loader/Loader.svelte';
 
     let val1 = "";
 </script>
@@ -68,6 +70,31 @@
     All other properties are passed through to the native <code>{"<textarea>"}</code> element.
 </p>
 
+<h2 id="slots">Slots</h2>
+
+<Table columns="2fr 3fr">
+
+    <TableRow head>
+        <div>Name</div>
+        <div>Description</div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>start</code></div>
+        <div>
+            Content to be displayed at the start of the input.
+        </div>
+    </TableRow>
+    
+    <TableRow>
+        <div><code>end</code></div>
+        <div>
+            Content to be displayed at the end of the input.
+        </div>
+    </TableRow>
+
+</Table>
+
 <h2 id="examples">Examples</h2>
 
 <h3 id="basic">Basic</h3>
@@ -109,4 +136,21 @@
 
 <CodeResult>
     <Textarea placeholder="Custom cols/rows" cols={20} rows={6} />
+</CodeResult>
+
+
+<h3 id="slots">Slots</h3>
+
+<CodeBlock code={`
+    <Textarea placeholder="Write a post">
+        <IconPen slot="start" color="var(--text-light)" />
+        <Loader slot="end" size="small" colorTrack="var(--accent-light)"/>
+    </Textarea>
+`} />
+
+<CodeResult>
+    <Textarea placeholder="Write a post">
+        <IconPen slot="start" color="var(--text-light)" />
+        <Loader slot="end" size="small" colorTrack="var(--accent-light)"/>
+    </Textarea>
 </CodeResult>

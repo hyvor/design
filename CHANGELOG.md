@@ -1,3 +1,11 @@
+## 0.0.28 - 2023-12-27
+- Changed icon button color/variant props
+- Added number size to icon button
+- Changed input color
+- Added x-small text input size
+- Added textarea slots
+- Fixed input dark mode color
+
 ## 0.0.27 - 2023-12-25
 - Added oninput events to TextInput and Textarea
 

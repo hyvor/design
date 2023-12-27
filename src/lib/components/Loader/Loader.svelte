@@ -1,10 +1,28 @@
 <script lang="ts">
+    import { 
+        IconCheckCircleFill, IconXCircleFill 
+    } from '@hyvor/icons';
 
     export let block : boolean = false;
     export let full: boolean = false;
     export let padding : 'none' | 'small' | 'medium' | 'large' | number = 'medium';
 
     export let size : 'small' | 'medium' | 'large' | number = 'medium';
+
+    export let state : 'loading' | 'success' | 'error' | 'none' = 'loading';
+
+    export let duration : number = 2000;
+
+    $: {
+
+        if (state === 'success' || state === 'error') {
+            setTimeout(() => {
+                state = 'none';
+            }, duration);
+        }
+
+    }
+
     
     export let color : string = 'var(--accent)';
     export let colorTrack = 'var(--accent-lightest)';
@@ -16,6 +34,7 @@
         color = colorTrack;
         colorTrack = colorCopy;
     }
+
 
     const sizes = {
         small: 16,
@@ -47,6 +66,9 @@
     class="loader"
     class:block
     class:full
+    class:success={state === 'success'}
+    class:error={state === 'error'}
+    
 
     style:--local-size={size + "px"}
     style:padding={block ? padding + "px" : undefined}
@@ -54,38 +76,54 @@
 >
 
 
-    <span class="loader-wrap">
-        <svg>
-            <circle 
-                class="track"
-                cx="50%"
-                cy="50%"
-                r={r + "px"}
-                fill="none"
-                stroke-width={strokeWidth}
-                stroke={colorTrack}
-            ></circle>
-            <circle 
-                class="progress"
-                cx="50%"
-                cy="50%"
-                r={r + "px"}
-                fill="none"
-                stroke-width={strokeWidth}
-                stroke={color}
-                stroke-linecap="round"
-                stroke-dasharray={strokeDashArray}
-                stroke-dashoffset={strokeDashOffset}
-            ></circle>
-        </svg>
-    </span>
+    {#if state !== 'none'}
+        <span class="loader-wrap">
+
+            {#if state === 'loading'}
+                <svg>
+                    <circle 
+                        class="track"
+                        cx="50%"
+                        cy="50%"
+                        r={r + "px"}
+                        fill="none"
+                        stroke-width={strokeWidth}
+                        stroke={colorTrack}
+                    ></circle>
+                    <circle 
+                        class="progress"
+                        cx="50%"
+                        cy="50%"
+                        r={r + "px"}
+                        fill="none"
+                        stroke-width={strokeWidth}
+                        stroke={color}
+                        stroke-linecap="round"
+                        stroke-dasharray={strokeDashArray}
+                        stroke-dashoffset={strokeDashOffset}
+                    ></circle>
+                </svg>
+            {:else if state === 'success'}
+                <span class="success-icon">
+                    <IconCheckCircleFill  color="var(--green)" width={size} height={size} />
+                </span>
+            {:else if state === 'error'}
+                <span class="error-icon">
+                    <IconXCircleFill color="var(--red)" width={size} height={size} />
+                </span>
+            {/if}
+
+        </span>
+
+    {/if}
+        
 
     {#if $$slots.default}
         <div class="message">
             <slot></slot>
         </div>
     {/if}
-
+    
 </div>
 
 
@@ -131,6 +169,10 @@
         position: relative;
     }
 
+    .success-icon, .error-icon {
+        animation: scale 0.2s ease-in-out;
+    }
+
     svg {
         width: inherit;
         height: inherit;
@@ -155,5 +197,17 @@
             transform: rotate(270deg);
         }
     }
+
+    @keyframes scale {
+        0% {
+            transform: scale(0.5);
+            opacity: 0.4;
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
 
 </style>

@@ -1,3 +1,6 @@
+## 0.0.29 - 2023-12-28
+- Added loader state
+
 ## 0.0.28 - 2023-12-27
 - Changed icon button color/variant props
 - Added number size to icon button

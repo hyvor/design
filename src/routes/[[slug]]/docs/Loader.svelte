@@ -5,6 +5,26 @@
     import Button from "../../../lib/components/Button/Button.svelte";
     import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
+
+    let loaderStateS: 'loading' | 'none' | 'error' | 'success' = 'none';
+    let loaderStateE: 'loading' | 'none' | 'error' | 'success' = 'none';
+
+    function handleButtonClickS() {
+        loaderStateS = 'loading'
+
+        setTimeout(() => {
+            loaderStateS = 'success';
+        }, 2000)
+    }
+
+    function handleButtonClickE() {
+        loaderStateE = 'loading'
+
+        setTimeout(() => {
+            loaderStateE = 'error';
+        }, 2000)
+    }
+
 </script>
 
 <h1>Loader</h1>
@@ -51,6 +71,20 @@
         <div><code>var(--accent-lightest)</code></div>
         <div>
             The color of the loader circle track.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>state</code></div>
+        <div><code>loading</code></div>
+        <div>
+            The state of the loader.
+            <ul>
+                <li><code>loading</code></li>
+                <li><code>success</code></li>
+                <li><code>error</code></li>
+                <li><code>none</code></li>
+            </ul>
         </div>
     </TableRow>
 
@@ -232,3 +266,52 @@
 <CodeResult>
     <Loader>Loading...</Loader>
 </CodeResult>
+
+<h3 id="state">States</h3>
+
+<p>
+    You can set the <code>state</code> prop to <code>loading</code>, <code>success</code> or <code>error</code> to display the corresponding loaderState
+</p>
+
+<CodeBlock 
+    code={`
+    <` + `script lang="ts">
+        let loaderStateS: 'loading' | 'none' | 'error' | 'success' = 'none';
+        let loaderStateE: 'loading' | 'none' | 'error' | 'success' = 'none';
+
+        function handleButtonClickS() {
+            loaderStateS = 'loading'
+
+            setTimeout(() => {
+                loaderStateS = 'success';
+            }, 2000)
+        }
+
+        function handleButtonClickE() {
+            loaderStateE = 'loading'
+
+            setTimeout(() => {
+                loaderStateE = 'error';
+            }, 2000)
+        }
+    <` + `/script>
+
+    <Button on:click={handleButtonClickS}>Toggle State Success 
+        <Loader slot="action" size="small" state={loaderStateS} />  
+    </Button>
+
+    <Button on:click={handleButtonClickE}>Toggle State Error
+        <Loader slot="action" size="small" state={loaderStateE} />  
+    </Button>
+`}
+/>
+
+<CodeResult white>
+    <Button on:click={handleButtonClickS} color="light">Success State
+        <Loader slot="action" size="small" state={loaderStateS} />  
+    </Button>
+
+    <Button on:click={handleButtonClickE} color="light">Error State
+        <Loader slot="action" size="small" state={loaderStateE} />  
+    </Button>
+</CodeResult>  

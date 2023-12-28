@@ -11,11 +11,11 @@
 
     export let state : 'loading' | 'success' | 'error' | 'none' = 'loading';
 
-    export let duration : number = 2000;
+    export let duration : null | number = 2000;
 
     $: {
 
-        if (state === 'success' || state === 'error') {
+        if (duration && (state === 'success' || state === 'error')) {
             setTimeout(() => {
                 state = 'none';
             }, duration);

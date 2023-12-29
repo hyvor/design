@@ -254,7 +254,7 @@ All other properties will be forwarded to the underlying element.
 
         <CodeBlock 
             code={`
-                <Button block color="soft">
+                <Button block color="gray">
                     <IconSearch slot="start" />
                     Search
                     <IconCaretDown slot="action" />
@@ -263,7 +263,7 @@ All other properties will be forwarded to the underlying element.
         />
 
         <CodeResult>
-            <Button block color="soft">
+            <Button block color="gray">
                 <IconSearch slot="start" />
                 Search
                 <IconCaretDown slot="action" />

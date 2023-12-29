@@ -121,8 +121,8 @@
         Please confirm that you want to delete this item. This action cannot be undone.
 
         <div slot="footer">
-            <Button color="invisible" on:click={() => show = false}>Cancel</Button>
-            <Button color="danger">Delete</Button>
+            <Button variant="invisible" on:click={() => show = false}>Cancel</Button>
+            <Button color="red">Delete</Button>
         </div>
 
     </Modal>
@@ -137,8 +137,8 @@
         Please confirm that you want to delete this item. This action cannot be undone.
     
         <div slot="footer">
-            <Button color="invisible" on:click={() => show1 = false}>Cancel</Button>
-            <Button color="danger" on:click={() => {
+            <Button variant="invisible" on:click={() => show1 = false}>Cancel</Button>
+            <Button color="red" on:click={() => {
                 show1 = false;
                 toast.success('Item deleted')
             }}>Delete</Button>
@@ -167,7 +167,7 @@
     This is a small modal. It is useful for displaying short messages.
 
     <div slot="footer">
-        <Button color="invisible" on:click={() => show2 = false}>Close</Button>
+        <Button variant="invisible" on:click={() => show2 = false}>Close</Button>
     </div>
 
 </Modal>
@@ -177,7 +177,7 @@
     This is a medium modal. It is useful for displaying long messages and forms.
 
     <div slot="footer">
-        <Button color="invisible" on:click={() => show3 = false}>Close</Button>
+        <Button variant="invisible" on:click={() => show3 = false}>Close</Button>
     </div>
 
 </Modal>
@@ -188,7 +188,7 @@
     This is a large modal. It is useful for displaying very long messages.
 
     <div slot="footer">
-        <Button color="invisible" on:click={() => show4 = false}>Close</Button>
+        <Button variant="invisible" on:click={() => show4 = false}>Close</Button>
     </div>
 
 </Modal>

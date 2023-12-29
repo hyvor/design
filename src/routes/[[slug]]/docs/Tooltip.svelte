@@ -124,16 +124,16 @@
     <div class="position-wrap">
 
         <div class="top">
-            <Tooltip text="Top tooltip"><Button color="soft">Top</Button></Tooltip>
+            <Tooltip text="Top tooltip"><Button color="gray">Top</Button></Tooltip>
         </div>
 
         <div class="horizontal">
-            <Tooltip text="Left tooltip" position="left"><Button color="soft">Left</Button></Tooltip>
-            <Tooltip text="Right tooltip" position="right"><Button color="soft">Right</Button></Tooltip>
+            <Tooltip text="Left tooltip" position="left"><Button color="gray">Left</Button></Tooltip>
+            <Tooltip text="Right tooltip" position="right"><Button color="gray">Right</Button></Tooltip>
         </div>
 
         <div class="bottom">
-            <Tooltip text="Bottom tooltip" position="bottom"><Button color="soft">Bottom</Button></Tooltip>
+            <Tooltip text="Bottom tooltip" position="bottom"><Button color="gray">Bottom</Button></Tooltip>
         </div>
 
     </div>
@@ -152,10 +152,10 @@
 
 <CodeResult>
     <div class="colors-wrap">
-        <Tooltip text="Soft tooltip" color="soft"><Button color="soft">Soft</Button></Tooltip>
-        <Tooltip text="Black tooltip" color="black"><Button color="soft">Black</Button></Tooltip>
-        <Tooltip text="Accent tooltip" color="accent"><Button color="soft">Accent</Button></Tooltip>
-        <Tooltip text="Danger tooltip" color="danger"><Button color="soft">Danger</Button></Tooltip>
+        <Tooltip text="Soft tooltip" color="soft"><Button color="gray">Soft</Button></Tooltip>
+        <Tooltip text="Black tooltip" color="black"><Button color="gray">Black</Button></Tooltip>
+        <Tooltip text="Accent tooltip" color="accent"><Button color="gray">Accent</Button></Tooltip>
+        <Tooltip text="Danger tooltip" color="danger"><Button color="gray">Danger</Button></Tooltip>
     </div>
 </CodeResult>
 

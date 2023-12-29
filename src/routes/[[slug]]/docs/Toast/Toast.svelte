@@ -29,23 +29,23 @@
 
 <CodeResult style="display:flex;gap:10px;flex-direction:column;align-items:flex-start" white>
 
-    <Button on:click={() => toast('Blank toast')} color="light">
+    <Button on:click={() => toast('Blank toast')} color="gray">
         Blank toast
     </Button>
 
-    <Button on:click={() => toast.success('Success toast')} color="light">
+    <Button on:click={() => toast.success('Success toast')} color="gray">
         <IconCheckCircleFill style="color:var(--green)" slot="start" /> Success toast
     </Button>
 
-    <Button on:click={() => toast.error('Error toast')} color="light">
+    <Button on:click={() => toast.error('Error toast')} color="gray">
         <IconXCircleFill slot="start" color="var(--red)" /> Error toast
     </Button>
 
-    <Button on:click={() => toast.warning('Warning toast')} color="light">
+    <Button on:click={() => toast.warning('Warning toast')} color="gray">
         <IconExclamationCircleFill slot="start" color="var(--orange)" /> Warning toast
     </Button>
 
-    <Button on:click={() => toast.info('Info toast')} color="light">
+    <Button on:click={() => toast.info('Info toast')} color="gray">
         <IconInfoCircleFill slot="start" color="var(--blue)" /> Info toast
     </Button>
 
@@ -61,7 +61,7 @@
                 type
             })
         }, 2000)
-    }} color="light">
+    }} color="gray">
         <Loader slot="start" size="small" /> Loading toast
     </Button>
 

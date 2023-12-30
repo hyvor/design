@@ -129,7 +129,7 @@
 
 <CodeBlock code={`
     <Dropdown bind:show={showDropdown}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Page <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
@@ -144,7 +144,7 @@
 
 <CodeResult>
     <Dropdown bind:show={s1} relative closeOnOutsideClick={false}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Page <IconCaretDown slot="end" />
         </Button>
         <ActionList slot="content">
@@ -165,7 +165,7 @@
 
 <CodeBlock code={`
     <Dropdown bind:show={showDropdown} width={350}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             <Text light small slot="start">Product</Text>
             
             {#if currentItem === 'talk'}
@@ -201,7 +201,7 @@
 
 <CodeResult>
     <Dropdown bind:show={s2} relative width={350} closeOnOutsideClick={false}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             <Text light small slot="start">Product</Text>
             
             {#if x1 === 'talk'}
@@ -239,7 +239,7 @@
 
 <CodeBlock code={`
     <Dropdown bind:show={showDropdown} width={350}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Select Products ({currentProducts.length})
             <IconCaretDown slot="end" />
         </Button>
@@ -279,7 +279,7 @@
 <CodeResult>
 
     <Dropdown bind:show={s3} relative width={350} closeOnOutsideClick={false}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Select Products ({x2.length})
             <IconCaretDown slot="end" />
         </Button>
@@ -309,7 +309,7 @@
 
 <CodeBlock code={`
     <Dropdown bind:show={showDropdown} width={350}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Filter Results
             <IconCaretDown slot="end" />
         </Button>
@@ -347,7 +347,7 @@
 <CodeResult>
 
     <Dropdown bind:show={s4} relative width={350} closeOnOutsideClick={false}>
-        <Button slot="trigger" color="light">
+        <Button slot="trigger" color="gray">
             Filter Results
             <IconCaretDown slot="end" />
         </Button>
@@ -416,7 +416,7 @@
 
     <div style="margin-top:120px; left:auto; margin-bottom:120px; text-align: center;">
         <Dropdown bind:show={s1}  closeOnOutsideClick={false} align={paAlign} position={paPosition}>
-            <Button slot="trigger" color="light">
+            <Button slot="trigger" color="gray">
                 Filter Results
                 <IconCaretDown slot="end" />
             </Button>

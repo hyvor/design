@@ -307,11 +307,11 @@
 />
 
 <CodeResult white>
-    <Button on:click={handleButtonClickS} color="light">Success State
+    <Button on:click={handleButtonClickS} color="gray">Success State
         <Loader slot="action" size="small" state={loaderStateS} />  
     </Button>
 
-    <Button on:click={handleButtonClickE} color="light">Error State
+    <Button on:click={handleButtonClickE} color="gray">Error State
         <Loader slot="action" size="small" state={loaderStateE} />  
     </Button>
 </CodeResult>  

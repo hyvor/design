@@ -47,10 +47,26 @@
         
             <ul>
                 <li><code>accent</code></li>
-                <li><code>soft</code></li>
-                <li><code>light</code></li>
+                <li><code>gray</code></li>
+                <li><code>green</code></li>
+                <li><code>red</code></li>
+                <li><code>blue</code></li>
+                <li><code>orange</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>variant</code></div>
+        <div><code>fill</code></div>
+        <div>
+            The <a href="#color">variant</a> of the button. One of:
+        
+            <ul>
+                <li><code>fill</code></li>
+                <li><code>outline</code></li>
+                <li><code>outline-fill</code></li>
                 <li><code>invisible</code></li>
-                <li><code>danger</code></li>
             </ul>
         </div>
     </TableRow>
@@ -99,22 +115,86 @@ All other properties will be forwarded to the underlying element.
     <Button size="large">Large Button</Button>
 </CodeResult>
 
-<h3 id="color">Color</h3>
+<h3 id="color">Variants and Colors</h3>
+
+<h4>Fill</h4>
 
 <CodeBlock code={`
-    <Button color="accent">Accent Button</Button>
-    <Button color="soft">Soft Button</Button>
-    <Button color="light">Light Button</Button>
-    <Button color="invisible">Invisible Button</Button>
-    <Button color="danger">Danger Button</Button>
+    <Button color="accent" variant="fill">Fill Button</Button>
+    <Button color="gray" variant="fill">Fill Button</Button>
+    <Button color="green" variant="fill">Fill Button</Button>
+    <Button color="red" variant="fill">Fill Button</Button>
+    <Button color="blue" variant="fill">Fill Button</Button>
+    <Button color="orange" variant="fill">Fill Button</Button>
 `} />
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
-    <Button color="accent">Accent Button</Button>
-    <Button color="soft">Soft Button</Button>
-    <Button color="light">Light Button</Button>
-    <Button color="invisible">Invisible Button</Button>
-    <Button color="danger">Danger Button</Button>
+    <Button color="accent" variant="fill">Fill Button</Button>
+    <Button color="gray" variant="fill">Fill Button</Button>
+    <Button color="green" variant="fill">Fill Button</Button>
+    <Button color="red" variant="fill">Fill Button</Button>
+    <Button color="blue" variant="fill">Fill Button</Button>
+    <Button color="orange" variant="fill">Fill Button</Button>
+</CodeResult>
+
+<h4>Outline</h4>
+
+<CodeBlock code={`
+    <Button color="accent" variant="outline">Outline Button</Button>
+    <Button color="gray" variant="outline">Outline Button</Button>
+    <Button color="green" variant="outline">Outline Button</Button>
+    <Button color="red" variant="outline">Outline Button</Button>
+    <Button color="blue" variant="outline">Outline Button</Button>
+    <Button color="orange" variant="outline">Outline Button</Button>
+`} />
+
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
+    <Button color="accent" variant="outline">Outline Button</Button>
+    <Button color="gray" variant="outline">Outline Button</Button>
+    <Button color="green" variant="outline">Outline Button</Button>
+    <Button color="red" variant="outline">Outline Button</Button>
+    <Button color="blue" variant="outline">Outline Button</Button>
+    <Button color="orange" variant="outline">Outline Button</Button>
+</CodeResult>
+
+<h4>Outline Fill</h4>
+
+<CodeBlock code={`
+    <Button color="accent" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="gray" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="green" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="red" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="blue" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="orange" variant="outline-fill">Outline-fill Button</Button>
+`} />
+
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
+    <Button color="accent" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="gray" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="green" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="red" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="blue" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="orange" variant="outline-fill">Outline-fill Button</Button>
+</CodeResult>
+
+<h4>Invisible</h4>
+
+<CodeBlock code={`
+    <Button color="accent" variant="invisible">Invisible Button</Button>
+    <Button color="gray" variant="invisible">Invisible Button</Button>
+    <Button color="green" variant="invisible">Invisible Button</Button>
+    <Button color="red" variant="invisible">Invisible Button</Button>
+    <Button color="blue" variant="invisible">Invisible Button</Button>
+    <Button color="orange" variant="invisible">Invisible Button</Button>
+`} />   
+
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
+    <Button color="accent" variant="invisible">Invisible Button</Button>
+    <Button color="gray" variant="invisible">Invisible Button</Button>
+    <Button color="green" variant="invisible">Invisible Button</Button>
+    <Button color="red" variant="invisible">Invisible Button</Button>
+    <Button color="blue" variant="invisible">Invisible Button</Button>
+    <Button color="orange" variant="invisible">Invisible Button</Button>
 </CodeResult>
 
 <h2 id="slots">Slots</h2>
@@ -174,7 +254,7 @@ All other properties will be forwarded to the underlying element.
 
         <CodeBlock 
             code={`
-                <Button block color="soft">
+                <Button block color="gray">
                     <IconSearch slot="start" />
                     Search
                     <IconCaretDown slot="action" />
@@ -183,7 +263,7 @@ All other properties will be forwarded to the underlying element.
         />
 
         <CodeResult>
-            <Button block color="soft">
+            <Button block color="gray">
                 <IconSearch slot="start" />
                 Search
                 <IconCaretDown slot="action" />

@@ -3,17 +3,19 @@
     export let size : 'x-small' | 'small' | 'medium' | 'large' = 'medium';
     export let color : 
         'accent' | 
-        'soft' | 
-        'light' |
-        'invisible' | 
-        'danger' = 'accent';
+        'gray' | 
+        'green' |
+        'red' |
+        'blue' |
+        'orange' = 'accent';
     export let block : boolean = false;
+    export let variant : 'fill' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
     export let align: 'start' | 'center' = 'center';
 </script>
 
 <svelte:element 
     this={as}
-    class="button {size} {color} {align}"
+    class="button {size} {color} {variant} {align}"
     class:block={block}
 
     on:keyup
@@ -159,11 +161,216 @@
     }
 
     /* styles */
-    .button.accent {
+    /* .button.accent {
         background-color: var(--accent);
         color: var(--accent-text);
         transition: .2s box-shadow;
         --local-hover-shadow-color: var(--accent-light);
+    } */
+
+    .button {
+        &.fill {
+            &.accent {
+                background-color: var(--accent);
+                color: var(--accent-text);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--accent-light);
+            }
+
+            &.gray {
+                background-color: var(--gray-light);
+                color: var(--gray-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--gray-light) 40%, transparent);
+            }
+
+            &.green {
+                background-color: var(--green-light);
+                color: var(--green-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--green-light) 40%, transparent);
+            }
+
+            &.red {
+                background-color: var(--red-light);
+                color: var(--red-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--red-light) 40%, transparent);
+            }
+
+            &.blue {
+                background-color: var(--blue-light);
+                color: var(--blue-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--blue-light) 40%, transparent);
+            }
+
+            &.orange {
+                background-color: var(--orange-light);
+                color: var(--orange-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--orange-light) 40%, transparent);
+            }
+
+        }
+
+        &.outline {
+            border: 1px solid;
+                &.accent {
+                    background-color: transparent;
+                    border-color: var(--accent);
+                    color: var(--accent);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--accent-light);
+                }
+
+                &.gray {
+                    background-color: transparent;
+                    border-color: var(--gray-dark);
+                    color: var(--gray-dark);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--gray-light);
+                }
+
+                &.green {
+                    background-color: transparent;
+                    border-color: var(--green-dark);
+                    color: var(--green-dark);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--green-light);
+                }
+
+                &.red {
+                    background-color: transparent;
+                    border-color: var(--red-dark);
+                    color: var(--red-dark);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--red-light);
+                }
+
+                &.blue {
+                    background-color: transparent;
+                    border-color: var(--blue-dark);
+                    color: var(--blue-dark);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--blue-light);
+                }
+
+                &.orange {
+                    background-color: transparent;
+                    border-color: var(--orange-dark);
+                    color: var(--orange-dark);
+                    transition: .2s box-shadow;
+                    --local-hover-shadow-color: var(--orange-light);
+                }
+        }
+
+        &.outline-fill {
+            border: 1px solid;
+
+            &.accent {
+                background-color: var(--accent-light);
+                border-color: var(--accent);
+                color: var(--accent);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
+            }
+
+            &.gray {
+                background-color: var(--gray-light);
+                border-color: var(--gray-dark);
+                color: var(--gray-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--gray-light);
+            }
+
+            &.green {
+                background-color: var(--green-light);
+                border-color: var(--green-dark);
+                color: var(--green-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--green-light);
+            }
+
+            &.red {
+                background-color: var(--red-light);
+                border-color: var(--red-dark);
+                color: var(--red-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--red-light);
+            }
+
+            &.blue {
+                background-color: var(--blue-light);
+                border-color: var(--blue-dark);
+                color: var(--blue-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--blue-light);
+            }
+
+            &.orange {
+                background-color: var(--orange-light);
+                border-color: var(--orange-dark);
+                color: var(--orange-dark);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--orange-light);
+            }
+        }
+
+        &.invisible {
+            background-color: transparent;
+            transition: .2s background-color;
+
+            &.accent {
+                
+                &:hover {
+                    background-color: var(--accent-light);
+                    box-shadow: none!important;
+                    color: var(--text-light);
+                }
+    
+            }
+
+            &.gray {
+                &:hover {
+                    background-color: var(--gray-light);
+                    box-shadow: none!important;
+                    color: var(--gray-dark);
+                }
+            }
+
+            &.green {
+                &:hover {
+                    background-color: var(--green-light);
+                    box-shadow: none!important;
+                    color: var(--green-dark);
+                }
+            }
+
+            &.red {
+                &:hover {
+                    background-color: var(--red-light);
+                    box-shadow: none!important;
+                    color: var(--red-dark);
+                }
+            }
+
+            &.blue {
+                &:hover {
+                    background-color: var(--blue-light);
+                    box-shadow: none!important;
+                    color: var(--blue-dark);
+                }
+            }
+
+            &.orange {
+                &:hover {
+                    background-color: var(--orange-light);
+                    box-shadow: none!important;
+                    color: var(--orange-dark);
+                }
+            }
+        }
     }
 
     .button.soft {

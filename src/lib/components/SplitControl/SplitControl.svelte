@@ -66,12 +66,12 @@
     .left {
         padding: 15px;
         flex: 1;
-        min-width: 200px;
     }
 
     .right {
         padding: 15px;
         flex: 3;
+        min-width: 0;
     }
 
     .caption-wrap {

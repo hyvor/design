@@ -3,6 +3,8 @@
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import { IconSearch } from "@hyvor/icons";
+    import Table from "$lib/components/Table/Table.svelte";
+    import TableRow from "$lib/components/Table/TableRow.svelte";
 
     let value1 = '';
 </script>
@@ -13,6 +15,61 @@
     Text inputs are used to collect text from the user. They are commonly used in forms and settings pages.
 </p>
 
+<h2 id="props">Props</h2>
+
+<Table columns="1fr 1fr 2fr">
+
+    <TableRow head>
+        <div>Name</div>
+        <div>Default</div>
+        <div>Description</div>
+    </TableRow>
+
+
+    <TableRow>
+        <div><code>state</code></div>
+        <div><code>default</code></div>
+        <div>
+            The state of the text input. This will change the border color of the text input. States can be one of:
+            <ul>
+                <li><code>default</code></li>
+                <li><code>success</code></li>
+                <li><code>warning</code></li>
+                <li><code>error</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>size</code></div>
+        <div><code>medium</code></div>
+        <div>
+            The size of the text input. Sizes can be one of:
+            <ul>
+                <li><code>x-small</code>(height: 20px)</li>
+                <li><code>small</code>(height: 26px)</li>
+                <li><code>medium</code>(height: 30px)</li>
+                <li><code>large</code>(height: 36px)</li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>block</code></div>
+        <div><code>false</code></div>
+        <div>
+            If <code>true</code>, the text input will take the full width of its parent.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>value</code></div>
+        <div><code>undefined</code></div>
+        <div>
+            The value of the text input. This is a bindable property.
+        </div>
+    </TableRow>
+</Table>
 
 <h2 id="examples">Examples</h2>
 

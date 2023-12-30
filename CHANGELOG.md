@@ -1,3 +1,8 @@
+## 0.0.30 - 2023-12-30
+- button colors/variants (BREAKING)
+- tooltip z-index fix
+- input size matches button size
+
 ## 0.0.29 - 2023-12-28
 - Added loader state
 

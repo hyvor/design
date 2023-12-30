@@ -69,7 +69,7 @@
     .input-wrap {
         display: inline-flex;
         align-items: center;
-        height: 32px;
+        height: 30px;
         padding: 0 15px;
         border-radius: 20px;
         background: var(--input);
@@ -105,21 +105,21 @@
 
     .input-wrap.size-x-small {
         padding: 0 15px;
-        height: 26px;
+        height: 20px;
         font-size: 12px;
         --local-shadow-size: 1px;
     }
 
     .input-wrap.size-small {
         padding: 0 15px;
-        height: 30px;
+        height: 26px;
         font-size: 12px;
         --local-shadow-size: 1px;
     }
 
     .input-wrap.size-large {
         padding: 0 20px;
-        height: 40px;
+        height: 36px;
         font-size: 16px;
     }
 

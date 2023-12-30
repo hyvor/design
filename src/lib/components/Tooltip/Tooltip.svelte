@@ -123,6 +123,7 @@
         padding: 8px 20px;
         border-radius: 20px;
         font-size: 14px;
+        z-index: 10000;
     }
 
     .tooltip:after {

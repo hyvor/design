@@ -77,6 +77,14 @@
     </TableRow> 
 
     <TableRow>
+        <div><code>disabled</code></div>
+        <div><code>false</code></div>
+        <div>
+            Set to <code>true</code> to disable the tag.
+        </div>
+    </TableRow>
+
+    <TableRow>
         <div><code>bg</code></div>
         <div></div>
         <div>
@@ -309,6 +317,45 @@
     <Tag interactive outline color="orange">Orange</Tag>
 </CodeResult>
 
+<h3 id="disabled">
+    Disabled
+</h3>
+
+<p>
+    Set the <code>disabled</code> property to <code>true</code> to disable the tag. 
+</p>
+
+<CodeBlock code={`
+    <Tag disabled>Default</Tag>
+    <Tag disabled color="green">Green</Tag>
+    <Tag disabled color="red">Red</Tag>
+    <Tag disabled color="blue">Blue</Tag>
+    <Tag disabled color="orange">Orange</Tag>
+
+    <Tag disabled outline>Default</Tag>
+    <Tag disabled outline color="green">Green</Tag>
+    <Tag disabled outline color="red">Red</Tag>
+    <Tag disabled outline color="blue">Blue</Tag>
+    <Tag disabled outline color="orange">Orange</Tag>
+`} />
+
+<CodeResult white>
+    <Tag disabled>Default</Tag>
+    <Tag disabled color="accent">Accent</Tag>
+    <Tag disabled color="green">Green</Tag>
+    <Tag disabled color="red">Red</Tag>
+    <Tag disabled color="blue">Blue</Tag>
+    <Tag disabled color="orange">Orange</Tag>
+
+    <div style:height="10px"></div>
+
+    <Tag disabled outline>Default</Tag>
+    <Tag disabled outline color="accent">Accent</Tag>
+    <Tag disabled outline color="green">Green</Tag>
+    <Tag disabled outline color="red">Red</Tag>
+    <Tag disabled outline color="blue">Blue</Tag>
+    <Tag disabled outline color="orange">Orange</Tag>
+</CodeResult>
 
 <h3 id="custom">
     Custom colors

@@ -1,3 +1,6 @@
+## 0.0.31 - 2024-01-01
+- added color picker
+
 ## 0.0.30 - 2023-12-30
 - button colors/variants (BREAKING)
 - tooltip z-index fix

@@ -61,6 +61,7 @@
         padding-top: 0;
         padding-left: 15px;
         border-left: 2px solid var(--accent-light);
+        margin-bottom: 15px;
     }
 
     .left {

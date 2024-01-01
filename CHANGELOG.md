@@ -1,3 +1,6 @@
+## 0.0.32 - 2024-01-01
+- added Modal title slot
+
 ## 0.0.31 - 2024-01-01
 - added color picker
 

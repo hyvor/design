@@ -6,12 +6,17 @@
     import CodeBlock from "./../../../lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import toast from './../../../lib/components/Toast/toast.js';
+    import TabNavItem from "../../../lib/components/TabNav/TabNavItem.svelte";
+    import { IconLink45deg, IconSearch } from "@hyvor/icons";
+  import TabNav from "../../../lib/components/TabNav/TabNav.svelte";
 
     let show1 = false;
 
     let show2 = false;
     let show3 = false;
     let show4 = false;
+
+    let show5 = false;
 
 </script>
 
@@ -189,6 +194,61 @@
 
     <div slot="footer">
         <Button variant="invisible" on:click={() => show4 = false}>Close</Button>
+    </div>
+
+</Modal>
+
+<h3 id="slot">Title Slot</h3>
+
+<p>
+    You can use the <code>title</code> slot to customize the title of the modal.
+</p>
+
+<CodeBlock code={`
+    <Modal bind:show={show} size="large">
+
+        <TabNav active="paste" slot="title">
+            <TabNavItem name="paste">
+                <IconLink45deg slot="start" />
+                Paste Link
+            </TabNavItem>
+            <TabNavItem name="posts">
+                <IconSearch slot="start" />
+                Search Posts
+            </TabNavItem>
+        </TabNav>
+
+        This is a modal with a tab navigation in the title.
+
+        <div slot="footer">
+            <Button variant="invisible" on:click={() => show5 = false}>Close</Button>
+        </div>
+
+    </Modal>
+`} />
+
+
+<CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+    <Button on:click={() => show5 = true}>Title Slot Modal</Button>
+</CodeResult>
+
+<Modal bind:show={show5} size="large">
+
+    <TabNav active="paste" slot="title">
+        <TabNavItem name="paste">
+            <IconLink45deg slot="start" />
+            Paste Link
+        </TabNavItem>
+        <TabNavItem name="posts">
+            <IconSearch slot="start" size={13} />
+            Search Posts
+        </TabNavItem>
+    </TabNav>
+    
+    This is a modal with a tab navigation in the title.
+
+    <div slot="footer">
+        <Button variant="invisible" on:click={() => show5 = false}>Close</Button>
     </div>
 
 </Modal>

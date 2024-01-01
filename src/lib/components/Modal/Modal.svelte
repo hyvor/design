@@ -35,7 +35,11 @@
             <div class="header">
 
                 <div class="title">
-                    {title}
+                    {#if $$slots.title}
+                        <slot name="title" />
+                    {:else}
+                        <span>{title}</span>
+                    {/if}
                 </div>
 
                 <div class="close-wrap">
@@ -98,14 +102,16 @@
     .header {
         padding: 20px 25px;
         border-bottom: 1px solid var(--box-border);
-        font-size: 1.2em;
-        font-weight: 600;
         display: flex;
         align-items: center;
     }
 
     .title {
         flex: 1;
+    }
+    .title span {
+        font-size: 1.2em;
+        font-weight: 600;
     }
 
     .content {

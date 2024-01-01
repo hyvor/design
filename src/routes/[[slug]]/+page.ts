@@ -28,6 +28,7 @@ import Modal from "./docs/Modal.svelte";
 import Box from "./docs/Box.svelte";
 import Tag from "./docs/Tag.svelte";
 import TabNav from "./docs/TabNav.svelte";
+import ColorPicker from "./docs/ColorPicker.svelte";
 
 export const prerender = true;
 
@@ -36,6 +37,7 @@ const nav = {
     'action-list': ActionList,
     avatar: Avatar,
     button: Button,
+    'color-picker': ColorPicker,
     'icon-button': IconButton,
     table: Table,
     callout: Callout,

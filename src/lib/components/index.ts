@@ -17,6 +17,8 @@ export { default as Checkbox } from './Checkbox/Checkbox.svelte';
 
 export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 
+export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
+
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';

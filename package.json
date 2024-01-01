@@ -28,9 +28,9 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"svelte": "^4.0.0",
 		"@sveltejs/kit": "^2.0.0",
-		"sass": "^1.68.0"
+		"sass": "^1.68.0",
+		"svelte": "^4.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.0",
@@ -45,8 +45,8 @@
 	},
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
-		"highlight.js": "^11.9.0",
-		"@hyvor/icons": "^0.0.3"
+		"@hyvor/icons": "^0.0.3",
+		"highlight.js": "^11.9.0"
 	},
 	"type": "module",
 	"publishConfig": {

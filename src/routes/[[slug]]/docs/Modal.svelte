@@ -100,6 +100,14 @@
         </div>
     </TableRow>
 
+
+    <TableRow>
+        <div><code>title</code></div>
+        <div>
+            Override the title property of the modal.
+        </div>
+    </TableRow>
+
     <TableRow>
         <div><code>footer</code></div>
         <div>

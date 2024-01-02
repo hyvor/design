@@ -327,6 +327,7 @@
 
 <CodeBlock code={`
     <Tag disabled>Default</Tag>
+    <Tag disabled color="accent">Accent</Tag>
     <Tag disabled color="green">Green</Tag>
     <Tag disabled color="red">Red</Tag>
     <Tag disabled color="blue">Blue</Tag>
@@ -342,8 +343,8 @@
 <CodeResult white>
     <Tag disabled>Default</Tag>
     <Tag disabled color="accent">Accent</Tag>
-    <Tag disabled color="green">Green</Tag>
-    <Tag disabled color="red">Red</Tag>
+    <Tag disabled interactive color="green">Green</Tag>
+    <Tag disabled interactivecolor="red">Red</Tag>
     <Tag disabled color="blue">Blue</Tag>
     <Tag disabled color="orange">Orange</Tag>
 

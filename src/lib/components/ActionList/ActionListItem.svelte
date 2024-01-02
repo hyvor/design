@@ -31,6 +31,8 @@
         }
     }}
     {...$$restProps}
+
+    on:click
 >
 
     {#if selection !== 'none'}

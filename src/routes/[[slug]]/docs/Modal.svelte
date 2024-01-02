@@ -18,6 +18,8 @@
 
     let show5 = false;
 
+    let show6 = false;
+
 </script>
 
 <h1>Modal</h1>
@@ -258,5 +260,73 @@
     <div slot="footer">
         <Button variant="invisible" on:click={() => show5 = false}>Close</Button>
     </div>
+
+</Modal>
+
+<h3 id="scrollable">
+    Scrollable Modal
+</h3>
+
+<p>
+    If a modal grows larger than the screen, it will be scrollable. The inner content will be aligned to the top of the modal.
+</p>
+
+<CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+    <Button on:click={() => show6 = true}>
+        Scrollable Modal
+    </Button>
+</CodeResult>
+
+<Modal 
+    bind:show={show6}
+    title="Scrollable Modal"
+>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
+
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+        Quisquam, voluptatum. Quisquam, voluptatum. Quisquam, voluptatum. 
+    </p>
 
 </Modal>

@@ -3,6 +3,7 @@
     import { IconX } from '@hyvor/icons';
     import IconButton from './../IconButton/IconButton.svelte';
 	import { scale } from 'svelte/transition';
+    import { onMount, tick } from "svelte";
 
     export let show = false;
     export let title = "";
@@ -10,6 +11,21 @@
     export let closeOnOutsideClick = true;
     export let closeOnEscape = true;
 
+    let wrapEl: HTMLDivElement;
+    let innerEl: HTMLDivElement;
+
+    async function setFlex() {
+        await tick();
+        if (!wrapEl || !innerEl) return;
+        if (innerEl.offsetHeight > wrapEl.offsetHeight - 60) {
+            wrapEl.style.alignItems = 'flex-start';
+        } else {
+            wrapEl.style.alignItems = 'center';
+        }
+    }
+
+    onMount(setFlex);
+    $: show, setFlex();
 
 </script>
 
@@ -21,7 +37,10 @@
 
 
 {#if show}
-    <div class="wrap">
+    <div 
+        class="wrap"
+        bind:this={wrapEl}
+    >
 
         <div 
             class="inner {size}"
@@ -30,6 +49,7 @@
                 callback: () => show = false
             }}
             in:scale={{duration: 100, start: 0.9, opacity: 0.9}}
+            bind:this={innerEl}
         >
 
             <div class="header">
@@ -81,6 +101,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        padding: 30px;
+        overflow: auto;
     }
 
     .inner {
@@ -89,8 +111,6 @@
         box-shadow: var(--box-shadow);
         width: 650px;
         max-width: 100%;
-        max-height: 100%;
-        overflow: auto;
         position: relative;
     }
 
@@ -103,7 +123,6 @@
 
     .header {
         padding: 20px 25px;
-        border-bottom: 1px solid var(--box-border);
         display: flex;
         align-items: center;
     }

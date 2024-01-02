@@ -1,3 +1,6 @@
+## 0.0.35 - 2024-01-02
+- Modal overflow - align to top when large
+
 ## 0.0.34 - 2024-01-02
 - var(--orange) color update
 - TextInput blur bug fixed

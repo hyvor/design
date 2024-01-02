@@ -1,4 +1,8 @@
-## 0.0.32 - 2024-01-02
+## 0.0.34 - 2024-01-02
+- var(--orange) color update
+- TextInput blur bug fixed
+
+## 0.0.33 - 2024-01-02
 - Forward the inner input/button/textarea elements via a prop
 
 ## 0.0.32 - 2024-01-01

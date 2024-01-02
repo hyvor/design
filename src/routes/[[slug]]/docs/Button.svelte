@@ -128,81 +128,105 @@ All other properties will be forwarded to the underlying element.
 <h4>Fill</h4>
 
 <CodeBlock code={`
-    <Button color="accent" variant="fill">Fill Button</Button>
-    <Button color="gray" variant="fill">Fill Button</Button>
-    <Button color="green" variant="fill">Fill Button</Button>
-    <Button color="red" variant="fill">Fill Button</Button>
-    <Button color="blue" variant="fill">Fill Button</Button>
-    <Button color="orange" variant="fill">Fill Button</Button>
+    <Button color="accent" variant="fill">Fill Accent</Button>
+    <Button color="gray" variant="fill">Fill Gray</Button>
+    <Button color="green" variant="fill">Fill Green</Button>
+    <Button color="red" variant="fill">Fill Red</Button>
+    <Button color="blue" variant="fill">Fill Blue</Button>
+    <Button color="orange" variant="fill">Fill Orange</Button>
+    <Button color="input" variant="fill">Fill Button</Button>
 `} />
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
-    <Button color="accent" variant="fill">Fill Button</Button>
-    <Button color="gray" variant="fill">Fill Button</Button>
-    <Button color="green" variant="fill">Fill Button</Button>
-    <Button color="red" variant="fill">Fill Button</Button>
-    <Button color="blue" variant="fill">Fill Button</Button>
-    <Button color="orange" variant="fill">Fill Button</Button>
+    <Button color="accent" variant="fill">Fill Accent</Button>
+    <Button color="gray" variant="fill">Fill Gray</Button>
+    <Button color="green" variant="fill">Fill Green</Button>
+    <Button color="red" variant="fill">Fill Red</Button>
+    <Button color="blue" variant="fill">Fill Blue</Button>
+    <Button color="orange" variant="fill">Fill Orange</Button>
+    <Button color="input" variant="fill">Fill Input</Button>
+</CodeResult>
+
+<h4>Fill-Light</h4>
+
+<CodeBlock code={`
+    <Button color="accent" variant="fill-light">Fill Accent</Button>
+    <Button color="gray" variant="fill-light">Fill Gray</Button>
+    <Button color="green" variant="fil-light">Fill Green</Button>
+    <Button color="red" variant="fill-light">Fill Red</Button>
+    <Button color="blue" variant="fill-light">Fill Blue</Button>
+    <Button color="orange" variant="fill-light">Fill Orange</Button>
+`} />
+
+<CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
+    <Button color="accent" variant="fill-light">Fill Accent</Button>
+    <Button color="gray" variant="fill-light">Fill Gray</Button>
+    <Button color="green" variant="fill-light">Fill Green</Button>
+    <Button color="red" variant="fill-light">Fill Red</Button>
+    <Button color="blue" variant="fill-light">Fill Blue</Button>
+    <Button color="orange" variant="fill-light">Fill Orange</Button>
 </CodeResult>
 
 <h4>Outline</h4>
 
 <CodeBlock code={`
-    <Button color="accent" variant="outline">Outline Button</Button>
-    <Button color="gray" variant="outline">Outline Button</Button>
-    <Button color="green" variant="outline">Outline Button</Button>
-    <Button color="red" variant="outline">Outline Button</Button>
-    <Button color="blue" variant="outline">Outline Button</Button>
-    <Button color="orange" variant="outline">Outline Button</Button>
+    <Button color="accent" variant="outline">Outline Accent</Button>
+    <Button color="gray" variant="outline">Outline Gray</Button>
+    <Button color="green" variant="outline">Outline Green</Button>
+    <Button color="red" variant="outline">Outline Red</Button>
+    <Button color="blue" variant="outline">Outline Blue</Button>
+    <Button color="orange" variant="outline">Outline Orange</Button>
 `} />
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
-    <Button color="accent" variant="outline">Outline Button</Button>
-    <Button color="gray" variant="outline">Outline Button</Button>
-    <Button color="green" variant="outline">Outline Button</Button>
-    <Button color="red" variant="outline">Outline Button</Button>
-    <Button color="blue" variant="outline">Outline Button</Button>
-    <Button color="orange" variant="outline">Outline Button</Button>
+    <Button color="accent" variant="outline">Outline Accent</Button>
+    <Button color="gray" variant="outline">Outline Gray</Button>
+    <Button color="green" variant="outline">Outline Green</Button>
+    <Button color="red" variant="outline">Outline Red</Button>
+    <Button color="blue" variant="outline">Outline Blue</Button>
+    <Button color="orange" variant="outline">Outline Orange</Button>
 </CodeResult>
 
 <h4>Outline Fill</h4>
 
 <CodeBlock code={`
-    <Button color="accent" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="gray" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="green" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="red" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="blue" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="orange" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="accent" variant="outline-fill">Outline-fill Accent</Button>
+    <Button color="gray" variant="outline-fill">Outline-fill Gray</Button>
+    <Button color="green" variant="outline-fill">Outline-fill Green</Button>
+    <Button color="red" variant="outline-fill">Outline-fill Red</Button>
+    <Button color="blue" variant="outline-fill">Outline-fill Blue</Button>
+    <Button color="orange" variant="outline-fill">Outline-fill Orange</Button>
 `} />
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
-    <Button color="accent" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="gray" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="green" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="red" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="blue" variant="outline-fill">Outline-fill Button</Button>
-    <Button color="orange" variant="outline-fill">Outline-fill Button</Button>
+    <Button color="accent" variant="outline-fill">Outline-fill Accent</Button>
+    <Button color="gray" variant="outline-fill">Outline-fill Gray</Button>
+    <Button color="green" variant="outline-fill">Outline-fill Green</Button>
+    <Button color="red" variant="outline-fill">Outline-fill Red</Button>
+    <Button color="blue" variant="outline-fill">Outline-fill Blue</Button>
+    <Button color="orange" variant="outline-fill">Outline-fill Orange</Button>
 </CodeResult>
 
 <h4>Invisible</h4>
 
 <CodeBlock code={`
-    <Button color="accent" variant="invisible">Invisible Button</Button>
-    <Button color="gray" variant="invisible">Invisible Button</Button>
-    <Button color="green" variant="invisible">Invisible Button</Button>
-    <Button color="red" variant="invisible">Invisible Button</Button>
-    <Button color="blue" variant="invisible">Invisible Button</Button>
-    <Button color="orange" variant="invisible">Invisible Button</Button>
+    <Button color="accent" variant="invisible">Invisible Accent</Button>
+    <Button color="gray" variant="invisible">Invisible Gray</Button>
+    <Button color="green" variant="invisible">Invisible Green</Button>
+    <Button color="red" variant="invisible">Invisible Red</Button>
+    <Button color="blue" variant="invisible">Invisible Blue</Button>
+    <Button color="orange" variant="invisible">Invisible Orange</Button>
+    <Button color="input" variant="invisible">Invisible Input</Button>
 `} />   
 
 <CodeResult style="display:flex;flex-direction:column;gap:15px;align-items:flex-start" white>
-    <Button color="accent" variant="invisible">Invisible Button</Button>
-    <Button color="gray" variant="invisible">Invisible Button</Button>
-    <Button color="green" variant="invisible">Invisible Button</Button>
-    <Button color="red" variant="invisible">Invisible Button</Button>
-    <Button color="blue" variant="invisible">Invisible Button</Button>
-    <Button color="orange" variant="invisible">Invisible Button</Button>
+    <Button color="accent" variant="invisible">Invisible Accent</Button>
+    <Button color="gray" variant="invisible">Invisible Gray</Button>
+    <Button color="green" variant="invisible">Invisible Green</Button>
+    <Button color="red" variant="invisible">Invisible Red</Button>
+    <Button color="blue" variant="invisible">Invisible Blue</Button>
+    <Button color="orange" variant="invisible">Invisible Orange</Button>
+    <Button color="input" variant="invisible">Invisible Input</Button>
 </CodeResult>
 
 <h2 id="slots">Slots</h2>

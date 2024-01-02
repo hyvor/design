@@ -7,9 +7,10 @@
         'green' |
         'red' |
         'blue' |
-        'orange' = 'accent';
+        'orange' |
+        'input' = 'accent';
     export let block : boolean = false;
-    export let variant : 'fill' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
+    export let variant : 'fill' | 'fill-light ' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
     export let align: 'start' | 'center' = 'center';
 </script>
 
@@ -160,14 +161,6 @@
         }
     }
 
-    /* styles */
-    /* .button.accent {
-        background-color: var(--accent);
-        color: var(--accent-text);
-        transition: .2s box-shadow;
-        --local-hover-shadow-color: var(--accent-light);
-    } */
-
     .button {
         &.fill {
             &.accent {
@@ -175,6 +168,57 @@
                 color: var(--accent-text);
                 transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--accent-light);
+            }
+
+            &.gray {
+                background-color: var(--gray-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--gray-light);
+            }
+
+            &.green {
+                background-color: var(--green-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--green-light);
+            }
+
+            &.red {
+                background-color: var(--red-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--red-light);
+            }
+
+            &.blue {
+                background-color: var(--blue-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--blue-light);
+            }
+
+            &.orange {
+                background-color: var(--orange-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--orange-light);
+            }
+
+            &.input {
+                background-color: var(--input);
+                color: var(--text);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--input-hover);
+            }
+        }
+
+        &.fill-light {
+            &.accent {
+                background-color: var(--accent-light);
+                color: var(--accent);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--accent-lightest);
             }
 
             &.gray {
@@ -315,6 +359,7 @@
                 transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--orange-light);
             }
+
         }
 
         &.invisible {
@@ -370,22 +415,17 @@
                     color: var(--orange-dark);
                 }
             }
+
+            &.input {
+                &:hover {
+                    background-color: var(--input);
+                    box-shadow: none!important;
+                    color: var(--text);
+                }
+            }
         }
     }
 
-    .button.soft {
-        background-color: var(--accent-light);
-        color: var(--accent);
-        transition: .2s box-shadow;
-        --local-hover-shadow-color: #eee;
-    }
-    
-    .button.light {
-        background-color: #f5f5f5;
-        color: var(--text);
-        transition: .2s box-shadow;
-        --local-hover-shadow-color: var(--accent-light);
-    }
     :global(:root.dark) .button.light {
         background-color: #2e2e2e;
     }
@@ -398,13 +438,6 @@
             background-color: var(--accent-light);
             box-shadow: none!important;
         }
-    }
-
-    .button.danger {
-        background-color: var(--red-dark);
-        color: var(--text-white);
-        transition: .2s box-shadow;
-        --local-hover-shadow-color: var(--red-light);
     }
 
     /*Styles for button disabled state*/

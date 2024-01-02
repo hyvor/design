@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let as: 'button' | 'a' | 'span' = 'span';
     export let size: 'x-small' | 'small' | 'medium' | 'large' = 'medium';
 
 
@@ -23,15 +24,31 @@
         styleClass = fill ? 'outline-fill' : 'outline';
     }
 
+    let tabindex = interactive ? 0 : undefined;
 </script>
 
-<span
-    class="color-{color} style-{styleClass} size-{size}"
+
+<svelte:element
+    this={as}
+    role={interactive ? 'button' : undefined}
+    tabindex={tabindex}
+    class="button color-{color} style-{styleClass} size-{size}"
     class:interactive
     class:has-start={$$slots.start}
     class:has-end={$$slots.end}
     {...$$restProps}
 
+    on:keyup
+    on:keydown
+    on:keypress
+    on:focus
+    on:blur
+    on:click
+    on:mouseover
+    on:mouseenter
+    on:mouseleave
+    on:change
+    
     style:background-color={bg}
     style:color={fg}
 >
@@ -46,7 +63,10 @@
         <slot name="end" />
     {/if}
 
-</span>
+</svelte:element>
+
+
+
 
 <style lang="scss">
 
@@ -199,6 +219,12 @@
             border: 1px solid var(--orange-dark);
         }
 
+    }
+
+    .button[disabled] {
+        opacity: 0.5!important;
+        cursor: not-allowed;
+        box-shadow: none !important;   
     }
 
 </style>

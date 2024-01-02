@@ -4,7 +4,7 @@
     export let block : boolean = false;
     export let value: any = undefined;
 
-    let input: HTMLInputElement;
+    export let input: HTMLInputElement = {} as HTMLInputElement;
 </script>
 
 

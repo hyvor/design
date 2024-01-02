@@ -95,6 +95,14 @@
         </div>
     </TableRow>
 
+    <TableRow>
+        <div><code>button</code></div>
+        <div></div>
+        <div>
+            A reference to the native <code>{"<button>"}</code> element (bindable).
+        </div>
+    </TableRow>
+
 </Table>
 
 All other properties will be forwarded to the underlying element.

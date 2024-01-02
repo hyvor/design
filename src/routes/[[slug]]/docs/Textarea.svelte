@@ -64,6 +64,14 @@
         </div>
     </TableRow>
 
+    <TableRow>
+        <div><code>textarea</code></div>
+        <div></div>
+        <div>
+            A reference to the native <code>{"<textarea>"}</code> element (bindable).
+        </div>
+    </TableRow>
+
 </Table>
 
 <p>

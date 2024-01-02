@@ -1,3 +1,6 @@
+## 0.0.32 - 2024-01-02
+- Forward the inner input/button/textarea elements via a prop
+
 ## 0.0.32 - 2024-01-01
 - added Modal title slot
 

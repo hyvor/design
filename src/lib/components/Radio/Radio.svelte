@@ -2,14 +2,17 @@
     /* for whatever reason simply passing value with rest props doesn't work */
     export let value: number|string = '';
     export let group: number|string = '';
+
+    export let input = {} as HTMLInputElement;
 </script>
 
 <label>
 
-    <input 
+    <input
         type="radio"
 
         bind:group
+        bind:this={input}
         {value}
 
         on:keyup

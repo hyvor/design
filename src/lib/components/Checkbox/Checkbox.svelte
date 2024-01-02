@@ -3,7 +3,7 @@
     export let group : (number | string)[] = [];
     export let value: string | number = 'on';
 
-    let input: HTMLInputElement;
+    export let input: HTMLInputElement = {} as HTMLInputElement;
 
     /* 
     * From https://github.com/themesberg/flowbite-svelte/blob/main/src/lib/forms/Checkbox.svelte

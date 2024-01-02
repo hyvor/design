@@ -69,6 +69,14 @@
             The value of the text input. This is a bindable property.
         </div>
     </TableRow>
+
+    <TableRow>
+        <div><code>input</code></div>
+        <div></div>
+        <div>
+            A reference to the native <code>{"<input>"}</code> element (bindable).
+        </div>
+    </TableRow>
 </Table>
 
 <h2 id="examples">Examples</h2>

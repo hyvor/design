@@ -19,6 +19,8 @@
     class:active={isActive}
     on:click={handleClick}
     {...$$restProps}
+
+    on:click
 >
     {#if $$slots.start}
         <span class="start">

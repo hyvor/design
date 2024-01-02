@@ -5,16 +5,16 @@
     export let cols : number = 40;
     export let state : "default" | "success" | "warning" | "error" = "default";
 
-    let input: HTMLTextAreaElement;
+    export let textarea: HTMLTextAreaElement = {} as HTMLTextAreaElement;
 </script>
 
 
 <span class="input-wrap state-{state}" 
     class:block
-    on:click={() => input.focus()}
+    on:click={() => textarea.focus()}
     on:keydown={(e) => {
         if (e.key === 'Enter') {
-            input.blur();
+            textarea.blur();
         }
     }}
     role="textbox"
@@ -31,7 +31,7 @@
 
     <textarea 
         bind:value={value}
-        bind:this={input}
+        bind:this={textarea}
         
 
         on:keyup

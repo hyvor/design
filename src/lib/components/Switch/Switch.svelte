@@ -1,12 +1,14 @@
 <script lang="ts">
     export let checked: boolean = false;
+    export let input = {} as HTMLInputElement;
 </script>
 
 <label class="switch-wrap">
     <span class="switch">
         <input 
             type="checkbox" 
-            bind:checked  
+            bind:checked
+            bind:this={input}
             {...$$restProps} 
             
             on:keyup

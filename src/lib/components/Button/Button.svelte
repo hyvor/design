@@ -11,6 +11,8 @@
     export let block : boolean = false;
     export let variant : 'fill' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
     export let align: 'start' | 'center' = 'center';
+
+    export let button = {} as HTMLButtonElement | HTMLAnchorElement;
 </script>
 
 <svelte:element 
@@ -31,6 +33,8 @@
 
     role="button"
     tabindex="0"
+
+    bind:this={button}
 
     {...$$restProps}
 >

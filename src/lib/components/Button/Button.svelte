@@ -10,7 +10,7 @@
         'orange' |
         'input' = 'accent';
     export let block : boolean = false;
-    export let variant : 'fill' | 'fill-light ' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
+    export let variant : 'fill' | 'fill-light' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
     export let align: 'start' | 'center' = 'center';
 </script>
 

@@ -8,11 +8,11 @@
     <div class="icon">
 
         {#if state === 'error'}
-            <IconExclamationTriangleFill />
+            <IconExclamationTriangleFill style="color:var(--red)" />
         {:else if state === 'warning'}
-            <IconInfoCircleFill />
+            <IconInfoCircleFill style="color:var(--orange)" />
         {:else}
-            <IconCheckCircleFill />
+            <IconCheckCircleFill style="color:var(--green)" />
         {/if}
 
     </div>

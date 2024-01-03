@@ -29,6 +29,7 @@ import Box from "./docs/Box.svelte";
 import Tag from "./docs/Tag.svelte";
 import TabNav from "./docs/TabNav.svelte";
 import ColorPicker from "./docs/ColorPicker.svelte";
+import IconMessage from "./docs/IconMessage.svelte";
 
 export const prerender = true;
 
@@ -63,6 +64,7 @@ const nav = {
     dark: Dark,
     i18n: Internationalization,
     box: Box,
+    'icon-message': IconMessage,
 
     'page-structure': PageStructure,
 }

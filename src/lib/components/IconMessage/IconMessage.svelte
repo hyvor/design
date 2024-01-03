@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { SvelteComponent } from 'svelte';
+    import type { ComponentType, SvelteComponent } from 'svelte';
     import { IconBug, IconInbox, IconPatchExclamation } from '@hyvor/icons';
 
-    export let icon : SvelteComponent|null = null;
+    export let icon : ComponentType|null = null;
     export let message : string|null = null;
     export let iconSize : 100|number = 100;
     export let padding : number = 0;

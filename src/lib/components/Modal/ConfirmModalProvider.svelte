@@ -17,6 +17,7 @@
     $: {
         if (!show) {
             handleCancel();
+            show = true;
         }
     }
 
@@ -26,7 +27,7 @@
 
     <Modal
         title={$confirmStore.title}
-        show={true}
+        bind:show={show}
         size="small"
     >
 

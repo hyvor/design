@@ -8,7 +8,9 @@
     import toast from './../../../lib/components/Toast/toast.js';
     import TabNavItem from "../../../lib/components/TabNav/TabNavItem.svelte";
     import { IconLink45deg, IconSearch } from "@hyvor/icons";
-  import TabNav from "../../../lib/components/TabNav/TabNav.svelte";
+    import TabNav from "../../../lib/components/TabNav/TabNav.svelte";
+    import { confirm } from './../../../lib/components/Modal/confirm.js';
+    import ConfirmContent1 from "./Modal/ConfirmContent1.svelte";
 
     let show1 = false;
 
@@ -19,6 +21,33 @@
     let show5 = false;
 
     let show6 = false;
+
+    async function handleConfirm1() {
+
+        const confirmed = await confirm({
+            title: 'Confirm to delete',
+            content: 'Please confirm that you want to delete this item. This action cannot be undone.',
+            danger: true,
+        })
+
+        if (confirmed) {
+            toast.success('Item deleted')
+        }
+    }
+
+    async function handleConfirm2() {
+
+        const confirmed = await confirm({
+            title: 'Confirm to delete',
+            content: ConfirmContent1,
+            danger: true,
+        })
+
+        if (confirmed) {
+            toast.success('Item deleted')
+        }
+
+    }
 
 </script>
 
@@ -330,3 +359,62 @@
     </p>
 
 </Modal>
+
+<h2 id="confirm">
+    Confirm
+</h2>
+
+<p>
+    Confirm modals are used frequently in web applications to confirm an action. You can use the <code>confirm</code> function to display a confirm modal.
+</p>
+
+<CodeBlock code={`
+    import { confirm } from '@hyvor/design/components';
+
+    async function handleDelete() {
+        const confirmed = await confirm({
+            title: 'Confirm to delete',
+            content: 'Please confirm that you want to delete this item. This action cannot be undone.',
+            danger: true
+        });
+
+        if (confirmed) {
+            // Delete the item
+        }
+    }
+`} language="js" />
+
+<p>
+    The <code>confirm</code> function accepts an object with the following properties:
+</p>
+
+<CodeBlock code={`
+    interface ConfirmOptions {
+        // title of the modal
+        title: string,
+
+        // content of the modal. Can be a string or a Svelte component
+        content: string | SvelteComponent,
+        
+        // text of the confirm button (default: "Confirm")
+        confirmText?: string,
+        
+        // text of the cancel button (default: "Cancel")
+        cancelText?: string,
+        
+        // whether the modal is a danger modal (button color will be red)
+        danger?: boolean
+    }
+`} language="ts" />
+
+<CodeResult>
+
+    <Button on:click={handleConfirm1}>
+        Delete
+    </Button>
+
+    <Button on:click={handleConfirm2}>
+        Delete with Custom Content
+    </Button>
+
+</CodeResult>

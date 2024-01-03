@@ -4,7 +4,7 @@
 
     export let color : 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' = 'accent';
 
-    export let variant : 'fill' | 'outline' | 'outline-fill' | 'invisible' = 'fill';
+    export let variant : 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible' = 'fill';
 
     
     export let as : 'button' | 'a' = 'button';
@@ -78,6 +78,50 @@
     //styles for variant fill with colors
     .button {
         &.fill {
+            &.accent {
+                background-color: var(--accent);
+                color: var(--accent-text);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--accent-light);
+            }
+
+            &.gray {
+                background-color: var(--gray-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--gray-light);
+            }
+
+            &.green {
+                background-color: var(--green-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--green-light);
+            }
+
+            &.red {
+                background-color: var(--red-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--red-light);
+            }
+
+            &.blue {
+                background-color: var(--blue-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--blue-light);
+            }
+
+            &.orange {
+                background-color: var(--orange-dark);
+                color: var(--text-white);
+                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--orange-light);
+            }
+        }
+
+        &.fill-light {
             &.accent {
                 background-color: var(--accent);
                 color: var(--accent-text);
@@ -267,6 +311,11 @@
             }
             }
     }
-    }
+}
 
+.button[disabled] {
+        cursor: not-allowed;
+        opacity: 0.4;
+        box-shadow: none!important;
+    }   
 </style>

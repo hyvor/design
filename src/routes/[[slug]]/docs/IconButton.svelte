@@ -63,6 +63,7 @@
         
             <ul>
                 <li><code>fill</code></li>
+                <li><code>fill-light</code></li>
                 <li><code>outline</code></li>
                 <li><code>outline-fill</code></li>
                 <li><code>invisible</code></li>
@@ -76,6 +77,12 @@
         <div>
             The element to render the button as. Can be <code>button</code> or <code>a</code>.
         </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>disabled</code></div>
+        <div><code>false</code></div>
+        <div>Icon Button's disabled state</div>
     </TableRow>
 
 </Table>
@@ -139,6 +146,25 @@
     <IconButton variant="fill" color="red"><IconSearch /></IconButton>
     <IconButton variant="fill" color="blue"><IconSearch /></IconButton>
     <IconButton variant="fill" color="orange"><IconSearch /></IconButton>
+</CodeResult>
+
+<h4>Fill Light</h4>
+<CodeBlock code={`
+    <IconButton variant="fill-light" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="green"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="red"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="orange"><IconSearch /></IconButton>
+`} />
+
+<CodeResult gap={8} white>
+    <IconButton variant="fill-light" color="accent"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="green"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="red"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="blue"><IconSearch /></IconButton>
+    <IconButton variant="fill-light" color="orange"><IconSearch /></IconButton>
 </CodeResult>
 
 <h4>Outline</h4>
@@ -218,5 +244,26 @@
     ><IconBoxArrowUpRight /></IconButton>
 </CodeResult>
 
+<h3 id="disabled">Disabled</h3>
+
+<CodeBlock code={`
+    <IconButton
+        variant="fill" 
+        color="red" 
+        disabled
+    >
+        <IconSearch />
+    </IconButton>
+`} />
+
+<CodeResult white>
+    <IconButton
+        variant="fill" 
+        color="red" 
+        disabled
+    >
+        <IconSearch />
+    </IconButton>
+</CodeResult>
 
 

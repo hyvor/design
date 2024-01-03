@@ -1,12 +1,12 @@
 <script lang="ts">
-	import LoadMore from './../../../lib/components/Loader/LoadMore.svelte';
+	import LoadButton from './../../../lib/components/Loader/LoadButton.svelte';
     import Loader from "$lib/components/Loader/Loader.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import Button from "../../../lib/components/Button/Button.svelte";
     import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
-  import { toast } from "../../../lib/components/index.js";
+    import { toast } from "../../../lib/components/index.js";
 
     let loaderStateS: 'loading' | 'none' | 'error' | 'success' = 'none';
     let loaderStateE: 'loading' | 'none' | 'error' | 'success' = 'none';
@@ -333,24 +333,26 @@
 
 
 <h2 id="load-more">
-    Load More
+    Load Button
 </h2>
 
 <p>
-    You will often need to display a button to load more items in a list. The <code>LoadMore</code> component can be used for this purpose.
+    You will often need to display a button with a loader conditionally. The <code>LoadButton</code> component can be used for this purpose. One common use case is to display a button to load more items in a list.
 </p>
 
 <CodeBlock code={`
-    <LoadMore
-        has={hasMore}
+    <LoadButton
+        text="Load More"
+        show={hasMore}
         loading={isLoadingMore}
         on:click={handleLoadMore}
     />
 `} />
 
 <CodeResult>
-    <LoadMore
-        has={hasMore1}
+    <LoadButton
+        text="Load More"
+        show={hasMore1}
         loading={isLoadingMore1}
         on:click={handleLoadMore1}
     />

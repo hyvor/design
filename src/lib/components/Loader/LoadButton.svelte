@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { ComponentProps } from "svelte";
+    import type { ComponentProps } from "svelte";
     import Button from "../Button/Button.svelte";
     import Loader from "./Loader.svelte";
 
-    export let has : boolean; // has more
+    export let text : string;
+    export let show : boolean; // has more
     export let loading : boolean; // whether loading
 
     export let height: number = 50;
-    export let buttonText = 'Load More';
 
     export let divProps : Record<string, any> = {};
     export let loaderProps : ComponentProps<Loader> = {};
@@ -15,10 +15,10 @@
 
 </script>
 
-{#if has}
+{#if show}
 
     <div 
-        class="load-more"
+        class="load-button"
         style:height="{height}px"
         {...divProps}
     >
@@ -32,7 +32,7 @@
                 on:click
                 {...buttonProps}
             >
-                {buttonText}
+                {text}
             </Button>
 
         {/if}
@@ -42,7 +42,7 @@
 {/if}
 
 <style>
-    .load-more {
+    .load-button {
         display: flex;
         align-items: center;
         justify-content: center;

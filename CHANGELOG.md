@@ -1,3 +1,6 @@
+## 0.0.36 - 2024-01-03
+- await confirm() added
+
 ## 0.0.35 - 2024-01-02
 - Modal overflow - align to top when large
 - Button fill-light

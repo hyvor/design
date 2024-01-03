@@ -227,3 +227,21 @@
         align-items: flex-start;
     }
 </style>
+
+<h3 id="disabled">Disabled</h3>
+
+<p>
+    You can disable the tooltip by setting the <code>disabled</code> prop. 
+</p>
+
+<CodeBlock code={`
+    <Tooltip disabled text="Disabled Tooltip">
+        <Button>Hover me</Button>
+    </Tooltip>
+`} />
+
+<CodeResult>
+    <Tooltip disabled text="Disabled Tooltip">
+        <Button>Hover me</Button>
+    </Tooltip>
+</CodeResult>

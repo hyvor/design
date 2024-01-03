@@ -36,6 +36,7 @@
         class="icon" 
         style:color={iconColor}
         style:font-size={iconSize + 'px'}
+        {...$$restProps}
         >
             {#if $$slots.icon}
                 <slot name="icon" />

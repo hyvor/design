@@ -99,8 +99,8 @@
             icon={IconSearch} 
             message="Nothing to search here" 
             iconColor="var(--accent-dark)" 
-            padding="20" 
-            iconSize="50" >
+            padding={20} 
+            iconSize={50} >
         </IconMessage>
     </div>
    

@@ -395,6 +395,9 @@
 
         // content of the modal. Can be a string or a Svelte component
         content: string | SvelteComponent,
+
+        // props to pass to the content component
+        contentProps?: Record<string, any>,
         
         // text of the confirm button (default: "Confirm")
         confirmText?: string,

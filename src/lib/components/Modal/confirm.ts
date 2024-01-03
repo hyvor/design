@@ -4,6 +4,7 @@ import { writable } from "svelte/store";
 interface ConfirmConfig {
     title: string,
     content: string | ComponentType,
+    contentProps?: Record<string, any>,
     confirmText?: string,
     cancelText?: string,
     danger?: boolean,

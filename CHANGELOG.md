@@ -1,3 +1,7 @@
+## 0.0.37 - 2024-01-03
+- contentProps in confirm()
+- Modal closing bug fixed
+
 ## 0.0.36 - 2024-01-03
 - await confirm() added
 

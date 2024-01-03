@@ -34,7 +34,10 @@
         {#if typeof $confirmStore.content === "string"}
             {$confirmStore.content}
         {:else}
-            <svelte:component this={$confirmStore.content} />
+            <svelte:component 
+                this={$confirmStore.content}
+                {...$confirmStore.contentProps || {}}
+            />
         {/if}
 
         <svelte:fragment slot="footer">

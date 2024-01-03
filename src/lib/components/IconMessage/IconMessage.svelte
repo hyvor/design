@@ -71,8 +71,6 @@
 
     .message {
         /* Add message styles here */
-        font-size: 18px;
-        font-weight: bold;
         color: var(--text-light);
         margin-top: -10px;
     }

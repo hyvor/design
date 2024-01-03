@@ -1,6 +1,6 @@
 <script lang="ts">
     import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
-    import { IconBoxArrowUpRight, IconInbox, IconPatchExclamation, IconSearch } from '@hyvor/icons';
+    import { IconInbox, IconSearch } from '@hyvor/icons';
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
@@ -87,9 +87,9 @@
     <IconMessage 
         icon={IconSearch} 
         message="Nothing to search here" 
-        iconColor="var(--accent-dark)" 
-        padding="20" 
-        iconSize="50" >
+        iconColor=var(--accent-dark) 
+        padding={20} 
+        iconSize={50} >
     </IconMessage>
 `} />
 
@@ -98,7 +98,7 @@
         <IconMessage 
             icon={IconSearch} 
             message="Nothing to search here" 
-            iconColor="var(--accent-dark)" 
+            iconColor=var(--accent-dark) 
             padding={20} 
             iconSize={50} >
         </IconMessage>
@@ -169,7 +169,7 @@
 <h2 id="examples">Using Slots</h2>
 
 <CodeBlock code={`
-    <IconMessage iconColor="var(--green)">
+    <IconMessage iconColor=var(--green)>
         <div slot="message">
             There are no results to show.
         </div>
@@ -179,7 +179,7 @@
 
 <CodeResult>
     <div class="box">
-    <IconMessage iconColor="var(--green)">
+    <IconMessage iconColor=var(--green)>
         <div slot="message">
             There are no results to show.
         </div>

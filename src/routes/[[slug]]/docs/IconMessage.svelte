@@ -1,6 +1,6 @@
 <script lang="ts">
     import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
-    import { IconInbox, IconSearch } from '@hyvor/icons';
+    import { IconInbox, IconSearch, IconPencilSquare } from '@hyvor/icons';
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
@@ -113,27 +113,6 @@
     You can use them by setting <code>empty</code> or <code>error</code> prop to <code>true</code>.
 </p>
 
-<Table columns="2fr 5fr">
-    <TableRow head>
-        <div>Template Name</div>
-        <div style="text-align:center">Preview</div>
-    </TableRow>
-
-    <TableRow>
-        <div>Empty</div>
-        <div>
-            <IconMessage empty />
-        </div>
-    </TableRow>
-
-    <TableRow>
-        <div>Error</div>
-        <div>
-            <IconMessage error />
-        </div>
-    </TableRow>
-</Table>
-
 <h3>Error</h3>
 
 <CodeBlock code={`
@@ -179,11 +158,11 @@
 
 <CodeResult>
     <div class="box">
-    <IconMessage iconColor="var(--green)">
+    <IconMessage iconColor="var(--blue)">
         <div slot="message">
-            There are no results to show.
+            Start Writing Something
         </div>
-        <IconInbox slot="icon" size={100} />    
+        <IconPencilSquare slot="icon" size={100} />    
     </IconMessage>
 </div>
 

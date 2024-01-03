@@ -66,3 +66,5 @@ export { default as TextInput } from './TextInput/TextInput.svelte';
 export { default as toast } from './Toast/toast.js';
 
 export { default as Tooltip } from './Tooltip/Tooltip.svelte';
+
+export { default as IconMessage } from './IconMessage/IconMessage.svelte';

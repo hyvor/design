@@ -42,7 +42,8 @@
         { href: "/tag", label: "Tag" },
         { href: "/tooltip", label: "Tooltip" },
         { href: "/toast", label: "Toast" },
-        { href: "/modal", label: "Modal" }
+        { href: "/modal", label: "Modal" },
+        { href: "/icon-message", label: "Icon Message" },
     ];
 
     const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));

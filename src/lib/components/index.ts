@@ -36,6 +36,7 @@ export { default as IconButton } from './IconButton/IconButton.svelte';
 export { default as Link } from './Link/Link.svelte';
 
 export { default as Loader } from './Loader/Loader.svelte';
+export { default as LoadButton } from './Loader/LoadButton.svelte';
 
 export { default as Modal } from './Modal/Modal.svelte';
 export { confirm } from './Modal/confirm.js';

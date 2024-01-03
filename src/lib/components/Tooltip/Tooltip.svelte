@@ -6,6 +6,7 @@
     export let color : 'black' | 'accent' | 'soft' | 'danger' = 'black';
     export let show = false;
     export let maxWidth : number = 300;
+    export let disabled = false;
 
     let wrap: HTMLDivElement;
     let tooltip: HTMLDivElement;
@@ -39,9 +40,11 @@
     }
 
     async function handleMouseEnter() {
+        if (!disabled) {
         show = true;
         await tick();
         positionTooltip();
+        }
     }
 
     function handleMouseLeave() {
@@ -77,7 +80,7 @@
 >
     <slot />
 
-    {#if show}
+    {#if !disabled && show}
         <div 
             class="tooltip {position}" 
             style:max-width={maxWidth + 'px'}

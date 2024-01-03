@@ -7,6 +7,7 @@
     import CodeBlock from './../../../lib/components/CodeBlock/CodeBlock.svelte';
     import Table from './../../../lib/components/Table/Table.svelte';
     import TableRow from './../../../lib/components/Table/TableRow.svelte';
+    import Button from "../../../lib/components/Button/Button.svelte";
 
     let active1 = 'settings'
 </script>
@@ -163,5 +164,13 @@
             Links
         </TabNavItem>
     </TabNav>
+
+    <p>
+        Active tab is {active1}
+    </p>
+
+    <Button 
+        on:click={() => active1 = 'seo'}
+    >Set SEO as active</Button>
 
 </CodeResult>

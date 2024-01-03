@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { setContext } from 'svelte'
+    import { onMount, setContext } from 'svelte'
     import { writable } from 'svelte/store';
 
     export let active: string;
@@ -7,7 +7,15 @@
     const activeStore = writable(active);
     setContext('tab-nav-active', activeStore);
 
-    $: active = $activeStore;
+    $: active, activeStore.set(active);
+
+    onMount(() => {
+        const unsubscribe = activeStore.subscribe((value) => {
+            active = value;
+        });
+        return unsubscribe;
+    })
+
 </script>
 
 <div 

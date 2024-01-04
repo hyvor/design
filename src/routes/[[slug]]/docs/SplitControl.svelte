@@ -160,3 +160,39 @@
         </div>
     </SplitControl>
 </CodeResult>
+
+<h3 id="flex">
+    Flex Property
+</h3>
+
+<p>
+    You can set the the flex values for the left and right sides of the split control using the <code>flex</code> property. The default value is <code>[1,2]</code>.
+</p>
+
+<CodeBlock code={`
+    <SplitControl 
+        label="Name"
+        caption="The name of the site."
+        flex={[1,1]}
+    >
+        <TextInput 
+            type="text"
+            value="English"
+            block
+        />
+    </SplitControl>
+`} />
+
+<CodeResult>
+    <SplitControl 
+        label="Name"
+        caption="The name of the site."
+        flex={[1,1]}
+    >
+        <TextInput 
+            type="text" 
+            value="English"
+            block 
+        />
+    </SplitControl>
+</CodeResult>

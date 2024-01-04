@@ -1,3 +1,8 @@
+## 0.0.39 - 2024-01-03
+- Tooltip disabled state
+- Nav tab state update fix
+- Split Control flex prop
+
 ## 0.0.38 - 2024-01-03
 - Load Button added
 - Icon Message added

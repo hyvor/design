@@ -4,12 +4,17 @@
 
     export let label: string = "";
     export let caption: string = "";
+    
+    export let flex : number[] = [1,2];
 </script>
 
 
 <div class="split-control" class:has-nested={$$slots.nested}>
 
-    <div class="left">
+    <div 
+        class="left"
+        style:flex={flex[0]}
+    >
 
         <div class="label-wrap">
             {#if $$slots.label}
@@ -31,7 +36,10 @@
     </div>
 
     {#if $$slots.default}
-        <div class="right">
+        <div 
+            class="right"
+            style:flex={flex[1]}
+        >
             <slot></slot>
         </div>
     {/if}
@@ -66,12 +74,10 @@
 
     .left {
         padding: 15px;
-        flex: 1;
     }
 
     .right {
         padding: 15px;
-        flex: 3;
         min-width: 0;
     }
 

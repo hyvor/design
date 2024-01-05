@@ -14,7 +14,7 @@
     on:click={() => textarea.focus()}
     on:keydown={(e) => {
         if (e.key === 'Enter') {
-            textarea.blur();
+            textarea.focus();
         }
     }}
     role="textbox"

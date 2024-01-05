@@ -1,3 +1,7 @@
+## 0.0.40 - 2024-01-05
+- Toast z-index change
+- Column prop in split control added
+
 ## 0.0.39 - 2024-01-03
 - Tooltip disabled state
 - Nav tab state update fix

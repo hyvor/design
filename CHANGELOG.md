@@ -1,3 +1,6 @@
+## 0.0.41 - 2024-01-05
+- Fix textarea enter bug
+
 ## 0.0.40 - 2024-01-05
 - Toast z-index change
 - Column prop in split control added

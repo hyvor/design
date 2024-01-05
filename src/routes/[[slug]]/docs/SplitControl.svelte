@@ -38,6 +38,13 @@
             The caption to display on the left side of the split control. This is displayed below the label, and is usually used to provide more information about the control.
         </div>
     </TableRow>
+
+    <TableRow>
+        <div><code>flex</code></div>
+        <div>
+            Set flex values of the left and right sides of the split control. The default value is <code>[1,2]</code>.
+        </div>
+    </TableRow>
 </Table>
 
 <h2 id="props">Slots</h2>
@@ -177,7 +184,7 @@
     >
         <TextInput 
             type="text"
-            value="English"
+            value="HYVOR"
             block
         />
     </SplitControl>
@@ -191,7 +198,43 @@
     >
         <TextInput 
             type="text" 
-            value="English"
+            value="HYVOR"
+            block 
+        />
+    </SplitControl>
+</CodeResult>
+
+<h3 id="column">
+    Column Property
+</h3>
+
+<p>
+    You can set the split control to display as a column using the <code>column</code> property.
+</p>
+
+<CodeBlock code={`
+    <SplitControl 
+        label="Name"
+        caption="The name of the site."
+        column
+    >
+        <TextInput 
+            type="text"
+            value="HYVOR"
+            block
+        />
+    </SplitControl>
+`} />
+
+<CodeResult>
+    <SplitControl 
+        label="Name"
+        caption="The name of the site."
+        column
+    >
+        <TextInput 
+            type="text" 
+            value="HYVOR"
             block 
         />
     </SplitControl>

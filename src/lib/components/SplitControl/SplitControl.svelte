@@ -4,12 +4,17 @@
 
     export let label: string = "";
     export let caption: string = "";
-    
+
+    export let column : boolean = false;
     export let flex : number[] = [1,2];
 </script>
 
 
-<div class="split-control" class:has-nested={$$slots.nested}>
+<div 
+    class="split-control" 
+    class:has-nested={$$slots.nested}
+    class:column={column}
+>
 
     <div 
         class="left"
@@ -61,6 +66,12 @@
         line-height: 1.3;
         &:last-child, &.has-nested {
             border-bottom: none;
+        }
+        &.column {
+            flex-direction: column;
+            .right {
+                padding-top: 0;
+            }
         }
     }
 

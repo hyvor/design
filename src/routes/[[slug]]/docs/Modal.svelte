@@ -21,6 +21,11 @@
     let show5 = false;
 
     let show6 = false;
+    
+    let show7 = false;
+    let loading7 : string | false = false;
+
+    let show8 = false;
 
     async function handleConfirm1() {
 
@@ -110,6 +115,22 @@
         <div><code>true</code></div>   
         <div>
             Whether to close the modal when pressing the escape key.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>loading</code></div>
+        <div><code>false</code></div>   
+        <div>
+            Whether to show a loader. See <a href="#loading">Loading State</a>.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>footer</code></div>
+        <div><code>null</code></div>   
+        <div>
+            To display a common footer with a cancel and a confirm button. See <a href="#modal-footer">Modal Footer</a>.
         </div>
     </TableRow>
 
@@ -360,6 +381,166 @@
 
 </Modal>
 
+<h3 id="loading">
+    Loading state
+</h3>
+
+<p>
+    You can use the <code>loading</code> property to display a loading spinner in the modal. It accepts a string or a boolean. If a string is passed, it will be displayed as the loading text. This is the recommended way to display a loading state in a modal, due to the following issues with other methods:
+</p>
+
+<Table columns="1fr 1fr">
+    <TableRow head>
+        <div>Loading Method</div>
+        <div>Issue</div>
+    </TableRow>
+    <TableRow>
+        <div>
+            Loading toast
+        </div>
+        <div>
+            The user can still interact with the modal.
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            Closing the modal and showing a toast
+        </div>
+        <div>
+            The user's input will be lost in case of an error.
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            Show a loader in the button manually
+        </div>
+        <div>
+            The user can still interact with the modal. Also, more code is required.
+        </div>
+    </TableRow>
+    <TableRow>
+        <div>
+            Using the <code>loading</code> property
+        </div>
+        <div>
+            None
+        </div>
+    </TableRow>
+</Table>
+
+<Modal
+    title="Loading Modal"
+    bind:show={show7}
+    loading={loading7}
+>
+
+    Click the button below to start loading. It will show a loading spinner covering the modal. You can use this to prevent the user from interacting with the modal while loading.
+
+    <div slot="footer">
+        <Button variant="invisible" on:click={() => show7 = false}>Close</Button>
+        <Button on:click={() => {
+            loading7 = 'Loading...';
+            setTimeout(() => {
+                loading7 = false
+                show7 = false;
+            }, 2000)
+        }}>Start Loading</Button>
+    </div>
+
+</Modal>
+
+<CodeResult>
+    <Button on:click={() => show7 = true}>
+        Loading Modal
+    </Button>
+</CodeResult>
+
+<p>
+    Setting the <code>loading</code> property will disable the close button, escape key, and the outside click to close the modal. Therefore, you should handle both success and error cases manually.
+</p>
+
+<h3 id="modal-footer">
+    Modal Footer
+</h3>
+
+<p>
+    Instead of manually setting the footer slot, you can set the <code>footer</code> property of the modal to display a common footer with a cancel and a confirm button.
+</p>
+
+<CodeBlock code={`
+    <Modal
+        ...
+        footer={{
+            cancel: {
+                text: 'Cancel',
+            },
+            confirm: {
+                text: 'Delete',
+                danger: true
+            }
+        }}
+        on:cancel={() => toast.success('Cancelled')}
+        on:confirm={() => {
+            show = false;
+            toast.success('Deleted')
+        }}
+    />
+`} language="svelte" />
+
+<p>
+    The <code>footer</code> property accepts an object with the following properties:
+</p>
+
+<CodeBlock code={`
+    interface Footer {
+        // cancel button
+        // set to false to hide the button
+        cancel?: {
+            // text of the button (default: "Cancel")
+            text?: string,
+            // props to pass to the button
+            props?: Record<string, any>
+        },
+        // confirm button
+        confirm?: {
+            // text of the button (default: "Confirm")
+            text?: string,
+            // props to pass to the button
+            props?: Record<string, any>,
+            // whether the button is a danger button (button color will be red)
+            danger?: boolean
+        }
+    }
+`} language="ts" />
+
+<CodeResult>
+    <Button on:click={() => show8 = true}>
+        Modal with Footer
+    </Button>
+</CodeResult>
+
+<Modal
+    title="Modal with Footer"
+    bind:show={show8}
+    footer={{
+        cancel: {
+            text: 'Cancel',
+        },
+        confirm: {
+            text: 'Delete',
+            danger: true
+        }
+    }}
+    on:cancel={() => toast.success('Cancelled')}
+    on:confirm={() => {
+        show8 = false;
+        toast.success('Deleted')
+    }}
+>
+    This is a modal with a footer that has a cancel and a confirm button.
+</Modal>
+
+ 
 <h2 id="confirm">
     Confirm
 </h2>

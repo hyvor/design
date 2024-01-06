@@ -1,3 +1,7 @@
+## 0.0.42 - 2024-01-06
+- Modal loading state
+- Modal footer prop
+
 ## 0.0.41 - 2024-01-05
 - Fix textarea enter bug
 

@@ -128,10 +128,6 @@
             /* add padding */
             padding: 20px;
         }
-        .icon {
-            /* add padding */
-            padding-bottom: 20px;
-        }
     </style>
 </CodeResult>
 
@@ -158,13 +154,13 @@
 
 <CodeResult>
     <div class="box">
-    <IconMessage iconColor="var(--blue)">
-        <div slot="message">
-            Start Writing Something
-        </div>
-        <IconPencilSquare slot="icon" size={100} />    
-    </IconMessage>
-</div>
+        <IconMessage iconColor="var(--blue)">
+            <div slot="message">
+                Start Writing Something
+            </div>
+            <IconPencilSquare slot="icon" size={100} />    
+        </IconMessage>
+    </div>
 
 <style>
     .box {

@@ -44,13 +44,13 @@
             {/if}
     </div>
 
-    <p class="message">
+    <div class="message">
         {#if $$slots.message}
             <slot name="message" />
         {:else if message}
             {message}
         {/if}
-    </p>
+    </div>
 
 </div>
 
@@ -71,7 +71,7 @@
     .message {
         /* Add message styles here */
         color: var(--text-light);
-        margin-top: -10px;
+        margin-top: 15px;
     }
 
     .icon {

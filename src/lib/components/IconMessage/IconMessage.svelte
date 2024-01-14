@@ -35,7 +35,6 @@
     <div 
         class="icon" 
         style:color={iconColor}
-        style:font-size={iconSize + 'px'}
         {...$$restProps}
         >
             {#if $$slots.icon}
@@ -76,8 +75,6 @@
     }
 
     .icon {
-        font-size: 100px;/* Add icon styles here */
-       
     }
 
 </style> 

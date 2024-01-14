@@ -1,3 +1,7 @@
+## 0.0.43 - 2024-01-14
+- IconMessage layout fixes
+- Base refactor
+
 ## 0.0.42 - 2024-01-06
 - Modal loading state
 - Modal footer prop

@@ -1,3 +1,7 @@
+## 0.0.44 - 2024-01-16
+- IconButton `input` color added
+- IconButton `fill-light`, `accent` color changed to be lighter
+
 ## 0.0.43 - 2024-01-14
 - IconMessage layout fixes
 - Base refactor

@@ -2,7 +2,7 @@
     export let size : 'small' | 'medium' | 'large' | number = 'medium';
     // export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
 
-    export let color : 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' = 'accent';
+    export let color : 'accent' | 'gray' | 'input' | 'green' | 'red' | 'blue' | 'orange' = 'accent';
 
     export let variant : 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible' = 'fill';
 
@@ -78,53 +78,55 @@
     //styles for variant fill with colors
     .button {
         &.fill {
+            transition: .2s box-shadow;
+
             &.accent {
                 background-color: var(--accent);
                 color: var(--accent-text);
-                transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--accent-light);
             }
 
             &.gray {
                 background-color: var(--gray-dark);
                 color: var(--text-white);
-                transition: .2s box-shadow;
+                --local-hover-shadow-color: var(--gray-light);
+            }
+
+            &.input {
+                background-color: var(--input);
+                color: var(--text);
                 --local-hover-shadow-color: var(--gray-light);
             }
 
             &.green {
                 background-color: var(--green-dark);
                 color: var(--text-white);
-                transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--green-light);
             }
 
             &.red {
                 background-color: var(--red-dark);
                 color: var(--text-white);
-                transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--red-light);
             }
 
             &.blue {
                 background-color: var(--blue-dark);
                 color: var(--text-white);
-                transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--blue-light);
             }
 
             &.orange {
                 background-color: var(--orange-dark);
                 color: var(--text-white);
-                transition: .2s box-shadow;
                 --local-hover-shadow-color: var(--orange-light);
             }
         }
 
         &.fill-light {
             &.accent {
-                background-color: var(--accent);
-                color: var(--accent-text);
+                background-color: var(--accent-light);
+                color: var(--accent);
                 --local-hover-shadow-color: var(--accent-light);
             }
 
@@ -171,35 +173,30 @@
             }
 
             &.gray {
-                background-color: none;
                 border-color: var(--gray-dark);
                 color: var(--gray-dark);
                 --local-hover-shadow-color: var(--gray-light);
             }
 
             &.green {
-                background-color: none;
                 border-color: var(--green-dark);
                 color: var(--green-dark);
                 --local-hover-shadow-color: var(--green-light);
             }
 
             &.red {
-                background-color: none;
                 border-color: var(--red-dark);
                 color: var(--red-dark);
                 --local-hover-shadow-color: var(--red-light);
             }
 
             &.blue {
-                background-color: none;
                 border-color: var(--blue-dark);
                 color: var(--blue-dark);
                 --local-hover-shadow-color: var(--blue-light);
             }
 
             &.orange {
-                background-color: none;
                 border-color: var(--orange-dark);
                 color: var(--orange-dark);
                 --local-hover-shadow-color: var(--orange-light);
@@ -258,14 +255,12 @@
         &.invisible {
             background-color: transparent;
             transition: .2s background-color;
-            
-
+            box-shadow: none!important;
 
             &.accent {
                 
                 &:hover {
                     background-color: var(--accent-light);
-                    box-shadow: none!important;
                     color: var(--text-light);
                 }
     
@@ -274,15 +269,20 @@
             &.gray {
                 &:hover {
                     background-color: var(--gray-light);
-                    box-shadow: none!important;
                     color: var(--gray-dark);
+                }
+            }
+
+            &.input {
+                &:hover {
+                    background-color: var(--input);
+                    color: var(--text);
                 }
             }
 
             &.green {
                 &:hover{
                     background-color: var(--green-light);
-                    box-shadow: none!important;
                     color: var(--green-dark);
                 }
             }
@@ -290,7 +290,6 @@
             &.red {
                 &:hover{
                     background-color: var(--red-light);
-                    box-shadow: none!important;
                     color: var(--red-dark);
                 }
             }
@@ -298,7 +297,6 @@
             &.blue {
                 &:hover{
                     background-color: var(--blue-light);
-                    box-shadow: none!important;
                     color: var(--blue-dark);
                 }
             }
@@ -306,9 +304,8 @@
             &.orange {
                 &:hover{
                     background-color: var(--orange-light);
-                    box-shadow: none!important;
                     color: var(--orange-dark);
-            }
+                }
             }
     }
 }

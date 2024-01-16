@@ -5,6 +5,7 @@
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import { IconBoxArrowUpRight, IconSearch } from '@hyvor/icons';
     import CodeResult from './Helper/CodeResult.svelte';
+  import Text from '$lib/components/Text/Text.svelte';
 
 </script>
 <h1>Icon Button</h1>
@@ -47,6 +48,11 @@
             <ul>
                 <li><code>accent</code></li>
                 <li><code>gray</code></li>
+                <li><code>input</code>
+                    <Text small>
+                        (fill and invisible only)
+                    </Text>
+                </li>
                 <li><code>green</code></li>
                 <li><code>red</code></li>
                 <li><code>blue</code></li>
@@ -110,6 +116,7 @@
 <CodeBlock code={`
     <IconButton color="accent"><IconSearch /></IconButton>
     <IconButton color="gray"><IconSearch /></IconButton>
+    <IconButton color="input"><IconSearch /></IconButton>
     <IconButton color="green"><IconSearch /></IconButton>
     <IconButton color="red"><IconSearch /></IconButton>
     <IconButton color="blue"><IconSearch /></IconButton>
@@ -119,6 +126,7 @@
 <CodeResult gap={8}>
     <IconButton color="accent"><IconSearch /></IconButton>
     <IconButton color="gray"><IconSearch /></IconButton>
+    <IconButton color="input"><IconSearch /></IconButton>
     <IconButton color="green"><IconSearch /></IconButton>
     <IconButton color="red"><IconSearch /></IconButton>
     <IconButton color="blue"><IconSearch /></IconButton>
@@ -132,6 +140,7 @@
 <CodeBlock code={`
     <IconButton variant="fill" color="accent"><IconSearch /></IconButton>
     <IconButton variant="fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="input"><IconSearch /></IconButton>
     <IconButton variant="fill" color="green"><IconSearch /></IconButton>
     <IconButton variant="fill" color="red"><IconSearch /></IconButton>
     <IconButton variant="fill" color="blue"><IconSearch /></IconButton>
@@ -142,6 +151,7 @@
 <CodeResult gap={8} white>
     <IconButton variant="fill" color="accent"><IconSearch /></IconButton>
     <IconButton variant="fill" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="fill" color="input"><IconSearch /></IconButton>
     <IconButton variant="fill" color="green"><IconSearch /></IconButton>
     <IconButton variant="fill" color="red"><IconSearch /></IconButton>
     <IconButton variant="fill" color="blue"><IconSearch /></IconButton>
@@ -209,6 +219,7 @@
 <CodeBlock code={`
     <IconButton variant="invisible" color="accent"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="input"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="green"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="red"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="blue"><IconSearch /></IconButton>
@@ -218,6 +229,7 @@
 <CodeResult gap={8}>
     <IconButton variant="invisible" color="accent"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="gray"><IconSearch /></IconButton>
+    <IconButton variant="invisible" color="input"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="green"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="red"><IconSearch /></IconButton>
     <IconButton variant="invisible" color="blue"><IconSearch /></IconButton>

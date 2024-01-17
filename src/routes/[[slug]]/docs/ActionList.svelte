@@ -518,3 +518,40 @@
     </ActionList>
 
 </CodeResult>
+
+<h3 id="disabled">Disabled</h3>
+
+<CodeBlock code={`
+    <ActionList>
+        <ActionListItem disabled>
+            <IconHandThumbsUp slot="start" />
+            Vote
+            <div slot="description">Add a vote to this comment.</div>
+            <Text light slot="end">⌘⇧V</Text>
+        </ActionListItem>
+        <ActionListItem disabled>
+            <IconPencil slot="start" />
+            Edit
+            <div slot="description">Edit this comment.</div>
+            <Text light slot="end">⌘⇧E</Text>
+        </ActionListItem>
+    </ActionList>
+`} />
+
+<CodeResult white>
+    <ActionList>
+        <ActionListItem disabled>
+            <IconHandThumbsUp slot="start" />
+            Vote
+            <div slot="description">Add a vote to this comment.</div>
+            <Text light slot="end">⌘⇧V</Text>
+        </ActionListItem>
+
+        <ActionListItem disabled>
+            <IconPencil slot="start" />
+            Edit
+            <div slot="description">Edit this comment.</div>
+            <Text light slot="end">⌘⇧E</Text>
+        </ActionListItem>
+    </ActionList>
+</CodeResult>

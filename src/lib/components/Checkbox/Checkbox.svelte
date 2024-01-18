@@ -149,5 +149,6 @@
 
     input:disabled:checked ~ span.placeholder:after {
         display: none;
+        pointer-events: none;
     }
 </style>

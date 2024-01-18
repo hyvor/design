@@ -1,3 +1,7 @@
+## 0.0.45 - 2024-01-18
+- Tooltip content changed to inline-flex, transition fade added
+- Action list, checkbox disabled states added
+
 ## 0.0.44 - 2024-01-16
 - IconButton `input` color added
 - IconButton `fill-light`, `accent` color changed to be lighter

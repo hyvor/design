@@ -129,10 +129,12 @@
     div.action-list-item.disabled {
         opacity: 0.5;
         cursor: not-allowed;
+        pointer-events: none;
     }
 
     div.action-list-item.disabled:hover {
         background-color: transparent;
+        pointer-events: none;
     }
 
 </style>

@@ -126,4 +126,13 @@
         color: var(--text-light);
     }
 
+    div.action-list-item.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    div.action-list-item.disabled:hover {
+        background-color: transparent;
+    }
+
 </style>

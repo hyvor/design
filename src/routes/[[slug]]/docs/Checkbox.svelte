@@ -88,3 +88,14 @@
         Selected options: <code>{JSON.stringify(a)}</code>
     </div>
 </CodeResult>
+
+<h3 id="disabled">Disabled Checkbox</h3>
+
+<CodeBlock code={`
+    <Checkbox disabled />
+`} />
+
+<CodeResult>
+    <Checkbox disabled>
+    </Checkbox>
+</CodeResult>

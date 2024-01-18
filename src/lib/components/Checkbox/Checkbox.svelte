@@ -2,6 +2,7 @@
     export let checked : boolean | undefined = undefined;
     export let group : (number | string)[] = [];
     export let value: string | number = 'on';
+    export let disabled: boolean = false;
 
     export let input: HTMLInputElement = {} as HTMLInputElement;
 
@@ -9,6 +10,7 @@
     * From https://github.com/themesberg/flowbite-svelte/blob/main/src/lib/forms/Checkbox.svelte
     */
     function handleChange() {
+        if (disabled) return;
         const index = group.indexOf(value);
         if (checked === undefined) checked = index >= 0;
         if (checked) {
@@ -34,6 +36,7 @@
             type="checkbox"
             bind:checked
             bind:this={input}
+            disabled={disabled}
 
             on:keyup
             on:keydown
@@ -132,5 +135,19 @@
 
     input:checked ~ span.placeholder:after {
         display:block;
+    }
+
+     /* disabled styles */
+     input:disabled ~ span.placeholder {
+        background-color: var(--accent-light);
+        border: none !important;
+        opacity: 0.2;
+        cursor: not-allowed;
+        box-shadow: none !important;
+
+    }
+
+    input:disabled:checked ~ span.placeholder:after {
+        display: none;
     }
 </style>

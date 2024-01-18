@@ -1,5 +1,6 @@
 <script lang="ts">
     import {tick, onMount, onDestroy} from 'svelte';
+  import { fade } from "svelte/transition";
 
     export let text: string = '';
     export let position: 'top' | 'bottom' | 'left' | 'right' = 'top';
@@ -85,6 +86,7 @@
             class="tooltip {position}" 
             style:max-width={maxWidth + 'px'}
             bind:this={tooltip}
+            transition:fade={{duration: 100}}
         >
             {#if $$slots.tooltip}
                 <slot name="tooltip" />
@@ -97,7 +99,8 @@
 
 <style>
     .tooltip-wrap {
-        display: inline;
+        display: inline-flex;
+        align-items: center;
         position: relative;
 
         --local-bg: #24292f;

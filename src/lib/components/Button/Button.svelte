@@ -449,6 +449,10 @@
         cursor: not-allowed;
         opacity: 0.2;
         box-shadow: none!important;
+
+        &:hover {
+            box-shadow: none!important;
+        }
     }   
 
 </style>

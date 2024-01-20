@@ -1,3 +1,7 @@
+## 0.0.46 - 2024-01-19
+- .hds-container global class
+- Button accent, invisible text color fix
+
 ## 0.0.45 - 2024-01-18
 - Tooltip content changed to inline-flex, transition fade added
 - Action list, checkbox disabled states added

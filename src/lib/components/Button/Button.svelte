@@ -375,7 +375,6 @@
                 &:hover {
                     background-color: var(--accent-light);
                     box-shadow: none!important;
-                    color: var(--text-light);
                 }
     
             }

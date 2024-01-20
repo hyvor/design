@@ -44,3 +44,10 @@ button, a {
     border-radius: var(--box-radius);
     background-color: var(--box-background);
 }
+
+.hds-container {
+    width: 1000px;
+    max-width: 100%;
+    padding: 0 15px;
+    margin: auto;
+}

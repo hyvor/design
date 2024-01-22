@@ -126,15 +126,13 @@
         color: var(--text-light);
     }
 
+     /*styles for disabled state*/
     div.action-list-item.disabled {
-        opacity: 0.5;
+        color: var(--text-light);
         cursor: not-allowed;
-        pointer-events: none;
     }
-
     div.action-list-item.disabled:hover {
         background-color: transparent;
-        pointer-events: none;
     }
 
 </style>

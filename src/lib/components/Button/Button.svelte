@@ -442,6 +442,22 @@
             background-color: var(--accent-light);
             box-shadow: none!important;
         }
+
+        /*styles for disabled state*/
+        &[disabled] {
+            background-color: transparent;
+            color: var(--text);
+            box-shadow: none!important;
+            cursor: not-allowed;
+            opacity: 0.2;
+            
+            &:hover {
+                background-color: transparent;
+                box-shadow: none!important;
+                color: var(--text);
+            }
+        }
+        
     }
 
     /*Styles for button disabled state*/

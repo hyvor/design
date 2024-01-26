@@ -6,6 +6,8 @@
     export let alt: string;
     export let width : undefined | number = undefined;
 
+    export let modalImageProps : any = {};
+
     let open = false;
 </script>
 
@@ -26,9 +28,8 @@
     >
         <img 
             {src} 
-            {alt} 
-            {...$$restProps} 
-            {width} 
+            {alt}
+            {...modalImageProps}
             use:clickOutside={{
                 callback: () => open = false
             }}

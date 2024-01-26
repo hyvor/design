@@ -15,6 +15,7 @@
     <li><code>ts</code></li>
     <li><code>svelte</code> (fallback to <code>html</code>)</li>
     <li><code>jsx</code> (fallback to <code>html</code>)</li>
+    <li><code>yaml</code></li>
 </ul>
 
 <h2 id="usage">Usage</h2>
@@ -78,4 +79,16 @@
             </div>
         );
     }
+`} />
+
+<h3 id="yaml">YAML</h3>
+
+<CodeBlock language="yaml" code={`
+    product: Hyvor Blogs
+    url: https://blogs.hyvor.com
+    plans:
+        - name: Starter
+          price: $9
+        - name: Growth
+          price: $19
 `} />

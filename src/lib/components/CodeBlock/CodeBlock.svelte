@@ -8,7 +8,7 @@
         'css' |
         'js' |
         'ts' |
-        
+        'yaml' |
         'svelte' |
         'jsx';
 

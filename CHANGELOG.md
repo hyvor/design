@@ -1,3 +1,9 @@
+## 0.0.48 - 2024-01-26
+- Callout line height fix
+- YAML support in CodeBlock
+- ActionListItem disabled state
+- Button invisible disabled state
+
 ## 0.0.47 - 2024-01-26
 - DocsImage added
 

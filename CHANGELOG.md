@@ -1,3 +1,6 @@
+## 0.0.47 - 2024-01-26
+- DocsImage added
+
 ## 0.0.46 - 2024-01-19
 - .hds-container global class
 - Button accent, invisible text color fix

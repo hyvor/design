@@ -227,6 +227,7 @@ All other properties will be forwarded to the underlying element.
     <Button color="blue" variant="invisible">Invisible Blue</Button>
     <Button color="orange" variant="invisible">Invisible Orange</Button>
     <Button color="input" variant="invisible">Invisible Input</Button>
+    <Button color="gray" variant="invisible" disabled>Invisible Disabled</Button>
 </CodeResult>
 
 <h2 id="slots">Slots</h2>

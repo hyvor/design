@@ -30,6 +30,7 @@ import Tag from "./docs/Tag.svelte";
 import TabNav from "./docs/TabNav.svelte";
 import ColorPicker from "./docs/ColorPicker.svelte";
 import IconMessage from "./docs/IconMessage.svelte";
+import DocsDocs from "./docs/DocsDocs/DocsDocs.svelte";
 
 export const prerender = true;
 
@@ -67,6 +68,7 @@ const nav = {
     'icon-message': IconMessage,
 
     'page-structure': PageStructure,
+    docs: DocsDocs,
 }
 
 export async function load({ params }) {

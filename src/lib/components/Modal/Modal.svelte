@@ -1,7 +1,7 @@
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
-    import {clickOutside} from "../../directives/clickOutside.js";
+    import {clickOutside} from "../directives/clickOutside.js";
     import { IconX } from '@hyvor/icons';
     import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';

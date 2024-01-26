@@ -68,3 +68,7 @@ export { default as toast } from './Toast/toast.js';
 export { default as Tooltip } from './Tooltip/Tooltip.svelte';
 
 export { default as IconMessage } from './IconMessage/IconMessage.svelte';
+
+
+// directives
+export { clickOutside } from './directives/clickOutside.js';

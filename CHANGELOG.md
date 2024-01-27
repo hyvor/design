@@ -1,3 +1,6 @@
+## 0.0.49 - 2024-01-27
+- JSON support in CodeBlock
+
 ## 0.0.48 - 2024-01-26
 - Callout line height fix
 - YAML support in CodeBlock

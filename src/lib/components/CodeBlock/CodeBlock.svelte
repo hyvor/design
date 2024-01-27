@@ -9,6 +9,7 @@
         'js' |
         'ts' |
         'yaml' |
+        'json' |
         'svelte' |
         'jsx';
 

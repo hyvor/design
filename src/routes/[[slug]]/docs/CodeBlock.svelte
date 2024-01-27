@@ -16,6 +16,7 @@
     <li><code>svelte</code> (fallback to <code>html</code>)</li>
     <li><code>jsx</code> (fallback to <code>html</code>)</li>
     <li><code>yaml</code></li>
+    <li><code>json</code></li>
 </ul>
 
 <h2 id="usage">Usage</h2>
@@ -91,4 +92,23 @@
           price: $9
         - name: Growth
           price: $19
+`} />
+
+<h3 id="json">JSON</h3>
+
+<CodeBlock language="json" code={`
+    {
+        "product": "Hyvor Blogs",
+        "url": "https://blogs.hyvor.com",
+        "plans": [
+            {
+                "name": "Starter",
+                "price": "$9"
+            },
+            {
+                "name": "Growth",
+                "price": "$19"
+            }
+        ]
+    }
 `} />

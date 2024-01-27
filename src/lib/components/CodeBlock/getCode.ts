@@ -4,12 +4,14 @@ import xml from 'highlight.js/lib/languages/xml';
 import css from 'highlight.js/lib/languages/css';
 import ts from 'highlight.js/lib/languages/typescript';
 import yaml from 'highlight.js/lib/languages/yaml';
+import json from 'highlight.js/lib/languages/json';
 
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 hljs.registerLanguage('css', css);
 hljs.registerLanguage('ts', ts);
 hljs.registerLanguage('yaml', yaml);
+hljs.registerLanguage('json', json);
 
 export type Language = 'html' | 'css' | 'js' | 'ts';
 

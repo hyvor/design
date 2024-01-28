@@ -12,6 +12,7 @@
 </script>
 
 <div class="wrap">
+    <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
     <img 
         {src} 
         {alt} 

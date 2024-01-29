@@ -1,6 +1,6 @@
 {
 	"name": "@hyvor/design",
-	"version": "0.0.49",
+	"version": "0.0.50",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
@@ -38,6 +38,7 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
+		"svelte-awesome-color-picker": "^3.0.4",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",

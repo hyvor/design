@@ -9,10 +9,6 @@
 </script>
 <h1>Color Picker</h1>
 
-<Callout type="info">
-    The ColorPicker component is currently in development. At the moment, it uses the browser native color picker. This will be replaced with a custom color picker in the future.
-</Callout>
-
 <h2>Usage</h2>
 
 <CodeBlock code={`

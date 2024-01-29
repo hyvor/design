@@ -1,3 +1,6 @@
+## 0.0.50 - 2024-01-29
+- Color picker: native picker removed
+
 ## 0.0.49 - 2024-01-27
 - JSON support in CodeBlock
 

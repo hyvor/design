@@ -1,6 +1,6 @@
 {
 	"name": "@hyvor/design",
-	"version": "0.0.50",
+	"version": "0.0.51",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
@@ -38,7 +38,6 @@
 		"@sveltejs/vite-plugin-svelte": "^3.0.0",
 		"publint": "^0.1.9",
 		"svelte": "^4.0.5",
-		"svelte-awesome-color-picker": "^3.0.4",
 		"svelte-check": "^3.4.3",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0",
@@ -47,7 +46,8 @@
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
 		"@hyvor/icons": "^0.0.3",
-		"highlight.js": "^11.9.0"
+		"highlight.js": "^11.9.0",
+		"svelte-awesome-color-picker": "^3.0.4"
 	},
 	"type": "module",
 	"publishConfig": {

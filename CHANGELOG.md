@@ -1,3 +1,6 @@
+## 0.0.51 - 2024-01-29
+- Fixed dependency issue with svelte-awesome-color-picker
+
 ## 0.0.50 - 2024-01-29
 - Color picker: native picker removed
 

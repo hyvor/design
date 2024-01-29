@@ -24,7 +24,7 @@
 
 </script>
 
-<span>
+<span class="color-picker">
     <button
         style:width="{size}px"
         style:height="{size}px"
@@ -33,7 +33,8 @@
     ></button>
 
     {#if show}
-        <div 
+        <div
+            class="color-picker-wrap"
             use:clickOutside={{
                 callback: () => handleClose(),
             }}
@@ -49,19 +50,6 @@
     {/if}
 </span>
 
-<!-- <span>
-   
-
-    <input 
-        type="color" 
-        bind:value={color}
-        bind:this={inputEl}
-
-        on:change
-        on:input
-    />
-</span> -->
-
 <style>
     span {
         position: relative;
@@ -74,5 +62,6 @@
         left: 0;
         top: 100%;
         width: 0;
+        z-index: 1000;
     }
 </style>

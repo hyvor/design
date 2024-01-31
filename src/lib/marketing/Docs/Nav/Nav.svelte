@@ -1,16 +1,99 @@
 <script lang="ts">
-    import Box from "$lib/components/Box/Box.svelte";
+  import { afterNavigate, onNavigate } from "$app/navigation";
+    import { page } from "$app/stores";
+  import { IconList } from "@hyvor/icons";
+    import { onMount } from "svelte";
+  import { clickOutside } from "../../../components/index.js";
+
+    let navEl: HTMLElement;
+
+    interface Active {
+        name: string;
+        category: string | null;
+    }
+
+    let active: Active | null = null;
+        
+    function setActive() {
+        const activeEl = navEl?.querySelector("a.active");
+
+        if (!activeEl || !(activeEl instanceof HTMLElement)) {
+            active = null;
+            return;
+        }
+
+        const category = (activeEl.closest('.nav-category')
+            ?.querySelector('.name') as HTMLElement)?.innerText || null;
+
+        active = {
+            name: activeEl.innerText,
+            category
+        }
+    }
+
+    onMount(() => {
+        setActive();
+    });
+
+    afterNavigate(() => {
+        setActive();
+        hideNavOnMobile();
+    });
+
+    let mobileNavShown = false;
+
+    function handleMobileClick(e: any) {
+        e.stopPropagation();
+        if (navEl.style.display !== 'block') {
+            navEl.style.display = 'block';
+            mobileNavShown = true;
+        } else {
+            navEl.style.display = 'none';
+            mobileNavShown = false;
+        }
+    }
+
+    function handleNavOutsideClick() {
+        if (mobileNavShown) {
+            navEl.style.display = 'none';
+            mobileNavShown = false;
+        }
+    }
+
+    function hideNavOnMobile() {
+        if (window.innerWidth < 992) {
+            navEl.style.display = 'none';
+        }
+    }
+
 </script>
 
 <div class="docs-nav">
 
-    <Box as="nav" class="nav-inner">
-        <slot />
-    </Box>
+    {#if active}
+        <button class="mobile hds-box" on:click={handleMobileClick}>
+            <div class="left">
+                {#if active.category}
+                    <span class="category">{active.category}</span> &raquo;
+                {/if}
+                <span class="name">{active.name}</span>
+            </div>
+            <IconList size={18} />
+        </button>
+    {/if}
 
+    <nav 
+        class="hds-box nav-inner" 
+        bind:this={navEl}
+        use:clickOutside={{
+            callback: handleNavOutsideClick
+        }}
+    >
+        <slot />
+    </nav>
 </div>
 
-<style>
+<style lang="scss">
 
     .docs-nav {
         width: 220px;
@@ -22,10 +105,54 @@
         max-height: calc(100vh - var(--header-height));
     }
 
-    .docs-nav :global(.nav-inner) {
+    nav {
         padding: 15px 0;
         overflow-y: auto;
         max-height: calc(100vh - var(--header-height) - 50px);
+    }
+
+    .mobile {
+        display: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        &:hover {
+            background-color: var(--hover);
+        }
+        .left {
+            flex: 1;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .mobile {
+            display: flex;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-inner {
+            display: none;
+        }
+
+        .docs-nav {
+            width: 100%;
+            position: relative;
+            top: 0;
+            padding: 0 15px;
+            margin: 20px 0;
+            max-height: initial;
+            order: 1;
+        }
+
+        nav {
+            padding: 0;
+            max-height: initial;
+            position: absolute;
+            width: calc(100% - 30px);
+            margin-top: 10px;
+            max-height: 500px;
+            z-index: 100;
+        }
     }
 
 </style>

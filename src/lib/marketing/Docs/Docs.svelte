@@ -6,8 +6,10 @@
 
     <slot name="nav" />
     <slot name="content" />
-    <Toc />
 
+    <div class="right">
+        <Toc />
+    </div>
 </div>
 
 <style>
@@ -20,6 +22,24 @@
         max-width: 100%;
         padding-bottom: 40px;
         /* min-height: calc(100vh - var(--header-height)); */
+    }
+
+    .right {
+        width: 220px;
+        top: var(--header-height);
+        padding: 25px 0;
+        position: sticky;
+        flex-shrink: 0;
+    }
+
+    @media (max-width: 992px) {
+        .docs {
+            flex-direction: column;
+            width: 100%;
+        }
+        .right {
+            order: 1;
+        }
     }
 
 </style>

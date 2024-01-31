@@ -56,6 +56,7 @@
     }
     button {
         border-radius: 50%;
+        border: 1px solid var(--border);
     }
     div {
         position: absolute;

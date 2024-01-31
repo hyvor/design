@@ -145,4 +145,12 @@
         }
     }
 
+
+    @media (max-width: 992px) {
+        .content-wrap {
+            padding-top: 0;
+            order: 2;
+        }
+    }
+
 </style>

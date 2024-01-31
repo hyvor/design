@@ -1,3 +1,7 @@
+## 0.0.52 - 2024-01-31
+- Mobile-friendly docs
+- Table of Contents - Docs
+
 ## 0.0.51 - 2024-01-29
 - Fixed dependency issue with svelte-awesome-color-picker
 

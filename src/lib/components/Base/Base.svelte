@@ -4,12 +4,17 @@
 	import DarkProvider from './../Dark/DarkProvider.svelte';
     import '../../index.js';
     import ToastProvider from "../Toast/ToastProvider.svelte";
+
+    export let dark = false;
 </script>
 
 <div id="base">
     <slot />
 </div>
 
-<DarkProvider />
+{#if dark}
+    <DarkProvider />
+{/if}
+
 <ToastProvider />
 <ConfirmModalProvider />

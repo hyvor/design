@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { afterNavigate } from "$app/navigation";
+    import { afterNavigate } from "$app/navigation";
     import { onMount } from "svelte";
     import tocbot from 'tocbot';
-  import Loader from "../../components/Loader/Loader.svelte";
-  import { IconCaretDown, IconCaretRight } from "@hyvor/icons";
-  import Button from "../../components/Button/Button.svelte";
+    import Loader from "../../components/Loader/Loader.svelte";
+    import { IconCaretDown, IconCaretRight } from "@hyvor/icons";
+    import Button from "../../components/Button/Button.svelte";
 
     let tocElement: HTMLDivElement;
 
@@ -18,7 +18,7 @@
             orderedList: false,
             hasInnerContainers: true,
             headingsOffset: 75,
-            scrollSmooth: false,
+            scrollSmooth: true,
         })
 
     })

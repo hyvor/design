@@ -151,6 +151,9 @@
             padding-top: 0;
             order: 2;
         }
+        content {
+            padding: 20px 25px
+        }
     }
 
 </style>

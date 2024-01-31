@@ -71,6 +71,7 @@
 
 <Header
     logo={logo}
+    darkToggle={false}
     name="HYVOR"
     subName="Design System"
 >

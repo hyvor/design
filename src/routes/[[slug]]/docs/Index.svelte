@@ -38,14 +38,14 @@
         <div>
             <a href="https://blogs.hyvor.com" target="_blank">Hyvor Blogs</a>
         </div>
-        <div>No (React)</div>
+        <div>100%</div>
         <div class="color-dots">
             <ColorDot color="#896c6b" />
             <ColorDot color="#f1e8e8" />
             <ColorDot color="#fffaf8" />
         </div>
     </TableRow>
-    <TableRow>
+    <!-- <TableRow>
         <div>
             <a href="https://reader.hyvor.com" target="_blank">Hyvor Reader</a>
         </div>
@@ -55,7 +55,7 @@
             <ColorDot color="#bdc5c6" />
             <ColorDot color="#eaebe9" />
         </div>
-    </TableRow>
+    </TableRow> -->
     <TableRow>
         <div>
             <a href="https://shield.hyvor.com" target="_blank">Hyvor Shield</a>

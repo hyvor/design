@@ -1,15 +1,11 @@
 <script>
-	import Toc from "./Toc.svelte";
-
+	import Sidebar from "./Sidebar/Sidebar.svelte";
 </script>
 <div class="docs">
 
     <slot name="nav" />
     <slot name="content" />
-
-    <div class="right">
-        <Toc />
-    </div>
+    <Sidebar />
 </div>
 
 <style>
@@ -24,21 +20,11 @@
         /* min-height: calc(100vh - var(--header-height)); */
     }
 
-    .right {
-        width: 220px;
-        top: var(--header-height);
-        padding: 25px 0;
-        position: sticky;
-        flex-shrink: 0;
-    }
 
     @media (max-width: 992px) {
         .docs {
             flex-direction: column;
             width: 100%;
-        }
-        .right {
-            order: 1;
         }
     }
 

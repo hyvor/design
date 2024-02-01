@@ -62,7 +62,7 @@
         line-height: var(--line-height-content);
     }
 
-    content :global(h1) {
+    content :global(h1:first-child) {
         margin-top: 0;
         font-size: 36px;
         font-weight: 600;
@@ -70,17 +70,17 @@
         margin: 0 0 30px;
         position: relative;
         display: table;
+        &:after {
+            position: absolute;
+            content: "";
+            bottom: -13px;
+            left: 0px;
+            width: 30%;
+            height: 3px;
+            background: var(--accent);
+            margin-top: 10px;
+        }
     }
-    content :global(h1::after) {
-        position: absolute;
-        content: "";
-        bottom: -13px;
-        left: 0px;
-        width: 30%;
-        height: 3px;
-        background: var(--accent);
-        margin-top: 10px;
-    }   
     content :global(a:not(.no-link-color a)) {
         color: var(--link);
         text-decoration: underline;
@@ -121,13 +121,35 @@
     }
 
     content {
+        :global(h1),
         :global(h2),
         :global(h3),
         :global(h4),
         :global(h5),
         :global(h6) {
             position: relative;
+            margin: 20px 0;
         }
+
+        :global(h1) {
+            font-size: 2em;
+        }
+        :global(h2) {
+            font-size: 1.5em;
+        }
+        :global(h3) {
+            font-size: 1.3em;
+        }
+        :global(h4) {
+            font-size: 1.2em;
+        }
+        :global(h5) {
+            font-size: 1.1em;
+        }
+        :global(h6) {
+            font-size: 1em;
+        }
+
     }
 
     content {

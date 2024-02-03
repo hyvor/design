@@ -18,7 +18,8 @@
             orderedList: false,
             hasInnerContainers: true,
             headingsOffset: 75,
-            scrollSmooth: false,
+            scrollSmooth: true,
+            scrollSmoothOffset: -75,
         })
 
     })

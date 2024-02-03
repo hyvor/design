@@ -19,6 +19,7 @@
             hasInnerContainers: true,
             headingsOffset: 75,
             scrollSmooth: true,
+            scrollSmoothOffset: -75,
         })
 
     })

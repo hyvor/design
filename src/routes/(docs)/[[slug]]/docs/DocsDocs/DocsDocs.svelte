@@ -1,5 +1,5 @@
 <script>
-	import DocImage from '../../../../lib/marketing/Docs/Content/DocsImage.svelte';
+	import DocImage from '$lib/marketing/Docs/Content/DocsImage.svelte';
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
 
     import img from './img.avif';

@@ -1,11 +1,11 @@
 <script lang="ts">
     import SplitControl from "$lib/components/SplitControl/SplitControl.svelte";
     import TextInput from "$lib/components/TextInput/TextInput.svelte";
-    import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import Label from "$lib/components/FormControl/Label.svelte";
     import Caption from "$lib/components/FormControl/Caption.svelte";
-    import Table from "../../../lib/components/Table/Table.svelte";
-    import TableRow from "../../../lib/components/Table/TableRow.svelte";
+    import Table from "$lib/components/Table/Table.svelte";
+    import TableRow from "$lib/components/Table/TableRow.svelte";
     import Switch from "$lib/components/Switch/Switch.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
 </script>

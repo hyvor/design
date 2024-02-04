@@ -1,22 +1,22 @@
 <script lang="ts">
-	import ActionListItem from './../../../lib/components/ActionList/ActionListItem.svelte';
-	import ActionList from './../../../lib/components/ActionList/ActionList.svelte';
+	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
+	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
     import Button from '$lib/components/Button/Button.svelte';
 
-    import hyvorTalkLogo from "../../img/logo/hyvor-talk-social.png";
-    import hyvorBlogsLogo from "../../img/logo/hyvor-blogs-social.png";
-    import Avatar from "../../../lib/components/Avatar/Avatar.svelte";
-    import Text from "../../../lib/components/Text/Text.svelte";
-    import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
+    import hyvorTalkLogo from "../../../img/logo/hyvor-talk-social.png";
+    import hyvorBlogsLogo from "../../../img/logo/hyvor-blogs-social.png";
+    import Avatar from "$lib/components/Avatar/Avatar.svelte";
+    import Text from "$lib/components/Text/Text.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
-    import ActionListGroup from "../../../lib/components/ActionList/ActionListGroup.svelte";
+    import ActionListGroup from "$lib/components/ActionList/ActionListGroup.svelte";
     import { IconCaretDown } from "@hyvor/icons";
-    import Table from "../../../lib/components/Table/Table.svelte";
-    import TableRow from "../../../lib/components/Table/TableRow.svelte";
+    import Table from "$lib/components/Table/Table.svelte";
+    import TableRow from "$lib/components/Table/TableRow.svelte";
     import InputGroup from "$lib/components/FormControl/InputGroup.svelte";
-    import Radio from "../../../lib/components/Radio/Radio.svelte";
-    import SplitControl from "../../../lib/components/SplitControl/SplitControl.svelte";
+    import Radio from "$lib/components/Radio/Radio.svelte";
+    import SplitControl from "$lib/components/SplitControl/SplitControl.svelte";
 
     let x1 = 'talk';
     let x2 : string[] = [];

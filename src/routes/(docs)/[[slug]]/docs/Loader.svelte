@@ -1,12 +1,12 @@
 <script lang="ts">
-	import LoadButton from './../../../lib/components/Loader/LoadButton.svelte';
+	import LoadButton from '$lib/components/Loader/LoadButton.svelte';
     import Loader from "$lib/components/Loader/Loader.svelte";
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
-    import Button from "../../../lib/components/Button/Button.svelte";
-    import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
+    import Button from "$lib/components/Button/Button.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
-    import { toast } from "../../../lib/components/index.js";
+    import { toast } from "$lib/components/index.js";
 
     let loaderStateS: 'loading' | 'none' | 'error' | 'success' = 'none';
     let loaderStateE: 'loading' | 'none' | 'error' | 'success' = 'none';

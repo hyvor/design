@@ -3,9 +3,9 @@
     import CodeResult from "./Helper/CodeResult.svelte";
     import TableRow from '$lib/components/Table/TableRow.svelte';
     import Tag from '$lib/components/Tag/Tag.svelte';
-    import CodeBlock from "../../../lib/components/CodeBlock/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import { IconCheck, IconHourglass, IconJournal, IconJournalText } from "@hyvor/icons";
-    import Loader from "../../../lib/components/Loader/Loader.svelte";
+    import Loader from "$lib/components/Loader/Loader.svelte";
 </script>
 
 <h1>Tag</h1>

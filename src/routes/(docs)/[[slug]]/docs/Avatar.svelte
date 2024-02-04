@@ -3,9 +3,9 @@
     import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
 
-    import hyvorLogo from "../../img/logo/hyvor-social.png";
-    import hyvorTalkLogo from "../../img/logo/hyvor-talk-social.png";
-    import hyvorBlogsLogo from "../../img/logo/hyvor-blogs-social.png";
+    import hyvorLogo from "../../../img/logo/hyvor-social.png";
+    import hyvorTalkLogo from "../../../img/logo/hyvor-talk-social.png";
+    import hyvorBlogsLogo from "../../../img/logo/hyvor-blogs-social.png";
     import AvatarStack from "$lib/components/Avatar/AvatarStack.svelte";
 </script>
 <h1>Avatar</h1>

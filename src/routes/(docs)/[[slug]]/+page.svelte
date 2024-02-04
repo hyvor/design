@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Link from './../../lib/components/Link/Link.svelte';
-	import FooterLinkList from './../../lib/marketing/Footer/FooterLinkList.svelte';
+	import Link from '$lib/components/Link/Link.svelte';
+	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
 	import { IconBoxArrowUpRight } from '@hyvor/icons';
-	import NavItem from './../../lib/marketing/Docs/Nav/NavItem.svelte';
+	import NavItem from '$lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
     import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import Content from "$lib/marketing/Docs/Content/Content.svelte";
@@ -10,8 +10,8 @@
 	import Nav from "$lib/marketing/Docs/Nav/Nav.svelte";
 	import NavCategory from "$lib/marketing/Docs/Nav/NavCategory.svelte";
 
-    import logo from '../img/logo/hyvor.svg';
-    import Button from "../../lib/components/Button/Button.svelte";
+    import logo from '../../img/logo/hyvor.svg';
+    import Button from "$lib/components/Button/Button.svelte";
     import { onMount } from "svelte";
     import { page } from '$app/stores';
     

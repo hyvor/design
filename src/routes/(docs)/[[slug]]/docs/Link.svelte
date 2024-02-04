@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Link from '$lib/components/Link/Link.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import CodeBlock from '../../../lib/components/CodeBlock/CodeBlock.svelte';
+	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
     import { IconBoxArrowUpRight, IconHouse } from "@hyvor/icons";

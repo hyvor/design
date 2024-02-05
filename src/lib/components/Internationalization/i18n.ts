@@ -1,22 +1,57 @@
-type LoaderType = () => Promise<any>;
+import { getContext } from "svelte";
+import { writable } from "svelte/store";
+
+export type i18nLoaderType = () => Promise<any>
 
 interface Language {
     code: string,
     name: string,
-    loader: LoaderType,
+    loader: i18nLoaderType,
     default: boolean
 }
 
-export class i18n {
+export class i18nService {
     
-    private current : string;
+    // private current : string;
     private languages : Language[] = [];
 
-    constructor(current: string) {
-        this.current = current;
+    public DEFAULT_LOCALE = 'en';
+
+    public locale = writable(this.DEFAULT_LOCALE);
+    public strings = writable({});
+
+    public stringsCache = new Map<string, Record<string, any>>();
+
+    constructor(defaultStrings: Record<string, any>, languages: Record<string, i18nLoaderType>) {
+
+        this.strings.set(defaultStrings);
+        this.stringsCache.set(this.DEFAULT_LOCALE, defaultStrings);
+
+        for (const code in languages) {
+            this.register(
+                code, 
+                code, 
+                languages[code],
+                code === 'en'
+            );
+        }
+
     }
 
-    register(code: string, name: string, loader: LoaderType, isDefault = false) {
+    setLocale(code: string) {
+        this.locale.set(code);
+
+        if (this.stringsCache.has(code)) {
+            this.strings.set(this.stringsCache.get(code)!);
+        }
+
+        this.languageByCode(code)?.loader().then(strings => {
+            this.stringsCache.set(code, strings);
+            this.strings.set(strings);
+        })
+    }
+
+    register(code: string, name: string, loader: i18nLoaderType, isDefault = false) {
         this.languages.push({
             code,
             name,
@@ -34,11 +69,27 @@ export class i18n {
     }
 
     getCurrent() {
-        return this.languageByCode(this.current);
+        // return this.languageByCode(this.current);
     }
 
-    async load(code: string) {
+    /* async load(code: string) {
         return (await this.languageByCode(code)?.loader()).default;
+    } */
+
+}
+
+
+export function getStringByKey(messages: Record<string, any>, key: string) {
+    const keys = key.split('.');
+    let value = messages as any;
+
+    for (const key of keys) {
+        if (value && typeof value === 'object' && key in value) {
+            value = value[key];
+        } else {
+            return undefined; // Key not found or value is not an object
+        }
     }
 
+    return value as string;
 }

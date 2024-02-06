@@ -46,8 +46,11 @@
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
 		"@hyvor/icons": "^0.0.3",
+		"deepmerge-ts": "^5.1.0",
 		"highlight.js": "^11.9.0",
+		"i": "^0.3.7",
 		"intl-messageformat": "^10.5.11",
+		"npm": "^10.4.0",
 		"svelte-awesome-color-picker": "^3.0.4",
 		"tocbot": "^4.25.0"
 	},

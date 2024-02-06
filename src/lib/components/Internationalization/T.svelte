@@ -1,108 +1,157 @@
 <script lang="ts">
-    import { getContext, type ComponentType, onMount } from "svelte";
+    import { getContext, type ComponentType, onMount, tick, afterUpdate } from "svelte";
 	import { getStringByKey, i18nService } from './i18n.js';
     import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
-    import { browser } from "$app/environment";
+  import { browser } from "$app/environment";
 
-    type ComponentFunction = (children: string) => ComponentType;
-    type InputParams = Record<string, PrimitiveType | ComponentFunction>;
+    type ComponentDeclaration = {
+        component: ComponentType,
+        props?: Record<string, any>
+    }
+    type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
     type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 
     export let key: string;
     export let params: InputParams = {};
 
+    let hasComponentParams = false;
+
+    /**
+     * In backend processing (SSR), we only render the strings inside it
+     * The components are not rendered.
+     * However, if components are found, we set hasComponentParams to true
+     * so that we can render the components in the frontend later.
+     */
+    function getParamsForBackend() {
+        let retParams: Record<string, ParamValue> = {};
+
+        for (let [key, value] of Object.entries(params)) {
+            let newValue: ParamValue;
+            if (
+                typeof value === 'object' &&
+                value !== null &&
+                value.hasOwnProperty('component')
+            ) {
+                newValue = (chunks: string | string[]) => {
+                    const children = typeof chunks === 'string' ? chunks : chunks.join('');
+                    return children;
+                }
+                hasComponentParams = true;
+            } else {
+                newValue = value as PrimitiveType;
+            }
+            retParams[key] = newValue;
+        }
+
+        return retParams;
+    }
+
+
+    /**
+     * In frontend processing, we render the components
+     */
     interface ComponentBinding {
         component: ComponentType,
-        children: string,
+        props: Record<string, any>
     }
-    const componentBindings = {} as Record<string, ComponentBinding>;
-    const componentId = 'i18n-component-';
-
-    console.log(componentId, 'component id')
-
-    function getProcessedParams() {
+    const componentBindings = new Map<string, ComponentBinding>();
+    function getParamsForFrontend() {
 
         let retParams: Record<string, ParamValue> = {};
 
         for (let [key, value] of Object.entries(params)) {
             let newValue: ParamValue;
-            if (typeof value === 'function') {
+            if (
+                typeof value === 'object' &&
+                value !== null &&
+                value.hasOwnProperty('component')
+            ) {
+                const { component, props } = value as ComponentDeclaration;
+
                 newValue = (chunks: string | string[]) => {
                     const children = typeof chunks === 'string' ? chunks : chunks.join('');
-                    const component = (value as ComponentFunction)(children);
-                    const id = componentId + key;
-                    componentBindings[id] = {
+                    const id = key + '-' +
+                        Math.random().toString(36).substring(7) + '-' +
+                        Date.now().toString();
+                    componentBindings.set(id, {
                         component,
-                        children,
-                    };
-
-                    console.log('generated id', id, '<span id="' + id + '"></span>');
-                    return '<span id="' + id + '"></span>';
+                        props: {
+                            ...props,
+                            children
+                        }
+                    });
+                    return '<span id="' + id + '">' + children + '</span>';
                 }
             } else {
-                newValue = value;
+                newValue = value as PrimitiveType;
             }
             retParams[key] = newValue;
         }
-
-        console.log('get processed params', retParams);
 
         return retParams;
 
     }
 
     const i18n = getContext<i18nService>('i18n');
-    $: locale = i18n.locale;
+    const locale = i18n.locale;
     const strings = i18n.strings;
 
-    let message = setValues();
-    let mounted = false;
+    let message = getMessage(getParamsForBackend());
 
-    function setValues() {
-        const processedParams = getProcessedParams();
+    function getMessage(processedParams: Record<string, ParamValue>) {
         const string = getStringByKey($strings, key);
         if (string) {
             const formatter = new IntlMessageFormat(string, $locale);
-            console.log('message taken')
             return formatter.format(processedParams) as string;
         }
         return '';
     }
-
-    // setValues();
-    /* $: {
-        params, $strings, $locale;
-        setValues();
-        // bindComponents();
-    } */
     
-    let el: HTMLElement;
 
     function bindComponents() {
-        for (let [id, binding] of Object.entries(componentBindings)) {
+        for (let [id, binding] of componentBindings) {
             const el = document.getElementById(id);
-            console.log(id, el, 'found');
             if (el) {
                 el.innerHTML = '';
                 new binding.component({
                     target: el,
                     hydrate: true,
-                    props: {
-                        children: binding.children
-                    }
+                    props: binding.props
                 });
             }
         }
     }
 
-    onMount(() => {
-        console.log('mounted', el.innerHTML)
+    async function renderFrontend() {
+        message = getMessage(getParamsForFrontend());
+        await tick();
+        if (hasComponentParams) bindComponents();
+    }
+
+    let mounted = false;
+
+    $: {
+        if ($locale || $strings) {
+            if (browser && mounted) {
+                renderFrontend();
+            }
+        }
+    }
+
+    onMount(async () => {
+
         mounted = true;
-        bindComponents();
-    });
+
+        /**
+         * If there are components,
+         * we wait for the tick, then bind the components
+         */
+        if (hasComponentParams) {
+            renderFrontend();
+        }
+
+    })
     
 </script>
 
-<span bind:this={el}>
-    {@html message}
-</span>
+{@html message}

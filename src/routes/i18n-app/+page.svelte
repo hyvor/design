@@ -7,18 +7,15 @@
 <ChangeButton />
 
 <div style="margin-top:20px;">
-    <!-- <div>
+    <div>
         <T key="welcome" />
     </div>
     <div>
         <T key="by" params={{name: 'Supun'}} />
-    </div> -->
+    </div>
     <div>
         <T key="advanced" params={{
-            a: (chunks) => {
-                return PricingLink;
-                return 'hi!';
-            }
+            a: {component: PricingLink}
         }} />
     </div>
 </div>

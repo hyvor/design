@@ -1,3 +1,4 @@
+import { deepmerge } from "deepmerge-ts";
 import { getContext } from "svelte";
 import { writable } from "svelte/store";
 
@@ -12,7 +13,6 @@ interface Language {
 
 export class i18nService {
     
-    // private current : string;
     private languages : Language[] = [];
 
     public DEFAULT_LOCALE = 'en';
@@ -21,8 +21,11 @@ export class i18nService {
     public strings = writable({});
 
     public stringsCache = new Map<string, Record<string, any>>();
+    public defaultStrings: Record<string, any>;
 
     constructor(defaultStrings: Record<string, any>, languages: Record<string, i18nLoaderType>) {
+
+        this.defaultStrings = defaultStrings;
 
         this.strings.set(defaultStrings);
         this.stringsCache.set(this.DEFAULT_LOCALE, defaultStrings);
@@ -38,17 +41,25 @@ export class i18nService {
 
     }
 
+    setStrings(code: string) {
+        const defaultStrings = this.defaultStrings;
+        const strings = this.stringsCache.get(code) || {};
+
+        const merged = deepmerge(defaultStrings, strings);
+        this.strings.set(merged);
+    }
+
     setLocale(code: string) {
         this.locale.set(code);
 
         if (this.stringsCache.has(code)) {
-            this.strings.set(this.stringsCache.get(code)!);
+            this.setStrings(code);
+        } else {
+            this.languageByCode(code)?.loader().then(({default: strings}) => {
+                this.stringsCache.set(code, strings);
+                this.setStrings(code);
+            })
         }
-
-        this.languageByCode(code)?.loader().then(strings => {
-            this.stringsCache.set(code, strings);
-            this.strings.set(strings);
-        })
     }
 
     register(code: string, name: string, loader: i18nLoaderType, isDefault = false) {
@@ -67,14 +78,6 @@ export class i18nService {
     languageByCode(code: string) : Language | undefined {
         return this.languages.find(l => l.code === code)
     }
-
-    getCurrent() {
-        // return this.languageByCode(this.current);
-    }
-
-    /* async load(code: string) {
-        return (await this.languageByCode(code)?.loader()).default;
-    } */
 
 }
 

@@ -1,5 +1,10 @@
 {
     "welcome": "Welcome, everyone!",
     "by": "by {name}",
-    "advanced": "advanced <a>settings</a>"
+    "advanced": "advanced <a>settings</a>",
+    "dates": {
+        "start": "{date, date, medium}"
+    },
+    "price": "The price is {price, number, :: compact-short currency/EUR}",
+    "users": "{count, plural, one {# user} other {# users}}"
 }

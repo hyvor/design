@@ -2,7 +2,7 @@
     import { getContext, type ComponentType, onMount, tick, afterUpdate } from "svelte";
 	import { getStringByKey, i18nService } from './i18n.js';
     import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
-  import { browser } from "$app/environment";
+    import { browser } from "$app/environment";
 
     type ComponentDeclaration = {
         component: ComponentType,
@@ -131,10 +131,9 @@
     let mounted = false;
 
     $: {
-        if ($locale || $strings) {
-            if (browser && mounted) {
-                renderFrontend();
-            }
+        $locale, $strings, params;
+        if (browser && mounted) {
+            renderFrontend();
         }
     }
 

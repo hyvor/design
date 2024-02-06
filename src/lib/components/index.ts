@@ -78,3 +78,4 @@ export { default as InternationalizationProvider } from './Internationalization/
 export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
 export { default as T } from './Internationalization/T.svelte';
 export { type Language as InternationalizationLanguage, InternationalizationService } from './Internationalization/i18n.js';
+export { t } from './Internationalization/t.js';

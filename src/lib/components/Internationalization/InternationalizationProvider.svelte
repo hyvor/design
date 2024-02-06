@@ -4,8 +4,11 @@
 
     export let languages : Language[];
     const i18n = new InternationalizationService(languages);
+    const locale = i18n.locale;
     setContext('i18n', i18n);
 
 </script>
 
-<slot />
+{#key $locale}
+    <slot />
+{/key}

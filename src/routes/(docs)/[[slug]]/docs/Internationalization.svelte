@@ -303,6 +303,35 @@
     Components are rendered only when the frontend is hydrated. In SSR, only the strings are rendered.
 </Callout>
 
+<h3 id="t">
+    t Function
+</h3>
+
+<p>
+    There is also a <code>t</code> utility function that can be used to get translated strings in the code.
+</p>
+
+<CodeBlock code={`
+    const title = t('home.title')
+    const welcome = t('welcome', { name: 'John' })
+`} language="ts"></CodeBlock>
+
+<p>
+    The <code>t</code> function depends on the Svelte <code>getContext</code> function. So, it can only be used in Svelte Components or any typescript functions that are called in the component top-level. If you want to use it in other places, send the <code>i18n</code> context to the function.
+</p>
+
+<CodeBlock code={`
+    import { getContext } from 'svelte';
+
+    const i18n = getContext('i18n');
+
+    onMount(() => {
+        const title = t('home.title', {}, i18n)
+        const welcome = t('welcome', { name: 'John' }, i18n)
+    })
+
+`} language="ts"></CodeBlock>
+
 <!-- <h2 id="">
     Scenarios
 </h2>

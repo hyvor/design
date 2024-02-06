@@ -18,7 +18,7 @@ interface LanguageWithLoader extends LanguageBase {
 }
 export type Language = LanguageWithStrings | LanguageWithLoader;
 
-export class i18nService {
+export class InternationalizationService {
     
     public languages : LanguageWithLoader[] = [];
 

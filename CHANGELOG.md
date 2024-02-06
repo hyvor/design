@@ -1,3 +1,6 @@
+## 0.0.53 - 2024-02-06
+- Added i18n
+
 ## 0.0.52 - 2024-01-31
 - Mobile-friendly docs
 - Table of Contents - Docs

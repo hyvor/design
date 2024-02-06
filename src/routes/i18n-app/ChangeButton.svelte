@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { i18nService } from './../../lib/components/Internationalization/i18n.js';
+	import { InternationalizationService } from './../../lib/components/Internationalization/i18n.js';
     import Button from "$lib/components/Button/Button.svelte";
     import { getContext } from 'svelte';
 
-    const i18n = getContext<i18nService>('i18n');
+    const i18n = getContext<InternationalizationService>('i18n');
     const locale = i18n.locale;
 
     function handleClick() {

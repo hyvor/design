@@ -2,7 +2,7 @@
     import { getContext, type ComponentProps, type ComponentType } from "svelte";
     import Dropdown from "../Dropdown/Dropdown.svelte";
     import Button from "../Button/Button.svelte";
-    import { type Language, type i18nService } from "./i18n.js";
+    import { type Language, type InternationalizationService } from "./i18n.js";
     import ActionList from "../ActionList/ActionList.svelte";
     import ActionListItem from "../ActionList/ActionListItem.svelte";
     import Text from "../Text/Text.svelte";
@@ -15,7 +15,7 @@
     export let icon = false;
     export let size: 'medium' | 'small' = 'medium';
 
-    const i18n = getContext<i18nService>('i18n');
+    const i18n = getContext<InternationalizationService>('i18n');
     const currentLanguage = i18n ? i18n.localeLanguage : undefined;
 
     let show = false;

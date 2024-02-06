@@ -1,6 +1,6 @@
 <script lang="ts">
     import { getContext, type ComponentType, onMount, tick, afterUpdate } from "svelte";
-	import { getStringByKey, i18nService } from './i18n.js';
+	import { getStringByKey, InternationalizationService } from './i18n.js';
     import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
     import { browser } from "$app/environment";
 
@@ -92,7 +92,7 @@
 
     }
 
-    const i18n = getContext<i18nService>('i18n');
+    const i18n = getContext<InternationalizationService>('i18n');
     const locale = i18n.locale;
     const strings = i18n.strings;
 

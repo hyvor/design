@@ -1,15 +1,15 @@
 <script lang="ts">
-	import Modal from './../../../lib/components/Modal/Modal.svelte';
-    import Button from './../../../lib/components/Button/Button.svelte';
+	import Modal from '$lib/components/Modal/Modal.svelte';
+    import Button from '$lib/components/Button/Button.svelte';
     import Table from "$lib/components/Table/Table.svelte";
     import TableRow from "$lib/components/Table/TableRow.svelte";
-    import CodeBlock from "./../../../lib/components/CodeBlock/CodeBlock.svelte";
+    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
-    import toast from './../../../lib/components/Toast/toast.js';
-    import TabNavItem from "../../../lib/components/TabNav/TabNavItem.svelte";
+    import toast from '$lib/components/Toast/toast.js';
+    import TabNavItem from "$lib/components/TabNav/TabNavItem.svelte";
     import { IconLink45deg, IconSearch } from "@hyvor/icons";
-    import TabNav from "../../../lib/components/TabNav/TabNav.svelte";
-    import { confirm } from './../../../lib/components/Modal/confirm.js';
+    import TabNav from "$lib/components/TabNav/TabNav.svelte";
+    import { confirm } from '$lib/components/Modal/confirm.js';
     import ConfirmContent1 from "./Modal/ConfirmContent1.svelte";
 
     let show1 = false;

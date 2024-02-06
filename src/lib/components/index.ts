@@ -72,3 +72,9 @@ export { default as IconMessage } from './IconMessage/IconMessage.svelte';
 
 // directives
 export { clickOutside } from './directives/clickOutside.js';
+
+// i18n
+export { default as InternationalizationProvider } from './Internationalization/InternationalizationProvider.svelte';
+export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
+export { default as T } from './Internationalization/T.svelte';
+export { type Language as InternationalizationLanguage, InternationalizationService } from './Internationalization/i18n.js';

@@ -1,45 +1,69 @@
 <script lang="ts">
-	import IconButton from './../IconButton/IconButton.svelte';
-    import Box from '$lib/components/Box/Box.svelte';
-    import { IconCaretUp } from '@hyvor/icons';
-    import { page } from '$app/stores';
+    import { getContext, type ComponentProps, type ComponentType } from "svelte";
+    import Dropdown from "../Dropdown/Dropdown.svelte";
+    import Button from "../Button/Button.svelte";
+    import { type Language, type InternationalizationService } from "./i18n.js";
+    import ActionList from "../ActionList/ActionList.svelte";
+    import ActionListItem from "../ActionList/ActionListItem.svelte";
+    import Text from "../Text/Text.svelte";
+    import { IconCaretDown } from "@hyvor/icons";
+  import IconButton from "../IconButton/IconButton.svelte";
 
-    const i18n = $page.data.i18n
+    export let position: ComponentProps<Dropdown>['position'] = 'bottom';
+    export let align: ComponentProps<Dropdown>['align'] = 'start';
+    export let caret: ComponentType = IconCaretDown;
+    export let icon = false;
+    export let size: 'medium' | 'small' = 'medium';
+
+    const i18n = getContext<InternationalizationService>('i18n');
+    const currentLanguage = i18n ? i18n.localeLanguage : undefined;
+
+    let show = false;
+
+    function handleClick(language: Language) {
+        i18n.setLocale(language.code);
+        show = false;
+    }
+
 </script>
 
 
-{#if i18n}
-    <div class="language-toggle">
-        <span class="current">
-            <span class="flag">🇫🇷</span>
-            <span class="name">Français (France)</span>
-            <span class="icon"><IconCaretUp size={14} /></span>
+{#if i18n && $currentLanguage}
+
+    <Dropdown bind:show={show} {position} {align}>
+        <span slot="trigger">
+            {#if icon}
+                <IconButton color="input" {size}>
+                    {$currentLanguage.flag}
+                </IconButton>
+            {:else}
+                <Button color="input" {size}>
+                    <span slot="start">{$currentLanguage.flag}</span>
+                    {$currentLanguage.name}
+                    <svelte:component slot="end" this={caret} size={12} />
+                </Button>
+            {/if}
         </span>
-    </div>
+        <ActionList slot="content">
+            {#each i18n.languages as language (language.code)}
+                <ActionListItem on:click={() => handleClick(language)}>
+                    <span class="flag" slot="start">{language.flag}</span>
+                    <span class="name">
+                        {language.name}
+                    </span>
+                    <Text small light>
+                        {language.region}
+                    </Text>
+                </ActionListItem>
+            {/each}
+        </ActionList>
+    </Dropdown>
+    
 {/if}
 
 <style>
-    .current {
-        padding: 4px 15px;
-        font-size: 15px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        box-shadow: var(--box-shadow);
-        border-radius: var(--box-radius);
-        background-color: var(--box-background);
-        transition: .2s box-shadow;
-    }
-    .current:hover {
-        box-shadow: var(--box-shadow-dark);
-    }
     .flag {
         margin-right: 6px;
         font-size: 20px;
-    }
-    .icon {
-        margin-left: 8px;
-        display: inline-flex;
-        align-items: center;
     }
 </style>

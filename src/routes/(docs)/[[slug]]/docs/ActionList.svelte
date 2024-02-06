@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Text from './../../../lib/components/Text/Text.svelte';
-	import ActionListGroup from './../../../lib/components/ActionList/ActionListGroup.svelte';
-	import ActionListItem from './../../../lib/components/ActionList/ActionListItem.svelte';
+	import Text from '$lib/components/Text/Text.svelte';
+	import ActionListGroup from '$lib/components/ActionList/ActionListGroup.svelte';
+	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
     import CodeResult from "./Helper/CodeResult.svelte";
     import Table from "$lib/components/Table/Table.svelte";

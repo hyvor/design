@@ -1,13 +1,13 @@
 <script lang="ts">
-	import TabNavItem from './../../../lib/components/TabNav/TabNavItem.svelte';
-	import TabNav from './../../../lib/components/TabNav/TabNav.svelte';
+	import TabNavItem from '$lib/components/TabNav/TabNavItem.svelte';
+	import TabNav from '$lib/components/TabNav/TabNav.svelte';
     import CodeResult from './Helper/CodeResult.svelte';
     import { IconGear, IconSearchHeart, IconLink45deg } from '@hyvor/icons';
-    import Tag from './../../../lib/components/Tag/Tag.svelte';
-    import CodeBlock from './../../../lib/components/CodeBlock/CodeBlock.svelte';
-    import Table from './../../../lib/components/Table/Table.svelte';
-    import TableRow from './../../../lib/components/Table/TableRow.svelte';
-    import Button from "../../../lib/components/Button/Button.svelte";
+    import Tag from '$lib/components/Tag/Tag.svelte';
+    import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
+    import Table from '$lib/components/Table/Table.svelte';
+    import TableRow from '$lib/components/Table/TableRow.svelte';
+    import Button from "$lib/components/Button/Button.svelte";
 
     let active1 = 'settings'
 </script>

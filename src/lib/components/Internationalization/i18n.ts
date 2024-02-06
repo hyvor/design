@@ -1,27 +1,89 @@
-type LoaderType = () => Promise<any>;
+import { deepmerge } from "deepmerge-ts";
+import { writable, type Readable, type Writable, derived } from "svelte/store";
 
-interface Language {
-    code: string,
+export type i18nLoaderType = () => Promise<any>
+
+interface LanguageBase {
     name: string,
-    loader: LoaderType,
-    default: boolean
+    flag: string,
+    region: string,
+    code: string,
+    default?: boolean
 }
+interface LanguageWithStrings extends LanguageBase {
+    strings: Record<string, any>
+}
+interface LanguageWithLoader extends LanguageBase {
+    loader: i18nLoaderType
+}
+export type Language = LanguageWithStrings | LanguageWithLoader;
 
-export class i18n {
+export class InternationalizationService {
     
-    private current : string;
-    private languages : Language[] = [];
+    public languages : LanguageWithLoader[] = [];
 
-    constructor(current: string) {
-        this.current = current;
+    public locale : Writable<string>;
+    public localeLanguage: Readable<LanguageWithLoader>;
+    public strings = writable({});
+
+    public stringsCache = new Map<string, Record<string, any>>();
+    public defaultStrings: Record<string, any>;
+
+    constructor(languages: Language[]) {
+        
+        const defaultLanguage = languages.find(l => l.default);
+
+        if (!defaultLanguage) {
+            throw new Error('Default language not found');
+        }
+
+        const defaultStrings = (defaultLanguage as LanguageWithStrings).strings || null;
+
+        if (!defaultStrings) {
+            throw new Error('Default strings not found for the default language');
+        }
+
+        this.locale = writable(defaultLanguage.code);
+        this.localeLanguage = derived(this.locale, $locale => this.languageByCode($locale)!);
+
+        this.defaultStrings = defaultStrings;
+
+        this.strings.set(this.defaultStrings);
+        this.stringsCache.set(defaultLanguage.code, this.defaultStrings);
+
+        for (const language of languages) {
+            this.register(language);
+        }
+
     }
 
-    register(code: string, name: string, loader: LoaderType, isDefault = false) {
+    setStrings(code: string) {
+        const defaultStrings = this.defaultStrings;
+        const strings = this.stringsCache.get(code) || {};
+
+        const merged = deepmerge(defaultStrings, strings);
+        this.strings.set(merged);
+    }
+
+    setLocale(code: string) {
+        this.locale.set(code);
+
+        if (this.stringsCache.has(code)) {
+            this.setStrings(code);
+        } else {
+            this.languageByCode(code)?.loader().then(({default: strings}) => {
+                this.stringsCache.set(code, strings);
+                this.setStrings(code);
+            })
+        }
+    }
+
+    register(language: Language) {
         this.languages.push({
-            code,
-            name,
-            loader,
-            default: isDefault
+            ...language,
+            loader: language.hasOwnProperty('strings') ? 
+                () => Promise.resolve((language as LanguageWithStrings).strings) : 
+                (language as LanguageWithLoader).loader,
         });
     }
 
@@ -29,16 +91,24 @@ export class i18n {
         return !!this.languageByCode(code)
     }
 
-    languageByCode(code: string) : Language | undefined {
+    languageByCode(code: string) : LanguageWithLoader | undefined {
         return this.languages.find(l => l.code === code)
     }
 
-    getCurrent() {
-        return this.languageByCode(this.current);
+}
+
+
+export function getStringByKey(messages: Record<string, any>, key: string) {
+    const keys = key.split('.');
+    let value = messages as any;
+
+    for (const key of keys) {
+        if (value && typeof value === 'object' && key in value) {
+            value = value[key];
+        } else {
+            return undefined; // Key not found or value is not an object
+        }
     }
 
-    async load(code: string) {
-        return (await this.languageByCode(code)?.loader()).default;
-    }
-
+    return value as string;
 }

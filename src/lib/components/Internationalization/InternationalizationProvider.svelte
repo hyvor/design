@@ -1,8 +1,11 @@
 <script lang="ts">
-    import { onMount, setContext } from "svelte";
+    import { setContext } from "svelte";
+    import { InternationalizationService, type Language } from "./i18n.js";
 
-    onMount(() => {
-        setContext('i18n', 'not set');
-    })
+    export let languages : Language[];
+    const i18n = new InternationalizationService(languages);
+    setContext('i18n', i18n);
+
 </script>
 
+<slot />

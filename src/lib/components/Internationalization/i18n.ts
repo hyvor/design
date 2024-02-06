@@ -66,14 +66,14 @@ export class InternationalizationService {
     }
 
     setLocale(code: string) {
-        this.locale.set(code);
-
         if (this.stringsCache.has(code)) {
             this.setStrings(code);
+            this.locale.set(code);
         } else {
             this.languageByCode(code)?.loader().then(({default: strings}) => {
                 this.stringsCache.set(code, strings);
                 this.setStrings(code);
+                this.locale.set(code);
             })
         }
     }

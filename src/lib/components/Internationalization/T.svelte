@@ -3,6 +3,7 @@
 	import { getStringByKey, InternationalizationService } from './i18n.js';
     import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
     import { browser } from "$app/environment";
+    import { getMessage as getMessageBase } from './t.js';
 
     type ComponentDeclaration = {
         component: ComponentType,
@@ -99,12 +100,12 @@
     let message = getMessage(getParamsForBackend());
 
     function getMessage(processedParams: Record<string, ParamValue>) {
-        const string = getStringByKey($strings, key);
-        if (string) {
-            const formatter = new IntlMessageFormat(string, $locale);
-            return formatter.format(processedParams) as string;
-        }
-        return '';
+        return getMessageBase(
+            key,
+            processedParams,
+            $strings,
+            $locale,
+        );
     }
     
 
@@ -131,7 +132,7 @@
     let mounted = false;
 
     $: {
-        $locale, $strings, params;
+        params;
         if (browser && mounted) {
             renderFrontend();
         }

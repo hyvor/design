@@ -1,4 +1,5 @@
 {
     "welcome": "Bonjour",
-    "advanced": "<a>configurations</a> advancées"
+    "advanced": "<a>configurations</a> advancées",
+    "element": "C'est <b>bold</b>"
 }

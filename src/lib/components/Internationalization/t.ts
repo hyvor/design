@@ -15,6 +15,7 @@ export function getMessage(key: string, params: ParamsType, $strings: Record<str
     return '';
 }
 
+export type TParams = Record<string, PrimitiveType>;
 
 export function t(
     key: string, 

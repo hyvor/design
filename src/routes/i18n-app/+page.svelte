@@ -10,12 +10,15 @@
 
     let name = 'Supun';
     let dynamicValue = '';
+    let dynamicValue2 = '';
 
     const i18n = getContext<InternationalizationService>('i18n');
     onMount(() => {
         dynamicValue = 'Loading...';
+        dynamicValue2 = 'Loading...';
         setTimeout(() => {
             dynamicValue = t('welcome', {}, i18n);
+            dynamicValue2 = i18n.t('welcome')
         }, 1000);
     });
 
@@ -31,7 +34,8 @@
     <div>
         <T key="welcome" /> <br />
         { t('welcome') } <br />
-        {dynamicValue}
+        {dynamicValue} <br />
+        {dynamicValue2}
     </div>
     <div>
         <T key="by" params={{name}} />
@@ -52,6 +56,9 @@
     <div>
         <T key="users" params={{ count: 10 }} />
         <T key="users" params={{ count: 1 }} />
+    </div>
+    <div>
+        <T key="element" params={{b: {element: 'b'}}} />
     </div>
 </div>
 

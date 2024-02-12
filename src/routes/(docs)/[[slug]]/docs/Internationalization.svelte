@@ -303,6 +303,28 @@
     Components are rendered only when the frontend is hydrated. In SSR, only the strings are rendered.
 </Callout>
 
+<h3 id="elements">
+    Elements
+</h3>
+
+<p>
+    Similar to components, you can also render HTML elements.
+</p>
+
+<CodeBlock code={`
+    {
+        "withElement": "Please try again with a <b>different email</b>."
+    }
+`} language="json"></CodeBlock>
+
+<p>
+    The following code maps the <code>{'<b>'}</code> in the string to a <code>{'<strong>'}</code> HTML element.
+</p>
+
+<CodeBlock code={`
+    <T key="withElement" params={{b: {element: 'strong'}}} />
+`} language="svelte"></CodeBlock>
+
 <h3 id="t">
     t Function
 </h3>
@@ -328,6 +350,22 @@
     onMount(() => {
         const title = t('home.title', {}, i18n)
         const welcome = t('welcome', { name: 'John' }, i18n)
+    })
+
+`} language="ts"></CodeBlock>
+
+<p>
+    Or, you may use the <code>i18n.t()</code> function for convenience.
+</p>
+
+<CodeBlock code={`
+    import { getContext } from 'svelte';
+
+    const i18n = getContext('i18n');
+
+    onMount(() => {
+        const title = i18n.t('home.title')
+        const welcome = i18n.t('welcome', { name: 'John' })
     })
 
 `} language="ts"></CodeBlock>

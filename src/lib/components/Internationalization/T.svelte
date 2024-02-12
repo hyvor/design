@@ -6,7 +6,8 @@
     import { getMessage as getMessageBase } from './t.js';
 
     type ComponentDeclaration = {
-        component: ComponentType,
+        element?: string,
+        component?: ComponentType,
         props?: Record<string, any>
     }
     type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
@@ -28,16 +29,23 @@
 
         for (let [key, value] of Object.entries(params)) {
             let newValue: ParamValue;
-            if (
-                typeof value === 'object' &&
-                value !== null &&
-                value.hasOwnProperty('component')
-            ) {
-                newValue = (chunks: string | string[]) => {
-                    const children = typeof chunks === 'string' ? chunks : chunks.join('');
-                    return children;
+            if (typeof value === 'object' && value !== null) {
+
+                if (value.hasOwnProperty('component')) {
+                    newValue = (chunks: string | string[]) => {
+                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
+                        return children;
+                    }
+                    hasComponentParams = true;
+                } else if (value.hasOwnProperty('element')) {
+                    newValue = (chunks: string | string[]) => {
+                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
+                        const el = (value as ComponentDeclaration).element;
+                        return `<${el}>${children}</${el}>`
+                    }
                 }
-                hasComponentParams = true;
+
+
             } else {
                 newValue = value as PrimitiveType;
             }
@@ -75,7 +83,7 @@
                         Math.random().toString(36).substring(7) + '-' +
                         Date.now().toString();
                     componentBindings.set(id, {
-                        component,
+                        component: component!,
                         props: {
                             ...props,
                             children

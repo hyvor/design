@@ -6,5 +6,6 @@
         "start": "{date, date, medium}"
     },
     "price": "The price is {price, number, :: compact-short currency/EUR}",
-    "users": "{count, plural, one {# user} other {# users}}"
+    "users": "{count, plural, one {# user} other {# users}}",
+    "element": "This is <b>bold</b>"
 }

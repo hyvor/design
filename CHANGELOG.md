@@ -1,3 +1,7 @@
+## 0.0.55 - 2024-02-12
+- i18n.t() added
+- element support added to i18n strings
+
 ## 0.0.54 - 2024-02-06
 - t() function added for i18n
 

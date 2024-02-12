@@ -1,5 +1,7 @@
 import { deepmerge } from "deepmerge-ts";
+import type { PrimitiveType } from "intl-messageformat";
 import { writable, type Readable, type Writable, derived } from "svelte/store";
+import { t } from "./t.js";
 
 export type i18nLoaderType = () => Promise<any>
 
@@ -93,6 +95,10 @@ export class InternationalizationService {
 
     languageByCode(code: string) : LanguageWithLoader | undefined {
         return this.languages.find(l => l.code === code)
+    }
+
+    t(key: string, params: Record<string, PrimitiveType> = {}) {
+        return t(key, params, this);
     }
 
 }

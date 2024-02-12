@@ -1,10 +1,12 @@
 <script lang="ts">
     import { IconCheckCircleFill, IconExclamationTriangleFill, IconInfoCircleFill } from "@hyvor/icons";
+    import type { AriaRole } from "svelte/elements";
 
     export let state : 'error' | 'warning' | 'success' = 'error';
+    export let role: AriaRole | undefined = 'alert';
 </script>
 
-<div class="validation {state}">
+<div class="validation {state}" {role} {...$$restProps}>
     <div class="icon">
 
         {#if state === 'error'}

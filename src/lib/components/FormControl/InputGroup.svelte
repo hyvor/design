@@ -11,7 +11,7 @@
 </script>
 
 
-<div class="checkbox-group" style:gap={gap + "px"}>
+<div class="checkbox-group" style:gap={gap + "px"} {...$$restProps}>
     <slot />
 </div>
 

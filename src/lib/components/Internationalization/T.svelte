@@ -18,6 +18,13 @@
 
     let hasComponentParams = false;
 
+    function getElementFunc(el: string) {
+        return (chunks: string | string[]) => {
+            const children = typeof chunks === 'string' ? chunks : chunks.join('');
+            return `<${el}>${children}</${el}>`
+        }
+    }
+
     /**
      * In backend processing (SSR), we only render the strings inside it
      * The components are not rendered.
@@ -38,13 +45,8 @@
                     }
                     hasComponentParams = true;
                 } else if (value.hasOwnProperty('element')) {
-                    newValue = (chunks: string | string[]) => {
-                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
-                        const el = (value as ComponentDeclaration).element;
-                        return `<${el}>${children}</${el}>`
-                    }
+                    newValue = getElementFunc((value as any).element as string);
                 }
-
 
             } else {
                 newValue = value as PrimitiveType;
@@ -70,27 +72,29 @@
 
         for (let [key, value] of Object.entries(params)) {
             let newValue: ParamValue;
-            if (
-                typeof value === 'object' &&
-                value !== null &&
-                value.hasOwnProperty('component')
-            ) {
-                const { component, props } = value as ComponentDeclaration;
+            if (typeof value === 'object' && value !== null) {
 
-                newValue = (chunks: string | string[]) => {
-                    const children = typeof chunks === 'string' ? chunks : chunks.join('');
-                    const id = key + '-' +
-                        Math.random().toString(36).substring(7) + '-' +
-                        Date.now().toString();
-                    componentBindings.set(id, {
-                        component: component!,
-                        props: {
-                            ...props,
-                            children
-                        }
-                    });
-                    return '<span id="' + id + '">' + children + '</span>';
+                if (value.hasOwnProperty('component')) {
+                    const { component, props } = value as ComponentDeclaration;
+
+                    newValue = (chunks: string | string[]) => {
+                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
+                        const id = key + '-' +
+                            Math.random().toString(36).substring(7) + '-' +
+                            Date.now().toString();
+                        componentBindings.set(id, {
+                            component: component!,
+                            props: {
+                                ...props,
+                                children
+                            }
+                        });
+                        return '<span id="' + id + '">' + children + '</span>';
+                    }
+                } else if (value.hasOwnProperty('element')) {
+                    newValue = getElementFunc((value as any).element as string);
                 }
+
             } else {
                 newValue = value as PrimitiveType;
             }

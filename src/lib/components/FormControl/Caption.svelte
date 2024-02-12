@@ -2,7 +2,7 @@
     export let bold = false;
 </script>
 
-<div class="caption" class:bold>
+<div class="caption" class:bold {...$$restProps}>
     <slot /> 
 </div>
 

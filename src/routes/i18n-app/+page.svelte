@@ -7,12 +7,15 @@
     import ChangeButton from "./ChangeButton.svelte";
     import LanguageToggle from "../../lib/components/Internationalization/LanguageToggle.svelte";
     import TextInput from "../../lib/components/TextInput/TextInput.svelte";
+    import enJson from './locale/en.json';
 
     let name = 'Supun';
     let dynamicValue = '';
     let dynamicValue2 = '';
 
     const i18n = getContext<InternationalizationService>('i18n');
+    const Intl = getContext<InternationalizationService<typeof enJson>>('i18n');
+
     onMount(() => {
         dynamicValue = 'Loading...';
         dynamicValue2 = 'Loading...';
@@ -32,6 +35,7 @@
 
 <div style="margin-top:20px;">
     <div>
+        <Intl.T key="welcome" /> <br />
         <T key="welcome" /> <br />
         { t('welcome') } <br />
         {dynamicValue} <br />

@@ -1,4 +1,8 @@
-## 0.0.56 - 2025-02-12
+## 0.0.57 - 2024-02-20
+- role="dialog" and role="alertdialog" for Modal component
+- id property added to Modal component, with aria-labelledby and aria-describedby props
+
+## 0.0.56 - 2024-02-12
 - role="alert" (default) to Validation component
 - Rest Props sent to other FormControl components
 

@@ -11,9 +11,14 @@
     export let show = false;
     export let title = "";
     export let size : "small" | "medium" | "large" = "medium";
+    export let id: string = 'modal';
+    export let role: 'dialog' | 'alertdialog' = 'alertdialog';
     export let closeOnOutsideClick = true;
     export let closeOnEscape = true;
     export let loading : boolean | string = false;
+
+    const titleId = id + '-title';
+    const descId = id + '-desc';
 
     export let footer : null | Footer = null;
 
@@ -59,11 +64,19 @@
             in:scale={{duration: 100, start: 0.9, opacity: 0.9}}
             out:scale={{duration: 100, start: 0.9, opacity: 0.9}}
             bind:this={innerEl}
+
+            role={role}
+            aria-modal="true"
+            aria-labelledby={titleId}
+            aria-describedby={descId}
         >
 
             <div class="header">
 
-                <div class="title">
+                <div 
+                    class="title"
+                    id={titleId}
+                >
                     {#if $$slots.title}
                         <slot name="title" />
                     {:else}
@@ -82,7 +95,10 @@
 
             </div>
 
-            <div class="content">
+            <div 
+                class="content"
+                id={descId}
+            >
                 <slot /> 
             </div>
 

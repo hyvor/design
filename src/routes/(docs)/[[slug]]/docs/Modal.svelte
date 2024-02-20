@@ -103,6 +103,22 @@
     </TableRow>
 
     <TableRow>
+        <div><code>id</code></div>
+        <div><code>modal</code></div>
+        <div>
+            An id to be used in the aria-labelledby and aria-describedby attributes. Only required if you are using multiple modals at the same time.
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>role</code></div>
+        <div><code>alertdialog</code></div>
+        <div>
+            <code>alertdialog</code> or <code>dialog</code>. Use the latter if the modal is not an alert.
+        </div>
+    </TableRow>
+
+    <TableRow>
         <div><code>closeOnOutsideClick</code></div>
         <div><code>true</code></div>
         <div>

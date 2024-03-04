@@ -1,3 +1,7 @@
+## 0.0.58 - 2024-03-04
+- TextInput input height 100%
+- key param in <T> is now reactive
+
 ## 0.0.57 - 2024-02-20
 - role="dialog" and role="alertdialog" for Modal component
 - id property added to Modal component, with aria-labelledby and aria-describedby props

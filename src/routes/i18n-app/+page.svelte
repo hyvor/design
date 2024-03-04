@@ -22,6 +22,8 @@
         }, 1000);
     });
 
+    let changingKey = 'welcome';
+
 </script>
 
 <ChangeButton />
@@ -59,6 +61,10 @@
     </div>
     <div>
         <T key="element" params={{b: {element: 'b'}}} />
+    </div>
+    <div>
+        <T key={changingKey} />
+        <button style="background-color:#888;" on:click={() => changingKey = 'welcome2'}>Change key</button>
     </div>
 </div>
 

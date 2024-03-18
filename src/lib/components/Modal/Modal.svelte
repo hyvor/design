@@ -7,6 +7,7 @@
 	import { fade, scale } from 'svelte/transition';
     import { onMount, tick } from "svelte";
     import Loader from "../Loader/Loader.svelte";
+    import { createEventDispatcher } from "svelte";
 
     export let show = false;
     export let title = "";
@@ -17,6 +18,8 @@
     export let closeOnEscape = true;
     export let loading : boolean | string = false;
 
+    const dispatch = createEventDispatcher();
+
     const titleId = id + '-title';
     const descId = id + '-desc';
 
@@ -24,6 +27,11 @@
 
     let wrapEl: HTMLDivElement;
     let innerEl: HTMLDivElement;
+
+    function handleCancel() {
+        show = false;   
+        dispatch("cancel");
+    }
 
     async function setFlex() {
         await tick();
@@ -87,7 +95,7 @@
                 <div class="close-wrap">
                     <IconButton
                         variant="invisible"
-                        on:click={() => show = false}
+                        on:click={handleCancel}
                     >
                         <IconX size={25} />
                     </IconButton>

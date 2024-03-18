@@ -23,6 +23,7 @@
     let show6 = false;
     
     let show7 = false;
+    let show9 = false;
     let loading7 : string | false = false;
 
     let show8 = false;

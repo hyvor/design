@@ -16,6 +16,52 @@
     export let button = {} as HTMLButtonElement | HTMLAnchorElement;
 </script>
 
+<!-- <svelte:element 
+    this={as}
+    class="button {size} {color} {variant} {align}"
+    class:block={block}
+
+    on:keyup
+    on:keydown
+    on:keypress
+    on:focus
+    on:blur
+    on:click
+    on:mouseover
+    on:mouseenter
+    on:mouseleave
+    on:change
+
+    role="button"
+    tabindex="0"
+
+    bind:this={button}
+
+    {...$$restProps}
+>
+
+    <span class="button-content">
+
+        {#if $$slots.start}
+            <span class="slot start"><slot name="start" /></span>
+        {/if}
+
+        <slot></slot>
+
+        {#if $$slots.end}
+            <span class="slot end"><slot name="end" /></span>
+        {/if}
+
+    </span>
+
+    {#if $$slots.action}
+        <span class="action">
+            <slot name="action" />
+        </span>
+    {/if}
+
+</svelte:element> -->
+
 <svelte:element 
     this={as}
     class="button {size} {color} {variant} {align}"
@@ -62,18 +108,25 @@
 
 </svelte:element>
 
+
 <style lang="scss">
 
     .slot.start {
         margin-right: 6px;
         display: inline-flex;
         align-items: center;
+        &:empty {
+            margin-right: 0;
+        }
     }
 
     .slot.end {
         margin-left: 6px;
         display: inline-flex;
         align-items: center;
+        &:empty {
+            margin-left: 0;
+        }
     }
 
     .button {

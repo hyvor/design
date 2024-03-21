@@ -23,6 +23,7 @@
         <Radio name="radio" value="1" bind:group={option}>Option 1</Radio>
         <Radio name="radio" value="2" bind:group={option}>Option 2</Radio>
         <Radio name="radio" value="3" bind:group={option}>Option 3</Radio>
+        <Radio name="radio" value="4" bind:group={option} disabled>Option 4</Radio>
     </InputGroup>
 `} />
 
@@ -31,6 +32,7 @@
         <Radio name="radio" value="1" bind:group={opt1}>Option 1</Radio>
         <Radio name="radio" value="2" bind:group={opt1}>Option 2</Radio>
         <Radio name="radio" value="3" bind:group={opt1}>Option 3</Radio>
+        <Radio name="radio" value="4" bind:group={opt1} disabled>Option 4</Radio>
     </InputGroup>
 </CodeResult>
 

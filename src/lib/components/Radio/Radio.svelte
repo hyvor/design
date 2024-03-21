@@ -2,18 +2,22 @@
     /* for whatever reason simply passing value with rest props doesn't work */
     export let value: number|string = '';
     export let group: number|string = '';
+    export let disabled: boolean = false;
 
     export let input = {} as HTMLInputElement;
 </script>
 
-<label>
+<label
+    class:disabled={disabled}
+>
 
     <input
         type="radio"
-
+        disabled={disabled}
         bind:group
         bind:this={input}
         {value}
+
 
         on:keyup
         on:keydown
@@ -36,7 +40,7 @@
 </label>
 
 
-<style>
+<style lang="scss">
 
     label {
         position: relative;
@@ -46,6 +50,14 @@
         height: 20px;
         display: flex;
         align-items: center;
+    }
+
+    label.disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        .checkmark {
+            box-shadow: none!important;
+        }
     }
 
     input {

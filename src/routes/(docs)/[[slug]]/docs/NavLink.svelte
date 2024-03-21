@@ -75,6 +75,7 @@
     <NavLink href="/" active>Overview</NavLink>
     <NavLink href="/">Comments</NavLink>
     <NavLink href="/">Pages</NavLink>
+    <NavLink href="/" disabled>Disabled</NavLink>
 `} />
 
 

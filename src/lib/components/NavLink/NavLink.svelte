@@ -1,12 +1,13 @@
 <script lang="ts">
     export let href : string;
     export let active : boolean = false;
+    export let disabled : boolean = false;
 </script>
 
 <a 
     {href}
     class:active={active}
-
+    class:disabled={disabled}
     on:keyup
     on:keydown
     on:keypress
@@ -59,6 +60,15 @@
     a.active {
         background-color: var(--accent-lightest);
         border-left: 3px solid var(--accent);
+    }
+
+    a.disabled {
+        cursor: not-allowed;
+        opacity: .5;
+
+        /* hover */
+        background-color: transparent;
+        
     }
 
     .start, .middle, .end {

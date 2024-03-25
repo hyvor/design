@@ -77,5 +77,9 @@ export { clickOutside } from './directives/clickOutside.js';
 export { default as InternationalizationProvider } from './Internationalization/InternationalizationProvider.svelte';
 export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
 export { default as T } from './Internationalization/T.svelte';
-export { type Language as InternationalizationLanguage, InternationalizationService } from './Internationalization/i18n.js';
+export { 
+    type Language as InternationalizationLanguage, 
+    type i18nStrings,
+    InternationalizationService
+} from './Internationalization/i18n.js';
 export { t } from './Internationalization/t.js';

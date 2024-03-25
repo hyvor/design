@@ -1,23 +1,24 @@
 <script>
-	import DocImage from '$lib/marketing/Docs/Content/DocsImage.svelte';
-    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
+  import DocImage from "$lib/marketing/Docs/Content/DocsImage.svelte";
+  import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
 
-    import img from './img.avif';
+  import img from "./img.avif";
+  import CodeResult from "../Helper/CodeResult.svelte";
+  import NavCategory from "$lib/marketing/Docs/Nav/NavCategory.svelte";
+  import IconButton from "../IconButton.svelte";
+  import { IconChat } from "@hyvor/icons";
 </script>
 
 <h1>Docs</h1>
 
-<p>
-    There are a few components to create documentation pages.
-</p>
+<p>There are a few components to create documentation pages.</p>
 
 <h2 id="structure">Docs Structure</h2>
 
-<p>
-    Create a route structure like this:
-</p>
+<p>Create a route structure like this:</p>
 
-<CodeBlock code={`
+<CodeBlock
+  code={`
     src/routes
     ├── docs
     |   ├── [[slug]]
@@ -27,13 +28,15 @@
     |   |   ├── +page.svelte
     |   |   ├── +page.ts
     |   |   ├── docs.ts
-`} />
+`}
+/>
 
 <p>
-    First, define the docs categories and pages in the <code>docs.ts</code> file.
+  First, define the docs categories and pages in the <code>docs.ts</code> file.
 </p>
 
-<CodeBlock code={`
+<CodeBlock
+  code={`
     export const categories = [
         {
             name: 'Getting Started',
@@ -62,13 +65,16 @@
         name: string,
         component: ComponentType
     }
-`} language="ts" />
+`}
+  language="ts"
+/>
 
 <p>
-    Then, load the docs content in the <code>page.ts</code> file.
+  Then, load the docs content in the <code>page.ts</code> file.
 </p>
 
-<CodeBlock code={`
+<CodeBlock
+  code={`
     import { error } from "@sveltejs/kit";
     import { pages } from "./docs";
 
@@ -86,14 +92,19 @@
             component: page.component
         }
     }
-`} language="ts" />
+`}
+  language="ts"
+/>
 
 <p>
-    Then, design the layout in the <code>+page.svelte</code> file using the data from the previous step.
+  Then, design the layout in the <code>+page.svelte</code> file using the data from
+  the previous step.
 </p>
 
-<CodeBlock code={`
-    <` + `script lang="ts">
+<CodeBlock
+  code={`
+    <` +
+    `script lang="ts">
         import { 
             Docs, 
             DocsNav as Nav, 
@@ -103,14 +114,17 @@
         } from '@hyvor/design/marketing';
         import { categories } from "./docs";
         export let data;
-    </` + `script>
+    </` +
+    `script>
     <Docs>
         <Nav slot="nav">
             {#each categories as category}
                 <NavCategory name={category.name}>
                     {#each category.pages as page}
                         <NavItem 
-                            href={page.slug === '' ? '/docs' : ` + '`/docs/${page.slug}`' + `}
+                            href={page.slug === '' ? '/docs' : ` +
+    "`/docs/${page.slug}`" +
+    `}
                         >{page.name}</NavItem>
                     {/each}
                 </NavCategory>
@@ -120,25 +134,32 @@
             <svelte:component this={data.component} />
         </Content>
     </Docs>
-`} language="svelte" />
+`}
+  language="svelte"
+/>
 
-<h2 id="content-components">
-    Content Components
-</h2>
+<h2 id="content-components">Content Components</h2>
 
-<p>
-    There are a few components to create content pages.
-</p>
+<p>There are a few components to create content pages.</p>
 
 <h3 id="image">DocsImage</h3>
 
-<CodeBlock code={`
-    <` + `script>
+<CodeBlock
+  code={`
+    <` +
+    `script>
         import { DocsImage } from '@hyvor/design/marketing';
         import img from './img.png';
     </script>
 
     <DocsImage src={img} alt="Desert" />
-`} />
+`}
+/>
 
 <DocImage src={img} alt="img" />
+
+<CodeResult>
+  <NavCategory name="Getting Started">
+    <IconChat slot="start" />
+  </NavCategory>
+</CodeResult>

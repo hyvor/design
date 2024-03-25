@@ -62,18 +62,25 @@
 
 </svelte:element>
 
+
 <style lang="scss">
 
     .slot.start {
         margin-right: 6px;
         display: inline-flex;
         align-items: center;
+        &:empty {
+            margin-right: 0;
+        }
     }
 
     .slot.end {
         margin-left: 6px;
         display: inline-flex;
         align-items: center;
+        &:empty {
+            margin-left: 0;
+        }
     }
 
     .button {

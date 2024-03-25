@@ -75,6 +75,7 @@
     <NavLink href="/" active>Overview</NavLink>
     <NavLink href="/">Comments</NavLink>
     <NavLink href="/">Pages</NavLink>
+    <NavLink href="/" disabled>Disabled</NavLink>
 `} />
 
 
@@ -85,6 +86,8 @@
                 <NavLink href ="javascript:void(0)" active={active === 'overview'} on:click={() => active = 'overview'}>Overview</NavLink>
                 <NavLink href="javascript:void(0)" active={active === 'comments'} on:click={() => active = 'comments'}>Comments</NavLink>
                 <NavLink href="javascript:void(0)" active={active === 'pages'} on:click={() => active = 'pages'}>Pages</NavLink>
+                <!-- disabled state -->
+                <NavLink href="javascript:void(0)" disabled>Disabled</NavLink>
             </div>
         </Box>
     </CodeResult>

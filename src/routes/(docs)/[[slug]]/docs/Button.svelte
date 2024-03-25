@@ -368,8 +368,6 @@ All other properties will be forwarded to the underlying element.
     </Button>
 </CodeResult>
 
-<!--Code example for disabled button -->
-
 <h3>Disabled Button</h3>
 
 <p>

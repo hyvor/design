@@ -8,7 +8,7 @@
     import LanguageToggle from "../../lib/components/Internationalization/LanguageToggle.svelte";
     import TextInput from "../../lib/components/TextInput/TextInput.svelte";
     import type enJson from "./locale/en.json";
-    import type { DotNotation } from "$lib/components/Internationalization/types.js";
+    import type { ToDotPaths } from "$lib/components/Internationalization/types.js";
 
     let name = "Supun";
     let dynamicValue = "";
@@ -26,7 +26,7 @@
         }, 1000);
     });
 
-    let changingKey = "welcome" as DotNotation<typeof enJson>;
+    let changingKey = "welcome" as ToDotPaths<typeof enJson>;
 </script>
 
 <ChangeButton />

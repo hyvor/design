@@ -1,21 +1,18 @@
 
-export type i18nStrings = {
-    [key: string]: string | i18nStrings;
+export type I18nStrings = {
+    [key: string]: string | I18nStrings;
 };
 
 
 
 // DOT NOTATION
 
-type PathsToStringProps<T> = T extends string ? [] : {
-    [K in Extract<keyof T, string>]: [K, ...PathsToStringProps<T[K]>]
-}[Extract<keyof T, string>];
-
-type Join<T extends string[], D extends string> =
-    T extends [] ? never :
-    T extends [infer F] ? F :
-    T extends [infer F, ...infer R] ?
-    F extends string ? 
-    `${F}${D}${Join<Extract<R, string[]>, D>}` : never : string;  
-
-export type DotNotation<T extends i18nStrings> = Join<PathsToStringProps<T>, ".">
+export type ToDotPaths<T> = T extends object ? { [K in keyof T]:
+    `${Exclude<K, symbol>}${"" | `.${ToDotPaths<T[K]>}`}`
+}[keyof T] : never;
+    
+export type FromDotPath<T, K extends string> =
+    K extends keyof T ? T[K] :
+    K extends `${infer K0}.${infer KR}` ?
+    K0 extends keyof T ? FromDotPath<T[K0], KR> : never
+: never;

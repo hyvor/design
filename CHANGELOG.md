@@ -1,4 +1,8 @@
-## 0.0.60 - 2024-0418
+## 0.0.61 - 2024-04-18
+
+-   Improved dot types for I18n
+
+## 0.0.60 - 2024-04-18
 
 -   I18n type safety, dot notation, etc.
 -   Nav category icon

@@ -1,29 +1,36 @@
-<script lang="ts" generics="StringsT extends i18nStrings">
-    import { type DotNotation, type i18nStrings } from "./types.js";
-    import { getContext, type ComponentType, onMount, tick, afterUpdate } from "svelte";
-	import { getStringByKey, InternationalizationService } from './i18n.js';
-    import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
+<script lang="ts" generics="StringsT extends I18nStrings">
+    import { type ToDotPaths, type I18nStrings } from "./types.js";
+    import {
+        getContext,
+        type ComponentType,
+        onMount,
+        tick,
+        afterUpdate,
+    } from "svelte";
+    import { getStringByKey, InternationalizationService } from "./i18n.js";
+    import { IntlMessageFormat, type PrimitiveType } from "intl-messageformat";
     import { browser } from "$app/environment";
-    import { getMessage as getMessageBase } from './t.js';
+    import { getMessage as getMessageBase } from "./t.js";
 
     type ComponentDeclaration = {
-        element?: string,
-        component?: ComponentType,
-        props?: Record<string, any>
-    }
+        element?: string;
+        component?: ComponentType;
+        props?: Record<string, any>;
+    };
     type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
     type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 
-    export let key: DotNotation<StringsT>;
+    export let key: ToDotPaths<StringsT>;
     export let params: InputParams = {};
 
     let hasComponentParams = false;
 
     function getElementFunc(el: string) {
         return (chunks: string | string[]) => {
-            const children = typeof chunks === 'string' ? chunks : chunks.join('');
-            return `<${el}>${children}</${el}>`
-        }
+            const children =
+                typeof chunks === "string" ? chunks : chunks.join("");
+            return `<${el}>${children}</${el}>`;
+        };
     }
 
     /**
@@ -37,18 +44,19 @@
 
         for (let [key, value] of Object.entries(params)) {
             let newValue: ParamValue;
-            if (typeof value === 'object' && value !== null) {
-
-                if (value.hasOwnProperty('component')) {
+            if (typeof value === "object" && value !== null) {
+                if (value.hasOwnProperty("component")) {
                     newValue = (chunks: string | string[]) => {
-                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
+                        const children =
+                            typeof chunks === "string"
+                                ? chunks
+                                : chunks.join("");
                         return children;
-                    }
+                    };
                     hasComponentParams = true;
-                } else if (value.hasOwnProperty('element')) {
+                } else if (value.hasOwnProperty("element")) {
                     newValue = getElementFunc((value as any).element as string);
                 }
-
             } else {
                 newValue = value as PrimitiveType;
             }
@@ -57,45 +65,47 @@
 
         return retParams;
     }
-
 
     /**
      * In frontend processing, we render the components
      */
     interface ComponentBinding {
-        component: ComponentType,
-        props: Record<string, any>
+        component: ComponentType;
+        props: Record<string, any>;
     }
     const componentBindings = new Map<string, ComponentBinding>();
     function getParamsForFrontend() {
-
         let retParams: Record<string, ParamValue> = {};
 
         for (let [key, value] of Object.entries(params)) {
             let newValue: ParamValue;
-            if (typeof value === 'object' && value !== null) {
-
-                if (value.hasOwnProperty('component')) {
+            if (typeof value === "object" && value !== null) {
+                if (value.hasOwnProperty("component")) {
                     const { component, props } = value as ComponentDeclaration;
 
                     newValue = (chunks: string | string[]) => {
-                        const children = typeof chunks === 'string' ? chunks : chunks.join('');
-                        const id = key + '-' +
-                            Math.random().toString(36).substring(7) + '-' +
+                        const children =
+                            typeof chunks === "string"
+                                ? chunks
+                                : chunks.join("");
+                        const id =
+                            key +
+                            "-" +
+                            Math.random().toString(36).substring(7) +
+                            "-" +
                             Date.now().toString();
                         componentBindings.set(id, {
                             component: component!,
                             props: {
                                 ...props,
-                                children
-                            }
+                                children,
+                            },
                         });
-                        return '<span id="' + id + '">' + children + '</span>';
-                    }
-                } else if (value.hasOwnProperty('element')) {
+                        return '<span id="' + id + '">' + children + "</span>";
+                    };
+                } else if (value.hasOwnProperty("element")) {
                     newValue = getElementFunc((value as any).element as string);
                 }
-
             } else {
                 newValue = value as PrimitiveType;
             }
@@ -103,34 +113,27 @@
         }
 
         return retParams;
-
     }
 
-    const i18n = getContext<InternationalizationService>('i18n');
+    const i18n = getContext<InternationalizationService>("i18n");
     const locale = i18n.locale;
     const strings = i18n.strings;
 
     let message = getMessage(getParamsForBackend());
 
     function getMessage(processedParams: Record<string, ParamValue>) {
-        return getMessageBase(
-            key,
-            processedParams,
-            $strings,
-            $locale,
-        );
+        return getMessageBase(key, processedParams, $strings, $locale);
     }
-    
 
     function bindComponents() {
         for (let [id, binding] of componentBindings) {
             const el = document.getElementById(id);
             if (el) {
-                el.innerHTML = '';
+                el.innerHTML = "";
                 new binding.component({
                     target: el,
                     hydrate: true,
-                    props: binding.props
+                    props: binding.props,
                 });
             }
         }
@@ -153,7 +156,6 @@
     }
 
     onMount(async () => {
-
         mounted = true;
 
         /**
@@ -163,9 +165,7 @@
         if (hasComponentParams) {
             renderFrontend();
         }
-
-    })
-    
+    });
 </script>
 
 {@html message}

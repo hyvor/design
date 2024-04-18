@@ -80,7 +80,7 @@ export {
     type Language as InternationalizationLanguage,
     InternationalizationService
 } from './Internationalization/i18n.js';
-export { type i18nStrings } from './Internationalization/types.js';
+export { type I18nStrings as i18nStrings } from './Internationalization/types.js';
 
 /**
  * @deprecated

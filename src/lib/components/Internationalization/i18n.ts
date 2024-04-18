@@ -3,7 +3,7 @@ import type { PrimitiveType } from "intl-messageformat";
 import { writable, type Readable, type Writable, derived } from "svelte/store";
 import { t } from "./t.js";
 import T from "./T.svelte";
-import type { DotNotation, i18nStrings } from "./types.js";
+import type { ToDotPaths, I18nStrings } from "./types.js";
 
 export type i18nLoaderType = () => Promise<any>
 
@@ -22,7 +22,7 @@ interface LanguageWithLoader extends LanguageBase {
 }
 export type Language = LanguageWithStrings | LanguageWithLoader;
 
-export class InternationalizationService<StringsT extends i18nStrings = {}> {
+export class InternationalizationService<StringsT extends I18nStrings = I18nStrings> {
     
     public languages : LanguageWithLoader[] = [];
 
@@ -99,7 +99,7 @@ export class InternationalizationService<StringsT extends i18nStrings = {}> {
         return this.languages.find(l => l.code === code)
     }
 
-    t(key: DotNotation<StringsT>, params: Record<string, PrimitiveType> = {}) {
+    t(key: ToDotPaths<StringsT>, params: Record<string, PrimitiveType> = {}) {
         return t(key, params, this);
     }
 

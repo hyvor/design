@@ -20,7 +20,7 @@ class:relative
 
     <span 
         class="trigger"
-        on:click|stopPropagation={() => show = !show}
+        on:click={() => show = !show}
         role="listbox"
         tabindex="0"
         on:keyup={e => {

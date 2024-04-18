@@ -1,26 +1,13 @@
 <script lang="ts">
-    export let state : 'default' | 'error' | 'success' | 'warning' = 'default';
-    export let size : 'small' | 'medium' | 'large' | 'x-small' = 'medium';
-    export let block : boolean = false;
+    export let state: "default" | "error" | "success" | "warning" = "default";
+    export let size: "small" | "medium" | "large" | "x-small" = "medium";
+    export let block: boolean = false;
     export let value: any = undefined;
 
     export let input: HTMLInputElement = {} as HTMLInputElement;
 </script>
 
-
-<span 
-    class="input-wrap state-{state} size-{size}"
-    class:block
-    on:click={() => input.focus()}
-    on:keydown={(e) => {
-        if (e.key === 'Enter') {
-            input.focus();
-        }
-    }}
-    role="textbox"
-    tabindex="0"
->
-
+<label class="input-wrap state-{state} size-{size}" class:block>
     {#if $$slots.start}
         <span class="slot start">
             <slot name="start" />
@@ -29,9 +16,8 @@
 
     <input
         {...$$restProps}
-        bind:value={value}
+        bind:value
         bind:this={input}
-
         on:keyup
         on:keydown
         on:keypress
@@ -50,10 +36,9 @@
             <slot name="end" />
         </span>
     {/if}
-</span>
+</label>
 
 <style lang="scss">
-
     .slot {
         display: inline-flex;
         align-items: center;
@@ -73,7 +58,7 @@
         padding: 0 15px;
         border-radius: 20px;
         background: var(--input);
-        transition: .2s box-shadow;
+        transition: 0.2s box-shadow;
         font-size: 14px;
         --local-shadow-size: 2px;
         &:focus-within {
@@ -126,20 +111,22 @@
     .input-wrap.state-error {
         box-shadow: 0 0 0 var(--local-shadow-size) var(--red-light);
         &:focus-within {
-            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--red-light);
+            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px)
+                var(--red-light);
         }
     }
     .input-wrap.state-success {
         box-shadow: 0 0 0 2px var(--green-light);
         &:focus-within {
-            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--green-light);
+            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px)
+                var(--green-light);
         }
     }
     .input-wrap.state-warning {
         box-shadow: 0 0 0 2px var(--orange-light);
         &:focus-within {
-            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
+            box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px)
+                var(--orange-light);
         }
     }
-
 </style>

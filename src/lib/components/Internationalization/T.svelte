@@ -146,6 +146,7 @@
 
     $: {
         params;
+        key;
         if (browser && mounted) {
             renderFrontend();
         }

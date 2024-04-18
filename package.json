@@ -1,6 +1,6 @@
 {
 	"name": "@hyvor/design",
-	"version": "0.0.56",
+	"version": "0.0.59",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
@@ -48,7 +48,6 @@
 		"@hyvor/icons": "^0.0.3",
 		"deepmerge-ts": "^5.1.0",
 		"highlight.js": "^11.9.0",
-		"i": "^0.3.7",
 		"intl-messageformat": "^10.5.11",
 		"npm": "^10.4.0",
 		"svelte-awesome-color-picker": "^3.0.4",

@@ -7,18 +7,31 @@
 	import { fade, scale } from 'svelte/transition';
     import { onMount, tick } from "svelte";
     import Loader from "../Loader/Loader.svelte";
+    import { createEventDispatcher } from "svelte";
 
     export let show = false;
     export let title = "";
     export let size : "small" | "medium" | "large" = "medium";
+    export let id: string = 'modal';
+    export let role: 'dialog' | 'alertdialog' = 'alertdialog';
     export let closeOnOutsideClick = true;
     export let closeOnEscape = true;
     export let loading : boolean | string = false;
+
+    const dispatch = createEventDispatcher();
+
+    const titleId = id + '-title';
+    const descId = id + '-desc';
 
     export let footer : null | Footer = null;
 
     let wrapEl: HTMLDivElement;
     let innerEl: HTMLDivElement;
+
+    function handleCancel() {
+        show = false;   
+        dispatch("cancel");
+    }
 
     async function setFlex() {
         await tick();
@@ -59,11 +72,19 @@
             in:scale={{duration: 100, start: 0.9, opacity: 0.9}}
             out:scale={{duration: 100, start: 0.9, opacity: 0.9}}
             bind:this={innerEl}
+
+            role={role}
+            aria-modal="true"
+            aria-labelledby={titleId}
+            aria-describedby={descId}
         >
 
             <div class="header">
 
-                <div class="title">
+                <div 
+                    class="title"
+                    id={titleId}
+                >
                     {#if $$slots.title}
                         <slot name="title" />
                     {:else}
@@ -74,7 +95,7 @@
                 <div class="close-wrap">
                     <IconButton
                         variant="invisible"
-                        on:click={() => show = false}
+                        on:click={handleCancel}
                     >
                         <IconX size={25} />
                     </IconButton>
@@ -82,7 +103,10 @@
 
             </div>
 
-            <div class="content">
+            <div 
+                class="content"
+                id={descId}
+            >
                 <slot /> 
             </div>
 

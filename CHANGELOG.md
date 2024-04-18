@@ -1,3 +1,8 @@
+## 0.0.60 - 2024-0418
+
+-   I18n type safety, dot notation, etc.
+-   Nav category icon
+
 ## 0.0.59 - 2024-04-03
 
 -   TextInput wrapper changed to <label> for better accessibility and semantics

@@ -1,4 +1,5 @@
-<script lang="ts">
+<script lang="ts" generics="StringsT extends i18nStrings">
+    import { type DotNotation, type i18nStrings } from "./types.js";
     import { getContext, type ComponentType, onMount, tick, afterUpdate } from "svelte";
 	import { getStringByKey, InternationalizationService } from './i18n.js';
     import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat'
@@ -13,7 +14,7 @@
     type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
     type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 
-    export let key: string;
+    export let key: DotNotation<StringsT>;
     export let params: InputParams = {};
 
     let hasComponentParams = false;

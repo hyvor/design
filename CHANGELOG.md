@@ -1,6 +1,7 @@
 ## 0.0.61 - 2024-04-18
 
 -   Improved dot types for I18n
+-   Pass context down to I18n elements
 
 ## 0.0.60 - 2024-04-18
 

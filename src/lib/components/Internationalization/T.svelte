@@ -6,6 +6,7 @@
         onMount,
         tick,
         afterUpdate,
+        getAllContexts,
     } from "svelte";
     import { getStringByKey, InternationalizationService } from "./i18n.js";
     import { IntlMessageFormat, type PrimitiveType } from "intl-messageformat";
@@ -22,6 +23,8 @@
 
     export let key: ToDotPaths<StringsT>;
     export let params: InputParams = {};
+
+    const context = getAllContexts();
 
     let hasComponentParams = false;
 
@@ -134,6 +137,7 @@
                     target: el,
                     hydrate: true,
                     props: binding.props,
+                    context,
                 });
             }
         }

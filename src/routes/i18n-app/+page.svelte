@@ -1,6 +1,6 @@
 <script lang="ts">
     import { InternationalizationService } from "./../../lib/components/Internationalization/i18n.js";
-    import { onMount, getContext } from "svelte";
+    import { onMount, getContext, setContext } from "svelte";
     import PricingLink from "./stringComponents/PricingLink.svelte";
     import T from "$lib/components/Internationalization/T.svelte";
     import { t } from "$lib/components/Internationalization/t.js";
@@ -9,6 +9,7 @@
     import TextInput from "../../lib/components/TextInput/TextInput.svelte";
     import type enJson from "./locale/en.json";
     import type { ToDotPaths } from "$lib/components/Internationalization/types.js";
+    import Context from "./stringComponents/Context.svelte";
 
     let name = "Supun";
     let dynamicValue = "";
@@ -16,6 +17,8 @@
 
     const i18n = getContext<InternationalizationService>("i18n");
     const Intl = getContext<InternationalizationService<typeof enJson>>("i18n");
+
+    setContext("my-context", "My Context");
 
     onMount(() => {
         dynamicValue = "Loading...";
@@ -49,6 +52,16 @@
             key="advanced"
             params={{
                 a: { component: PricingLink },
+            }}
+        />
+    </div>
+
+    <div>
+        With context:
+        <Intl.T
+            key="advanced"
+            params={{
+                a: { component: Context },
             }}
         />
     </div>

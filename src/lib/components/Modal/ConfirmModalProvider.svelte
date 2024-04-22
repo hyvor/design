@@ -29,6 +29,7 @@
         title={$confirmStore.title}
         bind:show={show}
         size="small"
+        loading={$confirmStore.loading}
     >
 
         {#if typeof $confirmStore.content === "string"}

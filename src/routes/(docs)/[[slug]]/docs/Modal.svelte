@@ -54,6 +54,27 @@
 
     }
 
+    async function handleConfirmLoader() {
+
+        const confirmed = await confirm({
+            title: 'Update your username',
+            content: 'Are you sure you want to update your username to "newusername"?',
+            confirmText: "Update",
+            autoClose: false,
+        });
+
+
+        if (confirmed) {
+            confirmed.loading('Updating your username...');
+            setTimeout(() => {
+                toast.success('Username updated');
+                confirmed.close();
+            }, 2000)
+        }
+
+    
+    }
+
 </script>
 
 <h1>Modal</h1>
@@ -603,7 +624,14 @@
         cancelText?: string,
         
         // whether the modal is a danger modal (button color will be red)
-        danger?: boolean
+        danger?: boolean,
+
+        // whether the modal is loading - see Confirm with Loader
+        loading?: boolean;
+
+        // whether to close the modal when the confirm button is clicked
+        // default: true
+        autoClose?: boolean;
     }
 `} language="ts" />
 
@@ -615,6 +643,41 @@
 
     <Button on:click={handleConfirm2}>
         Delete with Custom Content
+    </Button>
+
+</CodeResult>
+
+<h3 id="confirm-loader">
+    Confirm with Loader
+</h3>
+
+<p>
+    First, set the <code>autoClose</code> property to <code>false</code> to prevent the modal from closing when the confirm button is clicked. Then, use the <code>loading</code> method of the returned object to set the <a href="#loading">modal loading state</a>. Finally, close the modal manually using the <code>close</code> method.
+</p>
+
+<CodeBlock code={`
+    import { confirm } from '@hyvor/design/components';
+
+    async function handleDelete() {
+        const confirmed = await confirm({
+            title: 'Update your username',
+            content: 'Are you sure you want to update your username to "newusername"?',
+            confirmText: "Update",
+            autoClose: false,
+        });
+
+        if (confirmed) {
+            confirmed.loading('Updating your username...');
+            await updateUsername('newusername');
+            confirmed.close();
+        }
+    }
+`} language="js" />
+
+<CodeResult>
+
+    <Button on:click={handleConfirmLoader}>
+        Confirm with Loader
     </Button>
 
 </CodeResult>

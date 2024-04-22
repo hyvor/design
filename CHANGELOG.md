@@ -1,3 +1,8 @@
+## 0.0.62 - 2024-04-22
+
+-   confirm(): `autoClose` property
+-   confirm() now returns an OBJECT, not true, on success to support manual loading and closing operations
+
 ## 0.0.61 - 2024-04-18
 
 -   Improved dot types for I18n

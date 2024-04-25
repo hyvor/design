@@ -1,3 +1,8 @@
+## 0.0.63 - 2024-04-25
+
+-   ActionItem selectionAlign added
+-   button conditional slots (margin fixed)
+
 ## 0.0.62 - 2024-04-22
 
 -   confirm(): `autoClose` property

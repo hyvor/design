@@ -353,7 +353,7 @@ All other properties will be forwarded to the underlying element.
 </CodeResult>
 
 
-<h3>Conditional Buttons</h3>
+<h3>Conditional Slots</h3>
 <CodeBlock code={`
     <Button>
         <svelte:fragment slot="start">{#if loading}<Loader  />{/if}</svelte:fragment>

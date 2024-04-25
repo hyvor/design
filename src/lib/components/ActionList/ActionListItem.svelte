@@ -2,8 +2,10 @@
     import { getContext, createEventDispatcher } from 'svelte';
     import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
     import { IconCheck } from "@hyvor/icons";
+    import Selected from './Selected.svelte';
 
     const selection : 'none' | 'single' | 'multi' = getContext('action-list-selection');
+    const selectionAlign : 'start' | 'end' = getContext('action-list-selection-align');
 
     export let selected = false;
     selected = selection !== 'none' && selected;
@@ -35,19 +37,8 @@
     on:click
 >
 
-    {#if selection !== 'none'}
-        <span class="selected">
-            {#if selection === 'multi'}
-                <span style="transform:scale(0.9);transform-origin:top">
-                    <Checkbox checked={selected} 
-                    tabindex="-1" />
-                </span>
-            {:else}
-                {#if selected}
-                    <IconCheck />
-                {/if}
-            {/if}
-        </span>
+    {#if selectionAlign === 'start'}
+        <Selected {selection} bind:selected />
     {/if}
 
     {#if $$slots.start}
@@ -72,6 +63,10 @@
         </span>
     {/if}
 
+    {#if selectionAlign === 'end'}
+        <Selected {selection} bind:selected />
+    {/if}
+
 </div>
 
 <style>
@@ -92,14 +87,6 @@
     }
     div.action-list-item.danger:hover {
         background-color: #fffafa;
-    }
-
-    .selected {
-        width: 30px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        pointer-events: none;
     }
 
     .start, .middle, .end {

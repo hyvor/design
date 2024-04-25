@@ -7,6 +7,9 @@
     import TableRow from "$lib/components/Table/TableRow.svelte";
     import CodeResult from "./Helper/CodeResult.svelte";
     import { IconSearch, IconCaretDown, IconBoxArrowUpRight } from "@hyvor/icons";
+    
+    let loading = false;
+   
 </script>
 <h1>Button</h1>
 
@@ -349,7 +352,21 @@ All other properties will be forwarded to the underlying element.
     </Button>
 </CodeResult>
 
-<!--Code example for disabled button -->
+
+<h3>Conditional Slots</h3>
+<CodeBlock code={`
+    <Button>
+        <svelte:fragment slot="start">{#if loading}<Loader  />{/if}</svelte:fragment>
+        Button
+    </Button>
+`} />
+
+<CodeResult>
+    <Button>
+        <svelte:fragment slot="start">{#if loading}<Loader  />{/if}</svelte:fragment>
+        Button
+    </Button>
+</CodeResult>
 
 <h3>Disabled Button</h3>
 

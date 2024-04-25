@@ -10,7 +10,9 @@
     import { IconHandThumbsUp, IconPencil, IconTrash } from "@hyvor/icons";
 
     let x1 = 1;
+    let x11 = 1;
     let x2 : number[] = [];
+    let x22 : number[] = [];
 
     let x3 = 1;
     let x4 : number[] = [];
@@ -58,6 +60,18 @@
                 <li><code>none</code></li>
                 <li><code>single</code></li>
                 <li><code>multi</code></li>
+            </ul>
+        </div>
+    </TableRow>
+
+    <TableRow>
+        <div><code>selectionAlign</code></div>
+        <div><code>start</code></div>
+        <div>
+            The alignment of the selection indicator (tick or checkbox) in items. One of:
+            <ul>
+                <li><code>start</code></li>
+                <li><code>end</code></li>
             </ul>
         </div>
     </TableRow>
@@ -298,6 +312,35 @@
 
 </CodeResult>
 
+<p>
+    with <code>selectionAlign="end"</code>
+</p>
+
+<CodeResult white>
+
+    <ActionList selection="single" selectionAlign="end">
+        <ActionListItem 
+            selected={x11 === 1}
+            on:select={() => x11 = 1}
+        >
+            Option 1
+        </ActionListItem>
+        <ActionListItem 
+            selected={x11 === 2}
+            on:select={() => x11 = 2}
+        >
+            Option 2
+        </ActionListItem>
+        <ActionListItem 
+            selected={x11 === 3}
+            on:select={() => x11 = 3}
+        >
+            Option 3
+        </ActionListItem>
+    </ActionList>
+
+</CodeResult>
+
 <h3 id="multi-selection">Multi Selection</h3>
 
 <p>
@@ -334,6 +377,32 @@
                         x2 = x2.filter(x => x !== value);
                     } else {
                         x2 = [...x2, value];
+                    }
+                }}
+            >
+                Option {value}
+            </ActionListItem>
+        {/each}
+    </ActionList>
+
+</CodeResult>
+
+
+<p>
+    with <code>selectionAlign="end"</code>
+</p>
+
+<CodeResult white>
+
+    <ActionList selection="multi" selectionAlign="end">
+        {#each [1,2,3] as value}
+            <ActionListItem 
+                selected={x22.includes(value)}
+                on:select={() => {
+                    if (x22.includes(value)) {
+                        x22 = x22.filter(x => x !== value);
+                    } else {
+                        x22 = [...x22, value];
                     }
                 }}
             >

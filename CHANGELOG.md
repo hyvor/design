@@ -1,3 +1,7 @@
+## 0.0.64 - 2024-05-21
+
+-   ColorPicker show export, fix onclick
+
 ## 0.0.63 - 2024-04-25
 
 -   ActionItem selectionAlign added

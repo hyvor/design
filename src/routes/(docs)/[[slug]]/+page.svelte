@@ -44,6 +44,7 @@
         { href: "/toast", label: "Toast" },
         { href: "/modal", label: "Modal" },
         { href: "/icon-message", label: "Icon Message" },
+        { href: "/slider", label: "Slider" },
     ];
 
     const sortedComponents = components.sort((a, b) =>

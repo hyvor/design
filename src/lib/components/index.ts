@@ -45,6 +45,8 @@ export { default as NavLink } from './NavLink/NavLink.svelte';
 
 export { default as Radio } from './Radio/Radio.svelte';
 
+export { default as Slider } from './Slider/Slider.svelte';
+
 export { default as SplitControl } from './SplitControl/SplitControl.svelte';
 
 export { default as Switch } from './Switch/Switch.svelte';

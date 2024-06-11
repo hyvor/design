@@ -1,3 +1,7 @@
+## 0.0.65 - 2024-06-11
+
+-   Slider component added
+
 ## 0.0.64 - 2024-05-21
 
 -   ColorPicker show export, fix onclick

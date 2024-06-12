@@ -1,10 +1,16 @@
 <script lang="ts">
+    import { createEventDispatcher } from "svelte";
+
     export let min: number;
     export let max: number;
     export let value: number;
     export let step = 1;
     export let disabled = false;
     export let dots = false;
+
+    const dispatch = createEventDispatcher<{
+        change: number;
+    }>();
 
     function toStep(value: number) {
         return Math.max(min, Math.min(max, Math.round(value / step) * step));
@@ -35,6 +41,7 @@
             const width = rect.width;
             const newValue = min + (x / width) * (max - min);
             value = toStep(newValue);
+            dispatch("change", value);
         }
     }
 </script>

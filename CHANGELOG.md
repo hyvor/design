@@ -1,3 +1,7 @@
+## 0.0.66 - 2024-06-12
+
+-   `on:change` event in Slider Component
+
 ## 0.0.65 - 2024-06-11
 
 -   Slider component added

@@ -31,6 +31,7 @@ import TabNav from "./docs/TabNav.svelte";
 import ColorPicker from "./docs/ColorPicker.svelte";
 import IconMessage from "./docs/IconMessage.svelte";
 import DocsDocs from "./docs/DocsDocs/DocsDocs.svelte";
+import Slider from "./docs/Slider.svelte";
 
 export const prerender = true;
 
@@ -65,6 +66,7 @@ const nav = {
     dark: Dark,
     i18n: Internationalization,
     box: Box,
+    slider: Slider,
     'icon-message': IconMessage,
 
     'page-structure': PageStructure,

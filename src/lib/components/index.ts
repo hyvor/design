@@ -45,6 +45,8 @@ export { default as NavLink } from './NavLink/NavLink.svelte';
 
 export { default as Radio } from './Radio/Radio.svelte';
 
+export { default as Slider } from './Slider/Slider.svelte';
+
 export { default as SplitControl } from './SplitControl/SplitControl.svelte';
 
 export { default as Switch } from './Switch/Switch.svelte';
@@ -76,6 +78,22 @@ export { clickOutside } from './directives/clickOutside.js';
 // i18n
 export { default as InternationalizationProvider } from './Internationalization/InternationalizationProvider.svelte';
 export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
-export { default as T } from './Internationalization/T.svelte';
-export { type Language as InternationalizationLanguage, InternationalizationService } from './Internationalization/i18n.js';
+export { 
+    type Language as InternationalizationLanguage,
+    InternationalizationService
+} from './Internationalization/i18n.js';
+export { 
+    type I18nStrings as I18nStrings,
+    type ToDotPaths as I18nToDotPaths,
+    type FromDotPath as I18nFromDotPath
+} from './Internationalization/types.js';
+
+/**
+ * @deprecated
+ */
 export { t } from './Internationalization/t.js';
+
+/**
+ * @deprecated
+ */
+export { default as T } from './Internationalization/T.svelte';

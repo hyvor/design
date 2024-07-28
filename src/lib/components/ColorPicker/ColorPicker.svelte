@@ -1,27 +1,25 @@
 <script lang="ts">
-    import ColorPicker from 'svelte-awesome-color-picker';
+    import ColorPicker from "svelte-awesome-color-picker";
     import { clickOutside } from "../index.js";
     import { createEventDispatcher } from "svelte";
-    
-    export let color: string = '#000000';
-    export let size: number = 30;
 
-    let show = false;
+    export let color: string = "#000000";
+    export let size: number = 30;
+    export let show = false;
 
     const dispatch = createEventDispatcher<{
-        input: string,
-        change: string,
+        input: string;
+        change: string;
     }>();
 
     function handleInput() {
-        dispatch('input', color);
+        dispatch("input", color);
     }
 
     function handleClose() {
-        dispatch('change', color);
+        dispatch("change", color);
         show = false;
     }
-
 </script>
 
 <span class="color-picker">
@@ -29,7 +27,13 @@
         style:width="{size}px"
         style:height="{size}px"
         style:background-color={color}
-        on:click={() => show = true}
+        on:click={() => {
+            if (show) {
+                handleClose();
+            } else {
+                show = true;
+            }
+        }}
     ></button>
 
     {#if show}
@@ -39,9 +43,9 @@
                 callback: () => handleClose(),
             }}
         >
-            <ColorPicker 
+            <ColorPicker
                 bind:hex={color}
-                --input-size={size + 'px'}
+                --input-size={size + "px"}
                 isDialog={false}
                 isAlpha={false}
                 on:input={handleInput}

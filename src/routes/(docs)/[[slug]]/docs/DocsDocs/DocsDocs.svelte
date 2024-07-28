@@ -1,8 +1,13 @@
 <script>
-    import DocImage from "$lib/marketing/Docs/Content/DocsImage.svelte";
-    import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
+  import DocImage from "$lib/marketing/Docs/Content/DocsImage.svelte";
+  import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
 
-    import img from "./img.avif";
+  import img from "./img.avif";
+  import CodeResult from "../Helper/CodeResult.svelte";
+  import NavCategory from "$lib/marketing/Docs/Nav/NavCategory.svelte";
+  import IconButton from "../IconButton.svelte";
+  import { IconChat } from "@hyvor/icons";
+   import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
 </script>
 
 <h1>Docs</h1>
@@ -28,7 +33,7 @@
 />
 
 <p>
-    First, define the docs categories and pages in the <code>docs.ts</code> file.
+  First, define the docs categories and pages in the <code>docs.ts</code> file.
 </p>
 
 <CodeBlock
@@ -66,7 +71,7 @@
 />
 
 <p>
-    Then, load the docs content in the <code>page.ts</code> file.
+  Then, load the docs content in the <code>page.ts</code> file.
 </p>
 
 <CodeBlock

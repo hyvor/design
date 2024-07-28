@@ -1,3 +1,7 @@
+## 0.0.67 - 2024-07-28
+
+-   Document component added to marketing
+
 ## 0.0.66 - 2024-06-12
 
 -   `on:change` event in Slider Component

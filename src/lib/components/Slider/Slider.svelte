@@ -5,7 +5,7 @@
     export let max: number;
     export let value: number;
     export let step = 1;
-    export let disabled = false;
+    // export let disabled = false;
     export let dots = false;
 
     const dispatch = createEventDispatcher<{

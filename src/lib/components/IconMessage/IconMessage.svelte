@@ -1,47 +1,38 @@
 <script lang="ts">
-    import type { ComponentType, SvelteComponent } from 'svelte';
-    import { IconBug, IconInbox, IconPatchExclamation } from '@hyvor/icons';
+    import type { ComponentType, SvelteComponent } from "svelte";
+    import { IconBug, IconInbox, IconPatchExclamation } from "@hyvor/icons";
 
-    export let icon : ComponentType|null = null;
-    export let message : string|null = null;
-    export let iconSize : 100|number = 100;
-    export let padding : number = 0;
+    export let icon: ComponentType | null = null;
+    export let message: string | null = null;
+    export let iconSize: 100 | number = 100;
+    export let padding: number = 0;
 
-    export let empty : boolean = false;
-    export let error : boolean = false;
+    export let empty: boolean = false;
+    export let error: boolean = false;
 
-    export let iconColor : string | null = null;
+    export let iconColor: string | null = null;
 
     if (empty) {
-        message = message || 'No results found';
+        message = message || "No results found";
         icon = IconInbox;
     }
 
     if (error) {
-        message = message || 'Something went wrong';
+        message = message || "Something went wrong";
         icon = IconPatchExclamation;
-        iconColor = iconColor || 'var(--red)';
+        iconColor = iconColor || "var(--red)";
     }
 
-    iconColor = iconColor || 'var(--gray-dark)';
-
+    iconColor = iconColor || "var(--gray-dark)";
 </script>
 
-<div 
-    class="icon-message"
-    style:padding={padding + 'px'} 
->
-
-    <div 
-        class="icon" 
-        style:color={iconColor}
-        {...$$restProps}
-        >
-            {#if $$slots.icon}
-                <slot name="icon" />
-            {:else if icon}
-                <svelte:component this={icon} size={iconSize + 'px' } />
-            {/if}
+<div class="icon-message" style:padding={padding + "px"}>
+    <div class="icon" style:color={iconColor} {...$$restProps}>
+        {#if $$slots.icon}
+            <slot name="icon" />
+        {:else if icon}
+            <svelte:component this={icon} size={iconSize + "px"} />
+        {/if}
     </div>
 
     <div class="message">
@@ -51,11 +42,9 @@
             {message}
         {/if}
     </div>
-
 </div>
 
 <style>
-
     .icon-message {
         width: 100%;
         height: 100%;
@@ -73,8 +62,4 @@
         color: var(--text-light);
         margin-top: 15px;
     }
-
-    .icon {
-    }
-
-</style> 
+</style>

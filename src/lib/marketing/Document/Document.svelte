@@ -1,5 +1,5 @@
 <script lang="ts">
-    import FeatureSectionTitle from "./FeatureSectionTitle.svelte";
+    import FeatureSectionTitle from "./DocumentTitle.svelte";
 
     export let title: string;
     export let subtitle: string;

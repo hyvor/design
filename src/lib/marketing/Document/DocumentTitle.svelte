@@ -6,7 +6,7 @@
     export let wrapStyle: string | undefined = undefined;
 </script>
 
-<div class="wrap" style={wrapStyle}>
+<div class="wrap document-title" style={wrapStyle}>
     <h2 style={h2Style}>
         {title}
         {#if icon}

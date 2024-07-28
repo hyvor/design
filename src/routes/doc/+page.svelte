@@ -1,6 +1,6 @@
 <script>
     import Base from "$lib/components/Base/Base.svelte";
-    import Document from "$lib/components/Document/Document.svelte";
+    import Document from "$lib/marketing/Document/Document.svelte";
 </script>
 
 <Base>

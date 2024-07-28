@@ -156,7 +156,7 @@
 <h2 id="document">Document</h2>
 <p>
     This component is used for documents such as privacy policy, terms of
-    service, etc.
+    service, etc. It supports headings, paragraphs, lists, and hr tags.
 </p>
 
 <CodeBlock
@@ -164,8 +164,6 @@
     <` +
         `script lang="ts">
         import { Document } from '@hyvor/design/marketing';
-        export let title: string;
-        export let subtitle: string;
     </` +
         `script>
 

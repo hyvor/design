@@ -31,6 +31,8 @@ export { default as InputGroup } from './FormControl/InputGroup.svelte';
 export { default as Label } from './FormControl/Label.svelte';
 export { default as Validation } from './FormControl/Validation.svelte';
 
+export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
+
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
 export { default as Link } from './Link/Link.svelte';

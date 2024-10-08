@@ -3,7 +3,12 @@
     import Loader from "../Loader/Loader.svelte";
     import ActionList from "../ActionList/ActionList.svelte";
     import ActionListItem from "../ActionList/ActionListItem.svelte";
-    import type { BarProduct, BarUpdate } from "./bar.js";
+    import {
+        barUnreadUpdates,
+        UnreadUpdatesTimeLocalStorage,
+        type BarProduct,
+        type BarUpdate,
+    } from "./bar.js";
     import { IconBoxArrowUpRight } from "@hyvor/icons";
     import Button from "../Button/Button.svelte";
     import Tag from "../Tag/Tag.svelte";
@@ -14,11 +19,19 @@
     let updates: BarUpdate[] = [];
     let loading = true;
 
+    let lastReadTime: null | number = null;
+
     function fetchUpdates() {
+        lastReadTime = UnreadUpdatesTimeLocalStorage.get();
+
         fetch(instance + "/api/public/updates?types=company," + product)
             .then((response) => response.json())
             .then((data) => {
                 updates = data;
+
+                barUnreadUpdates.set(0);
+                // set as last read now
+                UnreadUpdatesTimeLocalStorage.setNow();
             })
             .finally(() => {
                 loading = false;
@@ -42,11 +55,16 @@
                     rel="noopener noreferrer"
                 >
                     <ActionListItem>
-                        {#if update.type === "company"}
+                        {#if update.type === "company" || (lastReadTime && update.created_at > lastReadTime)}
                             <div class="company-update">
-                                <Tag size="x-small" color="blue"
-                                    >Company Update</Tag
-                                >
+                                {#if lastReadTime && update.created_at > lastReadTime}
+                                    <Tag size="x-small" color="green">New</Tag>
+                                {/if}
+                                {#if update.type === "company"}
+                                    <Tag size="x-small" color="blue"
+                                        >Company Update</Tag
+                                    >
+                                {/if}
                             </div>
                         {/if}
                         <div class="title">

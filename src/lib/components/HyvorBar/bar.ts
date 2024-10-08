@@ -27,18 +27,93 @@ export interface BarUpdate {
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
 export const barUser = writable<BarUser | null>(null);
+export const barUnreadUpdates = writable<number>(0);
 
-export function loadBarUser(instance: string) {
+export function loadBarUser(instance: string, product: BarProduct) {
 
-    fetch(instance + '/api/public/bar', {
+    const query = new URLSearchParams();
+    query.set('product', product);
+
+    const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
+    if (lastUnreadTime) {
+        query.set('last_read_updates_at', lastUnreadTime.toString());
+    }
+
+    fetch(instance + '/api/public/bar?' + query.toString(), {
         credentials: 'include',
     })
         .then(response => response.json())
         .then(data => {
             barUser.set(data.user);
+            barUnreadUpdates.set(data.updates.unread);
+
+            if (lastUnreadTime === null) {
+                UnreadUpdatesTimeLocalStorage.setNow();
+            }
         })
         .catch(error => {
             console.error('Error:', error);
         });
+
+}
+
+
+export class UnreadUpdatesTimeLocalStorage {
+
+    static KEY = 'unread_updates';
+
+    static get() {
+        const val = BarLocalStorage.get(UnreadUpdatesTimeLocalStorage.KEY);
+        if (val) {
+            return Number(val);
+        }
+        return null;
+    }
+
+    static set(value: string) {
+        BarLocalStorage.set(UnreadUpdatesTimeLocalStorage.KEY, value);
+    }
+
+    static setNow() {
+        UnreadUpdatesTimeLocalStorage.set(Math.floor(Date.now() / 1000).toString());
+    }
+
+}
+
+
+class BarLocalStorage {
+
+    static KEY = 'hyvor_bar';
+
+    static getJson() {
+        try {
+            const data = localStorage.getItem(BarLocalStorage.KEY);
+            if (data) {
+                return JSON.parse(data);
+            }
+        } catch (e) {
+            console.error(e);
+            return null;
+        }
+        return null;
+    }
+
+    static get(key: string): string | null {
+        const data = BarLocalStorage.getJson();
+        if (data) {
+            return data[key];
+        }
+        return null;
+    }
+
+    static set(key: string, value: string) {
+        try {
+            const data = BarLocalStorage.getJson() || {};
+            data[key] = value;
+            localStorage.setItem(BarLocalStorage.KEY, JSON.stringify(data));
+        } catch (e) {
+            console.error(e);
+        }
+    }
 
 }

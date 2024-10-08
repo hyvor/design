@@ -21,7 +21,7 @@
     };
 
     onMount(() => {
-        loadBarUser(instance);
+        loadBarUser(instance, product);
     });
 </script>
 

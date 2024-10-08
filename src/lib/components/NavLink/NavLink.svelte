@@ -1,96 +1,88 @@
 <script lang="ts">
-    export let href : string;
-    export let active : boolean = false;
-    export let disabled : boolean = false;
+  export let href: string;
+  export let active: boolean = false;
+  export let disabled: boolean = false;
 </script>
 
-<a 
-    {href}
-    class:active={active}
-    class:disabled={disabled}
-    on:keyup
-    on:keydown
-    on:keypress
-    on:focus
-    on:blur
-    on:click
-    on:mouseover
-    on:mouseenter
-    on:mouseleave
-    on:change
+<a
+  {href}
+  class:active
+  class:disabled
+  on:keyup
+  on:keydown
+  on:keypress
+  on:focus
+  on:blur
+  on:click
+  on:mouseover
+  on:mouseenter
+  on:mouseleave
+  on:change
 >
-
-
-
-    {#if $$slots.start}
-        <span class="start">
-            <slot name="start" />
-        </span>
-    {/if}
-
-    <span class="middle">
-        <slot />
+  {#if $$slots.start}
+    <span class="start">
+      <slot name="start" />
     </span>
-    
-    {#if $$slots.end}
-        <span class="end">
-            <slot name="end" />
-        </span>
-    {/if}
+  {/if}
+
+  <span class="middle">
+    <slot />
+  </span>
+
+  {#if $$slots.end}
+    <span class="end">
+      <slot name="end" />
+    </span>
+  {/if}
 </a>
 
-
 <style>
+  a {
+    display: flex;
+    padding: 12px 29px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    border-left: 3px solid transparent;
+    cursor: pointer;
+    align-items: center;
+  }
 
-    a {
-        display: flex;
-        padding: 12px 29px;
-        font-size: 14px;
-        letter-spacing: .3px;
-        border-left: 3px solid transparent;
-        cursor: pointer;
-        align-items: center; 
-    }
+  a:hover {
+    background-color: var(--hover);
+  }
 
-    a:hover {
-        background-color: var(--hover);
-    
-    }
+  a.active {
+    background-color: var(--accent-lightest);
+    border-left: 3px solid var(--accent);
+  }
 
-    a.active {
-        background-color: var(--accent-lightest);
-        border-left: 3px solid var(--accent);
-    }
+  a.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: 0.5;
+    /* hover */
+    background-color: transparent;
+  }
 
-    a.disabled {
-        cursor: not-allowed;
-        opacity: .5;
+  .start,
+  .middle,
+  .end {
+    display: inline-flex;
+    align-items: center;
+  }
 
-        /* hover */
-        background-color: transparent;
-        
-    }
+  .middle {
+    flex: 1;
+    /* display: flex;  */
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .start, .middle, .end {
-        display: inline-flex;
-        align-items: center;
-    }
+  .start {
+    margin-right: 8px;
+  }
 
-    .middle {
-        flex: 1;
-         /* display: flex;  */
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .start {
-        margin-right: 8px;
-        
-    }
-
-    .end {
-        margin-left: 8px;
-    }
-
-
+  .end {
+    margin-left: 8px;
+  }
 </style>

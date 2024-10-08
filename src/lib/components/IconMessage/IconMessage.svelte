@@ -10,7 +10,7 @@
 
     export let iconSize: number | undefined = undefined;
     const iconsSizes = {
-        small: 30,
+        small: 35,
         medium: 50,
         large: 75,
     };
@@ -20,8 +20,8 @@
 
     const paddings = {
         small: 15,
-        medium: 30,
-        large: 50,
+        medium: 40,
+        large: 60,
     };
 
     padding = padding === undefined ? paddings[size] : padding;
@@ -102,14 +102,22 @@
         text-align: center;
     }
 
+    .icon {
+        display: inline-flex;
+        align-items: flex-end;
+    }
+
     .message {
         /* Add message styles here */
         color: var(--text-light);
-        margin-top: 15px;
+        margin-top: 10px;
     }
 
     .icon-message.small .message {
         margin-top: 8px;
+    }
+    .icon-message.large .message {
+        margin-top: 13px;
     }
 
     .cta {

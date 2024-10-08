@@ -64,6 +64,8 @@
             props: { color: "input" },
         }}>Failed to load updates.</IconMessage
     >
+{:else if updates.length === 0}
+    <IconMessage empty>There are no updates to show.</IconMessage>
 {:else}
     <div class="updates-wrap">
         <ActionList>

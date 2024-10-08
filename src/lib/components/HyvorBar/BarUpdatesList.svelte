@@ -12,17 +12,21 @@
     import { IconBoxArrowUpRight } from "@hyvor/icons";
     import Button from "../Button/Button.svelte";
     import Tag from "../Tag/Tag.svelte";
+    import IconMessage from "../IconMessage/IconMessage.svelte";
 
     export let instance: string;
     export let product: BarProduct;
 
     let updates: BarUpdate[] = [];
     let loading = true;
+    let error = false;
 
     let lastReadTime: null | number = null;
 
     function fetchUpdates() {
+        error = false;
         lastReadTime = UnreadUpdatesTimeLocalStorage.get();
+        loading = true;
 
         fetch(instance + "/api/public/updates?types=company," + product)
             .then((response) => response.json())
@@ -32,6 +36,9 @@
                 barUnreadUpdates.set(0);
                 // set as last read now
                 UnreadUpdatesTimeLocalStorage.setNow();
+            })
+            .catch(() => {
+                error = true;
             })
             .finally(() => {
                 loading = false;
@@ -45,6 +52,18 @@
 
 {#if loading}
     <Loader padding={80} block size="small" />
+{:else if error}
+    <IconMessage
+        error
+        cta={{
+            text: "Try again",
+            onClick: (e) => {
+                e.stopPropagation();
+                fetchUpdates();
+            },
+            props: { color: "input" },
+        }}>Failed to load updates.</IconMessage
+    >
 {:else}
     <div class="updates-wrap">
         <ActionList>

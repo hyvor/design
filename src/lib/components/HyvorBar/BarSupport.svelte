@@ -14,6 +14,8 @@
     import ActionListGroup from "../ActionList/ActionListGroup.svelte";
     import { PRODUCTS } from "./BarProducts.svelte";
     import type { BarConfig, BarProduct } from "./bar.js";
+    import G2 from "./img/G2.svelte";
+    import Trustpilot from "./img/Trustpilot.svelte";
 
     let supportDropdown = false;
 
@@ -97,6 +99,31 @@
                     <IconBoxArrowUpRight slot="end" size={12} />
                 </ActionListItem>
             </a>
+        </ActionListGroup>
+
+        <ActionListGroup title="Rate us">
+            <a
+                href="https://www.trustpilot.com/review/hyvor.com"
+                target="_blank"
+            >
+                <ActionListItem>
+                    <Trustpilot slot="start" />
+                    Trustpilot
+                    <IconBoxArrowUpRight slot="end" size={12} />
+                </ActionListItem>
+            </a>
+            {#if config.g2}
+                <a
+                    href="https://www.g2.com/products/hyvor-talk/reviews"
+                    target="_blank"
+                >
+                    <ActionListItem>
+                        <G2 slot="start" />
+                        G2
+                        <IconBoxArrowUpRight slot="end" size={12} />
+                    </ActionListItem>
+                </a>
+            {/if}
         </ActionListGroup>
     </ActionList>
 </Dropdown>

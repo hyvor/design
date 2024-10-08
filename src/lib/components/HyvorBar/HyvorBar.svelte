@@ -15,6 +15,7 @@
             docs: true,
             chat: true,
             twitter: null,
+            g2: null,
         },
         ...config,
     };
@@ -37,7 +38,7 @@
         <div class="right">
             <BarSupport config={configComplete} {product} />
             <BarProducts />
-            <BarUpdates />
+            <BarUpdates {instance} {product} />
             <BarUser {instance} />
         </div>
     </div>

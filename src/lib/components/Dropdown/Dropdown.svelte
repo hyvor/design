@@ -1,6 +1,5 @@
 <script lang="ts">
-    import {clickOutside} from "../directives/clickOutside.js";
-	import Box from './../Box/Box.svelte';
+    import DropdownContent from "./DropdownContent.svelte";
 
     export let show = false;
     export let width = 225;
@@ -8,44 +7,41 @@
     export let relative = false;
     export let closeOnOutsideClick = true;
 
-    export let align : 'start' | 'center' | 'end' = 'start';
-    export let position : 'left' | 'right' | 'bottom' | 'top' = 'bottom';
+    export let align: "start" | "center" | "end" = "start";
+    export let position: "left" | "right" | "bottom" | "top" = "bottom";
 
+    let trigger: HTMLElement;
 </script>
 
-<span 
-class="dropdown"
-class:relative
->
-
-    <span 
+<span class="dropdown" class:relative>
+    <span
         class="trigger"
-        on:click={() => show = !show}
+        on:click={() => (show = !show)}
         role="listbox"
         tabindex="0"
-        on:keyup={e => {
-            if (e.key === 'Escape') {
+        on:keyup={(e) => {
+            if (e.key === "Escape") {
                 show = false;
             }
         }}
+        bind:this={trigger}
     >
         <slot name="trigger" />
     </span>
 
     {#if show}
-        <div
-            class="content-wrap {align} {position}"
-            use:clickOutside={{
-                enabled: closeOnOutsideClick,
-                callback: () => show = false
-            }}
+        <DropdownContent
+            bind:show
+            {width}
+            {closeOnOutsideClick}
+            {align}
+            {position}
+            {relative}
+            {trigger}
         >
-            <Box class="content" style="width:{width}px">
-                <slot name="content" />
-            </Box>
-        </div>
+            <slot name="content" />
+        </DropdownContent>
     {/if}
-
 </span>
 
 <style lang="scss">
@@ -53,84 +49,7 @@ class:relative
         position: relative;
         display: inline-block;
     }
-
-    .dropdown .content-wrap {
-        position: absolute;
-        left: 0;
-        z-index: 1;
-        
+    .dropdown.relative > :global(.content-wrap) {
+        position: relative !important;
     }
-
-    .content-wrap.bottom {
-        top: 100%;
-        margin-top: 5px;
-        &.end {
-            left: auto;
-            right: 0;
-        }
-        &.center {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    }
-
-    .content-wrap.top {
-        
-        bottom: 100%;
-        margin-bottom: 5px;
-        &.end {
-            left: auto;
-            right: 0;
-        }
-        &.center {
-            left: 50%;
-            transform: translateX(-50%);
-        }
-    }
-
-    .content-wrap.left {
-         right: 100%;
-         left:auto; //to remove the prvious left positioning
-        margin-right: 5px; 
-        top: 0;
-            bottom: auto;
-        &.end {
-            top: auto;
-            bottom: 0;
-        }
-        &.center {
-            top: 50%;
-            transform: translateY(-50%); 
-            
-        }
-    }
-
-    .content-wrap.right {
-        left: 100%;
-        margin-left: 5px;
-        top: 0;
-        bottom: auto;
-        &.end {
-            bottom: 0;
-            top: auto;
-        }
-        &.center {
-            top: 50%;
-            transform: translateY(-50%);
-        }
-    }
-
-
-    .content-wrap > :global(.content) {
-        padding: 10px;
-    }
-
-    .dropdown.relative > .content-wrap {
-        position: relative;
-    }
-
 </style>
-
-
-
-

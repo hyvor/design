@@ -1,5 +1,5 @@
 <script>
-    import { barUser } from "./bar.js";
+    import { barUser } from "./bar";
 </script>
 
 {#if $barUser}

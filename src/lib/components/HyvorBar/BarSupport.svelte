@@ -19,6 +19,8 @@
 
     let supportDropdown = false;
 
+    export let mobile = false;
+
     export let product: BarProduct;
     export let config: BarConfig;
 
@@ -31,7 +33,11 @@
     }
 </script>
 
-<Dropdown align="end" width={325} bind:show={supportDropdown}>
+<Dropdown
+    align={mobile ? "center" : "end"}
+    width={325}
+    bind:show={supportDropdown}
+>
     <Button slot="trigger" variant="invisible" color="input" size="small">
         Support
         <IconCaretDownFill size={10} slot="end" />

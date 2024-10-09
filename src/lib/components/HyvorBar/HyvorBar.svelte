@@ -5,11 +5,15 @@
     import BarSupport from "./BarSupport.svelte";
     import { loadBarUser, type BarConfig, type BarProduct } from "./bar.js";
     import BarUpdates from "./BarUpdates.svelte";
+    import { IconCaretDownFill, IconList, IconMenuApp } from "@hyvor/icons";
 
     export let instance = "https://hyvor.com";
     export let product: BarProduct;
 
     export let config: Partial<BarConfig> = {};
+
+    let mobileShow = false;
+
     const configComplete: BarConfig = {
         ...{
             docs: true,
@@ -20,12 +24,27 @@
         ...config,
     };
 
+    function handleBarClick(e: MouseEvent) {
+        if (
+            mobileShow &&
+            e.target instanceof Element &&
+            e.target.closest(".right")
+        ) {
+            return;
+        }
+        if (window.innerWidth <= 600) {
+            mobileShow = !mobileShow;
+        }
+    }
+
     onMount(() => {
         loadBarUser(instance, product);
     });
 </script>
 
-<div id="bar">
+<!-- svelte-ignore a11y-click-events-have-key-events -->
+<!-- svelte-ignore a11y-no-static-element-interactions -->
+<div id="bar" on:click={handleBarClick} class:mobile-show={mobileShow}>
     <div class="inner hds-box">
         <div class="left">
             <a class="logo" href="/">
@@ -36,18 +55,34 @@
             </a>
         </div>
         <div class="right">
-            <BarSupport config={configComplete} {product} />
-            <BarProducts />
-            <BarUpdates {instance} {product} />
+            <div class="hidden-on-mobile">
+                <BarSupport
+                    config={configComplete}
+                    {product}
+                    mobile={mobileShow}
+                />
+                <BarProducts />
+                <BarUpdates {instance} {product} />
+            </div>
+
+            <div class="mobile">
+                <IconCaretDownFill />
+            </div>
+
             <BarUser {instance} />
         </div>
     </div>
+
+    {#if mobileShow}
+        <div class="mobile-layer"></div>
+    {/if}
 </div>
 
 <style>
     #bar {
-        padding: 0 15px 10px 15px;
-        padding-bottom: 0px;
+        height: 50px;
+        padding: 0 15px;
+        z-index: 100;
     }
     .inner {
         padding: 10px 29px;
@@ -55,6 +90,7 @@
         align-items: center;
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+        height: 100%;
     }
     .left {
         display: flex;
@@ -72,5 +108,58 @@
         display: flex;
         align-items: center;
         gap: 10px;
+    }
+    .hidden-on-mobile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .mobile {
+        display: none;
+    }
+
+    @media (max-width: 600px) {
+        .mobile {
+            display: block;
+        }
+        #bar {
+            cursor: pointer;
+        }
+        .hidden-on-mobile {
+            display: none;
+            animation: 0.2s slideIn;
+        }
+        #bar.mobile-show .hidden-on-mobile {
+            display: flex;
+            position: fixed;
+            top: 60px;
+            z-index: 100;
+            left: 15px;
+            right: 15px;
+            flex-direction: column;
+        }
+        .mobile-layer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 99;
+            backdrop-filter: blur(3px);
+        }
+        #bar.mobile-show :global(button.button) {
+            background-color: #fff;
+        }
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateY(-20px);
+        }
+        to {
+            transform: translateY(0);
+        }
     }
 </style>

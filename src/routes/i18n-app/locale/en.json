@@ -1,12 +1,12 @@
 {
-  "welcome": "Welcome, everyone!",
-  "welcome2": "Welcome, all!",
-  "by": "by {name}",
-  "advanced": "advanced <a>settings</a>",
-  "dates": {
-    "start": "{date, date, medium}"
-  },
-  "price": "The price is {price, number, :: compact-short currency/EUR}",
-  "users": "{count, plural, one {# user} other {# users}}",
-  "element": "This is <b>bold</b>"
+	"welcome": "Welcome, everyone!",
+	"welcome2": "Welcome, all!",
+	"by": "by {name}",
+	"advanced": "advanced <a>settings</a>",
+	"dates": {
+		"start": "{date, date, medium}"
+	},
+	"price": "The price is {price, number, :: compact-short currency/EUR}",
+	"users": "{count, plural, one {# user} other {# users}}",
+	"element": "This is <b>bold</b>"
 }

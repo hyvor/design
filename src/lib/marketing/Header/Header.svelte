@@ -1,33 +1,30 @@
 <script lang="ts">
 	import Container from './../Container/Container.svelte';
-    import DarkToggle from "../../components/Dark/DarkToggle.svelte";
-    import IconButton from "../../components/IconButton/IconButton.svelte";
-    import Dropdown from "../../components/Dropdown/Dropdown.svelte";
-	import Tooltip from "../../components/Tooltip/Tooltip.svelte";
-    import { IconList } from "@hyvor/icons";
+	import DarkToggle from '../../components/Dark/DarkToggle.svelte';
+	import IconButton from '../../components/IconButton/IconButton.svelte';
+	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
+	import Tooltip from '../../components/Tooltip/Tooltip.svelte';
+	import { IconList } from '@hyvor/icons';
 
-    export let logo : string;
-    export let name : string = "HYVOR";
-	export let subName : undefined | string = undefined;
-	export let darkToggle : boolean = true;
-
+	export let logo: string;
+	export let name: string = 'HYVOR';
+	export let subName: undefined | string = undefined;
+	export let darkToggle: boolean = true;
 </script>
 
 <header>
-
 	<Container as="nav">
-
 		<div class="nav-start">
-            <a class="nav-brand" href="/">
-                <img src={logo} alt="Hyvor Logo" width="30" height="30" />
+			<a class="nav-brand" href="/">
+				<img src={logo} alt="Hyvor Logo" width="30" height="30" />
 				<span class="brand-product">
 					<span class="brand">{name}</span>
 					{#if subName}
 						<span class="product">{subName}</span>
 					{/if}
 				</span>
-            </a>
-        </div>
+			</a>
+		</div>
 
 		<div class="nav-center">
 			<slot name="center" />
@@ -38,7 +35,6 @@
 		</div>
 
 		<div class="dark-mobile">
-
 			{#if darkToggle}
 				<span class="dark-toggle-wrap">
 					<DarkToggle />
@@ -63,15 +59,11 @@
 					</div>
 				</Dropdown>
 			</span> -->
-
 		</div>
 
 		<span class="mobile-nav-wrap">
 			<Dropdown align="end" width={300}>
-				<IconButton 
-					variant="invisible" 
-					slot="trigger"
-				>
+				<IconButton variant="invisible" slot="trigger">
 					<IconList size={18} />
 				</IconButton>
 				<div slot="content" class="mobile-content">
@@ -84,18 +76,15 @@
 				</div>
 			</Dropdown>
 		</span>
-
 	</Container>
-
 </header>
 
 <div class="header-space" />
 
 <style lang="scss">
-
-    .header-space {
-        height: var(--header-height);
-    }
+	.header-space {
+		height: var(--header-height);
+	}
 
 	header {
 		position: fixed;
@@ -110,9 +99,9 @@
 		align-items: center;
 	}
 
-    header :global(nav) {
+	header :global(nav) {
 		display: flex;
-        align-items: center;
+		align-items: center;
 	}
 	.nav-brand {
 		display: inline-block;
@@ -169,7 +158,6 @@
 		margin-left: 8px;
 	}
 
-
 	@media screen and (max-width: 992px) {
 		.nav-center {
 			display: none;
@@ -187,7 +175,8 @@
 		}
 	}
 
-	.mobile-content, .mobile-inner {
+	.mobile-content,
+	.mobile-inner {
 		display: flex;
 		flex-direction: column;
 	}
@@ -203,8 +192,7 @@
 		Scroll padding top is used to prevent the content from being hidden behind the header
 		https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-top
 	*/
-    :global(html) {
-        scroll-padding-top: calc(var(--header-height) + 20px);
-    }
-
+	:global(html) {
+		scroll-padding-top: calc(var(--header-height) + 20px);
+	}
 </style>

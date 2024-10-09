@@ -1,17 +1,17 @@
 <script lang="ts">
-    export let bold = false;
+	export let bold = false;
 </script>
 
 <div class="caption" class:bold {...$$restProps}>
-    <slot /> 
+	<slot />
 </div>
 
 <style>
-    .caption {
-        font-size: 14px;
-        color: var(--text-light);
-    }
-    .caption.bold {
-        font-weight: 600;
-    }
+	.caption {
+		font-size: 14px;
+		color: var(--text-light);
+	}
+	.caption.bold {
+		font-weight: 600;
+	}
 </style>

@@ -1,9 +1,9 @@
 <label {...$$restProps}>
-    <slot />
+	<slot />
 </label>
 
 <style>
-    label {
-        font-weight: 600;
-    }
+	label {
+		font-weight: 600;
+	}
 </style>

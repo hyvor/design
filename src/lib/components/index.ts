@@ -23,7 +23,7 @@ export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
 
-export { default as Divider } from './Divider/Divider.svelte';   
+export { default as Divider } from './Divider/Divider.svelte';
 
 export { default as Caption } from './FormControl/Caption.svelte';
 export { default as FormControl } from './FormControl/FormControl.svelte';
@@ -73,21 +73,20 @@ export { default as Tooltip } from './Tooltip/Tooltip.svelte';
 
 export { default as IconMessage } from './IconMessage/IconMessage.svelte';
 
-
 // directives
 export { clickOutside } from './directives/clickOutside.js';
 
 // i18n
 export { default as InternationalizationProvider } from './Internationalization/InternationalizationProvider.svelte';
 export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
-export { 
-    type Language as InternationalizationLanguage,
-    InternationalizationService
+export {
+	type Language as InternationalizationLanguage,
+	InternationalizationService
 } from './Internationalization/i18n.js';
-export { 
-    type I18nStrings as I18nStrings,
-    type ToDotPaths as I18nToDotPaths,
-    type FromDotPath as I18nFromDotPath
+export {
+	type I18nStrings as I18nStrings,
+	type ToDotPaths as I18nToDotPaths,
+	type FromDotPath as I18nFromDotPath
 } from './Internationalization/types.js';
 
 /**

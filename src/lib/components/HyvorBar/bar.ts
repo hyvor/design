@@ -1,119 +1,111 @@
-import { writable } from "svelte/store"
+import { writable } from "svelte/store";
 
 export type BarProduct = "talk" | "blogs";
 export interface BarConfig {
-    docs: boolean;
-    chat: boolean;
-    twitter: string | null;
-    g2: string | null;
+  docs: boolean;
+  chat: boolean;
+  twitter: string | null;
+  g2: string | null;
 }
 
 interface BarUser {
-    name: string | null;
-    username: string;
-    email: string;
-    picture_url: string;
+  name: string | null;
+  username: string;
+  email: string;
+  picture_url: string;
 }
 
 export interface BarUpdate {
-    id: number;
-    created_at: number;
-    type: BarUpdateType;
-    title: string;
-    content: string;
-    url?: string;
+  id: number;
+  created_at: number;
+  type: BarUpdateType;
+  title: string;
+  content: string;
+  url?: string;
 }
 
-export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
+export type BarUpdateType = "company" | "core" | "talk" | "blogs" | "fortguard";
 
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
 
 export function loadBarUser(instance: string, product: BarProduct) {
+  const query = new URLSearchParams();
+  query.set("product", product);
 
-    const query = new URLSearchParams();
-    query.set('product', product);
+  const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
+  if (lastUnreadTime) {
+    query.set("last_read_updates_at", lastUnreadTime.toString());
+  }
 
-    const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
-    if (lastUnreadTime) {
-        query.set('last_read_updates_at', lastUnreadTime.toString());
-    }
+  fetch(instance + "/api/public/bar?" + query.toString(), {
+    credentials: "include",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      barUser.set(data.user);
+      barUnreadUpdates.set(data.updates.unread);
 
-    fetch(instance + '/api/public/bar?' + query.toString(), {
-        credentials: 'include',
+      if (lastUnreadTime === null) {
+        UnreadUpdatesTimeLocalStorage.setNow();
+      }
     })
-        .then(response => response.json())
-        .then(data => {
-            barUser.set(data.user);
-            barUnreadUpdates.set(data.updates.unread);
-
-            if (lastUnreadTime === null) {
-                UnreadUpdatesTimeLocalStorage.setNow();
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 }
-
 
 export class UnreadUpdatesTimeLocalStorage {
+  static KEY = "unread_updates";
 
-    static KEY = 'unread_updates';
-
-    static get() {
-        const val = BarLocalStorage.get(UnreadUpdatesTimeLocalStorage.KEY);
-        if (val) {
-            return Number(val);
-        }
-        return null;
+  static get() {
+    const val = BarLocalStorage.get(UnreadUpdatesTimeLocalStorage.KEY);
+    if (val) {
+      return Number(val);
     }
+    return null;
+  }
 
-    static set(value: string) {
-        BarLocalStorage.set(UnreadUpdatesTimeLocalStorage.KEY, value);
-    }
+  static set(value: string) {
+    BarLocalStorage.set(UnreadUpdatesTimeLocalStorage.KEY, value);
+  }
 
-    static setNow() {
-        UnreadUpdatesTimeLocalStorage.set(Math.floor(Date.now() / 1000).toString());
-    }
-
+  static setNow() {
+    UnreadUpdatesTimeLocalStorage.set(Math.floor(Date.now() / 1000).toString());
+  }
 }
 
-
 class BarLocalStorage {
+  static KEY = "hyvor_bar";
 
-    static KEY = 'hyvor_bar';
-
-    static getJson() {
-        try {
-            const data = localStorage.getItem(BarLocalStorage.KEY);
-            if (data) {
-                return JSON.parse(data);
-            }
-        } catch (e) {
-            console.error(e);
-            return null;
-        }
-        return null;
+  static getJson() {
+    try {
+      const data = localStorage.getItem(BarLocalStorage.KEY);
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.error(e);
+      return null;
     }
+    return null;
+  }
 
-    static get(key: string): string | null {
-        const data = BarLocalStorage.getJson();
-        if (data) {
-            return data[key];
-        }
-        return null;
+  static get(key: string): string | null {
+    const data = BarLocalStorage.getJson();
+    if (data) {
+      return data[key];
     }
+    return null;
+  }
 
-    static set(key: string, value: string) {
-        try {
-            const data = BarLocalStorage.getJson() || {};
-            data[key] = value;
-            localStorage.setItem(BarLocalStorage.KEY, JSON.stringify(data));
-        } catch (e) {
-            console.error(e);
-        }
+  static set(key: string, value: string) {
+    try {
+      const data = BarLocalStorage.getJson() || {};
+      data[key] = value;
+      localStorage.setItem(BarLocalStorage.KEY, JSON.stringify(data));
+    } catch (e) {
+      console.error(e);
     }
-
+  }
 }

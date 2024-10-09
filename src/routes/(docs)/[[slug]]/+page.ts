@@ -36,54 +36,53 @@ import Slider from "./docs/Slider.svelte";
 export const prerender = true;
 
 const nav = {
-    index: Index,
-    'action-list': ActionList,
-    avatar: Avatar,
-    button: Button,
-    'color-picker': ColorPicker,
-    'icon-button': IconButton,
-    table: Table,
-    callout: Callout,
-    'code-block': CodeBlock,
-    checkbox: Checkbox,
-    dropdown: Dropdown,
-    divider: Divider,
-    switch: Switch,
-    radio: Radio,
-    "split-control": SplitControl,
-    'form-control': FormControl,
-    'text-input': TextInput,
-    'tab-nav': TabNav,
-    tag: Tag,
-    text: Text,
-    toast: Toast,
-    "nav-link": NavLink,
-    modal: Modal,
-    textarea: Textarea,
-    loader: Loader,
-    link: Link,
-    tooltip: Tooltip,
-    dark: Dark,
-    i18n: Internationalization,
-    box: Box,
-    slider: Slider,
-    'icon-message': IconMessage,
+  index: Index,
+  "action-list": ActionList,
+  avatar: Avatar,
+  button: Button,
+  "color-picker": ColorPicker,
+  "icon-button": IconButton,
+  table: Table,
+  callout: Callout,
+  "code-block": CodeBlock,
+  checkbox: Checkbox,
+  dropdown: Dropdown,
+  divider: Divider,
+  switch: Switch,
+  radio: Radio,
+  "split-control": SplitControl,
+  "form-control": FormControl,
+  "text-input": TextInput,
+  "tab-nav": TabNav,
+  tag: Tag,
+  text: Text,
+  toast: Toast,
+  "nav-link": NavLink,
+  modal: Modal,
+  textarea: Textarea,
+  loader: Loader,
+  link: Link,
+  tooltip: Tooltip,
+  dark: Dark,
+  i18n: Internationalization,
+  box: Box,
+  slider: Slider,
+  "icon-message": IconMessage,
 
-    'page-structure': PageStructure,
-    docs: DocsDocs,
-}
+  "page-structure": PageStructure,
+  docs: DocsDocs,
+};
 
 export async function load({ params }) {
+  const slug = params.slug;
+  const fileName = (slug || "index") as keyof typeof nav;
 
-    const slug = params.slug;
-    const fileName = (slug || 'index') as keyof typeof nav;
-
-    /* if (!nav[fileName]) {
+  /* if (!nav[fileName]) {
         throw error(404, 'Not found');
     } */
 
-    return {
-        slug: params.slug,
-        content: nav[fileName],
-    }
+  return {
+    slug: params.slug,
+    content: nav[fileName],
+  };
 }

@@ -1,15 +1,14 @@
 <script lang="ts">
-    export let color : string = 'var(--accent-lightest)';
-    export let height : number = 1;
-    export let width : number = 100;
-    export let margin : number = 0;
-    export let align: 'start' | 'center' | 'end' = 'center';
+  export let color: string = "var(--accent-lightest)";
+  export let height: number = 1;
+  export let width: number = 100;
+  export let margin: number = 0;
+  export let align: "start" | "center" | "end" = "center";
 </script>
 
-
 <div
-    class="line"
-    style="
+  class="line"
+  style="
     background-color: {color};
         height: {height}px;
         width: {width}%;
@@ -22,7 +21,7 @@
 />
 
 <style>
-    .line {
-        display: block;
-    }
+  .line {
+    display: block;
+  }
 </style>

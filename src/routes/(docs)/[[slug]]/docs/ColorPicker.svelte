@@ -7,18 +7,22 @@
   let inputTimes1 = 0;
   let changedTimes1 = 0;
 </script>
+
 <h1>Color Picker</h1>
 
 <h2>Usage</h2>
 
-<CodeBlock code={`
-    <` + `script lang="ts">
+<CodeBlock
+  code={`
+    <` +
+    `script lang="ts">
         import { ColorPicker } from "@hyvor/design/components";
 
         let color = '#000000';
         let inputTimes = 0;
         let changedTimes = 0;
-    <` + `/script>
+    <` +
+    `/script>
 
     <ColorPicker
         bind:color={color}
@@ -27,14 +31,15 @@
     />
 
     <p>Color: {color}, Changed {times} times</p>
-`} />
+`}
+/>
 
-<ColorPicker 
-    bind:color={color1}
-    on:input={() => inputTimes1++}
-    on:change={() => changedTimes1++}
+<ColorPicker
+  bind:color={color1}
+  on:input={() => inputTimes1++}
+  on:change={() => changedTimes1++}
 />
 
 <div style="margin-top: 4px;font-size:14px;color:var(--text-light)">
-    Color: {color1}, inputs: {inputTimes1}, changes: {changedTimes1}
+  Color: {color1}, inputs: {inputTimes1}, changes: {changedTimes1}
 </div>

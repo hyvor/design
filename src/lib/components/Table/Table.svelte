@@ -1,13 +1,16 @@
 <script lang="ts">
-    export let columns : string;
-    export let hover : boolean = false;
+  export let columns: string;
+  export let hover: boolean = false;
 
-    const hoverCss = hover ? "--local-hover-color: var(--hover);" : '';
+  const hoverCss = hover ? "--local-hover-color: var(--hover);" : "";
 </script>
 
-<div class="table" style="
+<div
+  class="table"
+  style="
     --local-columns: {columns};
     {hoverCss}
-">
-    <slot />
+"
+>
+  <slot />
 </div>

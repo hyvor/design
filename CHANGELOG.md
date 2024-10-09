@@ -1,3 +1,9 @@
+## 0.0.68 - 2024-09-09
+
+-   `<HyvorBar>` component added
+-   Callout `title` prop
+-   Navlink disabled state
+
 ## 0.0.67 - 2024-07-28
 
 -   Document component added to marketing

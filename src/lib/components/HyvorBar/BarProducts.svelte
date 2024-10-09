@@ -28,9 +28,11 @@
     import LogoTalk from "$lib/marketing/Logo/LogoTalk.svelte";
     import { ActionList, ActionListItem, Button, Dropdown } from "../index.js";
     import { IconCaretDownFill, IconBoxArrowUpRight } from "@hyvor/icons";
+
+    export let mobile = false;
 </script>
 
-<Dropdown align="end" width={325}>
+<Dropdown align={mobile ? "center" : "end"} width={325}>
     <Button slot="trigger" variant="invisible" color="input" size="small">
         Products
         <IconCaretDownFill size={10} slot="end" />

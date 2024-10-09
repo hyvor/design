@@ -18,15 +18,24 @@
             {/if}
         </IconButton>
 
-        <div slot="content">
+        <div slot="content" class="content-inner">
             <BarUpdatesList {instance} {product} />
         </div>
     </Dropdown>
 </div>
 
 <style>
+    .updates {
+        height: 100%;
+    }
+    .content-inner {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
     .updates :global(.dropdown .content) {
         padding: 0;
+        height: 100%;
     }
     .unread {
         position: absolute;

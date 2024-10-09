@@ -5,7 +5,7 @@
     import BarSupport from "./BarSupport.svelte";
     import { loadBarUser, type BarConfig, type BarProduct } from "./bar.js";
     import BarUpdates from "./BarUpdates.svelte";
-    import { IconCaretDownFill, IconList, IconMenuApp } from "@hyvor/icons";
+    import { IconCaretDownFill } from "@hyvor/icons";
 
     export let instance = "https://hyvor.com";
     export let product: BarProduct;
@@ -28,7 +28,7 @@
         if (
             mobileShow &&
             e.target instanceof Element &&
-            e.target.closest(".right")
+            e.target.closest(".dropdown .trigger")
         ) {
             return;
         }
@@ -61,7 +61,7 @@
                     {product}
                     mobile={mobileShow}
                 />
-                <BarProducts />
+                <BarProducts mobile={mobileShow} />
                 <BarUpdates {instance} {product} />
             </div>
 

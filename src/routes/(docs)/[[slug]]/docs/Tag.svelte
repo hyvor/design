@@ -197,60 +197,84 @@
 <CodeResult white>
 	<div style="margin-bottom: 10px;">
 		<Tag size="x-small" color="orange">
-			<IconJournalText slot="start" size={10} />
+			{#snippet start()}
+						<IconJournalText  size={10} />
+					{/snippet}
 			Draft
 		</Tag>
 		<Tag size="x-small" color="green">
-			<IconCheck slot="start" size={12} />
+			{#snippet start()}
+						<IconCheck  size={12} />
+					{/snippet}
 			Published
 		</Tag>
 		<Tag size="x-small" color="blue">
-			<IconHourglass slot="start" size={10} />
+			{#snippet start()}
+						<IconHourglass  size={10} />
+					{/snippet}
 			Scheduled
 		</Tag>
 	</div>
 
 	<div style="margin-bottom: 10px;">
 		<Tag size="small" color="orange">
-			<IconJournalText slot="start" size={11} />
+			{#snippet start()}
+						<IconJournalText  size={11} />
+					{/snippet}
 			Draft
 		</Tag>
 		<Tag size="small" color="green">
-			<IconCheck slot="start" size={14} />
+			{#snippet start()}
+						<IconCheck  size={14} />
+					{/snippet}
 			Published
 		</Tag>
 		<Tag size="small" color="blue">
-			<IconHourglass slot="start" size={11} />
+			{#snippet start()}
+						<IconHourglass  size={11} />
+					{/snippet}
 			Scheduled
 		</Tag>
 	</div>
 
 	<div style="margin-bottom: 10px;">
 		<Tag color="orange">
-			<IconJournalText slot="start" size={12} />
+			{#snippet start()}
+						<IconJournalText  size={12} />
+					{/snippet}
 			Draft
 		</Tag>
 		<Tag color="green">
-			<IconCheck slot="start" size={14} />
+			{#snippet start()}
+						<IconCheck  size={14} />
+					{/snippet}
 			Published
 		</Tag>
 		<Tag color="blue">
-			<IconHourglass slot="start" size={12} />
+			{#snippet start()}
+						<IconHourglass  size={12} />
+					{/snippet}
 			Scheduled
 		</Tag>
 	</div>
 
 	<div style="margin-bottom: 10px;">
 		<Tag size="large" color="orange">
-			<IconJournalText slot="start" size={14} />
+			{#snippet start()}
+						<IconJournalText  size={14} />
+					{/snippet}
 			Draft
 		</Tag>
 		<Tag size="large" color="green">
-			<IconCheck slot="start" size={16} />
+			{#snippet start()}
+						<IconCheck  size={16} />
+					{/snippet}
 			Published
 		</Tag>
 		<Tag size="large" color="blue">
-			<IconHourglass slot="start" size={14} />
+			{#snippet start()}
+						<IconHourglass  size={14} />
+					{/snippet}
 			Scheduled
 		</Tag>
 		<div style="margin-bottom: 10px;"></div>
@@ -268,7 +292,9 @@
 <CodeResult>
 	<Tag>
 		Loading
-		<Loader size="small" slot="end" colorTrack="transparent" />
+		{#snippet end()}
+				<Loader size="small"  colorTrack="transparent" />
+			{/snippet}
 	</Tag>
 </CodeResult>
 

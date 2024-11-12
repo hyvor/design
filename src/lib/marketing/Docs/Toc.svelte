@@ -6,7 +6,7 @@
 	import { IconCaretDown, IconCaretRight } from '@hyvor/icons';
 	import Button from '../../components/Button/Button.svelte';
 
-	let tocElement: HTMLDivElement;
+	let tocElement: HTMLDivElement = $state();
 
 	onMount(() => {
 		tocbot.init({
@@ -26,7 +26,7 @@
 		tocbot.refresh();
 	});
 
-	let mobileShown = false;
+	let mobileShown = $state(false);
 
 	function handleMobileClick(e: any) {
 		e.stopPropagation();
@@ -44,13 +44,15 @@
 	<div class="mobile">
 		<Button color="input" on:click={handleMobileClick}>
 			Table of Contents
-			<svelte:fragment slot="end">
-				{#if mobileShown}
-					<IconCaretDown size={14} />
-				{:else}
-					<IconCaretRight size={14} />
-				{/if}
-			</svelte:fragment>
+			{#snippet end()}
+					
+					{#if mobileShown}
+						<IconCaretDown size={14} />
+					{:else}
+						<IconCaretRight size={14} />
+					{/if}
+				
+					{/snippet}
 		</Button>
 	</div>
 

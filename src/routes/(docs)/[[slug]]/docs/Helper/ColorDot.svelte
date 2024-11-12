@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let color: string;
+	interface Props {
+		color: string;
+	}
+
+	let { color }: Props = $props();
 </script>
 
 <span class="color-dot" style:background-color={color}></span>

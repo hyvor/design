@@ -4,8 +4,6 @@
 
 	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx';
 
-	export let code: string;
-	export let language: InputLanguage = 'html';
 
 	const languagesMap: Partial<Record<InputLanguage, Language>> = {
 		svelte: 'html',
@@ -14,6 +12,12 @@
 	const languageCode = (languagesMap[language] || language) as Language;
 
 	import getCode, { type Language } from './getCode.js';
+	interface Props {
+		code: string;
+		language?: InputLanguage;
+	}
+
+	let { code, language = 'html' }: Props = $props();
 </script>
 
 <pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>

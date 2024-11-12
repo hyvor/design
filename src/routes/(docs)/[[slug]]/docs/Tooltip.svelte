@@ -171,10 +171,12 @@
 <CodeResult>
 	<Tooltip>
 		<Button>Hover me</Button>
-		<div slot="tooltip">
-			<div>This is a tooltip</div>
-			<Callout type="info">It can contain any content</Callout>
-		</div>
+		{#snippet tooltip()}
+				<div >
+				<div>This is a tooltip</div>
+				<Callout type="info">It can contain any content</Callout>
+			</div>
+			{/snippet}
 	</Tooltip>
 </CodeResult>
 

@@ -2,10 +2,16 @@
 	import Link from '$lib/components/Link/Link.svelte';
 	import { IconBoxArrowUpRight } from '@hyvor/icons';
 
-	export let children: string;
+	interface Props {
+		children: string;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <Link href="/pricing" target="_blank">
 	{children}
-	<IconBoxArrowUpRight slot="end" />
+	{#snippet end()}
+		<IconBoxArrowUpRight  />
+	{/snippet}
 </Link>

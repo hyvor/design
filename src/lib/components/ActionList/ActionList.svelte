@@ -1,15 +1,27 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { setContext } from 'svelte';
 
-	export let selection: 'none' | 'single' | 'multi' = 'none';
-	export let selectionAlign: 'start' | 'end' = 'start';
+	interface Props {
+		selection?: 'none' | 'single' | 'multi';
+		selectionAlign?: 'start' | 'end';
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
 
-	$: setContext('action-list-selection', selection);
-	$: setContext('action-list-selection-align', selectionAlign);
+	let { selection = 'none', selectionAlign = 'start', children, ...rest }: Props = $props();
+
+	run(() => {
+		setContext('action-list-selection', selection);
+	});
+	run(() => {
+		setContext('action-list-selection-align', selectionAlign);
+	});
 </script>
 
-<div class="action-list" {...$$restProps}>
-	<slot />
+<div class="action-list" {...rest}>
+	{@render children?.()}
 </div>
 
 <style></style>

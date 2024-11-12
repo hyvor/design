@@ -7,8 +7,8 @@
 	import Box from '$lib/components/Box/Box.svelte';
 	import { IconColumns, IconChat, IconFile, IconCoin, IconExclamationCircle } from '@hyvor/icons';
 
-	let active = 'overview';
-	let active2 = 'overview';
+	let active = $state('overview');
+	let active2 = $state('overview');
 </script>
 
 <h1>Nav Link</h1>
@@ -131,7 +131,9 @@
 					active={active2 === 'overview'}
 					on:click={() => (active2 = 'overview')}
 				>
-					<IconColumns slot="start"></IconColumns>
+					{#snippet start()}
+										<IconColumns ></IconColumns>
+									{/snippet}
 					Overview
 				</NavLink>
 
@@ -140,7 +142,9 @@
 					active={active2 === 'comments'}
 					on:click={() => (active2 = 'comments')}
 				>
-					<IconChat slot="start"></IconChat>
+					{#snippet start()}
+										<IconChat ></IconChat>
+									{/snippet}
 					Comments
 				</NavLink>
 
@@ -149,7 +153,9 @@
 					active={active2 === 'pages'}
 					on:click={() => (active2 = 'pages')}
 				>
-					<IconFile slot="start"></IconFile>
+					{#snippet start()}
+										<IconFile ></IconFile>
+									{/snippet}
 					Pages
 				</NavLink>
 
@@ -159,9 +165,13 @@
 					on:click={() => (active2 = 'billing')}
 					disabled
 				>
-					<IconCoin slot="start"></IconCoin>
+					{#snippet start()}
+										<IconCoin ></IconCoin>
+									{/snippet}
 					Billing
-					<IconExclamationCircle slot="end" style="color:var(--orange)"></IconExclamationCircle>
+					{#snippet end()}
+										<IconExclamationCircle  style="color:var(--orange)"></IconExclamationCircle>
+									{/snippet}
 				</NavLink>
 			</div>
 		</Box>

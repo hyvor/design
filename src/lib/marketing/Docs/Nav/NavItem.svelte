@@ -1,7 +1,12 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 
-	export let href: string;
+	interface Props {
+		href: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { href, children }: Props = $props();
 </script>
 
 <a
@@ -9,7 +14,7 @@
 	class:active={href === $page.url.pathname}
 	aria-current={href === $page.url.pathname ? 'page' : undefined}
 >
-	<slot />
+	{@render children?.()}
 </a>
 
 <style>

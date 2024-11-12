@@ -4,8 +4,12 @@
 	import ButtonGroup from '../Button/ButtonGroup.svelte';
 	import type { Footer } from './modal-types.ts';
 
-	export let show: boolean;
-	export let footer: Footer;
+	interface Props {
+		show: boolean;
+		footer: Footer;
+	}
+
+	let { show = $bindable(), footer }: Props = $props();
 
 	const dispatch = createEventDispatcher();
 </script>

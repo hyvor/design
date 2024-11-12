@@ -1,5 +1,11 @@
 <script lang="ts">
-	export let as: string = 'div';
+	interface Props {
+		as?: string;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { as = 'div', children, ...rest }: Props = $props();
 </script>
 
 <svelte:element
@@ -7,7 +13,7 @@
 	style:box-shadow="var(--box-shadow)"
 	style:border-radius="var(--box-radius)"
 	style:background-color="var(--box-background)"
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>

@@ -18,20 +18,20 @@
 	import Radio from '$lib/components/Radio/Radio.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 
-	let x1 = 'talk';
-	let x2: string[] = [];
+	let x1 = $state('talk');
+	let x2: string[] = $state([]);
 
-	let x3: string[] = [];
-	let x4 = 'starter';
+	let x3: string[] = $state([]);
+	let x4 = $state('starter');
 
-	let s1 = true;
-	let s2 = true;
-	let s3 = true;
-	let s4 = true;
+	let s1 = $state(true);
+	let s2 = $state(true);
+	let s3 = $state(true);
+	let s4 = $state(true);
 
 	//dropdown align and position states
-	let paAlign: 'start' | 'center' | 'end' = 'start';
-	let paPosition: 'top' | 'bottom' | 'left' | 'right' = 'bottom';
+	let paAlign: 'start' | 'center' | 'end' = $state('start');
+	let paPosition: 'top' | 'bottom' | 'left' | 'right' = $state('bottom');
 
 	function handleX2Select(val: string) {
 		if (x2.includes(val)) {
@@ -150,20 +150,26 @@
 
 <CodeResult>
 	<Dropdown bind:show={s1} relative closeOnOutsideClick={false}>
-		<Button slot="trigger" color="gray">
-			Page <IconCaretDown slot="end" />
-		</Button>
-		<ActionList slot="content">
-			{#each [1, 2, 3] as i}
-				<ActionListItem
-					on:select={() => {
-						s1 = false;
-					}}
-				>
-					Action {i}
-				</ActionListItem>
-			{/each}
-		</ActionList>
+		{#snippet trigger()}
+				<Button  color="gray">
+				Page {#snippet end()}
+						<IconCaretDown  />
+					{/snippet}
+			</Button>
+			{/snippet}
+		{#snippet content()}
+				<ActionList >
+				{#each [1, 2, 3] as i}
+					<ActionListItem
+						on:select={() => {
+							s1 = false;
+						}}
+					>
+						Action {i}
+					</ActionListItem>
+				{/each}
+			</ActionList>
+			{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -215,41 +221,57 @@
 
 <CodeResult>
 	<Dropdown bind:show={s2} relative width={350} closeOnOutsideClick={false}>
-		<Button slot="trigger" color="gray">
-			<Text light small slot="start">Product</Text>
+		{#snippet trigger()}
+				<Button  color="gray">
+				{#snippet start()}
+						<Text light small >Product</Text>
+					{/snippet}
 
-			{#if x1 === 'talk'}
-				<Avatar src={hyvorTalkLogo} size={18} />
-				<Text normal style="margin-left:5px;">Hyvor Talk</Text>
-			{:else}
-				<Avatar src={hyvorBlogsLogo} size={18} />
-				<Text normal style="margin-left:5px;">Hyvor Blogs</Text>
-			{/if}
+				{#if x1 === 'talk'}
+					<Avatar src={hyvorTalkLogo} size={18} />
+					<Text normal style="margin-left:5px;">Hyvor Talk</Text>
+				{:else}
+					<Avatar src={hyvorBlogsLogo} size={18} />
+					<Text normal style="margin-left:5px;">Hyvor Blogs</Text>
+				{/if}
 
-			<IconCaretDown slot="end" />
-		</Button>
-		<ActionList slot="content" selection="single">
-			<ActionListItem
-				selected={x1 === 'talk'}
-				on:select={() => {
-					x1 = 'talk';
-				}}
-			>
-				<Avatar slot="start" src={hyvorTalkLogo} size="small" />
-				Hyvor Talk
-				<div slot="description">Commenting Platform</div>
-			</ActionListItem>
-			<ActionListItem
-				selected={x1 === 'blogs'}
-				on:select={() => {
-					x1 = 'blogs';
-				}}
-			>
-				<Avatar slot="start" src={hyvorBlogsLogo} size="small" />
-				Hyvor Blogs
-				<div slot="description">Blogging Platform</div>
-			</ActionListItem>
-		</ActionList>
+				{#snippet end()}
+						<IconCaretDown  />
+					{/snippet}
+			</Button>
+			{/snippet}
+		{#snippet content()}
+				<ActionList  selection="single">
+				<ActionListItem
+					selected={x1 === 'talk'}
+					on:select={() => {
+						x1 = 'talk';
+					}}
+				>
+					{#snippet start()}
+								<Avatar  src={hyvorTalkLogo} size="small" />
+							{/snippet}
+					Hyvor Talk
+					{#snippet description()}
+								<div >Commenting Platform</div>
+							{/snippet}
+				</ActionListItem>
+				<ActionListItem
+					selected={x1 === 'blogs'}
+					on:select={() => {
+						x1 = 'blogs';
+					}}
+				>
+					{#snippet start()}
+								<Avatar  src={hyvorBlogsLogo} size="small" />
+							{/snippet}
+					Hyvor Blogs
+					{#snippet description()}
+								<div >Blogging Platform</div>
+							{/snippet}
+				</ActionListItem>
+			</ActionList>
+			{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -305,22 +327,36 @@
 
 <CodeResult>
 	<Dropdown bind:show={s3} relative width={350} closeOnOutsideClick={false}>
-		<Button slot="trigger" color="gray">
-			Select Products ({x2.length})
-			<IconCaretDown slot="end" />
-		</Button>
-		<ActionList slot="content" selection="multi">
-			<ActionListItem selected={x2.includes('talk')} on:select={() => handleX2Select('talk')}>
-				<Avatar slot="start" src={hyvorTalkLogo} size="small" />
-				Hyvor Talk
-				<div slot="description">Commenting Platform</div>
-			</ActionListItem>
-			<ActionListItem selected={x2.includes('blogs')} on:select={() => handleX2Select('blogs')}>
-				<Avatar slot="start" src={hyvorBlogsLogo} size="small" />
-				Hyvor Blogs
-				<div slot="description">Blogging Platform</div>
-			</ActionListItem>
-		</ActionList>
+		{#snippet trigger()}
+				<Button  color="gray">
+				Select Products ({x2.length})
+				{#snippet end()}
+						<IconCaretDown  />
+					{/snippet}
+			</Button>
+			{/snippet}
+		{#snippet content()}
+				<ActionList  selection="multi">
+				<ActionListItem selected={x2.includes('talk')} on:select={() => handleX2Select('talk')}>
+					{#snippet start()}
+								<Avatar  src={hyvorTalkLogo} size="small" />
+							{/snippet}
+					Hyvor Talk
+					{#snippet description()}
+								<div >Commenting Platform</div>
+							{/snippet}
+				</ActionListItem>
+				<ActionListItem selected={x2.includes('blogs')} on:select={() => handleX2Select('blogs')}>
+					{#snippet start()}
+								<Avatar  src={hyvorBlogsLogo} size="small" />
+							{/snippet}
+					Hyvor Blogs
+					{#snippet description()}
+								<div >Blogging Platform</div>
+							{/snippet}
+				</ActionListItem>
+			</ActionList>
+			{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -373,38 +409,58 @@
 
 <CodeResult>
 	<Dropdown bind:show={s4} relative width={350} closeOnOutsideClick={false}>
-		<Button slot="trigger" color="gray">
-			Filter Results
-			<IconCaretDown slot="end" />
-		</Button>
-		<ActionList slot="content">
-			<ActionListGroup selection="multi" title="Product">
-				<ActionListItem selected={x3.includes('talk')} on:select={() => handleX3Select('talk')}>
-					<Avatar slot="start" src={hyvorTalkLogo} size="small" />
-					Hyvor Talk
-					<div slot="description">Commenting Platform</div>
-				</ActionListItem>
-				<ActionListItem selected={x3.includes('blogs')} on:select={() => handleX3Select('blogs')}>
-					<Avatar slot="start" src={hyvorBlogsLogo} size="small" />
-					Hyvor Blogs
-					<div slot="description">Blogging Platform</div>
-				</ActionListItem>
-			</ActionListGroup>
-			<ActionListGroup selection="single" title="Plan" divider>
-				<ActionListItem selected={x4 === 'starter'} on:select={() => (x4 = 'starter')}>
-					Starter
-					<Text small light slot="end">$9/month</Text>
-				</ActionListItem>
-				<ActionListItem selected={x4 === 'growth'} on:select={() => (x4 = 'growth')}>
-					Growth
-					<Text small light slot="end">$19/month</Text>
-				</ActionListItem>
-				<ActionListItem selected={x4 === 'premium'} on:select={() => (x4 = 'premium')}>
-					Premium
-					<Text small light slot="end">$49/month</Text>
-				</ActionListItem>
-			</ActionListGroup>
-		</ActionList>
+		{#snippet trigger()}
+				<Button  color="gray">
+				Filter Results
+				{#snippet end()}
+						<IconCaretDown  />
+					{/snippet}
+			</Button>
+			{/snippet}
+		{#snippet content()}
+				<ActionList >
+				<ActionListGroup selection="multi" title="Product">
+					<ActionListItem selected={x3.includes('talk')} on:select={() => handleX3Select('talk')}>
+						{#snippet start()}
+										<Avatar  src={hyvorTalkLogo} size="small" />
+									{/snippet}
+						Hyvor Talk
+						{#snippet description()}
+										<div >Commenting Platform</div>
+									{/snippet}
+					</ActionListItem>
+					<ActionListItem selected={x3.includes('blogs')} on:select={() => handleX3Select('blogs')}>
+						{#snippet start()}
+										<Avatar  src={hyvorBlogsLogo} size="small" />
+									{/snippet}
+						Hyvor Blogs
+						{#snippet description()}
+										<div >Blogging Platform</div>
+									{/snippet}
+					</ActionListItem>
+				</ActionListGroup>
+				<ActionListGroup selection="single" title="Plan" divider>
+					<ActionListItem selected={x4 === 'starter'} on:select={() => (x4 = 'starter')}>
+						Starter
+						{#snippet end()}
+										<Text small light >$9/month</Text>
+									{/snippet}
+					</ActionListItem>
+					<ActionListItem selected={x4 === 'growth'} on:select={() => (x4 = 'growth')}>
+						Growth
+						{#snippet end()}
+										<Text small light >$19/month</Text>
+									{/snippet}
+					</ActionListItem>
+					<ActionListItem selected={x4 === 'premium'} on:select={() => (x4 = 'premium')}>
+						Premium
+						{#snippet end()}
+										<Text small light >$49/month</Text>
+									{/snippet}
+					</ActionListItem>
+				</ActionListGroup>
+			</ActionList>
+			{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -430,22 +486,28 @@
 
 	<div style="margin-top:120px; left:auto; margin-bottom:120px; text-align: center;">
 		<Dropdown bind:show={s1} closeOnOutsideClick={false} align={paAlign} position={paPosition}>
-			<Button slot="trigger" color="gray">
-				Filter Results
-				<IconCaretDown slot="end" />
-			</Button>
+			{#snippet trigger()}
+						<Button  color="gray">
+					Filter Results
+					{#snippet end()}
+								<IconCaretDown  />
+							{/snippet}
+				</Button>
+					{/snippet}
 
-			<ActionList slot="content">
-				{#each [1, 2, 3] as i}
-					<ActionListItem
-						on:select={() => {
-							s1 = false;
-						}}
-					>
-						Action {i}
-					</ActionListItem>
-				{/each}
-			</ActionList>
+			{#snippet content()}
+						<ActionList >
+					{#each [1, 2, 3] as i}
+						<ActionListItem
+							on:select={() => {
+								s1 = false;
+							}}
+						>
+							Action {i}
+						</ActionListItem>
+					{/each}
+				</ActionList>
+					{/snippet}
 		</Dropdown>
 	</div>
 </CodeResult>

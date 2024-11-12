@@ -9,16 +9,26 @@
 	import { IconCaretDown } from '@hyvor/icons';
 	import IconButton from '../IconButton/IconButton.svelte';
 
-	export let position: ComponentProps<Dropdown>['position'] = 'bottom';
-	export let align: ComponentProps<Dropdown>['align'] = 'start';
-	export let caret: ComponentType = IconCaretDown;
-	export let icon = false;
-	export let size: 'medium' | 'small' = 'medium';
+	interface Props {
+		position?: ComponentProps<Dropdown>['position'];
+		align?: ComponentProps<Dropdown>['align'];
+		caret?: ComponentType;
+		icon?: boolean;
+		size?: 'medium' | 'small';
+	}
+
+	let {
+		position = 'bottom',
+		align = 'start',
+		caret = IconCaretDown,
+		icon = false,
+		size = 'medium'
+	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
 	const currentLanguage = i18n ? i18n.localeLanguage : undefined;
 
-	let show = false;
+	let show = $state(false);
 
 	function handleClick(language: Language) {
 		i18n.setLocale(language.code);
@@ -28,32 +38,43 @@
 
 {#if i18n && $currentLanguage}
 	<Dropdown bind:show {position} {align}>
-		<span slot="trigger">
-			{#if icon}
-				<IconButton color="input" {size}>
-					{$currentLanguage.flag}
-				</IconButton>
-			{:else}
-				<Button color="input" {size}>
-					<span slot="start">{$currentLanguage.flag}</span>
-					{$currentLanguage.name}
-					<svelte:component this={caret} slot="end" size={12} />
-				</Button>
-			{/if}
-		</span>
-		<ActionList slot="content">
-			{#each i18n.languages as language (language.code)}
-				<ActionListItem on:click={() => handleClick(language)}>
-					<span class="flag" slot="start">{language.flag}</span>
-					<span class="name">
-						{language.name}
-					</span>
-					<Text small light>
-						{language.region}
-					</Text>
-				</ActionListItem>
-			{/each}
-		</ActionList>
+		{#snippet trigger()}
+				<span >
+				{#if icon}
+					<IconButton color="input" {size}>
+						{$currentLanguage.flag}
+					</IconButton>
+				{:else}
+					<Button color="input" {size}>
+						{#snippet start()}
+										<span >{$currentLanguage.flag}</span>
+									{/snippet}
+						{$currentLanguage.name}
+						{#snippet end()}
+										{@const SvelteComponent = caret}
+					<SvelteComponent  size={12} />
+									{/snippet}
+					</Button>
+				{/if}
+			</span>
+			{/snippet}
+		{#snippet content()}
+				<ActionList >
+				{#each i18n.languages as language (language.code)}
+					<ActionListItem on:click={() => handleClick(language)}>
+						{#snippet start()}
+										<span class="flag" >{language.flag}</span>
+									{/snippet}
+						<span class="name">
+							{language.name}
+						</span>
+						<Text small light>
+							{language.region}
+						</Text>
+					</ActionListItem>
+				{/each}
+			</ActionList>
+			{/snippet}
 	</Dropdown>
 {/if}
 

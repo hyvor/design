@@ -8,8 +8,8 @@
 	import Callout from '$lib/components/Callout/Callout.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 
-	let x = true;
-	let a: string[] = [];
+	let x = $state(true);
+	let a: string[] = $state([]);
 </script>
 
 <h1>Checkbox</h1>
@@ -24,7 +24,9 @@
 </p>
 
 <Callout type="info">
-	<span slot="icon">💡</span>
+	{#snippet icon()}
+		<span >💡</span>
+	{/snippet}
 	Checkbox should only be used if there are multiple options to choose from. For a single option, use
 	<a href="/switch">Switch</a> instead.
 </Callout>

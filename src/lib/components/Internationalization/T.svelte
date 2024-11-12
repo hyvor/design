@@ -1,11 +1,12 @@
 <script lang="ts" generics="StringsT extends I18nStrings">
+	import { run } from 'svelte/legacy';
+
 	import { type ToDotPaths, type I18nStrings } from './types.js';
 	import {
 		getContext,
 		type ComponentType,
 		onMount,
 		tick,
-		afterUpdate,
 		getAllContexts
 	} from 'svelte';
 	import { getStringByKey, InternationalizationService } from './i18n.js';
@@ -21,8 +22,12 @@
 	type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
 	type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 
-	export let key: ToDotPaths<StringsT>;
-	export let params: InputParams = {};
+	interface Props {
+		key: ToDotPaths<StringsT>;
+		params?: InputParams;
+	}
+
+	let { key, params = {} }: Props = $props();
 
 	const context = getAllContexts();
 
@@ -111,7 +116,7 @@
 	const locale = i18n.locale;
 	const strings = i18n.strings;
 
-	let message = getMessage(getParamsForBackend());
+	let message = $state(getMessage(getParamsForBackend()));
 
 	function getMessage(processedParams: Record<string, ParamValue>) {
 		return getMessageBase(key, processedParams, $strings, $locale);
@@ -138,15 +143,15 @@
 		if (hasComponentParams) bindComponents();
 	}
 
-	let mounted = false;
+	let mounted = $state(false);
 
-	$: {
+	run(() => {
 		params;
 		key;
 		if (browser && mounted) {
 			renderFrontend();
 		}
-	}
+	});
 
 	onMount(async () => {
 		mounted = true;

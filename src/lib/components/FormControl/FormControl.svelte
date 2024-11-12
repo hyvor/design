@@ -1,5 +1,14 @@
-<div class="form-control" {...$$restProps}>
-	<slot />
+<script lang="ts">
+	interface Props {
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { children, ...rest }: Props = $props();
+</script>
+
+<div class="form-control" {...rest}>
+	{@render children?.()}
 </div>
 
 <style>

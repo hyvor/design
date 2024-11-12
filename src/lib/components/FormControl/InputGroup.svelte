@@ -1,5 +1,11 @@
 <script lang="ts">
-	export let gap: number | 'small' | 'medium' | 'large' = 'medium';
+	interface Props {
+		gap?: number | 'small' | 'medium' | 'large';
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { gap = $bindable('medium'), children, ...rest }: Props = $props();
 
 	const gaps = {
 		small: 4,
@@ -9,8 +15,8 @@
 	gap = typeof gap === 'number' ? gap : gaps[gap];
 </script>
 
-<div class="checkbox-group" style:gap={gap + 'px'} {...$$restProps}>
-	<slot />
+<div class="checkbox-group" style:gap={gap + 'px'} {...rest}>
+	{@render children?.()}
 </div>
 
 <style>

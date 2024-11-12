@@ -1,12 +1,25 @@
 <script lang="ts">
-	export let small = false;
-	export let light = false;
-	export let normal = false; // weight
-	export let bold = false;
+	interface Props {
+		small?: boolean;
+		light?: boolean;
+		normal?: boolean; // weight
+		bold?: boolean;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		small = false,
+		light = false,
+		normal = false,
+		bold = false,
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
-<span class:light class:small class:normal class:bold {...$$restProps}>
-	<slot />
+<span class:light class:small class:normal class:bold {...rest}>
+	{@render children?.()}
 </span>
 
 <style>

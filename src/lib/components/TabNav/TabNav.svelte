@@ -1,13 +1,23 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 
-	export let active: string;
+	interface Props {
+		active: string;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { active = $bindable(), children, ...rest }: Props = $props();
 
 	const activeStore = writable(active);
 	setContext('tab-nav-active', activeStore);
 
-	$: active, activeStore.set(active);
+	run(() => {
+		active, activeStore.set(active);
+	});
 
 	onMount(() => {
 		const unsubscribe = activeStore.subscribe((value) => {
@@ -17,8 +27,8 @@
 	});
 </script>
 
-<div class="tab-nav" {...$$restProps}>
-	<slot />
+<div class="tab-nav" {...rest}>
+	{@render children?.()}
 </div>
 
 <style>

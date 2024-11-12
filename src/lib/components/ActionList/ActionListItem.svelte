@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { createBubbler, handlers } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { getContext, createEventDispatcher } from 'svelte';
 	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
 	import { IconCheck } from '@hyvor/icons';
@@ -7,10 +10,28 @@
 	const selection: 'none' | 'single' | 'multi' = getContext('action-list-selection');
 	const selectionAlign: 'start' | 'end' = getContext('action-list-selection-align');
 
-	export let selected = false;
 	selected = selection !== 'none' && selected;
-	export let disabled = false;
-	export let type: 'default' | 'danger' = 'default';
+	interface Props {
+		selected?: boolean;
+		disabled?: boolean;
+		type?: 'default' | 'danger';
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		description?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		selected = $bindable(false),
+		disabled = false,
+		type = 'default',
+		start,
+		children,
+		description,
+		end,
+		...rest
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -23,40 +44,39 @@
 	class="action-list-item"
 	class:disabled
 	class:danger={type === 'danger'}
-	on:click={handleClick}
+	onclick={handlers(handleClick, bubble('click'))}
 	role="button"
 	tabindex="0"
-	on:keyup={(e) => {
+	onkeyup={(e) => {
 		if (e.key === 'Enter') {
 			handleClick();
 		}
 	}}
-	{...$$restProps}
-	on:click
+	{...rest}
 >
 	{#if selectionAlign === 'start'}
 		<Selected {selection} bind:selected />
 	{/if}
 
-	{#if $$slots.start}
+	{#if start}
 		<span class="start">
-			<slot name="start" />
+			{@render start?.()}
 		</span>
 	{/if}
 
 	<span class="middle">
-		<slot />
+		{@render children?.()}
 
-		{#if $$slots.description}
+		{#if description}
 			<div class="description">
-				<slot name="description" />
+				{@render description?.()}
 			</div>
 		{/if}
 	</span>
 
-	{#if $$slots.end}
+	{#if end}
 		<span class="end">
-			<slot name="end" />
+			{@render end?.()}
 		</span>
 	{/if}
 

@@ -1,10 +1,16 @@
-<script>
+<script lang="ts">
 	import Sidebar from './Sidebar/Sidebar.svelte';
+	interface Props {
+		nav?: import('svelte').Snippet;
+		content?: import('svelte').Snippet;
+	}
+
+	let { nav, content }: Props = $props();
 </script>
 
 <div class="docs">
-	<slot name="nav" />
-	<slot name="content" />
+	{@render nav?.()}
+	{@render content?.()}
 	<Sidebar />
 </div>
 

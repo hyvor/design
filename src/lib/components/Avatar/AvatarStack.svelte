@@ -1,5 +1,10 @@
 <script lang="ts">
-	export let size: number | 'small' | 'medium' | 'large' = 'medium';
+	interface Props {
+		size?: number | 'small' | 'medium' | 'large';
+		children?: import('svelte').Snippet;
+	}
+
+	let { size = $bindable('medium'), children }: Props = $props();
 	const sizes = {
 		small: 24,
 		medium: 32,
@@ -9,7 +14,7 @@
 </script>
 
 <div class="stack" style:--local-size={size + 'px'}>
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

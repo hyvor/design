@@ -5,8 +5,8 @@
 	import CodeResult from './Helper/CodeResult.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 
-	let val1 = 50;
-	let val2 = 5;
+	let val1 = $state(50);
+	let val2 = $state(5);
 </script>
 
 <h1>Slider</h1>

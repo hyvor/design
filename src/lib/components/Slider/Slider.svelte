@@ -1,12 +1,23 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	export let min: number;
-	export let max: number;
-	export let value: number;
-	export let step = 1;
-	// export let disabled = false;
-	export let dots = false;
+	
+	interface Props {
+		min: number;
+		max: number;
+		value: number;
+		step?: number;
+		// export let disabled = false;
+		dots?: boolean;
+	}
+
+	let {
+		min,
+		max,
+		value = $bindable(),
+		step = 1,
+		dots = false
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		change: number;
@@ -16,10 +27,10 @@
 		return Math.max(min, Math.min(max, Math.round(value / step) * step));
 	}
 
-	$: progress = ((value - min) / (max - min)) * 100;
+	let progress = $derived(((value - min) / (max - min)) * 100);
 
-	let dragging = false;
-	let trackEl: HTMLDivElement;
+	let dragging = $state(false);
+	let trackEl: HTMLDivElement = $state();
 
 	function handleMousedown(event: MouseEvent) {
 		dragging = true;
@@ -47,8 +58,8 @@
 </script>
 
 <div class="slider">
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="track" bind:this={trackEl} class:dragging on:mousedown={handleMousedown}>
+	<!-- svelte-ignore a11y_no_static_element_interactions -->
+	<div class="track" bind:this={trackEl} class:dragging onmousedown={handleMousedown}>
 		<div class="progress" style="width: {progress}%"></div>
 		<button class="handle" style="left: {progress}%">
 			<span class="tip">

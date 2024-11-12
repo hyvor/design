@@ -7,7 +7,7 @@
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import { FormControl, Radio, toast } from '$lib/components/index.js';
 
-	let i1Type = 'empty';
+	let i1Type = $state('empty');
 </script>
 
 <h1 id="icon-message">Icon Message</h1>
@@ -210,7 +210,9 @@
 	<div class="box">
 		<IconMessage iconColor="var(--blue)">
 			<div>Start Writing Something</div>
-			<IconPencilSquare slot="icon" size={60} />
+			{#snippet icon()}
+						<IconPencilSquare  size={60} />
+					{/snippet}
 		</IconMessage>
 	</div>
 

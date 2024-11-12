@@ -16,8 +16,6 @@
 
 	const year = new Date().getFullYear();
 
-	export let email: string | null = null;
-	export let social = {} as Record<string, string | null>;
 
 	social = {
 		...{
@@ -30,7 +28,19 @@
 		...social
 	};
 
-	export let emailCopied = false;
+	interface Props {
+		email?: string | null;
+		social?: any;
+		emailCopied?: boolean;
+		center?: import('svelte').Snippet;
+	}
+
+	let {
+		email = null,
+		social = $bindable({} as Record<string, string | null>),
+		emailCopied = $bindable(false),
+		center
+	}: Props = $props();
 
 	function handleCopy() {
 		navigator.clipboard.writeText(email!);
@@ -48,7 +58,9 @@
 				{#if email}
 					<div class="email-wrap">
 						<Link href="mailto:{email}" underline={false} color="text" rel="nofollow">
-							<IconEnvelope slot="start" />
+							{#snippet start()}
+														<IconEnvelope  />
+													{/snippet}
 							{email}
 						</Link>
 						<Tooltip text={emailCopied ? 'Copied!' : 'Copy email'} position="top">
@@ -91,7 +103,7 @@
 		</div>
 
 		<div class="footer-center">
-			<slot name="center" />
+			{@render center?.()}
 		</div>
 
 		<div class="footer-bottom">

@@ -1,33 +1,52 @@
 <script lang="ts">
-	export let href: string;
-	export let color: 'link' | 'accent' | 'text' = 'link';
-	export let underline: boolean = true;
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+	interface Props {
+		href: string;
+		color?: 'link' | 'accent' | 'text';
+		underline?: boolean;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		href,
+		color = 'link',
+		underline = true,
+		start,
+		children,
+		end,
+		...rest
+	}: Props = $props();
 </script>
 
 <a
 	{href}
 	class="color-{color}"
 	class:underline
-	on:keyup
-	on:keydown
-	on:keypress
-	on:focus
-	on:blur
-	on:click
-	on:mouseover
-	on:mouseenter
-	on:mouseleave
-	on:change
-	{...$$restProps}
+	onkeyup={bubble('keyup')}
+	onkeydown={bubble('keydown')}
+	onkeypress={bubble('keypress')}
+	onfocus={bubble('focus')}
+	onblur={bubble('blur')}
+	onclick={bubble('click')}
+	onmouseover={bubble('mouseover')}
+	onmouseenter={bubble('mouseenter')}
+	onmouseleave={bubble('mouseleave')}
+	onchange={bubble('change')}
+	{...rest}
 >
-	{#if $$slots.start}
-		<span class="slot start-slot"><slot name="start" /></span>
+	{#if start}
+		<span class="slot start-slot">{@render start?.()}</span>
 	{/if}
 
-	<slot />
+	{@render children?.()}
 
-	{#if $$slots.end}
-		<span class="slot end-slot"><slot name="end" /></span>
+	{#if end}
+		<span class="slot end-slot">{@render end?.()}</span>
 	{/if}
 </a>
 

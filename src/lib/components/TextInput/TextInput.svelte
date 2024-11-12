@@ -1,39 +1,58 @@
 <script lang="ts">
-	export let state: 'default' | 'error' | 'success' | 'warning' = 'default';
-	export let size: 'small' | 'medium' | 'large' | 'x-small' = 'medium';
-	export let block: boolean = false;
-	export let value: any = undefined;
+	import { createBubbler } from 'svelte/legacy';
 
-	export let input: HTMLInputElement = {} as HTMLInputElement;
+	const bubble = createBubbler();
+
+	interface Props {
+		state?: 'default' | 'error' | 'success' | 'warning';
+		size?: 'small' | 'medium' | 'large' | 'x-small';
+		block?: boolean;
+		value?: any;
+		input?: HTMLInputElement;
+		start?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		state = 'default',
+		size = 'medium',
+		block = false,
+		value = $bindable(undefined),
+		input = $bindable({} as HTMLInputElement),
+		start,
+		end,
+		...rest
+	}: Props = $props();
 </script>
 
 <label class="input-wrap state-{state} size-{size}" class:block>
-	{#if $$slots.start}
+	{#if start}
 		<span class="slot start">
-			<slot name="start" />
+			{@render start?.()}
 		</span>
 	{/if}
 
 	<input
-		{...$$restProps}
+		{...rest}
 		bind:value
 		bind:this={input}
-		on:keyup
-		on:keydown
-		on:keypress
-		on:focus
-		on:blur
-		on:click
-		on:mouseover
-		on:mouseenter
-		on:mouseleave
-		on:change
-		on:input
+		onkeyup={bubble('keyup')}
+		onkeydown={bubble('keydown')}
+		onkeypress={bubble('keypress')}
+		onfocus={bubble('focus')}
+		onblur={bubble('blur')}
+		onclick={bubble('click')}
+		onmouseover={bubble('mouseover')}
+		onmouseenter={bubble('mouseenter')}
+		onmouseleave={bubble('mouseleave')}
+		onchange={bubble('change')}
+		oninput={bubble('input')}
 	/>
 
-	{#if $$slots.end}
+	{#if end}
 		<span class="slot end">
-			<slot name="end" />
+			{@render end?.()}
 		</span>
 	{/if}
 </label>

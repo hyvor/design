@@ -47,7 +47,7 @@
 	},
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
-		"@hyvor/icons": "^0.0.3",
+		"@hyvor/icons": "^1.0.0",
 		"deepmerge-ts": "^5.1.0",
 		"highlight.js": "^11.9.0",
 		"intl-messageformat": "^10.5.11",

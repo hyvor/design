@@ -36,12 +36,13 @@
 	function handleMouseup() {
 		dragging = false;
 		window.removeEventListener('mousemove', handleMousemove);
+		window.removeEventListener('mouseup', handleMouseup);
 	}
 
 	function handleMousemove(event: MouseEvent) {
 		if (!trackEl) return;
 		if (dragging) {
-			calcPosUpdateValue(trackEl,event.clientX);
+			calcPosUpdateValue(trackEl, event.clientX);
 		}
 	}
 
@@ -57,30 +58,35 @@
 	function handleTouchend() {
 		dragging = false;
 		window.removeEventListener('touchmove', handleTouchmove);
+		window.removeEventListener('touchend', handleTouchend);
 	}
-
 
 	function handleTouchmove(event: TouchEvent) {
 		if (!trackEl) return;
 		if (dragging) {
 			calcPosUpdateValue(trackEl, event.touches[0].clientX);
 		}
-	}	
-
-	function calcPosUpdateValue(trackEl: HTMLDivElement, clientX: number){
-		const rect = trackEl.getBoundingClientRect();
-			const x = clientX - rect.left;
-			const width = rect.width;
-			const newValue = min + (x / width) * (max - min);
-			value = toStep(newValue);
-			dispatch('change', value);
 	}
 
+	function calcPosUpdateValue(trackEl: HTMLDivElement, clientX: number) {
+		const rect = trackEl.getBoundingClientRect();
+		const x = clientX - rect.left;
+		const width = rect.width;
+		const newValue = min + (x / width) * (max - min);
+		value = toStep(newValue);
+		dispatch('change', value);
+	}
 </script>
 
 <div class="slider">
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="track" bind:this={trackEl} class:dragging onmousedown={handleMousedown} ontouchstart={handleTouchstart}>
+	<div
+		class="track"
+		bind:this={trackEl}
+		class:dragging
+		onmousedown={handleMousedown}
+		ontouchstart={handleTouchstart}
+	>
 		<div class="progress" style="width: {progress}%"></div>
 		<button class="handle" style="left: {progress}%">
 			<span class="tip">

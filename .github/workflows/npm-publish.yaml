@@ -1,8 +1,11 @@
 name: Publish to NPM
 on:
   workflow_dispatch:
+  release:
+    types: [published]
 jobs:
-  build:
+  publish:
+    name: 'Publish ${{ github.ref_name }}'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -18,4 +21,5 @@ jobs:
         run: |
           npm ci
           npm run package
+          npm version ${{ github.ref_name }}
           npm publish

@@ -3,7 +3,6 @@
 	import DarkToggle from '../../components/Dark/DarkToggle.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
-	import Tooltip from '../../components/Tooltip/Tooltip.svelte';
 	import { IconList } from '@hyvor/icons';
 
 	interface Props {

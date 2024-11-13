@@ -4,10 +4,7 @@
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
-	import { slide } from 'svelte/transition';
 	import { cubicIn } from 'svelte/easing';
-
-
 
 
 	interface Props {
@@ -32,7 +29,7 @@
 		children
 	}: Props = $props();
 
-	let contentWrap: HTMLElement = $state();
+	let contentWrap: HTMLElement | undefined = $state();
 
 	function positionWrap() {
 		if (!trigger) return;
@@ -94,7 +91,7 @@
 	}
 
 	run(() => {
-		if ((position, align)) {
+		if (position || align) {
 			positionWrap();
 		}
 	});
@@ -104,6 +101,8 @@
 	}
 
 	onMount(() => {
+		if (!contentWrap) return;
+
 		positionWrap();
 
 		const mutationObserver = new MutationObserver(positionWrap);

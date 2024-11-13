@@ -10,7 +10,7 @@
 
 	let { children }: Props = $props();
 
-	let navEl: HTMLElement = $state();
+	let navEl: HTMLElement | undefined = $state();
 
 	interface Active {
 		name: string;
@@ -49,6 +49,7 @@
 
 	function handleMobileClick(e: any) {
 		e.stopPropagation();
+		if (!navEl) return;
 		if (navEl.style.display !== 'block') {
 			navEl.style.display = 'block';
 			mobileNavShown = true;
@@ -59,6 +60,7 @@
 	}
 
 	function handleNavOutsideClick() {
+		if (!navEl) return;
 		if (mobileNavShown) {
 			navEl.style.display = 'none';
 			mobileNavShown = false;
@@ -66,6 +68,7 @@
 	}
 
 	function hideNavOnMobile() {
+		if (!navEl) return;
 		if (window.innerWidth < 992) {
 			navEl.style.display = 'none';
 		}

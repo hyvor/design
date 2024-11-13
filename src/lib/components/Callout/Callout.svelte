@@ -25,7 +25,7 @@
 			{/if}
 			<div class="title">{title}</div>
 		</div>
-	{:else}
+	{:else if title !== undefined}
 	<div class="title-wrap">
 		{#if icon}
 			<span class="title-icon">{@render icon()}</span>

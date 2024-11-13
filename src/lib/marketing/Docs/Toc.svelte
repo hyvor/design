@@ -1,7 +1,10 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
+
+	// @ts-ignore
 	import tocbot from 'tocbot';
+
 	import Loader from '../../components/Loader/Loader.svelte';
 	import { IconCaretDown, IconCaretRight } from '@hyvor/icons';
 	import Button from '../../components/Button/Button.svelte';

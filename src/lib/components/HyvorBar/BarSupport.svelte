@@ -34,6 +34,13 @@
 		}
 		supportDropdown = false;
 	}
+
+	function getName() {
+		if (config.name) {
+			return config.name;
+		}
+		return PRODUCTS[product as keyof typeof PRODUCTS]?.name || '';
+	}
 </script>
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325} bind:show={supportDropdown}>
@@ -67,7 +74,7 @@
 						Documentation
 						{#snippet description()}
 							<div>
-								Learn how to use {PRODUCTS[product].name}
+								Learn how to use {getName()}
 							</div>
 						{/snippet}
 						{#snippet start()}

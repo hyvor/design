@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Link from '$lib/components/Link/Link.svelte';
-	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
-	import { IconBoxArrowUpRight } from '@hyvor/icons';
+	import { IconBoxArrowUpRight, IconGithub } from '@hyvor/icons';
 	import NavItem from '$lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
@@ -70,14 +68,18 @@
 </svelte:head>
 
 <Header {logo} darkToggle={false} name="HYVOR" subName="Design System">
-	{#snippet center()}
-		<div>
-			<Button as="a" href="https://hyvor.com" variant="invisible" target="_blank">
-				hyvor.com {#snippet end()}
-					<IconBoxArrowUpRight size={14} />
+	{#snippet end()}
+			<Button size="small" as="a" href="https://hyvor.com" variant="invisible">
+				HYVOR
+			</Button>
+			<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">
+				{#snippet start()}
+					<IconGithub size={14} />
+				{/snippet}
+				Github {#snippet end()}
+					<IconBoxArrowUpRight size={11} />
 				{/snippet}
 			</Button>
-		</div>
 	{/snippet}
 </Header>
 
@@ -113,22 +115,6 @@
 <Footer
 	email="foss@hyvor.com"
 	social={{
-		x: 'https://twitter.com'
+		youtube: null,
 	}}
->
-	{#snippet center()}
-		<div>
-			<div style="display:flex">
-				<FooterLinkList title="Product">
-					<a href="pricing" target="_blank">Pricing</a>
-					<a href="docs" target="_blank">Docs</a>
-					<a href="customers" target="_blank">Customers</a>
-				</FooterLinkList>
-
-				<FooterLinkList title="HYVOR">
-					<a href="https://hyvor.com" target="_blank">hyvor.com</a>
-				</FooterLinkList>
-			</div>
-		</div>
-	{/snippet}
-</Footer>
+></Footer>

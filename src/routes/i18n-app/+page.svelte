@@ -10,6 +10,7 @@
 	import type enJson from './locale/en.json';
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
+	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 
 	let name = $state('Supun');
 	let dynamicValue = $state('');
@@ -31,6 +32,13 @@
 
 	let changingKey = $state('welcome' as ToDotPaths<typeof enJson>);
 </script>
+
+<HyvorBar product="core" config={{
+	name: "Hyvor Design",
+	docs: false
+}} />
+
+<br />
 
 <ChangeButton />
 

@@ -162,7 +162,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Guest Commenting" caption="Comment without logging in">
 		<Switch />
 		{#snippet nested()}
@@ -204,7 +204,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Name" caption="The name of the site." flex={[1, 1]}>
 		<TextInput type="text" value="HYVOR" block />
 	</SplitControl>
@@ -232,7 +232,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Name" caption="The name of the site." column>
 		<TextInput type="text" value="HYVOR" block />
 	</SplitControl>

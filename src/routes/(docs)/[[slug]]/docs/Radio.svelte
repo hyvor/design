@@ -5,8 +5,8 @@
 	import CodeResult from './Helper/CodeResult.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 
-	let opt1 = '1';
-	let opt2 = 'subdomain';
+	let opt1 = $state('1');
+	let opt2 = $state('subdomain');
 </script>
 
 <h1>Radio</h1>

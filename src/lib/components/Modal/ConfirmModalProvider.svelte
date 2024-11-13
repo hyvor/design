@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import Modal from './Modal.svelte';
 	import { confirmStore } from './confirm.js';
 	import Button from './../Button/Button.svelte';
 	import ButtonGroup from './../Button/ButtonGroup.svelte';
 
-	let show = true;
+	let show = $state(true);
 
 	function handleCancel() {
 		$confirmStore!.onCancel();
@@ -14,12 +16,12 @@
 		$confirmStore!.onConfirm();
 	}
 
-	$: {
+	run(() => {
 		if (!show) {
 			handleCancel();
 			show = true;
 		}
-	}
+	});
 </script>
 
 {#if $confirmStore}
@@ -27,10 +29,11 @@
 		{#if typeof $confirmStore.content === 'string'}
 			{$confirmStore.content}
 		{:else}
-			<svelte:component this={$confirmStore.content} {...$confirmStore.contentProps || {}} />
+			{@const SvelteComponent = $confirmStore.content}
+			<SvelteComponent {...$confirmStore.contentProps || {}} />
 		{/if}
 
-		<svelte:fragment slot="footer">
+		{#snippet footer()}
 			<ButtonGroup>
 				<Button variant="invisible" on:click={handleCancel}>
 					{$confirmStore.cancelText || 'Cancel'}
@@ -39,6 +42,6 @@
 					{$confirmStore.confirmText || 'Confirm'}
 				</Button>
 			</ButtonGroup>
-		</svelte:fragment>
+		{/snippet}
 	</Modal>
 {/if}

@@ -1,9 +1,15 @@
 <script lang="ts">
-	export let bold = false;
+	interface Props {
+		bold?: boolean;
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
+
+	let { bold = false, children, ...rest }: Props = $props();
 </script>
 
-<div class="caption" class:bold {...$$restProps}>
-	<slot />
+<div class="caption" class:bold {...rest}>
+	{@render children?.()}
 </div>
 
 <style>

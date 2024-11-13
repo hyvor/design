@@ -1,5 +1,9 @@
 <script lang="ts">
-	export let size = 40;
+	interface Props {
+		size?: number;
+	}
+
+	let { size = 40 }: Props = $props();
 </script>
 
 <svg width={size} height={size} viewBox="0 0 132.29166 132.29167" version="1.1">
@@ -10,7 +14,7 @@
 		bordercolor="#666666"
 		borderopacity="1.0"
 		units="px"
-	/>
+	></sodipodi:namedview>
 	<g id="layer1">
 		<g id="g1067">
 			<rect

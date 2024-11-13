@@ -3,15 +3,25 @@
 	import Button from '../Button/Button.svelte';
 	import Loader from './Loader.svelte';
 
-	export let text: string;
-	export let show: boolean; // has more
-	export let loading: boolean; // whether loading
+	interface Props {
+		text: string;
+		show: boolean; // has more
+		loading: boolean; // whether loading
+		height?: number;
+		divProps?: Record<string, any>;
+		loaderProps?: ComponentProps<typeof Loader>;
+		buttonProps?: ComponentProps<typeof Button>;
+	}
 
-	export let height: number = 50;
-
-	export let divProps: Record<string, any> = {};
-	export let loaderProps: ComponentProps<Loader> = {};
-	export let buttonProps: ComponentProps<Button> = {};
+	let {
+		text,
+		show,
+		loading,
+		height = 50,
+		divProps = {},
+		loaderProps = {},
+		buttonProps = {}
+	}: Props = $props();
 </script>
 
 {#if show}

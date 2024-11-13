@@ -1,6 +1,11 @@
 <script lang="ts">
-	export let columns: string;
-	export let hover: boolean = false;
+	interface Props {
+		columns: string;
+		hover?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let { columns, hover = false, children }: Props = $props();
 
 	const hoverCss = hover ? '--local-hover-color: var(--hover);' : '';
 </script>
@@ -12,5 +17,5 @@
     {hoverCss}
 "
 >
-	<slot />
+	{@render children?.()}
 </div>

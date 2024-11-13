@@ -1,12 +1,26 @@
 <script lang="ts">
-	export let size: 'small' | 'medium' | 'large' | number = 'medium';
-	// export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
+	import { createBubbler } from 'svelte/legacy';
 
-	export let color: 'accent' | 'gray' | 'input' | 'green' | 'red' | 'blue' | 'orange' = 'accent';
+	const bubble = createBubbler();
 
-	export let variant: 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible' = 'fill';
+	interface Props {
+		size?: 'small' | 'medium' | 'large' | number;
+		// export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
+		color?: 'accent' | 'gray' | 'input' | 'green' | 'red' | 'blue' | 'orange';
+		variant?: 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible';
+		as?: 'button' | 'a';
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
 
-	export let as: 'button' | 'a' = 'button';
+	let {
+		size = $bindable('medium'),
+		color = 'accent',
+		variant = 'fill',
+		as = 'button',
+		children,
+		...rest
+	}: Props = $props();
 
 	const sizes = {
 		small: 26,
@@ -22,21 +36,21 @@
 	class="button {color} {variant}"
 	style:width={size}
 	style:height={size}
-	on:keyup
-	on:keydown
-	on:keypress
-	on:focus
-	on:blur
-	on:click
-	on:mouseover
-	on:mouseenter
-	on:mouseleave
-	on:change
+	onkeyup={bubble('keyup')}
+	onkeydown={bubble('keydown')}
+	onkeypress={bubble('keypress')}
+	onfocus={bubble('focus')}
+	onblur={bubble('blur')}
+	onclick={bubble('click')}
+	onmouseover={bubble('mouseover')}
+	onmouseenter={bubble('mouseenter')}
+	onmouseleave={bubble('mouseleave')}
+	onchange={bubble('change')}
 	role="button"
 	tabindex="0"
-	{...$$restProps}
+	{...rest}
 >
-	<slot />
+	{@render children?.()}
 </svelte:element>
 
 <style lang="scss">

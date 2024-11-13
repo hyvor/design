@@ -1,14 +1,50 @@
 <script lang="ts">
-	import { type ComponentType } from 'svelte';
+	import { type Component, type Snippet } from 'svelte';
 	import { IconBug, IconInbox } from '@hyvor/icons';
 	import Button from '../Button/Button.svelte';
 
-	export let size: 'small' | 'medium' | 'large' = 'medium';
+	interface Props {
+		size?: 'small' | 'medium' | 'large';
+		icon?: Component;
+		iconSize?: number;
+		padding?: number;
+		empty?: boolean;
+		error?: boolean;
+		iconColor?: string;
+		cta?:
+			| {
+					text: string;
+					onClick: (e: MouseEvent) => void;
+					props?: Record<string, any>;
+			  }
+			| Snippet;
 
-	export let icon: ComponentType | null = null;
-	export let message: string | null = null;
+		children?: Snippet;
+		message?: Snippet | string;
+	}
 
-	export let iconSize: number | undefined = undefined;
+	let {
+		size = 'medium',
+		icon,
+		iconSize,
+		padding,
+		empty = false,
+		error = false,
+		iconColor,
+		cta,
+
+		children,
+		message,
+
+		...rest
+	}: Props = $props();
+
+	// export let size: 'small' | 'medium' | 'large' = 'medium';
+
+	// export let icon: ComponentType | null = null;
+	// export let message: string | null = null;
+
+	// export let iconSize: number | undefined = undefined;
 	const iconsSizes = {
 		small: 35,
 		medium: 50,
@@ -16,7 +52,7 @@
 	};
 	iconSize = iconSize || iconsSizes[size];
 
-	export let padding: number | undefined = undefined;
+	// export let padding: number | undefined = undefined;
 
 	const paddings = {
 		small: 15,
@@ -26,10 +62,13 @@
 
 	padding = padding === undefined ? paddings[size] : padding;
 
-	export let empty: boolean = false;
-	export let error: boolean = false;
+	//console.log(icon?.prototype);
+	// $inspect(icon?.prototype, icon?);
 
-	export let iconColor: string | null = null;
+	// export let empty: boolean = false;
+	// export let error: boolean = false;
+
+	// export let iconColor: string | null = null;
 
 	if (empty) {
 		message = message || 'No results found';
@@ -42,48 +81,46 @@
 		iconColor = iconColor || 'var(--gray-dark)';
 	}
 
+	const Icon = icon;
+
 	iconColor = iconColor || 'var(--gray-dark)';
 
-	export let cta: {
-		text: string;
-		onClick: (e: MouseEvent) => void;
-		props?: Record<string, any>;
-	} | null = null;
+	// export let cta: {
+	// 	text: string;
+	// 	onClick: (e: MouseEvent) => void;
+	// 	props?: Record<string, any>;
+	// } | null = null;
 
 	function onCtaClick(e: MouseEvent) {
-		if (cta) {
+		if (cta && typeof cta === 'object') {
 			cta.onClick(e);
 		}
 	}
 </script>
 
 <div class="icon-message {size}" style:padding={padding + 'px'}>
-	<div class="icon" style:color={iconColor} {...$$restProps}>
-		{#if $$slots.icon}
-			<slot name="icon" />
-		{:else if icon}
-			<svelte:component this={icon} size={iconSize + 'px'} />
-		{/if}
+	<div class="icon" style:color={iconColor} {...rest}>
+		<Icon size={iconSize + 'px'} />
 	</div>
 
 	<div class="message">
-		{#if $$slots.default}
-			<slot />
-		{:else if $$slots.message}
-			<slot name="message" />
-		{:else if message}
+		{#if children}
+			{@render children()}
+		{:else if typeof message === 'string'}
 			{message}
+		{:else if message}
+			{@render message()}
 		{/if}
 	</div>
 
-	{#if cta || $$slots.cta}
+	{#if cta}
 		<div class="cta">
-			{#if $$slots.cta}
-				<slot name="cta" />
-			{:else}
-				<Button on:click={onCtaClick} {size} {...cta?.props}>
-					{cta?.text}
+			{#if typeof cta === 'object'}
+				<Button on:click={onCtaClick} {size} {...cta.props}>
+					{cta.text}
 				</Button>
+			{:else}
+				{@render cta()}
 			{/if}
 		</div>
 	{/if}

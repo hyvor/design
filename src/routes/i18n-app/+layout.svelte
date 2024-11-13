@@ -2,6 +2,11 @@
 	import Base from '../../lib/components/Base/Base.svelte';
 	import InternationalizationProvider from '../../lib/components/Internationalization/InternationalizationProvider.svelte';
 	import en from './locale/en.json';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 </script>
 
 <Base>
@@ -24,6 +29,6 @@
 			}
 		]}
 	>
-		<slot />
+		{@render children?.()}
 	</InternationalizationProvider>
 </Base>

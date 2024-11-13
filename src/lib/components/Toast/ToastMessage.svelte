@@ -3,7 +3,11 @@
 	import type { Toast } from './toast.ts';
 	import { fade } from 'svelte/transition';
 
-	export let toast: Toast;
+	interface Props {
+		toast: Toast;
+	}
+
+	let { toast }: Props = $props();
 </script>
 
 <div class="toast" out:fade={{ duration: 200 }} in:fade={{ duration: 50 }}>
@@ -17,7 +21,7 @@
 		{#if typeof toast.message === 'string' || toast.message === null}
 			{@html toast.message}
 		{:else}
-			<svelte:component this={toast.message} {toast} />
+			<toast.message {toast} />
 		{/if}
 	</div>
 </div>

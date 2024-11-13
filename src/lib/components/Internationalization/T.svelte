@@ -1,28 +1,26 @@
 <script lang="ts" generics="StringsT extends I18nStrings">
-	import { type ToDotPaths, type I18nStrings } from './types.js';
-	import {
-		getContext,
-		type ComponentType,
-		onMount,
-		tick,
-		afterUpdate,
-		getAllContexts
-	} from 'svelte';
-	import { getStringByKey, InternationalizationService } from './i18n.js';
-	import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat';
+	import { run } from 'svelte/legacy';
+
+	import { type ToDotPaths, type I18nStrings, type PrimitiveType } from './types.js';
+	import { getContext, onMount, tick, getAllContexts, type Component, hydrate } from 'svelte';
+	import { InternationalizationService } from './i18n.js';
 	import { browser } from '$app/environment';
 	import { getMessage as getMessageBase } from './t.js';
 
 	type ComponentDeclaration = {
 		element?: string;
-		component?: ComponentType;
+		component?: Component<any>;
 		props?: Record<string, any>;
 	};
 	type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
 	type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 
-	export let key: ToDotPaths<StringsT>;
-	export let params: InputParams = {};
+	interface Props {
+		key: ToDotPaths<StringsT>;
+		params?: InputParams;
+	}
+
+	let { key, params = {} }: Props = $props();
 
 	const context = getAllContexts();
 
@@ -69,7 +67,7 @@
 	 * In frontend processing, we render the components
 	 */
 	interface ComponentBinding {
-		component: ComponentType;
+		component: Component<any>;
 		props: Record<string, any>;
 	}
 	const componentBindings = new Map<string, ComponentBinding>();
@@ -111,7 +109,7 @@
 	const locale = i18n.locale;
 	const strings = i18n.strings;
 
-	let message = getMessage(getParamsForBackend());
+	let message = $state(getMessage(getParamsForBackend()));
 
 	function getMessage(processedParams: Record<string, ParamValue>) {
 		return getMessageBase(key, processedParams, $strings, $locale);
@@ -122,9 +120,8 @@
 			const el = document.getElementById(id);
 			if (el) {
 				el.innerHTML = '';
-				new binding.component({
+				hydrate(binding.component, {
 					target: el,
-					hydrate: true,
 					props: binding.props,
 					context
 				});
@@ -138,15 +135,15 @@
 		if (hasComponentParams) bindComponents();
 	}
 
-	let mounted = false;
+	let mounted = $state(false);
 
-	$: {
+	run(() => {
 		params;
 		key;
 		if (browser && mounted) {
 			renderFrontend();
 		}
-	}
+	});
 
 	onMount(async () => {
 		mounted = true;

@@ -1,7 +1,9 @@
 import { writable } from 'svelte/store';
 
-export type BarProduct = 'talk' | 'blogs';
+export type BarProduct = 'core' | 'talk' | 'blogs';
+
 export interface BarConfig {
+	name: string | null;
 	docs: boolean;
 	chat: boolean;
 	twitter: string | null;

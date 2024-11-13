@@ -6,16 +6,23 @@
 	import { loadBarUser, type BarConfig, type BarProduct } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import { IconCaretDownFill } from '@hyvor/icons';
+	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
+	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
+	import LogoCore from '$lib/marketing/Logo/LogoCore.svelte';
 
-	export let instance = 'https://hyvor.com';
-	export let product: BarProduct;
+	interface Props {
+		instance?: string;
+		product: BarProduct;
+		config?: Partial<BarConfig>;
+	}
 
-	export let config: Partial<BarConfig> = {};
+	let { instance = 'https://hyvor.com', product, config = {} }: Props = $props();
 
-	let mobileShow = false;
+	let mobileShow = $state(false);
 
 	const configComplete: BarConfig = {
 		...{
+			name: null,
 			docs: true,
 			chat: true,
 			twitter: null,
@@ -36,17 +43,36 @@
 	onMount(() => {
 		loadBarUser(instance, product);
 	});
+
+	function getLogo() {
+		if (product === 'talk') {
+			return LogoTalk;
+		} else if (product === 'blogs') {
+			return LogoBlogs;
+		} else {
+			return LogoCore;
+		}
+	}
+
+	function getName() {
+		if (config.name) {
+			return config.name;
+		}
+		return (PRODUCTS as any)[product]?.name || 'HYVOR';
+	}
+
+	const LogoComponent = getLogo();
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="bar" on:click={handleBarClick} class:mobile-show={mobileShow}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div id="bar" onclick={handleBarClick} class:mobile-show={mobileShow}>
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<svelte:component this={PRODUCTS[product].logo} size={20} />
+				<LogoComponent size={20} />
 				<span class="name">
-					{PRODUCTS[product].name}
+					{getName()}
 				</span>
 			</a>
 		</div>

@@ -1,10 +1,20 @@
 <script lang="ts">
-	export let gap: number | undefined = undefined;
-	export let white = false;
+	const props: {
+		gap?: number;
+		white?: boolean;
+		children?: any;
+		[key: string]: any;
+	} = $props();
 </script>
 
-<div class="results" class:gap={!!gap} class:white style={gap ? `gap: ${gap}px` : ''} {...$$props}>
-	<slot />
+<div
+	class="results"
+	class:gap={!!props.gap}
+	class:white={props.white}
+	style={props.gap ? `gap: ${props.gap}px` : ''}
+	{...props}
+>
+	{@render props.children?.()}
 </div>
 
 <style>

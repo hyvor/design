@@ -9,13 +9,13 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import { IconHandThumbsUp, IconPencil, IconTrash } from '@hyvor/icons';
 
-	let x1 = 1;
-	let x11 = 1;
-	let x2: number[] = [];
-	let x22: number[] = [];
+	let x1 = $state(1);
+	let x11 = $state(1);
+	let x2: number[] = $state([]);
+	let x22: number[] = $state([]);
 
-	let x3 = 1;
-	let x4: number[] = [];
+	let x3 = $state(1);
+	let x4: number[] = $state([]);
 </script>
 
 <h1>Action List</h1>
@@ -475,19 +475,31 @@
 <CodeResult white>
 	<ActionList>
 		<ActionListItem>
-			<IconHandThumbsUp slot="start" />
+			{#snippet start()}
+				<IconHandThumbsUp />
+			{/snippet}
 			Vote
-			<Text light slot="end">⌘⇧V</Text>
+			{#snippet end()}
+				<Text light>⌘⇧V</Text>
+			{/snippet}
 		</ActionListItem>
 		<ActionListItem>
-			<IconPencil slot="start" />
+			{#snippet start()}
+				<IconPencil />
+			{/snippet}
 			Edit
-			<Text light slot="end">⌘⇧E</Text>
+			{#snippet end()}
+				<Text light>⌘⇧E</Text>
+			{/snippet}
 		</ActionListItem>
 		<ActionListItem type="danger">
-			<IconTrash slot="start" />
+			{#snippet start()}
+				<IconTrash />
+			{/snippet}
 			Delete
-			<Text light slot="end">⌘⇧D</Text>
+			{#snippet end()}
+				<Text light>⌘⇧D</Text>
+			{/snippet}
 		</ActionListItem>
 	</ActionList>
 </CodeResult>
@@ -522,22 +534,40 @@
 <CodeResult white>
 	<ActionList>
 		<ActionListItem>
-			<IconHandThumbsUp slot="start" />
+			{#snippet start()}
+				<IconHandThumbsUp />
+			{/snippet}
 			Vote
-			<div slot="description">Add a vote to this comment.</div>
-			<Text light slot="end">⌘⇧V</Text>
+			{#snippet description()}
+				<div>Add a vote to this comment.</div>
+			{/snippet}
+			{#snippet end()}
+				<Text light>⌘⇧V</Text>
+			{/snippet}
 		</ActionListItem>
 		<ActionListItem>
-			<IconPencil slot="start" />
+			{#snippet start()}
+				<IconPencil />
+			{/snippet}
 			Edit
-			<div slot="description">Edit this comment.</div>
-			<Text light slot="end">⌘⇧E</Text>
+			{#snippet description()}
+				<div>Edit this comment.</div>
+			{/snippet}
+			{#snippet end()}
+				<Text light>⌘⇧E</Text>
+			{/snippet}
 		</ActionListItem>
 		<ActionListItem type="danger">
-			<IconTrash slot="start" />
+			{#snippet start()}
+				<IconTrash />
+			{/snippet}
 			Delete
-			<div slot="description">Delete this comment.</div>
-			<Text light slot="end">⌘⇧D</Text>
+			{#snippet description()}
+				<div>Delete this comment.</div>
+			{/snippet}
+			{#snippet end()}
+				<Text light>⌘⇧D</Text>
+			{/snippet}
 		</ActionListItem>
 	</ActionList>
 </CodeResult>
@@ -566,17 +596,29 @@
 <CodeResult white>
 	<ActionList>
 		<ActionListItem disabled>
-			<IconHandThumbsUp slot="start" />
+			{#snippet start()}
+				<IconHandThumbsUp />
+			{/snippet}
 			Vote
-			<div slot="description">Add a vote to this comment.</div>
-			<Text light slot="end">⌘⇧V</Text>
+			{#snippet description()}
+				<div>Add a vote to this comment.</div>
+			{/snippet}
+			{#snippet end()}
+				<Text light>⌘⇧V</Text>
+			{/snippet}
 		</ActionListItem>
 
 		<ActionListItem disabled>
-			<IconPencil slot="start" />
+			{#snippet start()}
+				<IconPencil />
+			{/snippet}
 			Edit
-			<div slot="description">Edit this comment.</div>
-			<Text light slot="end">⌘⇧E</Text>
+			{#snippet description()}
+				<div>Edit this comment.</div>
+			{/snippet}
+			{#snippet end()}
+				<Text light>⌘⇧E</Text>
+			{/snippet}
 		</ActionListItem>
 	</ActionList>
 </CodeResult>

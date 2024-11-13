@@ -1,28 +1,35 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { IconCheckCircleFill, IconXCircleFill } from '@hyvor/icons';
 
-	export let block: boolean = false;
-	export let full: boolean = false;
-	export let padding: 'none' | 'small' | 'medium' | 'large' | number = 'medium';
-
-	export let size: 'small' | 'medium' | 'large' | number = 'medium';
-
-	export let state: 'loading' | 'success' | 'error' | 'none' = 'loading';
-
-	export let duration: null | number = 2000;
-
-	$: {
-		if (duration && (state === 'success' || state === 'error')) {
-			setTimeout(() => {
-				state = 'none';
-			}, duration);
-		}
+	interface Props {
+		block?: boolean;
+		full?: boolean;
+		padding?: 'none' | 'small' | 'medium' | 'large' | number;
+		size?: 'small' | 'medium' | 'large' | number;
+		state?: 'loading' | 'success' | 'error' | 'none';
+		duration?: null | number;
+		color?: string;
+		colorTrack?: string;
+		invert?: boolean;
+		children?: import('svelte').Snippet;
+		[key: string]: any;
 	}
 
-	export let color: string = 'var(--accent)';
-	export let colorTrack = 'var(--accent-lightest)';
-
-	export let invert: boolean = false;
+	let {
+		block = false,
+		full = false,
+		padding = $bindable('medium'),
+		size = $bindable('medium'),
+		state = $bindable('loading'),
+		duration = 2000,
+		color = $bindable('var(--accent)'),
+		colorTrack = $bindable('var(--accent-lightest)'),
+		invert = false,
+		children,
+		...rest
+	}: Props = $props();
 
 	if (invert) {
 		const colorCopy = color;
@@ -50,6 +57,13 @@
 		large: 250
 	};
 	padding = typeof padding === 'number' ? padding : paddings[padding];
+	run(() => {
+		if (duration && (state === 'success' || state === 'error')) {
+			setTimeout(() => {
+				state = 'none';
+			}, duration);
+		}
+	});
 </script>
 
 <div
@@ -60,7 +74,7 @@
 	class:error={state === 'error'}
 	style:--local-size={size + 'px'}
 	style:padding={block ? padding + 'px' : undefined}
-	{...$$restProps}
+	{...rest}
 >
 	{#if state !== 'none'}
 		<span class="loader-wrap">
@@ -100,9 +114,9 @@
 		</span>
 	{/if}
 
-	{#if $$slots.default}
+	{#if children}
 		<div class="message">
-			<slot></slot>
+			{@render children?.()}
 		</div>
 	{/if}
 </div>

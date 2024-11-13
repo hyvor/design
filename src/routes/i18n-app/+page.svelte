@@ -10,10 +10,11 @@
 	import type enJson from './locale/en.json';
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
+	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 
-	let name = 'Supun';
-	let dynamicValue = '';
-	let dynamicValue2 = '';
+	let name = $state('Supun');
+	let dynamicValue = $state('');
+	let dynamicValue2 = $state('');
 
 	const i18n = getContext<InternationalizationService>('i18n');
 	const Intl = getContext<InternationalizationService<typeof enJson>>('i18n');
@@ -29,8 +30,18 @@
 		}, 1000);
 	});
 
-	let changingKey = 'welcome' as ToDotPaths<typeof enJson>;
+	let changingKey = $state('welcome' as ToDotPaths<typeof enJson>);
 </script>
+
+<HyvorBar
+	product="core"
+	config={{
+		name: 'Hyvor Design',
+		docs: false
+	}}
+/>
+
+<br />
 
 <ChangeButton />
 
@@ -85,7 +96,7 @@
 	</div>
 	<div>
 		<Intl.T key={changingKey} />
-		<button style="background-color:#888;" on:click={() => (changingKey = 'welcome2')}
+		<button style="background-color:#888;" onclick={() => (changingKey = 'welcome2')}
 			>Change key</button
 		>
 	</div>

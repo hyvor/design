@@ -1,22 +1,34 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
-	import { slide } from 'svelte/transition';
 	import { cubicIn } from 'svelte/easing';
 
-	export let show: boolean;
-	export let width: number;
-	export let relative: boolean;
+	interface Props {
+		show: boolean;
+		width: number;
+		relative: boolean;
+		closeOnOutsideClick?: boolean;
+		align: 'start' | 'center' | 'end';
+		position: 'left' | 'right' | 'bottom' | 'top';
+		trigger: HTMLElement;
+		children?: import('svelte').Snippet;
+	}
 
-	export let closeOnOutsideClick = true;
+	let {
+		show = $bindable(),
+		width,
+		relative,
+		closeOnOutsideClick = true,
+		align,
+		position,
+		trigger,
+		children
+	}: Props = $props();
 
-	export let align: 'start' | 'center' | 'end';
-	export let position: 'left' | 'right' | 'bottom' | 'top';
-
-	export let trigger: HTMLElement;
-
-	let contentWrap: HTMLElement;
+	let contentWrap: HTMLElement | undefined = $state();
 
 	function positionWrap() {
 		if (!trigger) return;
@@ -77,15 +89,19 @@
 		}
 	}
 
-	$: if ((position, align)) {
-		positionWrap();
-	}
+	run(() => {
+		if (position || align) {
+			positionWrap();
+		}
+	});
 
 	function debouncedPosition() {
 		debounce(positionWrap, 10)();
 	}
 
 	onMount(() => {
+		if (!contentWrap) return;
+
 		positionWrap();
 
 		const mutationObserver = new MutationObserver(positionWrap);
@@ -109,7 +125,7 @@
 	}
 </script>
 
-<svelte:window on:resize={debouncedPosition} on:scroll={debouncedPosition} />
+<svelte:window onresize={debouncedPosition} onscroll={debouncedPosition} />
 
 <div
 	class="content-wrap {align} {position}"
@@ -122,7 +138,7 @@
 	transition:slideIn
 >
 	<div class="hds-box content">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

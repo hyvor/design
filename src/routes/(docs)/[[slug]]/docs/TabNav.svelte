@@ -9,7 +9,7 @@
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
 
-	let active1 = 'settings';
+	let active1 = $state('settings');
 </script>
 
 <h1>Tab Nav</h1>
@@ -131,16 +131,24 @@
 <CodeResult>
 	<TabNav bind:active={active1}>
 		<TabNavItem name="settings">
-			<IconGear slot="start" />
+			{#snippet start()}
+				<IconGear />
+			{/snippet}
 			Settings
 		</TabNavItem>
 		<TabNavItem name="seo">
-			<IconSearchHeart slot="start" />
+			{#snippet start()}
+				<IconSearchHeart />
+			{/snippet}
 			SEO
-			<Tag size="x-small" color="green" slot="end">80%</Tag>
+			{#snippet end()}
+				<Tag size="x-small" color="green">80%</Tag>
+			{/snippet}
 		</TabNavItem>
 		<TabNavItem name="links">
-			<IconLink45deg slot="start" />
+			{#snippet start()}
+				<IconLink45deg />
+			{/snippet}
 			Links
 		</TabNavItem>
 	</TabNav>

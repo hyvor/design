@@ -12,20 +12,20 @@
 	import { confirm } from '$lib/components/Modal/confirm.js';
 	import ConfirmContent1 from './Modal/ConfirmContent1.svelte';
 
-	let show1 = false;
+	let show1 = $state(false);
 
-	let show2 = false;
-	let show3 = false;
-	let show4 = false;
+	let show2 = $state(false);
+	let show3 = $state(false);
+	let show4 = $state(false);
 
-	let show5 = false;
+	let show5 = $state(false);
 
-	let show6 = false;
+	let show6 = $state(false);
 
-	let show7 = false;
-	let loading7: string | false = false;
+	let show7 = $state(false);
+	let loading7: string | false = $state(false);
 
-	let show8 = false;
+	let show8 = $state(false);
 
 	async function handleConfirm1() {
 		const confirmed = await confirm({
@@ -216,16 +216,18 @@
 	<Modal title="Confirm to delete" bind:show={show1}>
 		Please confirm that you want to delete this item. This action cannot be undone.
 
-		<div slot="footer">
-			<Button variant="invisible" on:click={() => (show1 = false)}>Cancel</Button>
-			<Button
-				color="red"
-				on:click={() => {
-					show1 = false;
-					toast.success('Item deleted');
-				}}>Delete</Button
-			>
-		</div>
+		{#snippet footer()}
+			<div>
+				<Button variant="invisible" on:click={() => (show1 = false)}>Cancel</Button>
+				<Button
+					color="red"
+					on:click={() => {
+						show1 = false;
+						toast.success('Item deleted');
+					}}>Delete</Button
+				>
+			</div>
+		{/snippet}
 	</Modal>
 </CodeResult>
 
@@ -245,25 +247,31 @@
 <Modal title="Small Modal" bind:show={show2} size="small">
 	This is a small modal. It is useful for displaying short messages.
 
-	<div slot="footer">
-		<Button variant="invisible" on:click={() => (show2 = false)}>Close</Button>
-	</div>
+	{#snippet footer()}
+		<div>
+			<Button variant="invisible" on:click={() => (show2 = false)}>Close</Button>
+		</div>
+	{/snippet}
 </Modal>
 
 <Modal title="Medium Modal" bind:show={show3} size="medium">
 	This is a medium modal. It is useful for displaying long messages and forms.
 
-	<div slot="footer">
-		<Button variant="invisible" on:click={() => (show3 = false)}>Close</Button>
-	</div>
+	{#snippet footer()}
+		<div>
+			<Button variant="invisible" on:click={() => (show3 = false)}>Close</Button>
+		</div>
+	{/snippet}
 </Modal>
 
 <Modal title="Large Modal" bind:show={show4} size="large">
 	This is a large modal. It is useful for displaying very long messages.
 
-	<div slot="footer">
-		<Button variant="invisible" on:click={() => (show4 = false)}>Close</Button>
-	</div>
+	{#snippet footer()}
+		<div>
+			<Button variant="invisible" on:click={() => (show4 = false)}>Close</Button>
+		</div>
+	{/snippet}
 </Modal>
 
 <h3 id="slot">Title Slot</h3>
@@ -302,22 +310,30 @@
 </CodeResult>
 
 <Modal bind:show={show5} size="large">
-	<TabNav active="paste" slot="title">
-		<TabNavItem name="paste">
-			<IconLink45deg slot="start" />
-			Paste Link
-		</TabNavItem>
-		<TabNavItem name="posts">
-			<IconSearch slot="start" size={13} />
-			Search Posts
-		</TabNavItem>
-	</TabNav>
+	{#snippet title()}
+		<TabNav active="paste">
+			<TabNavItem name="paste">
+				{#snippet start()}
+					<IconLink45deg />
+				{/snippet}
+				Paste Link
+			</TabNavItem>
+			<TabNavItem name="posts">
+				{#snippet start()}
+					<IconSearch size={13} />
+				{/snippet}
+				Search Posts
+			</TabNavItem>
+		</TabNav>
+	{/snippet}
 
 	This is a modal with a tab navigation in the title.
 
-	<div slot="footer">
-		<Button variant="invisible" on:click={() => (show5 = false)}>Close</Button>
-	</div>
+	{#snippet footer()}
+		<div>
+			<Button variant="invisible" on:click={() => (show5 = false)}>Close</Button>
+		</div>
+	{/snippet}
 </Modal>
 
 <h3 id="scrollable">Scrollable Modal</h3>
@@ -412,18 +428,20 @@
 	Click the button below to start loading. It will show a loading spinner covering the modal. You
 	can use this to prevent the user from interacting with the modal while loading.
 
-	<div slot="footer">
-		<Button variant="invisible" on:click={() => (show7 = false)}>Close</Button>
-		<Button
-			on:click={() => {
-				loading7 = 'Loading...';
-				setTimeout(() => {
-					loading7 = false;
-					show7 = false;
-				}, 2000);
-			}}>Start Loading</Button
-		>
-	</div>
+	{#snippet footer()}
+		<div>
+			<Button variant="invisible" on:click={() => (show7 = false)}>Close</Button>
+			<Button
+				on:click={() => {
+					loading7 = 'Loading...';
+					setTimeout(() => {
+						loading7 = false;
+						show7 = false;
+					}, 2000);
+				}}>Start Loading</Button
+			>
+		</div>
+	{/snippet}
 </Modal>
 
 <CodeResult>

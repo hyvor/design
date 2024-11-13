@@ -1,24 +1,31 @@
 <script lang="ts">
 	import type { ComponentType } from 'svelte';
 
-	export let name: string;
+	interface Props {
+		name: string;
+		start?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+	}
+
+	let { name, start, end, children }: Props = $props();
 </script>
 
 <div class="nav-category">
 	<div class="name">
 		<span class="button-content">
-			{#if $$slots.start}
-				<span class="slot start"><slot name="start" /></span>
+			{#if start}
+				<span class="slot start">{@render start?.()}</span>
 			{/if}
 
-			{#if $$slots.end}
-				<span class="slot end"><slot name="end" /></span>
+			{#if end}
+				<span class="slot end">{@render end?.()}</span>
 			{/if}
 		</span>
 		{name}
 	</div>
 	<div class="nav-items">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

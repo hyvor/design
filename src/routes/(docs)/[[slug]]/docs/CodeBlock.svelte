@@ -18,6 +18,7 @@
 	<li><code>jsx</code> (fallback to <code>html</code>)</li>
 	<li><code>yaml</code></li>
 	<li><code>json</code></li>
+	<li><code>php</code></li>
 </ul>
 
 <h2 id="usage">Usage</h2>
@@ -136,6 +137,23 @@
                 "price": "$19"
             }
         ]
+    }
+`}
+/>
+
+<h3 id="php">PHP</h3>
+
+<CodeBlock
+	language="php"
+	code={`
+    <?php
+
+    class World 
+    {
+        public function hello(): void
+        {
+            echo 'Hello World';
+        }
     }
 `}
 />

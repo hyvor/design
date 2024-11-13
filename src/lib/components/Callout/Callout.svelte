@@ -1,40 +1,60 @@
 <script lang="ts">
-	export let type: 'info' | 'success' | 'warning' | 'danger' | 'soft' = 'soft';
-	export let title: string | undefined = undefined;
+	import type { Snippet } from 'svelte';
+
+	const {
+		type = 'soft',
+		title = undefined,
+		children = undefined,
+		text = undefined,
+		icon = undefined,
+		...rest
+	}: {
+		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
+		title?: string | Snippet;
+		icon?: Snippet;
+		text?: string | Snippet;
+		children?: Snippet;
+		[key: string]: any;
+	} = $props();
 </script>
 
-<div class={'callout ' + type} {...$$restProps}>
-	{#if $$slots.title}
+<div class={'callout ' + type} {...rest}>
+	{#if typeof title === 'string'}
 		<div class="title-wrap">
-			{#if $$slots.icon}
-				<span class="title-icon"><slot name="icon" /></span>
-			{/if}
-
-			<div class="title"><slot name="title" /></div>
-		</div>
-	{:else if title}
-		<div class="title-wrap">
-			{#if $$slots.icon}
+			{#if icon}
 				<span
 					class="title-icon
-        "><slot name="icon" /></span
+		"
 				>
+					{@render icon()}
+				</span>
+			{/if}
+			<div class="title">{title}</div>
+		</div>
+	{:else if title !== undefined}
+		<div class="title-wrap">
+			{#if icon}
+				<span class="title-icon">{@render icon()}</span>
 			{/if}
 
-			<div class="title">{title}</div>
+			<div class="title">{@render title?.()}</div>
 		</div>
 	{/if}
 
 	<div class="text-wrap">
-		{#if $$slots.icon && !$$slots.title && !title}
-			<span class="icon"><slot name="icon" /></span>
+		{#if icon && !title}
+			<span class="icon">{@render icon()}</span>
 		{/if}
 
 		<div class="text">
-			{#if $$slots.default}
-				<slot />
+			{#if children}
+				{@render children()}
 			{/if}
-			<slot name="text" />
+			{#if typeof text === 'string'}
+				{text}
+			{:else}
+				{@render text?.()}
+			{/if}
 		</div>
 	</div>
 </div>

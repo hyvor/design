@@ -1,48 +1,73 @@
 <script lang="ts">
-	export let as: 'button' | 'a' = 'button';
-	export let size: 'x-small' | 'small' | 'medium' | 'large' = 'medium';
-	export let color: 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' | 'input' = 'accent';
-	export let block: boolean = false;
-	export let variant: 'fill' | 'fill-light' | 'outline' | 'invisible' | 'outline-fill' = 'fill';
-	export let align: 'start' | 'center' = 'center';
+	import { createBubbler } from 'svelte/legacy';
 
-	export let button = {} as HTMLButtonElement | HTMLAnchorElement;
+	const bubble = createBubbler();
+
+	interface Props {
+		as?: 'button' | 'a';
+		size?: 'x-small' | 'small' | 'medium' | 'large';
+		color?: 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' | 'input';
+		block?: boolean;
+		variant?: 'fill' | 'fill-light' | 'outline' | 'invisible' | 'outline-fill';
+		align?: 'start' | 'center';
+		button?: any;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		action?: import('svelte').Snippet;
+		[key: string]: any;
+	}
+
+	let {
+		as = 'button',
+		size = 'medium',
+		color = 'accent',
+		block = false,
+		variant = 'fill',
+		align = 'center',
+		button = $bindable({} as HTMLButtonElement | HTMLAnchorElement),
+		start,
+		children,
+		end,
+		action,
+		...rest
+	}: Props = $props();
 </script>
 
 <svelte:element
 	this={as}
 	class="button {size} {color} {variant} {align}"
 	class:block
-	on:keyup
-	on:keydown
-	on:keypress
-	on:focus
-	on:blur
-	on:click
-	on:mouseover
-	on:mouseenter
-	on:mouseleave
-	on:change
+	onkeyup={bubble('keyup')}
+	onkeydown={bubble('keydown')}
+	onkeypress={bubble('keypress')}
+	onfocus={bubble('focus')}
+	onblur={bubble('blur')}
+	onclick={bubble('click')}
+	onmouseover={bubble('mouseover')}
+	onmouseenter={bubble('mouseenter')}
+	onmouseleave={bubble('mouseleave')}
+	onchange={bubble('change')}
 	role="button"
 	tabindex="0"
 	bind:this={button}
-	{...$$restProps}
+	{...rest}
 >
 	<span class="button-content">
-		{#if $$slots.start}
-			<span class="slot start"><slot name="start" /></span>
+		{#if start}
+			<span class="slot start">{@render start?.()}</span>
 		{/if}
 
-		<slot></slot>
+		{@render children?.()}
 
-		{#if $$slots.end}
-			<span class="slot end"><slot name="end" /></span>
+		{#if end}
+			<span class="slot end">{@render end?.()}</span>
 		{/if}
 	</span>
 
-	{#if $$slots.action}
+	{#if action}
 		<span class="action">
-			<slot name="action" />
+			{@render action?.()}
 		</span>
 	{/if}
 </svelte:element>

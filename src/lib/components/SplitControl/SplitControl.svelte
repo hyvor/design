@@ -1,45 +1,51 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import Caption from '../FormControl/Caption.svelte';
 	import Label from '../FormControl/Label.svelte';
 
-	export let label: string = '';
-	export let caption: string = '';
+	interface Props {
+		label?: string | Snippet;
+		caption?: string | Snippet;
+		column?: boolean;
+		flex?: number[];
+		children?: Snippet;
+		nested?: Snippet;
+	}
 
-	export let column: boolean = false;
-	export let flex: number[] = [1, 2];
+	const { label, caption, column = false, flex = [1, 2], children, nested }: Props = $props();
 </script>
 
-<div class="split-control" class:has-nested={$$slots.nested} class:column>
+<div class="split-control" class:has-nested={!!nested} class:column>
 	<div class="left" style:flex={flex[0]}>
 		<div class="label-wrap">
-			{#if $$slots.label}
-				<slot name="label" />
-			{:else}
+			{#if typeof label === 'string'}
 				<Label>{label}</Label>
+			{:else}
+				{@render label?.()}
 			{/if}
 		</div>
 
-		{#if $$slots.caption || caption}
+		{#if caption}
 			<div class="caption-wrap">
-				{#if $$slots.caption}
-					<slot name="caption" />
-				{:else if caption}
+				{#if typeof caption === 'string'}
 					<Caption>{caption}</Caption>
+				{:else}
+					{@render caption()}
 				{/if}
 			</div>
 		{/if}
 	</div>
 
-	{#if $$slots.default}
+	{#if children}
 		<div class="right" style:flex={flex[1]}>
-			<slot></slot>
+			{@render children()}
 		</div>
 	{/if}
 </div>
 
-{#if $$slots.nested}
+{#if nested}
 	<div class="nested">
-		<slot name="nested"></slot>
+		{@render nested()}
 	</div>
 {/if}
 

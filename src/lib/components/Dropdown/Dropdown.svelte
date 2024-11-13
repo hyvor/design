@@ -1,32 +1,46 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import DropdownContent from './DropdownContent.svelte';
 
-	export let show = false;
-	export let width = 225;
+	interface Props {
+		show?: boolean;
+		width?: number;
+		relative?: boolean;
+		closeOnOutsideClick?: boolean;
+		align?: 'start' | 'center' | 'end';
+		position?: 'left' | 'right' | 'bottom' | 'top';
+		trigger?: Snippet;
+		content?: Snippet;
+	}
 
-	export let relative = false;
-	export let closeOnOutsideClick = true;
+	let {
+		show = $bindable(false),
+		width = 225,
+		relative = false,
+		closeOnOutsideClick = true,
+		align = 'start',
+		position = 'bottom',
+		trigger,
+		content
+	}: Props = $props();
 
-	export let align: 'start' | 'center' | 'end' = 'start';
-	export let position: 'left' | 'right' | 'bottom' | 'top' = 'bottom';
-
-	let trigger: HTMLElement;
+	let triggerEl: HTMLElement | undefined = $state();
 </script>
 
 <span class="dropdown" class:relative>
 	<span
 		class="trigger"
-		on:click={() => (show = !show)}
+		onclick={() => (show = !show)}
 		role="listbox"
 		tabindex="0"
-		on:keyup={(e) => {
+		onkeyup={(e) => {
 			if (e.key === 'Escape') {
 				show = false;
 			}
 		}}
-		bind:this={trigger}
+		bind:this={triggerEl}
 	>
-		<slot name="trigger" />
+		{@render trigger?.()}
 	</span>
 
 	{#if show}
@@ -37,9 +51,9 @@
 			{align}
 			{position}
 			{relative}
-			{trigger}
+			trigger={triggerEl}
 		>
-			<slot name="content" />
+			{@render content?.()}
 		</DropdownContent>
 	{/if}
 </span>

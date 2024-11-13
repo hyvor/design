@@ -6,30 +6,40 @@
 	import { barUser } from './bar.js';
 	import BarUserPreview from './BarUserPreview.svelte';
 
-	export let instance: string;
+	interface Props {
+		instance: string;
+	}
+
+	let { instance }: Props = $props();
 </script>
 
 <div class="wrap">
 	<Dropdown align="end" width={325}>
-		<button class="user-wrap" slot="trigger">
-			{#if $barUser}
-				<img class="user-picture" src={$barUser?.picture_url} alt={$barUser?.name} />
-			{/if}
-		</button>
+		{#snippet trigger()}
+			<button class="user-wrap">
+				{#if $barUser}
+					<img class="user-picture" src={$barUser?.picture_url} alt={$barUser?.name} />
+				{/if}
+			</button>
+		{/snippet}
 
-		<ActionList slot="content">
-			<BarUserPreview />
+		{#snippet content()}
+			<ActionList>
+				<BarUserPreview />
 
-			<a href="{instance}/account" target="_blank">
-				<ActionListItem>
-					Manage Account
-					<IconBoxArrowUpRight slot="end" size={12} />
-				</ActionListItem>
-			</a>
-			<a href="{instance}/account/logout">
-				<ActionListItem>Logout</ActionListItem>
-			</a>
-		</ActionList>
+				<a href="{instance}/account" target="_blank">
+					<ActionListItem>
+						Manage Account
+						{#snippet end()}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
+					</ActionListItem>
+				</a>
+				<a href="{instance}/account/logout">
+					<ActionListItem>Logout</ActionListItem>
+				</a>
+			</ActionList>
+		{/snippet}
 	</Dropdown>
 </div>
 

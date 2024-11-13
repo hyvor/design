@@ -1,3 +1,4 @@
+<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
@@ -5,28 +6,44 @@
 	import { IconX } from '@hyvor/icons';
 	import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';
-	import { onMount, tick } from 'svelte';
+	import { onMount, tick, type Snippet } from 'svelte';
 	import Loader from '../Loader/Loader.svelte';
 	import { createEventDispatcher } from 'svelte';
 
-	export let show = false;
-	export let title = '';
-	export let size: 'small' | 'medium' | 'large' = 'medium';
-	export let id: string = 'modal';
-	export let role: 'dialog' | 'alertdialog' = 'alertdialog';
-	export let closeOnOutsideClick = true;
-	export let closeOnEscape = true;
-	export let loading: boolean | string = false;
+	interface Props {
+		show?: boolean;
+		title?: string | Snippet;
+		size?: 'small' | 'medium' | 'large';
+		id?: string;
+		role?: 'dialog' | 'alertdialog';
+		closeOnOutsideClick?: boolean;
+		closeOnEscape?: boolean;
+		loading?: boolean | string;
+
+		footer?: Footer | Snippet;
+		children?: Snippet;
+	}
+
+	let {
+		show = $bindable(false),
+		title,
+		size = 'medium',
+		id = 'modal',
+		role = 'alertdialog',
+		closeOnOutsideClick = true,
+		closeOnEscape = true,
+		loading = false,
+		footer,
+		children
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
 	const titleId = id + '-title';
 	const descId = id + '-desc';
 
-	export let footer: null | Footer = null;
-
-	let wrapEl: HTMLDivElement;
-	let innerEl: HTMLDivElement;
+	let wrapEl: HTMLDivElement | undefined = $state();
+	let innerEl: HTMLDivElement | undefined = $state();
 
 	function handleCancel() {
 		show = false;
@@ -44,7 +61,11 @@
 	}
 
 	onMount(setFlex);
-	$: show, setFlex();
+
+	$effect(() => {
+		show;
+		setFlex();
+	});
 </script>
 
 <svelte:window
@@ -73,10 +94,10 @@
 		>
 			<div class="header">
 				<div class="title" id={titleId}>
-					{#if $$slots.title}
-						<slot name="title" />
-					{:else}
+					{#if typeof title === 'string'}
 						<span>{title}</span>
+					{:else}
+						{@render title?.()}
 					{/if}
 				</div>
 
@@ -88,15 +109,15 @@
 			</div>
 
 			<div class="content" id={descId}>
-				<slot />
+				{@render children?.()}
 			</div>
 
-			{#if $$slots.footer || footer}
+			{#if footer}
 				<div class="footer">
-					{#if $$slots.footer}
-						<slot name="footer" />
-					{:else if footer}
+					{#if typeof footer === 'object'}
 						<ModalFooter {footer} bind:show on:cancel on:confirm />
+					{:else}
+						{@render footer()}
 					{/if}
 				</div>
 			{/if}

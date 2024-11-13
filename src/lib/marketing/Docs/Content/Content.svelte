@@ -2,6 +2,11 @@
 	import Box from '$lib/components/Box/Box.svelte';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
+
+	let { children }: Props = $props();
 
 	function linkifyHeadings() {
 		var hs = document.querySelectorAll('h2[id],h3[id],h4[id]');
@@ -38,7 +43,7 @@
 <div class="content-wrap">
 	<Box>
 		<content>
-			<slot />
+			{@render children?.()}
 		</content>
 	</Box>
 </div>

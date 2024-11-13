@@ -1,9 +1,8 @@
 import { deepmerge } from 'deepmerge-ts';
-import type { PrimitiveType } from 'intl-messageformat';
 import { writable, type Readable, type Writable, derived } from 'svelte/store';
 import { t } from './t.js';
 import T from './T.svelte';
-import type { ToDotPaths, I18nStrings } from './types.js';
+import type { ToDotPaths, I18nStrings, PrimitiveType } from './types.js';
 
 export type i18nLoaderType = () => Promise<any>;
 

@@ -14,14 +14,18 @@
 	import Tag from '../Tag/Tag.svelte';
 	import IconMessage from '../IconMessage/IconMessage.svelte';
 
-	export let instance: string;
-	export let product: BarProduct;
+	interface Props {
+		instance: string;
+		product: BarProduct;
+	}
 
-	let updates: BarUpdate[] = [];
-	let loading = true;
-	let error = false;
+	let { instance, product }: Props = $props();
 
-	let lastReadTime: null | number = null;
+	let updates: BarUpdate[] = $state([]);
+	let loading = $state(true);
+	let error = $state(false);
+
+	let lastReadTime: null | number = $state(null);
 
 	function fetchUpdates() {
 		error = false;
@@ -85,19 +89,23 @@
 						<div class="title">
 							{update.title}
 						</div>
-						<div slot="description">
-							<div class="description">
-								{update.content}
+						{#snippet description()}
+							<div>
+								<div class="description">
+									{update.content}
+								</div>
+								<div class="date">
+									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
+								</div>
 							</div>
-							<div class="date">
-								{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
-							</div>
-						</div>
-						<span slot="end">
-							{#if update.url}
-								<IconBoxArrowUpRight size={12} />
-							{/if}
-						</span>
+						{/snippet}
+						{#snippet end()}
+							<span>
+								{#if update.url}
+									<IconBoxArrowUpRight size={12} />
+								{/if}
+							</span>
+						{/snippet}
 					</ActionListItem>
 				</a>
 			{/each}
@@ -108,7 +116,9 @@
 <div class="top">
 	<Button size="small" color="input" as="a" href={instance + '/updates'} target="_blank">
 		View all updates
-		<IconBoxArrowUpRight size={12} slot="end" />
+		{#snippet end()}
+			<IconBoxArrowUpRight size={12} />
+		{/snippet}
 	</Button>
 </div>
 

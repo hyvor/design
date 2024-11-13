@@ -1,10 +1,26 @@
 <script lang="ts">
-	/* for whatever reason simply passing value with rest props doesn't work */
-	export let value: number | string = '';
-	export let group: number | string = '';
-	export let disabled: boolean = false;
+	import { createBubbler } from 'svelte/legacy';
 
-	export let input = {} as HTMLInputElement;
+	const bubble = createBubbler();
+
+	interface Props {
+		/* for whatever reason simply passing value with rest props doesn't work */
+		value?: number | string;
+		group?: number | string;
+		disabled?: boolean;
+		input?: any;
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
+
+	let {
+		value = '',
+		group = $bindable(''),
+		disabled = false,
+		input = $bindable({} as HTMLInputElement),
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <label class:disabled>
@@ -14,22 +30,22 @@
 		bind:group
 		bind:this={input}
 		{value}
-		on:keyup
-		on:keydown
-		on:keypress
-		on:focus
-		on:blur
-		on:click
-		on:mouseover
-		on:mouseenter
-		on:mouseleave
-		on:change
-		{...$$restProps}
+		onkeyup={bubble('keyup')}
+		onkeydown={bubble('keydown')}
+		onkeypress={bubble('keypress')}
+		onfocus={bubble('focus')}
+		onblur={bubble('blur')}
+		onclick={bubble('click')}
+		onmouseover={bubble('mouseover')}
+		onmouseenter={bubble('mouseenter')}
+		onmouseleave={bubble('mouseleave')}
+		onchange={bubble('change')}
+		{...rest}
 	/>
 
 	<span class="checkmark"></span>
 
-	<slot />
+	{@render children?.()}
 </label>
 
 <style lang="scss">

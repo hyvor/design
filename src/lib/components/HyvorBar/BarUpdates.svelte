@@ -4,23 +4,31 @@
 	import BarUpdatesList from './BarUpdatesList.svelte';
 	import { type BarProduct, barUnreadUpdates } from './bar.js';
 
-	export let instance: string;
-	export let product: BarProduct;
+	interface Props {
+		instance: string;
+		product: BarProduct;
+	}
+
+	let { instance, product }: Props = $props();
 </script>
 
 <div class="updates">
 	<Dropdown align="end" width={525}>
-		<IconButton color="input" variant="invisible" slot="trigger">
-			<IconMegaphone size={14} />
+		{#snippet trigger()}
+			<IconButton color="input" variant="invisible">
+				<IconMegaphone size={14} />
 
-			{#if $barUnreadUpdates > 0}
-				<span class="unread">{$barUnreadUpdates}</span>
-			{/if}
-		</IconButton>
+				{#if $barUnreadUpdates > 0}
+					<span class="unread">{$barUnreadUpdates}</span>
+				{/if}
+			</IconButton>
+		{/snippet}
 
-		<div slot="content" class="content-inner">
-			<BarUpdatesList {instance} {product} />
-		</div>
+		{#snippet content()}
+			<div class="content-inner">
+				<BarUpdatesList {instance} {product} />
+			</div>
+		{/snippet}
 	</Dropdown>
 </div>
 

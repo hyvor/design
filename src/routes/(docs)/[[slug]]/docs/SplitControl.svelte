@@ -101,7 +101,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Language" caption="The language to use for the site.">
 		<TextInput type="text" block value="English" />
 	</SplitControl>
@@ -128,10 +128,14 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl>
-		<Label slot="label">Spam Detection</Label>
-		<Caption slot="caption">Check for spam in comments</Caption>
+		{#snippet label()}
+			<Label>Spam Detection</Label>
+		{/snippet}
+		{#snippet caption()}
+			<Caption>Check for spam in comments</Caption>
+		{/snippet}
 		<Switch />
 	</SplitControl>
 </CodeResult>
@@ -158,17 +162,19 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Guest Commenting" caption="Comment without logging in">
 		<Switch />
-		<div slot="nested">
-			<SplitControl
-				label="Guest Comment Moderation"
-				caption="Moderate guest comments before they are published."
-			>
-				<Switch />
-			</SplitControl>
-		</div>
+		{#snippet nested()}
+			<div>
+				<SplitControl
+					label="Guest Comment Moderation"
+					caption="Moderate guest comments before they are published."
+				>
+					<Switch />
+				</SplitControl>
+			</div>
+		{/snippet}
 	</SplitControl>
 </CodeResult>
 
@@ -198,7 +204,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Name" caption="The name of the site." flex={[1, 1]}>
 		<TextInput type="text" value="HYVOR" block />
 	</SplitControl>
@@ -226,7 +232,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Name" caption="The name of the site." column>
 		<TextInput type="text" value="HYVOR" block />
 	</SplitControl>

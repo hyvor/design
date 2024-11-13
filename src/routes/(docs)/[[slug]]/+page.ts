@@ -32,6 +32,7 @@ import ColorPicker from './docs/ColorPicker.svelte';
 import IconMessage from './docs/IconMessage.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
+import { error } from '@sveltejs/kit';
 
 export const prerender = true;
 
@@ -77,9 +78,9 @@ export async function load({ params }) {
 	const slug = params.slug;
 	const fileName = (slug || 'index') as keyof typeof nav;
 
-	/* if (!nav[fileName]) {
-        throw error(404, 'Not found');
-    } */
+	if (!nav[fileName]) {
+		throw error(404, 'Not found');
+	}
 
 	return {
 		slug: params.slug,

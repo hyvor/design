@@ -5,11 +5,16 @@
 	import '../../index.js';
 	import ToastProvider from '../Toast/ToastProvider.svelte';
 
-	export let dark = false;
+	interface Props {
+		dark?: boolean;
+		children?: import('svelte').Snippet;
+	}
+
+	let { dark = false, children }: Props = $props();
 </script>
 
 <div id="base">
-	<slot />
+	{@render children?.()}
 </div>
 
 {#if dark}

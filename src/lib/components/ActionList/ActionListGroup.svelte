@@ -1,11 +1,20 @@
 <script lang="ts">
+	import { run } from 'svelte/legacy';
+
 	import { setContext } from 'svelte';
 
-	export let title: string | undefined = undefined;
-	export let divider: boolean = false;
-	export let selection: undefined | 'single' | 'multi' = undefined;
+	interface Props {
+		title?: string | undefined;
+		divider?: boolean;
+		selection?: undefined | 'single' | 'multi';
+		children?: import('svelte').Snippet;
+	}
 
-	$: if (selection !== undefined) setContext('action-list-selection', selection);
+	let { title = undefined, divider = false, selection = undefined, children }: Props = $props();
+
+	run(() => {
+		if (selection !== undefined) setContext('action-list-selection', selection);
+	});
 </script>
 
 <div class="action-list-group" class:has-divider={divider}>
@@ -17,7 +26,7 @@
 		<div class="title">{title}</div>
 	{/if}
 
-	<slot />
+	{@render children?.()}
 </div>
 
 <style>

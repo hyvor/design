@@ -1,6 +1,20 @@
 <script lang="ts">
-	export let checked: boolean = false;
-	export let input = {} as HTMLInputElement;
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+	interface Props {
+		checked?: boolean;
+		input?: any;
+		children?: import('svelte').Snippet;
+		[key: string]: any;
+	}
+
+	let {
+		checked = $bindable(false),
+		input = $bindable({} as HTMLInputElement),
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <label class="switch-wrap">
@@ -9,23 +23,23 @@
 			type="checkbox"
 			bind:checked
 			bind:this={input}
-			{...$$restProps}
-			on:keyup
-			on:keydown
-			on:keypress
-			on:focus
-			on:blur
-			on:click
-			on:mouseover
-			on:mouseenter
-			on:mouseleave
-			on:change
+			{...rest}
+			onkeyup={bubble('keyup')}
+			onkeydown={bubble('keydown')}
+			onkeypress={bubble('keypress')}
+			onfocus={bubble('focus')}
+			onblur={bubble('blur')}
+			onclick={bubble('click')}
+			onmouseover={bubble('mouseover')}
+			onmouseenter={bubble('mouseenter')}
+			onmouseleave={bubble('mouseleave')}
+			onchange={bubble('change')}
 		/>
 		<span class="slider"></span>
 	</span>
-	{#if $$slots.default}
+	{#if children}
 		<span class="message">
-			<slot />
+			{@render children?.()}
 		</span>
 	{/if}
 </label>

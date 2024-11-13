@@ -8,9 +8,13 @@
 		IconInfoCircleFill
 	} from '@hyvor/icons';
 
-	export let toast: Toast;
+	interface Props {
+		toast: Toast;
+	}
 
-	$: color =
+	let { toast }: Props = $props();
+
+	let color = $derived(
 		(
 			{
 				success: 'var(--green)',
@@ -18,7 +22,8 @@
 				warning: 'var(--orange)',
 				info: 'var(--blue)'
 			} as any
-		)[toast.type] || 'inherit';
+		)[toast.type] || 'inherit'
+	);
 </script>
 
 <span style:color>

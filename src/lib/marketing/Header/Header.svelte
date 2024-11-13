@@ -3,13 +3,25 @@
 	import DarkToggle from '../../components/Dark/DarkToggle.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
-	import Tooltip from '../../components/Tooltip/Tooltip.svelte';
 	import { IconList } from '@hyvor/icons';
 
-	export let logo: string;
-	export let name: string = 'HYVOR';
-	export let subName: undefined | string = undefined;
-	export let darkToggle: boolean = true;
+	interface Props {
+		logo: string;
+		name?: string;
+		subName?: undefined | string;
+		darkToggle?: boolean;
+		center?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+	}
+
+	let {
+		logo,
+		name = 'HYVOR',
+		subName = undefined,
+		darkToggle = true,
+		center,
+		end
+	}: Props = $props();
 </script>
 
 <header>
@@ -27,11 +39,11 @@
 		</div>
 
 		<div class="nav-center">
-			<slot name="center" />
+			{@render center?.()}
 		</div>
 
 		<div class="nav-end">
-			<slot name="end" />
+			{@render end?.()}
 		</div>
 
 		<div class="dark-mobile">
@@ -63,23 +75,27 @@
 
 		<span class="mobile-nav-wrap">
 			<Dropdown align="end" width={300}>
-				<IconButton variant="invisible" slot="trigger">
-					<IconList size={18} />
-				</IconButton>
-				<div slot="content" class="mobile-content">
-					<div class="mobile-inner center">
-						<slot name="center" />
+				{#snippet trigger()}
+					<IconButton variant="invisible">
+						<IconList size={18} />
+					</IconButton>
+				{/snippet}
+				{#snippet content()}
+					<div class="mobile-content">
+						<div class="mobile-inner center">
+							{@render center?.()}
+						</div>
+						<div class="mobile-inner end">
+							{@render end?.()}
+						</div>
 					</div>
-					<div class="mobile-inner end">
-						<slot name="end" />
-					</div>
-				</div>
+				{/snippet}
 			</Dropdown>
 		</span>
 	</Container>
 </header>
 
-<div class="header-space" />
+<div class="header-space"></div>
 
 <style lang="scss">
 	.header-space {

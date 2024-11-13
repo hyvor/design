@@ -33,10 +33,13 @@
 	let changingKey = $state('welcome' as ToDotPaths<typeof enJson>);
 </script>
 
-<HyvorBar product="core" config={{
-	name: "Hyvor Design",
-	docs: false
-}} />
+<HyvorBar
+	product="core"
+	config={{
+		name: 'Hyvor Design',
+		docs: false
+	}}
+/>
 
 <br />
 

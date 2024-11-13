@@ -3,14 +3,15 @@
 
 	const bubble = createBubbler();
 
-	interface Props {
+	type Props = {
 		href: string;
 		active?: boolean;
 		disabled?: boolean;
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-	}
+		[key: string]: any;
+	};
 
 	let {
 		href,

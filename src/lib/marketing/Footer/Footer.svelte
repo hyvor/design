@@ -86,7 +86,7 @@
 						<a href={social.discord} target="_blank" rel="nofollow"><IconDiscord /></a>
 					{/if}
 					{#if social.youtube}
-						<a href={social.discord} target="_blank" rel="nofollow"><IconYoutube /></a>
+						<a href={social.youtube} target="_blank" rel="nofollow"><IconYoutube /></a>
 					{/if}
 					{#if social.linkedin}
 						<a href={social.linkedin} target="_blank" rel="nofollow"><IconLinkedin /></a>

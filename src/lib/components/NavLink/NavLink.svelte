@@ -2,6 +2,7 @@
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
+
 	interface Props {
 		href: string;
 		active?: boolean;

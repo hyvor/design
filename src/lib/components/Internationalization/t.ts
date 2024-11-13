@@ -1,8 +1,8 @@
-import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat';
+import { IntlMessageFormat } from 'intl-messageformat';
 import { getContext } from 'svelte';
 import { get } from 'svelte/store';
 import { getStringByKey, type InternationalizationService } from './i18n.js';
-import type { I18nStrings, ToDotPaths } from './types.js';
+import type { I18nStrings, PrimitiveType, ToDotPaths } from './types.js';
 
 type ParamValue = PrimitiveType | ((chunks: string | string[]) => string);
 type ParamsType = Record<string, ParamValue>;

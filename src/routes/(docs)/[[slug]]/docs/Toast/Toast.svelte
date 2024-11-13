@@ -38,27 +38,27 @@
 />
 
 <CodeResult style="display:flex;gap:10px;flex-direction:column;align-items:flex-start" white>
-	<Button on:click={() => toast('Blank toast')} color="gray">Blank toast</Button>
+	<Button on:click={() => toast('Blank toast')} color="input">Blank toast</Button>
 
-	<Button on:click={() => toast.success('Success toast')} color="gray">
+	<Button on:click={() => toast.success('Success toast')} color="input">
 		{#snippet start()}
 				<IconCheckCircleFill style="color:var(--green)"  />
 			{/snippet} Success toast
 	</Button>
 
-	<Button on:click={() => toast.error('Error toast')} color="gray">
+	<Button on:click={() => toast.error('Error toast')} color="input">
 		{#snippet start()}
 				<IconXCircleFill  color="var(--red)" />
 			{/snippet} Error toast
 	</Button>
 
-	<Button on:click={() => toast.warning('Warning toast')} color="gray">
+	<Button on:click={() => toast.warning('Warning toast')} color="input">
 		{#snippet start()}
 				<IconExclamationCircleFill  color="var(--orange)" />
 			{/snippet} Warning toast
 	</Button>
 
-	<Button on:click={() => toast.info('Info toast')} color="gray">
+	<Button on:click={() => toast.info('Info toast')} color="input">
 		{#snippet start()}
 				<IconInfoCircleFill  color="var(--blue)" />
 			{/snippet} Info toast
@@ -78,7 +78,7 @@
 				});
 			}, 2000);
 		}}
-		color="gray"
+		color="input"
 	>
 		{#snippet start()}
 				<Loader  size="small" />

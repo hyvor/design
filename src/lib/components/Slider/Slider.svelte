@@ -30,7 +30,7 @@
 	let progress = $derived(((value - min) / (max - min)) * 100);
 
 	let dragging = $state(false);
-	let trackEl: HTMLDivElement = $state();
+	let trackEl: HTMLDivElement | undefined = $state();
 
 	function handleMousedown(event: MouseEvent) {
 		dragging = true;
@@ -46,6 +46,7 @@
 	}
 
 	function handleMousemove(event: MouseEvent) {
+		if (!trackEl) return;
 		if (dragging) {
 			const rect = trackEl.getBoundingClientRect();
 			const x = event.clientX - rect.left;

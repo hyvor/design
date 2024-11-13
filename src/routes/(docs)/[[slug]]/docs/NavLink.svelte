@@ -71,8 +71,7 @@
 
 <div class="no-link-color">
 	<CodeResult gap={5} white>
-		<Box style="width:100%">
-			<div style="padding: 15px 0">
+			<div style="padding: 15px 0;width:100%" class="hds-box">
 				<NavLink
 					href="javascript:void(0)"
 					active={active === 'overview'}
@@ -91,7 +90,6 @@
 				<!-- disabled state -->
 				<NavLink href="javascript:void(0)" disabled>Disabled</NavLink>
 			</div>
-		</Box>
 	</CodeResult>
 </div>
 

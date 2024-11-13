@@ -7,9 +7,10 @@
 		color?: string;
 		size?: number;
 		show?: boolean;
+		'aria-label'?: string;
 	}
 
-	let { color = $bindable('#000000'), size = 30, show = $bindable(false) }: Props = $props();
+	let { color = $bindable('#000000'), size = 30, show = $bindable(false), "aria-label": ariaLabel = ''}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		input: string;
@@ -38,6 +39,7 @@
 				show = true;
 			}
 		}}
+		aria-label={ariaLabel}
 	></button>
 
 	{#if show}

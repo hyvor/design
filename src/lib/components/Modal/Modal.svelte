@@ -42,8 +42,8 @@
 	const titleId = id + '-title';
 	const descId = id + '-desc';
 
-	let wrapEl: HTMLDivElement;
-	let innerEl: HTMLDivElement;
+	let wrapEl: HTMLDivElement | undefined = $state();
+	let innerEl: HTMLDivElement | undefined = $state();
 
 	function handleCancel() {
 		show = false;

@@ -1,9 +1,9 @@
-import { type ComponentType } from 'svelte';
+import { type Component } from 'svelte';
 import { writable } from 'svelte/store';
 
 interface ConfirmConfig {
 	title: string;
-	content: string | ComponentType;
+	content: string | Component<any>;
 	contentProps?: Record<string, any>;
 	confirmText?: string;
 	cancelText?: string;

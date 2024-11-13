@@ -15,9 +15,9 @@
 	const activeStore = writable(active);
 	setContext('tab-nav-active', activeStore);
 
-	run(() => {
-		active, activeStore.set(active);
-	});
+	$effect(() => {
+		activeStore.set(active)
+	})
 
 	onMount(() => {
 		const unsubscribe = activeStore.subscribe((value) => {

@@ -1,22 +1,22 @@
 <script lang="ts" generics="StringsT extends I18nStrings">
 	import { run } from 'svelte/legacy';
 
-	import { type ToDotPaths, type I18nStrings } from './types.js';
+	import { type ToDotPaths, type I18nStrings, type PrimitiveType } from './types.js';
 	import {
 		getContext,
-		type ComponentType,
 		onMount,
 		tick,
-		getAllContexts
+		getAllContexts,
+		type Component,
+		hydrate
 	} from 'svelte';
-	import { getStringByKey, InternationalizationService } from './i18n.js';
-	import { IntlMessageFormat, type PrimitiveType } from 'intl-messageformat';
+	import { InternationalizationService } from './i18n.js';
 	import { browser } from '$app/environment';
 	import { getMessage as getMessageBase } from './t.js';
 
 	type ComponentDeclaration = {
 		element?: string;
-		component?: ComponentType;
+		component?: Component<any>;
 		props?: Record<string, any>;
 	};
 	type InputParams = Record<string, PrimitiveType | ComponentDeclaration>;
@@ -74,7 +74,7 @@
 	 * In frontend processing, we render the components
 	 */
 	interface ComponentBinding {
-		component: ComponentType;
+		component: Component<any>;
 		props: Record<string, any>;
 	}
 	const componentBindings = new Map<string, ComponentBinding>();
@@ -127,9 +127,8 @@
 			const el = document.getElementById(id);
 			if (el) {
 				el.innerHTML = '';
-				new binding.component({
+				hydrate(binding.component, {
 					target: el,
-					hydrate: true,
 					props: binding.props,
 					context
 				});

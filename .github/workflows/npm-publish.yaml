@@ -22,5 +22,5 @@ jobs:
         run: |
           npm ci
           npm run package
-          npm version $VERSION
+          npm version $VERSION --no-git-tag-version
           npm publish

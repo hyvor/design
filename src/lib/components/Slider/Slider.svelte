@@ -41,12 +41,7 @@
 	function handleMousemove(event: MouseEvent) {
 		if (!trackEl) return;
 		if (dragging) {
-			const rect = trackEl.getBoundingClientRect();
-			const x = event.clientX - rect.left;
-			const width = rect.width;
-			const newValue = min + (x / width) * (max - min);
-			value = toStep(newValue);
-			dispatch('change', value);
+			calcPosUpdateValue(trackEl,event.clientX);
 		}
 	}
 
@@ -68,14 +63,18 @@
 	function handleTouchmove(event: TouchEvent) {
 		if (!trackEl) return;
 		if (dragging) {
-			const rect = trackEl.getBoundingClientRect();
-			const x = event.touches[0].clientX - rect.left;
+			calcPosUpdateValue(trackEl, event.touches[0].clientX);
+		}
+	}	
+
+	function calcPosUpdateValue(trackEl: HTMLDivElement, clientX: number){
+		const rect = trackEl.getBoundingClientRect();
+			const x = clientX - rect.left;
 			const width = rect.width;
 			const newValue = min + (x / width) * (max - min);
 			value = toStep(newValue);
 			dispatch('change', value);
-		}
-	}	
+	}
 
 </script>
 

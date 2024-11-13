@@ -7,7 +7,13 @@
 	} = $props();
 </script>
 
-<div class="results" class:gap={!!props.gap} class:white={props.white} style={props.gap ? `gap: ${props.gap}px` : ''} {...props}>
+<div
+	class="results"
+	class:gap={!!props.gap}
+	class:white={props.white}
+	style={props.gap ? `gap: ${props.gap}px` : ''}
+	{...props}
+>
 	{@render props.children?.()}
 </div>
 

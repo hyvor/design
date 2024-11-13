@@ -164,8 +164,8 @@
 <CodeResult white>
 	<TextInput placeholder="Search">
 		{#snippet start()}
-				<IconSearch  />
-			{/snippet}
+			<IconSearch />
+		{/snippet}
 	</TextInput>
 </CodeResult>
 
@@ -182,8 +182,8 @@
 <CodeResult white>
 	<TextInput placeholder="Delay" type="number">
 		{#snippet end()}
-				<span >minutes</span>
-			{/snippet}
+			<span>minutes</span>
+		{/snippet}
 	</TextInput>
 </CodeResult>
 

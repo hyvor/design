@@ -34,16 +34,14 @@
 		{/if}
 
 		{#snippet footer()}
-			
-				<ButtonGroup>
-					<Button variant="invisible" on:click={handleCancel}>
-						{$confirmStore.cancelText || 'Cancel'}
-					</Button>
-					<Button color={$confirmStore.danger ? 'red' : 'accent'} on:click={handleConfirm}>
-						{$confirmStore.confirmText || 'Confirm'}
-					</Button>
-				</ButtonGroup>
-			
-			{/snippet}
+			<ButtonGroup>
+				<Button variant="invisible" on:click={handleCancel}>
+					{$confirmStore.cancelText || 'Cancel'}
+				</Button>
+				<Button color={$confirmStore.danger ? 'red' : 'accent'} on:click={handleConfirm}>
+					{$confirmStore.confirmText || 'Confirm'}
+				</Button>
+			</ButtonGroup>
+		{/snippet}
 	</Modal>
 {/if}

@@ -2,7 +2,7 @@
 	interface Props {
 		bold?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { bold = false, children, ...rest }: Props = $props();

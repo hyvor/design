@@ -42,26 +42,26 @@
 
 	<Button on:click={() => toast.success('Success toast')} color="input">
 		{#snippet start()}
-				<IconCheckCircleFill style="color:var(--green)"  />
-			{/snippet} Success toast
+			<IconCheckCircleFill style="color:var(--green)" />
+		{/snippet} Success toast
 	</Button>
 
 	<Button on:click={() => toast.error('Error toast')} color="input">
 		{#snippet start()}
-				<IconXCircleFill  color="var(--red)" />
-			{/snippet} Error toast
+			<IconXCircleFill color="var(--red)" />
+		{/snippet} Error toast
 	</Button>
 
 	<Button on:click={() => toast.warning('Warning toast')} color="input">
 		{#snippet start()}
-				<IconExclamationCircleFill  color="var(--orange)" />
-			{/snippet} Warning toast
+			<IconExclamationCircleFill color="var(--orange)" />
+		{/snippet} Warning toast
 	</Button>
 
 	<Button on:click={() => toast.info('Info toast')} color="input">
 		{#snippet start()}
-				<IconInfoCircleFill  color="var(--blue)" />
-			{/snippet} Info toast
+			<IconInfoCircleFill color="var(--blue)" />
+		{/snippet} Info toast
 	</Button>
 
 	<Button
@@ -81,8 +81,8 @@
 		color="input"
 	>
 		{#snippet start()}
-				<Loader  size="small" />
-			{/snippet} Loading toast
+			<Loader size="small" />
+		{/snippet} Loading toast
 	</Button>
 </CodeResult>
 

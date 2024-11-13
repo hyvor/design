@@ -132,23 +132,23 @@
 	<TabNav bind:active={active1}>
 		<TabNavItem name="settings">
 			{#snippet start()}
-						<IconGear  />
-					{/snippet}
+				<IconGear />
+			{/snippet}
 			Settings
 		</TabNavItem>
 		<TabNavItem name="seo">
 			{#snippet start()}
-						<IconSearchHeart  />
-					{/snippet}
+				<IconSearchHeart />
+			{/snippet}
 			SEO
 			{#snippet end()}
-						<Tag size="x-small" color="green" >80%</Tag>
-					{/snippet}
+				<Tag size="x-small" color="green">80%</Tag>
+			{/snippet}
 		</TabNavItem>
 		<TabNavItem name="links">
 			{#snippet start()}
-						<IconLink45deg  />
-					{/snippet}
+				<IconLink45deg />
+			{/snippet}
 			Links
 		</TabNavItem>
 	</TabNav>

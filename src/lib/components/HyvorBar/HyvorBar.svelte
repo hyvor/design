@@ -7,7 +7,6 @@
 	import BarUpdates from './BarUpdates.svelte';
 	import { IconCaretDownFill } from '@hyvor/icons';
 
-
 	interface Props {
 		instance?: string;
 		product: BarProduct;

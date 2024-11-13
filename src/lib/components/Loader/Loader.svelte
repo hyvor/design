@@ -3,12 +3,6 @@
 
 	import { IconCheckCircleFill, IconXCircleFill } from '@hyvor/icons';
 
-
-
-
-
-
-
 	interface Props {
 		block?: boolean;
 		full?: boolean;
@@ -20,7 +14,7 @@
 		colorTrack?: string;
 		invert?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

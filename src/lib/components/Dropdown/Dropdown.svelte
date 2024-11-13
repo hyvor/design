@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-import DropdownContent from './DropdownContent.svelte';
+	import DropdownContent from './DropdownContent.svelte';
 
 	interface Props {
 		show?: boolean;
@@ -9,8 +9,8 @@ import DropdownContent from './DropdownContent.svelte';
 		closeOnOutsideClick?: boolean;
 		align?: 'start' | 'center' | 'end';
 		position?: 'left' | 'right' | 'bottom' | 'top';
-		trigger?: Snippet,
-		content?: Snippet,
+		trigger?: Snippet;
+		content?: Snippet;
 	}
 
 	let {
@@ -21,8 +21,8 @@ import DropdownContent from './DropdownContent.svelte';
 		align = 'start',
 		position = 'bottom',
 		trigger,
-		content,
-	} : Props = $props();
+		content
+	}: Props = $props();
 
 	let triggerEl: HTMLElement | undefined = $state();
 </script>

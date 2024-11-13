@@ -9,18 +9,10 @@
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let {
-		href,
-		color = 'link',
-		underline = true,
-		start,
-		children,
-		end,
-		...rest
-	}: Props = $props();
+	let { href, color = 'link', underline = true, start, children, end, ...rest }: Props = $props();
 </script>
 
 <a

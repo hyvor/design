@@ -12,21 +12,14 @@
 		nested?: Snippet;
 	}
 
-	const {
-		label,
-		caption,
-		column = false,
-		flex = [1, 2],
-		children,
-		nested,
-	} : Props = $props();
+	const { label, caption, column = false, flex = [1, 2], children, nested }: Props = $props();
 </script>
 
 <div class="split-control" class:has-nested={!!nested} class:column>
 	<div class="left" style:flex={flex[0]}>
 		<div class="label-wrap">
 			{#if typeof label === 'string'}
-			<Label>{label}</Label>
+				<Label>{label}</Label>
 			{:else}
 				{@render label?.()}
 			{/if}
@@ -35,7 +28,7 @@
 		{#if caption}
 			<div class="caption-wrap">
 				{#if typeof caption === 'string'}
-				<Caption>{caption}</Caption>
+					<Caption>{caption}</Caption>
 				{:else}
 					{@render caption()}
 				{/if}

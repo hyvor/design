@@ -2,7 +2,6 @@ export type I18nStrings = {
 	[key: string]: string | I18nStrings;
 };
 
-
 export type PrimitiveType = string | number | boolean | null | undefined | Date;
 
 // DOT NOTATION

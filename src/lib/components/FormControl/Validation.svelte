@@ -10,7 +10,7 @@
 		state?: 'error' | 'warning' | 'success';
 		role?: AriaRole | undefined;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { state = 'error', role = 'alert', children, ...rest }: Props = $props();

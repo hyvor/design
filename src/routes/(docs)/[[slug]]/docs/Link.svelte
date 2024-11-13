@@ -84,14 +84,14 @@
 	<CodeResult gap={6}>
 		<Link href="/">
 			{#snippet start()}
-						<IconHouse  />
-					{/snippet}
+				<IconHouse />
+			{/snippet}
 			Home
 		</Link>
 		<Link href="/" underline={false}>
 			{#snippet start()}
-						<IconHouse  />
-					{/snippet}
+				<IconHouse />
+			{/snippet}
 			Home
 		</Link>
 	</CodeResult>
@@ -114,11 +114,15 @@
 
 <div class="no-link-color">
 	<CodeResult gap={6}>
-		<Link href="/" target="_blank">Open{#snippet end()}
-						<IconBoxArrowUpRight  />
-					{/snippet}</Link>
-		<Link href="/" underline={false} target="_blank">Open{#snippet end()}
-						<IconBoxArrowUpRight  />
-					{/snippet}</Link>
+		<Link href="/" target="_blank"
+			>Open{#snippet end()}
+				<IconBoxArrowUpRight />
+			{/snippet}</Link
+		>
+		<Link href="/" underline={false} target="_blank"
+			>Open{#snippet end()}
+				<IconBoxArrowUpRight />
+			{/snippet}</Link
+		>
 	</CodeResult>
 </div>

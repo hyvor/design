@@ -6,7 +6,6 @@
 	import debounce from '../directives/debounce.js';
 	import { cubicIn } from 'svelte/easing';
 
-
 	interface Props {
 		show: boolean;
 		width: number;

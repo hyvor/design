@@ -131,11 +131,11 @@
 <CodeResult white>
 	<SplitControl>
 		{#snippet label()}
-				<Label >Spam Detection</Label>
-			{/snippet}
+			<Label>Spam Detection</Label>
+		{/snippet}
 		{#snippet caption()}
-				<Caption >Check for spam in comments</Caption>
-			{/snippet}
+			<Caption>Check for spam in comments</Caption>
+		{/snippet}
 		<Switch />
 	</SplitControl>
 </CodeResult>
@@ -166,7 +166,7 @@
 	<SplitControl label="Guest Commenting" caption="Comment without logging in">
 		<Switch />
 		{#snippet nested()}
-				<div >
+			<div>
 				<SplitControl
 					label="Guest Comment Moderation"
 					caption="Moderate guest comments before they are published."
@@ -174,7 +174,7 @@
 					<Switch />
 				</SplitControl>
 			</div>
-			{/snippet}
+		{/snippet}
 	</SplitControl>
 </CodeResult>
 

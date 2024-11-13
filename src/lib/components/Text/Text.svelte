@@ -5,7 +5,7 @@
 		normal?: boolean; // weight
 		bold?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

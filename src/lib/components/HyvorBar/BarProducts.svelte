@@ -38,30 +38,30 @@
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325}>
 	{#snippet trigger()}
-		<Button  variant="invisible" color="input" size="small">
+		<Button variant="invisible" color="input" size="small">
 			Products
 			{#snippet end()}
-				<IconCaretDownFill size={10}  />
+				<IconCaretDownFill size={10} />
 			{/snippet}
 		</Button>
 	{/snippet}
 	{#snippet content()}
-		<ActionList >
+		<ActionList>
 			{#each Object.entries(PRODUCTS) as [key, product]}
 				<a href={`https://${product.url}`} target="_blank">
 					<ActionListItem>
 						{product.name}
 						{#snippet description()}
-										<div >
+							<div>
 								{product.description}
 							</div>
-									{/snippet}
+						{/snippet}
 						{#snippet start()}
-										<product.logo size={20}  />
-									{/snippet}
+							<product.logo size={20} />
+						{/snippet}
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 			{/each}

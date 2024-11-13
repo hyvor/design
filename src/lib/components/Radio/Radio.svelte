@@ -2,7 +2,6 @@
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
-	
 
 	interface Props {
 		/* for whatever reason simply passing value with rest props doesn't work */
@@ -11,7 +10,7 @@
 		disabled?: boolean;
 		input?: any;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

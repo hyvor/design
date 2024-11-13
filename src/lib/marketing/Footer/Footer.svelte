@@ -58,8 +58,8 @@
 					<div class="email-wrap">
 						<Link href="mailto:{email}" underline={false} color="text" rel="nofollow">
 							{#snippet start()}
-														<IconEnvelope  />
-													{/snippet}
+								<IconEnvelope />
+							{/snippet}
 							{email}
 						</Link>
 						<Tooltip text={emailCopied ? 'Copied!' : 'Copy email'} position="top">

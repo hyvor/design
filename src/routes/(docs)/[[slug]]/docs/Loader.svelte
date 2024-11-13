@@ -195,8 +195,8 @@
 	<Button>
 		Submit
 		{#snippet action()}
-				<Loader  size="small" invert />
-			{/snippet}
+			<Loader size="small" invert />
+		{/snippet}
 	</Button>
 </CodeResult>
 
@@ -309,15 +309,15 @@
 	<Button on:click={handleButtonClickS} color="gray"
 		>Success State
 		{#snippet action()}
-				<Loader  size="small" state={loaderStateS} />
-			{/snippet}
+			<Loader size="small" state={loaderStateS} />
+		{/snippet}
 	</Button>
 
 	<Button on:click={handleButtonClickE} color="gray"
 		>Error State
 		{#snippet action()}
-				<Loader  size="small" state={loaderStateE} />
-			{/snippet}
+			<Loader size="small" state={loaderStateE} />
+		{/snippet}
 	</Button>
 </CodeResult>
 

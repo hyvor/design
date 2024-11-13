@@ -2,7 +2,7 @@
 	interface Props {
 		size?: number | 'small' | 'medium' | 'large';
 		alt?: string;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { size = $bindable('medium'), alt = '', ...rest }: Props = $props();

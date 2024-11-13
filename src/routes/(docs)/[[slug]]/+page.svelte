@@ -71,11 +71,11 @@
 
 <Header {logo} darkToggle={false} name="HYVOR" subName="Design System">
 	{#snippet center()}
-		<div >
+		<div>
 			<Button as="a" href="https://hyvor.com" variant="invisible" target="_blank">
 				hyvor.com {#snippet end()}
-						<IconBoxArrowUpRight  size={14} />
-					{/snippet}
+					<IconBoxArrowUpRight size={14} />
+				{/snippet}
 			</Button>
 		</div>
 	{/snippet}
@@ -83,7 +83,7 @@
 
 <Docs>
 	{#snippet nav()}
-		<Nav >
+		<Nav>
 			<NavCategory name="Design System">
 				<NavItem href="/">Overview</NavItem>
 				<NavItem href="/dark">Dark Mode</NavItem>
@@ -104,7 +104,7 @@
 	{/snippet}
 
 	{#snippet content()}
-		<Content >
+		<Content>
 			<data.content />
 		</Content>
 	{/snippet}
@@ -117,7 +117,7 @@
 	}}
 >
 	{#snippet center()}
-		<div >
+		<div>
 			<div style="display:flex">
 				<FooterLinkList title="Product">
 					<a href="pricing" target="_blank">Pricing</a>

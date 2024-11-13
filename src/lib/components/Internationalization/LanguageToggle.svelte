@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, type Component, type ComponentProps} from 'svelte';
+	import { getContext, type Component, type ComponentProps } from 'svelte';
 	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import Button from '../Button/Button.svelte';
 	import { type Language, type InternationalizationService } from './i18n.js';
@@ -39,7 +39,7 @@
 {#if i18n && $currentLanguage}
 	<Dropdown bind:show {position} {align}>
 		{#snippet trigger()}
-				<span >
+			<span>
 				{#if icon}
 					<IconButton color="input" {size}>
 						{$currentLanguage.flag}
@@ -47,24 +47,24 @@
 				{:else}
 					<Button color="input" {size}>
 						{#snippet start()}
-										<span >{$currentLanguage.flag}</span>
-									{/snippet}
+							<span>{$currentLanguage.flag}</span>
+						{/snippet}
 						{$currentLanguage.name}
 						{#snippet end()}
-										{@const SvelteComponent = caret}
-					<SvelteComponent  size={12} />
-									{/snippet}
+							{@const SvelteComponent = caret}
+							<SvelteComponent size={12} />
+						{/snippet}
 					</Button>
 				{/if}
 			</span>
-			{/snippet}
+		{/snippet}
 		{#snippet content()}
-				<ActionList >
+			<ActionList>
 				{#each i18n.languages as language (language.code)}
 					<ActionListItem on:click={() => handleClick(language)}>
 						{#snippet start()}
-										<span class="flag" >{language.flag}</span>
-									{/snippet}
+							<span class="flag">{language.flag}</span>
+						{/snippet}
 						<span class="name">
 							{language.name}
 						</span>
@@ -74,7 +74,7 @@
 					</ActionListItem>
 				{/each}
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 {/if}
 

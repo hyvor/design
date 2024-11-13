@@ -11,7 +11,7 @@
 		input?: HTMLInputElement;
 		start?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

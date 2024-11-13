@@ -2,22 +2,15 @@
 	import { scale } from 'svelte/transition';
 	import { clickOutside } from '../../../components/index.js';
 
-
 	interface Props {
 		src: string;
 		alt: string;
 		width?: undefined | number;
 		modalImageProps?: any;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let {
-		src,
-		alt,
-		width = undefined,
-		modalImageProps = {},
-		...rest
-	}: Props = $props();
+	let { src, alt, width = undefined, modalImageProps = {}, ...rest }: Props = $props();
 
 	let open = $state(false);
 </script>

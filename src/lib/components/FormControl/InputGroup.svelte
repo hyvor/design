@@ -2,7 +2,7 @@
 	interface Props {
 		gap?: number | 'small' | 'medium' | 'large';
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { gap = $bindable('medium'), children, ...rest }: Props = $props();

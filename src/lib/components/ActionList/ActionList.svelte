@@ -7,7 +7,7 @@
 		selection?: 'none' | 'single' | 'multi';
 		selectionAlign?: 'start' | 'end';
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { selection = 'none', selectionAlign = 'start', children, ...rest }: Props = $props();

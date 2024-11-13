@@ -25,7 +25,7 @@
 
 <Callout type="info">
 	{#snippet icon()}
-		<span >💡</span>
+		<span>💡</span>
 	{/snippet}
 	Checkbox should only be used if there are multiple options to choose from. For a single option, use
 	<a href="/switch">Switch</a> instead.

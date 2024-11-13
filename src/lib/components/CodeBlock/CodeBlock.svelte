@@ -4,7 +4,6 @@
 
 	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx' | 'php';
 
-
 	const languagesMap: Partial<Record<InputLanguage, Language>> = {
 		svelte: 'html',
 		jsx: 'js'
@@ -44,7 +43,7 @@
 			Ubuntu Mono,
 			monospace;
 		font-size: 14px;
-		line-height: 1.5!important;
+		line-height: 1.5 !important;
 		tab-size: 4;
 		hyphens: none;
 	}

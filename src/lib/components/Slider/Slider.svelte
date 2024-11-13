@@ -49,11 +49,39 @@
 			dispatch('change', value);
 		}
 	}
+
+	// touch events
+	function handleTouchstart(event: TouchEvent) {
+		dragging = true;
+		handleTouchmove(event);
+
+		window.addEventListener('touchmove', handleTouchmove);
+		window.addEventListener('touchend', handleTouchend);
+	}
+
+	function handleTouchend() {
+		dragging = false;
+		window.removeEventListener('touchmove', handleTouchmove);
+	}
+
+
+	function handleTouchmove(event: TouchEvent) {
+		if (!trackEl) return;
+		if (dragging) {
+			const rect = trackEl.getBoundingClientRect();
+			const x = event.touches[0].clientX - rect.left;
+			const width = rect.width;
+			const newValue = min + (x / width) * (max - min);
+			value = toStep(newValue);
+			dispatch('change', value);
+		}
+	}	
+
 </script>
 
 <div class="slider">
 	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div class="track" bind:this={trackEl} class:dragging onmousedown={handleMousedown}>
+	<div class="track" bind:this={trackEl} class:dragging onmousedown={handleMousedown} ontouchstart={handleTouchstart}>
 		<div class="progress" style="width: {progress}%"></div>
 		<button class="handle" style="left: {progress}%">
 			<span class="tip">

@@ -1,6 +1,6 @@
 {
 	"name": "@hyvor/design",
-	"version": "0.0.68",
+	"version": "1.0.0",
 	"license": "MIT",
 	"private": false,
 	"scripts": {

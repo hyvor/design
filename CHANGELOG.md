@@ -1,6 +1,8 @@
 ## 1.0.0 - 2024-11-13
 
+- Svelte 5 upgrade
 - IconMessage `icon` prop only supports a Component now. The `icon` slot/snippet is removed.
+- HyvorBar now supports `config.name` for a custom name, and `product="core"` for core colors
 
 ## 0.0.68 - 2024-09-09
 

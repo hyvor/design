@@ -6,7 +6,7 @@
 	import { IconCaretDown, IconCaretRight } from '@hyvor/icons';
 	import Button from '../../components/Button/Button.svelte';
 
-	let tocElement: HTMLDivElement = $state();
+	let tocElement: HTMLDivElement | undefined = $state();
 
 	onMount(() => {
 		tocbot.init({
@@ -29,6 +29,10 @@
 	let mobileShown = $state(false);
 
 	function handleMobileClick(e: any) {
+		if (!tocElement) {
+			return;
+		}
+
 		e.stopPropagation();
 		if (!mobileShown) {
 			tocElement.style.display = 'block';
@@ -69,10 +73,6 @@
 	.toc-wrap {
 		align-self: flex-start;
 		overflow-y: auto;
-
-		:global(&.toc) {
-			overflow-y: auto;
-		}
 
 		:global(> .toc-list) {
 			overflow: hidden;

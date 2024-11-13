@@ -3,14 +3,11 @@
 
 	const bubble = createBubbler();
 	import { getContext, createEventDispatcher } from 'svelte';
-	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
-	import { IconCheck } from '@hyvor/icons';
 	import Selected from './Selected.svelte';
 
 	const selection: 'none' | 'single' | 'multi' = getContext('action-list-selection');
 	const selectionAlign: 'start' | 'end' = getContext('action-list-selection-align');
 
-	selected = selection !== 'none' && selected;
 	interface Props {
 		selected?: boolean;
 		disabled?: boolean;
@@ -19,7 +16,7 @@
 		children?: import('svelte').Snippet;
 		description?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {
@@ -32,6 +29,8 @@
 		end,
 		...rest
 	}: Props = $props();
+
+	selected = selection !== 'none' && selected;
 
 	const dispatch = createEventDispatcher();
 

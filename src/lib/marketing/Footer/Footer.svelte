@@ -16,18 +16,6 @@
 
 	const year = new Date().getFullYear();
 
-
-	social = {
-		...{
-			x: null,
-			discord: 'https://discord.com/invite/2WRJxQB',
-			github: 'https://github.com/hyvor',
-			youtube: 'https://www.youtube.com/@HYVOR',
-			linkedin: 'https://www.linkedin.com/company/30240435'
-		},
-		...social
-	};
-
 	interface Props {
 		email?: string | null;
 		social?: any;
@@ -41,6 +29,17 @@
 		emailCopied = $bindable(false),
 		center
 	}: Props = $props();
+
+	social = {
+		...{
+			x: null,
+			discord: 'https://discord.com/invite/2WRJxQB',
+			github: 'https://github.com/hyvor',
+			youtube: 'https://www.youtube.com/@HYVOR',
+			linkedin: 'https://www.linkedin.com/company/30240435'
+		},
+		...social
+	};
 
 	function handleCopy() {
 		navigator.clipboard.writeText(email!);

@@ -9,7 +9,6 @@
 		svelte: 'html',
 		jsx: 'js'
 	};
-	const languageCode = (languagesMap[language] || language) as Language;
 
 	import getCode, { type Language } from './getCode.js';
 	interface Props {
@@ -18,6 +17,7 @@
 	}
 
 	let { code, language = 'html' }: Props = $props();
+	const languageCode = (languagesMap[language] || language) as Language;
 </script>
 
 <pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>

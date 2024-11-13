@@ -7,7 +7,7 @@
 		selected: boolean;
 	}
 
-	let { selection, selected }: Props = $props();
+	let { selection, selected = $bindable(false) }: Props = $props();
 </script>
 
 {#if selection !== 'none'}

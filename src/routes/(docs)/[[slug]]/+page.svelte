@@ -69,17 +69,15 @@
 
 <Header {logo} darkToggle={false} name="HYVOR" subName="Design System">
 	{#snippet end()}
-			<Button size="small" as="a" href="https://hyvor.com" variant="invisible">
-				HYVOR
-			</Button>
-			<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">
-				{#snippet start()}
-					<IconGithub size={14} />
-				{/snippet}
-				Github {#snippet end()}
-					<IconBoxArrowUpRight size={11} />
-				{/snippet}
-			</Button>
+		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
+		<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">
+			{#snippet start()}
+				<IconGithub size={14} />
+			{/snippet}
+			Github {#snippet end()}
+				<IconBoxArrowUpRight size={11} />
+			{/snippet}
+		</Button>
 	{/snippet}
 </Header>
 
@@ -115,6 +113,6 @@
 <Footer
 	email="foss@hyvor.com"
 	social={{
-		youtube: null,
+		youtube: null
 	}}
 ></Footer>

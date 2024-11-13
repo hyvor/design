@@ -79,8 +79,8 @@ export async function load({ params }) {
 	const fileName = (slug || 'index') as keyof typeof nav;
 
 	if (!nav[fileName]) {
-        throw error(404, 'Not found');
-    }
+		throw error(404, 'Not found');
+	}
 
 	return {
 		slug: params.slug,

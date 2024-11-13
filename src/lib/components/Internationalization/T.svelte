@@ -2,14 +2,7 @@
 	import { run } from 'svelte/legacy';
 
 	import { type ToDotPaths, type I18nStrings, type PrimitiveType } from './types.js';
-	import {
-		getContext,
-		onMount,
-		tick,
-		getAllContexts,
-		type Component,
-		hydrate
-	} from 'svelte';
+	import { getContext, onMount, tick, getAllContexts, type Component, hydrate } from 'svelte';
 	import { InternationalizationService } from './i18n.js';
 	import { browser } from '$app/environment';
 	import { getMessage as getMessageBase } from './t.js';

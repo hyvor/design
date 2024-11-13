@@ -76,12 +76,12 @@
 		<span class="mobile-nav-wrap">
 			<Dropdown align="end" width={300}>
 				{#snippet trigger()}
-								<IconButton variant="invisible" >
+					<IconButton variant="invisible">
 						<IconList size={18} />
 					</IconButton>
-							{/snippet}
+				{/snippet}
 				{#snippet content()}
-								<div  class="mobile-content">
+					<div class="mobile-content">
 						<div class="mobile-inner center">
 							{@render center?.()}
 						</div>
@@ -89,7 +89,7 @@
 							{@render end?.()}
 						</div>
 					</div>
-							{/snippet}
+				{/snippet}
 			</Dropdown>
 		</span>
 	</Container>

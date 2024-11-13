@@ -152,10 +152,10 @@
 <CodeResult>
 	<Textarea placeholder="Write a post">
 		{#snippet start()}
-				<IconPen  color="var(--text-light)" />
-			{/snippet}
+			<IconPen color="var(--text-light)" />
+		{/snippet}
 		{#snippet end()}
-				<Loader  size="small" colorTrack="var(--accent-light)" />
-			{/snippet}
+			<Loader size="small" colorTrack="var(--accent-light)" />
+		{/snippet}
 	</Textarea>
 </CodeResult>

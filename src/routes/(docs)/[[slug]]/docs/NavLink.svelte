@@ -71,25 +71,25 @@
 
 <div class="no-link-color">
 	<CodeResult gap={5} white>
-			<div style="padding: 15px 0;width:100%" class="hds-box">
-				<NavLink
-					href="javascript:void(0)"
-					active={active === 'overview'}
-					on:click={() => (active = 'overview')}>Overview</NavLink
-				>
-				<NavLink
-					href="javascript:void(0)"
-					active={active === 'comments'}
-					on:click={() => (active = 'comments')}>Comments</NavLink
-				>
-				<NavLink
-					href="javascript:void(0)"
-					active={active === 'pages'}
-					on:click={() => (active = 'pages')}>Pages</NavLink
-				>
-				<!-- disabled state -->
-				<NavLink href="javascript:void(0)" disabled>Disabled</NavLink>
-			</div>
+		<div style="padding: 15px 0;width:100%" class="hds-box">
+			<NavLink
+				href="javascript:void(0)"
+				active={active === 'overview'}
+				on:click={() => (active = 'overview')}>Overview</NavLink
+			>
+			<NavLink
+				href="javascript:void(0)"
+				active={active === 'comments'}
+				on:click={() => (active = 'comments')}>Comments</NavLink
+			>
+			<NavLink
+				href="javascript:void(0)"
+				active={active === 'pages'}
+				on:click={() => (active = 'pages')}>Pages</NavLink
+			>
+			<!-- disabled state -->
+			<NavLink href="javascript:void(0)" disabled>Disabled</NavLink>
+		</div>
 	</CodeResult>
 </div>
 
@@ -130,8 +130,8 @@
 					on:click={() => (active2 = 'overview')}
 				>
 					{#snippet start()}
-										<IconColumns ></IconColumns>
-									{/snippet}
+						<IconColumns></IconColumns>
+					{/snippet}
 					Overview
 				</NavLink>
 
@@ -141,8 +141,8 @@
 					on:click={() => (active2 = 'comments')}
 				>
 					{#snippet start()}
-										<IconChat ></IconChat>
-									{/snippet}
+						<IconChat></IconChat>
+					{/snippet}
 					Comments
 				</NavLink>
 
@@ -152,8 +152,8 @@
 					on:click={() => (active2 = 'pages')}
 				>
 					{#snippet start()}
-										<IconFile ></IconFile>
-									{/snippet}
+						<IconFile></IconFile>
+					{/snippet}
 					Pages
 				</NavLink>
 
@@ -164,12 +164,12 @@
 					disabled
 				>
 					{#snippet start()}
-										<IconCoin ></IconCoin>
-									{/snippet}
+						<IconCoin></IconCoin>
+					{/snippet}
 					Billing
 					{#snippet end()}
-										<IconExclamationCircle  style="color:var(--orange)"></IconExclamationCircle>
-									{/snippet}
+						<IconExclamationCircle style="color:var(--orange)"></IconExclamationCircle>
+					{/snippet}
 				</NavLink>
 			</div>
 		</Box>

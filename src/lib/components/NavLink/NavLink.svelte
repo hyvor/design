@@ -13,14 +13,7 @@
 		[key: string]: any;
 	};
 
-	let {
-		href,
-		active = false,
-		disabled = false,
-		start,
-		children,
-		end
-	}: Props = $props();
+	let { href, active = false, disabled = false, start, children, end }: Props = $props();
 </script>
 
 <a

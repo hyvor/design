@@ -16,30 +16,30 @@
 <div class="wrap">
 	<Dropdown align="end" width={325}>
 		{#snippet trigger()}
-				<button class="user-wrap" >
+			<button class="user-wrap">
 				{#if $barUser}
 					<img class="user-picture" src={$barUser?.picture_url} alt={$barUser?.name} />
 				{/if}
 			</button>
-			{/snippet}
+		{/snippet}
 
 		{#snippet content()}
-				<ActionList >
+			<ActionList>
 				<BarUserPreview />
 
 				<a href="{instance}/account" target="_blank">
 					<ActionListItem>
 						Manage Account
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 				<a href="{instance}/account/logout">
 					<ActionListItem>Logout</ActionListItem>
 				</a>
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </div>
 

@@ -19,7 +19,6 @@
 
 	let supportDropdown = $state(false);
 
-
 	interface Props {
 		mobile?: boolean;
 		product: BarProduct;
@@ -39,27 +38,27 @@
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325} bind:show={supportDropdown}>
 	{#snippet trigger()}
-		<Button  variant="invisible" color="input" size="small">
+		<Button variant="invisible" color="input" size="small">
 			Support
 			{#snippet end()}
-				<IconCaretDownFill size={10}  />
+				<IconCaretDownFill size={10} />
 			{/snippet}
 		</Button>
 	{/snippet}
 	{#snippet content()}
-		<ActionList >
+		<ActionList>
 			<a href="https://hyvor.community" target="_blank">
 				<ActionListItem>
 					Community Forum
 					{#snippet description()}
-								<div >hyvor.community</div>
-							{/snippet}
+						<div>hyvor.community</div>
+					{/snippet}
 					{#snippet start()}
-								<IconChat  />
-							{/snippet}
+						<IconChat />
+					{/snippet}
 					{#snippet end()}
-								<IconBoxArrowUpRight  size={12} />
-							{/snippet}
+						<IconBoxArrowUpRight size={12} />
+					{/snippet}
 				</ActionListItem>
 			</a>
 			{#if config.docs}
@@ -67,16 +66,16 @@
 					<ActionListItem>
 						Documentation
 						{#snippet description()}
-										<div >
+							<div>
 								Learn how to use {PRODUCTS[product].name}
 							</div>
-									{/snippet}
+						{/snippet}
 						{#snippet start()}
-										<IconFileEarmark  />
-									{/snippet}
+							<IconFileEarmark />
+						{/snippet}
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 			{/if}
@@ -84,14 +83,14 @@
 				<ActionListItem>
 					Support Form
 					{#snippet description()}
-								<div >Get help from our team</div>
-							{/snippet}
+						<div>Get help from our team</div>
+					{/snippet}
 					{#snippet start()}
-								<IconInfoCircle  />
-							{/snippet}
+						<IconInfoCircle />
+					{/snippet}
 					{#snippet end()}
-								<IconBoxArrowUpRight  size={12} />
-							{/snippet}
+						<IconBoxArrowUpRight size={12} />
+					{/snippet}
 				</ActionListItem>
 			</a>
 			{#if config.chat}
@@ -99,11 +98,11 @@
 					<ActionListItem>
 						Live Chat
 						{#snippet description()}
-										<div >Chat with our team</div>
-									{/snippet}
+							<div>Chat with our team</div>
+						{/snippet}
 						{#snippet start()}
-										<IconChatDots  />
-									{/snippet}
+							<IconChatDots />
+						{/snippet}
 					</ActionListItem>
 				</a>
 			{/if}
@@ -113,11 +112,11 @@
 					<ActionListItem>
 						Discord
 						{#snippet start()}
-										<IconDiscord  />
-									{/snippet}
+							<IconDiscord />
+						{/snippet}
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 				{#if config.twitter}
@@ -125,11 +124,11 @@
 						<ActionListItem>
 							Twitter
 							{#snippet start()}
-												<IconTwitterX  />
-											{/snippet}
+								<IconTwitterX />
+							{/snippet}
 							{#snippet end()}
-												<IconBoxArrowUpRight  size={12} />
-											{/snippet}
+								<IconBoxArrowUpRight size={12} />
+							{/snippet}
 						</ActionListItem>
 					</a>
 				{/if}
@@ -137,11 +136,11 @@
 					<ActionListItem>
 						Linkedin
 						{#snippet start()}
-										<IconLinkedin  />
-									{/snippet}
+							<IconLinkedin />
+						{/snippet}
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 			</ActionListGroup>
@@ -150,24 +149,24 @@
 				<a href="https://www.trustpilot.com/review/hyvor.com" target="_blank">
 					<ActionListItem>
 						{#snippet start()}
-										<Trustpilot  />
-									{/snippet}
+							<Trustpilot />
+						{/snippet}
 						Trustpilot
 						{#snippet end()}
-										<IconBoxArrowUpRight  size={12} />
-									{/snippet}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
 					</ActionListItem>
 				</a>
 				{#if config.g2}
 					<a href="https://www.g2.com/products/hyvor-talk/reviews" target="_blank">
 						<ActionListItem>
 							{#snippet start()}
-												<G2  />
-											{/snippet}
+								<G2 />
+							{/snippet}
 							G2
 							{#snippet end()}
-												<IconBoxArrowUpRight  size={12} />
-											{/snippet}
+								<IconBoxArrowUpRight size={12} />
+							{/snippet}
 						</ActionListItem>
 					</a>
 				{/if}

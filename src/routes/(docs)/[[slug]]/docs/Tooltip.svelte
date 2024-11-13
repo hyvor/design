@@ -172,11 +172,11 @@
 	<Tooltip>
 		<Button>Hover me</Button>
 		{#snippet tooltip()}
-				<div >
+			<div>
 				<div>This is a tooltip</div>
 				<Callout type="info">It can contain any content</Callout>
 			</div>
-			{/snippet}
+		{/snippet}
 	</Tooltip>
 </CodeResult>
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 
-	
 	interface Props {
 		min: number;
 		max: number;
@@ -11,13 +10,7 @@
 		dots?: boolean;
 	}
 
-	let {
-		min,
-		max,
-		value = $bindable(),
-		step = 1,
-		dots = false
-	}: Props = $props();
+	let { min, max, value = $bindable(), step = 1, dots = false }: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		change: number;

@@ -11,17 +11,10 @@
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let {
-		active = false,
-		name,
-		start,
-		children,
-		end,
-		...rest
-	}: Props = $props();
+	let { active = false, name, start, children, end, ...rest }: Props = $props();
 
 	const activeStore = getContext('tab-nav-active') as Writable<string>;
 
@@ -32,7 +25,12 @@
 	}
 </script>
 
-<button class="tab" class:active={isActive} onclick={handlers(handleClick, bubble('click'))} {...rest}>
+<button
+	class="tab"
+	class:active={isActive}
+	onclick={handlers(handleClick, bubble('click'))}
+	{...rest}
+>
 	{#if start}
 		<span class="start">
 			{@render start?.()}

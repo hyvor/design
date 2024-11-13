@@ -3,18 +3,16 @@
 
 	const bubble = createBubbler();
 
-
-
 	interface Props {
 		as?: 'button' | 'a' | 'span';
 		size?: 'x-small' | 'small' | 'medium' | 'large';
-		color?: 
-		| 'default' // default tag (categories)
-		| 'accent'
-		| 'green'
-		| 'red'
-		| 'blue'
-		| 'orange';
+		color?:
+			| 'default' // default tag (categories)
+			| 'accent'
+			| 'green'
+			| 'red'
+			| 'blue'
+			| 'orange';
 		interactive?: boolean;
 		outline?: boolean;
 		fill?: boolean;
@@ -23,7 +21,7 @@
 		start?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

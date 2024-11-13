@@ -272,8 +272,8 @@ All other properties will be forwarded to the underlying element.
 		<CodeResult>
 			<Button>
 				{#snippet start()}
-								<IconSearch  />
-							{/snippet}
+					<IconSearch />
+				{/snippet}
 				Search
 			</Button>
 		</CodeResult>
@@ -294,8 +294,8 @@ All other properties will be forwarded to the underlying element.
 			<Button>
 				Search
 				{#snippet end()}
-								<IconSearch  />
-							{/snippet}
+					<IconSearch />
+				{/snippet}
 			</Button>
 		</CodeResult>
 	</li>
@@ -316,12 +316,12 @@ All other properties will be forwarded to the underlying element.
 		<CodeResult>
 			<Button block color="gray">
 				{#snippet start()}
-								<IconSearch  />
-							{/snippet}
+					<IconSearch />
+				{/snippet}
 				Search
 				{#snippet action()}
-								<IconCaretDown  />
-							{/snippet}
+					<IconCaretDown />
+				{/snippet}
 			</Button>
 		</CodeResult>
 	</li>
@@ -346,8 +346,8 @@ All other properties will be forwarded to the underlying element.
 <CodeResult>
 	<Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
 		HYVOR {#snippet end()}
-				<IconBoxArrowUpRight  />
-			{/snippet}
+			<IconBoxArrowUpRight />
+		{/snippet}
 	</Button>
 </CodeResult>
 
@@ -370,8 +370,8 @@ All other properties will be forwarded to the underlying element.
 	<Button>
 		Submit
 		{#snippet action()}
-				<Loader  size="small" invert />
-			{/snippet}
+			<Loader size="small" invert />
+		{/snippet}
 	</Button>
 </CodeResult>
 
@@ -388,8 +388,8 @@ All other properties will be forwarded to the underlying element.
 <CodeResult>
 	<Button>
 		{#snippet start()}
-				{#if loading}<Loader />{/if}
-			{/snippet}
+			{#if loading}<Loader />{/if}
+		{/snippet}
 		Button
 	</Button>
 </CodeResult>

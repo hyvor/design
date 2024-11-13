@@ -52,14 +52,12 @@
 		<Button color="input" on:click={handleMobileClick}>
 			Table of Contents
 			{#snippet end()}
-					
-					{#if mobileShown}
-						<IconCaretDown size={14} />
-					{:else}
-						<IconCaretRight size={14} />
-					{/if}
-				
-					{/snippet}
+				{#if mobileShown}
+					<IconCaretDown size={14} />
+				{:else}
+					<IconCaretRight size={14} />
+				{/if}
+			{/snippet}
 		</Button>
 	</div>
 

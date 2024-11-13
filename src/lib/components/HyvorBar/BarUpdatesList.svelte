@@ -90,7 +90,7 @@
 							{update.title}
 						</div>
 						{#snippet description()}
-																<div >
+							<div>
 								<div class="description">
 									{update.content}
 								</div>
@@ -98,14 +98,14 @@
 									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
 								</div>
 							</div>
-															{/snippet}
+						{/snippet}
 						{#snippet end()}
-																<span >
+							<span>
 								{#if update.url}
 									<IconBoxArrowUpRight size={12} />
 								{/if}
 							</span>
-															{/snippet}
+						{/snippet}
 					</ActionListItem>
 				</a>
 			{/each}
@@ -117,8 +117,8 @@
 	<Button size="small" color="input" as="a" href={instance + '/updates'} target="_blank">
 		View all updates
 		{#snippet end()}
-				<IconBoxArrowUpRight size={12}  />
-			{/snippet}
+			<IconBoxArrowUpRight size={12} />
+		{/snippet}
 	</Button>
 </div>
 

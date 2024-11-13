@@ -151,14 +151,14 @@
 <CodeResult>
 	<Dropdown bind:show={s1} relative closeOnOutsideClick={false}>
 		{#snippet trigger()}
-				<Button  color="gray">
+			<Button color="gray">
 				Page {#snippet end()}
-						<IconCaretDown  />
-					{/snippet}
+					<IconCaretDown />
+				{/snippet}
 			</Button>
-			{/snippet}
+		{/snippet}
 		{#snippet content()}
-				<ActionList >
+			<ActionList>
 				{#each [1, 2, 3] as i}
 					<ActionListItem
 						on:select={() => {
@@ -169,7 +169,7 @@
 					</ActionListItem>
 				{/each}
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -222,10 +222,10 @@
 <CodeResult>
 	<Dropdown bind:show={s2} relative width={350} closeOnOutsideClick={false}>
 		{#snippet trigger()}
-				<Button  color="gray">
+			<Button color="gray">
 				{#snippet start()}
-						<Text light small >Product</Text>
-					{/snippet}
+					<Text light small>Product</Text>
+				{/snippet}
 
 				{#if x1 === 'talk'}
 					<Avatar src={hyvorTalkLogo} size={18} />
@@ -236,12 +236,12 @@
 				{/if}
 
 				{#snippet end()}
-						<IconCaretDown  />
-					{/snippet}
+					<IconCaretDown />
+				{/snippet}
 			</Button>
-			{/snippet}
+		{/snippet}
 		{#snippet content()}
-				<ActionList  selection="single">
+			<ActionList selection="single">
 				<ActionListItem
 					selected={x1 === 'talk'}
 					on:select={() => {
@@ -249,12 +249,12 @@
 					}}
 				>
 					{#snippet start()}
-								<Avatar  src={hyvorTalkLogo} size="small" />
-							{/snippet}
+						<Avatar src={hyvorTalkLogo} size="small" />
+					{/snippet}
 					Hyvor Talk
 					{#snippet description()}
-								<div >Commenting Platform</div>
-							{/snippet}
+						<div>Commenting Platform</div>
+					{/snippet}
 				</ActionListItem>
 				<ActionListItem
 					selected={x1 === 'blogs'}
@@ -263,15 +263,15 @@
 					}}
 				>
 					{#snippet start()}
-								<Avatar  src={hyvorBlogsLogo} size="small" />
-							{/snippet}
+						<Avatar src={hyvorBlogsLogo} size="small" />
+					{/snippet}
 					Hyvor Blogs
 					{#snippet description()}
-								<div >Blogging Platform</div>
-							{/snippet}
+						<div>Blogging Platform</div>
+					{/snippet}
 				</ActionListItem>
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -328,35 +328,35 @@
 <CodeResult>
 	<Dropdown bind:show={s3} relative width={350} closeOnOutsideClick={false}>
 		{#snippet trigger()}
-				<Button  color="gray">
+			<Button color="gray">
 				Select Products ({x2.length})
 				{#snippet end()}
-						<IconCaretDown  />
-					{/snippet}
+					<IconCaretDown />
+				{/snippet}
 			</Button>
-			{/snippet}
+		{/snippet}
 		{#snippet content()}
-				<ActionList  selection="multi">
+			<ActionList selection="multi">
 				<ActionListItem selected={x2.includes('talk')} on:select={() => handleX2Select('talk')}>
 					{#snippet start()}
-								<Avatar  src={hyvorTalkLogo} size="small" />
-							{/snippet}
+						<Avatar src={hyvorTalkLogo} size="small" />
+					{/snippet}
 					Hyvor Talk
 					{#snippet description()}
-								<div >Commenting Platform</div>
-							{/snippet}
+						<div>Commenting Platform</div>
+					{/snippet}
 				</ActionListItem>
 				<ActionListItem selected={x2.includes('blogs')} on:select={() => handleX2Select('blogs')}>
 					{#snippet start()}
-								<Avatar  src={hyvorBlogsLogo} size="small" />
-							{/snippet}
+						<Avatar src={hyvorBlogsLogo} size="small" />
+					{/snippet}
 					Hyvor Blogs
 					{#snippet description()}
-								<div >Blogging Platform</div>
-							{/snippet}
+						<div>Blogging Platform</div>
+					{/snippet}
 				</ActionListItem>
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -410,57 +410,57 @@
 <CodeResult>
 	<Dropdown bind:show={s4} relative width={350} closeOnOutsideClick={false}>
 		{#snippet trigger()}
-				<Button  color="gray">
+			<Button color="gray">
 				Filter Results
 				{#snippet end()}
-						<IconCaretDown  />
-					{/snippet}
+					<IconCaretDown />
+				{/snippet}
 			</Button>
-			{/snippet}
+		{/snippet}
 		{#snippet content()}
-				<ActionList >
+			<ActionList>
 				<ActionListGroup selection="multi" title="Product">
 					<ActionListItem selected={x3.includes('talk')} on:select={() => handleX3Select('talk')}>
 						{#snippet start()}
-										<Avatar  src={hyvorTalkLogo} size="small" />
-									{/snippet}
+							<Avatar src={hyvorTalkLogo} size="small" />
+						{/snippet}
 						Hyvor Talk
 						{#snippet description()}
-										<div >Commenting Platform</div>
-									{/snippet}
+							<div>Commenting Platform</div>
+						{/snippet}
 					</ActionListItem>
 					<ActionListItem selected={x3.includes('blogs')} on:select={() => handleX3Select('blogs')}>
 						{#snippet start()}
-										<Avatar  src={hyvorBlogsLogo} size="small" />
-									{/snippet}
+							<Avatar src={hyvorBlogsLogo} size="small" />
+						{/snippet}
 						Hyvor Blogs
 						{#snippet description()}
-										<div >Blogging Platform</div>
-									{/snippet}
+							<div>Blogging Platform</div>
+						{/snippet}
 					</ActionListItem>
 				</ActionListGroup>
 				<ActionListGroup selection="single" title="Plan" divider>
 					<ActionListItem selected={x4 === 'starter'} on:select={() => (x4 = 'starter')}>
 						Starter
 						{#snippet end()}
-										<Text small light >$9/month</Text>
-									{/snippet}
+							<Text small light>$9/month</Text>
+						{/snippet}
 					</ActionListItem>
 					<ActionListItem selected={x4 === 'growth'} on:select={() => (x4 = 'growth')}>
 						Growth
 						{#snippet end()}
-										<Text small light >$19/month</Text>
-									{/snippet}
+							<Text small light>$19/month</Text>
+						{/snippet}
 					</ActionListItem>
 					<ActionListItem selected={x4 === 'premium'} on:select={() => (x4 = 'premium')}>
 						Premium
 						{#snippet end()}
-										<Text small light >$49/month</Text>
-									{/snippet}
+							<Text small light>$49/month</Text>
+						{/snippet}
 					</ActionListItem>
 				</ActionListGroup>
 			</ActionList>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </CodeResult>
 
@@ -487,16 +487,16 @@
 	<div style="margin-top:120px; left:auto; margin-bottom:120px; text-align: center;">
 		<Dropdown bind:show={s1} closeOnOutsideClick={false} align={paAlign} position={paPosition}>
 			{#snippet trigger()}
-						<Button  color="gray">
+				<Button color="gray">
 					Filter Results
 					{#snippet end()}
-								<IconCaretDown  />
-							{/snippet}
-				</Button>
+						<IconCaretDown />
 					{/snippet}
+				</Button>
+			{/snippet}
 
 			{#snippet content()}
-						<ActionList >
+				<ActionList>
 					{#each [1, 2, 3] as i}
 						<ActionListItem
 							on:select={() => {
@@ -507,7 +507,7 @@
 						</ActionListItem>
 					{/each}
 				</ActionList>
-					{/snippet}
+			{/snippet}
 		</Dropdown>
 	</div>
 </CodeResult>

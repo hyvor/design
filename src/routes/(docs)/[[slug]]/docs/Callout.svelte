@@ -94,8 +94,8 @@
 <CodeResult>
 	<Callout type="info">
 		{#snippet title()}
-				<div >This is a title</div>
-			{/snippet}
+			<div>This is a title</div>
+		{/snippet}
 		This is a callout with a title.
 	</Callout>
 </CodeResult>
@@ -114,8 +114,8 @@
 <CodeResult>
 	<Callout type="info">
 		{#snippet icon()}
-				<div >👋</div>
-			{/snippet}
+			<div>👋</div>
+		{/snippet}
 		This is a callout with an icon.
 	</Callout>
 </CodeResult>
@@ -135,11 +135,11 @@
 <CodeResult>
 	<Callout type="danger">
 		{#snippet icon()}
-				<div >⛔️</div>
-			{/snippet}
+			<div>⛔️</div>
+		{/snippet}
 		{#snippet title()}
-				<div >This is a title</div>
-			{/snippet}
+			<div>This is a title</div>
+		{/snippet}
 		This is a callout with an icon and a title.
 	</Callout>
 </CodeResult>
@@ -159,8 +159,8 @@
 <CodeResult>
 	<Callout type="info" title="hi there">
 		{#snippet icon()}
-				<div >👋</div>
-			{/snippet}
+			<div>👋</div>
+		{/snippet}
 		This is a callout with an icon and a title.
 	</Callout>
 </CodeResult>

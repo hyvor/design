@@ -2,7 +2,7 @@
 	interface Props {
 		as?: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { as = 'div', children, ...rest }: Props = $props();

@@ -211,8 +211,8 @@
 		<IconMessage iconColor="var(--blue)">
 			<div>Start Writing Something</div>
 			{#snippet icon()}
-						<IconPencilSquare  size={60} />
-					{/snippet}
+				<IconPencilSquare size={60} />
+			{/snippet}
 		</IconMessage>
 	</div>
 

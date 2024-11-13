@@ -14,15 +14,16 @@
 
 	let { toast }: Props = $props();
 
-	let color =
-		$derived((
+	let color = $derived(
+		(
 			{
 				success: 'var(--green)',
 				error: 'var(--red)',
 				warning: 'var(--orange)',
 				info: 'var(--blue)'
 			} as any
-		)[toast.type] || 'inherit');
+		)[toast.type] || 'inherit'
+	);
 </script>
 
 <span style:color>

@@ -2,9 +2,6 @@
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
-	
-
-
 
 	interface Props {
 		size?: 'small' | 'medium' | 'large' | number;
@@ -13,7 +10,7 @@
 		variant?: 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible';
 		as?: 'button' | 'a';
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

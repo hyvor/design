@@ -19,7 +19,7 @@
 		closeOnOutsideClick?: boolean;
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
-		
+
 		footer?: Footer | Snippet;
 		children?: Snippet;
 	}
@@ -35,7 +35,7 @@
 		loading = false,
 		footer,
 		children
-	} : Props = $props();
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher();
 
@@ -65,7 +65,7 @@
 	$effect(() => {
 		show;
 		setFlex();
-	})
+	});
 </script>
 
 <svelte:window
@@ -114,7 +114,7 @@
 
 			{#if footer}
 				<div class="footer">
-					{#if typeof footer === 'object'}	
+					{#if typeof footer === 'object'}
 						<ModalFooter {footer} bind:show on:cancel on:confirm />
 					{:else}
 						{@render footer()}

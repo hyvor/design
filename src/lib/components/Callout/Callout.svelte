@@ -1,7 +1,14 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 
-	const { type = 'soft', title = undefined, children = undefined, text = undefined, icon = undefined, ...rest } : {
+	const {
+		type = 'soft',
+		title = undefined,
+		children = undefined,
+		text = undefined,
+		icon = undefined,
+		...rest
+	}: {
 		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
 		title?: string | Snippet;
 		icon?: Snippet;
@@ -12,27 +19,26 @@
 </script>
 
 <div class={'callout ' + type} {...rest}>
-
 	{#if typeof title === 'string'}
 		<div class="title-wrap">
 			{#if icon}
 				<span
 					class="title-icon
-		">
-			{@render icon()}
-		</span
+		"
 				>
+					{@render icon()}
+				</span>
 			{/if}
 			<div class="title">{title}</div>
 		</div>
 	{:else if title !== undefined}
-	<div class="title-wrap">
-		{#if icon}
-			<span class="title-icon">{@render icon()}</span>
-		{/if}
+		<div class="title-wrap">
+			{#if icon}
+				<span class="title-icon">{@render icon()}</span>
+			{/if}
 
-		<div class="title">{@render title?.()}</div>
-	</div>
+			<div class="title">{@render title?.()}</div>
+		</div>
 	{/if}
 
 	<div class="text-wrap">

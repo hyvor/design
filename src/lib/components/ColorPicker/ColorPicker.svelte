@@ -10,7 +10,12 @@
 		'aria-label'?: string;
 	}
 
-	let { color = $bindable('#000000'), size = 30, show = $bindable(false), "aria-label": ariaLabel = ''}: Props = $props();
+	let {
+		color = $bindable('#000000'),
+		size = 30,
+		show = $bindable(false),
+		'aria-label': ariaLabel = ''
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		input: string;

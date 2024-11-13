@@ -7,7 +7,7 @@
 	interface Props {
 		active: string;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let { active = $bindable(), children, ...rest }: Props = $props();
@@ -16,8 +16,8 @@
 	setContext('tab-nav-active', activeStore);
 
 	$effect(() => {
-		activeStore.set(active)
-	})
+		activeStore.set(active);
+	});
 
 	onMount(() => {
 		const unsubscribe = activeStore.subscribe((value) => {

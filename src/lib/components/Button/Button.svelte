@@ -15,7 +15,7 @@
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
 		action?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
 	let {

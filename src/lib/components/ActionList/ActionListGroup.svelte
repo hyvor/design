@@ -10,12 +10,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		title = undefined,
-		divider = false,
-		selection = undefined,
-		children
-	}: Props = $props();
+	let { title = undefined, divider = false, selection = undefined, children }: Props = $props();
 
 	run(() => {
 		if (selection !== undefined) setContext('action-list-selection', selection);

@@ -15,20 +15,20 @@
 <div class="updates">
 	<Dropdown align="end" width={525}>
 		{#snippet trigger()}
-				<IconButton color="input" variant="invisible" >
+			<IconButton color="input" variant="invisible">
 				<IconMegaphone size={14} />
 
 				{#if $barUnreadUpdates > 0}
 					<span class="unread">{$barUnreadUpdates}</span>
 				{/if}
 			</IconButton>
-			{/snippet}
+		{/snippet}
 
 		{#snippet content()}
-				<div  class="content-inner">
+			<div class="content-inner">
 				<BarUpdatesList {instance} {product} />
 			</div>
-			{/snippet}
+		{/snippet}
 	</Dropdown>
 </div>
 

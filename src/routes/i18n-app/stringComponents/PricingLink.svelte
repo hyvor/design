@@ -12,6 +12,6 @@
 <Link href="/pricing" target="_blank">
 	{children}
 	{#snippet end()}
-		<IconBoxArrowUpRight  />
+		<IconBoxArrowUpRight />
 	{/snippet}
 </Link>

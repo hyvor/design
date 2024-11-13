@@ -8,12 +8,7 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let {
-		name,
-		start,
-		end,
-		children
-	}: Props = $props();
+	let { name, start, end, children }: Props = $props();
 </script>
 
 <div class="nav-category">

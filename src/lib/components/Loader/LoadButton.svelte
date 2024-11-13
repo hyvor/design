@@ -3,8 +3,6 @@
 	import Button from '../Button/Button.svelte';
 	import Loader from './Loader.svelte';
 
-
-
 	interface Props {
 		text: string;
 		show: boolean; // has more

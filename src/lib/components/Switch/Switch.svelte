@@ -6,10 +6,15 @@
 		checked?: boolean;
 		input?: any;
 		children?: import('svelte').Snippet;
-		[key: string]: any
+		[key: string]: any;
 	}
 
-	let { checked = $bindable(false), input = $bindable({} as HTMLInputElement), children, ...rest }: Props = $props();
+	let {
+		checked = $bindable(false),
+		input = $bindable({} as HTMLInputElement),
+		children,
+		...rest
+	}: Props = $props();
 </script>
 
 <label class="switch-wrap">

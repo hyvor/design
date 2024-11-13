@@ -4,23 +4,23 @@
 	import Button from '../Button/Button.svelte';
 
 	interface Props {
+		size?: 'small' | 'medium' | 'large';
+		icon?: Component;
+		iconSize?: number;
+		padding?: number;
+		empty?: boolean;
+		error?: boolean;
+		iconColor?: string;
+		cta?:
+			| {
+					text: string;
+					onClick: (e: MouseEvent) => void;
+					props?: Record<string, any>;
+			  }
+			| Snippet;
 
-		size?: 'small' | 'medium' | 'large',
-		icon?: Component,
-		iconSize?: number,
-		padding?: number,
-		empty?: boolean,
-		error?: boolean,
-		iconColor?: string,
-		cta?: {
-			text: string,
-			onClick: (e: MouseEvent) => void,
-			props?: Record<string, any>,
-		} | Snippet,
-
-		children?: Snippet,
-		message?: Snippet | string,
-
+		children?: Snippet;
+		message?: Snippet | string;
 	}
 
 	let {
@@ -33,11 +33,11 @@
 		iconColor,
 		cta,
 
-		children, 
+		children,
 		message,
 
 		...rest
-	} : Props = $props();
+	}: Props = $props();
 
 	// export let size: 'small' | 'medium' | 'large' = 'medium';
 
@@ -104,7 +104,6 @@
 	</div>
 
 	<div class="message">
-
 		{#if children}
 			{@render children()}
 		{:else if typeof message === 'string'}
@@ -112,15 +111,14 @@
 		{:else if message}
 			{@render message()}
 		{/if}
-
 	</div>
 
 	{#if cta}
 		<div class="cta">
 			{#if typeof cta === 'object'}
-			<Button on:click={onCtaClick} {size} {...cta.props}>
-				{cta.text}
-			</Button>
+				<Button on:click={onCtaClick} {size} {...cta.props}>
+					{cta.text}
+				</Button>
 			{:else}
 				{@render cta()}
 			{/if}

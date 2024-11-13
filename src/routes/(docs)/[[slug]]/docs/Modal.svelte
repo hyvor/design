@@ -217,7 +217,7 @@
 		Please confirm that you want to delete this item. This action cannot be undone.
 
 		{#snippet footer()}
-				<div >
+			<div>
 				<Button variant="invisible" on:click={() => (show1 = false)}>Cancel</Button>
 				<Button
 					color="red"
@@ -227,7 +227,7 @@
 					}}>Delete</Button
 				>
 			</div>
-			{/snippet}
+		{/snippet}
 	</Modal>
 </CodeResult>
 
@@ -248,7 +248,7 @@
 	This is a small modal. It is useful for displaying short messages.
 
 	{#snippet footer()}
-		<div >
+		<div>
 			<Button variant="invisible" on:click={() => (show2 = false)}>Close</Button>
 		</div>
 	{/snippet}
@@ -258,7 +258,7 @@
 	This is a medium modal. It is useful for displaying long messages and forms.
 
 	{#snippet footer()}
-		<div >
+		<div>
 			<Button variant="invisible" on:click={() => (show3 = false)}>Close</Button>
 		</div>
 	{/snippet}
@@ -268,7 +268,7 @@
 	This is a large modal. It is useful for displaying very long messages.
 
 	{#snippet footer()}
-		<div >
+		<div>
 			<Button variant="invisible" on:click={() => (show4 = false)}>Close</Button>
 		</div>
 	{/snippet}
@@ -311,17 +311,17 @@
 
 <Modal bind:show={show5} size="large">
 	{#snippet title()}
-		<TabNav active="paste" >
+		<TabNav active="paste">
 			<TabNavItem name="paste">
 				{#snippet start()}
-						<IconLink45deg  />
-					{/snippet}
+					<IconLink45deg />
+				{/snippet}
 				Paste Link
 			</TabNavItem>
 			<TabNavItem name="posts">
 				{#snippet start()}
-						<IconSearch  size={13} />
-					{/snippet}
+					<IconSearch size={13} />
+				{/snippet}
 				Search Posts
 			</TabNavItem>
 		</TabNav>
@@ -330,7 +330,7 @@
 	This is a modal with a tab navigation in the title.
 
 	{#snippet footer()}
-		<div >
+		<div>
 			<Button variant="invisible" on:click={() => (show5 = false)}>Close</Button>
 		</div>
 	{/snippet}
@@ -429,7 +429,7 @@
 	can use this to prevent the user from interacting with the modal while loading.
 
 	{#snippet footer()}
-		<div >
+		<div>
 			<Button variant="invisible" on:click={() => (show7 = false)}>Close</Button>
 			<Button
 				on:click={() => {

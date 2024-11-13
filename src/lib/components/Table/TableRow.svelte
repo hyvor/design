@@ -1,16 +1,12 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
+	import type { Snippet } from 'svelte';
 
 	interface Props {
 		head?: boolean;
-		children: Snippet
+		children: Snippet;
 	}
 
-	const {
-		head = false,
-		children,
-		...rest
-	} : Props = $props();
+	const { head = false, children, ...rest }: Props = $props();
 </script>
 
 <div class:head {...rest}>

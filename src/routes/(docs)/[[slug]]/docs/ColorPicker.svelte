@@ -3,9 +3,9 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import ColorPicker from '$lib/components/ColorPicker/ColorPicker.svelte';
 
-	let color1 = '#000000';
-	let inputTimes1 = 0;
-	let changedTimes1 = 0;
+	let color1 = $state('#000000');
+	let inputTimes1 = $state(0);
+	let changedTimes1 = $state(0);
 </script>
 
 <h1>Color Picker</h1>

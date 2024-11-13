@@ -1,29 +1,47 @@
 <script lang="ts">
+	import { createBubbler, handlers } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 	import { getContext } from 'svelte';
 	import type { Writable } from 'svelte/store';
 
-	export let active = false;
-	export let name: string;
+	interface Props {
+		active?: boolean;
+		name: string;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		active = false,
+		name,
+		start,
+		children,
+		end,
+		...rest
+	}: Props = $props();
 
 	const activeStore = getContext('tab-nav-active') as Writable<string>;
 
-	$: isActive = $activeStore === name || active;
+	let isActive = $derived($activeStore === name || active);
 
 	function handleClick() {
 		activeStore.set(name);
 	}
 </script>
 
-<button class="tab" class:active={isActive} on:click={handleClick} {...$$restProps} on:click>
-	{#if $$slots.start}
+<button class="tab" class:active={isActive} onclick={handlers(handleClick, bubble('click'))} {...rest}>
+	{#if start}
 		<span class="start">
-			<slot name="start" />
+			{@render start?.()}
 		</span>
 	{/if}
-	<slot />
-	{#if $$slots.end}
+	{@render children?.()}
+	{#if end}
 		<span class="end">
-			<slot name="end" />
+			{@render end?.()}
 		</span>
 	{/if}
 </button>

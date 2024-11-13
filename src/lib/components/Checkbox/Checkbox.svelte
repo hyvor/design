@@ -1,10 +1,27 @@
 <script lang="ts">
-	export let checked: boolean | undefined = undefined;
-	export let group: (number | string)[] = [];
-	export let value: string | number = 'on';
-	export let disabled: boolean = false;
+	import { createBubbler, handlers } from 'svelte/legacy';
 
-	export let input: HTMLInputElement = {} as HTMLInputElement;
+	const bubble = createBubbler();
+
+	interface Props {
+		checked?: boolean | undefined;
+		group?: (number | string)[];
+		value?: string | number;
+		disabled?: boolean;
+		input?: HTMLInputElement;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		checked = $bindable(undefined),
+		group = $bindable([]),
+		value = 'on',
+		disabled = false,
+		input = $bindable({} as HTMLInputElement),
+		children,
+		...rest
+	}: Props = $props();
 
 	/*
 	 * From https://github.com/themesberg/flowbite-svelte/blob/main/src/lib/forms/Checkbox.svelte
@@ -34,23 +51,22 @@
 			bind:checked
 			bind:this={input}
 			{disabled}
-			on:keyup
-			on:keydown
-			on:keypress
-			on:focus
-			on:blur
-			on:click
-			on:mouseover
-			on:mouseenter
-			on:mouseleave
-			on:change
-			{...$$restProps}
-			on:change={handleChange}
+			onkeyup={bubble('keyup')}
+			onkeydown={bubble('keydown')}
+			onkeypress={bubble('keypress')}
+			onfocus={bubble('focus')}
+			onblur={bubble('blur')}
+			onclick={bubble('click')}
+			onmouseover={bubble('mouseover')}
+			onmouseenter={bubble('mouseenter')}
+			onmouseleave={bubble('mouseleave')}
+			onchange={handlers(bubble('change'), handleChange)}
+			{...rest}
 		/>
-		<span class="placeholder" />
-		{#if $$slots.default}
+		<span class="placeholder"></span>
+		{#if children}
 			<span class="label">
-				<slot />
+				{@render children?.()}
 			</span>
 		{/if}
 	</label>

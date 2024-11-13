@@ -1,6 +1,11 @@
 <script lang="ts">
-	export let size: number | 'small' | 'medium' | 'large' = 'medium';
-	export let alt = '';
+	interface Props {
+		size?: number | 'small' | 'medium' | 'large';
+		alt?: string;
+		[key: string]: any
+	}
+
+	let { size = $bindable('medium'), alt = '', ...rest }: Props = $props();
 
 	const sizes = {
 		small: 24,
@@ -10,7 +15,7 @@
 	size = typeof size === 'number' ? size : sizes[size];
 </script>
 
-<img {alt} {...$$restProps} style={`width: ${size}px; height: ${size}px;`} />
+<img {alt} {...rest} style={`width: ${size}px; height: ${size}px;`} />
 
 <style>
 	img {

@@ -1,23 +1,47 @@
 <script lang="ts">
-	export let as: 'button' | 'a' | 'span' = 'span';
-	export let size: 'x-small' | 'small' | 'medium' | 'large' = 'medium';
+	import { createBubbler } from 'svelte/legacy';
 
-	export let color:
+	const bubble = createBubbler();
+
+
+
+	interface Props {
+		as?: 'button' | 'a' | 'span';
+		size?: 'x-small' | 'small' | 'medium' | 'large';
+		color?: 
 		| 'default' // default tag (categories)
 		| 'accent'
 		| 'green'
 		| 'red'
 		| 'blue'
-		| 'orange' = 'default';
+		| 'orange';
+		interactive?: boolean;
+		outline?: boolean;
+		fill?: boolean;
+		bg?: string | undefined;
+		fg?: string | undefined;
+		start?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
 
-	export let interactive: boolean = false;
-	export let outline: boolean = false;
-	export let fill: boolean = false;
+	let {
+		as = 'span',
+		size = 'medium',
+		color = 'default',
+		interactive = false,
+		outline = false,
+		fill = false,
+		bg = undefined,
+		fg = undefined,
+		start,
+		end,
+		children,
+		...rest
+	}: Props = $props();
 
-	export let bg: string | undefined = undefined;
-	export let fg: string | undefined = undefined;
-
-	let styleClass = 'default';
+	let styleClass = $state('default');
 	if (outline) {
 		styleClass = fill ? 'outline-fill' : 'outline';
 	}
@@ -31,30 +55,30 @@
 	{tabindex}
 	class="button color-{color} style-{styleClass} size-{size}"
 	class:interactive
-	class:has-start={$$slots.start}
-	class:has-end={$$slots.end}
-	{...$$restProps}
-	on:keyup
-	on:keydown
-	on:keypress
-	on:focus
-	on:blur
-	on:click
-	on:mouseover
-	on:mouseenter
-	on:mouseleave
-	on:change
+	class:has-start={start}
+	class:has-end={end}
+	{...rest}
+	onkeyup={bubble('keyup')}
+	onkeydown={bubble('keydown')}
+	onkeypress={bubble('keypress')}
+	onfocus={bubble('focus')}
+	onblur={bubble('blur')}
+	onclick={bubble('click')}
+	onmouseover={bubble('mouseover')}
+	onmouseenter={bubble('mouseenter')}
+	onmouseleave={bubble('mouseleave')}
+	onchange={bubble('change')}
 	style:background-color={bg}
 	style:color={fg}
 >
-	{#if $$slots.start}
-		<slot name="start" />
+	{#if start}
+		{@render start?.()}
 	{/if}
 
-	<slot />
+	{@render children?.()}
 
-	{#if $$slots.end}
-		<slot name="end" />
+	{#if end}
+		{@render end?.()}
 	{/if}
 </svelte:element>
 

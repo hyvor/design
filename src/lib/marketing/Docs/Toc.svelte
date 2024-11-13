@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { afterNavigate } from '$app/navigation';
 	import { onMount } from 'svelte';
+
+	// @ts-ignore
 	import tocbot from 'tocbot';
+
 	import Loader from '../../components/Loader/Loader.svelte';
 	import { IconCaretDown, IconCaretRight } from '@hyvor/icons';
 	import Button from '../../components/Button/Button.svelte';
 
-	let tocElement: HTMLDivElement;
+	let tocElement: HTMLDivElement | undefined = $state();
 
 	onMount(() => {
 		tocbot.init({
@@ -26,9 +29,13 @@
 		tocbot.refresh();
 	});
 
-	let mobileShown = false;
+	let mobileShown = $state(false);
 
 	function handleMobileClick(e: any) {
+		if (!tocElement) {
+			return;
+		}
+
 		e.stopPropagation();
 		if (!mobileShown) {
 			tocElement.style.display = 'block';
@@ -44,13 +51,15 @@
 	<div class="mobile">
 		<Button color="input" on:click={handleMobileClick}>
 			Table of Contents
-			<svelte:fragment slot="end">
-				{#if mobileShown}
-					<IconCaretDown size={14} />
-				{:else}
-					<IconCaretRight size={14} />
-				{/if}
-			</svelte:fragment>
+			{#snippet end()}
+					
+					{#if mobileShown}
+						<IconCaretDown size={14} />
+					{:else}
+						<IconCaretRight size={14} />
+					{/if}
+				
+					{/snippet}
 		</Button>
 	</div>
 
@@ -67,10 +76,6 @@
 	.toc-wrap {
 		align-self: flex-start;
 		overflow-y: auto;
-
-		:global(&.toc) {
-			overflow-y: auto;
-		}
 
 		:global(> .toc-list) {
 			overflow: hidden;

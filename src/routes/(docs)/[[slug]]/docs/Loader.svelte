@@ -8,8 +8,8 @@
 	import CodeResult from './Helper/CodeResult.svelte';
 	import { toast } from '$lib/components/index.js';
 
-	let loaderStateS: 'loading' | 'none' | 'error' | 'success' = 'none';
-	let loaderStateE: 'loading' | 'none' | 'error' | 'success' = 'none';
+	let loaderStateS: 'loading' | 'none' | 'error' | 'success' = $state('none');
+	let loaderStateE: 'loading' | 'none' | 'error' | 'success' = $state('none');
 
 	function handleButtonClickS() {
 		loaderStateS = 'loading';
@@ -27,8 +27,8 @@
 		}, 2000);
 	}
 
-	let hasMore1 = true;
-	let isLoadingMore1 = false;
+	let hasMore1 = $state(true);
+	let isLoadingMore1 = $state(false);
 
 	function handleLoadMore1() {
 		isLoadingMore1 = true;
@@ -194,7 +194,9 @@
 <CodeResult>
 	<Button>
 		Submit
-		<Loader slot="action" size="small" invert />
+		{#snippet action()}
+				<Loader  size="small" invert />
+			{/snippet}
 	</Button>
 </CodeResult>
 
@@ -306,12 +308,16 @@
 <CodeResult white>
 	<Button on:click={handleButtonClickS} color="gray"
 		>Success State
-		<Loader slot="action" size="small" state={loaderStateS} />
+		{#snippet action()}
+				<Loader  size="small" state={loaderStateS} />
+			{/snippet}
 	</Button>
 
 	<Button on:click={handleButtonClickE} color="gray"
 		>Error State
-		<Loader slot="action" size="small" state={loaderStateE} />
+		{#snippet action()}
+				<Loader  size="small" state={loaderStateE} />
+			{/snippet}
 	</Button>
 </CodeResult>
 

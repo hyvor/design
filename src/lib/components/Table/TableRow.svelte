@@ -1,9 +1,20 @@
 <script lang="ts">
-	export let head: boolean = false;
+	import type { Snippet } from "svelte";
+
+	interface Props {
+		head?: boolean;
+		children: Snippet
+	}
+
+	const {
+		head = false,
+		children,
+		...rest
+	} : Props = $props();
 </script>
 
-<div class:head {...$$props}>
-	<slot />
+<div class:head {...rest}>
+	{@render children()}
 </div>
 
 <style>

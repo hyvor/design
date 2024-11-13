@@ -1,4 +1,4 @@
-import type { SvelteComponent } from 'svelte';
+import type { Component } from 'svelte';
 import { get, writable } from 'svelte/store';
 
 const MAX_TOASTS = 10;
@@ -32,7 +32,7 @@ const storeHelper = {
 };
 
 export type ToastType = 'success' | 'error' | 'warning' | 'info' | 'loading' | 'blank';
-export type ToastMessageType = typeof SvelteComponent<Record<string, any>> | string | null;
+export type ToastMessageType = Component<any> | string | null;
 
 let id = 0;
 

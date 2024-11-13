@@ -38,22 +38,30 @@
 />
 
 <CodeResult style="display:flex;gap:10px;flex-direction:column;align-items:flex-start" white>
-	<Button on:click={() => toast('Blank toast')} color="gray">Blank toast</Button>
+	<Button on:click={() => toast('Blank toast')} color="input">Blank toast</Button>
 
-	<Button on:click={() => toast.success('Success toast')} color="gray">
-		<IconCheckCircleFill style="color:var(--green)" slot="start" /> Success toast
+	<Button on:click={() => toast.success('Success toast')} color="input">
+		{#snippet start()}
+				<IconCheckCircleFill style="color:var(--green)"  />
+			{/snippet} Success toast
 	</Button>
 
-	<Button on:click={() => toast.error('Error toast')} color="gray">
-		<IconXCircleFill slot="start" color="var(--red)" /> Error toast
+	<Button on:click={() => toast.error('Error toast')} color="input">
+		{#snippet start()}
+				<IconXCircleFill  color="var(--red)" />
+			{/snippet} Error toast
 	</Button>
 
-	<Button on:click={() => toast.warning('Warning toast')} color="gray">
-		<IconExclamationCircleFill slot="start" color="var(--orange)" /> Warning toast
+	<Button on:click={() => toast.warning('Warning toast')} color="input">
+		{#snippet start()}
+				<IconExclamationCircleFill  color="var(--orange)" />
+			{/snippet} Warning toast
 	</Button>
 
-	<Button on:click={() => toast.info('Info toast')} color="gray">
-		<IconInfoCircleFill slot="start" color="var(--blue)" /> Info toast
+	<Button on:click={() => toast.info('Info toast')} color="input">
+		{#snippet start()}
+				<IconInfoCircleFill  color="var(--blue)" />
+			{/snippet} Info toast
 	</Button>
 
 	<Button
@@ -70,9 +78,11 @@
 				});
 			}, 2000);
 		}}
-		color="gray"
+		color="input"
 	>
-		<Loader slot="start" size="small" /> Loading toast
+		{#snippet start()}
+				<Loader  size="small" />
+			{/snippet} Loading toast
 	</Button>
 </CodeResult>
 

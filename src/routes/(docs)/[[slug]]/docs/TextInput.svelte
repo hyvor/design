@@ -6,7 +6,7 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 
-	let value1 = '';
+	let value1 = $state('');
 </script>
 
 <h1>Text Input</h1>
@@ -163,7 +163,9 @@
 
 <CodeResult white>
 	<TextInput placeholder="Search">
-		<IconSearch slot="start" />
+		{#snippet start()}
+				<IconSearch  />
+			{/snippet}
 	</TextInput>
 </CodeResult>
 
@@ -179,7 +181,9 @@
 
 <CodeResult white>
 	<TextInput placeholder="Delay" type="number">
-		<span slot="end">minutes</span>
+		{#snippet end()}
+				<span >minutes</span>
+			{/snippet}
 	</TextInput>
 </CodeResult>
 

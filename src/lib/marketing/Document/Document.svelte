@@ -1,15 +1,20 @@
 <script lang="ts">
 	import FeatureSectionTitle from './DocumentTitle.svelte';
 
-	export let title: string;
-	export let subtitle: string;
+	interface Props {
+		title: string;
+		subtitle: string;
+		children?: import('svelte').Snippet;
+	}
+
+	let { title, subtitle, children }: Props = $props();
 </script>
 
 <section>
 	<div class="hds-container container">
 		<FeatureSectionTitle {title} />
 		<div class="date">{subtitle}</div>
-		<content><slot /></content>
+		<content>{@render children?.()}</content>
 	</div>
 </section>
 

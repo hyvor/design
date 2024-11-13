@@ -2,8 +2,12 @@
 	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
 	import { IconCheck } from '@hyvor/icons';
 
-	export let selection: 'none' | 'single' | 'multi';
-	export let selected: boolean;
+	interface Props {
+		selection: 'none' | 'single' | 'multi';
+		selected: boolean;
+	}
+
+	let { selection, selected = $bindable(false) }: Props = $props();
 </script>
 
 {#if selection !== 'none'}

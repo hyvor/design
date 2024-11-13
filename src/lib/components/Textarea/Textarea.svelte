@@ -1,18 +1,38 @@
 <script lang="ts">
-	export let value: any = undefined;
-	export let block: boolean = false;
-	export let rows: number = 5;
-	export let cols: number = 40;
-	export let state: 'default' | 'success' | 'warning' | 'error' = 'default';
+	import { createBubbler } from 'svelte/legacy';
 
-	export let textarea: HTMLTextAreaElement = {} as HTMLTextAreaElement;
+	const bubble = createBubbler();
+
+	interface Props {
+		value?: any;
+		block?: boolean;
+		rows?: number;
+		cols?: number;
+		state?: 'default' | 'success' | 'warning' | 'error';
+		textarea?: HTMLTextAreaElement;
+		start?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let {
+		value = $bindable(undefined),
+		block = false,
+		rows = 5,
+		cols = 40,
+		state = 'default',
+		textarea = $bindable({} as HTMLTextAreaElement),
+		start,
+		end,
+		...rest
+	}: Props = $props();
 </script>
 
 <span
 	class="input-wrap state-{state}"
 	class:block
-	on:click={() => textarea.focus()}
-	on:keydown={(e) => {
+	onclick={() => textarea.focus()}
+	onkeydown={(e) => {
 		if (e.key === 'Enter') {
 			textarea.focus();
 		}
@@ -20,34 +40,34 @@
 	role="textbox"
 	tabindex="0"
 >
-	{#if $$slots.start}
+	{#if start}
 		<span class="slot start">
-			<slot name="start" />
+			{@render start?.()}
 		</span>
 	{/if}
 
 	<textarea
 		bind:value
 		bind:this={textarea}
-		on:keyup
-		on:keydown
-		on:keypress
-		on:focus
-		on:blur
-		on:click
-		on:mouseover
-		on:mouseenter
-		on:mouseleave
-		on:change
-		on:input
+		onkeyup={bubble('keyup')}
+		onkeydown={bubble('keydown')}
+		onkeypress={bubble('keypress')}
+		onfocus={bubble('focus')}
+		onblur={bubble('blur')}
+		onclick={bubble('click')}
+		onmouseover={bubble('mouseover')}
+		onmouseenter={bubble('mouseenter')}
+		onmouseleave={bubble('mouseleave')}
+		onchange={bubble('change')}
+		oninput={bubble('input')}
 		{rows}
 		{cols}
-		{...$$restProps}
+		{...rest}
 	></textarea>
 
-	{#if $$slots.end}
+	{#if end}
 		<span class="slot end">
-			<slot name="end" />
+			{@render end?.()}
 		</span>
 	{/if}
 </span>

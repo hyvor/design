@@ -271,7 +271,9 @@ All other properties will be forwarded to the underlying element.
 
 		<CodeResult>
 			<Button>
-				<IconSearch slot="start" />
+				{#snippet start()}
+								<IconSearch  />
+							{/snippet}
 				Search
 			</Button>
 		</CodeResult>
@@ -291,7 +293,9 @@ All other properties will be forwarded to the underlying element.
 		<CodeResult>
 			<Button>
 				Search
-				<IconSearch slot="end" />
+				{#snippet end()}
+								<IconSearch  />
+							{/snippet}
 			</Button>
 		</CodeResult>
 	</li>
@@ -311,9 +315,13 @@ All other properties will be forwarded to the underlying element.
 
 		<CodeResult>
 			<Button block color="gray">
-				<IconSearch slot="start" />
+				{#snippet start()}
+								<IconSearch  />
+							{/snippet}
 				Search
-				<IconCaretDown slot="action" />
+				{#snippet action()}
+								<IconCaretDown  />
+							{/snippet}
 			</Button>
 		</CodeResult>
 	</li>
@@ -337,7 +345,9 @@ All other properties will be forwarded to the underlying element.
 
 <CodeResult>
 	<Button as="a" href="https://hyvor.com" style="text-decoration:none" target="_blank">
-		HYVOR <IconBoxArrowUpRight slot="end" />
+		HYVOR {#snippet end()}
+				<IconBoxArrowUpRight  />
+			{/snippet}
 	</Button>
 </CodeResult>
 
@@ -359,7 +369,9 @@ All other properties will be forwarded to the underlying element.
 <CodeResult>
 	<Button>
 		Submit
-		<Loader slot="action" size="small" invert />
+		{#snippet action()}
+				<Loader  size="small" invert />
+			{/snippet}
 	</Button>
 </CodeResult>
 
@@ -375,9 +387,9 @@ All other properties will be forwarded to the underlying element.
 
 <CodeResult>
 	<Button>
-		<svelte:fragment slot="start"
-			>{#if loading}<Loader />{/if}</svelte:fragment
-		>
+		{#snippet start()}
+				{#if loading}<Loader />{/if}
+			{/snippet}
 		Button
 	</Button>
 </CodeResult>

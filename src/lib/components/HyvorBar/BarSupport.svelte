@@ -17,12 +17,16 @@
 	import G2 from './img/G2.svelte';
 	import Trustpilot from './img/Trustpilot.svelte';
 
-	let supportDropdown = false;
+	let supportDropdown = $state(false);
 
-	export let mobile = false;
 
-	export let product: BarProduct;
-	export let config: BarConfig;
+	interface Props {
+		mobile?: boolean;
+		product: BarProduct;
+		config: BarConfig;
+	}
+
+	let { mobile = false, product, config }: Props = $props();
 
 	function openLiveChat(e: any) {
 		e.preventDefault();
@@ -34,92 +38,140 @@
 </script>
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325} bind:show={supportDropdown}>
-	<Button slot="trigger" variant="invisible" color="input" size="small">
-		Support
-		<IconCaretDownFill size={10} slot="end" />
-	</Button>
-	<ActionList slot="content">
-		<a href="https://hyvor.community" target="_blank">
-			<ActionListItem>
-				Community Forum
-				<div slot="description">hyvor.community</div>
-				<IconChat slot="start" />
-				<IconBoxArrowUpRight slot="end" size={12} />
-			</ActionListItem>
-		</a>
-		{#if config.docs}
-			<a href="/docs" target="_blank">
+	{#snippet trigger()}
+		<Button  variant="invisible" color="input" size="small">
+			Support
+			{#snippet end()}
+				<IconCaretDownFill size={10}  />
+			{/snippet}
+		</Button>
+	{/snippet}
+	{#snippet content()}
+		<ActionList >
+			<a href="https://hyvor.community" target="_blank">
 				<ActionListItem>
-					Documentation
-					<div slot="description">
-						Learn how to use {PRODUCTS[product].name}
-					</div>
-					<IconFileEarmark slot="start" />
-					<IconBoxArrowUpRight slot="end" size={12} />
+					Community Forum
+					{#snippet description()}
+								<div >hyvor.community</div>
+							{/snippet}
+					{#snippet start()}
+								<IconChat  />
+							{/snippet}
+					{#snippet end()}
+								<IconBoxArrowUpRight  size={12} />
+							{/snippet}
 				</ActionListItem>
 			</a>
-		{/if}
-		<a href="https://hyvor.com/support" target="_blank">
-			<ActionListItem>
-				Support Form
-				<div slot="description">Get help from our team</div>
-				<IconInfoCircle slot="start" />
-				<IconBoxArrowUpRight slot="end" size={12} />
-			</ActionListItem>
-		</a>
-		{#if config.chat}
-			<a href="/chat" on:click={openLiveChat}>
-				<ActionListItem>
-					Live Chat
-					<div slot="description">Chat with our team</div>
-					<IconChatDots slot="start" />
-				</ActionListItem>
-			</a>
-		{/if}
-
-		<ActionListGroup title="Social">
-			<a href="https://hyvor.com/api/go/discord" target="_blank">
-				<ActionListItem>
-					Discord
-					<IconDiscord slot="start" />
-					<IconBoxArrowUpRight slot="end" size={12} />
-				</ActionListItem>
-			</a>
-			{#if config.twitter}
-				<a href={config.twitter} target="_blank">
+			{#if config.docs}
+				<a href="/docs" target="_blank">
 					<ActionListItem>
-						Twitter
-						<IconTwitterX slot="start" />
-						<IconBoxArrowUpRight slot="end" size={12} />
+						Documentation
+						{#snippet description()}
+										<div >
+								Learn how to use {PRODUCTS[product].name}
+							</div>
+									{/snippet}
+						{#snippet start()}
+										<IconFileEarmark  />
+									{/snippet}
+						{#snippet end()}
+										<IconBoxArrowUpRight  size={12} />
+									{/snippet}
 					</ActionListItem>
 				</a>
 			{/if}
-			<a href="https://www.linkedin.com/company/hyvor" target="_blank">
+			<a href="https://hyvor.com/support" target="_blank">
 				<ActionListItem>
-					Linkedin
-					<IconLinkedin slot="start" />
-					<IconBoxArrowUpRight slot="end" size={12} />
+					Support Form
+					{#snippet description()}
+								<div >Get help from our team</div>
+							{/snippet}
+					{#snippet start()}
+								<IconInfoCircle  />
+							{/snippet}
+					{#snippet end()}
+								<IconBoxArrowUpRight  size={12} />
+							{/snippet}
 				</ActionListItem>
 			</a>
-		</ActionListGroup>
-
-		<ActionListGroup title="Rate us">
-			<a href="https://www.trustpilot.com/review/hyvor.com" target="_blank">
-				<ActionListItem>
-					<Trustpilot slot="start" />
-					Trustpilot
-					<IconBoxArrowUpRight slot="end" size={12} />
-				</ActionListItem>
-			</a>
-			{#if config.g2}
-				<a href="https://www.g2.com/products/hyvor-talk/reviews" target="_blank">
+			{#if config.chat}
+				<a href="/chat" onclick={openLiveChat}>
 					<ActionListItem>
-						<G2 slot="start" />
-						G2
-						<IconBoxArrowUpRight slot="end" size={12} />
+						Live Chat
+						{#snippet description()}
+										<div >Chat with our team</div>
+									{/snippet}
+						{#snippet start()}
+										<IconChatDots  />
+									{/snippet}
 					</ActionListItem>
 				</a>
 			{/if}
-		</ActionListGroup>
-	</ActionList>
+
+			<ActionListGroup title="Social">
+				<a href="https://hyvor.com/api/go/discord" target="_blank">
+					<ActionListItem>
+						Discord
+						{#snippet start()}
+										<IconDiscord  />
+									{/snippet}
+						{#snippet end()}
+										<IconBoxArrowUpRight  size={12} />
+									{/snippet}
+					</ActionListItem>
+				</a>
+				{#if config.twitter}
+					<a href={config.twitter} target="_blank">
+						<ActionListItem>
+							Twitter
+							{#snippet start()}
+												<IconTwitterX  />
+											{/snippet}
+							{#snippet end()}
+												<IconBoxArrowUpRight  size={12} />
+											{/snippet}
+						</ActionListItem>
+					</a>
+				{/if}
+				<a href="https://www.linkedin.com/company/hyvor" target="_blank">
+					<ActionListItem>
+						Linkedin
+						{#snippet start()}
+										<IconLinkedin  />
+									{/snippet}
+						{#snippet end()}
+										<IconBoxArrowUpRight  size={12} />
+									{/snippet}
+					</ActionListItem>
+				</a>
+			</ActionListGroup>
+
+			<ActionListGroup title="Rate us">
+				<a href="https://www.trustpilot.com/review/hyvor.com" target="_blank">
+					<ActionListItem>
+						{#snippet start()}
+										<Trustpilot  />
+									{/snippet}
+						Trustpilot
+						{#snippet end()}
+										<IconBoxArrowUpRight  size={12} />
+									{/snippet}
+					</ActionListItem>
+				</a>
+				{#if config.g2}
+					<a href="https://www.g2.com/products/hyvor-talk/reviews" target="_blank">
+						<ActionListItem>
+							{#snippet start()}
+												<G2  />
+											{/snippet}
+							G2
+							{#snippet end()}
+												<IconBoxArrowUpRight  size={12} />
+											{/snippet}
+						</ActionListItem>
+					</a>
+				{/if}
+			</ActionListGroup>
+		</ActionList>
+	{/snippet}
 </Dropdown>

@@ -4,15 +4,20 @@
 	import { IconList } from '@hyvor/icons';
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../../../components/index.js';
+	interface Props {
+		children?: import('svelte').Snippet;
+	}
 
-	let navEl: HTMLElement;
+	let { children }: Props = $props();
+
+	let navEl: HTMLElement | undefined = $state();
 
 	interface Active {
 		name: string;
 		category: string | null;
 	}
 
-	let active: Active | null = null;
+	let active: Active | null = $state(null);
 
 	function setActive() {
 		const activeEl = navEl?.querySelector('a.active');
@@ -44,6 +49,7 @@
 
 	function handleMobileClick(e: any) {
 		e.stopPropagation();
+		if (!navEl) return;
 		if (navEl.style.display !== 'block') {
 			navEl.style.display = 'block';
 			mobileNavShown = true;
@@ -54,6 +60,7 @@
 	}
 
 	function handleNavOutsideClick() {
+		if (!navEl) return;
 		if (mobileNavShown) {
 			navEl.style.display = 'none';
 			mobileNavShown = false;
@@ -61,6 +68,7 @@
 	}
 
 	function hideNavOnMobile() {
+		if (!navEl) return;
 		if (window.innerWidth < 992) {
 			navEl.style.display = 'none';
 		}
@@ -69,7 +77,7 @@
 
 <div class="docs-nav">
 	{#if active}
-		<button class="mobile hds-box" on:click={handleMobileClick}>
+		<button class="mobile hds-box" onclick={handleMobileClick}>
 			<div class="left">
 				{#if active.category}
 					<span class="category">{active.category}</span> &raquo;
@@ -87,7 +95,7 @@
 			callback: handleNavOutsideClick
 		}}
 	>
-		<slot />
+		{@render children?.()}
 	</nav>
 </div>
 

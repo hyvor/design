@@ -2,18 +2,29 @@
 	import { scale } from 'svelte/transition';
 	import { clickOutside } from '../../../components/index.js';
 
-	export let src: string;
-	export let alt: string;
-	export let width: undefined | number = undefined;
 
-	export let modalImageProps: any = {};
+	interface Props {
+		src: string;
+		alt: string;
+		width?: undefined | number;
+		modalImageProps?: any;
+		[key: string]: any
+	}
 
-	let open = false;
+	let {
+		src,
+		alt,
+		width = undefined,
+		modalImageProps = {},
+		...rest
+	}: Props = $props();
+
+	let open = $state(false);
 </script>
 
 <div class="wrap">
-	<!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
-	<img {src} {alt} {...$$restProps} {width} on:click={() => (open = true)} class="preview" />
+	<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+	<img {src} {alt} {...rest} {width} onclick={() => (open = true)} class="preview" />
 </div>
 
 {#if open}

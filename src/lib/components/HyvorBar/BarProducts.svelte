@@ -1,4 +1,4 @@
-<script context="module">
+<script module>
 	const PRODUCTS = {
 		talk: {
 			name: 'Hyvor Talk',
@@ -29,26 +29,42 @@
 	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
 	import { IconCaretDownFill, IconBoxArrowUpRight } from '@hyvor/icons';
 
-	export let mobile = false;
+	interface Props {
+		mobile?: boolean;
+	}
+
+	let { mobile = false }: Props = $props();
 </script>
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325}>
-	<Button slot="trigger" variant="invisible" color="input" size="small">
-		Products
-		<IconCaretDownFill size={10} slot="end" />
-	</Button>
-	<ActionList slot="content">
-		{#each Object.entries(PRODUCTS) as [key, product]}
-			<a href={`https://${product.url}`} target="_blank">
-				<ActionListItem>
-					{product.name}
-					<div slot="description">
-						{product.description}
-					</div>
-					<svelte:component this={product.logo} size={20} slot="start" />
-					<IconBoxArrowUpRight slot="end" size={12} />
-				</ActionListItem>
-			</a>
-		{/each}
-	</ActionList>
+	{#snippet trigger()}
+		<Button  variant="invisible" color="input" size="small">
+			Products
+			{#snippet end()}
+				<IconCaretDownFill size={10}  />
+			{/snippet}
+		</Button>
+	{/snippet}
+	{#snippet content()}
+		<ActionList >
+			{#each Object.entries(PRODUCTS) as [key, product]}
+				<a href={`https://${product.url}`} target="_blank">
+					<ActionListItem>
+						{product.name}
+						{#snippet description()}
+										<div >
+								{product.description}
+							</div>
+									{/snippet}
+						{#snippet start()}
+										<product.logo size={20}  />
+									{/snippet}
+						{#snippet end()}
+										<IconBoxArrowUpRight  size={12} />
+									{/snippet}
+					</ActionListItem>
+				</a>
+			{/each}
+		</ActionList>
+	{/snippet}
 </Dropdown>

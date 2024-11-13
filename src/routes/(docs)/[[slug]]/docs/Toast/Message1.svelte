@@ -3,7 +3,11 @@
 	import type { Toast } from '$lib/components/Toast/toast.js';
 	import Button from '$lib/components/Button/Button.svelte';
 
-	export let toast: Toast;
+	interface Props {
+		toast: Toast;
+	}
+
+	let { toast }: Props = $props();
 </script>
 
 This is a Svelte Component notification with a long text message and a button to close it.

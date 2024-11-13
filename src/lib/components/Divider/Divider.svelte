@@ -1,9 +1,19 @@
 <script lang="ts">
-	export let color: string = 'var(--accent-lightest)';
-	export let height: number = 1;
-	export let width: number = 100;
-	export let margin: number = 0;
-	export let align: 'start' | 'center' | 'end' = 'center';
+	interface Props {
+		color?: string;
+		height?: number;
+		width?: number;
+		margin?: number;
+		align?: 'start' | 'center' | 'end';
+	}
+
+	let {
+		color = 'var(--accent-lightest)',
+		height = 1,
+		width = 100,
+		margin = 0,
+		align = 'center'
+	}: Props = $props();
 </script>
 
 <div
@@ -18,7 +28,7 @@
         margin-right: {align === 'center' ? 'auto' : 0};
         display: flex;
     "
-/>
+></div>
 
 <style>
 	.line {

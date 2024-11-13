@@ -6,11 +6,17 @@
 	} from '@hyvor/icons';
 	import type { AriaRole } from 'svelte/elements';
 
-	export let state: 'error' | 'warning' | 'success' = 'error';
-	export let role: AriaRole | undefined = 'alert';
+	interface Props {
+		state?: 'error' | 'warning' | 'success';
+		role?: AriaRole | undefined;
+		children?: import('svelte').Snippet;
+		[key: string]: any
+	}
+
+	let { state = 'error', role = 'alert', children, ...rest }: Props = $props();
 </script>
 
-<div class="validation {state}" {role} {...$$restProps}>
+<div class="validation {state}" {role} {...rest}>
 	<div class="icon">
 		{#if state === 'error'}
 			<IconExclamationTriangleFill style="color:var(--red)" />
@@ -21,7 +27,7 @@
 		{/if}
 	</div>
 	<div class="message">
-		<slot />
+		{@render children?.()}
 	</div>
 </div>
 

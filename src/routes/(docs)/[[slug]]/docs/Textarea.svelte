@@ -151,7 +151,11 @@
 
 <CodeResult>
 	<Textarea placeholder="Write a post">
-		<IconPen slot="start" color="var(--text-light)" />
-		<Loader slot="end" size="small" colorTrack="var(--accent-light)" />
+		{#snippet start()}
+				<IconPen  color="var(--text-light)" />
+			{/snippet}
+		{#snippet end()}
+				<Loader  size="small" colorTrack="var(--accent-light)" />
+			{/snippet}
 	</Textarea>
 </CodeResult>

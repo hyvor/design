@@ -1,37 +1,56 @@
 <script lang="ts">
-	export let href: string;
-	export let active: boolean = false;
-	export let disabled: boolean = false;
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
+
+	type Props = {
+		href: string;
+		active?: boolean;
+		disabled?: boolean;
+		start?: import('svelte').Snippet;
+		children?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		[key: string]: any;
+	};
+
+	let {
+		href,
+		active = false,
+		disabled = false,
+		start,
+		children,
+		end
+	}: Props = $props();
 </script>
 
 <a
 	{href}
 	class:active
 	class:disabled
-	on:keyup
-	on:keydown
-	on:keypress
-	on:focus
-	on:blur
-	on:click
-	on:mouseover
-	on:mouseenter
-	on:mouseleave
-	on:change
+	onkeyup={bubble('keyup')}
+	onkeydown={bubble('keydown')}
+	onkeypress={bubble('keypress')}
+	onfocus={bubble('focus')}
+	onblur={bubble('blur')}
+	onclick={bubble('click')}
+	onmouseover={bubble('mouseover')}
+	onmouseenter={bubble('mouseenter')}
+	onmouseleave={bubble('mouseleave')}
+	onchange={bubble('change')}
 >
-	{#if $$slots.start}
+	{#if start}
 		<span class="start">
-			<slot name="start" />
+			{@render start?.()}
 		</span>
 	{/if}
 
 	<span class="middle">
-		<slot />
+		{@render children?.()}
 	</span>
 
-	{#if $$slots.end}
+	{#if end}
 		<span class="end">
-			<slot name="end" />
+			{@render end?.()}
 		</span>
 	{/if}
 </a>

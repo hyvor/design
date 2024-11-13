@@ -3,9 +3,14 @@
 	import { clickOutside } from '../index.js';
 	import { createEventDispatcher } from 'svelte';
 
-	export let color: string = '#000000';
-	export let size: number = 30;
-	export let show = false;
+	interface Props {
+		color?: string;
+		size?: number;
+		show?: boolean;
+		'aria-label'?: string;
+	}
+
+	let { color = $bindable('#000000'), size = 30, show = $bindable(false), "aria-label": ariaLabel = ''}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		input: string;
@@ -27,13 +32,14 @@
 		style:width="{size}px"
 		style:height="{size}px"
 		style:background-color={color}
-		on:click={() => {
+		onclick={() => {
 			if (show) {
 				handleClose();
 			} else {
 				show = true;
 			}
 		}}
+		aria-label={ariaLabel}
 	></button>
 
 	{#if show}

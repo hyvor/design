@@ -7,12 +7,16 @@
 	import BarUpdates from './BarUpdates.svelte';
 	import { IconCaretDownFill } from '@hyvor/icons';
 
-	export let instance = 'https://hyvor.com';
-	export let product: BarProduct;
 
-	export let config: Partial<BarConfig> = {};
+	interface Props {
+		instance?: string;
+		product: BarProduct;
+		config?: Partial<BarConfig>;
+	}
 
-	let mobileShow = false;
+	let { instance = 'https://hyvor.com', product, config = {} }: Props = $props();
+
+	let mobileShow = $state(false);
 
 	const configComplete: BarConfig = {
 		...{
@@ -36,15 +40,17 @@
 	onMount(() => {
 		loadBarUser(instance, product);
 	});
+
+	const SvelteComponent = $derived(PRODUCTS[product].logo);
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
-<!-- svelte-ignore a11y-no-static-element-interactions -->
-<div id="bar" on:click={handleBarClick} class:mobile-show={mobileShow}>
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<div id="bar" onclick={handleBarClick} class:mobile-show={mobileShow}>
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<svelte:component this={PRODUCTS[product].logo} size={20} />
+				<SvelteComponent size={20} />
 				<span class="name">
 					{PRODUCTS[product].name}
 				</span>

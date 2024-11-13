@@ -49,9 +49,9 @@
 
 	const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));
 
-	export let data;
+	let { data } = $props();
 
-	let title = 'Hyvor Design System';
+	let title = $state('Hyvor Design System');
 
 	onMount(() => {
 		const unsubscribe = page.subscribe(() => {
@@ -70,36 +70,44 @@
 </svelte:head>
 
 <Header {logo} darkToggle={false} name="HYVOR" subName="Design System">
-	<div slot="center">
-		<Button as="a" href="https://hyvor.com" variant="invisible" target="_blank">
-			hyvor.com <IconBoxArrowUpRight slot="end" size={14} />
-		</Button>
-	</div>
+	{#snippet center()}
+		<div >
+			<Button as="a" href="https://hyvor.com" variant="invisible" target="_blank">
+				hyvor.com {#snippet end()}
+						<IconBoxArrowUpRight  size={14} />
+					{/snippet}
+			</Button>
+		</div>
+	{/snippet}
 </Header>
 
 <Docs>
-	<Nav slot="nav">
-		<NavCategory name="Design System">
-			<NavItem href="/">Overview</NavItem>
-			<NavItem href="/dark">Dark Mode</NavItem>
-			<NavItem href="/i18n">i18n</NavItem>
-		</NavCategory>
+	{#snippet nav()}
+		<Nav >
+			<NavCategory name="Design System">
+				<NavItem href="/">Overview</NavItem>
+				<NavItem href="/dark">Dark Mode</NavItem>
+				<NavItem href="/i18n">i18n</NavItem>
+			</NavCategory>
 
-		<NavCategory name="Components">
-			{#each sortedComponents as component}
-				<NavItem href={component.href}>{component.label}</NavItem>
-			{/each}
-		</NavCategory>
+			<NavCategory name="Components">
+				{#each sortedComponents as component}
+					<NavItem href={component.href}>{component.label}</NavItem>
+				{/each}
+			</NavCategory>
 
-		<NavCategory name="Marketing">
-			<NavItem href="/page-structure">Page Structure</NavItem>
-			<NavItem href="/docs">Docs</NavItem>
-		</NavCategory>
-	</Nav>
+			<NavCategory name="Marketing">
+				<NavItem href="/page-structure">Page Structure</NavItem>
+				<NavItem href="/docs">Docs</NavItem>
+			</NavCategory>
+		</Nav>
+	{/snippet}
 
-	<Content slot="content">
-		<svelte:component this={data.content} />
-	</Content>
+	{#snippet content()}
+		<Content >
+			<data.content />
+		</Content>
+	{/snippet}
 </Docs>
 
 <Footer
@@ -108,17 +116,19 @@
 		x: 'https://twitter.com'
 	}}
 >
-	<div slot="center">
-		<div style="display:flex">
-			<FooterLinkList title="Product">
-				<a href="pricing" target="_blank">Pricing</a>
-				<a href="docs" target="_blank">Docs</a>
-				<a href="customers" target="_blank">Customers</a>
-			</FooterLinkList>
+	{#snippet center()}
+		<div >
+			<div style="display:flex">
+				<FooterLinkList title="Product">
+					<a href="pricing" target="_blank">Pricing</a>
+					<a href="docs" target="_blank">Docs</a>
+					<a href="customers" target="_blank">Customers</a>
+				</FooterLinkList>
 
-			<FooterLinkList title="HYVOR">
-				<a href="https://hyvor.com" target="_blank">hyvor.com</a>
-			</FooterLinkList>
+				<FooterLinkList title="HYVOR">
+					<a href="https://hyvor.com" target="_blank">hyvor.com</a>
+				</FooterLinkList>
+			</div>
 		</div>
-	</div>
+	{/snippet}
 </Footer>

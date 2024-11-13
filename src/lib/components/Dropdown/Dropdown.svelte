@@ -14,7 +14,7 @@ import DropdownContent from './DropdownContent.svelte';
 	}
 
 	let {
-		show = false,
+		show = $bindable(false),
 		width = 225,
 		relative = false,
 		closeOnOutsideClick = true,

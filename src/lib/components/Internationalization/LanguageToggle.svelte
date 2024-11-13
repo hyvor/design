@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getContext, type ComponentProps, type ComponentType } from 'svelte';
+	import { getContext, type Component, type ComponentProps} from 'svelte';
 	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import Button from '../Button/Button.svelte';
 	import { type Language, type InternationalizationService } from './i18n.js';
@@ -10,9 +10,9 @@
 	import IconButton from '../IconButton/IconButton.svelte';
 
 	interface Props {
-		position?: ComponentProps<Dropdown>['position'];
-		align?: ComponentProps<Dropdown>['align'];
-		caret?: ComponentType;
+		position?: ComponentProps<typeof Dropdown>['position'];
+		align?: ComponentProps<typeof Dropdown>['align'];
+		caret?: Component;
 		icon?: boolean;
 		size?: 'medium' | 'small';
 	}

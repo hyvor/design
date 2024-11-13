@@ -1,3 +1,7 @@
+## 1.0.0 - 2024-11-13
+
+- IconMessage `icon` prop only supports a Component now. The `icon` slot/snippet is removed.
+
 ## 0.0.68 - 2024-09-09
 
 - `<HyvorBar>` component added

@@ -11,13 +11,13 @@ export interface Footer {
 		| false
 		| {
 				text?: string;
-				props?: ComponentProps<Button>;
+				props?: ComponentProps<typeof Button>;
 		  };
 	confirm?:
 		| false
 		| {
 				danger?: boolean;
 				text?: string;
-				props?: ComponentProps<Button>;
+				props?: ComponentProps<typeof Button>;
 		  };
 }

@@ -2,11 +2,11 @@
 	import type { Snippet } from "svelte";
 
 	const { type = 'soft', title = undefined, children = undefined, text = undefined, icon = undefined, ...rest } : {
-		type: 'info' | 'success' | 'warning' | 'danger' | 'soft';
-		title: string | Snippet | undefined;
-		icon: Snippet | undefined;
-		text: string | Snippet | undefined;
-		children: Snippet | undefined;
+		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
+		title?: string | Snippet;
+		icon?: Snippet;
+		text?: string | Snippet;
+		children?: Snippet;
 		[key: string]: any;
 	} = $props();
 </script>

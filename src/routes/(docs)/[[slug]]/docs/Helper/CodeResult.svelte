@@ -1,13 +1,14 @@
 <script lang="ts">
 	const props: {
-		gap: number | undefined;
-		white: boolean;
-		children: any;
+		gap?: number;
+		white?: boolean;
+		children?: any;
+		[key: string]: any;
 	} = $props();
 </script>
 
 <div class="results" class:gap={!!props.gap} class:white={props.white} style={props.gap ? `gap: ${props.gap}px` : ''} {...props}>
-	{@render props.children()}
+	{@render props.children?.()}
 </div>
 
 <style>

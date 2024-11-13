@@ -11,8 +11,8 @@
 		loading: boolean; // whether loading
 		height?: number;
 		divProps?: Record<string, any>;
-		loaderProps?: ComponentProps<Loader>;
-		buttonProps?: ComponentProps<Button>;
+		loaderProps?: ComponentProps<typeof Loader>;
+		buttonProps?: ComponentProps<typeof Button>;
 	}
 
 	let {

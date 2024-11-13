@@ -101,7 +101,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl label="Language" caption="The language to use for the site.">
 		<TextInput type="text" block value="English" />
 	</SplitControl>
@@ -128,7 +128,7 @@
 `}
 />
 
-<CodeResult>
+<CodeResult white>
 	<SplitControl>
 		{#snippet label()}
 				<Label >Spam Detection</Label>

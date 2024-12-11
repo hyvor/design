@@ -1,6 +1,5 @@
 {
 	"name": "@hyvor/design",
-	"version": "1.0.4",
 	"license": "MIT",
 	"private": false,
 	"scripts": {
@@ -30,7 +29,7 @@
 	"peerDependencies": {
 		"@sveltejs/kit": "^2.0.0",
 		"sass": "^1.68.0",
-		"svelte": "^4.0.0"
+		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.0",

@@ -7,6 +7,7 @@
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 
 	let value1 = $state('');
+	let valueSelect = $state('1');
 </script>
 
 <h1>Text Input</h1>
@@ -191,6 +192,33 @@
 	The ending slot is useful with the <a href="/loader">Loader</a> component to indicate a loading state,
 	for example in a search input.
 </p>
+
+<h3 id="select">
+	Select with Options
+</h3>
+
+<CodeBlock
+	code={`
+<TextInput select bind:value={selectValue}>
+	<option value="1">1 minute</option>
+	<option value="5">5 minutes</option>
+	<option value="10">10 minutes</option>
+	<option value="15">15 minutes</option>
+</TextInput>
+`}
+/>
+
+<CodeResult white>
+	<TextInput select bind:value={valueSelect}>
+		<option value="1">1 minute</option>
+		<option value="5">5 minutes</option>
+		<option value="10">10 minutes</option>
+		<option value="15">15 minutes</option>
+	</TextInput>
+	<div style="margin-top:8px;font-size:14px">
+		The selected value is "{valueSelect}"
+	</div>
+</CodeResult>
 
 <style>
 	.sizes {

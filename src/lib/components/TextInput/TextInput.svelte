@@ -11,6 +11,8 @@
 		input?: HTMLInputElement;
 		start?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
+		select?: boolean;
+		selectInput?: HTMLSelectElement;
 		[key: string]: any;
 	}
 
@@ -22,6 +24,8 @@
 		input = $bindable({} as HTMLInputElement),
 		start,
 		end,
+		select = false,
+		selectInput = $bindable({} as HTMLSelectElement),
 		...rest
 	}: Props = $props();
 </script>
@@ -33,22 +37,43 @@
 		</span>
 	{/if}
 
-	<input
-		{...rest}
-		bind:value
-		bind:this={input}
-		onkeyup={bubble('keyup')}
-		onkeydown={bubble('keydown')}
-		onkeypress={bubble('keypress')}
-		onfocus={bubble('focus')}
-		onblur={bubble('blur')}
-		onclick={bubble('click')}
-		onmouseover={bubble('mouseover')}
-		onmouseenter={bubble('mouseenter')}
-		onmouseleave={bubble('mouseleave')}
-		onchange={bubble('change')}
-		oninput={bubble('input')}
-	/>
+	{#if select}
+		<select
+			{...rest}
+			bind:value
+			bind:this={selectInput}
+			onkeyup={bubble('keyup')}
+			onkeydown={bubble('keydown')}
+			onkeypress={bubble('keypress')}
+			onfocus={bubble('focus')}
+			onblur={bubble('blur')}
+			onclick={bubble('click')}
+			onmouseover={bubble('mouseover')}
+			onmouseenter={bubble('mouseenter')}
+			onmouseleave={bubble('mouseleave')}
+			onchange={bubble('change')}
+			oninput={bubble('input')}
+		>
+			{@render rest?.children()}
+		</select>
+	{:else}
+		<input
+			{...rest}
+			bind:value
+			bind:this={input}
+			onkeyup={bubble('keyup')}
+			onkeydown={bubble('keydown')}
+			onkeypress={bubble('keypress')}
+			onfocus={bubble('focus')}
+			onblur={bubble('blur')}
+			onclick={bubble('click')}
+			onmouseover={bubble('mouseover')}
+			onmouseenter={bubble('mouseenter')}
+			onmouseleave={bubble('mouseleave')}
+			onchange={bubble('change')}
+			oninput={bubble('input')}
+		/>
+	{/if}
 
 	{#if end}
 		<span class="slot end">
@@ -91,7 +116,7 @@
 		width: 100%;
 	}
 
-	input {
+	input, select {
 		flex: 1;
 		width: 100%;
 		border: none;
@@ -101,10 +126,15 @@
 		padding: 0;
 		margin: 0;
 		color: inherit;
+		height: 100%;
 
 		&:focus {
 			outline: none;
 		}
+	}
+
+	select {
+		min-width: 180px;
 	}
 
 	.input-wrap.size-x-small {

@@ -1,3 +1,7 @@
+## 1.0.1 - 2024-12-11
+
+- `TextInput` now supports `select` prop to render a select input
+
 ## 1.0.0 - 2024-11-13
 
 - Svelte 5 upgrade

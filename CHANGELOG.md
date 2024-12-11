@@ -1,4 +1,4 @@
-## 1.0.1 - 2024-12-11
+## 1.0.4 - 2024-12-11
 
 - `TextInput` now supports `select` prop to render a select input
 

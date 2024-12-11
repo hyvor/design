@@ -116,7 +116,8 @@
 		width: 100%;
 	}
 
-	input, select {
+	input,
+	select {
 		flex: 1;
 		width: 100%;
 		border: none;

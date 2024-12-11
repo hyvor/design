@@ -5,7 +5,7 @@
 	import ChangeButton from './ChangeButton.svelte';
 	import LanguageToggle from '../../lib/components/Internationalization/LanguageToggle.svelte';
 	import TextInput from '../../lib/components/TextInput/TextInput.svelte';
-	import enJson from './locale/en.json' with { type: "json" };
+	import enJson from './locale/en.json' with { type: 'json' };
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
 	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';

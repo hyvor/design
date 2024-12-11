@@ -193,9 +193,7 @@
 	for example in a search input.
 </p>
 
-<h3 id="select">
-	Select with Options
-</h3>
+<h3 id="select">Select with Options</h3>
 
 <CodeBlock
 	code={`

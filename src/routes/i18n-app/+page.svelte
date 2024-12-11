@@ -2,12 +2,10 @@
 	import { InternationalizationService } from './../../lib/components/Internationalization/i18n.js';
 	import { onMount, getContext, setContext } from 'svelte';
 	import PricingLink from './stringComponents/PricingLink.svelte';
-	import T from '$lib/components/Internationalization/T.svelte';
-	import { t } from '$lib/components/Internationalization/t.js';
 	import ChangeButton from './ChangeButton.svelte';
 	import LanguageToggle from '../../lib/components/Internationalization/LanguageToggle.svelte';
 	import TextInput from '../../lib/components/TextInput/TextInput.svelte';
-	import type enJson from './locale/en.json';
+	import enJson from './locale/en.json' with { type: "json" };
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
 	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';

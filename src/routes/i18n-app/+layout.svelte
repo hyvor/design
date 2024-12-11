@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Base from '../../lib/components/Base/Base.svelte';
 	import InternationalizationProvider from '../../lib/components/Internationalization/InternationalizationProvider.svelte';
-	import en from './locale/en.json';
+	import en from './locale/en.json' with { type: "json" };
 	interface Props {
 		children?: import('svelte').Snippet;
 	}

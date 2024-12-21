@@ -53,6 +53,7 @@
 		font-weight: normal;
 		line-height: 1.4;
 		text-align: center;
+		color: var(--text-light);
 	}
 	.img-wrap {
 		text-align: center;

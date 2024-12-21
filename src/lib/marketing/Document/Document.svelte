@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import FeatureSectionTitle from './DocumentTitle.svelte';
 	import { page } from '$app/stores';
+	import DocumentTitle from './DocumentTitle.svelte';
 
 	interface Props {
 		title: string;
@@ -45,8 +46,7 @@
 
 <section>
 	<div class="hds-container container">
-		<FeatureSectionTitle {title} />
-		<div class="date">{subtitle}</div>
+		<DocumentTitle {title} {subtitle} />
 		<content>{@render children?.()}</content>
 	</div>
 </section>

@@ -63,11 +63,6 @@
 		:global(.wrap) {
 			margin-top: 0 !important;
 		}
-		.date {
-			text-align: center;
-			margin: 15px 0 60px 0;
-			color: var(--text-light);
-		}
 
 		content :global(h2) {
 			font-size: 32px !important;

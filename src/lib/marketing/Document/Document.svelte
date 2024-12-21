@@ -107,30 +107,29 @@
 		}
 
 		content :global(a.heading-anchor-link) {
-		position: absolute;
-		right: 100%;
-		margin-right: 7px;
-		opacity: 0;
-		top: 50%;
-		transform: translateY(-50%);
-		display: inline-flex;
-		align-items: center;
-	}
+			position: absolute;
+			right: 100%;
+			margin-right: 7px;
+			opacity: 0;
+			top: 50%;
+			transform: translateY(-50%);
+			display: inline-flex;
+			align-items: center;
+		}
 
 		content {
-		:global(.heading-anchor:hover + .heading-anchor-link) {
-			opacity: 1;
-		}
+			:global(.heading-anchor:hover + .heading-anchor-link) {
+				opacity: 1;
+			}
 
-		:global(h2 a:not(.heading-anchor-link)),
-		:global(h3 a:not(.heading-anchor-link)),
-		:global(h4 a:not(.heading-anchor-link)),
-		:global(h5 a:not(.heading-anchor-link)),
-		:global(h6 a:not(.heading-anchor-link)) {
-			text-decoration: none;
-			color: inherit;
+			:global(h2 a:not(.heading-anchor-link)),
+			:global(h3 a:not(.heading-anchor-link)),
+			:global(h4 a:not(.heading-anchor-link)),
+			:global(h5 a:not(.heading-anchor-link)),
+			:global(h6 a:not(.heading-anchor-link)) {
+				text-decoration: none;
+				color: inherit;
+			}
 		}
-	}
-
 	}
 </style>

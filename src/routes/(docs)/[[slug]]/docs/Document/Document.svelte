@@ -1,7 +1,5 @@
 <script>
-	import CodeBlock from "$lib/components/CodeBlock/CodeBlock.svelte";
-
-
+	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 </script>
 
 <h1>Document</h1>

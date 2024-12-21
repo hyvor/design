@@ -151,24 +151,3 @@
 />
 
 <DocImage src={img} alt="img" />
-
-<h2 id="document">Document</h2>
-<p>
-	This component is used for documents such as privacy policy, terms of service, etc. It supports
-	headings, paragraphs, lists, and hr tags.
-</p>
-
-<CodeBlock
-	code={`
-    <` +
-		`script lang="ts">
-        import { Document } from '@hyvor/design/marketing';
-    </` +
-		`script>
-
-    <Document title="Titles goes here" subtitle="Subtitle goes here">
-        <p>Content goes here</p>
-    </Document>
-`}
-	language="svelte"
-/>

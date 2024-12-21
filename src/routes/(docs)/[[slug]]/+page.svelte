@@ -99,6 +99,7 @@
 			<NavCategory name="Marketing">
 				<NavItem href="/page-structure">Page Structure</NavItem>
 				<NavItem href="/docs">Docs</NavItem>
+				<NavItem href="/document">Document</NavItem>
 			</NavCategory>
 		</Nav>
 	{/snippet}

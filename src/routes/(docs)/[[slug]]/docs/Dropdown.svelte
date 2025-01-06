@@ -11,7 +11,7 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import ActionListGroup from '$lib/components/ActionList/ActionListGroup.svelte';
-	import { IconCaretDown } from '@hyvor/icons';
+	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import InputGroup from '$lib/components/FormControl/InputGroup.svelte';

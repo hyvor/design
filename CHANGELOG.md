@@ -1,3 +1,7 @@
+## 1.0.6 - 2024-12-12
+
+- Upgraded @hyvor/icons and new icon import style
+
 ## 1.0.4 - 2024-12-11
 
 - `TextInput` now supports `select` prop to render a select input

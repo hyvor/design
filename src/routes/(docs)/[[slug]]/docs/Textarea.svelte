@@ -4,7 +4,7 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
-	import { IconPen } from '@hyvor/icons';
+	import IconPen from '@hyvor/icons/IconPen';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 
 	let val1 = '';

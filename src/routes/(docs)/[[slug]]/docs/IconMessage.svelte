@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
-	import { IconInbox, IconSearch, IconPencilSquare } from '@hyvor/icons';
+	import IconSearch from '@hyvor/icons/IconSearch';
+	import IconPencilSquare from '@hyvor/icons/IconPencilSquare';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import Table from '$lib/components/Table/Table.svelte';

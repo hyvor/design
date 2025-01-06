@@ -3,7 +3,7 @@
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
 	import { clickOutside } from '../directives/clickOutside.js';
-	import { IconX } from '@hyvor/icons';
+	import IconX from '@hyvor/icons/IconX';
 	import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';
 	import { onMount, tick, type Snippet } from 'svelte';

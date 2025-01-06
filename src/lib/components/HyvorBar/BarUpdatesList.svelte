@@ -9,7 +9,7 @@
 		type BarProduct,
 		type BarUpdate
 	} from './bar.js';
-	import { IconBoxArrowUpRight } from '@hyvor/icons';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import Button from '../Button/Button.svelte';
 	import Tag from '../Tag/Tag.svelte';
 	import IconMessage from '../IconMessage/IconMessage.svelte';

@@ -1,7 +1,6 @@
 <script lang="ts">
-	import { afterNavigate, onNavigate } from '$app/navigation';
-	import { page } from '$app/stores';
-	import { IconList } from '@hyvor/icons';
+	import { afterNavigate } from '$app/navigation';
+	import IconList from '@hyvor/icons/IconList';
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../../../components/index.js';
 	interface Props {

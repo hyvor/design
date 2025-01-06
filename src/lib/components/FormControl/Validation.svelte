@@ -1,9 +1,7 @@
 <script lang="ts">
-	import {
-		IconCheckCircleFill,
-		IconExclamationTriangleFill,
-		IconInfoCircleFill
-	} from '@hyvor/icons';
+	import IconCheckCircleFill from '@hyvor/icons/IconCheckCircleFill';
+	import IconExclamationTriangleFill from '@hyvor/icons/IconExclamationTriangleFill';
+	import IconInfoCircleFill from '@hyvor/icons/IconInfoCircleFill';
 	import type { AriaRole } from 'svelte/elements';
 
 	interface Props {

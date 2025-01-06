@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { run } from 'svelte/legacy';
 
-	import { IconCheckCircleFill, IconXCircleFill } from '@hyvor/icons';
+	import IconCheckCircleFill from '@hyvor/icons/IconCheckCircleFill';
+	import IconXCircleFill from '@hyvor/icons/IconXCircleFill';
 
 	interface Props {
 		block?: boolean;

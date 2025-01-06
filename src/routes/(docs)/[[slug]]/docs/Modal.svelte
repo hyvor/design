@@ -7,7 +7,8 @@
 	import CodeResult from './Helper/CodeResult.svelte';
 	import toast from '$lib/components/Toast/toast.js';
 	import TabNavItem from '$lib/components/TabNav/TabNavItem.svelte';
-	import { IconLink45deg, IconSearch } from '@hyvor/icons';
+	import IconLink45deg from '@hyvor/icons/IconLink45deg';
+	import IconSearch from '@hyvor/icons/IconSearch';
 	import TabNav from '$lib/components/TabNav/TabNav.svelte';
 	import { confirm } from '$lib/components/Modal/confirm.js';
 	import ConfirmContent1 from './Modal/ConfirmContent1.svelte';

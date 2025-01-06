@@ -1,6 +1,7 @@
 ## 1.0.6 - 2024-12-12
 
 - Upgraded @hyvor/icons and new icon import style
+- Document component linkify
 
 ## 1.0.4 - 2024-12-11
 

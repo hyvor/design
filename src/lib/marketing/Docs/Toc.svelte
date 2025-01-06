@@ -70,6 +70,8 @@
 <style lang="scss">
 	.wrap {
 		padding: 25px;
+		max-height: calc(100vh - var(--header-height) - 50px);
+		overflow-y: auto;
 	}
 
 	.toc-wrap {

@@ -32,6 +32,7 @@ import ColorPicker from './docs/ColorPicker.svelte';
 import IconMessage from './docs/IconMessage.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
+import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
 
 export const prerender = true;
@@ -71,7 +72,8 @@ const nav = {
 	'icon-message': IconMessage,
 
 	'page-structure': PageStructure,
-	docs: DocsDocs
+	docs: DocsDocs,
+	document: Document
 };
 
 export async function load({ params }) {

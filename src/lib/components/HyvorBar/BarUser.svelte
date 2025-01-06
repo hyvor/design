@@ -2,7 +2,7 @@
 	import ActionList from '../ActionList/ActionList.svelte';
 	import ActionListItem from '../ActionList/ActionListItem.svelte';
 	import Dropdown from '../Dropdown/Dropdown.svelte';
-	import { IconBoxArrowUpRight } from '@hyvor/icons';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import { barUser } from './bar.js';
 	import BarUserPreview from './BarUserPreview.svelte';
 

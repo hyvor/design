@@ -6,7 +6,7 @@
 	import ActionList from '../ActionList/ActionList.svelte';
 	import ActionListItem from '../ActionList/ActionListItem.svelte';
 	import Text from '../Text/Text.svelte';
-	import { IconCaretDown } from '@hyvor/icons';
+	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconButton from '../IconButton/IconButton.svelte';
 
 	interface Props {

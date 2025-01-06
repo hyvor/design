@@ -2,7 +2,7 @@
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import { IconSearch } from '@hyvor/icons';
+	import IconSearch from '@hyvor/icons/IconSearch';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 

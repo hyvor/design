@@ -6,7 +6,9 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import { IconSearch, IconCaretDown, IconBoxArrowUpRight } from '@hyvor/icons';
+	import IconSearch from '@hyvor/icons/IconSearch';
+	import IconCaretDown from '@hyvor/icons/IconCaretDown';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	let loading = false;
 </script>

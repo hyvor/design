@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Checkbox from '$lib/components/Checkbox/Checkbox.svelte';
-	import { IconCheck } from '@hyvor/icons';
+	import IconCheck from '@hyvor/icons/IconCheck';
 
 	interface Props {
 		selection: 'none' | 'single' | 'multi';

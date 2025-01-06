@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { type Component, type Snippet } from 'svelte';
-	import { IconBug, IconInbox } from '@hyvor/icons';
+	import IconBug from '@hyvor/icons/IconBug';
+	import IconInbox from '@hyvor/icons/IconInbox';
 	import Button from '../Button/Button.svelte';
 
 	interface Props {

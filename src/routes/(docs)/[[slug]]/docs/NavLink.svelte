@@ -5,7 +5,11 @@
 	import NavLink from '$lib/components/NavLink/NavLink.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import Box from '$lib/components/Box/Box.svelte';
-	import { IconColumns, IconChat, IconFile, IconCoin, IconExclamationCircle } from '@hyvor/icons';
+	import IconColumns from '@hyvor/icons/IconColumns';
+	import IconChat from '@hyvor/icons/IconChat';
+	import IconFile from '@hyvor/icons/IconFile';
+	import IconCoin from '@hyvor/icons/IconCoin';
+	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
 
 	let active = $state('overview');
 	let active2 = $state('overview');

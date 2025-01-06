@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { IconMoonStarsFill, IconSunFill } from '@hyvor/icons';
+	import IconMoonStarsFill from '@hyvor/icons/IconMoonStarsFill';
+	import IconSunFill from '@hyvor/icons/IconSunFill';
 	import IconButton from '../IconButton/IconButton.svelte';
 	import { dark } from './../../stores/dark.js';
 

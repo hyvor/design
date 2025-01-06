@@ -1,16 +1,15 @@
 <script lang="ts">
 	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
-	import {
-		IconCaretDownFill,
-		IconBoxArrowUpRight,
-		IconChat,
-		IconDiscord,
-		IconInfoCircle,
-		IconFileEarmark,
-		IconChatDots,
-		IconTwitterX,
-		IconLinkedin
-	} from '@hyvor/icons';
+	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import IconChat from '@hyvor/icons/IconChat';
+	import IconDiscord from '@hyvor/icons/IconDiscord';
+	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
+	import IconFileEarmark from '@hyvor/icons/IconFileEarmark';
+	import IconChatDots from '@hyvor/icons/IconChatDots';
+	import IconTwitterX from '@hyvor/icons/IconTwitterX';
+	import IconLinkedin from '@hyvor/icons/IconLinkedin';
+
 	import ActionListGroup from '../ActionList/ActionListGroup.svelte';
 	import { PRODUCTS } from './BarProducts.svelte';
 	import type { BarConfig, BarProduct } from './bar.js';

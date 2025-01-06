@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { IconBoxArrowUpRight, IconGithub } from '@hyvor/icons';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import IconGithub from '@hyvor/icons/IconGithub';
 	import NavItem from '$lib/marketing/Docs/Nav/NavItem.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';

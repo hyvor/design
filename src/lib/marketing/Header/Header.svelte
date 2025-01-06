@@ -3,7 +3,7 @@
 	import DarkToggle from '../../components/Dark/DarkToggle.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
-	import { IconList } from '@hyvor/icons';
+	import IconList from '@hyvor/icons/IconList';
 
 	interface Props {
 		logo: string;

@@ -5,7 +5,7 @@
 	import BarSupport from './BarSupport.svelte';
 	import { loadBarUser, type BarConfig, type BarProduct } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
-	import { IconCaretDownFill } from '@hyvor/icons';
+	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
 	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
 	import LogoCore from '$lib/marketing/Logo/LogoCore.svelte';

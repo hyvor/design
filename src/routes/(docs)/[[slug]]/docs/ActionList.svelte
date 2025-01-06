@@ -7,7 +7,9 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
-	import { IconHandThumbsUp, IconPencil, IconTrash } from '@hyvor/icons';
+	import IconHandThumbsUp from '@hyvor/icons/IconHandThumbsUp';
+	import IconPencil from '@hyvor/icons/IconPencil';
+	import IconTrash from '@hyvor/icons/IconTrash';
 
 	let x1 = $state(1);
 	let x11 = $state(1);

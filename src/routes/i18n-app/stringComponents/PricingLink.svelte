@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Link from '$lib/components/Link/Link.svelte';
-	import { IconBoxArrowUpRight } from '@hyvor/icons';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	interface Props {
 		children: string;

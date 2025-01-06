@@ -3,7 +3,8 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
-	import { IconBoxArrowUpRight, IconSearch } from '@hyvor/icons';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import IconSearch from '@hyvor/icons/IconSearch';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import Text from '$lib/components/Text/Text.svelte';
 </script>

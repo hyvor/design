@@ -2,7 +2,9 @@
 	import TabNavItem from '$lib/components/TabNav/TabNavItem.svelte';
 	import TabNav from '$lib/components/TabNav/TabNav.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import { IconGear, IconSearchHeart, IconLink45deg } from '@hyvor/icons';
+	import IconGear from '@hyvor/icons/IconGear';
+	import IconSearchHeart from '@hyvor/icons/IconSearchHeart';
+	import IconLink45deg from '@hyvor/icons/IconLink45deg';
 	import Tag from '$lib/components/Tag/Tag.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import Table from '$lib/components/Table/Table.svelte';

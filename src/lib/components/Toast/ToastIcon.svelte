@@ -1,12 +1,11 @@
 <script lang="ts">
 	import type { Toast } from './toast.ts';
 	import Loader from '$lib/components/Loader/Loader.svelte';
-	import {
-		IconCheckCircleFill,
-		IconXCircleFill,
-		IconExclamationCircleFill,
-		IconInfoCircleFill
-	} from '@hyvor/icons';
+
+	import IconCheckCircleFill from '@hyvor/icons/IconCheckCircleFill';
+	import IconXCircleFill from '@hyvor/icons/IconXCircleFill';
+	import IconExclamationCircleFill from '@hyvor/icons/IconExclamationCircleFill';
+	import IconInfoCircleFill from '@hyvor/icons/IconInfoCircleFill';
 
 	interface Props {
 		toast: Toast;

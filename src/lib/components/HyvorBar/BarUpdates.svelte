@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { IconButton, Dropdown } from '../index.js';
-	import { IconMegaphone } from '@hyvor/icons';
+	import IconMegaphone from '@hyvor/icons/IconMegaphone';
 	import BarUpdatesList from './BarUpdatesList.svelte';
 	import { type BarProduct, barUnreadUpdates } from './bar.js';
 

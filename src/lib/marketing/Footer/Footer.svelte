@@ -1,14 +1,14 @@
 <script lang="ts">
 	import Container from '$lib/marketing/Container/Container.svelte';
-	import {
-		IconCopy,
-		IconDiscord,
-		IconEnvelope,
-		IconGithub,
-		IconLinkedin,
-		IconTwitterX,
-		IconYoutube
-	} from '@hyvor/icons';
+
+	import IconCopy from '@hyvor/icons/IconCopy';
+	import IconDiscord from '@hyvor/icons/IconDiscord';
+	import IconEnvelope from '@hyvor/icons/IconEnvelope';
+	import IconGithub from '@hyvor/icons/IconGithub';
+	import IconLinkedin from '@hyvor/icons/IconLinkedin';
+	import IconTwitterX from '@hyvor/icons/IconTwitterX';
+	import IconYoutube from '@hyvor/icons/IconYoutube';
+
 	import Link from '../../components/Link/Link.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Tooltip from '../../components/Tooltip/Tooltip.svelte';

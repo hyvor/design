@@ -24,11 +24,11 @@
 
 <script lang="ts">
 	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
-	import LogoCore from '$lib/marketing/Logo/LogoCore.svelte';
 	import LogoFortguard from '$lib/marketing/Logo/LogoFortguard.svelte';
 	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
 	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
-	import { IconCaretDownFill, IconBoxArrowUpRight } from '@hyvor/icons';
+	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	interface Props {
 		mobile?: boolean;

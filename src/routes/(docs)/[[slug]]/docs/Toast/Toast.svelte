@@ -1,10 +1,8 @@
 <script lang="ts">
-	import {
-		IconCheckCircleFill,
-		IconExclamationCircleFill,
-		IconXCircleFill,
-		IconInfoCircleFill
-	} from '@hyvor/icons';
+	import IconCheckCircleFill from '@hyvor/icons/IconCheckCircleFill';
+	import IconExclamationCircleFill from '@hyvor/icons/IconExclamationCircleFill';
+	import IconXCircleFill from '@hyvor/icons/IconXCircleFill';
+	import IconInfoCircleFill from '@hyvor/icons/IconInfoCircleFill';
 	import Message1 from './Message1.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import CodeResult from '../Helper/CodeResult.svelte';

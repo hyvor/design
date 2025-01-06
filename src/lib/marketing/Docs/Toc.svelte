@@ -6,7 +6,8 @@
 	import tocbot from 'tocbot';
 
 	import Loader from '../../components/Loader/Loader.svelte';
-	import { IconCaretDown, IconCaretRight } from '@hyvor/icons';
+	import IconCaretDown from '@hyvor/icons/IconCaretDown';
+	import IconCaretRight from '@hyvor/icons/IconCaretRight';
 	import Button from '../../components/Button/Button.svelte';
 
 	let tocElement: HTMLDivElement | undefined = $state();

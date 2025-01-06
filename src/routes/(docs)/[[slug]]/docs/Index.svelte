@@ -182,7 +182,7 @@
 		`script>
         import { TextInput, Checkbox } from "@hyvor/design/components";
         import { DocsNav, Header } from '@hyvor/design/marketing';
-        import { IconSearch } from '@hyvor/icons';
+        import IconSearch from '@hyvor/icons/IconSearch';
     </script>
 
     <IconSearch size={14} />
@@ -203,7 +203,7 @@
 	code={`
     <` +
 		`script>
-        import { IconSearch } from "@hyvor/icons";
+        import IconSearch from "@hyvor/icons/IconSearch";
     </script>
 
     <Search size={14} />

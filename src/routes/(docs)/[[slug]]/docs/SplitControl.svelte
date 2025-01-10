@@ -102,7 +102,7 @@
 />
 
 <CodeResult white>
-	<SplitControl label="Language" caption="The language to use for the site.">
+	<SplitControl label="Language" caption="The language to use for the site." data-testid="language">
 		<TextInput type="text" block value="English" />
 	</SplitControl>
 </CodeResult>

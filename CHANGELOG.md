@@ -1,3 +1,7 @@
+## 1.0.8 - 2025-01-010
+
+- Adds `TableCell` component for improved Table accessibility
+
 ## 1.0.7 - 2025-01-010
 
 - Accessibility updates for the `Modal` and `SplitControl` components

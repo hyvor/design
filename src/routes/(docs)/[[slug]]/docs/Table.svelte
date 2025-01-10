@@ -1,6 +1,7 @@
 <script>
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
+	import TableCell from '$lib/components/Table/TableCell.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 </script>
 
@@ -18,6 +19,9 @@
 	</li>
 	<li>
 		<code>{'<TableRow>'}</code>
+	</li>
+	<li>
+		<code>{'<TableCell>'}</code>
 	</li>
 </ul>
 
@@ -70,16 +74,16 @@
 	code={`
     <Table columns="1fr 1fr" hover>
         <TableRow head>
-            <div>Col 1</div>
-            <div>Col 2</div>
+            <TableCell>Col 1</TableCell>
+            <TableCell>Col 2</TableCell>
         </TableRow>
         <TableRow>
-            <div>Value 1</div>
-            <div>Value 2</div>
+            <TableCell>Value 1</TableCell>
+            <TableCell>Value 2</TableCell>
         </TableRow>
         <TableRow>
-            <div>Value 1</div>
-            <div>Value 2</div>
+            <TableCell>Value 1</TableCell>
+            <TableCell>Value 2</TableCell>
         </TableRow>
     </Table>
 `}
@@ -87,15 +91,15 @@
 
 <Table columns="1fr 1fr" hover>
 	<TableRow head>
-		<div>Col 1</div>
-		<div>Col 2</div>
+		<TableCell>Col 1</TableCell>
+		<TableCell>Col 2</TableCell>
 	</TableRow>
 	<TableRow>
-		<div>Value 1</div>
-		<div>Value 2</div>
+		<TableCell>Value 1</TableCell>
+		<TableCell>Value 2</TableCell>
 	</TableRow>
 	<TableRow>
-		<div>Value 3</div>
-		<div>Value 4</div>
+		<TableCell>Value 3</TableCell>
+		<TableCell>Value 4</TableCell>
 	</TableRow>
 </Table>

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
+	import { setContext, type Snippet } from 'svelte';
 
 	interface Props {
 		head?: boolean;
@@ -7,9 +7,11 @@
 	}
 
 	const { head = false, children, ...rest }: Props = $props();
+
+	setContext('table-row', { head });
 </script>
 
-<div class:head {...rest}>
+<div class:head {...rest} role="row">
 	{@render children()}
 </div>
 

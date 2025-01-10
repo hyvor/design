@@ -12,10 +12,8 @@
 
 <div
 	class="table"
-	style="
-    --local-columns: {columns};
-    {hoverCss}
-"
+	style="--local-columns: {columns};{hoverCss}"
+	role="table"
 >
 	{@render children?.()}
 </div>

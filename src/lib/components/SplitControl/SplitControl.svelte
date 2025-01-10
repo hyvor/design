@@ -13,7 +13,15 @@
 		[key: string]: any;
 	}
 
-	const { label, caption, column = false, flex = [1, 2], children, nested, ...rest }: Props = $props();
+	const {
+		label,
+		caption,
+		column = false,
+		flex = [1, 2],
+		children,
+		nested,
+		...rest
+	}: Props = $props();
 </script>
 
 <div

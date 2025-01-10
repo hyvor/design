@@ -1,3 +1,8 @@
+## 1.0.7 - 2025-01-010
+
+- Accessibility updates for the `Modal` and `SplitControl` components
+- `SplitControl` now supports rest props
+
 ## 1.0.6 - 2024-12-12
 
 - Upgraded @hyvor/icons and new icon import style

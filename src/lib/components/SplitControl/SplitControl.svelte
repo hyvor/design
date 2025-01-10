@@ -10,12 +10,19 @@
 		flex?: number[];
 		children?: Snippet;
 		nested?: Snippet;
+		[key: string]: any;
 	}
 
-	const { label, caption, column = false, flex = [1, 2], children, nested }: Props = $props();
+	const { label, caption, column = false, flex = [1, 2], children, nested, ...rest }: Props = $props();
 </script>
 
-<div class="split-control" class:has-nested={!!nested} class:column>
+<div
+	class="split-control"
+	class:has-nested={!!nested}
+	class:column
+	aria-label={typeof label === 'string' ? label : undefined}
+	{...rest}
+>
 	<div class="left" style:flex={flex[0]}>
 		<div class="label-wrap">
 			{#if typeof label === 'string'}

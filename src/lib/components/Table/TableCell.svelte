@@ -1,18 +1,16 @@
 <script lang="ts">
+	import { getContext, type Snippet } from 'svelte';
 
-    import { getContext, type Snippet } from 'svelte';
+	interface Props {
+		children: Snippet;
+		[key: string]: any;
+	}
 
-    interface Props {
-        children: Snippet;
-        [key : string]: any;
-    }
+	let { children, ...rest }: Props = $props();
 
-    let { children, ...rest }: Props = $props();
-
-    const { head } = getContext<{ head: boolean }>('table-row');
-
+	const { head } = getContext<{ head: boolean }>('table-row');
 </script>
 
 <div role={head ? 'columnheader' : 'cell'} {...rest}>
-    {@render children()}
+	{@render children()}
 </div>

@@ -10,10 +10,6 @@
 	const hoverCss = hover ? '--local-hover-color: var(--hover);' : '';
 </script>
 
-<div
-	class="table"
-	style="--local-columns: {columns};{hoverCss}"
-	role="table"
->
+<div class="table" style="--local-columns: {columns};{hoverCss}" role="table">
 	{@render children?.()}
 </div>

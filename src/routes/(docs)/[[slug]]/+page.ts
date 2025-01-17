@@ -34,6 +34,8 @@ import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
+import { confetti } from '$lib/components/Confetti/confetti.js';
+import Confetti from './docs/Confetti.svelte';
 
 export const prerender = true;
 
@@ -47,6 +49,7 @@ const nav = {
 	table: Table,
 	callout: Callout,
 	'code-block': CodeBlock,
+	confetti: Confetti,
 	checkbox: Checkbox,
 	dropdown: Dropdown,
 	divider: Divider,

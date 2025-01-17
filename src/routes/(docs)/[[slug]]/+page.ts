@@ -49,6 +49,7 @@ import HeaderDoc from './docs/Header.svelte';
 import FooterDoc from './docs/Footer.svelte';
 import LandingPageComponents from './docs/LandingPageComponents.svelte';
 import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
+import Confetti from './docs/Confetti.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
@@ -67,6 +68,7 @@ const COMPONENTS: { slug: string; name: string; content: Component }[] = [
 	{ slug: 'icon-button', name: 'Icon Button', content: IconButton },
 	{ slug: 'callout', name: 'Callout', content: Callout },
 	{ slug: 'code-block', name: 'Code Block', content: CodeBlock },
+	{ slug: 'confetti', name: 'Confetti', content: Confetti },
 	{ slug: 'checkbox', name: 'Checkbox', content: Checkbox },
 	{ slug: 'detail-card', name: 'Detail Card', content: DetailCard },
 	{ slug: 'divider', name: 'Divider', content: Divider },

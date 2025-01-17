@@ -25,7 +25,8 @@ export function confetti(options: { particleCount?: number; duration?: number } 
 		rotationSpeed: number;
 	}
 
-	const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6'];
+	// const colors = ['#FF6633', '#FFB399', '#FF33FF', '#FFFF99', '#00B3E6', '#E6B333', '#3366E6'];
+	const colors = ['#ffba6b', '#8cdaff', '#b5ffb0', '#ff9090', '#ffbfff', '#d894ff', '#fff79b'];
 	const particles: Particle[] = [];
 
 	let animationFrameId: number;

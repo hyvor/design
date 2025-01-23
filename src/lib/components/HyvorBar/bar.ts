@@ -28,8 +28,32 @@ export interface BarUpdate {
 
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
+export interface BarLicense {
+	type: 'subscription' | 'trial' | 'custom' | 'expired';
+	plan: string | null;
+	trial_ends_at: number | null;
+}
+
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
+export const barLicense = writable<BarLicense | null>(null);
+export const barHasFailedInvoices = writable<boolean>(false);
+
+interface BarResponse {
+	updates: {
+		unread: number
+	},
+	billing: {
+		has_failed_invoices: boolean;
+		license: BarLicense | null;
+	},
+	user: {
+		name: string | null;
+		username: string;
+		email: string;
+		picture_url: string;
+	}
+}
 
 export function loadBarUser(instance: string, product: BarProduct) {
 	const query = new URLSearchParams();
@@ -44,9 +68,11 @@ export function loadBarUser(instance: string, product: BarProduct) {
 		credentials: 'include'
 	})
 		.then((response) => response.json())
-		.then((data) => {
+		.then((data: BarResponse) => {
 			barUser.set(data.user);
 			barUnreadUpdates.set(data.updates.unread);
+			barLicense.set(data.billing.license);
+			barHasFailedInvoices.set(data.billing.has_failed_invoices);
 
 			if (lastUnreadTime === null) {
 				UnreadUpdatesTimeLocalStorage.setNow();

@@ -19,10 +19,9 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Check
         run: |
-          npm install
+          npm ci
           npm run check
-          npm list
-          npx prettier . --check
+          npm run check:prettier
       - name: Check Icons
         working-directory: icons
         run: |

@@ -10,7 +10,8 @@
 		"package:watch": "svelte-package --watch",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"check:prettier": "prettier --check ."
 	},
 	"exports": {
 		"./components": {

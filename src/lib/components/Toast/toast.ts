@@ -17,7 +17,9 @@ const storeHelper = {
 		toastStore.update((toasts) => [toast, ...toasts].slice(0, MAX_TOASTS));
 	},
 	update: (toast: Partial<Toast>) => {
-		toastStore.update((toasts) => toasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t)));
+		toastStore.update((toasts) =>
+			toasts.map((t) => (t.id === toast.id ? { ...t, ...toast } : t))
+		);
 	},
 	upsert: (toast: Toast) => {
 		if (get(toastStore).find((t) => t.id === toast.id)) {

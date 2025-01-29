@@ -14,9 +14,9 @@
 <h1>Toast</h1>
 
 <p>
-	Toasts are used to show a notification to the user. They are implemented using Svelte stores. The <a
-		href="/#install"><code>{'<Base>'}</code> component</a
-	> sets up the store and the wrapper components to show the toast.
+	Toasts are used to show a notification to the user. They are implemented using Svelte stores.
+	The <a href="/#install"><code>{'<Base>'}</code> component</a> sets up the store and the wrapper components
+	to show the toast.
 </p>
 
 <h2 id="usage">Usage</h2>
@@ -113,12 +113,13 @@
 />
 
 <CodeResult>
-	<Button on:click={() => toast.success('<strong>Success</strong> toast')}>Toast with HTML</Button>
+	<Button on:click={() => toast.success('<strong>Success</strong> toast')}>Toast with HTML</Button
+	>
 </CodeResult>
 
 <p>
-	You can also pass a svelte component as the message. A <code>toast</code> prop will be passed to the
-	component. You can use it to close the toast.
+	You can also pass a svelte component as the message. A <code>toast</code> prop will be passed to
+	the component. You can use it to close the toast.
 </p>
 
 <CodeBlock
@@ -157,8 +158,9 @@
 <h2 id="examples">Loading</h2>
 
 <p>
-	You can show a loading toast by calling the <code>toast.loading()</code> function. The toast will not
-	be auto-closed. You may update its type by calling a toast-creating function with the same toast id.
+	You can show a loading toast by calling the <code>toast.loading()</code> function. The toast will
+	not be auto-closed. You may update its type by calling a toast-creating function with the same toast
+	id.
 </p>
 
 <CodeBlock

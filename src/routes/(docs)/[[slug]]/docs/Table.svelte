@@ -61,7 +61,8 @@
 	<TableRow>
 		<div><code>head</code></div>
 		<div>
-			Whether the row is a header row or not. This will change the background color and font weight.
+			Whether the row is a header row or not. This will change the background color and font
+			weight.
 		</div>
 	</TableRow>
 </Table>

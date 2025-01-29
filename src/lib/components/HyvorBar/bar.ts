@@ -41,18 +41,18 @@ export const barHasFailedInvoices = writable<boolean>(false);
 
 interface BarResponse {
 	updates: {
-		unread: number
-	},
+		unread: number;
+	};
 	billing: {
 		has_failed_invoices: boolean;
 		license: BarLicense | null;
-	},
+	};
 	user: {
 		name: string | null;
 		username: string;
 		email: string;
 		picture_url: string;
-	}
+	};
 }
 
 export function loadBarUser(instance: string, product: BarProduct) {

@@ -83,7 +83,11 @@
 					newValue = (chunks: string | string[]) => {
 						const children = typeof chunks === 'string' ? chunks : chunks.join('');
 						const id =
-							key + '-' + Math.random().toString(36).substring(7) + '-' + Date.now().toString();
+							key +
+							'-' +
+							Math.random().toString(36).substring(7) +
+							'-' +
+							Date.now().toString();
 						componentBindings.set(id, {
 							component: component!,
 							props: {

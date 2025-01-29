@@ -34,8 +34,8 @@
 	<TableRow>
 		<div><code>caption</code></div>
 		<div>
-			The caption to display on the left side of the split control. This is displayed below the
-			label, and is usually used to provide more information about the control.
+			The caption to display on the left side of the split control. This is displayed below
+			the label, and is usually used to provide more information about the control.
 		</div>
 	</TableRow>
 
@@ -102,7 +102,11 @@
 />
 
 <CodeResult white>
-	<SplitControl label="Language" caption="The language to use for the site." data-testid="language">
+	<SplitControl
+		label="Language"
+		caption="The language to use for the site."
+		data-testid="language"
+	>
 		<TextInput type="text" block value="English" />
 	</SplitControl>
 </CodeResult>

@@ -5,15 +5,13 @@
 
     let { name } = $props();
 
-    function remainingTrialDays() {
-
-        const endsAt = $barLicense?.trial_ends_at;
+    function remainingTrialDays(endsAt: number | undefined | null) {
 
         if (!endsAt) {
             return 1;
         }
 
-        const endsAtDate = new Date(endsAt);
+        const endsAtDate = new Date(endsAt * 1000);
         const now = new Date();
 
         const diffTime = endsAtDate.valueOf() - now.valueOf();
@@ -23,7 +21,7 @@
 
     }
 
-    let trialDays = remainingTrialDays();
+    let trialDays = $derived(remainingTrialDays($barLicense?.trial_ends_at));
 </script>
 
 {#if $barLicense}

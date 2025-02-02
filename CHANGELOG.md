@@ -1,3 +1,7 @@
+## 1.0.10 - 2025-02-02
+
+- Adds billing support to HyvorBar
+
 ## 1.0.8 - 2025-01-010
 
 - Adds `TableCell` component for improved Table accessibility

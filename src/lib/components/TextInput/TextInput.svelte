@@ -21,7 +21,7 @@
 		size = 'medium',
 		block = false,
 		value = $bindable(undefined),
-		input = $bindable({} as HTMLInputElement),
+		input = $bindable(),
 		start,
 		end,
 		select = false,

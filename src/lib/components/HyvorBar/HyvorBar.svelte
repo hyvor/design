@@ -9,6 +9,8 @@
 	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
 	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
 	import LogoCore from '$lib/marketing/Logo/LogoCore.svelte';
+	import BarNotice from './Notice/BarNotice.svelte';
+	import BarLicense from './Notice/BarLicense.svelte';
 
 	interface Props {
 		instance?: string;
@@ -75,8 +77,11 @@
 					{getName()}
 				</span>
 			</a>
+			<BarLicense name={getName()} />
 		</div>
 		<div class="right">
+			<BarNotice {instance} />
+
 			<div class="hidden-on-mobile">
 				<BarSupport config={configComplete} {product} mobile={mobileShow} />
 				<BarProducts mobile={mobileShow} />

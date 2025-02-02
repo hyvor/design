@@ -15,13 +15,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          node-version: '18.x'
+          node-version: '23.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Check
         run: |
           npm ci
           npm run check
-          npx prettier . --check
+          npm run check:prettier
       - name: Check Icons
         working-directory: icons
         run: |

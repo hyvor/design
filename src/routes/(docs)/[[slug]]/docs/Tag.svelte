@@ -385,7 +385,8 @@
 <h3 id="custom">Custom colors</h3>
 
 <p>
-	You can use the <code>bg</code> and <code>fg</code> properties to set custom background and text colors.
+	You can use the <code>bg</code> and <code>fg</code> properties to set custom background and text
+	colors.
 </p>
 
 <CodeBlock

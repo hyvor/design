@@ -302,8 +302,8 @@ All other properties will be forwarded to the underlying element.
 		</CodeResult>
 	</li>
 	<li>
-		<code>action</code> - Placed after the content, locked to the right side of the button. This is
-		useful with the <code>block</code> property.
+		<code>action</code> - Placed after the content, locked to the right side of the button. This
+		is useful with the <code>block</code> property.
 
 		<CodeBlock
 			code={`

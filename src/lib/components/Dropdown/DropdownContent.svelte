@@ -67,7 +67,8 @@
 				}
 			} else if (align === 'center') {
 				contentWrap.style.left =
-					Math.max(triggerRect.left + triggerRect.width / 2 - width / 2, SPACE_AROUND) + 'px';
+					Math.max(triggerRect.left + triggerRect.width / 2 - width / 2, SPACE_AROUND) +
+					'px';
 			} else if (align === 'end') {
 				contentWrap.style.left = Math.max(triggerRect.right - width, SPACE_AROUND) + 'px';
 			}

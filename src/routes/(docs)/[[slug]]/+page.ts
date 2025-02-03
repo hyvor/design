@@ -34,6 +34,7 @@ import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
+import EmojiPicker from './docs/EmojiPicker.svelte';
 
 export const prerender = true;
 
@@ -50,6 +51,7 @@ const nav = {
 	checkbox: Checkbox,
 	dropdown: Dropdown,
 	divider: Divider,
+	'emoji-picker': EmojiPicker,
 	switch: Switch,
 	radio: Radio,
 	'split-control': SplitControl,

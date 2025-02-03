@@ -26,6 +26,7 @@
 		{ href: '/checkbox', label: 'Checkbox' },
 		{ href: '/divider', label: 'Divider' },
 		{ href: '/dropdown', label: 'Dropdown' },
+		{ href: '/emoji-picker', label: 'Emoji Picker' },
 		{ href: '/nav-link', label: 'Nav Link' },
 		{ href: '/radio', label: 'Radio' },
 		{ href: '/switch', label: 'Switch' },

@@ -30,7 +30,7 @@
 				position="bottom"
 			>
 				<Tag color="blue" size="small">
-					{$barLicense.plan}
+					{$barLicense.subscription!.plan_readable}
 				</Tag>
 			</Tooltip>
 		{:else if $barLicense.type === 'custom'}

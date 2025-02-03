@@ -90,11 +90,11 @@
 		}
 	}
 
-	run(() => {
-		if (position || align) {
-			positionWrap();
-		}
-	});
+	$effect(() => {
+		position;
+		align;
+		positionWrap();
+	})
 
 	function debouncedPosition() {
 		debounce(positionWrap, 10)();
@@ -110,6 +110,10 @@
 			subtree: true,
 			childList: true
 		});
+
+		return () => {
+			mutationObserver.disconnect();
+		};
 	});
 
 	function slideIn(node: any) {

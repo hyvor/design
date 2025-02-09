@@ -38,6 +38,8 @@ export interface BarResolvedLicense {
     trial_ends_at: null | number,
 }
 
+let instance = '';
+let product: BarProduct = 'core';
 
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
@@ -60,7 +62,12 @@ interface BarResponse {
 	};
 }
 
-export function loadBarUser(instance: string, product: BarProduct) {
+export function setInstanceAndProduct(instance_: string, product_: BarProduct) {
+	instance = instance_;
+	product = product_;
+}
+
+export function loadBarUser() {
 	const query = new URLSearchParams();
 	query.set('product', product);
 
@@ -141,4 +148,18 @@ class BarLocalStorage {
 			console.error(e);
 		}
 	}
+}
+
+// exported to be used from outside
+export const bar = {
+
+	/**
+	 * Refetches data like user info, unread updates, billing data, etc.
+	 * But does not show a loader
+	 * This is useful to create after, for example, a user creates a new blog
+	 */
+	reload: () => {
+		loadBarUser();
+	}
+
 }

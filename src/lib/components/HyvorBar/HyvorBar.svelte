@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
-	import { loadBarUser, type BarConfig, type BarProduct } from './bar.js';
+	import { loadBarUser, setInstanceAndProduct, type BarConfig, type BarProduct } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
@@ -43,7 +43,8 @@
 	}
 
 	onMount(() => {
-		loadBarUser(instance, product);
+		setInstanceAndProduct(instance, product);
+		loadBarUser();
 	});
 
 	function getLogo() {

@@ -33,6 +33,7 @@ export interface BarResolvedLicense {
     license: Record<string, number|boolean> | null,
     subscription: null | {
 		plan_readable: string;
+		cancel_at: null | number;
 	},
     trial_ends_at: null | number,
 }

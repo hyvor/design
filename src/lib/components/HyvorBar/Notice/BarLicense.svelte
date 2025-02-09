@@ -5,32 +5,48 @@
 
 	let { name } = $props();
 
-	function remainingTrialDays(endsAt: number | undefined | null) {
-		if (!endsAt) {
-			return 1;
-		}
-
-		const endsAtDate = new Date(endsAt * 1000);
+	function daysDiff(unix: number) {
+		const date = new Date(unix * 1000);
 		const now = new Date();
 
-		const diffTime = endsAtDate.valueOf() - now.valueOf();
+		const diffTime = date.valueOf() - now.valueOf();
 		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
 
 		return Math.max(diffDays, 1);
 	}
 
+	function remainingTrialDays(endsAt: number | undefined | null) {
+		if (!endsAt) {
+			return 1;
+		}
+		return daysDiff(endsAt);
+	}
+
+	function remainingCancelAtDAys(cancelAt: number | undefined | null) : null | number {
+		if (!cancelAt) {
+			return null;
+		}
+		return daysDiff(cancelAt);
+	}
+
 	let trialDays = $derived(remainingTrialDays($barLicense?.trial_ends_at));
+	let cancelAtDays = $derived(remainingCancelAtDAys($barLicense?.subscription?.cancel_at));
 </script>
 
 {#if $barLicense}
 	<a class="wrap" href="/console/billing">
 		{#if $barLicense.type === 'subscription'}
 			<Tooltip
-				text="Your current subscription plan for {name}. Click to manage it."
 				position="bottom"
 			>
+				{#snippet tooltip()}
+					Your current subscription plan for {name}. Click to manage it.
+				{/snippet}
 				<Tag color="blue" size="small">
 					{$barLicense.subscription!.plan_readable}
+					{#if cancelAtDays}
+						(until {cancelAtDays}d)
+					{/if}
 				</Tag>
 			</Tooltip>
 		{:else if $barLicense.type === 'custom'}

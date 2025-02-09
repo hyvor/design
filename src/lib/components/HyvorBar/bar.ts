@@ -28,15 +28,20 @@ export interface BarUpdate {
 
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
-export interface BarLicense {
-	type: 'subscription' | 'trial' | 'custom' | 'expired';
-	plan: string | null;
-	trial_ends_at: number | null;
+export interface BarResolvedLicense {
+    type: 'subscription' | 'trial' | 'custom' | 'expired',
+    license: Record<string, number|boolean> | null,
+    subscription: null | {
+		plan_readable: string;
+		cancel_at: null | number;
+	},
+    trial_ends_at: null | number,
 }
+
 
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
-export const barLicense = writable<BarLicense | null>(null);
+export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
 
 interface BarResponse {
@@ -45,7 +50,7 @@ interface BarResponse {
 	};
 	billing: {
 		has_failed_invoices: boolean;
-		license: BarLicense | null;
+		license: BarResolvedLicense | null;
 	};
 	user: {
 		name: string | null;

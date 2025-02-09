@@ -32,6 +32,7 @@ export { default as Label } from './FormControl/Label.svelte';
 export { default as Validation } from './FormControl/Validation.svelte';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
+export { bar as hyvorBar } from './HyvorBar/bar.js'; 
 
 export { default as IconButton } from './IconButton/IconButton.svelte';
 

@@ -23,6 +23,7 @@
 		{ href: '/icon-button', label: 'Icon Button' },
 		{ href: '/callout', label: 'Callout' },
 		{ href: '/code-block', label: 'Code Block' },
+		{ href: '/confetti', label: 'Confetti' },
 		{ href: '/checkbox', label: 'Checkbox' },
 		{ href: '/divider', label: 'Divider' },
 		{ href: '/dropdown', label: 'Dropdown' },

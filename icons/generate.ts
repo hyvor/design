@@ -53,7 +53,7 @@ function svgFileToSvelte(source: string, filename: string) {
         throw new Error(`Expected <svg>, got <${svg.name}>`);
     }
 
-    svg.children!.forEach((node) => {
+    svg.children!.forEach((node: any) => {
         content += source.slice(node.start, node.end);
     });
 
@@ -73,9 +73,14 @@ function svgFileToSvelte(source: string, filename: string) {
     }
 
     const svelte = `<script lang="ts">
-    export let size: number = 16;
+  interface Props {
+    size?: number;
+    [key: string]: any
+  }
+
+  let { size = 16, ...rest }: Props = $props();
 </script>
-<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width={size} height={size} {...$$restProps}>${content.trim()}</svg>`;
+<svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 16 16" width={size} height={size} {...rest}>${content.trim()}</svg>`;
 
     return svelte;
 

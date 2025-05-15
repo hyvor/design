@@ -41,6 +41,7 @@
 		{ href: '/tag', label: 'Tag' },
 		{ href: '/tooltip', label: 'Tooltip' },
 		{ href: '/toast', label: 'Toast' },
+		{ href: '/usage', label: 'Usage' },
 		{ href: '/modal', label: 'Modal' },
 		{ href: '/icon-message', label: 'Icon Message' },
 		{ href: '/slider', label: 'Slider' }

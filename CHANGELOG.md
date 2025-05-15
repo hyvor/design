@@ -1,3 +1,9 @@
+## 1.0.11 - 2025-02-03
+
+- HyvorBar updated to support any product name so that design system updates are not necessary for new products
+- Bluesky social support
+- Usage component
+
 ## 1.0.10 - 2025-02-02
 
 - Adds billing support to HyvorBar

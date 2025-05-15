@@ -34,6 +34,7 @@ import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
+import Usage from './docs/Usage.svelte';
 
 export const prerender = true;
 
@@ -71,6 +72,7 @@ const nav = {
 	slider: Slider,
 	'icon-message': IconMessage,
 
+	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,
 	document: Document

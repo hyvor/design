@@ -11,7 +11,7 @@
 
 	interface Props {
 		instance?: string;
-		product: BarProduct;
+		product: string;
 		config?: Partial<BarConfig>;
 	}
 
@@ -50,7 +50,6 @@
 		}
 		return (PRODUCTS as any)[product]?.name || 'HYVOR';
 	}
-
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -59,7 +58,12 @@
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<img src={instance + "/api/public/logo/" + product + ".svg"} alt={product} width="20" height="20" />
+				<img
+					src={instance + '/api/public/logo/' + product + '.svg'}
+					alt={product}
+					width="20"
+					height="20"
+				/>
 				<span class="name">
 					{getName()}
 				</span>

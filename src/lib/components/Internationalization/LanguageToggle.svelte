@@ -68,9 +68,6 @@
 						<span class="name">
 							{language.name}
 						</span>
-						<Text small light>
-							{language.region}
-						</Text>
 					</ActionListItem>
 				{/each}
 			</ActionList>
@@ -80,7 +77,6 @@
 
 <style>
 	.flag {
-		margin-right: 6px;
-		font-size: 20px;
+		margin-right: 3px;
 	}
 </style>

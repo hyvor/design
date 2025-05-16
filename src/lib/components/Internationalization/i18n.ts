@@ -4,12 +4,13 @@ import { t } from './t.js';
 import T from './T.svelte';
 import type { ToDotPaths, I18nStrings, PrimitiveType } from './types.js';
 
-export type i18nLoaderType = () => Promise<any>;
+export type i18nLoaderType = () => Promise<Record<string, any>>;
+
+export const LOCALE_LOCAL_STORAGE_KEY = 'hds-language';
 
 interface LanguageBase {
 	name: string;
 	flag: string;
-	region: string;
 	code: string;
 	default?: boolean;
 }
@@ -18,6 +19,7 @@ interface LanguageWithStrings extends LanguageBase {
 }
 interface LanguageWithLoader extends LanguageBase {
 	loader: i18nLoaderType;
+	strings: undefined | Record<string, any>;
 }
 export type Language = LanguageWithStrings | LanguageWithLoader;
 
@@ -55,6 +57,28 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		for (const language of languages) {
 			this.register(language);
 		}
+
+		const localeStorageLocale = this.getLocaleFromLocalStorage();
+		const browserLocale = closestLanguageCode(navigator.language, this.languages);
+
+		if (localeStorageLocale) {
+			this.setLocale(localeStorageLocale);
+		} else if (browserLocale) {
+			this.setLocale(browserLocale);
+		}
+	}
+
+	private getLocaleFromLocalStorage(): string | null {
+		if (typeof window !== 'undefined') {
+			return localStorage.getItem(LOCALE_LOCAL_STORAGE_KEY);
+		}
+		return null;
+	}
+
+	private setLocaleOnLocalStorage(code: string) {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(LOCALE_LOCAL_STORAGE_KEY, code);
+		}
 	}
 
 	setStrings(code: string) {
@@ -65,19 +89,31 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		this.strings.set(merged);
 	}
 
-	setLocale(code: string) {
+	async setLocale(code: string) {
+
 		if (this.stringsCache.has(code)) {
 			this.setStrings(code);
 			this.locale.set(code);
 		} else {
-			this.languageByCode(code)
-				?.loader()
-				.then(({ default: strings }) => {
-					this.stringsCache.set(code, strings);
-					this.setStrings(code);
-					this.locale.set(code);
-				});
+
+			const language = this.languageByCode(code);
+
+			if (!language) {
+				throw new Error(`Language with code ${code} not found`);
+			}
+
+			let strings = language.strings;
+
+			if (!strings) {
+				strings = await language.loader();
+			}
+
+			this.stringsCache.set(code, strings);
+			this.setStrings(code);
+			this.locale.set(code);
 		}
+
+		this.setLocaleOnLocalStorage(code);
 	}
 
 	register(language: Language) {
@@ -117,4 +153,23 @@ export function getStringByKey(messages: Record<string, any>, key: string) {
 	}
 
 	return value as string;
+}
+
+
+function closestLanguageCode(code: string, languages: Language[]): string | null {
+	const language = languages.find((l) => l.code === code);
+
+	if (language) {
+		return language.code;
+	}
+
+	const codeLanguagePart = code.split('-')[0];
+
+	for (const language of languages) {
+		if (language.code.split('-')[0] === codeLanguagePart) {
+			return language.code;
+		}
+	}
+
+	return null;
 }

@@ -19,7 +19,7 @@ interface LanguageWithStrings extends LanguageBase {
 }
 interface LanguageWithLoader extends LanguageBase {
 	loader: i18nLoaderType;
-	strings: undefined | Record<string, any>;
+	strings?: Record<string, any>;
 }
 export type Language = LanguageWithStrings | LanguageWithLoader;
 

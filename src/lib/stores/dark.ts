@@ -2,6 +2,8 @@ import { writable } from 'svelte/store';
 
 export const dark = writable(false);
 
+export const DARK_LOCAL_STORAGE_KEY = 'hds-dark';
+
 export function setInitialState() {
 	const isDark = isDarkScheme();
 
@@ -12,16 +14,16 @@ export function setInitialState() {
 	dark.subscribe((isDark) => {
 		if (isDark) {
 			document.documentElement.classList.add('dark');
-			window.localStorage.setItem('scheme-dark', 'true');
+			window.localStorage.setItem(DARK_LOCAL_STORAGE_KEY, 'true');
 		} else {
 			document.documentElement.classList.remove('dark');
-			window.localStorage.removeItem('scheme-dark');
+			window.localStorage.removeItem(DARK_LOCAL_STORAGE_KEY);
 		}
 	});
 }
 
 function isDarkScheme() {
-	const localStorageData = window.localStorage.getItem('scheme-dark');
+	const localStorageData = window.localStorage.getItem(DARK_LOCAL_STORAGE_KEY);
 	if (localStorageData) {
 		return !!localStorageData;
 	}

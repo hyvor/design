@@ -2,15 +2,21 @@
 	const PRODUCTS = {
 		talk: {
 			name: 'Hyvor Talk',
-			logo: LogoTalk,
+			logo: undefined,
 			url: 'talk.hyvor.com',
-			description: 'Comments, Newsletters, Memberships'
+			description: 'Commenting Platform'
 		},
 		blogs: {
 			name: 'Hyvor Blogs',
-			logo: LogoBlogs,
+			logo: undefined,
 			url: 'blogs.hyvor.com',
 			description: 'Blogging Platform'
+		},
+		post: {
+			name: 'Hyvor Post',
+			url: 'post.hyvor.com',
+			logo: undefined,
+			description: 'Newsletter Platform',
 		},
 		fortguard: {
 			name: 'FortGuard',
@@ -23,18 +29,17 @@
 </script>
 
 <script lang="ts">
-	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
 	import LogoFortguard from '$lib/marketing/Logo/LogoFortguard.svelte';
-	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
 	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	interface Props {
 		mobile?: boolean;
+		instance: string;
 	}
 
-	let { mobile = false }: Props = $props();
+	let { mobile = false, instance }: Props = $props();
 </script>
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325}>
@@ -58,7 +63,11 @@
 							</div>
 						{/snippet}
 						{#snippet start()}
-							<product.logo size={20} />
+							{#if product.logo}
+								<product.logo size={20} />
+							{:else}
+								<img src={instance + "/api/public/logo/" + key + ".svg"} alt={product.name} width="20" height="20" />
+							{/if}
 						{/snippet}
 						{#snippet end()}
 							<IconBoxArrowUpRight size={12} />

@@ -16,7 +16,6 @@
 				code: 'en',
 				flag: '🇺🇸',
 				name: 'English',
-				region: 'United States',
 				strings: en,
 				default: true
 			},
@@ -24,7 +23,6 @@
 				code: 'fr',
 				flag: '🇫🇷',
 				name: 'Français',
-				region: 'France',
 				loader: () => import('./locale/fr.json')
 			}
 		]}

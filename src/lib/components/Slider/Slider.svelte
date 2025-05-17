@@ -8,9 +8,19 @@
 		step?: number;
 		// export let disabled = false;
 		dots?: boolean;
+		onchange?: (value: number) => void;
+		valueFormat?: (value: number) => string;
 	}
 
-	let { min, max, value = $bindable(), step = 1, dots = false }: Props = $props();
+	let {
+		min,
+		max,
+		value = $bindable(),
+		step = 1,
+		dots = false,
+		onchange,
+		valueFormat = (val) => val.toString()
+	}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
 		change: number;
@@ -75,6 +85,7 @@
 		const newValue = min + (x / width) * (max - min);
 		value = toStep(newValue);
 		dispatch('change', value);
+		onchange?.(value);
 	}
 </script>
 
@@ -90,7 +101,7 @@
 		<div class="progress" style="width: {progress}%"></div>
 		<button class="handle" style="left: {progress}%">
 			<span class="tip">
-				{value}
+				{valueFormat(value)}
 			</span>
 		</button>
 

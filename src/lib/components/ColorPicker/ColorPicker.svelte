@@ -8,13 +8,19 @@
 		size?: number;
 		show?: boolean;
 		'aria-label'?: string;
+		alpha?: boolean;
+		oninput?: (color: string) => void;
+		onchange?: (color: string) => void;
 	}
 
 	let {
 		color = $bindable('#000000'),
 		size = 30,
 		show = $bindable(false),
-		'aria-label': ariaLabel = ''
+		'aria-label': ariaLabel = '',
+		alpha = false,
+		oninput,
+		onchange
 	}: Props = $props();
 
 	const dispatch = createEventDispatcher<{
@@ -24,10 +30,12 @@
 
 	function handleInput() {
 		dispatch('input', color);
+		oninput?.(color);
 	}
 
 	function handleClose() {
 		dispatch('change', color);
+		onchange?.(color);
 		show = false;
 	}
 </script>
@@ -58,7 +66,7 @@
 				bind:hex={color}
 				--input-size={size + 'px'}
 				isDialog={false}
-				isAlpha={false}
+				isAlpha={alpha}
 				on:input={handleInput}
 			/>
 		</div>

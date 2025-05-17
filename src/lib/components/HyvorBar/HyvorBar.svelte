@@ -6,15 +6,12 @@
 	import { loadBarUser, setInstanceAndProduct, type BarConfig, type BarProduct } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
-	import LogoTalk from '$lib/marketing/Logo/LogoTalk.svelte';
-	import LogoBlogs from '$lib/marketing/Logo/LogoBlogs.svelte';
-	import LogoCore from '$lib/marketing/Logo/LogoCore.svelte';
 	import BarNotice from './Notice/BarNotice.svelte';
 	import BarLicense from './Notice/BarLicense.svelte';
 
 	interface Props {
 		instance?: string;
-		product: BarProduct;
+		product: string;
 		config?: Partial<BarConfig>;
 	}
 
@@ -47,24 +44,12 @@
 		loadBarUser();
 	});
 
-	function getLogo() {
-		if (product === 'talk') {
-			return LogoTalk;
-		} else if (product === 'blogs') {
-			return LogoBlogs;
-		} else {
-			return LogoCore;
-		}
-	}
-
 	function getName() {
 		if (config.name) {
 			return config.name;
 		}
 		return (PRODUCTS as any)[product]?.name || 'HYVOR';
 	}
-
-	const LogoComponent = getLogo();
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
@@ -73,7 +58,12 @@
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<LogoComponent size={20} />
+				<img
+					src={instance + '/api/public/logo/' + product + '.svg'}
+					alt={product}
+					width="20"
+					height="20"
+				/>
 				<span class="name">
 					{getName()}
 				</span>
@@ -85,7 +75,7 @@
 
 			<div class="hidden-on-mobile">
 				<BarSupport config={configComplete} {product} mobile={mobileShow} />
-				<BarProducts mobile={mobileShow} />
+				<BarProducts {instance} mobile={mobileShow} />
 				<BarUpdates {instance} {product} />
 			</div>
 

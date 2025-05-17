@@ -68,6 +68,10 @@
 		border-left: 3px solid var(--accent);
 	}
 
+	:global(:root.dark) a.active {
+		background-color: color-mix(in srgb, var(--accent-lightest), transparent 80%);
+	}
+
 	a.disabled {
 		cursor: not-allowed;
 		pointer-events: none;

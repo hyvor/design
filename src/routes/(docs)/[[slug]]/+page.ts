@@ -34,6 +34,8 @@ import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
+import Usage from './docs/Usage.svelte';
+import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 
 export const prerender = true;
 
@@ -42,6 +44,7 @@ const nav = {
 	'action-list': ActionList,
 	avatar: Avatar,
 	button: Button,
+	'box-shadow-picker': BoxShadowPicker,
 	'color-picker': ColorPicker,
 	'icon-button': IconButton,
 	table: Table,
@@ -71,6 +74,7 @@ const nav = {
 	slider: Slider,
 	'icon-message': IconMessage,
 
+	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,
 	document: Document

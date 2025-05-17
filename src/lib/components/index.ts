@@ -11,6 +11,8 @@ export { default as Box } from './Box/Box.svelte';
 export { default as Button } from './Button/Button.svelte';
 export { default as ButtonGroup } from './Button/ButtonGroup.svelte';
 
+export { default as BoxShadowPicker } from './BoxShadowPicker/BoxShadowPicker.svelte';
+
 export { default as Callout } from './Callout/Callout.svelte';
 
 export { default as Checkbox } from './Checkbox/Checkbox.svelte';
@@ -19,6 +21,7 @@ export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
 
+export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
@@ -32,7 +35,7 @@ export { default as Label } from './FormControl/Label.svelte';
 export { default as Validation } from './FormControl/Validation.svelte';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
-export { bar as hyvorBar } from './HyvorBar/bar.js'; 
+export { bar as hyvorBar } from './HyvorBar/bar.js';
 
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
@@ -72,6 +75,8 @@ export { default as TextInput } from './TextInput/TextInput.svelte';
 export { default as toast } from './Toast/toast.js';
 
 export { default as Tooltip } from './Tooltip/Tooltip.svelte';
+
+export { default as Usage } from './Usage/Usage.svelte';
 
 export { default as IconMessage } from './IconMessage/IconMessage.svelte';
 

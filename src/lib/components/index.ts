@@ -11,6 +11,8 @@ export { default as Box } from './Box/Box.svelte';
 export { default as Button } from './Button/Button.svelte';
 export { default as ButtonGroup } from './Button/ButtonGroup.svelte';
 
+export { default as BoxShadowPicker } from './BoxShadowPicker/BoxShadowPicker.svelte';
+
 export { default as Callout } from './Callout/Callout.svelte';
 
 export { default as Checkbox } from './Checkbox/Checkbox.svelte';
@@ -33,7 +35,7 @@ export { default as Label } from './FormControl/Label.svelte';
 export { default as Validation } from './FormControl/Validation.svelte';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
-export { bar as hyvorBar } from './HyvorBar/bar.js'; 
+export { bar as hyvorBar } from './HyvorBar/bar.js';
 
 export { default as IconButton } from './IconButton/IconButton.svelte';
 

@@ -19,6 +19,7 @@
 		{ href: '/avatar', label: 'Avatar' },
 		{ href: '/button', label: 'Button' },
 		{ href: '/box', label: 'Box' },
+		{ href: '/box-shadow-picker', label: 'Box Shadow Picker' },
 		{ href: '/color-picker', label: 'Color Picker' },
 		{ href: '/icon-button', label: 'Icon Button' },
 		{ href: '/callout', label: 'Callout' },

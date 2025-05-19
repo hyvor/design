@@ -1,5 +1,5 @@
 import { deepmerge } from 'deepmerge-ts';
-import { writable, type Readable, type Writable, derived } from 'svelte/store';
+import { writable, type Readable, type Writable, derived, get } from 'svelte/store';
 import { t } from './t.js';
 import T from './T.svelte';
 import type { ToDotPaths, I18nStrings, PrimitiveType } from './types.js';
@@ -33,7 +33,7 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 	public stringsCache = new Map<string, Record<string, any>>();
 	public defaultStrings: Record<string, any>;
 
-	constructor(languages: Language[]) {
+	constructor(languages: Language[], forceLanguage?: string) {
 		const defaultLanguage = languages.find((l) => l.default);
 
 		if (!defaultLanguage) {
@@ -58,17 +58,22 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 			this.register(language);
 		}
 
-		const localeStorageLocale = this.getLocaleFromLocalStorage();
-		const browserLocale = closestLanguageCode(navigator.language, this.languages);
+		const localeStorageLocale = InternationalizationService.getLocaleFromLocalStorage();
+		const browserLocale = InternationalizationService.getClosestLanguageCode(
+			navigator.language,
+			this.languages.map((l) => l.code)
+		);
 
-		if (localeStorageLocale) {
+		if (forceLanguage) {
+			this.setLocale(forceLanguage);
+		} else if (localeStorageLocale) {
 			this.setLocale(localeStorageLocale);
 		} else if (browserLocale) {
 			this.setLocale(browserLocale);
 		}
 	}
 
-	private getLocaleFromLocalStorage(): string | null {
+	static getLocaleFromLocalStorage(): string | null {
 		if (typeof window !== 'undefined') {
 			return localStorage.getItem(LOCALE_LOCAL_STORAGE_KEY);
 		}
@@ -90,12 +95,10 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 	}
 
 	async setLocale(code: string) {
-
 		if (this.stringsCache.has(code)) {
 			this.setStrings(code);
 			this.locale.set(code);
 		} else {
-
 			const language = this.languageByCode(code);
 
 			if (!language) {
@@ -114,6 +117,10 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		}
 
 		this.setLocaleOnLocalStorage(code);
+	}
+
+	getLocale(): string {
+		return get(this.locale);
 	}
 
 	register(language: Language) {
@@ -137,6 +144,22 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		return t(key, params, this);
 	}
 
+	static getClosestLanguageCode(code: string, availableCodes: string[]): string | null {
+		if (availableCodes.includes(code)) {
+			return code;
+		}
+
+		const codeLanguagePart = code.split('-')[0];
+
+		for (const availableCode of availableCodes) {
+			if (availableCode.split('-')[0] === codeLanguagePart) {
+				return availableCode;
+			}
+		}
+
+		return null;
+	}
+
 	public T: typeof T<StringsT> = T as any;
 }
 
@@ -153,23 +176,4 @@ export function getStringByKey(messages: Record<string, any>, key: string) {
 	}
 
 	return value as string;
-}
-
-
-function closestLanguageCode(code: string, languages: Language[]): string | null {
-	const language = languages.find((l) => l.code === code);
-
-	if (language) {
-		return language.code;
-	}
-
-	const codeLanguagePart = code.split('-')[0];
-
-	for (const language of languages) {
-		if (language.code.split('-')[0] === codeLanguagePart) {
-			return language.code;
-		}
-	}
-
-	return null;
 }

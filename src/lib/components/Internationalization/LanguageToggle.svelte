@@ -5,9 +5,10 @@
 	import { type Language, type InternationalizationService } from './i18n.js';
 	import ActionList from '../ActionList/ActionList.svelte';
 	import ActionListItem from '../ActionList/ActionListItem.svelte';
-	import Text from '../Text/Text.svelte';
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconButton from '../IconButton/IconButton.svelte';
+	import { get } from 'svelte/store';
+	import { goto } from '$app/navigation';
 
 	interface Props {
 		position?: ComponentProps<typeof Dropdown>['position'];
@@ -15,6 +16,7 @@
 		caret?: Component;
 		icon?: boolean;
 		size?: 'medium' | 'small';
+		staticPage?: boolean;
 	}
 
 	let {
@@ -22,7 +24,8 @@
 		align = 'start',
 		caret = IconCaretDown,
 		icon = false,
-		size = 'medium'
+		size = 'medium',
+		staticPage = false
 	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
@@ -31,8 +34,20 @@
 	let show = $state(false);
 
 	function handleClick(language: Language) {
-		i18n.setLocale(language.code);
 		show = false;
+
+		if (staticPage) {
+			const currentLocale = get(i18n.locale);
+
+			if (language.code === currentLocale) {
+				return;
+			}
+			const url = new URL(window.location.href);
+			url.pathname = url.pathname.replace(`/${currentLocale}`, `/${language.code}`);
+			goto(url.toString());
+		}
+
+		i18n.setLocale(language.code);
 	}
 </script>
 

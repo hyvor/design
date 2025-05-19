@@ -8,6 +8,7 @@
 	interface Props {
 		logo: string;
 		name?: string;
+		href?: string;
 		subName?: undefined | string;
 		darkToggle?: boolean;
 		center?: import('svelte').Snippet;
@@ -17,6 +18,7 @@
 	let {
 		logo,
 		name = 'HYVOR',
+		href = '/',
 		subName = undefined,
 		darkToggle = true,
 		center,
@@ -27,7 +29,7 @@
 <header>
 	<Container as="nav">
 		<div class="nav-start">
-			<a class="nav-brand" href="/">
+			<a class="nav-brand" {href}>
 				<img src={logo} alt="Hyvor Logo" width="30" height="30" />
 				<span class="brand-product">
 					<span class="brand">{name}</span>

@@ -1,15 +1,16 @@
 import { deepmerge } from 'deepmerge-ts';
-import { writable, type Readable, type Writable, derived } from 'svelte/store';
+import { writable, type Readable, type Writable, derived, get } from 'svelte/store';
 import { t } from './t.js';
 import T from './T.svelte';
 import type { ToDotPaths, I18nStrings, PrimitiveType } from './types.js';
 
-export type i18nLoaderType = () => Promise<any>;
+export type i18nLoaderType = () => Promise<Record<string, any>>;
+
+export const LOCALE_LOCAL_STORAGE_KEY = 'hds-language';
 
 interface LanguageBase {
 	name: string;
 	flag: string;
-	region: string;
 	code: string;
 	default?: boolean;
 }
@@ -18,6 +19,7 @@ interface LanguageWithStrings extends LanguageBase {
 }
 interface LanguageWithLoader extends LanguageBase {
 	loader: i18nLoaderType;
+	strings?: Record<string, any>;
 }
 export type Language = LanguageWithStrings | LanguageWithLoader;
 
@@ -31,7 +33,7 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 	public stringsCache = new Map<string, Record<string, any>>();
 	public defaultStrings: Record<string, any>;
 
-	constructor(languages: Language[]) {
+	constructor(languages: Language[], forceLanguage?: string) {
 		const defaultLanguage = languages.find((l) => l.default);
 
 		if (!defaultLanguage) {
@@ -55,6 +57,33 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		for (const language of languages) {
 			this.register(language);
 		}
+
+		const localeStorageLocale = InternationalizationService.getLocaleFromLocalStorage();
+		const browserLocale = InternationalizationService.getClosestLanguageCode(
+			navigator.language,
+			this.languages.map((l) => l.code)
+		);
+
+		if (forceLanguage) {
+			this.setLocale(forceLanguage);
+		} else if (localeStorageLocale) {
+			this.setLocale(localeStorageLocale);
+		} else if (browserLocale) {
+			this.setLocale(browserLocale);
+		}
+	}
+
+	static getLocaleFromLocalStorage(): string | null {
+		if (typeof window !== 'undefined') {
+			return localStorage.getItem(LOCALE_LOCAL_STORAGE_KEY);
+		}
+		return null;
+	}
+
+	private setLocaleOnLocalStorage(code: string) {
+		if (typeof window !== 'undefined') {
+			localStorage.setItem(LOCALE_LOCAL_STORAGE_KEY, code);
+		}
 	}
 
 	setStrings(code: string) {
@@ -65,19 +94,33 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		this.strings.set(merged);
 	}
 
-	setLocale(code: string) {
+	async setLocale(code: string) {
 		if (this.stringsCache.has(code)) {
 			this.setStrings(code);
 			this.locale.set(code);
 		} else {
-			this.languageByCode(code)
-				?.loader()
-				.then(({ default: strings }) => {
-					this.stringsCache.set(code, strings);
-					this.setStrings(code);
-					this.locale.set(code);
-				});
+			const language = this.languageByCode(code);
+
+			if (!language) {
+				throw new Error(`Language with code ${code} not found`);
+			}
+
+			let strings = language.strings;
+
+			if (!strings) {
+				strings = await language.loader();
+			}
+
+			this.stringsCache.set(code, strings);
+			this.setStrings(code);
+			this.locale.set(code);
 		}
+
+		this.setLocaleOnLocalStorage(code);
+	}
+
+	getLocale(): string {
+		return get(this.locale);
 	}
 
 	register(language: Language) {
@@ -99,6 +142,22 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 
 	t(key: ToDotPaths<StringsT>, params: Record<string, PrimitiveType> = {}) {
 		return t(key, params, this);
+	}
+
+	static getClosestLanguageCode(code: string, availableCodes: string[]): string | null {
+		if (availableCodes.includes(code)) {
+			return code;
+		}
+
+		const codeLanguagePart = code.split('-')[0];
+
+		for (const availableCode of availableCodes) {
+			if (availableCode.split('-')[0] === codeLanguagePart) {
+				return availableCode;
+			}
+		}
+
+		return null;
 	}
 
 	public T: typeof T<StringsT> = T as any;

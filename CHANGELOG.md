@@ -1,3 +1,11 @@
+## 1.1.0 - 2025-05-19
+
+- HyvorBar updated to support any product name so that design system updates are not necessary for new products
+- Bluesky social support
+- Usage component
+- InternationalizationProvider now saves the selected language in local storage
+- I18n now automatically detects the user's language from navigator.language
+
 ## 1.0.10 - 2025-02-02
 
 - Adds billing support to HyvorBar

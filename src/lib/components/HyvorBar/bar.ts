@@ -1,6 +1,6 @@
 import { writable } from 'svelte/store';
 
-export type BarProduct = 'core' | 'talk' | 'blogs';
+export type BarProduct = string | 'core';
 
 export interface BarConfig {
 	name: string | null;
@@ -29,17 +29,17 @@ export interface BarUpdate {
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
 export interface BarResolvedLicense {
-    type: 'subscription' | 'trial' | 'custom' | 'expired',
-    license: Record<string, number|boolean> | null,
-    subscription: null | {
+	type: 'subscription' | 'trial' | 'custom' | 'expired';
+	license: Record<string, number | boolean> | null;
+	subscription: null | {
 		plan_readable: string;
 		cancel_at: null | number;
-	},
-    trial_ends_at: null | number,
+	};
+	trial_ends_at: null | number;
 }
 
 let instance = '';
-let product: BarProduct = 'core';
+let product: string = 'core';
 
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
@@ -62,7 +62,7 @@ interface BarResponse {
 	};
 }
 
-export function setInstanceAndProduct(instance_: string, product_: BarProduct) {
+export function setInstanceAndProduct(instance_: string, product_: string) {
 	instance = instance_;
 	product = product_;
 }
@@ -152,7 +152,6 @@ class BarLocalStorage {
 
 // exported to be used from outside
 export const bar = {
-
 	/**
 	 * Refetches data like user info, unread updates, billing data, etc.
 	 * But does not show a loader
@@ -161,5 +160,4 @@ export const bar = {
 	reload: () => {
 		loadBarUser();
 	}
-
-}
+};

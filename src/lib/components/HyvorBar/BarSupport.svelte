@@ -7,7 +7,8 @@
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 	import IconFileEarmark from '@hyvor/icons/IconFileEarmark';
 	import IconChatDots from '@hyvor/icons/IconChatDots';
-	import IconTwitterX from '@hyvor/icons/IconTwitterX';
+	import IconBluesky from '@hyvor/icons/IconBluesky';
+	import IconTwitter from '@hyvor/icons/IconTwitter';
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
 
 	import ActionListGroup from '../ActionList/ActionListGroup.svelte';
@@ -125,12 +126,23 @@
 						{/snippet}
 					</ActionListItem>
 				</a>
+				<a href="https://bsky.app/profile/hyvor.bsky.social" target="_blank">
+					<ActionListItem>
+						Bluesky
+						{#snippet start()}
+							<IconBluesky />
+						{/snippet}
+						{#snippet end()}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
+					</ActionListItem>
+				</a>
 				{#if config.twitter}
 					<a href={config.twitter} target="_blank">
 						<ActionListItem>
-							Twitter
+							X (Twitter)
 							{#snippet start()}
-								<IconTwitterX />
+								<IconTwitter />
 							{/snippet}
 							{#snippet end()}
 								<IconBoxArrowUpRight size={12} />

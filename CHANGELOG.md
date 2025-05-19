@@ -1,4 +1,4 @@
-## 1.0.11 - 2025-02-03
+## 1.1.0 - 2025-05-19
 
 - HyvorBar updated to support any product name so that design system updates are not necessary for new products
 - Bluesky social support

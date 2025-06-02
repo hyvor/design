@@ -6,7 +6,6 @@ export interface BarConfig {
 	name: string | null;
 	docs: boolean;
 	chat: boolean;
-	twitter: string | null;
 	g2: string | null;
 }
 

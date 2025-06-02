@@ -16,6 +16,8 @@
 	import type { BarConfig, BarProduct } from './bar.js';
 	import G2 from './img/G2.svelte';
 	import Trustpilot from './img/Trustpilot.svelte';
+	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
+	import IconTwitterX from '@hyvor/icons/IconTwitterX';
 
 	let supportDropdown = $state(false);
 
@@ -115,7 +117,7 @@
 			{/if}
 
 			<ActionListGroup title="Social">
-				<a href="https://hyvor.com/api/go/discord" target="_blank">
+				<a href={SOCIAL_LINKS.discord} target="_blank">
 					<ActionListItem>
 						Discord
 						{#snippet start()}
@@ -126,7 +128,7 @@
 						{/snippet}
 					</ActionListItem>
 				</a>
-				<a href="https://bsky.app/profile/hyvor.bsky.social" target="_blank">
+				<a href={SOCIAL_LINKS.blueksy} target="_blank">
 					<ActionListItem>
 						Bluesky
 						{#snippet start()}
@@ -137,20 +139,18 @@
 						{/snippet}
 					</ActionListItem>
 				</a>
-				{#if config.twitter}
-					<a href={config.twitter} target="_blank">
-						<ActionListItem>
-							X (Twitter)
-							{#snippet start()}
-								<IconTwitter />
-							{/snippet}
-							{#snippet end()}
-								<IconBoxArrowUpRight size={12} />
-							{/snippet}
-						</ActionListItem>
-					</a>
-				{/if}
-				<a href="https://www.linkedin.com/company/hyvor" target="_blank">
+				<a href={SOCIAL_LINKS.x} target="_blank">
+					<ActionListItem>
+						Twitter
+						{#snippet start()}
+							<IconTwitterX />
+						{/snippet}
+						{#snippet end()}
+							<IconBoxArrowUpRight size={12} />
+						{/snippet}
+					</ActionListItem>
+				</a>
+				<a href={SOCIAL_LINKS.linkedin} target="_blank">
 					<ActionListItem>
 						Linkedin
 						{#snippet start()}

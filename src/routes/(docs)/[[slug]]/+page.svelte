@@ -117,6 +117,6 @@
 <Footer
 	email="foss@hyvor.com"
 	social={{
-		youtube: null
+		youtube: undefined
 	}}
 ></Footer>

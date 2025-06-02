@@ -1,7 +1,11 @@
 <script>
 	import Base from '$lib/components/Base/Base.svelte';
+	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 	import Document from '$lib/marketing/Document/Document.svelte';
+	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
+
+<HyvorBar product="core" />
 
 <Base>
 	<slot />
@@ -36,3 +40,5 @@
 		</p>
 	</Document>
 </Base>
+
+<Footer></Footer>

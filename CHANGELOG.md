@@ -1,3 +1,8 @@
+## 1.1.1 - 2025-06-02
+
+- Bluesky social support added to HyvorBar and Footer
+- Updated default Twitter URL
+
 ## 1.1.0 - 2025-05-19
 
 - HyvorBar updated to support any product name so that design system updates are not necessary for new products

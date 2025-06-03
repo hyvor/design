@@ -1,3 +1,8 @@
+## 1.1.3 - 2025-06-03
+
+- I.T now supports props in elements
+- .hds-link class added to easily made a link style
+
 ## 1.1.1 - 2025-06-02
 
 - Bluesky social support added to HyvorBar and Footer

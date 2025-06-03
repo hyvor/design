@@ -392,6 +392,27 @@ export function getI18n() {
 	language="svelte"
 ></CodeBlock>
 
+<p>
+    <code>props</code> can also be passed to the element.
+</p>
+
+<CodeBlock
+    code={`
+    <I18n.T 
+    key="withElement" 
+    params={{
+        b: {
+            element: 'strong', 
+            props: {
+                class: 'diff-email'
+            }
+        }
+    }} />
+`}
+    language="svelte"
+
+></CodeBlock>
+
 <!-- 
 <h3 id="t">t Function</h3>
 

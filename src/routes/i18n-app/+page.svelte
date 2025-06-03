@@ -74,6 +74,25 @@
 			}}
 		/>
 	</div>
+
+
+	<div>
+		Element with props:
+		<Intl.T
+			key="advanced"
+			params={{
+				a: { 
+					element: 'a',
+					props: { 
+						class: 'hds-link',
+						href: 'https://hyvor.com',
+						target: '_blank',
+					} 
+				}
+			}}
+		/>
+	</div>
+
 	<div>
 		<Intl.T
 			key="dates.start"

@@ -46,7 +46,7 @@
 <style>
 	.wrap,
 	.wrap :global(.dropdown),
-	:global(.dropdown > .trigger) {
+	.wrap :global(.dropdown > .trigger) {
 		display: inline-flex;
 		align-items: center;
 	}

@@ -49,3 +49,8 @@ a {
 	padding: 0 15px;
 	margin: auto;
 }
+
+.hds-link {
+	color: var(--link);
+	text-decoration: underline;
+}

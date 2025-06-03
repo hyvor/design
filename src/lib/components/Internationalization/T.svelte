@@ -26,10 +26,18 @@
 
 	let hasComponentParams = false;
 
-	function getElementFunc(el: string) {
+	function getElementFunc(el: string, props: Record<string, any> = {}) {
 		return (chunks: string | string[]) => {
 			const children = typeof chunks === 'string' ? chunks : chunks.join('');
-			return `<${el}>${children}</${el}>`;
+			let propsStr = '';
+			for (let [propKey, propValue] of Object.entries(props)) {
+				if (typeof propValue === 'string' || typeof propValue === 'number') {
+					propsStr += ` ${propKey}="${propValue}"`;
+				} else if (typeof propValue === 'boolean' && propValue) {
+					propsStr += ` ${propKey}`;
+				}
+			}
+			return `<${el}${propsStr}>${children}</${el}>`;
 		};
 	}
 
@@ -52,7 +60,10 @@
 					};
 					hasComponentParams = true;
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string);
+					newValue = getElementFunc(
+						(value as any).element as string,
+						(value as any).props || {}
+					);
 				}
 			} else {
 				newValue = value as PrimitiveType;
@@ -98,7 +109,7 @@
 						return '<span id="' + id + '">' + children + '</span>';
 					};
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string);
+					newValue = getElementFunc((value as any).element as string, (value as any).props || {});
 				}
 			} else {
 				newValue = value as PrimitiveType;

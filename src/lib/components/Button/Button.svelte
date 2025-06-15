@@ -16,6 +16,17 @@
 		end?: import('svelte').Snippet;
 		action?: import('svelte').Snippet;
 		[key: string]: any;
+
+		onkeyup?: (event: KeyboardEvent) => void;
+		onkeydown?: (event: KeyboardEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onclick?: (event: MouseEvent) => void;
+		onmouseover?: (event: MouseEvent) => void;
+		onmouseenter?: (event: MouseEvent) => void;
+		onmouseleave?: (event: MouseEvent) => void;
+		onchange?: (event: Event) => void;
 	}
 
 	let {
@@ -30,6 +41,18 @@
 		children,
 		end,
 		action,
+
+		onkeyup,
+		onkeydown,
+		onkeypress,
+		onfocus,
+		onblur,
+		onclick,
+		onmouseover,
+		onmouseenter,
+		onmouseleave,
+		onchange,
+
 		...rest
 	}: Props = $props();
 </script>
@@ -38,16 +61,18 @@
 	this={as}
 	class="button {size} {color} {variant} {align}"
 	class:block
-	onkeyup={bubble('keyup')}
-	onkeydown={bubble('keydown')}
-	onkeypress={bubble('keypress')}
-	onfocus={bubble('focus')}
-	onblur={bubble('blur')}
-	onclick={bubble('click')}
-	onmouseover={bubble('mouseover')}
-	onmouseenter={bubble('mouseenter')}
-	onmouseleave={bubble('mouseleave')}
-	onchange={bubble('change')}
+
+	onkeyup={(e: KeyboardEvent) => { bubble('keyup'); onkeyup?.(e); }}
+	onkeydown={(e: KeyboardEvent) => { bubble('keydown'); onkeydown?.(e); }}
+	onkeypress={(e: KeyboardEvent) => { bubble('keypress'); onkeypress?.(e); }}
+	onfocus={(e: FocusEvent) => { bubble('focus'); onfocus?.(e); }}
+	onblur={(e: FocusEvent) => { bubble('blur'); onblur?.(e); }}
+	onclick={(e: MouseEvent) => { bubble('click'); onclick?.(e); }}
+	onmouseover={(e: MouseEvent) => { bubble('mouseover'); onmouseover?.(e); }}
+	onmouseenter={(e: MouseEvent) => { bubble('mouseenter'); onmouseenter?.(e); }}
+	onmouseleave={(e: MouseEvent) => { bubble('mouseleave'); onmouseleave?.(e); }}
+	onchange={(e: Event) => { bubble('change'); onchange?.(e); }}
+
 	role="button"
 	tabindex="0"
 	bind:this={button}

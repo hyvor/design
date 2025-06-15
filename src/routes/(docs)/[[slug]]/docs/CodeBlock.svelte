@@ -1,5 +1,7 @@
 <script>
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
+	import TabbedCodeBlock from '$lib/components/CodeBlock/TabbedCodeBlock.svelte';
+	import CodeResult from './Helper/CodeResult.svelte';
 </script>
 
 <h1>Code Block</h1>
@@ -28,6 +30,42 @@
     <CodeBlock language="html" code={code} />
 `}
 />
+
+<h2 id="tabbed-code-block">Tabbed Code Block</h2>
+
+<CodeBlock
+	code={`
+<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
+    <CodeBlock
+        code="const x = 10;"
+        language="js"
+    />
+    <CodeBlock
+        code="$x = 10;"
+        language="php"
+    />
+    <CodeBlock
+        code="x := 10"
+    />
+</TabbedCodeBlock>
+`}
+/>
+
+<CodeResult>
+<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
+    <CodeBlock
+        code="const x = 10;"
+        language="js"
+    />
+    <CodeBlock
+        code="$x = 10;"
+        language="php"
+    />
+    <CodeBlock
+        code="x := 10"
+    />
+</TabbedCodeBlock>
+</CodeResult>
 
 <h2 id="examples">Examples</h2>
 

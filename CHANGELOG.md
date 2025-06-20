@@ -1,3 +1,7 @@
+## 1.1.5 - 2025-06-20
+
+- Fixed Button event on:click bug
+
 ## 1.1.4 - 2025-06-15
 
 - Added `TabbedCodeBlock` component for displaying code in tabs

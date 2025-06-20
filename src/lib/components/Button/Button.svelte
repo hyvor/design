@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { legacyHandlers } from '$lib/legacy.js';
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
@@ -62,16 +63,16 @@
 	class="button {size} {color} {variant} {align}"
 	class:block
 
-	onkeyup={(e: KeyboardEvent) => { bubble('keyup'); onkeyup?.(e); }}
-	onkeydown={(e: KeyboardEvent) => { bubble('keydown'); onkeydown?.(e); }}
-	onkeypress={(e: KeyboardEvent) => { bubble('keypress'); onkeypress?.(e); }}
-	onfocus={(e: FocusEvent) => { bubble('focus'); onfocus?.(e); }}
-	onblur={(e: FocusEvent) => { bubble('blur'); onblur?.(e); }}
-	onclick={(e: MouseEvent) => { bubble('click'); onclick?.(e); }}
-	onmouseover={(e: MouseEvent) => { bubble('mouseover'); onmouseover?.(e); }}
-	onmouseenter={(e: MouseEvent) => { bubble('mouseenter'); onmouseenter?.(e); }}
-	onmouseleave={(e: MouseEvent) => { bubble('mouseleave'); onmouseleave?.(e); }}
-	onchange={(e: Event) => { bubble('change'); onchange?.(e); }}
+	onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+	onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+	onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+	onfocus={legacyHandlers(onfocus, bubble('focus'))}
+	onblur={legacyHandlers(onblur, bubble('blur'))}
+	onclick={legacyHandlers(onclick, bubble('click'))}
+	onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+	onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+	onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+	onchange={legacyHandlers(onchange, bubble('change'))}
 
 	role="button"
 	tabindex="0"

@@ -1,3 +1,7 @@
+## 1.1.6 - 2025-06-22
+
+- Removed `$app/enviroment` import from `T.svelte`, to make HDS usable in non-SvelteKit projects
+
 ## 1.1.5 - 2025-06-20
 
 - Fixed Button event on:click bug

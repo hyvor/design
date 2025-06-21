@@ -120,5 +120,5 @@
 </div>
 
 <div style="padding: 200px;">
-	<LanguageToggle align="center" size="small" />
+	<LanguageToggle align="center" size="small" staticPage />
 </div>

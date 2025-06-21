@@ -8,7 +8,6 @@
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconButton from '../IconButton/IconButton.svelte';
 	import { get } from 'svelte/store';
-	import { goto } from '$app/navigation';
 
 	interface Props {
 		position?: ComponentProps<typeof Dropdown>['position'];
@@ -33,7 +32,7 @@
 
 	let show = $state(false);
 
-	function handleClick(language: Language) {
+	async function handleClick(language: Language) {
 		show = false;
 
 		if (staticPage) {
@@ -44,7 +43,11 @@
 			}
 			const url = new URL(window.location.href);
 			url.pathname = url.pathname.replace(`/${currentLocale}`, `/${language.code}`);
-			goto(url.toString());
+
+			// dynamically loading to avoid sveltekit dependency
+			await import('$app/navigation').then(({ goto }) => {
+				goto(url.toString());
+			});
 		}
 
 		i18n.setLocale(language.code);

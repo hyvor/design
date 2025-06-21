@@ -1,6 +1,6 @@
-## 1.1.6 - 2025-06-22
+## 1.1.7 - 2025-06-22
 
-- Removed `$app/enviroment` import from `T.svelte`, to make HDS usable in non-SvelteKit projects
+- Removed `$app/enviroment` and `$app/navigation` imports from the package to make it Kit-agnostic
 
 ## 1.1.5 - 2025-06-20
 

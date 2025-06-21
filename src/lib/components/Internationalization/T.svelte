@@ -1,10 +1,7 @@
 <script lang="ts" generics="StringsT extends I18nStrings">
-	import { run } from 'svelte/legacy';
-
 	import { type ToDotPaths, type I18nStrings, type PrimitiveType } from './types.js';
 	import { getContext, onMount, tick, getAllContexts, type Component, hydrate } from 'svelte';
 	import { InternationalizationService } from './i18n.js';
-	import { browser } from '$app/environment';
 	import { getMessage as getMessageBase } from './t.js';
 
 	type ComponentDeclaration = {
@@ -152,10 +149,12 @@
 
 	let mounted = $state(false);
 
-	run(() => {
+	const isBrowser = typeof window !== 'undefined';
+
+	$effect(() => {
 		params;
 		key;
-		if (browser && mounted) {
+		if (isBrowser && mounted) {
 			renderFrontend();
 		}
 	});

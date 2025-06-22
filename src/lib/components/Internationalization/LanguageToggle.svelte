@@ -16,6 +16,7 @@
 		icon?: boolean;
 		size?: 'medium' | 'small';
 		staticPage?: boolean;
+		goto?: Function; // sveltekit goto function, required for static pages
 	}
 
 	let {
@@ -24,7 +25,8 @@
 		caret = IconCaretDown,
 		icon = false,
 		size = 'medium',
-		staticPage = false
+		staticPage = false,
+		goto,
 	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
@@ -43,11 +45,12 @@
 			}
 			const url = new URL(window.location.href);
 			url.pathname = url.pathname.replace(`/${currentLocale}`, `/${language.code}`);
-
-			// dynamically loading to avoid sveltekit dependency
-			await import('$app/navigation').then(({ goto }) => {
+			
+			if (goto) {
 				goto(url.toString());
-			});
+			} else {
+				window.location.href = url.toString();
+			}
 		}
 
 		i18n.setLocale(language.code);

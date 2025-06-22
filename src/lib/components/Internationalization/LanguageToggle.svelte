@@ -34,7 +34,7 @@
 
 	let show = $state(false);
 
-	function handleClick(language: Language) {
+	async function handleClick(language: Language) {
 		show = false;
 
 		if (staticPage) {

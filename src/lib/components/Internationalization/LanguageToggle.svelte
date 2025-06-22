@@ -47,6 +47,8 @@
 			// dynamically loading to avoid sveltekit dependency
 			await import('$app/navigation').then(({ goto }) => {
 				goto(url.toString());
+			}).catch((error) => {
+				console.error('Sveltekit is required for static page navigation:', error);
 			});
 		}
 

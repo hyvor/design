@@ -12,11 +12,12 @@
 	import getCode, { type Language } from './getCode.js';
 	interface Props {
 		code: string;
-		language?: InputLanguage;
+		language?: InputLanguage | null;
 	}
 
 	let { code, language = 'html' }: Props = $props();
-	const languageCode = (languagesMap[language] || language) as Language;
+
+	let languageCode = $derived(language ? (languagesMap[language] || language) : null) as Language | null;
 </script>
 
 <pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>

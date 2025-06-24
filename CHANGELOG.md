@@ -1,4 +1,4 @@
-## 1.1.9 - 2025-06-24
+## 1.1.10 - 2025-06-24
 
 - `<CodeBlock>` support plain text
 

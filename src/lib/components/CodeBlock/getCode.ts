@@ -17,7 +17,7 @@ hljs.registerLanguage('php', php);
 
 export type Language = 'html' | 'css' | 'js' | 'ts';
 
-export default function getCode(code: string, language: Language) {
+export default function getCode(code: string, language: Language | null): string {
 	let ret = code;
 
 	// remove the first empty line
@@ -47,5 +47,7 @@ export default function getCode(code: string, language: Language) {
 
 	ret = lines.join('\n');
 
-	return hljs.highlight(ret, { language }).value;
+	return language === null ?
+		ret : 
+		hljs.highlight(ret, { language }).value;
 }

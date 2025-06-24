@@ -69,6 +69,23 @@
 
 <h2 id="examples">Examples</h2>
 
+<h3 id="plain">Plain</h3>
+
+<p>
+    Set <code>language={"{null}"}</code> to disable sytax highlighting (note that the default is <code>html</code>).
+</p>
+
+<CodeBlock
+	code={`
+From: user1@example.com
+To: user2@example.com
+Subject: Hello World
+
+Hello World!
+`}
+    language={null}
+/>
+
 <h3 id="html">HTML</h3>
 
 <CodeBlock
@@ -151,9 +168,9 @@
     url: https://blogs.hyvor.com
     plans:
         - name: Starter
-          price: $9
+          price: €12
         - name: Growth
-          price: $19
+          price: €40
 `}
 />
 
@@ -168,11 +185,11 @@
         "plans": [
             {
                 "name": "Starter",
-                "price": "$9"
+                "price": "€12"
             },
             {
                 "name": "Growth",
-                "price": "$19"
+                "price": "€40"
             }
         ]
     }

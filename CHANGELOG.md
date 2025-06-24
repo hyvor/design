@@ -1,3 +1,7 @@
+## 1.1.9 - 2025-06-24
+
+- `<CodeBlock>` support plain text
+
 ## 1.1.8 - 2025-06-22
 
 - Removed `$app/enviroment` and `$app/navigation` imports from the package to make it Kit-agnostic

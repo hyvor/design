@@ -81,7 +81,7 @@ From: user1@example.com
 To: user2@example.com
 Subject: Hello World
 
-Hello World!
+<p>Hello World!</p>
 `}
     language={null}
 />

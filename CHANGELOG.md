@@ -1,3 +1,7 @@
+## 1.1.11 - 2025-06-26
+
+- Added `DetailCard` component
+
 ## 1.1.10 - 2025-06-24
 
 - `<CodeBlock>` support plain text

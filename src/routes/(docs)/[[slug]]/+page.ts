@@ -36,6 +36,7 @@ import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
 import Usage from './docs/Usage.svelte';
 import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
+import DetailCard from './docs/DetailCard.svelte';
 
 export const prerender = true;
 
@@ -51,6 +52,7 @@ const nav = {
 	callout: Callout,
 	'code-block': CodeBlock,
 	checkbox: Checkbox,
+	'detail-card': DetailCard,
 	dropdown: Dropdown,
 	divider: Divider,
 	switch: Switch,

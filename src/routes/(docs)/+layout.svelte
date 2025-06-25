@@ -8,6 +8,6 @@
 	let { children }: Props = $props();
 </script>
 
-<Base>
+<Base dark={true}>
 	{@render children?.()}
 </Base>

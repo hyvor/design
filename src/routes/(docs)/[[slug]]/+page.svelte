@@ -25,6 +25,7 @@
 		{ href: '/callout', label: 'Callout' },
 		{ href: '/code-block', label: 'Code Block' },
 		{ href: '/checkbox', label: 'Checkbox' },
+		{ href: '/detail-card', label: 'Detail Card'},
 		{ href: '/divider', label: 'Divider' },
 		{ href: '/dropdown', label: 'Dropdown' },
 		{ href: '/nav-link', label: 'Nav Link' },
@@ -70,7 +71,7 @@
 	<title>{title}</title>
 </svelte:head>
 
-<Header {logo} darkToggle={false} name="HYVOR" subName="Design System">
+<Header {logo} name="HYVOR" subName="Design System">
 	{#snippet end()}
 		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
 		<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">

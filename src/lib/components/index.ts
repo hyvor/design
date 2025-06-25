@@ -25,6 +25,9 @@ export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
 export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
+export { default as DetailCard } from './DetailCard/DetailCard.svelte';
+export { default as DetailCards } from './DetailCard/DetailCards.svelte';
+
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
 
 export { default as Divider } from './Divider/Divider.svelte';

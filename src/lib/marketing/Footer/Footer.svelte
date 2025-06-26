@@ -13,6 +13,7 @@
 	import LanguageToggle from '$lib/components/Internationalization/LanguageToggle.svelte';
 	import IconBluesky from '@hyvor/icons/IconBluesky';
 	import { SOCIAL_LINKS, type Socials } from '../social.js';
+	import Affiliate from '../Affiliate/Affiliate.svelte';
 
 	const year = new Date().getFullYear();
 
@@ -20,12 +21,14 @@
 		email?: string | null;
 		social?: Partial<Socials>;
 		center?: import('svelte').Snippet;
+		affiliate?: boolean;
 	}
 
 	let {
 		email = null,
 		social = $bindable({} as Record<string, string | null>),
-		center
+		center,
+		affiliate = true
 	}: Props = $props();
 
 	social = {
@@ -109,6 +112,11 @@
 			<div class="footer-bottom-right">From France 🇫🇷</div>
 		</div>
 	</Container>
+
+	{#if affiliate}
+		<Affiliate />
+	{/if}
+
 </footer>
 
 <style>

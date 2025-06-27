@@ -1,3 +1,8 @@
+## 1.1.12 - 2025-06-27
+
+- Added marketing `Affiliate` component
+- `Footer` now supports `affiliate` prop to automatically add `Affiliate` component, which is true by default
+
 ## 1.1.11 - 2025-06-26
 
 - Added `DetailCard` component

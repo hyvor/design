@@ -350,7 +350,7 @@ export function getI18n() {
 
 <CodeBlock
 	code={`
-    <T key="withComponent" params={{ 
+    <I18n.T key="withComponent" params={{ 
         a: {
             component: MyCustomLink, 
             props: {

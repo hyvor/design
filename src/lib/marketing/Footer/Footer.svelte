@@ -14,6 +14,7 @@
 	import IconBluesky from '@hyvor/icons/IconBluesky';
 	import { SOCIAL_LINKS, type Socials } from '../social.js';
 	import Affiliate from '../Affiliate/Affiliate.svelte';
+	import RecordVisit from './RecordVisit.svelte';
 
 	const year = new Date().getFullYear();
 
@@ -22,13 +23,15 @@
 		social?: Partial<Socials>;
 		center?: import('svelte').Snippet;
 		affiliate?: boolean;
+		recordVisit?: boolean;
 	}
 
 	let {
 		email = null,
 		social = $bindable({} as Record<string, string | null>),
 		center,
-		affiliate = true
+		affiliate = true,
+		recordVisit = true
 	}: Props = $props();
 
 	social = {
@@ -117,6 +120,9 @@
 		<Affiliate />
 	{/if}
 
+	{#if recordVisit}
+		<RecordVisit />
+	{/if}
 </footer>
 
 <style>

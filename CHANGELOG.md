@@ -1,3 +1,7 @@
+## 1.1.13 - 2025-07-12
+
+- Added `recordVisit` prop to `Footer` for marketing signals
+
 ## 1.1.12 - 2025-06-27
 
 - Added marketing `Affiliate` component

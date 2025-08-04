@@ -1,14 +1,21 @@
 <script lang="ts">
 	import { barUser } from './bar.js';
+	import BarUserPicture from './BarUserPicture.svelte';
 </script>
 
 {#if $barUser}
 	<div class="preview">
 		<div class="left">
-			<img src={$barUser.picture_url} alt={$barUser.name} />
+			<BarUserPicture />
 		</div>
 		<div class="right">
-			<div class="username">@{$barUser.username}</div>
+			<div class="username">
+				{#if $barUser.username}
+					@{$barUser.username}
+				{:else if $barUser.name}
+					{$barUser.name}
+				{/if}
+			</div>
 			<div class="email">{$barUser.email}</div>
 		</div>
 	</div>

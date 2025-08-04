@@ -9,11 +9,11 @@ export interface BarConfig {
 	g2: string | null;
 }
 
-interface BarUser {
+export interface BarUser {
 	name: string | null;
-	username: string;
+	username?: string | null;
 	email: string;
-	picture_url: string;
+	picture_url: string | null;
 }
 
 export interface BarUpdate {
@@ -66,7 +66,7 @@ export function setInstanceAndProduct(instance_: string, product_: string) {
 	product = product_;
 }
 
-export function loadBarUser() {
+export function initBar() {
 	const query = new URLSearchParams();
 	query.set('product', product);
 
@@ -157,6 +157,6 @@ export const bar = {
 	 * This is useful to create after, for example, a user creates a new blog
 	 */
 	reload: () => {
-		loadBarUser();
+		initBar();
 	}
 };

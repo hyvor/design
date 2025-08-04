@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
-	import { loadBarUser, setInstanceAndProduct, type BarConfig, type BarProduct } from './bar.js';
+	import { barUser, initBar, setInstanceAndProduct, type BarConfig, type BarUser as BarUserType } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import BarNotice from './Notice/BarNotice.svelte';
@@ -13,9 +13,31 @@
 		instance?: string;
 		product: string;
 		config?: Partial<BarConfig>;
+
+		// set a custom logo URL
+		// defaults to instance + '/api/public/logo/' + product + '.svg'
+		// recommended to use this for self-hostable products
+		logo?: string;
+
+		/**
+		 * Whether it is a HYVOR cloud-hosted product.
+		 * If false, we will hide some features
+		 */
+		cloud?: boolean;
+		authOverride?: {
+			user: BarUserType | null;
+			logoutUrl: string;
+		}
 	}
 
-	let { instance = 'https://hyvor.com', product, config = {} }: Props = $props();
+	let {
+		instance = 'https://hyvor.com', 
+		product, 
+		logo = `${instance}/api/public/logo/${product}.svg`,
+		config = {},
+		cloud = true,
+		authOverride = undefined
+	}: Props = $props();
 
 	let mobileShow = $state(false);
 
@@ -41,7 +63,14 @@
 
 	onMount(() => {
 		setInstanceAndProduct(instance, product);
-		loadBarUser();
+
+		if (cloud) {
+			initBar();
+		} else {
+			if (authOverride) {
+				barUser.set(authOverride.user);
+			}
+		}
 	});
 
 	function getName() {
@@ -59,7 +88,7 @@
 		<div class="left">
 			<a class="logo" href="/">
 				<img
-					src={instance + '/api/public/logo/' + product + '.svg'}
+					src={logo}
 					alt={product}
 					width="20"
 					height="20"
@@ -74,16 +103,20 @@
 			<BarNotice {instance} />
 
 			<div class="hidden-on-mobile">
-				<BarSupport config={configComplete} {product} mobile={mobileShow} />
-				<BarProducts {instance} mobile={mobileShow} />
-				<BarUpdates {instance} {product} />
+				{#if cloud}
+					<BarSupport config={configComplete} {product} mobile={mobileShow} />
+					<BarProducts {instance} mobile={mobileShow} />
+					<BarUpdates {instance} {product} />
+				{/if}
 			</div>
 
-			<div class="mobile">
-				<IconCaretDownFill />
-			</div>
+			{#if cloud}
+				<div class="mobile">
+					<IconCaretDownFill />
+				</div>
+			{/if}
 
-			<BarUser {instance} />
+			<BarUser {instance} logoutUrl={authOverride?.logoutUrl} {cloud} />
 		</div>
 	</div>
 

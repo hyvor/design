@@ -1,3 +1,10 @@
+## 1.1.14 - 2025-08-04
+
+- `HyvorBar` new props to support OIDC authentication in products
+    - `authOverride` prop to override authentication
+    - `logo` prop to set a custom logo URL for self-hostable products
+    - `cloud` prop to indicate if it is a HYVOR cloud-hosted product
+
 ## 1.1.13 - 2025-07-12
 
 - Added `recordVisit` prop to `Footer` for marketing signals

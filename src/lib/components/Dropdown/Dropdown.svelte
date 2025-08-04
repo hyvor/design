@@ -1,14 +1,15 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import DropdownContent from './DropdownContent.svelte';
+	import type { DropdownAlign, DropdownPosition } from './dropdown.types.js';
 
 	interface Props {
 		show?: boolean;
 		width?: number;
 		relative?: boolean;
 		closeOnOutsideClick?: boolean;
-		align?: 'start' | 'center' | 'end';
-		position?: 'left' | 'right' | 'bottom' | 'top';
+		align?: DropdownAlign;
+		position?: DropdownPosition;
 		trigger?: Snippet;
 		content?: Snippet;
 	}

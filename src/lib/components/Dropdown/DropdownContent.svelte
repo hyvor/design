@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
@@ -15,6 +13,7 @@
 		position: 'left' | 'right' | 'bottom' | 'top';
 		trigger: HTMLElement;
 		children?: import('svelte').Snippet;
+		padding?: number;
 	}
 
 	let {
@@ -25,7 +24,8 @@
 		align,
 		position,
 		trigger,
-		children
+		children,
+		padding = 10
 	}: Props = $props();
 
 	let contentWrap: HTMLElement | undefined = $state();
@@ -94,7 +94,7 @@
 		position;
 		align;
 		positionWrap();
-	})
+	});
 
 	function debouncedPosition() {
 		debounce(positionWrap, 10)();
@@ -142,7 +142,7 @@
 	style="width: {width}px"
 	transition:slideIn
 >
-	<div class="hds-box content">
+	<div class="hds-box content" style:padding="{padding}px">
 		{@render children?.()}
 	</div>
 </div>
@@ -151,9 +151,5 @@
 	.content-wrap {
 		position: fixed;
 		z-index: 1000000;
-	}
-
-	.content-wrap > .content {
-		padding: 10px;
 	}
 </style>

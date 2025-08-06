@@ -3,6 +3,7 @@
 	import type { DropdownAlign, DropdownPosition } from '../Dropdown/dropdown.types.js';
 	import IconButton from '../IconButton/IconButton.svelte';
 	import type { IconButtonColor, IconButtonSize } from '../IconButton/iconButton.types.js';
+	import EmojiSelector from './EmojiSelector.svelte';
 
 	interface Props {
 		emoji?: string;
@@ -23,7 +24,7 @@
 	}: Props = $props();
 </script>
 
-<Dropdown align={dropdownAlign} position={dropdownPosition}>
+<Dropdown align={dropdownAlign} position={dropdownPosition} width={370} contentPadding={0}>
 	{#snippet trigger()}
 		<IconButton size={iconButtonSize} color={iconButtonColor} onclick={() => (show = !show)}>
 			{#if emoji === undefined}
@@ -34,7 +35,7 @@
 		</IconButton>
 	{/snippet}
 	{#snippet content()}
-		HAHAHA
+		<EmojiSelector />
 	{/snippet}
 </Dropdown>
 

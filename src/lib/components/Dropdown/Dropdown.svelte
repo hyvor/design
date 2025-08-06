@@ -12,6 +12,7 @@
 		position?: DropdownPosition;
 		trigger?: Snippet;
 		content?: Snippet;
+		contentPadding?: number;
 	}
 
 	let {
@@ -22,7 +23,8 @@
 		align = 'start',
 		position = 'bottom',
 		trigger,
-		content
+		content,
+		contentPadding
 	}: Props = $props();
 
 	let triggerEl: HTMLElement | undefined = $state();
@@ -53,6 +55,7 @@
 			{position}
 			{relative}
 			trigger={triggerEl}
+			padding={contentPadding}
 		>
 			{@render content?.()}
 		</DropdownContent>

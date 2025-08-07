@@ -30,6 +30,7 @@ let emojis: CompactEmoji[] = [];
 const groups = [
     'Smileys & Emotion',
     'People & Body',
+    'Components', // removed
     'Animals & Nature',
     'Food & Drink',
     'Travel & Places',
@@ -50,6 +51,9 @@ export async function loadEmojis(): Promise<EmojiGroup[]> {
         name: group,
         emojis: emojis.filter(emoji => emoji.group === groups.indexOf(group))
     }));
+
+    // remove components
+    groupedEmojis.splice(2, 1);
 
     return groupedEmojis;
 

@@ -4,6 +4,8 @@
 	import IconButton from '../IconButton/IconButton.svelte';
 	import type { IconButtonColor, IconButtonSize } from '../IconButton/iconButton.types.js';
 	import EmojiSelector from './EmojiSelector.svelte';
+	import { fromHexcodeToCodepoint } from 'emojibase';
+	import { fromCodepointToUnicode } from 'emojibase';
 
 	interface Props {
 		emoji?: string;
@@ -22,11 +24,29 @@
 		dropdownAlign = 'center',
 		dropdownPosition = 'bottom'
 	}: Props = $props();
+
+	function handleOnSelect(e: string) {
+		emoji = e;
+		show = false;
+	}
+
+	const hexUnicode = '1F642-200D-2195-FE0F';
+	const code = fromHexcodeToCodepoint(hexUnicode);
+	const unicode = fromCodepointToUnicode(code);
+	console.log('Hex Unicode:', hexUnicode);
+	console.log('Codepoint:', code);
+	console.log('Unicode:', unicode);
 </script>
 
-<Dropdown align={dropdownAlign} position={dropdownPosition} width={370} contentPadding={0}>
+<Dropdown
+	bind:show
+	align={dropdownAlign}
+	position={dropdownPosition}
+	width={370}
+	contentPadding={0}
+>
 	{#snippet trigger()}
-		<IconButton size={iconButtonSize} color={iconButtonColor} onclick={() => (show = !show)}>
+		<IconButton size={iconButtonSize} color={iconButtonColor}>
 			{#if emoji === undefined}
 				<span class="no-emoji">😀</span>
 			{:else}
@@ -35,12 +55,16 @@
 		</IconButton>
 	{/snippet}
 	{#snippet content()}
-		<EmojiSelector />
+		<EmojiSelector onselect={handleOnSelect} />
 	{/snippet}
 </Dropdown>
 
 <style>
 	.no-emoji {
 		filter: grayscale(100%);
+		font-size: 18px;
+	}
+	.emoji {
+		font-size: 18px;
 	}
 </style>

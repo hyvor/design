@@ -26,6 +26,7 @@
 		emoji = $bindable(undefined),
 		iconButtonSize = undefined,
 		iconButtonColor = undefined,
+		iconButtonVariant = undefined,
 		dropdownAlign = 'center',
 		dropdownPosition = 'bottom',
 		onselect = undefined,
@@ -51,7 +52,7 @@
 	contentPadding={0}
 >
 	{#snippet trigger()}
-		<IconButton size={iconButtonSize} color={iconButtonColor}>
+		<IconButton size={iconButtonSize} color={iconButtonColor} variant={iconButtonVariant}>
 			{#if emoji === undefined}
 				<span class="no-emoji">😀</span>
 			{:else}

@@ -2,13 +2,18 @@
 	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import type { DropdownAlign, DropdownPosition } from '../Dropdown/dropdown.types.js';
 	import IconButton from '../IconButton/IconButton.svelte';
-	import type { IconButtonColor, IconButtonSize } from '../IconButton/iconButton.types.js';
+	import type {
+		IconButtonColor,
+		IconButtonSize,
+		IconButtonVariant
+	} from '../IconButton/iconButton.types.js';
 	import EmojiSelector from './EmojiSelector.svelte';
 
 	interface Props {
 		emoji?: string;
 		iconButtonSize?: IconButtonSize;
 		iconButtonColor?: IconButtonColor;
+		iconButtonVariant?: IconButtonVariant;
 		dropdownAlign?: DropdownAlign;
 		dropdownPosition?: DropdownPosition;
 		onselect?: (emoji: string | undefined) => void;

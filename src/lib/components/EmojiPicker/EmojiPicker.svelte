@@ -4,8 +4,6 @@
 	import IconButton from '../IconButton/IconButton.svelte';
 	import type { IconButtonColor, IconButtonSize } from '../IconButton/iconButton.types.js';
 	import EmojiSelector from './EmojiSelector.svelte';
-	import { fromHexcodeToCodepoint } from 'emojibase';
-	import { fromCodepointToUnicode } from 'emojibase';
 
 	interface Props {
 		emoji?: string;
@@ -13,36 +11,38 @@
 		iconButtonColor?: IconButtonColor;
 		dropdownAlign?: DropdownAlign;
 		dropdownPosition?: DropdownPosition;
+		onselect?: (emoji: string | undefined) => void;
+		removable?: boolean;
 	}
 
 	let show = $state(false);
 
 	let {
-		emoji = undefined,
+		emoji = $bindable(undefined),
 		iconButtonSize = undefined,
 		iconButtonColor = undefined,
 		dropdownAlign = 'center',
-		dropdownPosition = 'bottom'
+		dropdownPosition = 'bottom',
+		onselect = undefined,
+		removable = false
 	}: Props = $props();
 
-	function handleOnSelect(e: string) {
+	function handleOnSelect(e: string | undefined) {
 		emoji = e;
 		show = false;
+		onselect?.(e);
 	}
 
-	const hexUnicode = '1F642-200D-2195-FE0F';
-	const code = fromHexcodeToCodepoint(hexUnicode);
-	const unicode = fromCodepointToUnicode(code);
-	console.log('Hex Unicode:', hexUnicode);
-	console.log('Codepoint:', code);
-	console.log('Unicode:', unicode);
+	function handleClose() {
+		show = false;
+	}
 </script>
 
 <Dropdown
 	bind:show
 	align={dropdownAlign}
 	position={dropdownPosition}
-	width={370}
+	width={420}
 	contentPadding={0}
 >
 	{#snippet trigger()}
@@ -55,7 +55,7 @@
 		</IconButton>
 	{/snippet}
 	{#snippet content()}
-		<EmojiSelector onselect={handleOnSelect} />
+		<EmojiSelector onselect={handleOnSelect} onclose={handleClose} {removable} />
 	{/snippet}
 </Dropdown>
 

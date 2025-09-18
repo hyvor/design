@@ -3,12 +3,15 @@
 	import { loadEmojis, type CompactEmoji, type EmojiGroup } from './emojidata.js';
 	import Loader from '../Loader/Loader.svelte';
 	import TextInput from '../TextInput/TextInput.svelte';
+	import Button from '../Button/Button.svelte';
 
 	interface Props {
-		onselect: (emoji: string) => void;
+		onselect: (emoji: string | undefined) => void;
+		onclose: () => void;
+		removable: boolean;
 	}
 
-	let { onselect }: Props = $props();
+	let { onselect, onclose, removable }: Props = $props();
 
 	let loading = $state(true);
 	let searchInput = $state({} as HTMLInputElement);
@@ -38,7 +41,6 @@
 	async function load() {
 		data = await loadEmojis();
 		loading = false;
-		console.log('Emojis loaded:', data);
 
 		await tick();
 		searchInput?.focus();
@@ -53,6 +55,12 @@
 		}
 	}
 
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape') {
+			onclose();
+		}
+	}
+
 	onMount(() => {
 		load();
 	});
@@ -63,18 +71,32 @@
 		<Loader padding={100} block />
 	{:else}
 		<div class="header">
-			{@render SectionButton('☺️', 0)}
-			{@render SectionButton('👋', 1)}
-			{@render SectionButton('😺', 2)}
-			{@render SectionButton('🍕', 3)}
-			{@render SectionButton('🗼', 4)}
-			{@render SectionButton('⚽', 5)}
-			{@render SectionButton('📕', 6)}
-			{@render SectionButton('✔️', 7)}
-			{@render SectionButton('🇨🇵', 8)}
+			<div class="left">
+				{@render SectionButton('☺️', 0)}
+				{@render SectionButton('👋', 1)}
+				{@render SectionButton('😺', 2)}
+				{@render SectionButton('🍕', 3)}
+				{@render SectionButton('🗼', 4)}
+				{@render SectionButton('⚽', 5)}
+				{@render SectionButton('📕', 6)}
+				{@render SectionButton('✔️', 7)}
+				{@render SectionButton('🇨🇵', 8)}
+			</div>
+			<div class="right">
+				{#if removable}
+					<Button size="small" color="input" onclick={() => onselect(undefined)}
+						>Remove</Button
+					>
+				{/if}
+			</div>
 		</div>
 		<div class="input">
-			<TextInput block bind:value={search} bind:input={searchInput} />
+			<TextInput
+				block
+				bind:value={search}
+				bind:input={searchInput}
+				onkeydown={handleKeydown}
+			/>
 		</div>
 		<div class="groups" bind:this={groupsEl}>
 			{#if searchedEmojis !== null}
@@ -167,11 +189,16 @@
 	.header {
 		padding: 0 15px;
 		border-bottom: 1px solid var(--border);
+		display: flex;
+		align-items: center;
+	}
+	.header .left {
+		flex: 1;
 	}
 
 	.section-button {
 		font-size: 20px;
-		padding: 10px 5px;
+		padding: 10px 4px;
 		cursor: pointer;
 		color: var(--text-light);
 		filter: grayscale(100%);

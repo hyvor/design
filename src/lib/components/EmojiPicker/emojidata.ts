@@ -40,6 +40,12 @@ const groups = [
     'Flags'
 ]
 
+// check if the emoji is a ZWJ (Zero Width Joiner) sequence
+// when I tested on MacOS, ZWJs were shown as separate emojis
+function isZWJEmoji(emoji: string) {
+    return emoji.includes('\u200D');
+}
+
 export async function loadEmojis(): Promise<EmojiGroup[]> {
 
     const data = await import('emojibase-data/en/compact.json');
@@ -49,7 +55,7 @@ export async function loadEmojis(): Promise<EmojiGroup[]> {
 
     const groupedEmojis: EmojiGroup[] = groups.map(group => ({
         name: group,
-        emojis: emojis.filter(emoji => emoji.group === groups.indexOf(group))
+        emojis: emojis.filter(emoji => emoji.group === groups.indexOf(group) && !isZWJEmoji(emoji.unicode))
     }));
 
     // remove components

@@ -1,3 +1,9 @@
+## 1.1.15 - 2025-09-18
+
+- Added `EmojiPicker` component for selecting emojis
+- `emojibase-data` dependency added
+- `TextInput` and `IconButton` now supports props for events (ex: `oninput`)
+
 ## 1.1.14 - 2025-08-04
 
 - `HyvorBar` new props to support OIDC authentication in products

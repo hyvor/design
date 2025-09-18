@@ -37,6 +37,7 @@ import { error } from '@sveltejs/kit';
 import Usage from './docs/Usage.svelte';
 import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 import DetailCard from './docs/DetailCard.svelte';
+import EmojiPicker from './docs/EmojiPicker.svelte';
 
 export const prerender = true;
 
@@ -55,6 +56,7 @@ const nav = {
 	'detail-card': DetailCard,
 	dropdown: Dropdown,
 	divider: Divider,
+	'emoji-picker': EmojiPicker,
 	switch: Switch,
 	radio: Radio,
 	'split-control': SplitControl,

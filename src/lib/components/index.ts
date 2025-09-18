@@ -32,6 +32,8 @@ export { default as Dropdown } from './Dropdown/Dropdown.svelte';
 
 export { default as Divider } from './Divider/Divider.svelte';
 
+export { default as EmojiPicker } from './EmojiPicker/EmojiPicker.svelte';
+
 export { default as Caption } from './FormControl/Caption.svelte';
 export { default as FormControl } from './FormControl/FormControl.svelte';
 export { default as InputGroup } from './FormControl/InputGroup.svelte';

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createBubbler } from 'svelte/legacy';
-	import type { IconButtonSize, IconButtonColor } from './iconButton.types.js';
+	import type { IconButtonSize, IconButtonColor, IconButtonVariant } from './iconButton.types.js';
 	import { legacyHandlers } from '$lib/legacy.js';
 
 	const bubble = createBubbler();
@@ -8,7 +8,7 @@
 	interface Props {
 		size?: IconButtonSize;
 		color?: IconButtonColor;
-		variant?: 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible';
+		variant?: IconButtonVariant;
 		as?: 'button' | 'a';
 		children?: import('svelte').Snippet;
 		[key: string]: any;

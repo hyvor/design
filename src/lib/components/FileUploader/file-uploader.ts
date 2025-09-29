@@ -3,7 +3,7 @@ import { get, writable } from "svelte/store";
 export let fileUploaderConfig = writable<null | FileUploaderConfigInternal>(null);
 export let selectedFile = writable<null | SelectedFile>(null);
 
-export type UploadType = 'image' | 'audio' | 'any';
+export type UploadType = 'image' | 'audio' | 'file';
 
 interface FileUploaderConfig {
     /**
@@ -11,7 +11,7 @@ interface FileUploaderConfig {
      *  - shows unsplash and excalidraw tabs
      * audio:
      *  - shows audio preview
-     * any
+     * file
      *  - allows any file type
      *  - preview tries to detect file type (image/audio/other)
      */

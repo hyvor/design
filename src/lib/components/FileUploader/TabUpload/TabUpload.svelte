@@ -31,7 +31,7 @@
 	}
 
 	function getSelectedType(blob: Blob | null = null): UploadType {
-		if (config.type === 'any' && blob) {
+		if (config.type === 'file' && blob) {
 			if (blob.type.indexOf('image') === 0) return 'image';
 			if (blob.type.indexOf('audio') === 0) return 'audio';
 		}

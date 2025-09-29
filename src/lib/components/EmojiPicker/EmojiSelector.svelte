@@ -160,8 +160,6 @@
 		max-height: 370px;
 		overflow-y: auto;
 	}
-	.wrap {
-	}
 	.emojis {
 		display: flex;
 		flex-wrap: wrap;

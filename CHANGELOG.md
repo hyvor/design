@@ -1,3 +1,7 @@
+## 1.1.19 - 2025-09-29
+
+- Added `FileUploader` component for uploading files
+
 ## 1.1.15 - 2025-09-18
 
 - Added `EmojiPicker` component for selecting emojis

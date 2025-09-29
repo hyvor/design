@@ -38,6 +38,7 @@ import Usage from './docs/Usage.svelte';
 import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
+import FileUploader from './docs/FileUploader.svelte';
 
 export const prerender = true;
 
@@ -57,6 +58,7 @@ const nav = {
 	dropdown: Dropdown,
 	divider: Divider,
 	'emoji-picker': EmojiPicker,
+	'file-uploader': FileUploader,
 	switch: Switch,
 	radio: Radio,
 	'split-control': SplitControl,

@@ -40,6 +40,13 @@ export { default as InputGroup } from './FormControl/InputGroup.svelte';
 export { default as Label } from './FormControl/Label.svelte';
 export { default as Validation } from './FormControl/Validation.svelte';
 
+export {
+	uploadFile,
+	type FileUploaderConfig,
+	type UploadedFile as FileUploaderUploadedFile,
+	type SelectedFile as FileUploaderSelectedFile,
+} from './FileUploader/file-uploader.js';
+
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
 export { bar as hyvorBar } from './HyvorBar/bar.js';
 

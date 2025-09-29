@@ -31,11 +31,6 @@
 		flex-shrink: 0;
 		margin-right: 8px;
 	}
-	img {
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-	}
 	.right {
 		flex: 1;
 		line-height: 18px;

@@ -28,6 +28,7 @@
 		{ href: '/detail-card', label: 'Detail Card' },
 		{ href: '/divider', label: 'Divider' },
 		{ href: '/dropdown', label: 'Dropdown' },
+		{ href: '/file-uploader', label: 'File Uploader' },
 		{ href: '/emoji-picker', label: 'Emoji Picker' },
 		{ href: '/nav-link', label: 'Nav Link' },
 		{ href: '/radio', label: 'Radio' },

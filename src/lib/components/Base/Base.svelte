@@ -4,6 +4,7 @@
 	import DarkProvider from './../Dark/DarkProvider.svelte';
 	import '../../index.js';
 	import ToastProvider from '../Toast/ToastProvider.svelte';
+	import FileUploaderProvider from '../FileUploader/FileUploaderProvider.svelte';
 
 	interface Props {
 		dark?: boolean;
@@ -23,3 +24,4 @@
 
 <ToastProvider />
 <ConfirmModalProvider />
+<FileUploaderProvider />

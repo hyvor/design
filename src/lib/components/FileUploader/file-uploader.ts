@@ -5,7 +5,7 @@ export let selectedFile = writable<null | SelectedFile>(null);
 
 export type UploadType = 'image' | 'audio' | 'file';
 
-interface FileUploaderConfig {
+export interface FileUploaderConfig {
     /**
      * image:
      *  - shows unsplash and excalidraw tabs
@@ -115,6 +115,9 @@ export function getFileUploaderConfig(): FileUploaderConfigInternal {
 }
 
 export function closeFileUploader() {
+    const config = getFileUploaderConfig();
+    config.onCancel();
+
     fileUploaderConfig.set(null);
     clearSelectedFile();
 }

@@ -57,7 +57,7 @@
 					from: 'upload',
 					upload: {
 						type: 'url',
-						originalUrl: byUrl,
+						fetchedUrl: byUrl,
 						blob
 					}
 				});

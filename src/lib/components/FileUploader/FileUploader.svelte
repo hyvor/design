@@ -9,38 +9,15 @@
 	import {
 		clearSelectedFile,
 		closeFileUploader,
-		fileUploaderConfig,
 		getFileUploaderConfig,
 		selectedFile
 	} from './file-uploader.js';
 	import TabUpload from './TabUpload/TabUpload.svelte';
+	import Preview from './Preview/Preview.svelte';
 
 	const config = getFileUploaderConfig();
 
 	let tab = $state('upload');
-
-	// let backImage: null | SelectedFile = null;
-
-	// function handleSelect(e: CustomEvent<SelectedFileInterface>) {
-	// 	selectedFile = e.detail;
-	// 	backImage = null;
-	// }
-
-	// function handleBack() {
-	// 	backImage = selectedFile;
-	// 	selectedFile = null;
-	// }
-
-	// $effect(() => {
-	// 	if (!show) {
-	// 		onclose?.();
-	// 	}
-	// });
-
-	// function handleFinish(e: CustomEvent<SelectedFileInterface>) {
-	// 	onselect(e.detail);
-	// 	show = false;
-	// }
 
 	function onClose() {
 		closeFileUploader();
@@ -76,15 +53,16 @@
 							{/snippet}
 							Upload
 						</TabNavItem>
-						<TabNavItem name="media">
+
+						<!-- <TabNavItem name="media">
 							{#snippet start()}
 								<IconCardImage />
 							{/snippet}
 							Media Library
-						</TabNavItem>
+						</TabNavItem> -->
 
 						{#if config.type === 'image'}
-							<TabNavItem name="unsplash">
+							<!-- <TabNavItem name="unsplash">
 								{#snippet start()}
 									<svg
 										role="img"
@@ -102,10 +80,10 @@
 							</TabNavItem>
 							<TabNavItem name="excalidraw">
 								{#snippet start()}
-									<!-- <ExcalidrawIcon /> -->
+									<ExcalidrawIcon />
 								{/snippet}
 								Excalidraw
-							</TabNavItem>
+							</TabNavItem> -->
 						{/if}
 					</TabNav>
 				{/if}
@@ -115,6 +93,11 @@
 			{#if tab === 'upload'}
 				<TabUpload />
 			{/if}
+
+			{#if $selectedFile}
+				<Preview />
+			{/if}
+
 			<!-- {#if tab === 'upload'}
 				<TabUpload {type} on:select={handleSelect} />
 			{:else if tab === 'media' && type !== 'any'}
@@ -125,9 +108,7 @@
 				<Excalidraw on:select={handleSelect} />
 			{/if}
 
-			{#if selectedFile}
-				<SelectedFile file={selectedFile} on:select={handleFinish} />
-			{/if} -->
+			 -->
 		</div>
 	</Modal>
 </div>

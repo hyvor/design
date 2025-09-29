@@ -15,7 +15,10 @@ interface FileUploaderConfig {
      *  - allows any file type
      *  - preview tries to detect file type (image/audio/other)
      */
-    type?: UploadType;
+    type: UploadType;
+
+    // callback to upload a file to the server
+    uploader: (file: Blob, name: string | null) => Promise<{ url: string }>;
 
     // allowed mime types
     // if not provided, ALLOWED_MIME_TYPES_IMAGE or ALLOWED_MIME_TYPES_AUDIO will be used based on `type`
@@ -30,8 +33,9 @@ interface FileUploaderConfig {
 
 const defaults: Required<FileUploaderConfig> = {
     type: 'image',
-    maxFileSizeInMB: 10,
+    uploader: null as any,
     allowedMimeTypes: [],
+    maxFileSizeInMB: 10,
 };
 
 export type SelectedFileFrom = 'upload' | 'media' | 'unsplash' | 'excalidraw';
@@ -49,12 +53,14 @@ export interface SelectedFile {
     type: UploadType,
     from: SelectedFileFrom,
 
-    // additional info
+    // additional info by source (required for preview)
+
     upload?: {
         type: SelectedFileUploadType,
-        originalUrl?: string,
-        blob?: Blob,
+        blob: Blob,
+        fetchedUrl?: string,
     },
+
     unsplash?: UnsplashImage,
     // excalidraw?: {
     //     elements: readonly ExcalidrawElement[],
@@ -65,29 +71,28 @@ export interface SelectedFile {
 
 export interface UploadedFile {
     url: string;
-    format: UploadType;
-    from: SelectedFileFrom;
-
-
+    selectedFile: SelectedFile;
 }
 
 
 export type FileUploaderConfigInternal = Required<FileUploaderConfig> & {
     onCancel: () => void;
-    onSelect: (file: SelectedFile) => void;
+    onUpload: (file: UploadedFile) => void;
 }
 
-export function uploadFile(config: FileUploaderConfig | undefined = {}) {
-    return new Promise<SelectedFile | null>((resolve, reject) => {
+// UploadedFile is uploaded
+// null means cancelled
+export function uploadFile(config: FileUploaderConfig) {
+    return new Promise<UploadedFile | null>((resolve, reject) => {
 
         const finalConfig = {
             ...defaults,
             ...config,
-            onSelect: (file: SelectedFile) => {
-                resolve(file);
-            },
             onCancel: () => {
                 resolve(null);
+            },
+            onUpload: (file: UploadedFile) => {
+                resolve(file);
             },
         };
 
@@ -112,6 +117,12 @@ export function getFileUploaderConfig(): FileUploaderConfigInternal {
 export function closeFileUploader() {
     fileUploaderConfig.set(null);
     clearSelectedFile();
+}
+
+export function completeFileUpload(file: UploadedFile) {
+    const config = getFileUploaderConfig();
+    config.onUpload(file);
+    closeFileUploader();
 }
 
 export function setSelectedFile(file: SelectedFile) {

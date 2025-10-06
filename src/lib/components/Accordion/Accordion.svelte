@@ -3,14 +3,13 @@
     import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 
     interface Props {
-        title?: string;
-        content?: string; // HTML string can be inserted
+        title: string;
+        content: string; // HTML string can be inserted
         isOpen?: boolean;
-        id: string;
         icon?: Component;
     }
 
-    let { title, content, isOpen = false, id, icon }: Props = $props();
+    let { title, content, isOpen = false, icon }: Props = $props();
     const Icon = icon;
 
     function handleClick() {
@@ -19,7 +18,7 @@
 </script>
 
 <div class="accordion-item">
-    <button class="accordion-header" class:open={isOpen} on:click={handleClick}>
+    <button class="accordion-header" class:open={isOpen} onclick={handleClick}>
         {#if icon}
 			<span class="icon">
 				<Icon size={20} />

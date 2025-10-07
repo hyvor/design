@@ -1,115 +1,115 @@
 <script lang="ts">
-    import type { Component } from 'svelte';
-    import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
+	import type { Component, Snippet } from 'svelte';
+	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 
-    interface Props {
-        title: string;
-        content: string; // HTML string can be inserted
-        isOpen?: boolean;
-        icon?: Component;
-    }
+	interface Props {
+		title: string;
+		children?: Snippet;
+		open?: boolean;
+		icon?: Component;
+	}
 
-    let { title, content, isOpen = false, icon }: Props = $props();
-    const Icon = icon;
+	let { title, children, open = $bindable(false), icon }: Props = $props();
+	const Icon = icon;
 
-    function handleClick() {
-        isOpen = !isOpen;
-    }
+	function handleClick() {
+		open = !open;
+	}
 </script>
 
 <div class="accordion-item">
-    <button class="accordion-header" class:open={isOpen} onclick={handleClick}>
-        {#if icon}
+	<button class="accordion-header" class:open onclick={handleClick}>
+		{#if icon}
 			<span class="icon">
 				<Icon size={20} />
 			</span>
-        {/if}
-        <span class="title">{title}</span>
-        <span class="chevron" class:rotated={isOpen}>
+		{/if}
+		<span class="title">{title}</span>
+		<span class="chevron" class:rotated={open}>
 			<IconCaretDownFill />
 		</span>
-    </button>
+	</button>
 
-    {#if isOpen}
-        <div class="accordion-content">
-            <div class="content-text">
-                {@html content}
-                <!-- render HTML safely -->
-            </div>
-        </div>
-    {/if}
+	<div class="accordion-content" class:show={open}>
+		<div class="content-text">
+			{@render children?.()}
+		</div>
+	</div>
 </div>
 
 <style>
-    .accordion-item {
-        border-radius: 20px;
-        overflow: hidden;
-        background: var(--accent-light-mid);
-    }
+	.accordion-item {
+		overflow: hidden;
+		border-radius: 20px;
+		border: 1px solid var(--border);
+	}
 
-    .accordion-header {
-        width: 100%;
-        padding: 16px 20px;
-        background: none;
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        cursor: pointer;
-        font-size: 16px;
-    }
+	.accordion-header {
+		width: 100%;
+		padding: 14px 20px;
+		background: none;
+		border: none;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		cursor: pointer;
+		font-size: 16px;
+		border-radius: 20px;
+	}
 
-    .accordion-header:hover {
-        background-color: var(--accent-light-mid);
-    }
+	.accordion-header.open {
+		border-radius: 20px 20px 0 0;
+		background-color: var(--hover);
+	}
 
-    .accordion-header.open {
-        background-color: var(--accent-light);
-    }
+	.title {
+		font-weight: 500;
+		text-align: left;
+	}
 
-    .title {
-        font-weight: 500;
-        text-align: left;
-    }
+	.chevron {
+		display: flex;
+		align-items: center;
+		transition: transform 0.3s ease;
+		color: var(--text);
+	}
 
-    .chevron {
-        display: flex;
-        align-items: center;
-        transition: transform 0.3s ease;
-        color: var(--text);
-    }
+	.chevron.rotated {
+		transform: rotate(180deg);
+	}
 
-    .chevron.rotated {
-        transform: rotate(180deg);
-    }
+	.accordion-content {
+		height: 0;
+		overflow: hidden;
+	}
 
-    .accordion-content {
-        animation: slideDown 0.3s ease-out;
-    }
+	.accordion-content.show {
+		height: auto;
+		overflow: visible;
+		animation: slideDown 0.3s ease-out;
+	}
 
-    .content-text {
-        padding: 20px;
-        color: var(--text);
-        line-height: 1.6;
-        border-top: 1px solid var(--border);
-        background-color: var(--accent-light-mid);
-    }
+	.content-text {
+		padding: 20px;
+		color: var(--text);
+		line-height: 1.6;
+		border-top: 1px solid var(--border);
+	}
 
-    .icon {
-        display: inline-block;
-        margin-right: 10px;
-        vertical-align: middle;
-    }
+	.icon {
+		display: inline-block;
+		margin-right: 10px;
+		vertical-align: middle;
+	}
 
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    </style>
+	@keyframes slideDown {
+		from {
+			opacity: 0;
+			transform: translateY(-10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+</style>

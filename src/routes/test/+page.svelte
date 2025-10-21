@@ -24,8 +24,8 @@ import IconGithub from '@hyvor/icons/IconGithub';
         </Button>
     {/snippet}
 </Header>
-<Base>
 
+<Base>
     <div class="hds-container-max">
         <h1>This is a test page</h1>
 

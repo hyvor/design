@@ -11,7 +11,10 @@ import IconGithub from '@hyvor/icons/IconGithub';
     <title>Test Page - HDS</title>
 </svelte:head>
 
-<Header {logo} name="HYVOR" subName="Design System">
+<Header {logo} name="HYVOR" subName="Design System" max={true}>
+    {#snippet center()}
+        <!-- Center content can go here -->
+    {/snippet}
     {#snippet end()}
         <Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
         <Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">

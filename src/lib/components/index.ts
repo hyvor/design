@@ -2,6 +2,8 @@ export { default as ActionList } from './ActionList/ActionList.svelte';
 export { default as ActionListItem } from './ActionList/ActionListItem.svelte';
 export { default as ActionListGroup } from './ActionList/ActionListGroup.svelte';
 
+export { default as Accordion } from './Accordion/Accordion.svelte';
+
 export { default as Avatar } from './Avatar/Avatar.svelte';
 export { default as AvatarStack } from './Avatar/AvatarStack.svelte';
 

@@ -39,6 +39,7 @@ import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
+import Accordion from './docs/Accordion.svelte';
 
 export const prerender = true;
 
@@ -79,6 +80,7 @@ const nav = {
 	box: Box,
 	slider: Slider,
 	'icon-message': IconMessage,
+	accordion: Accordion,
 
 	usage: Usage,
 	'page-structure': PageStructure,

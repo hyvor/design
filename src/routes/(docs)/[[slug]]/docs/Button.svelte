@@ -40,6 +40,7 @@
 				<li><code>small</code></li>
 				<li><code>medium</code></li>
 				<li><code>large</code></li>
+                <li><code>x-large</code></li>
 			</ul>
 		</div>
 	</TableRow>
@@ -120,6 +121,7 @@ All other properties will be forwarded to the underlying element.
     <Button size="small">Small Button</Button>
     <Button size="medium">Medium Button</Button>
     <Button size="large">Large Button</Button>
+    <Button size="x-large">X-Large Button</Button>
 `}
 />
 
@@ -128,6 +130,7 @@ All other properties will be forwarded to the underlying element.
 	<Button size="small">Small Button</Button>
 	<Button size="medium">Medium Button</Button>
 	<Button size="large">Large Button</Button>
+    <Button size="x-large">X-Large Button</Button>
 </CodeResult>
 
 <h3 id="color">Variants and Colors</h3>

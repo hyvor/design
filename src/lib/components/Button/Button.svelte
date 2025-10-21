@@ -6,7 +6,7 @@
 
 	interface Props {
 		as?: 'button' | 'a';
-		size?: 'x-small' | 'small' | 'medium' | 'large';
+		size?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 		color?: 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' | 'input';
 		block?: boolean;
 		variant?: 'fill' | 'fill-light' | 'outline' | 'invisible' | 'outline-fill';
@@ -204,6 +204,12 @@
 			--local-hover-shadow-size: 5px;
 		}
 	}
+
+    .button.x-large {
+        height: 40px;
+        padding: 0 26px;
+        font-size: 16px;
+    }
 
 	.button {
 		&.fill {

@@ -1,3 +1,7 @@
+## 1.1.21 - 2025-10-21
+- Added `Accordion` component for collapsible content sections
+- Added `x-large` size option to `Button` component
+
 ## 1.1.19 - 2025-09-29
 
 - Added `FileUploader` component for uploading files

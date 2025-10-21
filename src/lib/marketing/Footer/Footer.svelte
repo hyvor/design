@@ -24,6 +24,7 @@
 		center?: import('svelte').Snippet;
 		affiliate?: boolean;
 		recordVisit?: boolean;
+        max?: boolean;
 	}
 
 	let {
@@ -31,7 +32,8 @@
 		social = $bindable({} as Record<string, string | null>),
 		center,
 		affiliate = true,
-		recordVisit = true
+		recordVisit = true,
+        max = false,
 	}: Props = $props();
 
 	social = {
@@ -51,7 +53,7 @@
 </script>
 
 <footer>
-	<Container>
+	<Container {max}>
 		<div class="footer-top">
 			<div class="footer-top-left">
 				{#if email}

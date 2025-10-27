@@ -13,6 +13,7 @@
 		darkToggle?: boolean;
 		center?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
+        max?: boolean;
 	}
 
 	let {
@@ -22,12 +23,13 @@
 		subName = undefined,
 		darkToggle = true,
 		center,
-		end
+		end,
+        max = false,
 	}: Props = $props();
 </script>
 
 <header>
-	<Container as="nav">
+	<Container as="nav" {max}>
 		<div class="nav-start">
 			<a class="nav-brand" {href}>
 				<img src={logo} alt="Hyvor Logo" width="30" height="30" />

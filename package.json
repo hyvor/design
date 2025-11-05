@@ -49,6 +49,8 @@
 	"dependencies": {
 		"@fontsource/readex-pro": "^5.0.8",
 		"@hyvor/icons": "^1.1.1",
+		"@openpanel/sdk": "^1.0.0",
+		"@openpanel/web": "^1.0.1",
 		"deepmerge-ts": "^5.1.0",
 		"emojibase-data": "^16.0.3",
 		"highlight.js": "^11.9.0",

@@ -1,4 +1,9 @@
+## 1.1.22 - 2025-11-05
+
+- OpenPanel tracking for analytics and events
+
 ## 1.1.21 - 2025-10-21
+
 - Added `Accordion` component for collapsible content sections
 - Added `x-large` size option to `Button` component
 - Added `max`prop to `Header` component to change width based on page type

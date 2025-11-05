@@ -40,6 +40,7 @@ import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
+import Tracking from './docs/Tracking.svelte';
 
 export const prerender = true;
 
@@ -85,7 +86,8 @@ const nav = {
 	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,
-	document: Document
+	document: Document,
+	tracking: Tracking,
 };
 
 export async function load({ params }) {

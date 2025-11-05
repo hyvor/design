@@ -49,7 +49,7 @@
 		{ href: '/modal', label: 'Modal' },
 		{ href: '/icon-message', label: 'Icon Message' },
 		{ href: '/slider', label: 'Slider' },
-        { href: '/accordion', label: 'Accordion' }
+		{ href: '/accordion', label: 'Accordion' }
 	];
 
 	const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));
@@ -107,6 +107,7 @@
 				<NavItem href="/page-structure">Page Structure</NavItem>
 				<NavItem href="/docs">Docs</NavItem>
 				<NavItem href="/document">Document</NavItem>
+				<NavItem href="/tracking">Tracking</NavItem>
 			</NavCategory>
 		</Nav>
 	{/snippet}

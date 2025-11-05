@@ -1,3 +1,4 @@
+import { track } from '$lib/marketing/index.js';
 import { writable } from 'svelte/store';
 
 export type BarProduct = string | 'core';
@@ -54,6 +55,7 @@ interface BarResponse {
 		license: BarResolvedLicense | null;
 	};
 	user: {
+		id: number;
 		name: string | null;
 		username: string;
 		email: string;
@@ -87,6 +89,13 @@ export function initBar() {
 
 			if (lastUnreadTime === null) {
 				UnreadUpdatesTimeLocalStorage.setNow();
+			}
+
+			if (data.user && track.ready()) {
+				track.identify(data.user.id.toString(), {
+					name: data.user.name ?? undefined,
+					avatar: data.user.picture_url ?? undefined,
+				});
 			}
 		})
 		.catch((error) => {

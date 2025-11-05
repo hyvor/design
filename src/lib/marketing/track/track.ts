@@ -4,7 +4,7 @@ interface InitOptions {
     // by default, tracking is only enabled in production (hyvor.com and its subdomains)
     // set this to true to force enable tracking in other environments (for testing purposes)
     // you might need allow that domain on OpenPanel to see the data
-    forceTrack: boolean;
+    forceTrack?: boolean;
 
     // set a custom open panel API URL
     openPanelApiUrl?: string;
@@ -23,10 +23,10 @@ class Track {
     }
 
     init({
-        forceTrack,
+        forceTrack = false,
         openPanelApiUrl = 'https://op.hyvor.com/api',
         openPanelClientId = 'b11f6143-a6b0-4fa4-a86c-3969c01dbb1d'
-    }: InitOptions) {
+    }: InitOptions = {}) {
 
         if (!forceTrack && !this.isProductionDomain()) {
             console.log('Tracking is disabled in non-production domains.');
@@ -47,6 +47,10 @@ class Track {
         if (!this.op) {
             throw new Error('OpenPanel is not initialized. Call track.init() first.');
         }
+    }
+    
+    ready() {
+        return this.op !== undefined;
     }
 
     // set global context

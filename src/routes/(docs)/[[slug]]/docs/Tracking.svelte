@@ -18,10 +18,16 @@
 
 <CodeBlock
 	code={`
-    import { track } from '@hyvor/design/marketing';
+import { track } from '@hyvor/design/marketing';
 
-    // usually within a onMount lifecycle at the root
-    track.init();
+// usually within a onMount lifecycle at the root
+track.init({
+	// set global context for all events
+	context: {
+		component: 'post',
+		// ... 
+	}
+});
 `}
 	language="js"
 />

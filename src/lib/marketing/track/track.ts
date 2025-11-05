@@ -50,27 +50,31 @@ class Track {
             this.op.setGlobalProperties(context);
         }
     }
-
-    private checkOp() {
-        if (!this.op) {
-            throw new Error('OpenPanel is not initialized. Call track.init() first.');
-        }
-    }
     
     ready() {
         return this.op !== undefined;
     }
 
+    private warnNoOp(message: string) {
+        console.warn(`[Track] Ignoring action: ${message} - OpenPanel is not initialized. Call track.init() first.`);
+    }
+
     // set global context
     context(properties: Record<string, any>) {
-        this.checkOp();
-        this.op!.setGlobalProperties(properties);
+        if (this.op) {
+            this.op.setGlobalProperties(properties);
+        } else {
+            this.warnNoOp('set context');
+        }
     }
 
     // log an event
     event(name: string, properties?: Record<string, any>) {
-        this.checkOp();
-        this.op!.track(name, properties);
+        if (this.op) {
+            this.op.track(name, properties);
+        } else {
+            this.warnNoOp(`log event "${name}"`);
+        }
     }
 
     // identify user
@@ -79,19 +83,25 @@ class Track {
         avatar?: string,
         properties?: Record<string, any>
     }) {
-        this.checkOp();
-        this.op!.identify({
-            profileId: profileId,
-            firstName: props.name,
-            avatar: props.avatar,
-            properties: props.properties
-        });
+        if (this.op) {
+            this.op.identify({
+                profileId: profileId,
+                firstName: props.name,
+                avatar: props.avatar,
+                properties: props.properties
+            });
+        } else {
+            this.warnNoOp(`identify user "${profileId}"`);
+        }
     }
 
     // log out user (clear identity)
     logout() {
-        this.checkOp();
-        this.op!.clear();
+        if (this.op) {
+            this.op.clear();
+        } else {
+            this.warnNoOp('logout user');
+        }
     }
 
 }

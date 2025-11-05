@@ -17,7 +17,7 @@
 	library.
 </p>
 
-<h2 id="adoption">HDS across HYVOR</h2>
+<!-- <h2 id="adoption">HDS across HYVOR</h2>
 
 <p>We are incrementally adopting HDS in our products. Here is the current status:</p>
 
@@ -56,7 +56,7 @@
 			<ColorDot color="#fffaf8" />
 		</div>
 	</TableRow>
-	<!-- <TableRow>
+	<TableRow>
         <div>
             <a href="https://reader.hyvor.com" target="_blank">Hyvor Reader</a>
         </div>
@@ -66,7 +66,7 @@
             <ColorDot color="#bdc5c6" />
             <ColorDot color="#eaebe9" />
         </div>
-    </TableRow> -->
+    </TableRow>
 	<TableRow>
 		<div>
 			<a href="https://fortguard.io" target="_blank">FortGuard</a>
@@ -77,7 +77,7 @@
 			<ColorDot color="#fbf7ff" />
 		</div>
 	</TableRow>
-</Table>
+</Table> -->
 
 <h2 id="dependencies">Dependencies</h2>
 
@@ -128,7 +128,7 @@
 		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds.
 		Must be closer to white.
 	</li>
-</ul>
+</ul> -->
 
 <h2 id="install">Installation</h2>
 

@@ -11,6 +11,10 @@ interface InitOptions {
 
     // set a custom OpenPanel client ID
     openPanelClientId?: string;
+
+    // initial global context properties
+    // recommended to set product name here (component: relay)
+    context?: Record<string, any>;
 }
 
 class Track {
@@ -25,7 +29,8 @@ class Track {
     init({
         forceTrack = false,
         openPanelApiUrl = 'https://op.hyvor.com/api',
-        openPanelClientId = 'b11f6143-a6b0-4fa4-a86c-3969c01dbb1d'
+        openPanelClientId = 'b11f6143-a6b0-4fa4-a86c-3969c01dbb1d',
+        context = {}
     }: InitOptions = {}) {
 
         if (!forceTrack && !this.isProductionDomain()) {
@@ -41,6 +46,9 @@ class Track {
             trackAttributes: true,
         });
 
+        if (Object.keys(context).length > 0) {
+            this.op.setGlobalProperties(context);
+        }
     }
 
     private checkOp() {

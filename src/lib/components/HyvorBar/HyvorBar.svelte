@@ -14,6 +14,8 @@
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import BarNotice from './Notice/BarNotice.svelte';
 	import BarLicense from './Notice/BarLicense.svelte';
+	import BarOrganization from './Organization/BarOrganization.svelte';
+	import { type BarOrganization as BarOrganizationType } from './bar.js';
 
 	interface Props {
 		instance?: string;
@@ -34,6 +36,7 @@
 			user: BarUserType | null;
 			logoutUrl: string;
 		};
+		onOrganizationSwitch?: (org: BarOrganizationType) => void;
 	}
 
 	let {
@@ -42,7 +45,8 @@
 		logo = `${instance}/api/public/logo/${product}.svg`,
 		config = {},
 		cloud = true,
-		authOverride = undefined
+		authOverride = undefined,
+		onOrganizationSwitch = () => {}
 	}: Props = $props();
 
 	let mobileShow = $state(false);
@@ -67,12 +71,12 @@
 		}
 	}
 
+	if (authOverride) {
+		barUser.set(authOverride.user);
+	}
+
 	onMount(() => {
 		setInstanceAndProduct(instance, product);
-
-		if (authOverride) {
-			barUser.set(authOverride.user);
-		}
 
 		if (cloud) {
 			initBar();
@@ -98,6 +102,7 @@
 					{getName()}
 				</span>
 			</a>
+			<BarOrganization onSwitch={onOrganizationSwitch} />
 			<BarLicense name={getName()} />
 		</div>
 		<div class="right">
@@ -133,7 +138,7 @@
 		z-index: 100;
 	}
 	.inner {
-		padding: 10px 29px;
+		padding: 0px 29px;
 		display: flex;
 		align-items: center;
 		border-top-left-radius: 0;
@@ -144,6 +149,7 @@
 		display: flex;
 		align-items: center;
 		flex: 1;
+		height: 100%;
 	}
 	.logo {
 		display: flex;

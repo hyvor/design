@@ -22,7 +22,7 @@
 		return daysDiff(endsAt);
 	}
 
-	function remainingCancelAtDAys(cancelAt: number | undefined | null) : null | number {
+	function remainingCancelAtDAys(cancelAt: number | undefined | null): null | number {
 		if (!cancelAt) {
 			return null;
 		}
@@ -36,9 +36,7 @@
 {#if $barLicense}
 	<a class="wrap" href="/console/billing">
 		{#if $barLicense.type === 'subscription'}
-			<Tooltip
-				position="bottom"
-			>
+			<Tooltip position="bottom">
 				{#snippet tooltip()}
 					Your current subscription plan for {name}. Click to manage it.
 				{/snippet}

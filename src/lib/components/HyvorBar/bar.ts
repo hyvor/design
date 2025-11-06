@@ -15,6 +15,13 @@ export interface BarUser {
 	username?: string | null;
 	email: string;
 	picture_url: string | null;
+	current_organization_name: string;
+}
+
+export interface BarOrganization {
+	id: number;
+	name: string;
+	role: 'admin' | 'billing' | 'manager' | 'member';
 }
 
 export interface BarUpdate {
@@ -60,6 +67,7 @@ interface BarResponse {
 		username: string;
 		email: string;
 		picture_url: string;
+		current_organization_name: string;
 	};
 }
 
@@ -68,7 +76,10 @@ export function setInstanceAndProduct(instance_: string, product_: string) {
 	product = product_;
 }
 
-export function initBar() {
+/**
+ * @throws Error if initialization fails
+ */
+export async function initBar() {
 	const query = new URLSearchParams();
 	query.set('product', product);
 
@@ -77,30 +88,66 @@ export function initBar() {
 		query.set('last_read_updates_at', lastUnreadTime.toString());
 	}
 
-	fetch(instance + '/api/public/bar?' + query.toString(), {
+	const response = await fetch(instance + '/api/public/bar?' + query.toString(), {
 		credentials: 'include'
-	})
-		.then((response) => response.json())
-		.then((data: BarResponse) => {
-			barUser.set(data.user);
-			barUnreadUpdates.set(data.updates.unread);
-			barLicense.set(data.billing.license);
-			barHasFailedInvoices.set(data.billing.has_failed_invoices);
+	});
 
-			if (lastUnreadTime === null) {
-				UnreadUpdatesTimeLocalStorage.setNow();
-			}
+	if (!response.ok) {
+		throw new Error('Failed to initialize bar');
+	}
 
-			if (data.user && track.ready()) {
-				track.identify(data.user.id.toString(), {
-					name: data.user.name ?? undefined,
-					avatar: data.user.picture_url ?? undefined,
-				});
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
+	const data: BarResponse = await response.json();
+
+	barUser.set(data.user);
+	barUnreadUpdates.set(data.updates.unread);
+	barLicense.set(data.billing.license);
+	barHasFailedInvoices.set(data.billing.has_failed_invoices);
+
+	if (lastUnreadTime === null) {
+		UnreadUpdatesTimeLocalStorage.setNow();
+	}
+
+	if (data.user && track.ready()) {
+		track.identify(data.user.id.toString(), {
+			name: data.user.name ?? undefined,
+			avatar: data.user.picture_url ?? undefined,
 		});
+	}
+}
+
+export async function getMyOrganizations(): Promise<BarOrganization[]> {
+
+	/* return [
+		{ id: 1, name: 'Org 1', role: 'admin' },
+		{ id: 2, name: 'Org 2', role: 'member' },
+		{ id: 3, name: 'Org 3', role: 'billing' },
+		{ id: 4, name: 'Org 4', role: 'manager' },
+	] */
+
+	const response = await fetch(instance + '/api/public/bar/myorgs', {
+		credentials: 'include'
+	});
+	const data = await response.json();
+	return data.organizations;
+}
+
+export async function switchOrganization(org: BarOrganization): Promise<void> {
+
+	const response = await fetch(instance + '/api/public/bar/switch-org', {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ organization_id: org.id })
+	});
+	
+	if (!response.ok) {
+		throw new Error('Failed to switch organization');
+	}
+
+	await initBar();
+
 }
 
 export class UnreadUpdatesTimeLocalStorage {

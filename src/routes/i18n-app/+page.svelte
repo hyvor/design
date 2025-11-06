@@ -29,6 +29,8 @@
 	});
 
 	let changingKey = $state('welcome' as ToDotPaths<typeof enJson>);
+
+	let orgSwitchMessage = $state('');
 </script>
 
 <HyvorBar
@@ -37,15 +39,24 @@
 		name: 'Hyvor Design',
 		docs: false
 	}}
+	authOverride={{
+		user: {
+			name: 'Supun',
+			email: 'supun@example.com',
+			picture_url: null,
+			current_organization_name: 'HYVOR'
+		},
+		logoutUrl: 'https://hyvor.com/logout'
+	}}
+	onOrganizationSwitch={(org) => {
+		orgSwitchMessage = `Switched to organization: ${org.name} (Role: ${org.role}, ID: ${org.id})`;
+	}}
 />
 
-<br />
-
-<ChangeButton />
-
-<TextInput bind:value={name} />
-
-<div style="margin-top:20px;">
+<div style="margin-top:20px;padding: 30px">
+	{orgSwitchMessage}
+	<ChangeButton />
+	<TextInput bind:value={name} />
 	<div>
 		<Intl.T key="welcome" /> <br />
 		<Intl.T key="welcome" /> <br />
@@ -75,19 +86,18 @@
 		/>
 	</div>
 
-
 	<div>
 		Element with props:
 		<Intl.T
 			key="advanced"
 			params={{
-				a: { 
+				a: {
 					element: 'a',
-					props: { 
+					props: {
 						class: 'hds-link',
 						href: 'https://hyvor.com',
-						target: '_blank',
-					} 
+						target: '_blank'
+					}
 				}
 			}}
 		/>

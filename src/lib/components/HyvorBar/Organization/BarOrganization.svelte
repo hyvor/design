@@ -1,13 +1,17 @@
 <script lang="ts">
 	import Dropdown from '../../Dropdown/Dropdown.svelte';
 	import Tooltip from '../../Tooltip/Tooltip.svelte';
-	import { barUser, switchOrganization, type BarOrganization } from '../bar.js';
+	import {
+		barOrganizationDropdownOpen,
+		barUser,
+		switchOrganization,
+		type BarOrganization
+	} from '../bar.js';
 	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
 	import OrgsList from './OrgsList.svelte';
 	import toast from '$lib/components/Toast/toast.js';
 
-	let showDropdown = $state(false);
-	let showTooltip = $state(true);
+	let disableTooltip = $state(true);
 	let switching = $state(false);
 
 	let props: {
@@ -15,7 +19,7 @@
 	} = $props();
 
 	async function handleSwitch(org: BarOrganization) {
-		showDropdown = false;
+		barOrganizationDropdownOpen.set(false);
 		switching = true;
 
 		try {
@@ -26,24 +30,24 @@
 			return;
 		}
 
+		switching = false;
 		props.onSwitch(org);
 	}
 
-	$effect(() => {
-		if (showDropdown) {
-			showTooltip = false;
-		} else {
-			setTimeout(() => {
-				showTooltip = true;
-			}, 3000);
-		}
+	barOrganizationDropdownOpen.subscribe((value) => {
+		disableTooltip = true;
 	});
 </script>
 
 {#if $barUser}
-	<Tooltip position="bottom" text="Switch Organization" disabled={!showTooltip}>
+	<Tooltip position="bottom" text="Switch Organization" disabled={disableTooltip}>
 		<span class="wrap">
-			<Dropdown bind:show={showDropdown} align="center" width={275} contentPadding={0}>
+			<Dropdown
+				bind:show={$barOrganizationDropdownOpen}
+				align="center"
+				width={275}
+				contentPadding={0}
+			>
 				{#snippet trigger()}
 					<button>
 						{#if switching}

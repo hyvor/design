@@ -52,6 +52,8 @@ export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
 export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
+export const barOrganizationDropdownOpen = writable<boolean>(false);
+export const barOrganizations = writable<BarOrganization[]>([]);
 
 interface BarResponse {
 	updates: {
@@ -214,5 +216,10 @@ export const bar = {
 	 */
 	reload: () => {
 		initBar();
-	}
+	},
+
+	/**
+	 * Open the org selector dropdown from the outside world
+	 */
+	openOrganizationDropdown: () => barOrganizationDropdownOpen.set(true)
 };

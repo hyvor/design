@@ -2,13 +2,12 @@
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import { onMount } from 'svelte';
-	import { getMyOrganizations, type BarOrganization } from '../bar.js';
+	import { barOrganizations, getMyOrganizations, type BarOrganization } from '../bar.js';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 
 	let loading = $state(true);
 	let error = $state('');
-	let orgs = $state<BarOrganization[]>([]);
 
 	let {
 		onSwitch
@@ -17,9 +16,13 @@
 	} = $props();
 
 	onMount(() => {
+		if ($barOrganizations.length > 0) {
+			loading = false;
+			return;
+		}
 		getMyOrganizations()
 			.then((data) => {
-				orgs = data;
+				barOrganizations.set(data);
 			})
 			.catch((err) => {
 				error = 'Failed to load organizations.';
@@ -39,7 +42,7 @@
 {:else}
 	<div class="list-wrap">
 		<ActionList>
-			{#each orgs as org}
+			{#each $barOrganizations as org}
 				<ActionListItem on:select={() => onSwitch(org)}>
 					{org.name}
 					{#snippet end()}

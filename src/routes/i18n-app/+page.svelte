@@ -9,6 +9,8 @@
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
 	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
+	import Button from '$lib/components/Button/Button.svelte';
+	import { bar } from '$lib/components/HyvorBar/bar.js';
 
 	let name = $state('Supun');
 	let dynamicValue = $state('');
@@ -54,6 +56,7 @@
 />
 
 <div style="margin-top:20px;padding: 30px">
+	<Button onclick={() => bar.openOrganizationDropdown()}>Channge Org</Button>
 	{orgSwitchMessage}
 	<ChangeButton />
 	<TextInput bind:value={name} />

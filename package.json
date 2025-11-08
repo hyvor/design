@@ -37,6 +37,7 @@
 		"@sveltejs/adapter-static": "^3.0.0",
 		"@sveltejs/package": "^2.3.7",
 		"@sveltejs/vite-plugin-svelte": "^4.0.0",
+		"mdsvex": "^0.12.6",
 		"prettier": "3.4.2",
 		"prettier-plugin-svelte": "3.3.3",
 		"publint": "^0.1.9",

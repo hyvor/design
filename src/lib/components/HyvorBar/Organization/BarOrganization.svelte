@@ -11,7 +11,7 @@
 	import OrgsList from './OrgsList.svelte';
 	import toast from '$lib/components/Toast/toast.js';
 
-	let disableTooltip = $state(true);
+	let disableTooltip = $state(false);
 	let switching = $state(false);
 
 	let props: {
@@ -35,7 +35,7 @@
 	}
 
 	barOrganizationDropdownOpen.subscribe((value) => {
-		disableTooltip = true;
+		if (value) disableTooltip = true;
 	});
 </script>
 

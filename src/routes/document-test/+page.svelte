@@ -5,15 +5,20 @@
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
 
-<HyvorBar product="core" cloud={false} authOverride={{
-	user: {
-		name: 'Test User',
-		// picture_url: 'https://picsum.photos/60/60',
-		picture_url: null,
-		email: 'test@hyvor.com'
-	},
-	logoutUrl: 'https://logout.com'
-}} />
+<HyvorBar
+	product="core"
+	cloud={false}
+	authOverride={{
+		user: {
+			name: 'Test User',
+			// picture_url: 'https://picsum.photos/60/60',
+			picture_url: null,
+			email: 'test@hyvor.com',
+			current_organization_name: 'Test Org'
+		},
+		logoutUrl: 'https://logout.com'
+	}}
+/>
 
 <Base>
 	<slot />

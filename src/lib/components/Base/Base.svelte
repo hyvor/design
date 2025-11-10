@@ -5,6 +5,8 @@
 	import '../../index.js';
 	import ToastProvider from '../Toast/ToastProvider.svelte';
 	import FileUploaderProvider from '../FileUploader/FileUploaderProvider.svelte';
+	
+	import '$lib/components/CodeBlock/prism.scss'
 
 	interface Props {
 		dark?: boolean;

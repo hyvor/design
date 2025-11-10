@@ -1,5 +1,5 @@
 <script lang="ts">
-	//import './prism.scss';
+	// import './prism.scss';
 	import './hljs.scss';
 
 	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx' | 'php';

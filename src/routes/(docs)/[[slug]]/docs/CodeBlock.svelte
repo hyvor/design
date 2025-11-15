@@ -17,7 +17,6 @@
 	<li><code>js</code></li>
 	<li><code>ts</code></li>
 	<li><code>svelte</code> (fallback to <code>html</code>)</li>
-	<li><code>jsx</code> (fallback to <code>html</code>)</li>
 	<li><code>yaml</code></li>
 	<li><code>json</code></li>
 	<li><code>php</code></li>
@@ -46,6 +45,7 @@
     />
     <CodeBlock
         code="x := 10"
+        language="go"
     />
 </TabbedCodeBlock>
 `}
@@ -63,6 +63,7 @@
     />
     <CodeBlock
         code="x := 10"
+        language="go"
     />
 </TabbedCodeBlock>
 </CodeResult>
@@ -144,21 +145,6 @@ Subject: Hello World
 `}
 />
 
-<h3 id="jsx">JSX</h3>
-
-<CodeBlock
-	language="jsx"
-	code={`
-    function App() {
-        return (
-            <div>
-                <h1>Hello World</h1>
-            </div>
-        );
-    }
-`}
-/>
-
 <h3 id="yaml">YAML</h3>
 
 <CodeBlock
@@ -209,6 +195,22 @@ Subject: Hello World
         {
             echo 'Hello World';
         }
+    }
+`}
+/>
+
+
+<h3 id="go">Go</h3>
+
+<CodeBlock
+    language="go"
+    code={`
+    package main
+
+    import "fmt"
+
+    func main() {
+        fmt.Println("Hello, World!")
     }
 `}
 />

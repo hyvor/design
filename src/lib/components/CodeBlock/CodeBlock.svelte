@@ -1,29 +1,20 @@
 <script lang="ts">
-	// import './prism.scss';
-	import './hljs.scss';
-
-	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx' | 'php';
-
-	const languagesMap: Partial<Record<InputLanguage, Language>> = {
-		svelte: 'html',
-		jsx: 'js'
-	};
+	 import './prism.scss';
 
 	import getCode, { type Language } from './getCode.js';
 	interface Props {
 		code: string;
-		language?: InputLanguage | null;
+		language?: Language | null;
 	}
 
 	let { code, language = 'html' }: Props = $props();
 
-	let languageCode = $derived(language ? (languagesMap[language] || language) : null) as Language | null;
+	let languageCode = $derived(language ? (language) : null) as Language | null;
 </script>
 
-<pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>
+<pre class="language-{languageCode}"><code>{@html getCode(code, languageCode)}</code></pre>
 
 <style>
-	/*styles for CodeBlock component */
 	pre {
 		text-align: left;
 		white-space: pre;

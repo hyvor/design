@@ -24,7 +24,11 @@
 
 		fetch(instance + '/api/public/updates/notification?type=' + product)
 			.then((response) => response.json())
-			.then((data) => set(data.update));
+			.then((data) => {
+				if (data.update) {
+					set(data.update);
+				}
+			});
 	});
 </script>
 

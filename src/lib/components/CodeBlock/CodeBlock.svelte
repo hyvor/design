@@ -10,6 +10,7 @@
 		jsx: 'js'
 	};
 	import getCode, { type Language } from './getCode.js';
+	import toast from '../Toast/toast.js';
 
 	interface Props {
 		code: string;
@@ -23,13 +24,14 @@
 
 	function copyToClipboard() {
 		navigator.clipboard.writeText(code);
+		toast.success('Copied');
 	}
 </script>
 
 <div class="code-container">
 	<div class="copy-button">
-		<Button variant="fill" onclick={copyToClipboard}>
-			<IconCopy />
+		<Button color="input" size="x-small" onclick={copyToClipboard}>
+			<IconCopy size={10} />
 		</Button>
 	</div>
 	<pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>
@@ -47,6 +49,10 @@
 		right: 12px;
 		transform: translateY(-40%);
 		z-index: 10;
+	}
+
+	.copy-button :global(button) {
+		border: 1px solid var(--border);
 	}
 
 	pre {

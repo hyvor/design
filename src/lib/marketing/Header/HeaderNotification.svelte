@@ -2,6 +2,8 @@
 	import type { BarUpdate } from '$lib/components/HyvorBar/bar.js';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
+	import { isCloud } from '../cloud.js';
+	import IconMegaphone from '@hyvor/icons/IconMegaphone';
 
 	let notificationUpdate: BarUpdate | null = $state(null);
 
@@ -18,6 +20,8 @@
 	}
 
 	onMount(() => {
+		if (!isCloud(false)) return;
+
 		fetch(instance + '/api/public/updates/notification?type=' + product)
 			.then((response) => response.json())
 			.then((data) => set(data.update));
@@ -31,7 +35,8 @@
 		target="_blank"
 		transition:slide={{ duration: 300 }}
 	>
-		{notificationUpdate.title} &rarr;
+		<IconMegaphone size={12} />&nbsp;&nbsp;
+		{notificationUpdate.title}&nbsp;&nbsp;&rarr;
 	</a>
 {/if}
 

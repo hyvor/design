@@ -26,7 +26,7 @@ export interface BarUpdate {
 	url?: string;
 }
 
-export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
+export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'post' | 'relay' | 'fortguard';
 
 export interface BarResolvedLicense {
 	type: 'subscription' | 'trial' | 'custom' | 'expired';
@@ -94,7 +94,7 @@ export function initBar() {
 			if (data.user && track.ready()) {
 				track.identify(data.user.id.toString(), {
 					name: data.user.name ?? undefined,
-					avatar: data.user.picture_url ?? undefined,
+					avatar: data.user.picture_url ?? undefined
 				});
 			}
 		})

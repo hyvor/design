@@ -6,6 +6,12 @@
 	import toast from '$lib/components/Toast/toast.js';
 	import type { DropdownAlign } from '$lib/components/Dropdown/dropdown.types.js';
 
+	/**
+	 * This component depends on data from HyvorBar
+	 * So, only use this component where there is a HyvorBar on the page
+	 * Ex: use in Consoles, but not in Marketing pages
+	 */
+
 	interface Props {
 		show?: boolean;
 		onSwitch?: (org: BarOrganization) => void;
@@ -63,12 +69,12 @@
 		height: 24px;
 		font-weight: 600;
 		transition: 0.2s background-color;
+		padding: 0 15px;
 	}
 	button.bordered {
 		border: 1px solid var(--border);
 		border-top: none;
 		border-bottom: none;
-		padding: 0 15px;
 	}
 	button:hover {
 		background-color: var(--hover);

@@ -73,13 +73,12 @@
 	}
 
 	barOnOrganizationSwitch.set(onOrganizationSwitch);
+	setInstanceAndProduct(instance, product);
 	if (authOverride) {
 		barUser.set(authOverride.user);
 	}
 
 	onMount(() => {
-		setInstanceAndProduct(instance, product);
-
 		if (cloud) {
 			initBar();
 		}

@@ -31,15 +31,19 @@
 		switching = true;
 
 		try {
-			await switchOrganization(org);
+			await switchOrganization(org.id);
 		} catch (e) {
 			toast.error('Failed to switch organization.');
-			switching = false;
 			return;
+		} finally {
+			switching = false;
 		}
 
-		switching = false;
 		$barOnOrganizationSwitch?.(org);
+	}
+
+	function handleCreateOrgStart() {
+		show = false;
 	}
 </script>
 
@@ -56,7 +60,7 @@
 			</button>
 		{/snippet}
 		{#snippet content()}
-			<OrgsList onSwitch={handleSwitch} />
+			<OrgsList onSwitch={handleSwitch} onCreateStart={handleCreateOrgStart} />
 		{/snippet}
 	</Dropdown>
 {/if}

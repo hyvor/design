@@ -27,14 +27,13 @@
 
 <Base>
 	<slot />
+	<p style="text-align:center">
+		<span class="org-button">
+			<OrganizationButton />
+		</span>
+	</p>
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>
-
-		<p>
-			<span class="org-button">
-				<OrganizationButton dropdownAlign="start" />
-			</span>
-		</p>
 
 		<h2 id="heading-2">Heading 2</h2>
 		<p>

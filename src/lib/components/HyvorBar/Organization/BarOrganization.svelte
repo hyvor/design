@@ -1,6 +1,12 @@
 <script lang="ts">
 	import Tooltip from '../../Tooltip/Tooltip.svelte';
-	import { barOrganizationDropdownOpen, barUser, type BarOrganization } from '../bar.js';
+	import {
+		barOrganizationCreating,
+		barOrganizationDropdownOpen,
+		barUser,
+		type BarOrganization
+	} from '../bar.js';
+	import CreateOrganization from './CreateOrganization.svelte';
 	import OrganizationButton from './OrganizationButton.svelte';
 
 	let disableTooltip = $state(false);
@@ -19,6 +25,8 @@
 		</div>
 	</Tooltip>
 {/if}
+
+<CreateOrganization bind:show={$barOrganizationCreating} />
 
 <style>
 	.wrap {

@@ -1,5 +1,5 @@
 import { track } from '$lib/marketing/index.js';
-import { writable } from 'svelte/store';
+import { get, writable } from 'svelte/store';
 
 export type BarProduct = string | 'core';
 
@@ -45,9 +45,9 @@ export interface BarResolvedLicense {
 	trial_ends_at: null | number;
 }
 
-let instance = '';
 let product: string = 'core';
 
+export const instance = writable<string>('');
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
 export const barLicense = writable<BarResolvedLicense | null>(null);
@@ -55,6 +55,7 @@ export const barHasFailedInvoices = writable<boolean>(false);
 export const barOrganizationDropdownOpen = writable<boolean>(false);
 export const barOrganizations = writable<BarOrganization[]>([]);
 export const barOnOrganizationSwitch = writable<((org: BarOrganization) => void) | null>(null);
+export const barOrganizationCreating = writable<boolean>(false);
 
 interface BarResponse {
 	updates: {
@@ -75,8 +76,12 @@ interface BarResponse {
 }
 
 export function setInstanceAndProduct(instance_: string, product_: string) {
-	instance = instance_;
+	instance.set(instance_);
 	product = product_;
+}
+
+export function getInstance(): string {
+	return get(instance);
 }
 
 /**
@@ -91,7 +96,7 @@ export async function initBar() {
 		query.set('last_read_updates_at', lastUnreadTime.toString());
 	}
 
-	const response = await fetch(instance + '/api/public/bar?' + query.toString(), {
+	const response = await fetch(getInstance() + '/api/public/bar?' + query.toString(), {
 		credentials: 'include'
 	});
 
@@ -123,24 +128,42 @@ export async function getMyOrganizations(): Promise<BarOrganization[]> {
 		{ id: 1, name: 'Org 1', role: 'admin' },
 		{ id: 2, name: 'Org 2', role: 'member' },
 		{ id: 3, name: 'Org 3', role: 'billing' },
-		{ id: 4, name: 'Org 4', role: 'manager' },
-	] */
+		{ id: 4, name: 'Org 4', role: 'manager' }
+	]; */
 
-	const response = await fetch(instance + '/api/public/bar/myorgs', {
+	const response = await fetch(getInstance() + '/api/public/bar/orgs/my', {
 		credentials: 'include'
 	});
 	const data = await response.json();
 	return data.organizations;
 }
 
-export async function switchOrganization(org: BarOrganization): Promise<void> {
-	const response = await fetch(instance + '/api/public/bar/switch-org', {
+export async function createOrganization(name: string): Promise<BarOrganization> {
+	const response = await fetch(getInstance() + '/api/public/bar/orgs', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({ organization_id: org.id })
+		body: JSON.stringify({ name })
+	});
+
+	if (!response.ok) {
+		throw new Error('Failed to create organization');
+	}
+
+	const data = await response.json();
+	return data as BarOrganization;
+}
+
+export async function switchOrganization(orgId: number): Promise<void> {
+	const response = await fetch(getInstance() + '/api/public/bar/orgs/switch', {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({ organization_id: orgId })
 	});
 
 	if (!response.ok) {

@@ -10,8 +10,7 @@
 		"sourceMap": true,
 		"strict": true,
 		"moduleResolution": "NodeNext",
-		"module": "NodeNext",
-		"allowImportingTsExtensions": true
+		"module": "NodeNext"
 	},
 	"exclude": ["./icons/**/*"]
 }

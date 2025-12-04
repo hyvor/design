@@ -2,13 +2,13 @@
 	import Modal from '$lib/components/Modal/Modal.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import toast from '$lib/components/Toast/toast.ts';
+	import toast from '$lib/components/Toast/toast.js';
 	import {
 		barOnOrganizationSwitch,
 		createOrganization,
 		switchOrganization,
 		type BarOrganization
-	} from '../bar.ts';
+	} from '../bar.js';
 
 	interface Props {
 		show?: boolean;

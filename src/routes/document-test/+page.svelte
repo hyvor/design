@@ -2,6 +2,7 @@
 	import Base from '$lib/components/Base/Base.svelte';
 	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
+	import toast from '$lib/components/Toast/toast.ts';
 	import Document from '$lib/marketing/Document/Document.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
@@ -18,6 +19,9 @@
 			current_organization_name: 'Test Org'
 		},
 		logoutUrl: 'https://logout.com'
+	}}
+	onOrganizationSwitch={(org) => {
+		toast.info('Switched to organization:' + org.name);
 	}}
 />
 

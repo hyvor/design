@@ -5,9 +5,7 @@
 
 	let disableTooltip = $state(false);
 
-	let props: {
-		onSwitch: (org: BarOrganization) => void;
-	} = $props();
+	let props: {} = $props();
 
 	barOrganizationDropdownOpen.subscribe((value) => {
 		if (value) disableTooltip = true;
@@ -17,11 +15,7 @@
 {#if $barUser}
 	<Tooltip position="bottom" text="Switch Organization" disabled={disableTooltip}>
 		<div class="wrap">
-			<OrganizationButton
-				bind:show={$barOrganizationDropdownOpen}
-				onSwitch={props.onSwitch}
-				style="bordered"
-			/>
+			<OrganizationButton bind:show={$barOrganizationDropdownOpen} style="bordered" />
 		</div>
 	</Tooltip>
 {/if}

@@ -20,6 +20,7 @@
 			loading = false;
 			return;
 		}
+
 		getMyOrganizations()
 			.then((data) => {
 				barOrganizations.set(data);

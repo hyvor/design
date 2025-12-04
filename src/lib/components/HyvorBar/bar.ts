@@ -54,6 +54,7 @@ export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
 export const barOrganizationDropdownOpen = writable<boolean>(false);
 export const barOrganizations = writable<BarOrganization[]>([]);
+export const barOnOrganizationSwitch = writable<((org: BarOrganization) => void) | null>(null);
 
 interface BarResponse {
 	updates: {
@@ -112,13 +113,12 @@ export async function initBar() {
 	if (data.user && track.ready()) {
 		track.identify(data.user.id.toString(), {
 			name: data.user.name ?? undefined,
-			avatar: data.user.picture_url ?? undefined,
+			avatar: data.user.picture_url ?? undefined
 		});
 	}
 }
 
 export async function getMyOrganizations(): Promise<BarOrganization[]> {
-
 	/* return [
 		{ id: 1, name: 'Org 1', role: 'admin' },
 		{ id: 2, name: 'Org 2', role: 'member' },
@@ -134,7 +134,6 @@ export async function getMyOrganizations(): Promise<BarOrganization[]> {
 }
 
 export async function switchOrganization(org: BarOrganization): Promise<void> {
-
 	const response = await fetch(instance + '/api/public/bar/switch-org', {
 		method: 'POST',
 		credentials: 'include',
@@ -143,13 +142,12 @@ export async function switchOrganization(org: BarOrganization): Promise<void> {
 		},
 		body: JSON.stringify({ organization_id: org.id })
 	});
-	
+
 	if (!response.ok) {
 		throw new Error('Failed to switch organization');
 	}
 
 	await initBar();
-
 }
 
 export class UnreadUpdatesTimeLocalStorage {

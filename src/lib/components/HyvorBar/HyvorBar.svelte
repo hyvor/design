@@ -4,6 +4,7 @@
 	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
 	import {
+		barOnOrganizationSwitch,
 		barUser,
 		initBar,
 		setInstanceAndProduct,
@@ -71,6 +72,7 @@
 		}
 	}
 
+	barOnOrganizationSwitch.set(onOrganizationSwitch);
 	if (authOverride) {
 		barUser.set(authOverride.user);
 	}
@@ -102,7 +104,7 @@
 					{getName()}
 				</span>
 			</a>
-			<BarOrganization onSwitch={onOrganizationSwitch} />
+			<BarOrganization />
 			<BarLicense name={getName()} />
 		</div>
 		<div class="right">

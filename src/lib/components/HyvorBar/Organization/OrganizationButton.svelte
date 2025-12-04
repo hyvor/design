@@ -2,7 +2,12 @@
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
 	import OrgsList from './OrgsList.svelte';
-	import { barUser, switchOrganization, type BarOrganization } from '../bar.js';
+	import {
+		barOnOrganizationSwitch,
+		barUser,
+		switchOrganization,
+		type BarOrganization
+	} from '../bar.js';
 	import toast from '$lib/components/Toast/toast.js';
 	import type { DropdownAlign } from '$lib/components/Dropdown/dropdown.types.js';
 
@@ -14,17 +19,11 @@
 
 	interface Props {
 		show?: boolean;
-		onSwitch?: (org: BarOrganization) => void;
 		style?: 'bordered' | 'plain';
 		dropdownAlign?: DropdownAlign;
 	}
 
-	let {
-		show = $bindable(false),
-		onSwitch,
-		style = 'plain',
-		dropdownAlign = 'center'
-	}: Props = $props();
+	let { show = $bindable(false), style = 'plain', dropdownAlign = 'center' }: Props = $props();
 	let switching = $state(false);
 
 	async function handleSwitch(org: BarOrganization) {
@@ -40,7 +39,7 @@
 		}
 
 		switching = false;
-		onSwitch?.(org);
+		$barOnOrganizationSwitch?.(org);
 	}
 </script>
 

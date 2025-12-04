@@ -1,6 +1,7 @@
 <script>
 	import Base from '$lib/components/Base/Base.svelte';
 	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
+	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
 	import Document from '$lib/marketing/Document/Document.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
@@ -24,6 +25,13 @@
 	<slot />
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>
+
+		<p>
+			<span class="org-button">
+				<OrganizationButton dropdownAlign="start" />
+			</span>
+		</p>
+
 		<h2 id="heading-2">Heading 2</h2>
 		<p>
 			<!-- lorem ipsum content generate -->

@@ -1,0 +1,90 @@
+<script lang="ts">
+	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
+	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
+	import OrgsList from './OrgsList.svelte';
+	import { barUser, switchOrganization, type BarOrganization } from '../bar.js';
+	import toast from '$lib/components/Toast/toast.js';
+	import type { DropdownAlign } from '$lib/components/Dropdown/dropdown.types.js';
+
+	interface Props {
+		show?: boolean;
+		onSwitch?: (org: BarOrganization) => void;
+		style?: 'bordered' | 'plain';
+		dropdownAlign?: DropdownAlign;
+	}
+
+	let {
+		show = $bindable(false),
+		onSwitch,
+		style = 'plain',
+		dropdownAlign = 'center'
+	}: Props = $props();
+	let switching = $state(false);
+
+	async function handleSwitch(org: BarOrganization) {
+		show = false;
+		switching = true;
+
+		try {
+			await switchOrganization(org);
+		} catch (e) {
+			toast.error('Failed to switch organization.');
+			switching = false;
+			return;
+		}
+
+		switching = false;
+		onSwitch?.(org);
+	}
+</script>
+
+{#if $barUser}
+	<Dropdown bind:show align={dropdownAlign} width={275} contentPadding={0}>
+		{#snippet trigger()}
+			<button class:bordered={style === 'bordered'}>
+				{#if switching}
+					<span class="switching">Switching...</span>
+				{:else}
+					{$barUser.current_organization_name}
+				{/if}
+				<IconChevronExpand size={12} />
+			</button>
+		{/snippet}
+		{#snippet content()}
+			<OrgsList onSwitch={handleSwitch} />
+		{/snippet}
+	</Dropdown>
+{/if}
+
+<style>
+	button {
+		height: 100%;
+		font-size: 14px;
+		height: 24px;
+		font-weight: 600;
+		transition: 0.2s background-color;
+	}
+	button.bordered {
+		border: 1px solid var(--border);
+		border-top: none;
+		border-bottom: none;
+		padding: 0 15px;
+	}
+	button:hover {
+		background-color: var(--hover);
+	}
+
+	.switching {
+		opacity: 0.4;
+		animation: switching-pulse 1.5s infinite;
+	}
+	@keyframes switching-pulse {
+		0%,
+		100% {
+			opacity: 0.4;
+		}
+		50% {
+			opacity: 0.8;
+		}
+	}
+</style>

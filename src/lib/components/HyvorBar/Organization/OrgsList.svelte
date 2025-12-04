@@ -36,7 +36,7 @@
 {#if loading}
 	<Loader padding={40} block size="small" />
 {:else if error}
-	<IconMessage error iconSize={30}>
+	<IconMessage error iconSize={30} padding={40}>
 		{error}
 	</IconMessage>
 {:else}

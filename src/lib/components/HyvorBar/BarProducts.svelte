@@ -16,7 +16,7 @@
 			name: 'Hyvor Post',
 			url: 'post.hyvor.com',
 			logo: undefined,
-			description: 'Newsletter Platform',
+			description: 'Newsletter Platform'
 		},
 		fortguard: {
 			name: 'FortGuard',
@@ -66,7 +66,12 @@
 							{#if product.logo}
 								<product.logo size={20} />
 							{:else}
-								<img src={instance + "/api/public/logo/" + key + ".svg"} alt={product.name} width="20" height="20" />
+								<img
+									src={instance + '/api/public/logo/' + key + '.svg'}
+									alt={product.name}
+									width="20"
+									height="20"
+								/>
 							{/if}
 						{/snippet}
 						{#snippet end()}

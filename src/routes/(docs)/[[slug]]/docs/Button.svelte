@@ -40,7 +40,7 @@
 				<li><code>small</code></li>
 				<li><code>medium</code></li>
 				<li><code>large</code></li>
-                <li><code>x-large</code></li>
+				<li><code>x-large</code></li>
 			</ul>
 		</div>
 	</TableRow>
@@ -130,7 +130,7 @@ All other properties will be forwarded to the underlying element.
 	<Button size="small">Small Button</Button>
 	<Button size="medium">Medium Button</Button>
 	<Button size="large">Large Button</Button>
-    <Button size="x-large">X-Large Button</Button>
+	<Button size="x-large">X-Large Button</Button>
 </CodeResult>
 
 <h3 id="color">Variants and Colors</h3>
@@ -305,8 +305,8 @@ All other properties will be forwarded to the underlying element.
 		</CodeResult>
 	</li>
 	<li>
-		<code>action</code> - Placed after the content, locked to the right side of the button. This
-		is useful with the <code>block</code> property.
+		<code>action</code> - Placed after the content, locked to the right side of the button. This is
+		useful with the <code>block</code> property.
 
 		<CodeBlock
 			code={`

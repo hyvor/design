@@ -367,8 +367,8 @@
 <h3 id="group">Group</h3>
 
 <p>
-	Use the <code>{'<ActionListGroup>'}</code> component to group items. You can also set a title and
-	a divider for the group.
+	Use the <code>{'<ActionListGroup>'}</code> component to group items. You can also set a title and a
+	divider for the group.
 </p>
 
 <CodeBlock
@@ -405,8 +405,7 @@
 
 <p>
 	You can also use the <code>selection</code> property in the
-	<code>{'<ActionListGroup>'}</code> component to set the selection mode for only the items in the
-	group.
+	<code>{'<ActionListGroup>'}</code> component to set the selection mode for only the items in the group.
 </p>
 
 <CodeBlock

@@ -11,7 +11,8 @@
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"check:prettier": "prettier --check ."
+		"check:prettier": "prettier --check .",
+		"format": "prettier --write ."
 	},
 	"exports": {
 		"./components": {

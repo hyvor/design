@@ -111,8 +111,8 @@
 		<div><code>full</code></div>
 		<div><code>false</code></div>
 		<div>
-			If true, the loader will take up the full width and height of its parent. The loader and
-			the message will be centered.
+			If true, the loader will take up the full width and height of its parent. The loader and the
+			message will be centered.
 		</div></TableRow
 	>
 
@@ -120,8 +120,7 @@
 		<div><code>padding</code></div>
 		<div><code>medium</code> (block only)</div>
 		<div>
-			Padding around the loader wrap. Can be a number in pixels or one of the following
-			strings:
+			Padding around the loader wrap. Can be a number in pixels or one of the following strings:
 
 			<ul>
 				<li><code>none</code> (0px)</li>
@@ -178,9 +177,9 @@
 <h3 id="invert">Inverted Colors</h3>
 
 <p>
-	You can quickly invert the colors of the loader by setting the <code>invert</code> prop to true.
-	This is useful in cases where the loader is displayed on a dark background, for example in a button
-	with the accent color.
+	You can quickly invert the colors of the loader by setting the <code>invert</code> prop to true. This
+	is useful in cases where the loader is displayed on a dark background, for example in a button with
+	the accent color.
 </p>
 
 <CodeBlock
@@ -204,8 +203,8 @@
 <h3 id="block">Block Loader</h3>
 
 <p>
-	You can display the loader as a block element by setting the <code>block</code> prop to true. You
-	can optionally set a message using the default slot.
+	You can display the loader as a block element by setting the <code>block</code> prop to true. You can
+	optionally set a message using the default slot.
 </p>
 
 <CodeBlock

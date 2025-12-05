@@ -75,19 +75,18 @@
 		/>
 	</div>
 
-
 	<div>
 		Element with props:
 		<Intl.T
 			key="advanced"
 			params={{
-				a: { 
+				a: {
 					element: 'a',
-					props: { 
+					props: {
 						class: 'hds-link',
 						href: 'https://hyvor.com',
-						target: '_blank',
-					} 
+						target: '_blank'
+					}
 				}
 			}}
 		/>

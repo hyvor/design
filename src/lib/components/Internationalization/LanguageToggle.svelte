@@ -26,7 +26,7 @@
 		icon = false,
 		size = 'medium',
 		staticPage = false,
-		goto,
+		goto
 	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
@@ -45,7 +45,7 @@
 			}
 			const url = new URL(window.location.href);
 			url.pathname = url.pathname.replace(`/${currentLocale}`, `/${language.code}`);
-			
+
 			if (goto) {
 				goto(url.toString());
 			} else {

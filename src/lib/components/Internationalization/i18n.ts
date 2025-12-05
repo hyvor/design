@@ -59,10 +59,13 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		}
 
 		const localeStorageLocale = InternationalizationService.getLocaleFromLocalStorage();
-		const browserLocale = typeof navigator !== "undefined" ? InternationalizationService.getClosestLanguageCode(
-			navigator.language,
-			this.languages.map((l) => l.code)
-		) : null;
+		const browserLocale =
+			typeof navigator !== 'undefined'
+				? InternationalizationService.getClosestLanguageCode(
+						navigator.language,
+						this.languages.map((l) => l.code)
+					)
+				: null;
 
 		if (forceLanguage) {
 			this.setLocale(forceLanguage);

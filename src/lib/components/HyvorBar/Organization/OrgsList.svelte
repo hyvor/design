@@ -5,6 +5,7 @@
 	import {
 		barOrganizationCreating,
 		barOrganizations,
+		barUser,
 		getMyOrganizations,
 		instance,
 		type BarOrganization
@@ -20,10 +21,12 @@
 
 	let {
 		onSwitch,
-		onCreateStart
+		onCreateStart,
+		manageButton = true
 	}: {
 		onSwitch: (org: BarOrganization) => void;
 		onCreateStart: () => void;
+		manageButton?: boolean;
 	} = $props();
 
 	onMount(() => {
@@ -58,18 +61,24 @@
 	</IconMessage>
 {:else}
 	<div class="list-wrap">
-		<ActionList>
-			{#each $barOrganizations as org}
-				<ActionListItem on:select={() => onSwitch(org)}>
-					{org.name}
-					{#snippet end()}
-						<span class="role">
-							{org.role.toUpperCase()}
-						</span>
-					{/snippet}
-				</ActionListItem>
-			{/each}
-		</ActionList>
+		{#if $barOrganizations.length}
+			<ActionList>
+				{#each $barOrganizations as org}
+					<ActionListItem on:select={() => onSwitch(org)}>
+						{org.name}
+						{#snippet end()}
+							<span class="role">
+								{org.role.toUpperCase()}
+							</span>
+						{/snippet}
+					</ActionListItem>
+				{/each}
+			</ActionList>
+		{:else}
+			<div class="no-orgs">
+				You are not a member of any organizations. You can create one to use HYVOR products.
+			</div>
+		{/if}
 	</div>
 
 	<div class="manage-create">
@@ -79,19 +88,22 @@
 				<IconPlus />
 			{/snippet}
 		</Button>
-		<Button
-			size="small"
-			as="a"
-			href={$instance + '/account/org'}
-			color="input"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			Manage
-			{#snippet end()}
-				<IconBoxArrowUpRight size={12} />
-			{/snippet}
-		</Button>
+
+		{#if manageButton && $barUser?.current_organization_name}
+			<Button
+				size="small"
+				as="a"
+				href={$instance + '/account/org'}
+				color="input"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
+				Manage
+				{#snippet end()}
+					<IconBoxArrowUpRight size={12} />
+				{/snippet}
+			</Button>
+		{/if}
 	</div>
 {/if}
 
@@ -116,5 +128,11 @@
 	}
 	.manage-create :global(a) {
 		text-decoration: none !important;
+	}
+
+	.no-orgs {
+		font-size: 14px;
+		color: var(--text-light);
+		padding: 15px;
 	}
 </style>

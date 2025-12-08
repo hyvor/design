@@ -15,7 +15,9 @@ export interface BarUser {
 	username?: string | null;
 	email: string;
 	picture_url: string | null;
-	current_organization_name: string;
+	current_organization: null | {
+		name: string; // only the name is required
+	};
 }
 
 export interface BarOrganization {
@@ -124,6 +126,7 @@ export async function initBar() {
 }
 
 export async function getMyOrganizations(): Promise<BarOrganization[]> {
+	return [];
 	/* return [
 		{ id: 1, name: 'Org 1', role: 'admin' },
 		{ id: 2, name: 'Org 2', role: 'member' },

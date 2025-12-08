@@ -21,9 +21,15 @@
 		show?: boolean;
 		style?: 'bordered' | 'plain';
 		dropdownAlign?: DropdownAlign;
+		manageButton?: boolean;
 	}
 
-	let { show = $bindable(false), style = 'plain', dropdownAlign = 'center' }: Props = $props();
+	let {
+		show = $bindable(false),
+		style = 'plain',
+		dropdownAlign = 'center',
+		manageButton = true
+	}: Props = $props();
 	let switching = $state(false);
 
 	async function handleSwitch(org: BarOrganization) {
@@ -54,13 +60,15 @@
 				{#if switching}
 					<span class="switching">Switching...</span>
 				{:else}
-					{$barUser.current_organization_name}
+					{$barUser.current_organization
+						? $barUser.current_organization.name
+						: 'Organization'}
 				{/if}
 				<IconChevronExpand size={12} />
 			</button>
 		{/snippet}
 		{#snippet content()}
-			<OrgsList onSwitch={handleSwitch} onCreateStart={handleCreateOrgStart} />
+			<OrgsList onSwitch={handleSwitch} onCreateStart={handleCreateOrgStart} {manageButton} />
 		{/snippet}
 	</Dropdown>
 {/if}
@@ -73,11 +81,13 @@
 		font-weight: 600;
 		transition: 0.2s background-color;
 		padding: 0 15px;
+		border-radius: 20px;
 	}
 	button.bordered {
 		border: 1px solid var(--border);
 		border-top: none;
 		border-bottom: none;
+		border-radius: 0;
 	}
 	button:hover {
 		background-color: var(--hover);

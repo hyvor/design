@@ -10,6 +10,7 @@
 		flex?: number[];
 		children?: Snippet;
 		nested?: Snippet;
+		noHorizonalPadding?: boolean;
 		[key: string]: any;
 	}
 
@@ -20,6 +21,7 @@
 		flex = [1, 2],
 		children,
 		nested,
+		noHorizonalPadding = false,
 		...rest
 	}: Props = $props();
 </script>
@@ -28,6 +30,7 @@
 	class="split-control"
 	class:has-nested={!!nested}
 	class:column
+	class:no-hpadding={noHorizonalPadding}
 	aria-label={typeof label === 'string' ? label : undefined}
 	{...rest}
 >
@@ -76,6 +79,9 @@
 		}
 		&.column {
 			flex-direction: column;
+			.left {
+				padding-bottom: 10px;
+			}
 			.right {
 				padding-top: 0;
 			}
@@ -97,6 +103,14 @@
 	.right {
 		padding: 15px;
 		min-width: 0;
+	}
+
+	.no-hpadding {
+		.left,
+		.right {
+			padding-left: 0;
+			padding-right: 0;
+		}
 	}
 
 	.caption-wrap {

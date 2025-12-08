@@ -1,10 +1,12 @@
 <script lang="ts">
+	import Callout from '$lib/components/Callout/Callout.svelte';
 	import Modal from '$lib/components/Modal/Modal.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import toast from '$lib/components/Toast/toast.js';
 	import {
 		barOnOrganizationSwitch,
+		barOrganizations,
 		createOrganization,
 		switchOrganization,
 		type BarOrganization
@@ -41,6 +43,8 @@
 		show = false;
 		name = '';
 
+		barOrganizations.update((orgs) => [org, ...orgs]);
+
 		try {
 			await switchOrganization(org.id);
 			$barOnOrganizationSwitch?.(org);
@@ -67,7 +71,9 @@
 	on:confirm={handleCreate}
 	loading={creating}
 >
-	<SplitControl label="Name" column>
+	<div class="note">Organizations can be used across HYVOR products.</div>
+
+	<SplitControl label="Name" column noHorizonalPadding>
 		<TextInput
 			name="organizationName"
 			bind:value={name}
@@ -82,3 +88,10 @@
 		/>
 	</SplitControl>
 </Modal>
+
+<style>
+	.note {
+		color: var(--text-light);
+		font-size: 14px;
+	}
+</style>

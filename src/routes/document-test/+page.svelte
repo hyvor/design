@@ -16,7 +16,7 @@
 			// picture_url: 'https://picsum.photos/60/60',
 			picture_url: null,
 			email: 'test@hyvor.com',
-			current_organization_name: 'Test Org'
+			current_organization: null
 		},
 		logoutUrl: 'https://logout.com'
 	}}
@@ -27,7 +27,7 @@
 
 <Base>
 	<slot />
-	<p style="text-align:center">
+	<p style="text-align:center; background-color: #fff;padding: 20px;">
 		<span class="org-button">
 			<OrganizationButton />
 		</span>

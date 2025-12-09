@@ -8,6 +8,8 @@
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"package:watch": "svelte-package --watch",
+		"package:p": "svelte-kit sync && svelte-package -p",
+		"package:pw": "svelte-kit sync && svelte-package -p --watch",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -57,7 +59,6 @@
 		"@openpanel/web": "^1.0.1",
 		"deepmerge-ts": "^5.1.0",
 		"emojibase-data": "^16.0.3",
-		"highlight.js": "^11.9.0",
 		"intl-messageformat": "^10.5.11",
 		"svelte-awesome-color-picker": "^3.0.4",
 		"tocbot": "^4.25.0"

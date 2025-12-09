@@ -86,7 +86,7 @@
 			<ResourceCreatorLoader {steps} />
 		{:else}
 			<div class="title">
-				Start a new blog
+				Start!!!!!!!!!!!!!!!!
 
 				<span class="close">
 					<IconButton color="input" variant="invisible" on:click={onback}>

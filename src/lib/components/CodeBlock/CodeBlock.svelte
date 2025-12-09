@@ -9,7 +9,9 @@
 		jsx: 'js'
 	};
 
-	import getCode, { type Language } from './getCode.js';
+	type Language = any;
+
+	// import getCode, { type Language } from './getCode.js';
 	interface Props {
 		code: string;
 		language?: InputLanguage | null;
@@ -17,7 +19,13 @@
 
 	let { code, language = 'html' }: Props = $props();
 
-	let languageCode = $derived(language ? (languagesMap[language] || language) : null) as Language | null;
+	let languageCode = $derived(
+		language ? languagesMap[language] || language : null
+	) as Language | null;
+
+	function getCode(code: any, languageCode: any) {
+		return '';
+	}
 </script>
 
 <pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>

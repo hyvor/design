@@ -21,6 +21,10 @@
 		"./marketing": {
 			"types": "./dist/marketing/index.d.ts",
 			"svelte": "./dist/marketing/index.js"
+		},
+		"./cloud": {
+			"types": "./dist/cloud/index.d.ts",
+			"svelte": "./dist/cloud/index.js"
 		}
 	},
 	"files": [

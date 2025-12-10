@@ -17,6 +17,19 @@ jobs:
         with:
           node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: Extract tag name
+        id: get_tag
+        env:
+          VERSION: ${{ github.ref_name }}
+        run: |
+          # Check if it's beta
+          if [[ "$VERSION" == *-beta* ]]; then
+            echo "NPM_TAG=beta" >> $GITHUB_OUTPUT
+            echo "::notice title=Beta release::"
+          else
+            echo "NPM_TAG=latest" >> $GITHUB_OUTPUT
+            echo "::notice title=Stable Release::"
+          fi
       - name: Publish to NPM
         env:
           VERSION: ${{ github.ref_name }}
@@ -25,4 +38,4 @@ jobs:
           npm ci
           npm run package
           npm version $VERSION --no-git-tag-version
-          npm publish
+          npm publish --tag ${{ steps.get_tag.outputs.NPM_TAG }}

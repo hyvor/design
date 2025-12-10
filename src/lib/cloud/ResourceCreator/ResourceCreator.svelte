@@ -91,7 +91,7 @@
 		setLoading();
 
 		if (hasOrg === false) {
-			await createOrganization(orgName);
+			await createOrganization(orgName, 'resource-creator');
 			steps.toNext();
 		}
 

@@ -9,7 +9,8 @@
 		initBar,
 		setInstanceAndProduct,
 		type BarConfig,
-		type BarUser as BarUserType
+		type BarUser as BarUserType,
+		type OrgSwitchInitiator
 	} from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
@@ -37,7 +38,7 @@
 			user: BarUserType | null;
 			logoutUrl: string;
 		};
-		onOrganizationSwitch?: (org: BarOrganizationType) => void;
+		onOrganizationSwitch?: (org: BarOrganizationType, initiator: OrgSwitchInitiator) => void;
 	}
 
 	let {

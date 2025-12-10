@@ -31,9 +31,6 @@
 		},
 		logoutUrl: 'https://logout.com'
 	}}
-	onOrganizationSwitch={(org) => {
-		toast.info('Switched to organization:' + org.name);
-	}}
 />
 
 <Base>

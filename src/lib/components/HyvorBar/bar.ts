@@ -49,6 +49,8 @@ export interface BarResolvedLicense {
 
 let product: string = 'core';
 
+export type OrgSwitchInitiator = 'bar' | 'resource-creator';
+
 export const instance = writable<string>('');
 export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
@@ -57,7 +59,7 @@ export const barHasFailedInvoices = writable<boolean>(false);
 export const barOrganizationDropdownOpen = writable<boolean>(false);
 export const barOrganizations = writable<BarOrganization[]>([]);
 export const barOnOrganizationSwitch = writable<
-	((org: BarOrganization, type: 'switch' | 'create') => void) | null
+	((org: BarOrganization, initiater: OrgSwitchInitiator) => void) | null
 >(null);
 export const barOrganizationCreating = writable<boolean>(false);
 
@@ -128,7 +130,6 @@ export async function initBar() {
 }
 
 export async function getMyOrganizations(): Promise<BarOrganization[]> {
-	return [];
 	/* return [
 		{ id: 1, name: 'Org 1', role: 'admin' },
 		{ id: 2, name: 'Org 2', role: 'member' },
@@ -143,7 +144,10 @@ export async function getMyOrganizations(): Promise<BarOrganization[]> {
 	return data.organizations;
 }
 
-export async function createOrganization(name: string): Promise<BarOrganization> {
+export async function createOrganization(
+	name: string,
+	switchInitiator: OrgSwitchInitiator = 'bar'
+): Promise<BarOrganization> {
 	async function doCreate() {
 		const response = await fetch(getInstance() + '/api/public/bar/orgs', {
 			method: 'POST',
@@ -165,7 +169,7 @@ export async function createOrganization(name: string): Promise<BarOrganization>
 	const org = await doCreate();
 
 	const onSwitch = get(barOnOrganizationSwitch);
-	onSwitch?.(org, 'create');
+	onSwitch?.(org, switchInitiator);
 
 	barOrganizations.update((orgs) => [org, ...orgs]);
 	barUnreadUpdates.set(0);

@@ -1,16 +1,9 @@
 <script lang="ts">
-	import Callout from '$lib/components/Callout/Callout.svelte';
 	import Modal from '$lib/components/Modal/Modal.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import toast from '$lib/components/Toast/toast.js';
-	import {
-		barOnOrganizationSwitch,
-		barOrganizations,
-		createOrganization,
-		switchOrganization,
-		type BarOrganization
-	} from '../bar.js';
+	import { createOrganization, type BarOrganization } from '../bar.js';
 
 	interface Props {
 		show?: boolean;
@@ -42,18 +35,7 @@
 
 		show = false;
 		name = '';
-
-		barOrganizations.update((orgs) => [org, ...orgs]);
-
-		try {
-			await switchOrganization(org.id);
-			$barOnOrganizationSwitch?.(org, 'create');
-		} catch {
-			toast.error('Failed to switch to the new organization.');
-			return;
-		} finally {
-			creating = false;
-		}
+		creating = false;
 	}
 
 	$effect(() => {

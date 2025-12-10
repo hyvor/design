@@ -45,7 +45,7 @@
 			switching = false;
 		}
 
-		$barOnOrganizationSwitch?.(org);
+		$barOnOrganizationSwitch?.(org, 'bar');
 	}
 
 	function handleCreateOrgStart() {

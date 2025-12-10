@@ -56,7 +56,9 @@ export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
 export const barOrganizationDropdownOpen = writable<boolean>(false);
 export const barOrganizations = writable<BarOrganization[]>([]);
-export const barOnOrganizationSwitch = writable<((org: BarOrganization) => void) | null>(null);
+export const barOnOrganizationSwitch = writable<
+	((org: BarOrganization, type: 'switch' | 'create') => void) | null
+>(null);
 export const barOrganizationCreating = writable<boolean>(false);
 
 interface BarResponse {
@@ -73,7 +75,7 @@ interface BarResponse {
 		username: string;
 		email: string;
 		picture_url: string;
-		current_organization_name: string;
+		current_organization: null | BarUser['current_organization'];
 	};
 }
 
@@ -142,21 +144,43 @@ export async function getMyOrganizations(): Promise<BarOrganization[]> {
 }
 
 export async function createOrganization(name: string): Promise<BarOrganization> {
-	const response = await fetch(getInstance() + '/api/public/bar/orgs', {
-		method: 'POST',
-		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ name })
-	});
+	async function doCreate() {
+		const response = await fetch(getInstance() + '/api/public/bar/orgs', {
+			method: 'POST',
+			credentials: 'include',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ name })
+		});
 
-	if (!response.ok) {
-		throw new Error('Failed to create organization');
+		if (!response.ok) {
+			throw new Error('Failed to create organization');
+		}
+
+		const data = await response.json();
+		return data as BarOrganization;
 	}
 
-	const data = await response.json();
-	return data as BarOrganization;
+	const org = await doCreate();
+
+	const onSwitch = get(barOnOrganizationSwitch);
+	onSwitch?.(org, 'create');
+
+	barOrganizations.update((orgs) => [org, ...orgs]);
+	barUnreadUpdates.set(0);
+	barHasFailedInvoices.set(false);
+	barUser.update((user) => {
+		if (!user) {
+			return null; // typesafety
+		}
+		return {
+			...user,
+			current_organization: { name: org.name }
+		};
+	});
+
+	return org;
 }
 
 export async function switchOrganization(orgId: number): Promise<void> {

@@ -1,0 +1,6 @@
+node_modules
+/icons
+/dist
+/build
+/.svelte-kit
+/.github

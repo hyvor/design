@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { barUser } from '$lib/components/HyvorBar/bar.js';
+	import { barUser, createOrganization } from '$lib/components/HyvorBar/bar.js';
 	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
@@ -17,7 +17,21 @@
 
 	interface Props {
 		children?: import('svelte').Snippet;
+		title: string;
 		onback: () => void;
+
+		/**
+		 * create a resource asyncly
+		 * but do not yet update stores or redirect the user
+		 * use onfinish for that to work seamlessly with the animation
+		 */
+		oncreate: () => Promise<void>;
+
+		/**
+		 * update stores and redirect the user from this
+		 */
+		onfinish: () => void;
+
 		organizationCaption?: string;
 		cta?: string;
 		steps?: string[]; // steps from the product. ex: creating the blog, copying the theme
@@ -25,7 +39,10 @@
 
 	let {
 		children,
+		title,
 		onback,
+		oncreate,
+		onfinish,
 		organizationCaption = 'Choose the organization this resource belongs to',
 		cta = 'Create resource',
 		steps: productSteps
@@ -54,29 +71,33 @@
 			});
 		});
 
+		stps.push({
+			text: 'Finalizing',
+			auto: true
+		});
+
 		loading = true;
 		steps = new Steps(stps);
-	}
-
-	async function createOrganization() {
-		/**
-		 *
-		 */
 	}
 
 	async function handleCta() {
 		orgNameError = '';
 
-		if (hasOrg === false) {
-			if (orgName.trim() === '') {
-				orgNameError = 'Organization name cannot be empty';
-				return;
-			}
+		if (hasOrg === false && orgName.trim() === '') {
+			orgNameError = 'Organization name cannot be empty';
+			return;
+		}
 
-			setLoading();
-			await createOrganization();
+		setLoading();
+
+		if (hasOrg === false) {
+			await createOrganization(orgName);
 			steps.toNext();
 		}
+
+		await oncreate();
+
+		steps.finish(onfinish);
 	}
 </script>
 
@@ -86,7 +107,7 @@
 			<ResourceCreatorLoader {steps} />
 		{:else}
 			<div class="title">
-				Start!!!!!!!!!!!!!!!!
+				{title}
 
 				<span class="close">
 					<IconButton color="input" variant="invisible" on:click={onback}>

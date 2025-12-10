@@ -47,7 +47,7 @@
 
 		try {
 			await switchOrganization(org.id);
-			$barOnOrganizationSwitch?.(org);
+			$barOnOrganizationSwitch?.(org, 'create');
 		} catch {
 			toast.error('Failed to switch to the new organization.');
 			return;

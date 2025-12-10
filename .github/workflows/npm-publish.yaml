@@ -13,14 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '22.x'
+          node-version: '24.x'
           registry-url: 'https://registry.npmjs.org'
       - name: Publish to NPM
         env:
           VERSION: ${{ github.ref_name }}
         run: |
+          npm --version
           npm ci
           npm run package
           npm version $VERSION --no-git-tag-version

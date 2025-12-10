@@ -7,6 +7,9 @@
 	import toast from '$lib/components/Toast/toast.js';
 
 	async function handleCreate() {
+		toast.error('bad input');
+		return false;
+
 		const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 		await delay(300);
 	}

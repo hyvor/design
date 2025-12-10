@@ -25,7 +25,7 @@
 		 * but do not yet update stores or redirect the user
 		 * use onfinish for that to work seamlessly with the animation
 		 */
-		oncreate: () => Promise<void>;
+		oncreate: () => Promise<boolean>;
 
 		/**
 		 * update stores and redirect the user from this
@@ -95,9 +95,13 @@
 			steps.toNext();
 		}
 
-		await oncreate();
+		const success = await oncreate();
 
-		steps.finish(onfinish);
+		if (success) {
+			steps.finish(onfinish);
+		} else {
+			loading = false;
+		}
 	}
 </script>
 

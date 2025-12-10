@@ -34,7 +34,6 @@ jobs:
         env:
           VERSION: ${{ github.ref_name }}
         run: |
-          npm --version
           npm ci
           npm run package
           npm version $VERSION --no-git-tag-version

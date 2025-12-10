@@ -3,6 +3,8 @@ on:
   workflow_dispatch:
   release:
     types: [published]
+permissions:
+  id-token: write
 jobs:
   publish:
     name: 'Publish ${{ github.ref_name }}'
@@ -17,7 +19,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Publish to NPM
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.HYVOR_ORG_NPM_TOKEN }}
           VERSION: ${{ github.ref_name }}
         run: |
           npm ci

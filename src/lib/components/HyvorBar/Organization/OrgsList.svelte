@@ -62,9 +62,12 @@
 {:else}
 	<div class="list-wrap">
 		{#if $barOrganizations.length}
-			<ActionList>
+			<ActionList selection="single">
 				{#each $barOrganizations as org}
-					<ActionListItem on:select={() => onSwitch(org)}>
+					<ActionListItem
+						on:select={() => onSwitch(org)}
+						selected={$barUser?.current_organization?.id === org.id}
+					>
 						{org.name}
 						{#snippet end()}
 							<span class="role">
@@ -89,7 +92,7 @@
 			{/snippet}
 		</Button>
 
-		{#if manageButton && $barUser?.current_organization_name}
+		{#if manageButton && $barUser?.current_organization}
 			<Button
 				size="small"
 				as="a"

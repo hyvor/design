@@ -56,8 +56,8 @@
 {#if $barUser}
 	<Dropdown bind:show align={dropdownAlign} width={275} contentPadding={0}>
 		{#snippet trigger()}
-			<button class:bordered={style === 'bordered'}>
-				{#if switching}
+			<button class:bordered={style === 'bordered'} class:switching>
+				{#if switching && false}
 					<span class="switching">Switching...</span>
 				{:else}
 					{$barUser.current_organization
@@ -93,17 +93,18 @@
 		background-color: var(--hover);
 	}
 
-	.switching {
-		opacity: 0.4;
+	button.switching {
+		pointer-events: none;
+		opacity: 0.3;
 		animation: switching-pulse 1.5s infinite;
 	}
 	@keyframes switching-pulse {
 		0%,
 		100% {
-			opacity: 0.4;
+			opacity: 0.3;
 		}
 		50% {
-			opacity: 0.8;
+			opacity: 0.5;
 		}
 	}
 </style>

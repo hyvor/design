@@ -15,9 +15,7 @@ export interface BarUser {
 	username?: string | null;
 	email: string;
 	picture_url: string | null;
-	current_organization: null | {
-		name: string; // only the name is required
-	};
+	current_organization: null | BarOrganization;
 }
 
 export interface BarOrganization {
@@ -77,7 +75,7 @@ interface BarResponse {
 		username: string;
 		email: string;
 		picture_url: string;
-		current_organization: null | BarUser['current_organization'];
+		current_organization: null | BarOrganization;
 	};
 }
 
@@ -137,11 +135,11 @@ export async function getMyOrganizations(): Promise<BarOrganization[]> {
 		{ id: 4, name: 'Org 4', role: 'manager' }
 	]; */
 
-	const response = await fetch(getInstance() + '/api/public/bar/orgs/my', {
+	const response = await fetch(getInstance() + '/api/v2/cloud/organizations/my', {
 		credentials: 'include'
 	});
 	const data = await response.json();
-	return data.organizations;
+	return data;
 }
 
 export async function createOrganization(
@@ -149,7 +147,7 @@ export async function createOrganization(
 	switchInitiator: OrgSwitchInitiator = 'bar'
 ): Promise<BarOrganization> {
 	async function doCreate() {
-		const response = await fetch(getInstance() + '/api/public/bar/orgs', {
+		const response = await fetch(getInstance() + '/api/v2/cloud/organizations', {
 			method: 'POST',
 			credentials: 'include',
 			headers: {
@@ -180,7 +178,7 @@ export async function createOrganization(
 		}
 		return {
 			...user,
-			current_organization: { name: org.name }
+			current_organization: org
 		};
 	});
 
@@ -188,13 +186,13 @@ export async function createOrganization(
 }
 
 export async function switchOrganization(orgId: number): Promise<void> {
-	const response = await fetch(getInstance() + '/api/public/bar/orgs/switch', {
+	const response = await fetch(getInstance() + '/api/v2/cloud/organizations/switch', {
 		method: 'POST',
 		credentials: 'include',
 		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({ organization_id: orgId })
+			'Content-Type': 'application/json',
+			'X-Organization-Id': orgId.toString()
+		}
 	});
 
 	if (!response.ok) {

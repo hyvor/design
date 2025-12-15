@@ -14,6 +14,7 @@
 	import Label from '$lib/components/FormControl/Label.svelte';
 	import ResourceCreatorLoader from './ResourceCreatorLoader.svelte';
 	import { Steps, type Step } from './steps.svelte.js';
+	import type { ComponentProps } from 'svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -34,6 +35,7 @@
 
 		organizationCaption?: string;
 		cta?: string;
+		ctaProps?: ComponentProps<typeof Button>;
 		steps?: string[]; // steps from the product. ex: creating the blog, copying the theme
 	}
 
@@ -45,6 +47,7 @@
 		onfinish,
 		organizationCaption = 'Choose the organization this resource belongs to',
 		cta = 'Create resource',
+		ctaProps = {},
 		steps: productSteps
 	}: Props = $props();
 
@@ -164,7 +167,7 @@
 				{@render children?.()}
 
 				<div class="cta">
-					<Button onclick={handleCta}>{cta}</Button>
+					<Button onclick={handleCta} {...ctaProps}>{cta}</Button>
 				</div>
 			</div>
 		{/if}

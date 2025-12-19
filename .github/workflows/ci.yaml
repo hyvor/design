@@ -21,7 +21,7 @@ jobs:
         run: |
           npm ci
           npm run check
-          npm run check:prettier # temporarily disabled due to different results on CI and local
+          npm run check:prettier
       - name: Check Icons
         working-directory: icons
         run: |

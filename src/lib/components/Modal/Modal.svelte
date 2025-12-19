@@ -1,4 +1,3 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
@@ -84,7 +83,6 @@
 
 {#if show}
 	<div
-		aria-hidden="true"
 		role="presentation"
 		class="wrap"
 		bind:this={wrapEl}
@@ -112,7 +110,11 @@
 				</div>
 
 				<div class="close-wrap">
-					<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
+					<IconButton
+						variant="invisible"
+						on:click={handleCancel}
+						aria-label="Close modal"
+					>
 						<IconX size={25} />
 					</IconButton>
 				</div>

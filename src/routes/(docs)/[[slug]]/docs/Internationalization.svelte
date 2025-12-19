@@ -95,8 +95,8 @@
 <h3 id="setup">Step 3: Set up an export</h3>
 
 <p>
-	To avoid repitition and enfore type safety, set up an export in a <code>i18n.ts</code> file. Use
-	the type of the default language JSON file.
+	To avoid repitition and enfore type safety, set up an export in a <code>i18n.ts</code> file. Use the
+	type of the default language JSON file.
 </p>
 
 <CodeBlock

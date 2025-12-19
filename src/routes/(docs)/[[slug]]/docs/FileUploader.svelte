@@ -42,8 +42,8 @@
 <h1>File Uploader</h1>
 
 <p>
-	The <code>uploadFile</code> function can be used to open a file uploader dialog. It supports the
-	following features:
+	The <code>uploadFile</code> function can be used to open a file uploader dialog. It supports the following
+	features:
 </p>
 
 <ul>

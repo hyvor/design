@@ -178,9 +178,9 @@
 <h3 id="invert">Inverted Colors</h3>
 
 <p>
-	You can quickly invert the colors of the loader by setting the <code>invert</code> prop to true.
-	This is useful in cases where the loader is displayed on a dark background, for example in a button
-	with the accent color.
+	You can quickly invert the colors of the loader by setting the <code>invert</code> prop to true. This
+	is useful in cases where the loader is displayed on a dark background, for example in a button with
+	the accent color.
 </p>
 
 <CodeBlock

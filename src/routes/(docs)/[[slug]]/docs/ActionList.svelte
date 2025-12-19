@@ -405,8 +405,7 @@
 
 <p>
 	You can also use the <code>selection</code> property in the
-	<code>{'<ActionListGroup>'}</code> component to set the selection mode for only the items in the
-	group.
+	<code>{'<ActionListGroup>'}</code> component to set the selection mode for only the items in the group.
 </p>
 
 <CodeBlock

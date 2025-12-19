@@ -23,7 +23,6 @@ jobs:
           npm run check
       - name: Prettier
         run: |
-          npm install
           npx prettier --version
           npm run check:prettier
       - name: Check Icons

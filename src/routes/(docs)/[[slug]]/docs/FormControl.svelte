@@ -65,8 +65,8 @@
 <h2 id="full-form-control">Full Form Control</h2>
 
 <p>
-	The <code>{'<FormControl>'}</code> component can be used to wrap label, caption, validation, and
-	other inputs. It will automatically add spacing between the elements.
+	The <code>{'<FormControl>'}</code> component can be used to wrap label, caption, validation, and other
+	inputs. It will automatically add spacing between the elements.
 </p>
 
 <CodeBlock

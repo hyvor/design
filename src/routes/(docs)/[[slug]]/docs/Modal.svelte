@@ -459,8 +459,8 @@
 <h3 id="modal-footer">Modal Footer</h3>
 
 <p>
-	Instead of manually setting the footer slot, you can set the <code>footer</code> property of the
-	modal to display a common footer with a cancel and a confirm button.
+	Instead of manually setting the footer slot, you can set the <code>footer</code> property of the modal
+	to display a common footer with a cancel and a confirm button.
 </p>
 
 <CodeBlock

@@ -126,8 +126,8 @@
 
 <p>
 	In the below examples, we use <code>relative</code> and
-	<code>closeOnOutsideClick={false}</code> properties for demonstration purposes. However, in most
-	cases, they are not needed.
+	<code>closeOnOutsideClick={false}</code> properties for demonstration purposes. However, in most cases,
+	they are not needed.
 </p>
 
 <h3 id="basic">Basic</h3>

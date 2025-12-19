@@ -118,8 +118,8 @@
 </CodeResult>
 
 <p>
-	You can also pass a svelte component as the message. A <code>toast</code> prop will be passed to
-	the component. You can use it to close the toast.
+	You can also pass a svelte component as the message. A <code>toast</code> prop will be passed to the
+	component. You can use it to close the toast.
 </p>
 
 <CodeBlock

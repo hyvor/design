@@ -59,8 +59,8 @@
 		a dark color to be used with white text.
 	</li>
 	<li>
-		<code>--accent-light</code> - A lighter version of the accent color. Used for hover effects.
-		Must be a light color to be used with dark text.
+		<code>--accent-light</code> - A lighter version of the accent color. Used for hover effects. Must
+		be a light color to be used with dark text.
 	</li>
 	<li>
 		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds.

@@ -95,9 +95,7 @@
 									{update.content}
 								</div>
 								<div class="date">
-									{new Intl.DateTimeFormat('en-US').format(
-										new Date(update.created_at * 1000)
-									)}
+									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
 								</div>
 							</div>
 						{/snippet}

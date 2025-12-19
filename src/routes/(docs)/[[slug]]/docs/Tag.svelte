@@ -303,8 +303,7 @@
 <h3 id="interactive">Interactive</h3>
 
 <p>
-	Set the <code>interactive</code> property to <code>true</code> to add a hover effect and a pointer
-	cursor.
+	Set the <code>interactive</code> property to <code>true</code> to add a hover effect and a pointer cursor.
 </p>
 
 <CodeBlock

@@ -19,7 +19,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - name: Check
         run: |
-          npm install
+          npm ci
           npm run check
       - name: Prettier
         run: |

@@ -10,8 +10,8 @@
 <h2 id="app">App Internationalization</h2>
 
 <p>
-	"App Internationalization" means that the app is translated at the runtime. This is the method
-	to be used in dynamic apps such as the Console.
+	"App Internationalization" means that the app is translated at the runtime. This is the method to
+	be used in dynamic apps such as the Console.
 </p>
 
 <h3 id="json">Step 1: Add JSON Files</h3>
@@ -95,8 +95,8 @@
 <h3 id="setup">Step 3: Set up an export</h3>
 
 <p>
-	To avoid repitition and enfore type safety, set up an export in a <code>i18n.ts</code> file. Use
-	the type of the default language JSON file.
+	To avoid repitition and enfore type safety, set up an export in a <code>i18n.ts</code> file. Use the
+	type of the default language JSON file.
 </p>
 
 <CodeBlock
@@ -363,8 +363,7 @@ export function getI18n() {
 ></CodeBlock>
 
 <Callout type="warning">
-	Components are rendered only when the frontend is hydrated. In SSR, only the strings are
-	rendered.
+	Components are rendered only when the frontend is hydrated. In SSR, only the strings are rendered.
 </Callout>
 
 <h3 id="elements">Elements</h3>
@@ -393,11 +392,11 @@ export function getI18n() {
 ></CodeBlock>
 
 <p>
-    <code>props</code> can also be passed to the element.
+	<code>props</code> can also be passed to the element.
 </p>
 
 <CodeBlock
-    code={`
+	code={`
     <I18n.T 
     key="withElement" 
     params={{
@@ -409,8 +408,7 @@ export function getI18n() {
         }
     }} />
 `}
-    language="svelte"
-
+	language="svelte"
 ></CodeBlock>
 
 <!-- 

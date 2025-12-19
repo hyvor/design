@@ -62,7 +62,6 @@
 	this={as}
 	class="button {size} {color} {variant} {align}"
 	class:block
-
 	onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
 	onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
 	onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
@@ -73,7 +72,6 @@
 	onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
 	onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
 	onchange={legacyHandlers(onchange, bubble('change'))}
-
 	role="button"
 	tabindex="0"
 	bind:this={button}
@@ -143,8 +141,7 @@
 
 		&:focus-visible {
 			outline: none;
-			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px)
-				var(--local-hover-shadow-color);
+			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px) var(--local-hover-shadow-color);
 		}
 	}
 
@@ -205,11 +202,11 @@
 		}
 	}
 
-    .button.x-large {
-        height: 40px;
-        padding: 0 26px;
-        font-size: 16px;
-    }
+	.button.x-large {
+		height: 40px;
+		padding: 0 26px;
+		font-size: 16px;
+	}
 
 	.button {
 		&.fill {
@@ -303,11 +300,7 @@
 				background-color: var(--orange-light);
 				color: var(--orange-dark);
 				transition: 0.2s box-shadow;
-				--local-hover-shadow-color: color-mix(
-					in srgb,
-					var(--orange-light) 40%,
-					transparent
-				);
+				--local-hover-shadow-color: color-mix(in srgb, var(--orange-light) 40%, transparent);
 			}
 		}
 
@@ -370,11 +363,7 @@
 				border-color: var(--accent);
 				color: var(--accent);
 				transition: 0.2s box-shadow;
-				--local-hover-shadow-color: color-mix(
-					in srgb,
-					var(--accent-light) 40%,
-					transparent
-				);
+				--local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
 			}
 
 			&.gray {

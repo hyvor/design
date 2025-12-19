@@ -12,11 +12,7 @@
 		cloud: boolean;
 	}
 
-	let { 
-		instance, 
-		logoutUrl = `${instance}/account/logout`,
-		cloud,
-	}: Props = $props();
+	let { instance, logoutUrl = `${instance}/account/logout`, cloud }: Props = $props();
 </script>
 
 <div class="wrap">
@@ -42,8 +38,7 @@
 					</a>
 				{/if}
 
-
-				<a href="{logoutUrl}">
+				<a href={logoutUrl}>
 					<ActionListItem>Logout</ActionListItem>
 				</a>
 			</ActionList>

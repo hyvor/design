@@ -3,7 +3,13 @@
 	import { onMount } from 'svelte';
 	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
-	import { barUser, initBar, setInstanceAndProduct, type BarConfig, type BarUser as BarUserType } from './bar.js';
+	import {
+		barUser,
+		initBar,
+		setInstanceAndProduct,
+		type BarConfig,
+		type BarUser as BarUserType
+	} from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import BarNotice from './Notice/BarNotice.svelte';
@@ -27,12 +33,12 @@
 		authOverride?: {
 			user: BarUserType | null;
 			logoutUrl: string;
-		}
+		};
 	}
 
 	let {
-		instance = 'https://hyvor.com', 
-		product, 
+		instance = 'https://hyvor.com',
+		product,
 		logo = `${instance}/api/public/logo/${product}.svg`,
 		config = {},
 		cloud = true,
@@ -87,12 +93,7 @@
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<img
-					src={logo}
-					alt={product}
-					width="20"
-					height="20"
-				/>
+				<img src={logo} alt={product} width="20" height="20" />
 				<span class="name">
 					{getName()}
 				</span>

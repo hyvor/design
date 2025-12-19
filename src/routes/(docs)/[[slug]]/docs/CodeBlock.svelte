@@ -52,19 +52,11 @@
 />
 
 <CodeResult>
-<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
-    <CodeBlock
-        code="const x = 10;"
-        language="js"
-    />
-    <CodeBlock
-        code="$x = 10;"
-        language="php"
-    />
-    <CodeBlock
-        code="x := 10"
-    />
-</TabbedCodeBlock>
+	<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
+		<CodeBlock code="const x = 10;" language="js" />
+		<CodeBlock code="$x = 10;" language="php" />
+		<CodeBlock code="x := 10" />
+	</TabbedCodeBlock>
 </CodeResult>
 
 <h2 id="examples">Examples</h2>
@@ -72,7 +64,8 @@
 <h3 id="plain">Plain</h3>
 
 <p>
-    Set <code>language={"{null}"}</code> to disable sytax highlighting (note that the default is <code>html</code>).
+	Set <code>language={'{null}'}</code> to disable sytax highlighting (note that the default is
+	<code>html</code>).
 </p>
 
 <CodeBlock
@@ -83,7 +76,7 @@ Subject: Hello World
 
 <p>Hello World!</p>
 `}
-    language={null}
+	language={null}
 />
 
 <h3 id="html">HTML</h3>

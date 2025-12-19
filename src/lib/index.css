@@ -51,10 +51,10 @@ a {
 }
 
 .hds-container-max {
-    width: 1400px;
-    max-width: 100%;
-    padding: 0 15px;
-    margin: auto;
+	width: 1400px;
+	max-width: 100%;
+	padding: 0 15px;
+	margin: auto;
 }
 
 .hds-link {

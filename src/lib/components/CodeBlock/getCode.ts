@@ -47,13 +47,12 @@ export default function getCode(code: string, language: Language | null): string
 
 	ret = lines.join('\n');
 
-	return language === null ?
-		encodeHtml(ret) : 
-		hljs.highlight(ret, { language }).value;
+	return language === null ? encodeHtml(ret) : hljs.highlight(ret, { language }).value;
 }
 
 function encodeHtml(str: string): string {
-	return str.replace(/&/g, '&amp;')
+	return str
+		.replace(/&/g, '&amp;')
 		.replace(/</g, '&lt;')
 		.replace(/>/g, '&gt;')
 		.replace(/"/g, '&quot;')

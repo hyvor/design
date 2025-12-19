@@ -87,7 +87,7 @@ const nav = {
 	'page-structure': PageStructure,
 	docs: DocsDocs,
 	document: Document,
-	tracking: Tracking,
+	tracking: Tracking
 };
 
 export async function load({ params }) {

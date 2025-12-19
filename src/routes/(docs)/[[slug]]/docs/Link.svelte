@@ -12,8 +12,8 @@
 
 <p>
 	This component is a wrapper around the <code>&lt;a&gt;</code> tag. By default, we remove all
-	styles from the default <code>{'<a>'}</code> tag. You can use this component to create links with
-	styles like link color.
+	styles from the default <code>{'<a>'}</code> tag. You can use this component to create links with styles
+	like link color.
 </p>
 
 <h2 id="props">Properties</h2>

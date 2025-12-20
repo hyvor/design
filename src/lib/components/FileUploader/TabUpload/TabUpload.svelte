@@ -46,7 +46,9 @@
 			.then((blob) => {
 				if (!validateMimeType(blob.type)) {
 					const names = getMimeNamesJoined();
-					toast.error(`Only ${names} files are allowed. Current file type is ${blob.type}`);
+					toast.error(
+						`Only ${names} files are allowed. Current file type is ${blob.type}`
+					);
 					return;
 				}
 
@@ -221,7 +223,7 @@
 						block
 						placeholder="Enter image URL"
 						bind:value={byUrl}
-						on:keyup={(e) => e.key === 'Enter' && handleFetch()}
+						onkeyup={(e) => e.key === 'Enter' && handleFetch()}
 						bind:input={byUrlInputEl}
 					/>
 					<Button disabled={byUrl.trim() === ''} on:click={handleFetch}>

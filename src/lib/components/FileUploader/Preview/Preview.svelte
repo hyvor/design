@@ -193,7 +193,7 @@
 					</div>
 					<TextInput
 						bind:value={imageName}
-						on:input={handleNameChange}
+						oninput={handleNameChange}
 						placeholder="Image Name"
 						state={nameError ? 'error' : 'default'}
 						disabled={!shouldUpload}

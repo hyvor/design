@@ -1,3 +1,7 @@
+## Unreleased
+
+- TextInput no longer support on: events
+
 ## 1.1.22 - 2025-11-05
 
 - OpenPanel tracking for analytics and events

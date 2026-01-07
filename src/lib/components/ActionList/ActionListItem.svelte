@@ -101,7 +101,7 @@
 		color: var(--red-dark);
 	}
 	div.action-list-item.danger:hover {
-		background-color: #fffafa;
+		background-color: var(--hover);
 	}
 
 	.start,

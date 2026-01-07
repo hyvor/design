@@ -111,8 +111,8 @@
 		<div><code>full</code></div>
 		<div><code>false</code></div>
 		<div>
-			If true, the loader will take up the full width and height of its parent. The loader and the
-			message will be centered.
+			If true, the loader will take up the full width and height of its parent. The loader and
+			the message will be centered.
 		</div></TableRow
 	>
 
@@ -120,7 +120,8 @@
 		<div><code>padding</code></div>
 		<div><code>medium</code> (block only)</div>
 		<div>
-			Padding around the loader wrap. Can be a number in pixels or one of the following strings:
+			Padding around the loader wrap. Can be a number in pixels or one of the following
+			strings:
 
 			<ul>
 				<li><code>none</code> (0px)</li>
@@ -203,8 +204,8 @@
 <h3 id="block">Block Loader</h3>
 
 <p>
-	You can display the loader as a block element by setting the <code>block</code> prop to true. You can
-	optionally set a message using the default slot.
+	You can display the loader as a block element by setting the <code>block</code> prop to true. You
+	can optionally set a message using the default slot.
 </p>
 
 <CodeBlock
@@ -228,8 +229,8 @@
 <h3 id="full loader">Full Loader</h3>
 
 <p>
-	You can set <code>full</code> prop to true to make the loader take up the full width and height of its
-	parent. Padding is not applied in this case.
+	You can set <code>full</code> prop to true to make the loader take up the full width and height of
+	its parent. Padding is not applied in this case.
 </p>
 
 <CodeBlock

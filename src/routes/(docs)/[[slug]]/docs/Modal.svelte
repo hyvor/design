@@ -31,7 +31,8 @@
 	async function handleConfirm1() {
 		const confirmed = await confirm({
 			title: 'Confirm to delete',
-			content: 'Please confirm that you want to delete this item. This action cannot be undone.',
+			content:
+				'Please confirm that you want to delete this item. This action cannot be undone.',
 			danger: true
 		});
 
@@ -115,8 +116,8 @@
 		<div><code>id</code></div>
 		<div><code>modal</code></div>
 		<div>
-			An id to be used in the aria-labelledby and aria-describedby attributes. Only required if you
-			are using multiple modals at the same time.
+			An id to be used in the aria-labelledby and aria-describedby attributes. Only required
+			if you are using multiple modals at the same time.
 		</div>
 	</TableRow>
 
@@ -124,7 +125,8 @@
 		<div><code>role</code></div>
 		<div><code>alertdialog</code></div>
 		<div>
-			<code>alertdialog</code> or <code>dialog</code>. Use the latter if the modal is not an alert.
+			<code>alertdialog</code> or <code>dialog</code>. Use the latter if the modal is not an
+			alert.
 		</div>
 	</TableRow>
 
@@ -152,8 +154,8 @@
 		<div><code>footer</code></div>
 		<div><code>null</code></div>
 		<div>
-			To display a common footer with a cancel and a confirm button. See <a href="#modal-footer"
-				>Modal Footer</a
+			To display a common footer with a cancel and a confirm button. See <a
+				href="#modal-footer">Modal Footer</a
 			>.
 		</div>
 	</TableRow>
@@ -340,8 +342,8 @@
 <h3 id="scrollable">Scrollable Modal</h3>
 
 <p>
-	If a modal grows larger than the screen, it will be scrollable. The inner content will be aligned
-	to the top of the modal.
+	If a modal grows larger than the screen, it will be scrollable. The inner content will be
+	aligned to the top of the modal.
 </p>
 
 <CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
@@ -522,11 +524,11 @@
 	bind:show={show8}
 	footer={{
 		cancel: {
-			text: 'Cancel',
+			text: 'Cancel'
 		},
 		confirm: {
 			text: 'Delete',
-			danger: true,
+			danger: true
 		}
 	}}
 	on:cancel={() => toast.success('Cancelled')}
@@ -538,7 +540,9 @@
 	This is a modal with a footer that has a cancel and a confirm button.
 </Modal>
 
-<p>You can disable the buttons in the footer by <code>disabled = true</code> prop in the footer object.</p>
+<p>
+	You can disable the buttons in the footer by <code>disabled = true</code> prop in the footer object.
+</p>
 
 <CodeBlock
 	code={`
@@ -570,12 +574,12 @@
 	footer={{
 		cancel: {
 			text: 'Cancel',
-			disabled: true,
+			disabled: true
 		},
 		confirm: {
 			text: 'Delete',
 			danger: true,
-			disabled: true,
+			disabled: true
 		}
 	}}
 >

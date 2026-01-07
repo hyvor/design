@@ -63,8 +63,8 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The content in the center of the header. Usually, the navigation links like "Docs", "Pricing",
-			etc. You can also use <a href="dropdown">Dropdowns</a> here.
+			The content in the center of the header. Usually, the navigation links like "Docs",
+			"Pricing", etc. You can also use <a href="dropdown">Dropdowns</a> here.
 		</div>
 	</TableRow>
 	<TableRow>
@@ -142,8 +142,8 @@
 		<div><code>social</code></div>
 		<div>null</div>
 		<div>
-			An object with social media links. The keys should be the names of the social media, and the
-			values should be the URLs. The accepted keys are
+			An object with social media links. The keys should be the names of the social media, and
+			the values should be the URLs. The accepted keys are
 			<ul>
 				<li><code>x</code></li>
 				<li><code>discord</code></li>
@@ -167,8 +167,8 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The content in the center of the footer. Usually, the navigation links like "Contact Us",
-			"Pricing", etc.
+			The content in the center of the footer. Usually, the navigation links like "Contact
+			Us", "Pricing", etc.
 		</div>
 	</TableRow>
 </Table>

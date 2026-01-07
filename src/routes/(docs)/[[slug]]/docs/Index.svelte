@@ -38,8 +38,8 @@
 
 <p>
 	Each HYVOR product has a different accent color scheme, while most of the other colors are the
-	same. See <code>src/lib/variables.css</code> for all available variables. In most cases, you will only
-	have to change the following variables for each product:
+	same. See <code>src/lib/variables.css</code> for all available variables. In most cases, you will
+	only have to change the following variables for each product:
 </p>
 
 <CodeBlock
@@ -55,16 +55,16 @@
 
 <ul>
 	<li>
-		<code>--accent</code> - The accent color of the product. Used for buttons, links, etc. Must be a dark
-		color to be used with white text.
+		<code>--accent</code> - The accent color of the product. Used for buttons, links, etc. Must be
+		a dark color to be used with white text.
 	</li>
 	<li>
 		<code>--accent-light</code> - A lighter version of the accent color. Used for hover effects. Must
 		be a light color to be used with dark text.
 	</li>
 	<li>
-		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds. Must
-		be closer to white.
+		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds.
+		Must be closer to white.
 	</li>
 </ul>
 
@@ -133,8 +133,8 @@
 	HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a>
 	for icons, which contains over 2000 icons. Svelte components for each icon are available in the
 	<code>@hyvor/icons</code>
-	package. In addition to general SVG attributes, the svelte component supports <code>size</code> to set
-	the width and height of the icon.
+	package. In addition to general SVG attributes, the svelte component supports <code>size</code> to
+	set the width and height of the icon.
 </p>
 
 <CodeBlock

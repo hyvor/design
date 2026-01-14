@@ -48,10 +48,7 @@
 				</Tag>
 			</Tooltip>
 		{:else if $barLicense.type === 'custom'}
-			<Tooltip
-				text="A custom license is applied to your account for {name}."
-				position="bottom"
-			>
+			<Tooltip text="A custom license is applied to your account for {name}." position="bottom">
 				<Tag color="green" size="small">Custom License</Tag>
 			</Tooltip>
 		{:else if $barLicense.type === 'expired'}

@@ -16,13 +16,7 @@
 		Tag,
 		IconMessage
 	} from '$lib/components/index.js';
-
-	interface Props {
-		instance: string;
-		product: BarProduct;
-	}
-
-	let { instance, product }: Props = $props();
+	import { getCloudContext } from '../CloudContext/cloudContext.js';
 
 	let updates: BarUpdate[] = $state([]);
 	let loading = $state(true);
@@ -30,12 +24,14 @@
 
 	let lastReadTime: null | number = $state(null);
 
+	const cloudContext = getCloudContext();
+
 	function fetchUpdates() {
 		error = false;
 		lastReadTime = UnreadUpdatesTimeLocalStorage.get();
 		loading = true;
 
-		fetch(instance + '/api/public/updates?types=company,' + product)
+		fetch(cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component)
 			.then((response) => response.json())
 			.then((data) => {
 				updates = data;
@@ -119,7 +115,13 @@
 {/if}
 
 <div class="top">
-	<Button size="small" color="input" as="a" href={instance + '/updates'} target="_blank">
+	<Button
+		size="small"
+		color="input"
+		as="a"
+		href={cloudContext.instance + '/updates'}
+		target="_blank"
+	>
 		View all updates
 		{#snippet end()}
 			<IconBoxArrowUpRight size={12} />

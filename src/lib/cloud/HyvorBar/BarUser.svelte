@@ -5,14 +5,10 @@
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
+	import { getCloudContext } from '../CloudContext/cloudContext.js';
 
-	interface Props {
-		instance: string;
-		logoutUrl?: string;
-		cloud: boolean;
-	}
-
-	let { instance, logoutUrl = `${instance}/account/logout`, cloud }: Props = $props();
+	const cloudContext = getCloudContext();
+	const logoutUrl = `${cloudContext.instance}/account/logout`;
 </script>
 
 <div class="wrap">
@@ -27,8 +23,8 @@
 			<ActionList>
 				<BarUserPreview />
 
-				{#if cloud}
-					<a href="{instance}/account" target="_blank">
+				{#if cloudContext.deployment === 'cloud'}
+					<a href="{cloudContext.instance}/account" target="_blank">
 						<ActionListItem>
 							Manage Account
 							{#snippet end()}

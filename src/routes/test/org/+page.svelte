@@ -6,8 +6,26 @@
 </script>
 
 <Base>
-	<CloudContext>
-		<HyvorBar product="core" cloud={true} instance="https://hyvor.localhost" />
+	<CloudContext
+		context={{
+			component: 'core',
+			deployment: 'cloud',
+			instance: 'https://hyvor.localhost',
+			user: {
+				id: 1,
+				name: 'Supun Wimalasena',
+				username: 'supun',
+				email: 'supun@hyvor.com',
+				picture_url: null
+			},
+			organization: {
+				id: 1,
+				name: 'HYVOR',
+				member_role: 'admin'
+			}
+		}}
+	>
+		<HyvorBar />
 
 		<div class="wrap">
 			<div class="inner hds-box">

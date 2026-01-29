@@ -5,23 +5,18 @@
 	import BarSupport from './BarSupport.svelte';
 	import {
 		barOnOrganizationSwitch,
-		barUser,
 		initBar,
-		setInstanceAndProduct,
 		type BarConfig,
-		type BarUser as BarUserType,
 		type OrgSwitchInitiator
 	} from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
-	import BarNotice from './Notice/BarNotice.svelte';
-	import BarLicense from './Notice/BarLicense.svelte';
+	import BarNotice from './BarNotice/BarNotice.svelte';
+	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
-	import { type BarOrganization as BarOrganizationType } from './bar.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.js';
 
 	interface Props {
-		instance?: string;
-		product: string;
 		config?: Partial<BarConfig>;
 
 		// set a custom logo URL
@@ -30,25 +25,16 @@
 		logo?: string;
 
 		/**
-		 * Whether it is a HYVOR cloud-hosted product.
-		 * If false, we will hide some features
+		 * TODO: this has to be migrated to CloudContext
 		 */
-		cloud?: boolean;
-		authOverride?: {
-			user: BarUserType | null;
-			logoutUrl: string;
-		};
-		onOrganizationSwitch?: (org: BarOrganizationType, initiator: OrgSwitchInitiator) => void;
+		// onOrganizationSwitch?: (org: BarOrganizationType, initiator: OrgSwitchInitiator) => void;
 	}
 
+	const cloudContext = getCloudContext();
+
 	let {
-		instance = 'https://hyvor.com',
-		product,
-		logo = `${instance}/api/public/logo/${product}.svg`,
-		config = {},
-		cloud = true,
-		authOverride = undefined,
-		onOrganizationSwitch = () => {}
+		logo = `${cloudContext.instance}/api/public/logo/${cloudContext.component}.svg`,
+		config = {}
 	}: Props = $props();
 
 	let mobileShow = $state(false);
@@ -73,14 +59,8 @@
 		}
 	}
 
-	barOnOrganizationSwitch.set(onOrganizationSwitch);
-	setInstanceAndProduct(instance, product);
-	if (authOverride) {
-		barUser.set(authOverride.user);
-	}
-
 	onMount(() => {
-		if (cloud) {
+		if (cloudContext.deployment === 'cloud') {
 			initBar();
 		}
 	});
@@ -89,7 +69,7 @@
 		if (config.name) {
 			return config.name;
 		}
-		return (PRODUCTS as any)[product]?.name || 'HYVOR';
+		return (PRODUCTS as any)[cloudContext.component]?.name || 'HYVOR';
 	}
 </script>
 
@@ -99,7 +79,7 @@
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href="/">
-				<img src={logo} alt={product} width="20" height="20" />
+				<img src={logo} alt={cloudContext.component} width="20" height="20" />
 				<span class="name">
 					{getName()}
 				</span>
@@ -108,23 +88,23 @@
 			<BarLicense name={getName()} />
 		</div>
 		<div class="right">
-			<BarNotice {instance} />
+			<BarNotice />
 
 			<div class="hidden-on-mobile">
-				{#if cloud}
-					<BarSupport config={configComplete} {product} mobile={mobileShow} />
-					<BarProducts {instance} mobile={mobileShow} />
-					<BarUpdates {instance} {product} />
+				{#if cloudContext.deployment === 'cloud'}
+					<BarSupport config={configComplete} mobile={mobileShow} />
+					<BarProducts mobile={mobileShow} />
+					<BarUpdates />
 				{/if}
 			</div>
 
-			{#if cloud}
+			{#if cloudContext.deployment === 'cloud'}
 				<div class="mobile">
 					<IconCaretDownFill />
 				</div>
 			{/if}
 
-			<BarUser {instance} logoutUrl={authOverride?.logoutUrl} {cloud} />
+			<BarUser />
 		</div>
 	</div>
 

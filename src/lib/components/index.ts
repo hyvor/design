@@ -61,8 +61,6 @@ export { confirm } from './Modal/confirm.js';
 
 export { default as NavLink } from './NavLink/NavLink.svelte';
 
-export { default as OrganizationButton } from './HyvorBar/Organization/OrganizationButton.svelte';
-
 export { default as Radio } from './Radio/Radio.svelte';
 
 export { default as Slider } from './Slider/Slider.svelte';

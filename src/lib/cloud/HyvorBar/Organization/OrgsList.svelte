@@ -2,19 +2,16 @@
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import { onMount } from 'svelte';
-	import {
-		barOrganizationCreating,
-		barOrganizations,
-		barUser,
-		getMyOrganizations,
-		instance,
-		type BarOrganization
-	} from '../bar.js';
+	import { barOrganizationCreating, barOrganizations, getMyOrganizations } from '../bar.js';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
 	import IconPlus from '@hyvor/icons/IconPlus';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import {
+		getCloudContext,
+		type CloudContextOrganization
+	} from '$lib/cloud/CloudContext/cloudContext.js';
 
 	let loading = $state(true);
 	let error = $state('');
@@ -24,10 +21,12 @@
 		onCreateStart,
 		manageButton = true
 	}: {
-		onSwitch: (org: BarOrganization) => void;
+		onSwitch: (org: CloudContextOrganization) => void;
 		onCreateStart: () => void;
 		manageButton?: boolean;
 	} = $props();
+
+	const { organization, instance } = getCloudContext();
 
 	onMount(() => {
 		if ($barOrganizations.length > 0) {
@@ -66,7 +65,7 @@
 				{#each $barOrganizations as org}
 					<ActionListItem
 						on:select={() => onSwitch(org)}
-						selected={$barUser?.current_organization?.id === org.id}
+						selected={organization?.id === org.id}
 					>
 						{org.name}
 						{#snippet end()}
@@ -92,11 +91,11 @@
 			{/snippet}
 		</Button>
 
-		{#if manageButton && $barUser?.current_organization}
+		{#if manageButton && organization}
 			<Button
 				size="small"
 				as="a"
-				href={$instance + '/account/org'}
+				href={instance + '/account/org'}
 				color="input"
 				target="_blank"
 				rel="noopener noreferrer"

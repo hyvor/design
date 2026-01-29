@@ -21,16 +21,18 @@
 	import Trustpilot from './img/Trustpilot.svelte';
 	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
+	import { getCloudContext } from '../CloudContext/cloudContext.js';
 
 	let supportDropdown = $state(false);
 
 	interface Props {
 		mobile?: boolean;
-		product: BarProduct;
 		config: BarConfig;
 	}
 
-	let { mobile = false, product, config }: Props = $props();
+	let { mobile = false, config }: Props = $props();
+
+	const cloudContext = getCloudContext();
 
 	function openLiveChat(e: any) {
 		e.preventDefault();
@@ -44,7 +46,7 @@
 		if (config.name) {
 			return config.name;
 		}
-		return PRODUCTS[product as keyof typeof PRODUCTS]?.name || '';
+		return PRODUCTS[cloudContext.component as keyof typeof PRODUCTS]?.name || '';
 	}
 </script>
 

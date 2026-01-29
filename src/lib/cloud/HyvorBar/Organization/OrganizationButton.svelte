@@ -2,14 +2,13 @@
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
 	import OrgsList from './OrgsList.svelte';
-	import {
-		barOnOrganizationSwitch,
-		barUser,
-		switchOrganization,
-		type BarOrganization
-	} from '../bar.js';
+	import { barOnOrganizationSwitch, switchOrganization } from '../bar.js';
 	import toast from '$lib/components/Toast/toast.js';
 	import type { DropdownAlign } from '$lib/components/Dropdown/dropdown.types.js';
+	import {
+		getCloudContext,
+		type CloudContextOrganization
+	} from '$lib/cloud/CloudContext/cloudContext.js';
 
 	/**
 	 * This component depends on data from HyvorBar
@@ -32,7 +31,7 @@
 	}: Props = $props();
 	let switching = $state(false);
 
-	async function handleSwitch(org: BarOrganization) {
+	async function handleSwitch(org: CloudContextOrganization) {
 		show = false;
 		switching = true;
 
@@ -51,27 +50,25 @@
 	function handleCreateOrgStart() {
 		show = false;
 	}
+
+	const { organization } = getCloudContext();
 </script>
 
-{#if $barUser}
-	<Dropdown bind:show align={dropdownAlign} width={275} contentPadding={0}>
-		{#snippet trigger()}
-			<button class:bordered={style === 'bordered'} class:switching>
-				{#if switching && false}
-					<span class="switching">Switching...</span>
-				{:else}
-					{$barUser.current_organization
-						? $barUser.current_organization.name
-						: 'Organization'}
-				{/if}
-				<IconChevronExpand size={12} />
-			</button>
-		{/snippet}
-		{#snippet content()}
-			<OrgsList onSwitch={handleSwitch} onCreateStart={handleCreateOrgStart} {manageButton} />
-		{/snippet}
-	</Dropdown>
-{/if}
+<Dropdown bind:show align={dropdownAlign} width={275} contentPadding={0}>
+	{#snippet trigger()}
+		<button class:bordered={style === 'bordered'} class:switching>
+			{#if switching && false}
+				<span class="switching">Switching...</span>
+			{:else}
+				{organization ? organization.name : 'Organization'}
+			{/if}
+			<IconChevronExpand size={12} />
+		</button>
+	{/snippet}
+	{#snippet content()}
+		<OrgsList onSwitch={handleSwitch} onCreateStart={handleCreateOrgStart} {manageButton} />
+	{/snippet}
+</Dropdown>
 
 <style>
 	button {

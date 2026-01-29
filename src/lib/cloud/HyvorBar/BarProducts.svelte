@@ -18,6 +18,12 @@
 			logo: undefined,
 			description: 'Newsletter Platform'
 		},
+		relay: {
+			name: 'Hyvor Relay',
+			url: 'relay.hyvor.com',
+			logo: undefined,
+			description: 'Email API'
+		},
 		fortguard: {
 			name: 'FortGuard',
 			logo: LogoFortguard,
@@ -33,13 +39,15 @@
 	import { ActionList, ActionListItem, Button, Dropdown } from '$lib/components/index.js';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import { getCloudContext } from '../CloudContext/cloudContext.js';
 
 	interface Props {
 		mobile?: boolean;
-		instance: string;
 	}
 
-	let { mobile = false, instance }: Props = $props();
+	const cloudContext = getCloudContext();
+
+	let { mobile = false }: Props = $props();
 </script>
 
 <Dropdown align={mobile ? 'center' : 'end'} width={325}>
@@ -67,7 +75,7 @@
 								<product.logo size={20} />
 							{:else}
 								<img
-									src={instance + '/api/public/logo/' + key + '.svg'}
+									src={cloudContext.instance + '/api/public/logo/' + key + '.svg'}
 									alt={product.name}
 									width="20"
 									height="20"

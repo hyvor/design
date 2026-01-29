@@ -10,20 +10,6 @@ export interface BarConfig {
 	g2: string | null;
 }
 
-export interface BarUser {
-	name: string | null;
-	username?: string | null;
-	email: string;
-	picture_url: string | null;
-	current_organization: null | BarOrganization;
-}
-
-export interface BarOrganization {
-	id: number;
-	name: string;
-	role: 'admin' | 'billing' | 'manager' | 'member';
-}
-
 export interface BarUpdate {
 	id: number;
 	created_at: number;
@@ -49,8 +35,6 @@ let product: string = 'core';
 
 export type OrgSwitchInitiator = 'bar' | 'resource-creator';
 
-export const instance = writable<string>('');
-export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
 export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
@@ -77,15 +61,6 @@ interface BarResponse {
 		picture_url: string;
 		current_organization: null | BarOrganization;
 	};
-}
-
-export function setInstanceAndProduct(instance_: string, product_: string) {
-	instance.set(instance_);
-	product = product_;
-}
-
-export function getInstance(): string {
-	return get(instance);
 }
 
 /**

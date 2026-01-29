@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Tooltip } from '$lib/components/index.js';
-	import { barOrganizationCreating, barOrganizationDropdownOpen, barUser } from '../bar.js';
+	import { barOrganizationCreating, barOrganizationDropdownOpen } from '../bar.js';
 	import CreateOrganization from './CreateOrganization.svelte';
 	import OrganizationButton from './OrganizationButton.svelte';
 
@@ -13,13 +13,11 @@
 	});
 </script>
 
-{#if $barUser}
-	<Tooltip position="bottom" text="Switch Organization" disabled={disableTooltip}>
-		<div class="wrap">
-			<OrganizationButton bind:show={$barOrganizationDropdownOpen} style="bordered" />
-		</div>
-	</Tooltip>
-{/if}
+<Tooltip position="bottom" text="Switch Organization" disabled={disableTooltip}>
+	<div class="wrap">
+		<OrganizationButton bind:show={$barOrganizationDropdownOpen} style="bordered" />
+	</div>
+</Tooltip>
 
 <CreateOrganization bind:show={$barOrganizationCreating} />
 

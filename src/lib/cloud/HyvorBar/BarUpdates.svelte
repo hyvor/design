@@ -2,14 +2,7 @@
 	import { IconButton, Dropdown } from '$lib/components/index.js';
 	import IconMegaphone from '@hyvor/icons/IconMegaphone';
 	import BarUpdatesList from './BarUpdatesList.svelte';
-	import { type BarProduct, barUnreadUpdates } from './bar.js';
-
-	interface Props {
-		instance: string;
-		product: BarProduct;
-	}
-
-	let { instance, product }: Props = $props();
+	import { barUnreadUpdates } from './bar.js';
 </script>
 
 <div class="updates">
@@ -26,7 +19,7 @@
 
 		{#snippet content()}
 			<div class="content-inner">
-				<BarUpdatesList {instance} {product} />
+				<BarUpdatesList />
 			</div>
 		{/snippet}
 	</Dropdown>

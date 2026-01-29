@@ -39,7 +39,7 @@
 	import { ActionList, ActionListItem, Button, Dropdown } from '$lib/components/index.js';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
-	import { getCloudContext } from '../CloudContext/cloudContext.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	interface Props {
 		mobile?: boolean;

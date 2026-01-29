@@ -1,6 +1,12 @@
-import { createContext } from 'svelte';
+let cloudContext = $state<CloudContext>();
 
-export const [getCloudContext, setCloudContext] = createContext<CloudContext>();
+export function getCloudContext() {
+	return cloudContext!;
+}
+
+export function setCloudContext(context: CloudContext) {
+	cloudContext = context;
+}
 
 export interface CloudContext {
 	/**

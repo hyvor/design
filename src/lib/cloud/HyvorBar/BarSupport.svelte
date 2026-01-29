@@ -21,7 +21,7 @@
 	import Trustpilot from './img/Trustpilot.svelte';
 	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
-	import { getCloudContext } from '../CloudContext/cloudContext.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	let supportDropdown = $state(false);
 

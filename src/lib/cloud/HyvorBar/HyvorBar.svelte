@@ -9,7 +9,7 @@
 	import BarNotice from './BarNotice/BarNotice.svelte';
 	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
-	import { getCloudContext } from '../CloudContext/cloudContext.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	interface Props {
 		config?: Partial<BarConfig>;

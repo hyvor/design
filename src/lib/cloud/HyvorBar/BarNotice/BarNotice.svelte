@@ -2,7 +2,7 @@
 	import { barHasFailedInvoices } from '../bar.js';
 	import { Tag, Tooltip } from '$lib/components/index.js';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
-	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.js';
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 
 	const cloudContext = getCloudContext();
 </script>

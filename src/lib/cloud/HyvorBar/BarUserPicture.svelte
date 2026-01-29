@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getCloudContext } from '../CloudContext/cloudContext.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	const cloudContext = getCloudContext();
 </script>

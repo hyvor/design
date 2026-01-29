@@ -11,7 +11,7 @@
 	import {
 		getCloudContext,
 		type CloudContextOrganization
-	} from '$lib/cloud/CloudContext/cloudContext.js';
+	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 
 	let loading = $state(true);
 	let error = $state('');

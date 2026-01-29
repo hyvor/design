@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import { getCloudContext } from '../CloudContext/cloudContext.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	const { instance, organization } = getCloudContext();
 

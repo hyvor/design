@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setCloudContext, type CloudContext } from './cloudContext.js';
+	import { setCloudContext, type CloudContext } from './cloudContext.svelte.js';
 
 	interface Props {
 		context: CloudContext;

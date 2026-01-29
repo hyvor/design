@@ -1,8 +1,9 @@
 import { track } from '$lib/marketing/index.js';
 import { get, writable } from 'svelte/store';
-import { getCloudContext } from '../CloudContext/cloudContext.js';
-
-export type BarProduct = string | 'core';
+import {
+	getCloudContext,
+	type CloudContextOrganization
+} from '../CloudContext/cloudContext.svelte.js';
 
 export interface BarConfig {
 	name: string | null;
@@ -22,61 +23,56 @@ export interface BarUpdate {
 
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
-export interface BarResolvedLicense {
-	type: 'subscription' | 'trial' | 'custom' | 'expired';
+export interface ResolvedLicense {
+	type: 'enterprise_contract' | 'subscription' | 'trial' | 'expired' | 'none';
 	license: Record<string, number | boolean> | null;
 	subscription: null | {
-		plan_readable: string;
+		plan_readable_name: string;
 		cancel_at: null | number;
 	};
 	trial_ends_at: null | number;
 }
 
-let product: string = 'core';
-
 export type OrgSwitchInitiator = 'bar' | 'resource-creator';
 
 export const barUnreadUpdates = writable<number>(0);
-export const barLicense = writable<BarResolvedLicense | null>(null);
+export const barLicense = writable<ResolvedLicense>();
 export const barHasFailedInvoices = writable<boolean>(false);
 export const barOrganizationDropdownOpen = writable<boolean>(false);
-export const barOrganizations = writable<BarOrganization[]>([]);
+export const barOrganizations = writable<CloudContextOrganization[]>([]);
+
 export const barOnOrganizationSwitch = writable<
 	((org: BarOrganization, initiater: OrgSwitchInitiator) => void) | null
 >(null);
 export const barOrganizationCreating = writable<boolean>(false);
 
 interface BarResponse {
-	updates: {
-		unread: number;
-	};
-	billing: {
-		has_failed_invoices: boolean;
-		license: BarResolvedLicense | null;
-	};
-	user: {
-		id: number;
-		name: string | null;
-		username: string;
-		email: string;
-		picture_url: string;
-		current_organization: null | BarOrganization;
-	};
+	user_id: number;
+	organization_id: number | null;
+	license: ResolvedLicense;
+	has_failed_invoices: boolean;
+
+	//
+	// updates: {
+	// 	unread: number;
+	// };
 }
 
 /**
  * @throws Error if initialization fails
  */
 export async function initBar() {
+	const { user, organization, instance, component } = getCloudContext();
+
 	const query = new URLSearchParams();
-	query.set('product', product);
+	query.set('component', component);
 
 	const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
 	if (lastUnreadTime) {
 		query.set('last_read_updates_at', lastUnreadTime.toString());
 	}
 
-	const response = await fetch(getInstance() + '/api/public/bar?' + query.toString(), {
+	const response = await fetch(instance + '/api/v2/cloud/bar/init?' + query.toString(), {
 		credentials: 'include'
 	});
 
@@ -86,21 +82,29 @@ export async function initBar() {
 
 	const data: BarResponse = await response.json();
 
-	barUser.set(data.user);
-	barUnreadUpdates.set(data.updates.unread);
-	barLicense.set(data.billing.license);
-	barHasFailedInvoices.set(data.billing.has_failed_invoices);
+	const currentOrganizationId = organization ? organization.id : null;
 
-	if (lastUnreadTime === null) {
-		UnreadUpdatesTimeLocalStorage.setNow();
+	if (user.id !== data.user_id || currentOrganizationId !== data.organization_id) {
+		// something is very wrong
+		// reload Console or something
 	}
 
-	if (data.user && track.ready()) {
-		track.identify(data.user.id.toString(), {
-			name: data.user.name ?? undefined,
-			avatar: data.user.picture_url ?? undefined
-		});
-	}
+	barLicense.set(data.license);
+	barHasFailedInvoices.set(data.has_failed_invoices);
+
+	// TODO:
+	// barUnreadUpdates.set(data.updates.unread);
+
+	// if (lastUnreadTime === null) {
+	// 	UnreadUpdatesTimeLocalStorage.setNow();
+	// }
+
+	// if (data.user && track.ready()) {
+	// 	track.identify(data.user.id.toString(), {
+	// 		name: data.user.name ?? undefined,
+	// 		avatar: data.user.picture_url ?? undefined
+	// 	});
+	// }
 }
 
 export async function getMyOrganizations(): Promise<BarOrganization[]> {

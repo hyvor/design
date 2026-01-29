@@ -1,17 +1,20 @@
 <script>
+	import CloudContext from '$lib/cloud/CloudContext/CloudContext.svelte';
+	import HyvorBar from '$lib/cloud/HyvorBar/HyvorBar.svelte';
 	import OrgMembersSearch from '$lib/cloud/OrgMembers/OrgMembersSearch.svelte';
 	import Base from '$lib/components/Base/Base.svelte';
-	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 </script>
 
-<HyvorBar product="core" cloud={true} instance="https://hyvor.localhost" />
-
 <Base>
-	<div class="wrap">
-		<div class="inner hds-box">
-			<OrgMembersSearch />
+	<CloudContext>
+		<HyvorBar product="core" cloud={true} instance="https://hyvor.localhost" />
+
+		<div class="wrap">
+			<div class="inner hds-box">
+				<OrgMembersSearch />
+			</div>
 		</div>
-	</div>
+	</CloudContext>
 </Base>
 
 <style>

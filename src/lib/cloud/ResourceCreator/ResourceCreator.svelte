@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { barUser, createOrganization } from '$lib/components/HyvorBar/bar.js';
-	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
+	import { barUser, createOrganization } from '$lib/cloud/HyvorBar/bar.js';
+	import OrganizationButton from '$lib/cloud/HyvorBar/Organization/OrganizationButton.svelte';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconX from '@hyvor/icons/IconX';

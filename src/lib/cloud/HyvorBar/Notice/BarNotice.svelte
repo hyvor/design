@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { barHasFailedInvoices } from '../bar.js';
-	import { Tag, Tooltip } from '../../index.js';
+	import { Tag, Tooltip } from '$lib/components/index.js';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
 
 	interface Props {

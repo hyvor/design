@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Loader from '../Loader/Loader.svelte';
-	import ActionList from '../ActionList/ActionList.svelte';
-	import ActionListItem from '../ActionList/ActionListItem.svelte';
 	import {
 		barUnreadUpdates,
 		UnreadUpdatesTimeLocalStorage,
@@ -10,9 +7,15 @@
 		type BarUpdate
 	} from './bar.js';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
-	import Button from '../Button/Button.svelte';
-	import Tag from '../Tag/Tag.svelte';
-	import IconMessage from '../IconMessage/IconMessage.svelte';
+
+	import {
+		Loader,
+		ActionList,
+		ActionListItem,
+		Button,
+		Tag,
+		IconMessage
+	} from '$lib/components/index.js';
 
 	interface Props {
 		instance: string;

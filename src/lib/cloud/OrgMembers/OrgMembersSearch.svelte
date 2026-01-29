@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { barUser, getInstance } from '$lib/components/HyvorBar/bar.js';
+	import { barUser, getInstance } from '$lib/cloud/HyvorBar/bar.js';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 

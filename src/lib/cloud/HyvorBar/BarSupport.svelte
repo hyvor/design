@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
+	import {
+		ActionList,
+		ActionListGroup,
+		ActionListItem,
+		Button,
+		Dropdown
+	} from '$lib/components/index.js';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconChat from '@hyvor/icons/IconChat';
@@ -8,10 +14,7 @@
 	import IconFileEarmark from '@hyvor/icons/IconFileEarmark';
 	import IconChatDots from '@hyvor/icons/IconChatDots';
 	import IconBluesky from '@hyvor/icons/IconBluesky';
-	import IconTwitter from '@hyvor/icons/IconTwitter';
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
-
-	import ActionListGroup from '../ActionList/ActionListGroup.svelte';
 	import { PRODUCTS } from './BarProducts.svelte';
 	import type { BarConfig, BarProduct } from './bar.js';
 	import G2 from './img/G2.svelte';

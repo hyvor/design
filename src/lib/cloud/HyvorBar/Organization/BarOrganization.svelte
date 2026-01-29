@@ -1,11 +1,6 @@
 <script lang="ts">
-	import Tooltip from '../../Tooltip/Tooltip.svelte';
-	import {
-		barOrganizationCreating,
-		barOrganizationDropdownOpen,
-		barUser,
-		type BarOrganization
-	} from '../bar.js';
+	import { Tooltip } from '$lib/components/index.js';
+	import { barOrganizationCreating, barOrganizationDropdownOpen, barUser } from '../bar.js';
 	import CreateOrganization from './CreateOrganization.svelte';
 	import OrganizationButton from './OrganizationButton.svelte';
 

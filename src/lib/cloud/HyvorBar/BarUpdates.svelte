@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { IconButton, Dropdown } from '../index.js';
+	import { IconButton, Dropdown } from '$lib/components/index.js';
 	import IconMegaphone from '@hyvor/icons/IconMegaphone';
 	import BarUpdatesList from './BarUpdatesList.svelte';
 	import { type BarProduct, barUnreadUpdates } from './bar.js';

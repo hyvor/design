@@ -1,10 +1,10 @@
 <script lang="ts">
-	import ActionList from '../ActionList/ActionList.svelte';
-	import ActionListItem from '../ActionList/ActionListItem.svelte';
-	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import BarUserPreview from './BarUserPreview.svelte';
 	import BarUserPicture from './BarUserPicture.svelte';
+	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
+	import ActionList from '$lib/components/ActionList/ActionList.svelte';
+	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 
 	interface Props {
 		instance: string;
@@ -12,11 +12,7 @@
 		cloud: boolean;
 	}
 
-	let { 
-		instance, 
-		logoutUrl = `${instance}/account/logout`,
-		cloud,
-	}: Props = $props();
+	let { instance, logoutUrl = `${instance}/account/logout`, cloud }: Props = $props();
 </script>
 
 <div class="wrap">
@@ -42,8 +38,7 @@
 					</a>
 				{/if}
 
-
-				<a href="{logoutUrl}">
+				<a href={logoutUrl}>
 					<ActionListItem>Logout</ActionListItem>
 				</a>
 			</ActionList>

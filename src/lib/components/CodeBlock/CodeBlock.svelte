@@ -23,8 +23,9 @@
 		language ? languagesMap[language] || language : null
 	) as Language | null;
 
-	function getCode(code: any, languageCode: any) {
-		return '';
+	function getCode(code: string, languageCode: any) {
+		// TODO: must change
+		return code.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
 	}
 </script>
 

@@ -49,9 +49,6 @@ export {
 	type SelectedFile as FileUploaderSelectedFile
 } from './FileUploader/file-uploader.js';
 
-export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
-export { bar as hyvorBar } from './HyvorBar/bar.js';
-
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
 export { default as Link } from './Link/Link.svelte';

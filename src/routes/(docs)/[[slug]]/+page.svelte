@@ -103,6 +103,10 @@
 				{/each}
 			</NavCategory>
 
+			<NavCategory name="Cloud">
+				<NavItem href="/cloud-context">Cloud Context</NavItem>
+			</NavCategory>
+
 			<NavCategory name="Marketing">
 				<NavItem href="/page-structure">Page Structure</NavItem>
 				<NavItem href="/docs">Docs</NavItem>

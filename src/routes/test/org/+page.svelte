@@ -27,15 +27,15 @@
 	>
 		<HyvorBar />
 
-		<div class="wrap">
+		<!-- <div class="wrap">
 			<div class="inner hds-box">
 				<OrgMembersSearch />
 			</div>
-		</div>
+		</div> -->
 	</CloudContext>
 </Base>
 
-<style>
+<!-- <style>
 	.wrap {
 		display: flex;
 		align-items: center;
@@ -46,4 +46,4 @@
 		padding: 25px 30px;
 		width: 600px;
 	}
-</style>
+</style> -->

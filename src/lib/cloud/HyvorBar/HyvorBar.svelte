@@ -3,12 +3,7 @@
 	import { onMount } from 'svelte';
 	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
-	import {
-		barOnOrganizationSwitch,
-		initBar,
-		type BarConfig,
-		type OrgSwitchInitiator
-	} from './bar.js';
+	import { initBar, type BarConfig } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import BarNotice from './BarNotice/BarNotice.svelte';

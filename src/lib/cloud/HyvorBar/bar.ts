@@ -1,5 +1,6 @@
 import { track } from '$lib/marketing/index.js';
 import { get, writable } from 'svelte/store';
+import { getCloudContext } from '../CloudContext/cloudContext.js';
 
 export type BarProduct = string | 'core';
 

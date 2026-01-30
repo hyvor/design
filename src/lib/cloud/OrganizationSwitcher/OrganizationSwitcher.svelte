@@ -21,6 +21,12 @@
 	let loading = $state(true);
 	let error = $state('');
 
+	interface Props {
+		show: boolean;
+	}
+
+	let { show = $bindable(false) }: Props = $props();
+
 	const { organization, instance, callbacks } = $derived(getCloudContext());
 
 	onMount(() => {
@@ -39,6 +45,8 @@
 	});
 
 	async function handleSwitch(org: CloudContextOrganization) {
+		show = false;
+
 		// start swithing
 		const promise = switchOrganization(org.id);
 

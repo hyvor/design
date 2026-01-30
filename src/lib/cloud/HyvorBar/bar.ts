@@ -1,4 +1,3 @@
-import { track } from '$lib/marketing/index.js';
 import { writable } from 'svelte/store';
 import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
@@ -27,11 +26,7 @@ interface BarResponse {
 	user_id: number;
 	organization_id: number | null;
 	has_failed_invoices: boolean;
-
-	//
-	// updates: {
-	// 	unread: number;
-	// };
+	unread_updates: number;
 }
 
 export async function initBar() {
@@ -64,24 +59,14 @@ export async function initBar() {
 	if (user.id !== data.user_id || currentOrganizationId !== data.organization_id) {
 		// something is very wrong
 		// reload Console or something
-		// TODO:
 	}
 
 	barHasFailedInvoices.set(data.has_failed_invoices);
+	barUnreadUpdates.set(data.unread_updates);
 
-	// TODO:
-	// barUnreadUpdates.set(data.updates.unread);
-
-	// if (lastUnreadTime === null) {
-	// 	UnreadUpdatesTimeLocalStorage.setNow();
-	// }
-
-	// if (data.user && track.ready()) {
-	// 	track.identify(data.user.id.toString(), {
-	// 		name: data.user.name ?? undefined,
-	// 		avatar: data.user.picture_url ?? undefined
-	// 	});
-	// }
+	if (lastUnreadTime === null) {
+		UnreadUpdatesTimeLocalStorage.setNow();
+	}
 }
 
 export class UnreadUpdatesTimeLocalStorage {

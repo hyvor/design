@@ -5,6 +5,8 @@
 		setCloudContext,
 		type CloudContext
 	} from './cloudContext.svelte.js';
+	import { onMount } from 'svelte';
+	import { track } from '$lib/marketing/index.js';
 
 	interface Props {
 		context: CloudContext;
@@ -20,6 +22,13 @@
 		if (context) {
 			incrementCloudContextId();
 		}
+	});
+
+	onMount(() => {
+		track.identify(context.user.id.toString(), {
+			name: context.user.name ?? undefined,
+			avatar: context.user.picture_url ?? undefined
+		});
 	});
 </script>
 

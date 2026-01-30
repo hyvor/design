@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
-	const cloudContext = $derived(getCloudContext());
+	const { user } = $derived(getCloudContext());
 </script>
 
-{#if cloudContext.user.picture_url}
-	<img src={cloudContext.user.picture_url} alt={cloudContext.user.name} />
+{#if user.picture_url}
+	<img src={user.picture_url} alt={user.name} />
 {:else}
 	<span class="user-placeholder">
-		{cloudContext.user.name ? cloudContext.user.name[0].toUpperCase() : '?'}
+		{user.name ? user.name[0].toUpperCase() : '?'}
 	</span>
 {/if}
 

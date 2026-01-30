@@ -28,7 +28,7 @@
 		logo?: string;
 	}
 
-	const { instance, deployment, component } = $derived(getCloudContext());
+	const { instance, deployment, component, organization } = $derived(getCloudContext());
 
 	let {
 		url = '/console',
@@ -83,7 +83,10 @@
 				</span>
 			</a>
 			<BarProducts mobile={mobileShow} />
-			<BarOrganization />
+
+			{#if organization}
+				<BarOrganization />
+			{/if}
 			<BarLicense name={getName()} />
 		</div>
 		<div class="center"></div>

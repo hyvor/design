@@ -9,8 +9,10 @@ export function getLoadedOrganizations() {
 	return loadedOrganizations;
 }
 
-export function resetLoadedOrganizations() {
-	loadedOrganizations = undefined;
+export function addToLoadedOrganizations(org: CloudContextOrganization) {
+	if (loadedOrganizations) {
+		loadedOrganizations = [...loadedOrganizations, org];
+	}
 }
 
 export async function getMyOrganizations(): Promise<CloudContextOrganization[]> {

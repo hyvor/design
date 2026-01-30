@@ -21,6 +21,8 @@
 	let loading = $state(true);
 	let error = $state('');
 
+	let orgs = $derived(getLoadedOrganizations());
+
 	interface Props {
 		show?: boolean;
 		manageButton?: boolean;
@@ -38,7 +40,7 @@
 	const { organization, instance, callbacks } = $derived(getCloudContext());
 
 	onMount(() => {
-		if (getLoadedOrganizations()) {
+		if (orgs) {
 			loading = false;
 			return;
 		}
@@ -76,7 +78,7 @@
 	</IconMessage>
 {:else}
 	<div class="list-wrap">
-		{#if getLoadedOrganizations()}
+		{#if orgs}
 			<ActionList selection="single">
 				{#each getLoadedOrganizations() as org}
 					<ActionListItem

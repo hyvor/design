@@ -7,7 +7,7 @@
 		getCloudContext,
 		type CloudContextOrganization
 	} from '../CloudContext/cloudContext.svelte.js';
-	import { resetLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
+	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
 	import {
 		createOrganization,
 		getCreatorOpened,
@@ -43,7 +43,8 @@
 		name = '';
 		creating = false;
 
-		resetLoadedOrganizations();
+		// same below is done in ResourceCreator.svelte
+		addToLoadedOrganizations(org);
 		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
 	}
 

@@ -1,20 +1,15 @@
 <script lang="ts">
-	import { barUser, createOrganization } from '$lib/cloud/HyvorBar/bar.js';
-	import OrganizationButton from '$lib/cloud/HyvorBar/Organization/OrganizationButton.svelte';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
-	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconX from '@hyvor/icons/IconX';
-	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import Caption from '$lib/components/FormControl/Caption.svelte';
-	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
-	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 	import Button from '$lib/components/Button/Button.svelte';
-	import Validation from '$lib/components/FormControl/Validation.svelte';
-	import FormControl from '$lib/components/FormControl/FormControl.svelte';
-	import Label from '$lib/components/FormControl/Label.svelte';
 	import ResourceCreatorLoader from './ResourceCreatorLoader.svelte';
 	import { Steps, type Step } from './steps.svelte.js';
 	import type { ComponentProps } from 'svelte';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import DropdownContent from '$lib/components/Dropdown/DropdownContent.svelte';
+	import OrganizationSwitcher from '../OrganizationSwitcher/OrganizationSwitcher.svelte';
+	import { createOrganization } from '../OrganizationCreator/organizationCreator.svelte.js';
+	import Accordian from './Accordian.svelte';
 
 	interface Props {
 		children?: import('svelte').Snippet;
@@ -33,7 +28,8 @@
 		 */
 		onfinish: () => void;
 
-		organizationCaption?: string;
+		resourceTitle?: string; // ex: Blog, Website
+
 		cta?: string;
 		ctaProps?: ComponentProps<typeof Button>;
 		steps?: string[]; // steps from the product. ex: creating the blog, copying the theme
@@ -45,22 +41,29 @@
 		onback,
 		oncreate,
 		onfinish,
-		organizationCaption = 'Choose the organization this resource belongs to',
+		resourceTitle = 'Resource',
 		cta = 'Create resource',
 		ctaProps = {},
 		steps: productSteps
 	}: Props = $props();
 
-	const hasOrg = $derived(Boolean($barUser?.current_organization));
+	const { organization } = $derived(getCloudContext());
+
 	let loading = $state(false);
 	let steps: Steps = $state(new Steps([]));
 	let orgName = $state('');
 	let orgNameError = $state('');
 
+	let orgButton: HTMLButtonElement = $state({} as HTMLButtonElement);
+	let showOrgSwitcher = $state(false);
+
+	let organizationAccordianOpen = $derived(!organization);
+	let contentAccordianOpen = $derived(!!organization);
+
 	function setLoading() {
 		let stps: Step[] = [];
 
-		if (!hasOrg) {
+		if (!organization) {
 			stps.push({
 				text: 'Creating the organization',
 				auto: false
@@ -94,7 +97,7 @@
 		setLoading();
 
 		if (hasOrg === false) {
-			await createOrganization(orgName, 'resource-creator');
+			await createOrganization(orgName);
 			steps.toNext();
 		}
 
@@ -114,7 +117,9 @@
 			<ResourceCreatorLoader {steps} />
 		{:else}
 			<div class="title">
-				{title}
+				<div>
+					{title}
+				</div>
 
 				<span class="close">
 					<IconButton color="input" variant="invisible" on:click={onback}>
@@ -124,55 +129,67 @@
 			</div>
 
 			<div class="content">
-				{#if hasOrg}
-					<SplitControl
-						label="Organization"
-						caption={organizationCaption}
-						noHorizonalPadding
-					>
-						<OrganizationButton />
-					</SplitControl>
-				{:else}
-					<SplitControl noHorizonalPadding>
-						{#snippet label()}
-							<Label>Organization</Label>
-						{/snippet}
-						{#snippet caption()}
-							<Caption>
-								A new organization will be created for you
+				<Accordian
+					title="Organization"
+					belowTitle={organization?.name}
+					show={organizationAccordianOpen}
+					footer={!organization}
+					buttonText="Continue"
+					onButtonClick={() => undefined}
+					onToggle={() => {
+						organizationAccordianOpen = !organizationAccordianOpen;
 
-								<span class="org-tooltip">
-									<Tooltip
-										text="An organization helps you manage multiple projects and team members across HYVOR products."
-									>
-										<IconInfoCircle size={12} />
-									</Tooltip>
-								</span>
-							</Caption>
-						{/snippet}
+						if (organizationAccordianOpen && contentAccordianOpen) {
+							contentAccordianOpen = false;
+						}
+					}}
+				>
+					<div class="org-switcher">
+						<OrganizationSwitcher
+							manageButton={false}
+							createButtonText="Create new organization"
+							createButtonProps={{
+								size: 'medium',
+								color: 'input'
+							}}
+						/>
+					</div>
+				</Accordian>
 
-						<FormControl>
-							<TextInput
-								bind:value={orgName}
-								block
-								state={orgNameError ? 'error' : undefined}
-							/>
-							{#if orgNameError}
-								<Validation state="error">{orgNameError}</Validation>
-							{/if}
-						</FormControl>
-					</SplitControl>
-				{/if}
+				<Accordian
+					title={resourceTitle}
+					show={contentAccordianOpen}
+					buttonText={cta}
+					onButtonClick={() => undefined}
+					onToggle={() => {
+						contentAccordianOpen = !contentAccordianOpen;
 
-				{@render children?.()}
-
-				<div class="cta">
-					<Button onclick={handleCta} {...ctaProps}>{cta}</Button>
-				</div>
+						if (contentAccordianOpen && organizationAccordianOpen) {
+							organizationAccordianOpen = false;
+						}
+					}}
+					loading={true}
+				>
+					<div class="children">
+						{@render children?.()}
+					</div>
+				</Accordian>
 			</div>
 		{/if}
 	</div>
 </div>
+
+{#if showOrgSwitcher}
+	<DropdownContent
+		bind:show={showOrgSwitcher}
+		align="center"
+		width={300}
+		trigger={orgButton!}
+		padding={0}
+	>
+		<OrganizationSwitcher bind:show={showOrgSwitcher} />
+	</DropdownContent>
+{/if}
 
 <style>
 	.wrap {
@@ -181,7 +198,7 @@
 		justify-content: center;
 		width: 100%;
 		/* reduce bar height */
-		height: calc(100vh - 50px);
+		height: calc(100vh - var(--hyvor-bar-height));
 	}
 	.inner {
 		width: 750px;
@@ -191,30 +208,29 @@
 	.inner.loading {
 		width: 450px;
 	}
-	.title {
-		padding: 25px 35px;
-		font-weight: 600;
-		font-size: 20px;
-		position: relative;
-	}
-	.close {
-		position: absolute;
-		top: 50%;
-		right: 35px;
-		transform: translateY(-50%);
+
+	.org-switcher {
 	}
 
 	.content {
-		padding: 0 35px 35px 35px;
+		padding: 30px 35px;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
 	}
 
-	.org-tooltip {
-		vertical-align: middle;
-		cursor: pointer;
+	.children {
+		padding: 20px 35px;
 	}
 
-	.cta {
-		padding-top: 20px;
-		text-align: center;
+	.title {
+		padding: 25px 35px 0;
+		font-weight: 600;
+		font-size: 20px;
+		display: flex;
+		align-items: center;
+	}
+	.title div {
+		flex: 1;
 	}
 </style>

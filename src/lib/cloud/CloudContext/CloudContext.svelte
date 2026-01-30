@@ -26,3 +26,9 @@
 <div transition:fade={{ duration: 200 }} {style}>
 	{@render children()}
 </div>
+
+<style>
+	div {
+		--hyvor-bar-height: 50px;
+	}
+</style>

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
-	import { onMount } from 'svelte';
+	import { onMount, type ComponentProps } from 'svelte';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
@@ -22,10 +22,18 @@
 	let error = $state('');
 
 	interface Props {
-		show: boolean;
+		show?: boolean;
+		manageButton?: boolean;
+		createButtonProps?: Partial<ComponentProps<typeof Button>>;
+		createButtonText?: string;
 	}
 
-	let { show = $bindable(false) }: Props = $props();
+	let {
+		show = $bindable(true),
+		manageButton = true,
+		createButtonProps = {},
+		createButtonText = 'Create'
+	}: Props = $props();
 
 	const { organization, instance, callbacks } = $derived(getCloudContext());
 
@@ -92,14 +100,14 @@
 	</div>
 
 	<div class="manage-create">
-		<Button size="small" onclick={handleCreate}>
-			Create
+		<Button size="small" onclick={handleCreate} {...createButtonProps}>
+			{createButtonText}
 			{#snippet end()}
 				<IconPlus />
 			{/snippet}
 		</Button>
 
-		{#if organization}
+		{#if organization && manageButton}
 			<Button
 				size="small"
 				as="a"

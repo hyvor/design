@@ -7,7 +7,7 @@
 
 	let { name } = $props();
 
-	const { license } = getCloudContext();
+	const { license } = $derived(getCloudContext());
 
 	function daysDiff(unix: number) {
 		const date = new Date(unix * 1000);

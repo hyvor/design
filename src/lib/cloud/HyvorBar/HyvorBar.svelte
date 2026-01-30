@@ -114,7 +114,7 @@
 
 <style>
 	#bar {
-		height: 50px;
+		height: var(--hyvor-bar-height);
 		padding: 0 15px;
 		z-index: 100;
 	}

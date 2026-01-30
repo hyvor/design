@@ -8,6 +8,10 @@
 		type CloudContext as CloudContextType
 	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 	import { onMount } from 'svelte';
+	import ResourceCreator from '$lib/cloud/ResourceCreator/ResourceCreator.svelte';
+	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
+	import TextInput from '$lib/components/TextInput/TextInput.svelte';
+	import { toast } from '$lib/components/index.js';
 
 	let loading = $state(true);
 	let cloudContext: CloudContextType = $state({} as CloudContextType);
@@ -37,6 +41,20 @@
 			});
 	}
 
+	async function handleResourceCreate() {
+		// toast.error('bad input');
+		// return false;
+
+		const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
+		await delay(300);
+		return true;
+	}
+
+	function handleResourceFinish() {
+		console.log('finish');
+		toast.success('Blog created');
+	}
+
 	onMount(init);
 </script>
 
@@ -57,11 +75,34 @@
 			>
 				<HyvorBar url="/test/org" />
 
-				<!-- <div class="wrap">
-			<div class="inner hds-box">
-				<OrgMembersSearch />
-			</div>
-		</div> -->
+				<div class="content">
+					<div class="resource">
+						<ResourceCreator
+							onback={() => alert('Going back')}
+							oncreate={handleResourceCreate}
+							onfinish={handleResourceFinish}
+							title="Create a blog"
+							steps={['Creating the blog', 'Copying the theme', 'Seeding data']}
+							cta="Create Blog"
+							resourceTitle="Blog"
+						>
+							<SplitControl
+								label="Name"
+								noHorizonalPadding
+								caption="A name for your blog"
+							>
+								<TextInput block />
+							</SplitControl>
+							<SplitControl
+								label="Subdomain"
+								noHorizonalPadding
+								caption="Only a-z, 0-9, and hyphens (-)"
+							>
+								<TextInput block />
+							</SplitControl>
+						</ResourceCreator>
+					</div>
+				</div>
 			</CloudContext>
 		{/if}
 	</div>

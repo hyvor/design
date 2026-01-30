@@ -3,7 +3,11 @@
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import toast from '$lib/components/Toast/toast.js';
-	import type { CloudContextOrganization } from '../CloudContext/cloudContext.svelte.js';
+	import {
+		getCloudContext,
+		type CloudContextOrganization
+	} from '../CloudContext/cloudContext.svelte.js';
+	import { resetLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
 	import {
 		createOrganization,
 		getCreatorOpened,
@@ -15,6 +19,7 @@
 	let creating = $state(false);
 
 	let opened = $derived(getCreatorOpened());
+	let { callbacks } = $derived(getCloudContext());
 
 	async function handleCreate() {
 		if (name.trim() === '') {
@@ -37,6 +42,9 @@
 		setCreatorOpened(false);
 		name = '';
 		creating = false;
+
+		resetLoadedOrganizations();
+		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
 	}
 
 	$effect(() => {

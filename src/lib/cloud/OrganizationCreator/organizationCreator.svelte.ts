@@ -36,22 +36,4 @@ export async function createOrganization(name: string): Promise<CloudContextOrga
 
 	const org = await doCreate();
 	return org;
-
-	// const onSwitch = get(barOnOrganizationSwitch);
-	// onSwitch?.(org, switchInitiator);
-
-	// barOrganizations.update((orgs) => [org, ...orgs]);
-	// barUnreadUpdates.set(0);
-	// barHasFailedInvoices.set(false);
-	// barUser.update((user) => {
-	// 	if (!user) {
-	// 		return null; // typesafety
-	// 	}
-	// 	return {
-	// 		...user,
-	// 		current_organization: org
-	// 	};
-	// });
-
-	// return org;
 }

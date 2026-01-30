@@ -9,6 +9,10 @@ export function getLoadedOrganizations() {
 	return loadedOrganizations;
 }
 
+export function resetLoadedOrganizations() {
+	loadedOrganizations = undefined;
+}
+
 export async function getMyOrganizations(): Promise<CloudContextOrganization[]> {
 	// return [
 	// 	{ id: 1, name: 'Org 1', member_role: 'admin' },

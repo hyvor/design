@@ -1,7 +1,6 @@
 <script>
 	import CloudContext from '$lib/cloud/CloudContext/CloudContext.svelte';
 	import HyvorBar from '$lib/cloud/HyvorBar/HyvorBar.svelte';
-	import OrgMembersSearch from '$lib/cloud/OrgMembers/OrgMembersSearch.svelte';
 	import Base from '$lib/components/Base/Base.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import { onMount } from 'svelte';

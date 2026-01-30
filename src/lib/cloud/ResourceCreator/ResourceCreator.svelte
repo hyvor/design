@@ -1,42 +1,45 @@
 <script lang="ts">
-	import { barUser, createOrganization } from '$lib/components/HyvorBar/bar.js';
-	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
-	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconX from '@hyvor/icons/IconX';
-	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import Caption from '$lib/components/FormControl/Caption.svelte';
-	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
-	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 	import Button from '$lib/components/Button/Button.svelte';
-	import Validation from '$lib/components/FormControl/Validation.svelte';
-	import FormControl from '$lib/components/FormControl/FormControl.svelte';
-	import Label from '$lib/components/FormControl/Label.svelte';
-	import ResourceCreatorLoader from './ResourceCreatorLoader.svelte';
-	import { Steps, type Step } from './steps.svelte.js';
 	import type { ComponentProps } from 'svelte';
+	import {
+		getCloudContext,
+		type CloudContextOrganization
+	} from '../CloudContext/cloudContext.svelte.js';
+	import OrganizationSwitcher from '../OrganizationSwitcher/OrganizationSwitcher.svelte';
+	import Accordian from './Accordian.svelte';
+	import TextInput from '$lib/components/TextInput/TextInput.svelte';
+	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
+	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
+	import { createOrganization } from '../OrganizationCreator/organizationCreator.svelte.js';
+	import { toast } from '$lib/components/index.js';
+	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
+	import FormControl from '$lib/components/FormControl/FormControl.svelte';
+	import Validation from '$lib/components/FormControl/Validation.svelte';
 
 	interface Props {
-		children?: import('svelte').Snippet;
+		children?: import('svelte').Snippet<
+			[
+				{
+					create: () => void;
+				}
+			]
+		>;
 		title: string;
 		onback: () => void;
 
 		/**
-		 * create a resource asyncly
-		 * but do not yet update stores or redirect the user
-		 * use onfinish for that to work seamlessly with the animation
+		 * create the resource
+		 * after creation, ResourceCreator will simply cancel the loader
+		 * it is the resposibility of the callback to redirect the user afterwards
 		 */
-		oncreate: () => Promise<boolean>;
+		oncreate: (organization: CloudContextOrganization) => Promise<boolean>;
 
-		/**
-		 * update stores and redirect the user from this
-		 */
-		onfinish: () => void;
+		resourceTitle?: string; // ex: Blog, Website
 
-		organizationCaption?: string;
 		cta?: string;
 		ctaProps?: ComponentProps<typeof Button>;
-		steps?: string[]; // steps from the product. ex: creating the blog, copying the theme
 	}
 
 	let {
@@ -44,133 +47,154 @@
 		title,
 		onback,
 		oncreate,
-		onfinish,
-		organizationCaption = 'Choose the organization this resource belongs to',
-		cta = 'Create resource',
-		ctaProps = {},
-		steps: productSteps
+		resourceTitle = 'Resource',
+		cta = 'Create resource'
 	}: Props = $props();
 
-	const hasOrg = $derived(Boolean($barUser?.current_organization));
-	let loading = $state(false);
-	let steps: Steps = $state(new Steps([]));
+	const { callbacks, organization } = $derived(getCloudContext());
+
 	let orgName = $state('');
 	let orgNameError = $state('');
 
-	function setLoading() {
-		let stps: Step[] = [];
+	let organizationAccordianOpen = $derived(!organization);
+	let contentAccordianOpen = $derived(!!organization);
 
-		if (!hasOrg) {
-			stps.push({
-				text: 'Creating the organization',
-				auto: false
-			});
-		}
+	let creatingResource = $state(false);
+	let creatingOrganization = $state(false);
 
-		productSteps?.forEach((s) => {
-			stps.push({
-				text: s,
-				auto: true
-			});
+	function handleResourceCreation() {
+		creatingResource = true;
+
+		oncreate(organization!).then((res) => {
+			creatingResource = false;
+			if (res) {
+				contentAccordianOpen = false;
+			}
 		});
-
-		stps.push({
-			text: 'Finalizing',
-			auto: true
-		});
-
-		loading = true;
-		steps = new Steps(stps);
+		// the product generally has to show error feedback
+		// .catch
 	}
 
-	async function handleCta() {
+	async function handleOrganizationCreation() {
 		orgNameError = '';
+		if (orgName.trim() === '') {
+			orgNameError = 'Organization name cannot be empty.';
+			return;
+		}
+		creatingOrganization = true;
 
-		if (hasOrg === false && orgName.trim() === '') {
-			orgNameError = 'Organization name cannot be empty';
+		let org: CloudContextOrganization;
+		try {
+			org = await createOrganization(orgName);
+		} catch {
+			toast.error('Failed to create organization.');
+			creatingOrganization = false;
 			return;
 		}
 
-		setLoading();
+		creatingOrganization = false;
 
-		if (hasOrg === false) {
-			await createOrganization(orgName, 'resource-creator');
-			steps.toNext();
-		}
-
-		const success = await oncreate();
-
-		if (success) {
-			steps.finish(onfinish);
-		} else {
-			loading = false;
-		}
+		// same as OrganizationCreator.svelte
+		addToLoadedOrganizations(org);
+		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
 	}
 </script>
 
 <div class="wrap">
-	<div class="inner hds-box" class:loading>
-		{#if loading}
-			<ResourceCreatorLoader {steps} />
-		{:else}
-			<div class="title">
+	<div class="inner hds-box">
+		<div class="title">
+			<div>
 				{title}
-
-				<span class="close">
-					<IconButton color="input" variant="invisible" on:click={onback}>
-						<IconX size={22} />
-					</IconButton>
-				</span>
 			</div>
 
-			<div class="content">
-				{#if hasOrg}
-					<SplitControl
-						label="Organization"
-						caption={organizationCaption}
-						noHorizonalPadding
-					>
-						<OrganizationButton />
-					</SplitControl>
+			<span class="close">
+				<IconButton color="input" variant="invisible" on:click={onback}>
+					<IconX size={22} />
+				</IconButton>
+			</span>
+		</div>
+
+		<div class="content">
+			<Accordian
+				title="Organization"
+				belowTitle={organization?.name}
+				show={organizationAccordianOpen}
+				footer={!organization}
+				buttonText="Create Organization"
+				onButtonClick={handleOrganizationCreation}
+				onToggle={() => {
+					organizationAccordianOpen = !organizationAccordianOpen;
+
+					if (organizationAccordianOpen && contentAccordianOpen) {
+						contentAccordianOpen = false;
+					}
+				}}
+				toggleLocked={creatingResource}
+				loading={creatingOrganization}
+			>
+				{#if organization}
+					<div class="org-switcher">
+						<OrganizationSwitcher
+							manageButton={false}
+							createButtonText="Create new organization"
+							createButtonProps={{
+								size: 'medium',
+								color: 'input'
+							}}
+						/>
+					</div>
 				{:else}
-					<SplitControl noHorizonalPadding>
-						{#snippet label()}
-							<Label>Organization</Label>
-						{/snippet}
-						{#snippet caption()}
-							<Caption>
-								A new organization will be created for you
+					<div class="org-creator">
+						<SplitControl label="Name" column>
+							<FormControl>
+								<TextInput
+									bind:value={orgName}
+									block
+									placeholder="Organization Name"
+									disabled={creatingOrganization}
+									onkeyup={(e) => {
+										if (e.key === 'Enter') {
+											handleOrganizationCreation();
+										}
+									}}
+								/>
 
-								<span class="org-tooltip">
-									<Tooltip
-										text="An organization helps you manage multiple projects and team members across HYVOR products."
-									>
-										<IconInfoCircle size={12} />
-									</Tooltip>
-								</span>
-							</Caption>
-						{/snippet}
+								{#if orgNameError}
+									<Validation state="error">{orgNameError}</Validation>
+								{/if}
+							</FormControl>
 
-						<FormControl>
-							<TextInput
-								bind:value={orgName}
-								block
-								state={orgNameError ? 'error' : undefined}
-							/>
-							{#if orgNameError}
-								<Validation state="error">{orgNameError}</Validation>
-							{/if}
-						</FormControl>
-					</SplitControl>
+							<div class="org-note">
+								<IconInfoCircle size={12} />
+								Organizations can be used across HYVOR products.
+							</div>
+						</SplitControl>
+					</div>
 				{/if}
+			</Accordian>
 
-				{@render children?.()}
+			<Accordian
+				title={resourceTitle}
+				show={contentAccordianOpen}
+				buttonText={cta}
+				onButtonClick={handleResourceCreation}
+				onToggle={() => {
+					contentAccordianOpen = !contentAccordianOpen;
 
-				<div class="cta">
-					<Button onclick={handleCta} {...ctaProps}>{cta}</Button>
+					if (contentAccordianOpen && organizationAccordianOpen) {
+						organizationAccordianOpen = false;
+					}
+				}}
+				loading={creatingResource}
+				toggleLocked={creatingResource || !organization}
+			>
+				<div class="children">
+					{@render children?.({
+						create: handleResourceCreation
+					})}
 				</div>
-			</div>
-		{/if}
+			</Accordian>
+		</div>
 	</div>
 </div>
 
@@ -181,40 +205,46 @@
 		justify-content: center;
 		width: 100%;
 		/* reduce bar height */
-		height: calc(100vh - 50px);
+		height: calc(100vh - var(--hyvor-bar-height));
 	}
 	.inner {
 		width: 750px;
 		max-width: 100%;
 		transition: 0.3s width;
 	}
-	.inner.loading {
-		width: 450px;
-	}
-	.title {
-		padding: 25px 35px;
-		font-weight: 600;
-		font-size: 20px;
-		position: relative;
-	}
-	.close {
-		position: absolute;
-		top: 50%;
-		right: 35px;
-		transform: translateY(-50%);
-	}
 
 	.content {
-		padding: 0 35px 35px 35px;
+		padding: 30px 35px;
+		display: flex;
+		flex-direction: column;
+		gap: 15px;
 	}
 
-	.org-tooltip {
-		vertical-align: middle;
-		cursor: pointer;
+	.children {
+		padding: 20px 35px;
 	}
 
-	.cta {
-		padding-top: 20px;
-		text-align: center;
+	.title {
+		padding: 25px 35px 0;
+		font-weight: 600;
+		font-size: 20px;
+		display: flex;
+		align-items: center;
+	}
+	.title div {
+		flex: 1;
+	}
+
+	.org-creator {
+		padding: 15px 20px;
+	}
+
+	.org-note {
+		color: var(--text-light);
+		font-size: 14px;
+		margin-top: 15px;
+		display: flex;
+		align-items: center;
+		gap: 8px;
 	}
 </style>

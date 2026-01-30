@@ -2,15 +2,16 @@
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
-	import { cubicIn } from 'svelte/easing';
+	import { elasticInOut } from 'svelte/easing';
+	import type { DropdownAlign, DropdownPosition } from './dropdown.types.js';
 
 	interface Props {
 		show: boolean;
-		width: number;
-		relative: boolean;
+		width?: number;
+		relative?: boolean;
 		closeOnOutsideClick?: boolean;
-		align: 'start' | 'center' | 'end';
-		position: 'left' | 'right' | 'bottom' | 'top';
+		align?: DropdownAlign;
+		position?: DropdownPosition;
 		trigger: HTMLElement;
 		children?: import('svelte').Snippet;
 		padding?: number;
@@ -18,11 +19,11 @@
 
 	let {
 		show = $bindable(),
-		width,
-		relative,
+		width = 225,
+		relative = false,
 		closeOnOutsideClick = true,
-		align,
-		position,
+		align = 'start',
+		position = 'bottom',
 		trigger,
 		children,
 		padding = 10
@@ -119,7 +120,7 @@
 	function slideIn(node: any) {
 		return {
 			duration: 100,
-			easing: cubicIn,
+			easing: elasticInOut,
 			css: (t: number) => {
 				return `
                     opacity: ${0.2 + t * 0.8};

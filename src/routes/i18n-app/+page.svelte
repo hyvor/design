@@ -8,9 +8,7 @@
 	import enJson from './locale/en.json' with { type: 'json' };
 	import type { ToDotPaths } from '$lib/components/Internationalization/types.js';
 	import Context from './stringComponents/Context.svelte';
-	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
-	import { bar } from '$lib/components/HyvorBar/bar.js';
 
 	let name = $state('Supun');
 	let dynamicValue = $state('');
@@ -31,33 +29,9 @@
 	});
 
 	let changingKey = $state('welcome' as ToDotPaths<typeof enJson>);
-
-	let orgSwitchMessage = $state('');
 </script>
 
-<HyvorBar
-	product="core"
-	config={{
-		name: 'Hyvor Design',
-		docs: false
-	}}
-	authOverride={{
-		user: {
-			name: 'Supun',
-			email: 'supun@example.com',
-			picture_url: null,
-			current_organization_name: 'HYVOR'
-		},
-		logoutUrl: 'https://hyvor.com/logout'
-	}}
-	onOrganizationSwitch={(org) => {
-		orgSwitchMessage = `Switched to organization: ${org.name} (Role: ${org.role}, ID: ${org.id})`;
-	}}
-/>
-
 <div style="margin-top:20px;padding: 30px">
-	<Button onclick={() => bar.openOrganizationDropdown()}>Channge Org</Button>
-	{orgSwitchMessage}
 	<ChangeButton />
 	<TextInput bind:value={name} />
 	<div>

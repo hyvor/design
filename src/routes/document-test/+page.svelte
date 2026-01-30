@@ -1,37 +1,11 @@
 <script>
 	import Base from '$lib/components/Base/Base.svelte';
-	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
-	import OrganizationButton from '$lib/components/HyvorBar/Organization/OrganizationButton.svelte';
-	import toast from '$lib/components/Toast/toast.ts';
 	import Document from '$lib/marketing/Document/Document.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
 
-<HyvorBar
-	product="core"
-	cloud={false}
-	authOverride={{
-		user: {
-			name: 'Test User',
-			// picture_url: 'https://picsum.photos/60/60',
-			picture_url: null,
-			email: 'test@hyvor.com',
-			current_organization: null
-		},
-		logoutUrl: 'https://logout.com'
-	}}
-	onOrganizationSwitch={(org) => {
-		toast.info('Switched to organization:' + org.name);
-	}}
-/>
-
 <Base>
 	<slot />
-	<p style="text-align:center; background-color: #fff;padding: 20px;">
-		<span class="org-button">
-			<OrganizationButton />
-		</span>
-	</p>
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>
 

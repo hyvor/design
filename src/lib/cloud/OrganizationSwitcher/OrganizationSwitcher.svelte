@@ -1,44 +1,51 @@
 <script lang="ts">
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
-	import { onMount } from 'svelte';
-	import {
-		barOrganizationCreating,
-		barOrganizations,
-		barUser,
-		getMyOrganizations,
-		instance,
-		type BarOrganization
-	} from '../bar.js';
+	import { onMount, type ComponentProps } from 'svelte';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
 	import IconPlus from '@hyvor/icons/IconPlus';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
+	import {
+		getCloudContext,
+		type CloudContextOrganization
+	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import {
+		getMyOrganizations,
+		getLoadedOrganizations,
+		switchOrganization
+	} from './organizationSwitcher.svelte.js';
+	import { setCreatorOpened } from '../OrganizationCreator/organizationCreator.svelte.js';
 
 	let loading = $state(true);
 	let error = $state('');
 
-	let {
-		onSwitch,
-		onCreateStart,
-		manageButton = true
-	}: {
-		onSwitch: (org: BarOrganization) => void;
-		onCreateStart: () => void;
+	let orgs = $derived(getLoadedOrganizations());
+
+	interface Props {
+		show?: boolean;
 		manageButton?: boolean;
-	} = $props();
+		createButtonProps?: Partial<ComponentProps<typeof Button>>;
+		createButtonText?: string;
+	}
+
+	let {
+		show = $bindable(true),
+		manageButton = true,
+		createButtonProps = {},
+		createButtonText = 'Create'
+	}: Props = $props();
+
+	const { organization, instance, callbacks } = $derived(getCloudContext());
 
 	onMount(() => {
-		if ($barOrganizations.length > 0) {
+		if (orgs) {
 			loading = false;
 			return;
 		}
 
 		getMyOrganizations()
-			.then((data) => {
-				barOrganizations.set(data);
-			})
 			.catch((err) => {
 				error = 'Failed to load organizations.';
 			})
@@ -47,9 +54,19 @@
 			});
 	});
 
+	async function handleSwitch(org: CloudContextOrganization) {
+		show = false;
+
+		// start swithing
+		const promise = switchOrganization(org.id);
+
+		// handle from the product-side
+		callbacks.onOrganizationSwitch(promise);
+	}
+
 	function handleCreate() {
-		barOrganizationCreating.set(true);
-		onCreateStart();
+		setCreatorOpened();
+		show = false;
 	}
 </script>
 
@@ -61,12 +78,12 @@
 	</IconMessage>
 {:else}
 	<div class="list-wrap">
-		{#if $barOrganizations.length}
+		{#if orgs}
 			<ActionList selection="single">
-				{#each $barOrganizations as org}
+				{#each getLoadedOrganizations() as org}
 					<ActionListItem
-						on:select={() => onSwitch(org)}
-						selected={$barUser?.current_organization?.id === org.id}
+						on:select={() => handleSwitch(org)}
+						selected={organization?.id === org.id}
 					>
 						{org.name}
 						{#snippet end()}
@@ -85,18 +102,18 @@
 	</div>
 
 	<div class="manage-create">
-		<Button size="small" onclick={handleCreate}>
-			Create
+		<Button size="small" onclick={handleCreate} {...createButtonProps}>
+			{createButtonText}
 			{#snippet end()}
 				<IconPlus />
 			{/snippet}
 		</Button>
 
-		{#if manageButton && $barUser?.current_organization}
+		{#if organization && manageButton}
 			<Button
 				size="small"
 				as="a"
-				href={$instance + '/account/org'}
+				href={instance + '/account/org'}
 				color="input"
 				target="_blank"
 				rel="noopener noreferrer"

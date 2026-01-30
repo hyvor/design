@@ -1,25 +1,17 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import Loader from '../Loader/Loader.svelte';
-	import ActionList from '../ActionList/ActionList.svelte';
-	import ActionListItem from '../ActionList/ActionListItem.svelte';
-	import {
-		barUnreadUpdates,
-		UnreadUpdatesTimeLocalStorage,
-		type BarProduct,
-		type BarUpdate
-	} from './bar.js';
+	import { barUnreadUpdates, UnreadUpdatesTimeLocalStorage, type BarUpdate } from './bar.js';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
-	import Button from '../Button/Button.svelte';
-	import Tag from '../Tag/Tag.svelte';
-	import IconMessage from '../IconMessage/IconMessage.svelte';
 
-	interface Props {
-		instance: string;
-		product: BarProduct;
-	}
-
-	let { instance, product }: Props = $props();
+	import {
+		Loader,
+		ActionList,
+		ActionListItem,
+		Button,
+		Tag,
+		IconMessage
+	} from '$lib/components/index.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 	let updates: BarUpdate[] = $state([]);
 	let loading = $state(true);
@@ -27,12 +19,14 @@
 
 	let lastReadTime: null | number = $state(null);
 
+	const cloudContext = $derived(getCloudContext());
+
 	function fetchUpdates() {
 		error = false;
 		lastReadTime = UnreadUpdatesTimeLocalStorage.get();
 		loading = true;
 
-		fetch(instance + '/api/public/updates?types=company,' + product)
+		fetch(cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component)
 			.then((response) => response.json())
 			.then((data) => {
 				updates = data;
@@ -116,7 +110,13 @@
 {/if}
 
 <div class="top">
-	<Button size="small" color="input" as="a" href={instance + '/updates'} target="_blank">
+	<Button
+		size="small"
+		color="input"
+		as="a"
+		href={cloudContext.instance + '/updates'}
+		target="_blank"
+	>
 		View all updates
 		{#snippet end()}
 			<IconBoxArrowUpRight size={12} />

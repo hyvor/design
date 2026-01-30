@@ -49,9 +49,6 @@ export {
 	type SelectedFile as FileUploaderSelectedFile
 } from './FileUploader/file-uploader.js';
 
-export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
-export { bar as hyvorBar } from './HyvorBar/bar.js';
-
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
 export { default as Link } from './Link/Link.svelte';
@@ -63,8 +60,6 @@ export { default as Modal } from './Modal/Modal.svelte';
 export { confirm } from './Modal/confirm.js';
 
 export { default as NavLink } from './NavLink/NavLink.svelte';
-
-export { default as OrganizationButton } from './HyvorBar/Organization/OrganizationButton.svelte';
 
 export { default as Radio } from './Radio/Radio.svelte';
 

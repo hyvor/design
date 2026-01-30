@@ -1,5 +1,11 @@
 <script lang="ts">
-	import { ActionList, ActionListItem, Button, Dropdown } from '../index.js';
+	import {
+		ActionList,
+		ActionListGroup,
+		ActionListItem,
+		Button,
+		Dropdown
+	} from '$lib/components/index.js';
 	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconChat from '@hyvor/icons/IconChat';
@@ -8,26 +14,25 @@
 	import IconFileEarmark from '@hyvor/icons/IconFileEarmark';
 	import IconChatDots from '@hyvor/icons/IconChatDots';
 	import IconBluesky from '@hyvor/icons/IconBluesky';
-	import IconTwitter from '@hyvor/icons/IconTwitter';
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
-
-	import ActionListGroup from '../ActionList/ActionListGroup.svelte';
-	import { PRODUCTS } from './BarProducts.svelte';
-	import type { BarConfig, BarProduct } from './bar.js';
+	import type { BarConfig } from './bar.js';
 	import G2 from './img/G2.svelte';
 	import Trustpilot from './img/Trustpilot.svelte';
 	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { PRODUCTS } from './BarProducts/products.js';
 
 	let supportDropdown = $state(false);
 
 	interface Props {
 		mobile?: boolean;
-		product: BarProduct;
 		config: BarConfig;
 	}
 
-	let { mobile = false, product, config }: Props = $props();
+	let { mobile = false, config }: Props = $props();
+
+	const cloudContext = $derived(getCloudContext());
 
 	function openLiveChat(e: any) {
 		e.preventDefault();
@@ -41,7 +46,7 @@
 		if (config.name) {
 			return config.name;
 		}
-		return PRODUCTS[product as keyof typeof PRODUCTS]?.name || '';
+		return PRODUCTS[cloudContext.component as keyof typeof PRODUCTS]?.name || '';
 	}
 </script>
 
@@ -56,6 +61,20 @@
 	{/snippet}
 	{#snippet content()}
 		<ActionList>
+			<a href="https://hyvor.com/support" target="_blank">
+				<ActionListItem>
+					Support Form
+					{#snippet description()}
+						<div>Get help from our team</div>
+					{/snippet}
+					{#snippet start()}
+						<IconInfoCircle />
+					{/snippet}
+					{#snippet end()}
+						<IconBoxArrowUpRight size={12} />
+					{/snippet}
+				</ActionListItem>
+			</a>
 			<a href="https://hyvor.community" target="_blank">
 				<ActionListItem>
 					Community Forum
@@ -88,20 +107,6 @@
 					</ActionListItem>
 				</a>
 			{/if}
-			<a href="https://hyvor.com/support" target="_blank">
-				<ActionListItem>
-					Support Form
-					{#snippet description()}
-						<div>Get help from our team</div>
-					{/snippet}
-					{#snippet start()}
-						<IconInfoCircle />
-					{/snippet}
-					{#snippet end()}
-						<IconBoxArrowUpRight size={12} />
-					{/snippet}
-				</ActionListItem>
-			</a>
 			{#if config.chat}
 				<a href="/chat" onclick={openLiveChat}>
 					<ActionListItem>

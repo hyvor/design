@@ -1,22 +1,14 @@
 <script lang="ts">
-	import ActionList from '../ActionList/ActionList.svelte';
-	import ActionListItem from '../ActionList/ActionListItem.svelte';
-	import Dropdown from '../Dropdown/Dropdown.svelte';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import BarUserPreview from './BarUserPreview.svelte';
 	import BarUserPicture from './BarUserPicture.svelte';
+	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
+	import ActionList from '$lib/components/ActionList/ActionList.svelte';
+	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
-	interface Props {
-		instance: string;
-		logoutUrl?: string;
-		cloud: boolean;
-	}
-
-	let { 
-		instance, 
-		logoutUrl = `${instance}/account/logout`,
-		cloud,
-	}: Props = $props();
+	const cloudContext = $derived(getCloudContext());
+	const logoutUrl = `${cloudContext.instance}/account/logout`;
 </script>
 
 <div class="wrap">
@@ -31,8 +23,8 @@
 			<ActionList>
 				<BarUserPreview />
 
-				{#if cloud}
-					<a href="{instance}/account" target="_blank">
+				{#if cloudContext.deployment === 'cloud'}
+					<a href="{cloudContext.instance}/account" target="_blank">
 						<ActionListItem>
 							Manage Account
 							{#snippet end()}
@@ -42,8 +34,7 @@
 					</a>
 				{/if}
 
-
-				<a href="{logoutUrl}">
+				<a href={logoutUrl}>
 					<ActionListItem>Logout</ActionListItem>
 				</a>
 			</ActionList>

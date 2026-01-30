@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { barUser, getInstance } from '$lib/components/HyvorBar/bar.js';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+
+	const { instance, organization } = getCloudContext();
 
 	let search = $state('');
-	let role = $derived($barUser?.current_organization?.role);
+	let role = $derived(organization?.role);
 	let focused = $state(false);
 </script>
 
@@ -27,7 +29,7 @@
 <div class="invite-note">
 	Looking for a user outside your organization?
 	{#if role === 'admin' || role === 'manager'}
-		<a href={getInstance() + '/account/org/members?invite'} target="_blank" class="hds-link"
+		<a href={instance + '/account/org/members?invite'} target="_blank" class="hds-link"
 			>Invite them</a
 		>
 	{:else}

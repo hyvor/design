@@ -1,5 +1,5 @@
 <script>
-	import LoaderAnimated from "$lib/components/LoaderAnimated/LoaderAnimated.svelte";
-	import LogoCore from "$lib/marketing/Logo/LogoCore.svelte";
+	import ConsoleLoader from '$lib/components/ConsoleLoader/ConsoleLoader.svelte';
 </script>
- <LoaderAnimated  logo={LogoCore} size={100} />
+
+<ConsoleLoader logo="https://hyvor.com/api/public/logo/core.svg" size={100} />

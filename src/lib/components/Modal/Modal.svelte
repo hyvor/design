@@ -19,6 +19,7 @@
 		closeOnOutsideClick?: boolean;
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
+		onclose?: () => void;
 
 		footer?: Footer | Snippet;
 		children?: Snippet;
@@ -33,6 +34,7 @@
 		closeOnOutsideClick = true,
 		closeOnEscape = true,
 		loading = false,
+		onclose,
 		footer,
 		children
 	}: Props = $props();
@@ -48,6 +50,7 @@
 	function handleCancel() {
 		show = false;
 		dispatch('cancel');
+		onclose?.();
 	}
 
 	async function setFlex() {
@@ -71,7 +74,7 @@
 <svelte:window
 	on:keyup={(e) => {
 		if (e.key === 'Escape' && closeOnEscape && !loading) {
-			show = false;
+			handleCancel();
 		}
 	}}
 />
@@ -82,7 +85,7 @@
 			class="inner {size}"
 			use:clickOutside={{
 				enabled: closeOnOutsideClick,
-				callback: () => (!loading ? (show = false) : null)
+				callback: () => (!loading ? handleCancel() : null)
 			}}
 			in:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			out:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}

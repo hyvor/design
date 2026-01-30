@@ -47,12 +47,13 @@
 </script>
 
 <Modal
-	bind:show={opened}
+	show={opened}
 	title="Create Organization"
 	size="small"
 	footer={{ confirm: { text: 'Create' }, cancel: { text: 'Cancel' } }}
 	on:confirm={handleCreate}
 	loading={creating}
+	onclose={() => setCreatorOpened(false)}
 >
 	<div class="note">Organizations can be used across HYVOR products.</div>
 

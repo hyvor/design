@@ -4,42 +4,43 @@
 	import OrganizationSwitcher from '$lib/cloud/OrganizationSwitcher/OrganizationSwitcher.svelte';
 	import OrganizationCreator from '$lib/cloud/OrganizationCreator/OrganizationCreator.svelte';
 	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 
 	let disableTooltip = $state(false);
-
-	let props: {} = $props();
-
-	// barOrganizationDropdownOpen.subscribe((value) => {
-	// 	if (value) disableTooltip = true;
-	// });
 
 	const { organization } = $derived(getCloudContext());
 
 	let show = $state(false);
 	let trigger = $state({} as HTMLButtonElement);
+
+	$effect(() => {
+		if (show) {
+			disableTooltip = true;
+		} else {
+			disableTooltip = false;
+		}
+	});
 </script>
 
-<button class="wrap" onclick={() => (show = true)} bind:this={trigger}>
-	<div class="data">
-		<div class="name">{organization?.name}</div>
-	</div>
-	<IconChevronExpand size={14} />
-</button>
+<Tooltip
+	position="bottom"
+	text="Switch Organization"
+	disabled={disableTooltip}
+	style="height: 100%"
+>
+	<button class="wrap" onclick={() => (show = true)} bind:this={trigger}>
+		<div class="data">
+			<div class="name">{organization?.name}</div>
+		</div>
+		<IconChevronExpand size={14} />
+	</button>
+</Tooltip>
 
 {#if show}
 	<DropdownContent bind:show align="start" width={300} {trigger} padding={0}>
 		<OrganizationSwitcher bind:show />
 	</DropdownContent>
 {/if}
-
-<!-- 
-<Tag color="red" size="small">License Expired</Tag> -->
-
-<!-- <Tooltip position="bottom" text="Switch Organization" disabled={disableTooltip}>
-	<div class="wrap">
-		<OrganizationButton bind:show={$barOrganizationDropdownOpen} style="bordered" />
-	</div>
-</Tooltip> -->
 
 <OrganizationCreator />
 

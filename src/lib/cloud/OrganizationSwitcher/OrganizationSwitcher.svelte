@@ -56,8 +56,7 @@
 
 	function handleCreate() {
 		setCreatorOpened();
-		// barOrganizationCreating.set(true);
-		// onCreateStart();
+		show = false;
 	}
 </script>
 

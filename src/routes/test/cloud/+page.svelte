@@ -46,6 +46,8 @@
 		const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 		await delay(2000);
 		goto('/');
+
+		return true;
 	}
 
 	function handleResourceFinish() {

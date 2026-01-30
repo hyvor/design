@@ -15,13 +15,13 @@
 	import IconChatDots from '@hyvor/icons/IconChatDots';
 	import IconBluesky from '@hyvor/icons/IconBluesky';
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
-	import { PRODUCTS } from './BarProducts.svelte';
-	import type { BarConfig, BarProduct } from './bar.js';
+	import type { BarConfig } from './bar.js';
 	import G2 from './img/G2.svelte';
 	import Trustpilot from './img/Trustpilot.svelte';
 	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
 	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { PRODUCTS } from './BarProducts/products.js';
 
 	let supportDropdown = $state(false);
 

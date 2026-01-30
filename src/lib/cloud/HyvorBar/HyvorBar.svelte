@@ -1,7 +1,7 @@
 <script lang="ts">
 	import BarUser from './BarUser.svelte';
 	import { onMount } from 'svelte';
-	import BarProducts, { PRODUCTS } from './BarProducts.svelte';
+	import BarProducts from './BarProducts/BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
 	import { initBar, type BarConfig } from './bar.js';
 	import BarUpdates from './BarUpdates.svelte';
@@ -10,9 +10,16 @@
 	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
 	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { PRODUCTS } from './BarProducts/products.js';
 
 	interface Props {
 		config?: Partial<BarConfig>;
+
+		/**
+		 * where should clicking on the logo take the user?
+		 * generally, it's `/console`
+		 */
+		url: string;
 
 		// set a custom logo URL
 		// defaults to instance + '/api/public/logo/' + product + '.svg'
@@ -28,6 +35,7 @@
 	const cloudContext = getCloudContext();
 
 	let {
+		url,
 		logo = `${cloudContext.instance}/api/public/logo/${cloudContext.component}.svg`,
 		config = {}
 	}: Props = $props();
@@ -73,22 +81,23 @@
 <div id="bar" onclick={handleBarClick} class:mobile-show={mobileShow}>
 	<div class="inner hds-box">
 		<div class="left">
-			<a class="logo" href="/">
+			<a class="logo" href={url}>
 				<img src={logo} alt={cloudContext.component} width="20" height="20" />
 				<span class="name">
 					{getName()}
 				</span>
 			</a>
+			<BarProducts mobile={mobileShow} />
 			<BarOrganization />
 			<BarLicense name={getName()} />
 		</div>
+		<div class="center"></div>
 		<div class="right">
 			<BarNotice />
 
 			<div class="hidden-on-mobile">
 				{#if cloudContext.deployment === 'cloud'}
 					<BarSupport config={configComplete} mobile={mobileShow} />
-					<BarProducts mobile={mobileShow} />
 					<BarUpdates />
 				{/if}
 			</div>
@@ -116,8 +125,9 @@
 	}
 	.inner {
 		padding: 0px 29px;
-		display: flex;
+		display: grid;
 		align-items: center;
+		grid-template-columns: 1fr auto 1fr;
 		border-top-left-radius: 0;
 		border-top-right-radius: 0;
 		height: 100%;
@@ -125,7 +135,9 @@
 	.left {
 		display: flex;
 		align-items: center;
-		flex: 1;
+		height: 100%;
+	}
+	.center {
 		height: 100%;
 	}
 	.logo {
@@ -138,6 +150,7 @@
 	.right {
 		display: flex;
 		align-items: center;
+		justify-content: flex-end;
 		gap: 10px;
 	}
 	.hidden-on-mobile {

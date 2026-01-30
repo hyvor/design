@@ -25,7 +25,7 @@
 			}
 		}}
 	>
-		<HyvorBar />
+		<HyvorBar url="/test/org" />
 
 		<!-- <div class="wrap">
 			<div class="inner hds-box">

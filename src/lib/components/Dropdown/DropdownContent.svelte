@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
-	import { cubicIn } from 'svelte/easing';
+	import { elasticInOut } from 'svelte/easing';
 
 	interface Props {
 		show: boolean;
@@ -119,7 +119,7 @@
 	function slideIn(node: any) {
 		return {
 			duration: 100,
-			easing: cubicIn,
+			easing: elasticInOut,
 			css: (t: number) => {
 				return `
                     opacity: ${0.2 + t * 0.8};

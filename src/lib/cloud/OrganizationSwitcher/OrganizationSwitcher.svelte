@@ -11,12 +11,17 @@
 		getCloudContext,
 		type CloudContextOrganization
 	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
-	import { getMyOrganizations, getLoadedOrganizations } from './organizationSwitcher.svelte.js';
+	import {
+		getMyOrganizations,
+		getLoadedOrganizations,
+		switchOrganization
+	} from './organizationSwitcher.svelte.js';
+	import { setCreatorOpened } from '../OrganizationCreator/organizationCreator.svelte.js';
 
 	let loading = $state(true);
 	let error = $state('');
 
-	const { organization, instance } = getCloudContext();
+	const { organization, instance, callbacks } = getCloudContext();
 
 	onMount(() => {
 		if (getLoadedOrganizations()) {
@@ -33,7 +38,26 @@
 			});
 	});
 
+	async function handleSwitch(org: CloudContextOrganization) {
+		callbacks.onOrganizationSwitch(() => switchOrganization(org.id));
+
+		// show = false;
+		// switching = true;
+
+		// try {
+		// 	await switchOrganization(org.id);
+		// } catch (e) {
+		// 	toast.error('Failed to switch organization.');
+		// 	return;
+		// } finally {
+		// 	switching = false;
+		// }
+
+		// $barOnOrganizationSwitch?.(org, 'bar');
+	}
+
 	function handleCreate() {
+		setCreatorOpened();
 		// barOrganizationCreating.set(true);
 		// onCreateStart();
 	}
@@ -51,7 +75,7 @@
 			<ActionList selection="single">
 				{#each getLoadedOrganizations() as org}
 					<ActionListItem
-						on:select={() => onSwitch(org)}
+						on:select={() => handleSwitch(org)}
 						selected={organization?.id === org.id}
 					>
 						{org.name}

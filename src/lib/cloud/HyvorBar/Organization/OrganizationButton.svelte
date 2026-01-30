@@ -2,7 +2,7 @@
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
 	import OrgsList from './OrgsList.svelte';
-	import { barOnOrganizationSwitch, switchOrganization } from '../bar.js';
+	import { barOnOrganizationSwitch } from '../bar.js';
 	import toast from '$lib/components/Toast/toast.js';
 	import type { DropdownAlign } from '$lib/components/Dropdown/dropdown.types.js';
 	import {

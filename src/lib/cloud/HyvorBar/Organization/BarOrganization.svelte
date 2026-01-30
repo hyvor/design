@@ -1,20 +1,19 @@
 <script lang="ts">
-	import { Tooltip } from '$lib/components/index.js';
-	import Tag from '$lib/components/Tag/Tag.svelte';
 	import IconChevronExpand from '@hyvor/icons/IconChevronExpand';
-	import { barOrganizationCreating, barOrganizationDropdownOpen } from '../bar.js';
-	import CreateOrganization from './CreateOrganization.svelte';
-	import OrganizationButton from './OrganizationButton.svelte';
 	import DropdownContent from '$lib/components/Dropdown/DropdownContent.svelte';
 	import OrganizationSwitcher from '$lib/cloud/OrganizationSwitcher/OrganizationSwitcher.svelte';
+	import OrganizationCreator from '$lib/cloud/OrganizationCreator/OrganizationCreator.svelte';
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 
 	let disableTooltip = $state(false);
 
 	let props: {} = $props();
 
-	barOrganizationDropdownOpen.subscribe((value) => {
-		if (value) disableTooltip = true;
-	});
+	// barOrganizationDropdownOpen.subscribe((value) => {
+	// 	if (value) disableTooltip = true;
+	// });
+
+	const { organization } = getCloudContext();
 
 	let show = $state(false);
 	let trigger = $state({} as HTMLButtonElement);
@@ -22,8 +21,7 @@
 
 <button class="wrap" onclick={() => (show = true)} bind:this={trigger}>
 	<div class="data">
-		<div class="name">Albertsons & Sons</div>
-		<!-- <div class="license">500k plan</div> -->
+		<div class="name">{organization?.name}</div>
 	</div>
 	<IconChevronExpand size={14} />
 </button>
@@ -43,7 +41,7 @@
 	</div>
 </Tooltip> -->
 
-<CreateOrganization bind:show={$barOrganizationCreating} />
+<OrganizationCreator />
 
 <style>
 	.wrap {
@@ -74,11 +72,6 @@
 	.name {
 		font-size: 14px;
 		font-weight: 600;
-	}
-
-	.license {
-		font-size: 12px;
-		color: var(--text-light);
 	}
 
 	/* .wrap {

@@ -38,13 +38,11 @@ export type OrgSwitchInitiator = 'bar' | 'resource-creator';
 export const barUnreadUpdates = writable<number>(0);
 export const barLicense = writable<ResolvedLicense>();
 export const barHasFailedInvoices = writable<boolean>(false);
-export const barOrganizationDropdownOpen = writable<boolean>(false);
 export const barOrganizations = writable<CloudContextOrganization[]>([]);
 
 export const barOnOrganizationSwitch = writable<
 	((org: BarOrganization, initiater: OrgSwitchInitiator) => void) | null
 >(null);
-export const barOrganizationCreating = writable<boolean>(false);
 
 interface BarResponse {
 	user_id: number;
@@ -105,66 +103,6 @@ export async function initBar() {
 	// 		avatar: data.user.picture_url ?? undefined
 	// 	});
 	// }
-}
-
-export async function createOrganization(
-	name: string,
-	switchInitiator: OrgSwitchInitiator = 'bar'
-): Promise<BarOrganization> {
-	async function doCreate() {
-		const response = await fetch(getInstance() + '/api/v2/cloud/organizations', {
-			method: 'POST',
-			credentials: 'include',
-			headers: {
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({ name })
-		});
-
-		if (!response.ok) {
-			throw new Error('Failed to create organization');
-		}
-
-		const data = await response.json();
-		return data as BarOrganization;
-	}
-
-	const org = await doCreate();
-
-	const onSwitch = get(barOnOrganizationSwitch);
-	onSwitch?.(org, switchInitiator);
-
-	barOrganizations.update((orgs) => [org, ...orgs]);
-	barUnreadUpdates.set(0);
-	barHasFailedInvoices.set(false);
-	barUser.update((user) => {
-		if (!user) {
-			return null; // typesafety
-		}
-		return {
-			...user,
-			current_organization: org
-		};
-	});
-
-	return org;
-}
-
-export async function switchOrganization(orgId: number): Promise<void> {
-	const response = await fetch(getInstance() + '/api/v2/cloud/organizations/switch', {
-		method: 'POST',
-		credentials: 'include',
-		headers: {
-			'Content-Type': 'application/json',
-			'X-Organization-Id': orgId.toString()
-		}
-	});
-
-	if (!response.ok) {
-		throw new Error('Failed to switch organization');
-	}
-
-	await initBar();
 }
 
 export class UnreadUpdatesTimeLocalStorage {

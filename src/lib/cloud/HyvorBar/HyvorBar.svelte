@@ -19,7 +19,7 @@
 		 * where should clicking on the logo take the user?
 		 * generally, it's `/console`
 		 */
-		url: string;
+		url?: string;
 
 		// set a custom logo URL
 		// defaults to instance + '/api/public/logo/' + product + '.svg'
@@ -35,7 +35,7 @@
 	const cloudContext = getCloudContext();
 
 	let {
-		url,
+		url = '/console',
 		logo = `${cloudContext.instance}/api/public/logo/${cloudContext.component}.svg`,
 		config = {}
 	}: Props = $props();

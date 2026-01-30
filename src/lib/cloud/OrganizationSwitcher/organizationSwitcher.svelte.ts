@@ -28,3 +28,24 @@ export async function getMyOrganizations(): Promise<CloudContextOrganization[]> 
 
 	return data;
 }
+
+export async function switchOrganization(orgId: number): Promise<CloudContextOrganization> {
+	const { instance } = getCloudContext();
+
+	const response = await fetch(instance + '/api/v2/cloud/organizations/switch', {
+		method: 'POST',
+		credentials: 'include',
+		headers: {
+			'Content-Type': 'application/json',
+			'X-Organization-Id': orgId.toString()
+		}
+	});
+
+	if (!response.ok) {
+		throw new Error('Failed to switch organization');
+	}
+
+	const data = (await response.json()) as CloudContextOrganization;
+
+	return data;
+}

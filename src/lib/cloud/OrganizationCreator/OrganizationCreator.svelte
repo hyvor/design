@@ -3,17 +3,18 @@
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import toast from '$lib/components/Toast/toast.js';
-	import { createOrganization, type BarOrganization } from '../bar.js';
-
-	interface Props {
-		show?: boolean;
-	}
-
-	let { show = $bindable(false) }: Props = $props();
+	import type { CloudContextOrganization } from '../CloudContext/cloudContext.svelte.js';
+	import {
+		createOrganization,
+		getCreatorOpened,
+		setCreatorOpened
+	} from './organizationCreator.svelte.js';
 
 	let name = $state('');
 	let input: HTMLInputElement | undefined = $state(undefined);
 	let creating = $state(false);
+
+	let opened = $derived(getCreatorOpened());
 
 	async function handleCreate() {
 		if (name.trim() === '') {
@@ -23,7 +24,7 @@
 
 		creating = true;
 
-		let org: BarOrganization;
+		let org: CloudContextOrganization;
 
 		try {
 			org = await createOrganization(name);
@@ -33,20 +34,20 @@
 			return;
 		}
 
-		show = false;
+		setCreatorOpened(false);
 		name = '';
 		creating = false;
 	}
 
 	$effect(() => {
-		if (show && input) {
+		if (opened && input) {
 			input.focus();
 		}
 	});
 </script>
 
 <Modal
-	bind:show
+	bind:show={opened}
 	title="Create Organization"
 	size="small"
 	footer={{ confirm: { text: 'Create' }, cancel: { text: 'Cancel' } }}

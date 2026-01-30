@@ -36,6 +36,29 @@ export interface CloudContext {
 	 * User's current organization
 	 */
 	organization: null | CloudContextOrganization;
+
+	callbacks: {
+		/**
+		 * Callback that is called when the organization is being switched
+		 * on the product Console side, you would have a handler like this:
+		 * ```js
+		 * onOrganizationSwitch: (switcher) => {
+		 *
+		 * 		// first set the loader for UX
+		 * 		loading = true;
+		 *
+		 * 		switcher()
+		 * 			.then(org => {
+		 * 				// re-init the Console
+		 * 			})
+		 * 			.catch(() => {
+		 * 					loading = false;
+		 * 			})
+		 * }
+		 * ```
+		 */
+		onOrganizationSwitch: (switcher: () => Promise<CloudContextOrganization>) => void;
+	};
 }
 
 export interface CloudContextUser {

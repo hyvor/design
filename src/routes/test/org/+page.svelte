@@ -21,7 +21,7 @@
 			organization: {
 				id: 1,
 				name: 'HYVOR',
-				member_role: 'admin'
+				role: 'admin'
 			}
 		}}
 	>

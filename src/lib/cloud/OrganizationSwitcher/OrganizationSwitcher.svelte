@@ -2,7 +2,6 @@
 	import IconMessage from '$lib/components/IconMessage/IconMessage.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import { onMount } from 'svelte';
-	import { barOrganizationCreating, barOrganizations, getMyOrganizations } from '../bar.js';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
@@ -12,32 +11,20 @@
 		getCloudContext,
 		type CloudContextOrganization
 	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import { getMyOrganizations, getLoadedOrganizations } from './organizationSwitcher.svelte.js';
 
 	let loading = $state(true);
 	let error = $state('');
 
-	let {
-		onSwitch,
-		onCreateStart,
-		manageButton = true
-	}: {
-		onSwitch: (org: CloudContextOrganization) => void;
-		onCreateStart: () => void;
-		manageButton?: boolean;
-	} = $props();
-
 	const { organization, instance } = getCloudContext();
 
 	onMount(() => {
-		if ($barOrganizations.length > 0) {
+		if (getLoadedOrganizations()) {
 			loading = false;
 			return;
 		}
 
 		getMyOrganizations()
-			.then((data) => {
-				barOrganizations.set(data);
-			})
 			.catch((err) => {
 				error = 'Failed to load organizations.';
 			})
@@ -47,8 +34,8 @@
 	});
 
 	function handleCreate() {
-		barOrganizationCreating.set(true);
-		onCreateStart();
+		// barOrganizationCreating.set(true);
+		// onCreateStart();
 	}
 </script>
 
@@ -60,9 +47,9 @@
 	</IconMessage>
 {:else}
 	<div class="list-wrap">
-		{#if $barOrganizations.length}
+		{#if getLoadedOrganizations()}
 			<ActionList selection="single">
-				{#each $barOrganizations as org}
+				{#each getLoadedOrganizations() as org}
 					<ActionListItem
 						on:select={() => onSwitch(org)}
 						selected={organization?.id === org.id}
@@ -91,7 +78,7 @@
 			{/snippet}
 		</Button>
 
-		{#if manageButton && organization}
+		{#if organization}
 			<Button
 				size="small"
 				as="a"

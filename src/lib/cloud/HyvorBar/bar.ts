@@ -107,21 +107,6 @@ export async function initBar() {
 	// }
 }
 
-export async function getMyOrganizations(): Promise<BarOrganization[]> {
-	/* return [
-		{ id: 1, name: 'Org 1', role: 'admin' },
-		{ id: 2, name: 'Org 2', role: 'member' },
-		{ id: 3, name: 'Org 3', role: 'billing' },
-		{ id: 4, name: 'Org 4', role: 'manager' }
-	]; */
-
-	const response = await fetch(getInstance() + '/api/v2/cloud/organizations/my', {
-		credentials: 'include'
-	});
-	const data = await response.json();
-	return data;
-}
-
 export async function createOrganization(
 	name: string,
 	switchInitiator: OrgSwitchInitiator = 'bar'

@@ -6,7 +6,7 @@
 	const { instance, organization } = getCloudContext();
 
 	let search = $state('');
-	let role = $derived(organization?.member_role);
+	let role = $derived(organization?.role);
 	let focused = $state(false);
 </script>
 

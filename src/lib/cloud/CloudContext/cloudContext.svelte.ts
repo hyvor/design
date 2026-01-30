@@ -49,7 +49,7 @@ export interface CloudContextUser {
 export interface CloudContextOrganization {
 	id: number;
 	name: string;
-	member_role: OrganizationRole;
+	role: OrganizationRole;
 }
 
 export type OrganizationRole = 'admin' | 'manager' | 'member' | 'billing';

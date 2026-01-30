@@ -17,7 +17,9 @@
 		if (show) {
 			disableTooltip = true;
 		} else {
-			disableTooltip = false;
+			setTimeout(() => {
+				disableTooltip = false;
+			}, 1000);
 		}
 	});
 </script>

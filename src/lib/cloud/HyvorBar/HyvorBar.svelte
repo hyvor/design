@@ -9,8 +9,9 @@
 	import BarNotice from './BarNotice/BarNotice.svelte';
 	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 	import { PRODUCTS } from './BarProducts/products.js';
+	import { get } from 'svelte/store';
 
 	interface Props {
 		config?: Partial<BarConfig>;
@@ -25,11 +26,6 @@
 		// defaults to instance + '/api/public/logo/' + product + '.svg'
 		// recommended to use this for self-hostable products
 		logo?: string;
-
-		/**
-		 * TODO: this has to be migrated to CloudContext
-		 */
-		// onOrganizationSwitch?: (org: BarOrganizationType, initiator: OrgSwitchInitiator) => void;
 	}
 
 	const { instance, deployment, component } = $derived(getCloudContext());
@@ -62,10 +58,9 @@
 		}
 	}
 
-	onMount(() => {
-		if (deployment === 'cloud') {
-			initBar();
-		}
+	cloudContextId.subscribe((id) => {
+		if (id === 0) return; // CloudContext.svelte updates on each change (including first) to 1
+		initBar();
 	});
 
 	function getName() {

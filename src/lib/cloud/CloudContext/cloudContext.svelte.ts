@@ -1,3 +1,5 @@
+import { get, writable } from 'svelte/store';
+
 let cloudContext = $state<() => CloudContext>();
 
 export function getCloudContext() {
@@ -6,6 +8,14 @@ export function getCloudContext() {
 
 export function setCloudContext(context: () => CloudContext) {
 	cloudContext = context;
+}
+
+// the number of cloud context
+// incremented when the context is updated
+export let cloudContextId = writable(0);
+
+export function incrementCloudContextId() {
+	cloudContextId.update((n) => n + 1);
 }
 
 export interface CloudContext {
@@ -36,6 +46,12 @@ export interface CloudContext {
 	 * User's current organization
 	 */
 	organization: null | CloudContextOrganization;
+
+	/**
+	 * Current organization's license
+	 * null if no organization
+	 */
+	license: null | ResolvedLicense;
 
 	callbacks: {
 		/**
@@ -73,6 +89,16 @@ export interface CloudContextOrganization {
 	id: number;
 	name: string;
 	role: OrganizationRole;
+}
+
+export interface ResolvedLicense {
+	type: 'enterprise_contract' | 'subscription' | 'trial' | 'expired' | 'none';
+	license: Record<string, number | boolean> | null;
+	subscription: null | {
+		plan_readable_name: string;
+		cancel_at: null | number;
+	};
+	trial_ends_at: null | number;
 }
 
 export type OrganizationRole = 'admin' | 'manager' | 'member' | 'billing';

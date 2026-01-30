@@ -1,9 +1,6 @@
 import { track } from '$lib/marketing/index.js';
-import { get, writable } from 'svelte/store';
-import {
-	getCloudContext,
-	type CloudContextOrganization
-} from '../CloudContext/cloudContext.svelte.js';
+import { writable } from 'svelte/store';
+import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 export interface BarConfig {
 	name: string | null;
@@ -23,31 +20,12 @@ export interface BarUpdate {
 
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
 
-export interface ResolvedLicense {
-	type: 'enterprise_contract' | 'subscription' | 'trial' | 'expired' | 'none';
-	license: Record<string, number | boolean> | null;
-	subscription: null | {
-		plan_readable_name: string;
-		cancel_at: null | number;
-	};
-	trial_ends_at: null | number;
-}
-
-export type OrgSwitchInitiator = 'bar' | 'resource-creator';
-
 export const barUnreadUpdates = writable<number>(0);
-export const barLicense = writable<ResolvedLicense>();
 export const barHasFailedInvoices = writable<boolean>(false);
-export const barOrganizations = writable<CloudContextOrganization[]>([]);
-
-export const barOnOrganizationSwitch = writable<
-	((org: BarOrganization, initiater: OrgSwitchInitiator) => void) | null
->(null);
 
 interface BarResponse {
 	user_id: number;
 	organization_id: number | null;
-	license: ResolvedLicense;
 	has_failed_invoices: boolean;
 
 	//
@@ -56,11 +34,12 @@ interface BarResponse {
 	// };
 }
 
-/**
- * @throws Error if initialization fails
- */
 export async function initBar() {
-	const { user, organization, instance, component } = getCloudContext();
+	const { user, organization, instance, component, deployment } = getCloudContext();
+
+	if (deployment !== 'cloud') {
+		return;
+	}
 
 	const query = new URLSearchParams();
 	query.set('component', component);
@@ -85,9 +64,9 @@ export async function initBar() {
 	if (user.id !== data.user_id || currentOrganizationId !== data.organization_id) {
 		// something is very wrong
 		// reload Console or something
+		// TODO:
 	}
 
-	barLicense.set(data.license);
 	barHasFailedInvoices.set(data.has_failed_invoices);
 
 	// TODO:
@@ -169,10 +148,5 @@ export const bar = {
 	 */
 	reload: () => {
 		initBar();
-	},
-
-	/**
-	 * Open the org selector dropdown from the outside world
-	 */
-	openOrganizationDropdown: () => barOrganizationDropdownOpen.set(true)
+	}
 };

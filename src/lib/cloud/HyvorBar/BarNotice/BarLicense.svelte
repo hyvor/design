@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 	import Tag from '$lib/components/Tag/Tag.svelte';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
-	import { barLicense } from '../bar.js';
+	import IconBuilding from '@hyvor/icons/IconBuilding';
+	import type { Component } from 'svelte';
 
 	let { name } = $props();
+
+	const { license } = getCloudContext();
 
 	function daysDiff(unix: number) {
 		const date = new Date(unix * 1000);
@@ -29,51 +33,78 @@
 		return daysDiff(cancelAt);
 	}
 
-	let trialDays = $derived(remainingTrialDays($barLicense?.trial_ends_at));
-	let cancelAtDays = $derived(remainingCancelAtDAys($barLicense?.subscription?.cancel_at));
+	interface Config {
+		name: string;
+		tooltip: string;
+		tagColor: 'green' | 'blue' | 'red' | 'orange';
+		tagIcon?: Component;
+	}
+
+	let config: Config | null = $derived.by(() => {
+		if (!license) {
+			return null;
+		}
+
+		if (license.type === 'enterprise_contract') {
+			return {
+				name: 'Enterprise',
+				tooltip:
+					'An enterprise license is applied to your organization. Click to view more details.',
+				tagColor: 'blue',
+				tagIcon: IconBuilding
+			};
+		}
+
+		if (license.type === 'subscription') {
+			const planName = license.subscription?.plan_readable_name || '';
+			const cancelAtDays = remainingCancelAtDAys(license.subscription?.cancel_at);
+			const cancelAt = cancelAtDays ? ` (until ${cancelAtDays}d)` : '';
+
+			return {
+				name: planName + cancelAt,
+				tooltip: `Your organization's current subscription plan for ${name}. Click to manage it.`,
+				tagColor: 'blue'
+			};
+		}
+
+		if (license.type === 'trial') {
+			const trialDays = remainingTrialDays(license.trial_ends_at);
+			const s = trialDays === 1 ? '' : 's';
+
+			return {
+				name: `Trial License (${trialDays}d)`,
+				tooltip: `You organization is currently using a trial license for ${name}. It will expire in ${trialDays} day${s}.`,
+				tagColor: 'orange'
+			};
+		}
+
+		if (license.type === 'expired') {
+			return {
+				name: `License Expired`,
+				tooltip: `Your organization's license for ${name} has expired. Please renew or upgrade to continue using the service.`,
+				tagColor: 'red'
+			};
+		}
+
+		return null;
+	});
 </script>
 
-{#if $barLicense}
+{#if config}
 	<a class="wrap" href="/console/billing">
-		{#if $barLicense.type === 'subscription'}
-			<Tooltip position="bottom">
-				{#snippet tooltip()}
-					Your current subscription plan for {name}. Click to manage it.
-				{/snippet}
-				<Tag color="blue" size="small">
-					{$barLicense.subscription!.plan_readable}
-					{#if cancelAtDays}
-						(until {cancelAtDays}d)
+		<Tooltip position="bottom">
+			{#snippet tooltip()}
+				{config.tooltip}
+			{/snippet}
+			<Tag color={config.tagColor}>
+				{#snippet start()}
+					{#if config.tagIcon}
+						<config.tagIcon size={10} />
 					{/if}
-				</Tag>
-			</Tooltip>
-		{:else if $barLicense.type === 'custom'}
-			<Tooltip
-				text="A custom license is applied to your account for {name}."
-				position="bottom"
-			>
-				<Tag color="green" size="small">Custom License</Tag>
-			</Tooltip>
-		{:else if $barLicense.type === 'expired'}
-			<Tooltip
-				text="Your license for {name} has expired. Please renew or upgrade to continue using the service."
-				position="bottom"
-			>
-				<Tag color="red" size="small">License Expired</Tag>
-			</Tooltip>
-		{:else if $barLicense.type === 'trial'}
-			<Tooltip
-				text="You are currently using a trial license for {name}. It will expire in {trialDays} day{trialDays ===
-				1
-					? ''
-					: 's'}."
-				position="bottom"
-			>
-				<Tag color="orange" size="small">
-					Trial License ({trialDays}d)
-				</Tag>
-			</Tooltip>
-		{/if}
+				{/snippet}
+				{config.name}
+			</Tag>
+		</Tooltip>
 	</a>
 {/if}
 
@@ -81,6 +112,6 @@
 	.wrap {
 		display: inline-flex;
 		align-items: center;
-		margin-left: 15px;
+		margin-left: 20px;
 	}
 </style>

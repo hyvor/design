@@ -27,7 +27,7 @@
 </button>
 
 {#if show}
-	<DropdownContent bind:show align="center" width={300} {trigger} padding={0}>
+	<DropdownContent bind:show align="start" width={300} {trigger} padding={0}>
 		<OrganizationSwitcher bind:show />
 	</DropdownContent>
 {/if}

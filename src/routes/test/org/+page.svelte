@@ -43,7 +43,9 @@
 <Base>
 	<div class="wrap">
 		{#if loading}
-			<Loader full />
+			<div class="loader">
+				<Loader full />
+			</div>
 		{:else}
 			<CloudContext
 				context={{
@@ -68,5 +70,13 @@
 <style>
 	.wrap {
 		height: 100vh;
+	}
+
+	.loader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
 	}
 </style>

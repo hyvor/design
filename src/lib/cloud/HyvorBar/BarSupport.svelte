@@ -61,6 +61,20 @@
 	{/snippet}
 	{#snippet content()}
 		<ActionList>
+			<a href="https://hyvor.com/support" target="_blank">
+				<ActionListItem>
+					Support Form
+					{#snippet description()}
+						<div>Get help from our team</div>
+					{/snippet}
+					{#snippet start()}
+						<IconInfoCircle />
+					{/snippet}
+					{#snippet end()}
+						<IconBoxArrowUpRight size={12} />
+					{/snippet}
+				</ActionListItem>
+			</a>
 			<a href="https://hyvor.community" target="_blank">
 				<ActionListItem>
 					Community Forum
@@ -93,20 +107,6 @@
 					</ActionListItem>
 				</a>
 			{/if}
-			<a href="https://hyvor.com/support" target="_blank">
-				<ActionListItem>
-					Support Form
-					{#snippet description()}
-						<div>Get help from our team</div>
-					{/snippet}
-					{#snippet start()}
-						<IconInfoCircle />
-					{/snippet}
-					{#snippet end()}
-						<IconBoxArrowUpRight size={12} />
-					{/snippet}
-				</ActionListItem>
-			</a>
 			{#if config.chat}
 				<a href="/chat" onclick={openLiveChat}>
 					<ActionListItem>

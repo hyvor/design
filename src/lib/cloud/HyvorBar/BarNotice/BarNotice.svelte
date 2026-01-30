@@ -4,7 +4,7 @@
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
 	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 
-	const cloudContext = getCloudContext();
+	const { instance } = $derived(getCloudContext());
 </script>
 
 {#if $barHasFailedInvoices}
@@ -12,7 +12,7 @@
 		text="You have an unpaid invoice. Please settle to avoid service interruption."
 		position="bottom"
 	>
-		<a href={cloudContext.instance + '/account/billing?pay-failed'}>
+		<a href={instance + '/account/billing?pay-failed'}>
 			<Tag color="orange">
 				{#snippet start()}
 					<IconExclamationCircle size={14} />

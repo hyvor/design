@@ -1,17 +1,43 @@
-<script>
+<script lang="ts">
 	import CloudContext from '$lib/cloud/CloudContext/CloudContext.svelte';
 	import HyvorBar from '$lib/cloud/HyvorBar/HyvorBar.svelte';
 	import Base from '$lib/components/Base/Base.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
+	import {
+		type CloudContextOrganization,
+		type CloudContext as CloudContextType
+	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 	import { onMount } from 'svelte';
 
 	let loading = $state(true);
+	let cloudContext: CloudContextType = $state({} as CloudContextType);
 
-	onMount(() => {
-		setTimeout(() => {
-			loading = false;
-		}, 1000);
-	});
+	async function init() {
+		loading = true;
+
+		const response = await fetch('https://hyvor.localhost/api/v2/local/bar', {
+			credentials: 'include'
+		});
+
+		const json: CloudContextType = await response.json();
+
+		cloudContext = json;
+		loading = false;
+	}
+
+	function onOrganizationSwitch(switcher: Promise<CloudContextOrganization>) {
+		loading = true;
+
+		switcher
+			.then((org) => {
+				init();
+			})
+			.catch(() => {
+				loading = false;
+			});
+	}
+
+	onMount(init);
 </script>
 
 <Base>
@@ -21,38 +47,9 @@
 		{:else}
 			<CloudContext
 				context={{
-					component: 'core',
-					deployment: 'cloud',
-					instance: 'https://hyvor.localhost',
-					user: {
-						id: 1,
-						name: 'Supun Wimalasena',
-						username: 'supun',
-						email: 'supun@hyvor.com',
-						picture_url: null
-					},
-					organization: {
-						id: 1,
-						name: 'HYVOR',
-						role: 'admin'
-					},
-
+					...cloudContext,
 					callbacks: {
-						onOrganizationSwitch: (switcher) => {
-							loading = true;
-
-							switcher()
-								.then((org) => {
-									console.log(org);
-
-									setTimeout(() => {
-										loading = false;
-									}, 2000);
-								})
-								.catch(() => {
-									loading = false;
-								});
-						}
+						onOrganizationSwitch: onOrganizationSwitch
 					}
 				}}
 			>

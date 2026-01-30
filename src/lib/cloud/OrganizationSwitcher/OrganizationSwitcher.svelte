@@ -21,7 +21,7 @@
 	let loading = $state(true);
 	let error = $state('');
 
-	const { organization, instance, callbacks } = getCloudContext();
+	const { organization, instance, callbacks } = $derived(getCloudContext());
 
 	onMount(() => {
 		if (getLoadedOrganizations()) {
@@ -39,21 +39,11 @@
 	});
 
 	async function handleSwitch(org: CloudContextOrganization) {
-		callbacks.onOrganizationSwitch(() => switchOrganization(org.id));
+		// start swithing
+		const promise = switchOrganization(org.id);
 
-		// show = false;
-		// switching = true;
-
-		// try {
-		// 	await switchOrganization(org.id);
-		// } catch (e) {
-		// 	toast.error('Failed to switch organization.');
-		// 	return;
-		// } finally {
-		// 	switching = false;
-		// }
-
-		// $barOnOrganizationSwitch?.(org, 'bar');
+		// handle from the product-side
+		callbacks.onOrganizationSwitch(promise);
 	}
 
 	function handleCreate() {

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { ActionList, ActionListItem, Dropdown } from '$lib/components/index.js';
 	import IconGrid from '@hyvor/icons/IconGrid';
-	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import { getCloudContext } from '../../CloudContext/cloudContext.svelte.js';
 	import { getProductsGroupedBySuite, getSuiteName } from './products.js';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
@@ -11,7 +10,7 @@
 		mobile?: boolean;
 	}
 
-	const cloudContext = getCloudContext();
+	const { instance } = $derived(getCloudContext());
 
 	let { mobile = false }: Props = $props();
 
@@ -44,7 +43,7 @@
 												<product.logo size={20} />
 											{:else}
 												<img
-													src={cloudContext.instance +
+													src={instance +
 														'/api/public/logo/' +
 														product.component +
 														'.svg'}

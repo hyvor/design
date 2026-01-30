@@ -2,7 +2,7 @@
 	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 	import BarUserPicture from './BarUserPicture.svelte';
 
-	const { user } = getCloudContext();
+	const { user } = $derived(getCloudContext());
 </script>
 
 <div class="preview">

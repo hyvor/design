@@ -1,10 +1,10 @@
-let cloudContext = $state<CloudContext>();
+let cloudContext = $state<() => CloudContext>();
 
 export function getCloudContext() {
-	return cloudContext!;
+	return cloudContext!();
 }
 
-export function setCloudContext(context: CloudContext) {
+export function setCloudContext(context: () => CloudContext) {
 	cloudContext = context;
 }
 
@@ -57,7 +57,7 @@ export interface CloudContext {
 		 * }
 		 * ```
 		 */
-		onOrganizationSwitch: (switcher: () => Promise<CloudContextOrganization>) => void;
+		onOrganizationSwitch: (switcher: Promise<CloudContextOrganization>) => void;
 	};
 }
 

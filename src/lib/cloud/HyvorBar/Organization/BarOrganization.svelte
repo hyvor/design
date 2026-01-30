@@ -13,7 +13,7 @@
 	// 	if (value) disableTooltip = true;
 	// });
 
-	const { organization } = getCloudContext();
+	const { organization } = $derived(getCloudContext());
 
 	let show = $state(false);
 	let trigger = $state({} as HTMLButtonElement);

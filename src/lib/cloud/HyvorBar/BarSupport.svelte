@@ -32,7 +32,7 @@
 
 	let { mobile = false, config }: Props = $props();
 
-	const cloudContext = getCloudContext();
+	const cloudContext = $derived(getCloudContext());
 
 	function openLiveChat(e: any) {
 		e.preventDefault();

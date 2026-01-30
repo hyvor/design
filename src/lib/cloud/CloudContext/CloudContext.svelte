@@ -10,7 +10,7 @@
 
 	let { context, children, style }: Props = $props();
 
-	setCloudContext(context);
+	setCloudContext(() => context);
 </script>
 
 <div transition:fade={{ duration: 200 }} {style}>

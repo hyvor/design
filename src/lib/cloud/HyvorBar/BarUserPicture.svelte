@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
-	const cloudContext = getCloudContext();
+	const cloudContext = $derived(getCloudContext());
 </script>
 
 {#if cloudContext.user.picture_url}

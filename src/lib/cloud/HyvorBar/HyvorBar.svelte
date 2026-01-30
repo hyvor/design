@@ -32,11 +32,11 @@
 		// onOrganizationSwitch?: (org: BarOrganizationType, initiator: OrgSwitchInitiator) => void;
 	}
 
-	const cloudContext = getCloudContext();
+	const { instance, deployment, component } = $derived(getCloudContext());
 
 	let {
 		url = '/console',
-		logo = `${cloudContext.instance}/api/public/logo/${cloudContext.component}.svg`,
+		logo = `${instance}/api/public/logo/${component}.svg`,
 		config = {}
 	}: Props = $props();
 
@@ -63,7 +63,7 @@
 	}
 
 	onMount(() => {
-		if (cloudContext.deployment === 'cloud') {
+		if (deployment === 'cloud') {
 			initBar();
 		}
 	});
@@ -72,7 +72,7 @@
 		if (config.name) {
 			return config.name;
 		}
-		return (PRODUCTS as any)[cloudContext.component]?.name || 'HYVOR';
+		return (PRODUCTS as any)[component]?.name || 'HYVOR';
 	}
 </script>
 
@@ -82,7 +82,7 @@
 	<div class="inner hds-box">
 		<div class="left">
 			<a class="logo" href={url}>
-				<img src={logo} alt={cloudContext.component} width="20" height="20" />
+				<img src={logo} alt={component} width="20" height="20" />
 				<span class="name">
 					{getName()}
 				</span>
@@ -96,13 +96,13 @@
 			<BarNotice />
 
 			<div class="hidden-on-mobile">
-				{#if cloudContext.deployment === 'cloud'}
+				{#if deployment === 'cloud'}
 					<BarSupport config={configComplete} mobile={mobileShow} />
 					<BarUpdates />
 				{/if}
 			</div>
 
-			{#if cloudContext.deployment === 'cloud'}
+			{#if deployment === 'cloud'}
 				<div class="mobile">
 					<IconCaretDownFill />
 				</div>

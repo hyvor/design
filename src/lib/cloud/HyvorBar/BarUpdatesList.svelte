@@ -1,11 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import {
-		barUnreadUpdates,
-		UnreadUpdatesTimeLocalStorage,
-		type BarProduct,
-		type BarUpdate
-	} from './bar.js';
+	import { barUnreadUpdates, UnreadUpdatesTimeLocalStorage, type BarUpdate } from './bar.js';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	import {
@@ -24,7 +19,7 @@
 
 	let lastReadTime: null | number = $state(null);
 
-	const cloudContext = getCloudContext();
+	const cloudContext = $derived(getCloudContext());
 
 	function fetchUpdates() {
 		error = false;

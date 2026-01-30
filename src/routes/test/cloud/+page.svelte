@@ -12,6 +12,7 @@
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import { toast } from '$lib/components/index.js';
+	import { goto } from '$app/navigation';
 
 	let loading = $state(true);
 	let cloudContext: CloudContextType = $state({} as CloudContextType);
@@ -42,12 +43,9 @@
 	}
 
 	async function handleResourceCreate() {
-		// toast.error('bad input');
-		// return false;
-
 		const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-		await delay(300);
-		return true;
+		await delay(2000);
+		goto('/');
 	}
 
 	function handleResourceFinish() {
@@ -80,9 +78,7 @@
 						<ResourceCreator
 							onback={() => alert('Going back')}
 							oncreate={handleResourceCreate}
-							onfinish={handleResourceFinish}
 							title="Create a blog"
-							steps={['Creating the blog', 'Copying the theme', 'Seeding data']}
 							cta="Create Blog"
 							resourceTitle="Blog"
 						>

@@ -10,7 +10,7 @@
 		buttonText: string;
 		buttonDisabled?: boolean;
 		children: Snippet;
-		onButtonClick: () => Promise<void>;
+		onButtonClick: () => void;
 		onToggle: () => void;
 		toggleLocked?: boolean;
 		complete?: boolean;
@@ -26,6 +26,7 @@
 		buttonDisabled,
 		onButtonClick,
 		onToggle,
+		toggleLocked = false,
 		complete,
 		belowTitle,
 		footer = true,
@@ -56,23 +57,16 @@
 	}
 
 	function toggle() {
+		if (toggleLocked) return;
 		const showBefore = show;
 		onToggle();
 		if (showBefore === show) return;
 		setHeight(show);
 	}
 
-	async function handleClick() {
-		if (loading) return;
-		loading = true;
-		await onButtonClick();
-		loading = false;
-	}
-
 	$effect(() => {
 		setHeight(show);
 	});
-	// onMount(setHeight);
 </script>
 
 <div class="accordian" class:show class:complete>
@@ -100,8 +94,10 @@
 					{#if loading}
 						<Loader size="small" />
 					{/if}
-					<Button size="large" onclick={handleClick} disabled={loading || buttonDisabled}
-						>{buttonText}</Button
+					<Button
+						size="large"
+						onclick={onButtonClick}
+						disabled={loading || buttonDisabled}>{buttonText}</Button
 					>
 				</div>
 			</div>

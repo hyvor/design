@@ -3,13 +3,13 @@
 	import {
 		incrementCloudContextId,
 		setCloudContext,
-		type CloudContext
+		type CloudContext as CloudContextType
 	} from './cloudContext.svelte.js';
 	import { onMount } from 'svelte';
 	import { track } from '$lib/marketing/index.js';
 
 	interface Props {
-		context: CloudContext;
+		context: CloudContextType;
 		children: import('svelte').Snippet;
 		style?: string;
 	}

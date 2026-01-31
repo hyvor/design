@@ -2,7 +2,7 @@
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import IconX from '@hyvor/icons/IconX';
 	import Button from '$lib/components/Button/Button.svelte';
-	import type { ComponentProps } from 'svelte';
+	import { onMount, type ComponentProps } from 'svelte';
 	import {
 		getCloudContext,
 		type CloudContextOrganization
@@ -36,10 +36,13 @@
 		 */
 		oncreate: (organization: CloudContextOrganization) => Promise<boolean>;
 
+		// called when the children are displayed (ex: you can focus on an input)
+		ondisplay?: () => void;
+
 		resourceTitle?: string; // ex: Blog, Website
 
 		cta?: string;
-		ctaProps?: ComponentProps<typeof Button>;
+		ctaDisabled?: boolean;
 	}
 
 	let {
@@ -48,13 +51,16 @@
 		onback,
 		oncreate,
 		resourceTitle = 'Resource',
-		cta = 'Create resource'
+		cta = 'Create resource',
+		ctaDisabled = false,
+		ondisplay
 	}: Props = $props();
 
 	const { callbacks, organization } = $derived(getCloudContext());
 
 	let orgName = $state('');
 	let orgNameError = $state('');
+	let orgNameInput = $state({} as HTMLInputElement);
 
 	let organizationAccordianOpen = $derived(!organization);
 	let contentAccordianOpen = $derived(!!organization);
@@ -98,6 +104,15 @@
 		addToLoadedOrganizations(org);
 		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
 	}
+
+	$effect(() => {
+		if (contentAccordianOpen) {
+			ondisplay?.();
+		}
+		if (organizationAccordianOpen && !organization && orgNameInput) {
+			orgNameInput.focus();
+		}
+	});
 </script>
 
 <div class="wrap">
@@ -145,30 +160,29 @@
 					</div>
 				{:else}
 					<div class="org-creator">
-						<SplitControl label="Name" column>
-							<FormControl>
-								<TextInput
-									bind:value={orgName}
-									block
-									placeholder="Organization Name"
-									disabled={creatingOrganization}
-									onkeyup={(e) => {
-										if (e.key === 'Enter') {
-											handleOrganizationCreation();
-										}
-									}}
-								/>
+						<FormControl>
+							<TextInput
+								bind:value={orgName}
+								bind:input={orgNameInput}
+								block
+								placeholder="Organization Name"
+								disabled={creatingOrganization}
+								onkeyup={(e) => {
+									if (e.key === 'Enter') {
+										handleOrganizationCreation();
+									}
+								}}
+							/>
 
-								{#if orgNameError}
-									<Validation state="error">{orgNameError}</Validation>
-								{/if}
-							</FormControl>
+							{#if orgNameError}
+								<Validation state="error">{orgNameError}</Validation>
+							{/if}
+						</FormControl>
 
-							<div class="org-note">
-								<IconInfoCircle size={12} />
-								Organizations can be used across HYVOR products.
-							</div>
-						</SplitControl>
+						<div class="org-note">
+							<IconInfoCircle size={12} />
+							Organizations can be used across HYVOR products.
+						</div>
 					</div>
 				{/if}
 			</Accordian>
@@ -177,6 +191,7 @@
 				title={resourceTitle}
 				show={contentAccordianOpen}
 				buttonText={cta}
+				buttonDisabled={ctaDisabled}
 				onButtonClick={handleResourceCreation}
 				onToggle={() => {
 					contentAccordianOpen = !contentAccordianOpen;
@@ -242,7 +257,7 @@
 	.org-note {
 		color: var(--text-light);
 		font-size: 14px;
-		margin-top: 15px;
+		margin-top: 5px;
 		display: flex;
 		align-items: center;
 		gap: 8px;

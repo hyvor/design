@@ -105,7 +105,7 @@
 
 			<NavCategory name="Cloud">
 				<NavItem href="/cloud-context">Cloud Context</NavItem>
-				<NavItem href="/resource-creator">Resource Creator</NavItem>
+				<!-- <NavItem href="/resource-creator">Resource Creator</NavItem> -->
 			</NavCategory>
 
 			<NavCategory name="Marketing">

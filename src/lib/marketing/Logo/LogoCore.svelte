@@ -27,17 +27,17 @@
 			<g id="g1011" transform="matrix(4.0546107,0,0,4.0546107,968.54304,493.77011)">
 				<path
 					id="path1005"
-					style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+					style="fill:none;stroke:#000000;stroke-width:6.19866;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 					d="m 59.684412,40.713463 c 0,-2.381274 -3.065933,-4.311677 -6.847956,-4.311677 -3.782022,0 -6.847956,1.930403 -6.847956,4.311677"
 				/>
 				<path
 					id="path1007"
-					style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+					style="fill:none;stroke:#000000;stroke-width:6.19866;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 					d="m 86.142762,40.713463 c 0,-2.381274 -3.065933,-4.311677 -6.847956,-4.311677 -3.782022,0 -6.847956,1.930403 -6.847956,4.311677"
 				/>
 				<path
 					id="path1009"
-					style="fill:none;stroke:#000000;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
+					style="fill:none;stroke:#000000;stroke-width:6.19866;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;paint-order:stroke fill markers"
 					d="m 72.699971,55.496735 c 0,2.381274 -3.065933,4.311677 -6.847956,4.311677 -3.782022,0 -6.847956,-1.930403 -6.847956,-4.311677"
 				/>
 			</g>

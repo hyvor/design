@@ -17,6 +17,8 @@
 	let loading = $state(true);
 	let cloudContext: CloudContextType = $state({} as CloudContextType);
 
+	let nameInput: HTMLInputElement;
+
 	async function init() {
 		loading = true;
 
@@ -83,13 +85,16 @@
 							title="Create a blog"
 							cta="Create Blog"
 							resourceTitle="Blog"
+							ondisplay={() => {
+								nameInput.focus();
+							}}
 						>
 							<SplitControl
 								label="Name"
 								noHorizonalPadding
 								caption="A name for your blog"
 							>
-								<TextInput block />
+								<TextInput block bind:input={nameInput} />
 							</SplitControl>
 							<SplitControl
 								label="Subdomain"

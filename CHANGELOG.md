@@ -6,6 +6,7 @@
 - CloudContext is now required for Consoles
 - CodeBlock now uses Shiki.js instead of Highlight.js
 - CodeBlock requires `compilerOptions.experimental.async = true` in `svelte.config.js` (https://svelte.dev/docs/svelte/await-expressions)
+- TextInput `select` has been removed
 
 ## 1.1.22 - 2025-11-05
 

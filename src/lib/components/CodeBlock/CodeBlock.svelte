@@ -1,37 +1,20 @@
 <script lang="ts">
-	//import './prism.scss';
-	import './hljs.scss';
 	import Button from '../Button/Button.svelte';
 	import IconCopy from '@hyvor/icons/IconCopy';
 	import toast from '../Toast/toast.js';
+	import { getCode, sanitizeLines, type Language } from './getCode.js';
 
-	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx' | 'php';
-	const languagesMap: Partial<Record<InputLanguage, Language>> = {
-		svelte: 'html',
-		jsx: 'js'
-	};
-
-	type Language = any;
-
-	// import getCode, { type Language } from './getCode.js';
 	interface Props {
 		code: string;
-		language?: InputLanguage | null;
+		language?: Language | null;
 	}
 
 	let { code, language = 'html' }: Props = $props();
 
-	let languageCode = $derived(
-		language ? languagesMap[language] || language : null
-	) as Language | null;
-
-	function getCode(code: string, languageCode: any) {
-		// TODO: must change
-		return code.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
-	}
+	let sanitizedCode = $derived(sanitizeLines(code));
 
 	function copyToClipboard() {
-		navigator.clipboard.writeText(code);
+		navigator.clipboard.writeText(sanitizedCode);
 		toast.success('Copied');
 	}
 </script>
@@ -42,7 +25,7 @@
 			<IconCopy size={10} />
 		</Button>
 	</div>
-	<pre class="language-{languageCode} hljs"><code>{@html getCode(code, languageCode)}</code></pre>
+	{@html await getCode(sanitizedCode, language)}
 </div>
 
 <style>
@@ -63,7 +46,7 @@
 		border: 1px solid var(--border);
 	}
 
-	pre {
+	.code-container :global(pre) {
 		text-align: left;
 		white-space: pre;
 		word-spacing: normal;
@@ -73,19 +56,22 @@
 		border-radius: 20px;
 		padding: 20px;
 		line-height: 1.2;
+		background-color: #f4f2f0 !important;
 	}
 
-	pre code {
+	.code-container :global(pre code) {
 		all: unset;
-		font-family:
-			Consolas,
-			Monaco,
-			Andale Mono,
-			Ubuntu Mono,
-			monospace;
 		font-size: 14px;
 		line-height: 1.5 !important;
 		tab-size: 4;
 		hyphens: none;
+	}
+
+	:global(:root.dark .shiki, :root.dark .shiki span) {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+		font-style: var(--shiki-dark-font-style) !important;
+		font-weight: var(--shiki-dark-font-weight) !important;
+		text-decoration: var(--shiki-dark-text-decoration) !important;
 	}
 </style>

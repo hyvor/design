@@ -64,6 +64,7 @@
 		"deepmerge-ts": "^7.1.5",
 		"emojibase-data": "^17.0.0",
 		"intl-messageformat": "^11.1.2",
+		"shiki": "^3.22.0",
 		"svelte-awesome-color-picker": "^4.1.1",
 		"tocbot": "^4.36.4"
 	},

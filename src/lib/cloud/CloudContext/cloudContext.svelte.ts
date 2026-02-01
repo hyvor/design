@@ -80,7 +80,7 @@ export interface CloudContext {
 export interface CloudContextUser {
 	id: number;
 	name: string | null;
-	username?: string | null;
+	username?: string;
 	email: string;
 	picture_url: string | null;
 }
@@ -108,6 +108,7 @@ export interface OrganizationMember {
 	user_id: number;
 	user_username: string;
 	user_email: string;
+	user_picture_url: string | null;
 }
 
 export type OrganizationRole = 'admin' | 'manager' | 'member' | 'billing';

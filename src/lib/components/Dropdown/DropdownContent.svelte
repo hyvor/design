@@ -2,8 +2,8 @@
 	import { onMount } from 'svelte';
 	import { clickOutside } from '../directives/clickOutside.js';
 	import debounce from '../directives/debounce.js';
-	import { elasticInOut } from 'svelte/easing';
 	import type { DropdownAlign, DropdownPosition } from './dropdown.types.js';
+	import { dropdownSlide } from './dropdownSlide.js';
 
 	interface Props {
 		show: boolean;
@@ -116,19 +116,6 @@
 			mutationObserver.disconnect();
 		};
 	});
-
-	function slideIn(node: any) {
-		return {
-			duration: 100,
-			easing: elasticInOut,
-			css: (t: number) => {
-				return `
-                    opacity: ${0.2 + t * 0.8};
-                    transform: translateY(-${(1 - t) * 5}px) scale(${0.95 + t * 0.05});
-                `;
-			}
-		};
-	}
 </script>
 
 <svelte:window onresize={debouncedPosition} onscroll={debouncedPosition} />
@@ -141,7 +128,7 @@
 	}}
 	bind:this={contentWrap}
 	style="width: {width}px"
-	transition:slideIn
+	transition:dropdownSlide
 >
 	<div class="hds-box content" style:padding="{padding}px">
 		{@render children?.()}

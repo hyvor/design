@@ -133,5 +133,6 @@
 
 	.ms-inner {
 		padding: 30px 40px;
+		min-width: 600px;
 	}
 </style>

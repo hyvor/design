@@ -5,7 +5,8 @@ export {
 	type CloudContext as CloudContextType,
 	type CloudContextUser,
 	type CloudContextOrganization,
-	type OrganizationRole
+	type OrganizationRole,
+	type OrganizationMember
 } from './CloudContext/cloudContext.svelte.js';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';

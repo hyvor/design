@@ -101,4 +101,13 @@ export interface ResolvedLicense {
 	trial_ends_at: null | number;
 }
 
+export interface OrganizationMember {
+	id: number;
+	role: OrganizationRole;
+
+	user_id: number;
+	user_username: string;
+	user_email: string;
+}
+
 export type OrganizationRole = 'admin' | 'manager' | 'member' | 'billing';

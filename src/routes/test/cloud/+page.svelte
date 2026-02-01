@@ -11,12 +11,11 @@
 	import ResourceCreator from '$lib/cloud/ResourceCreator/ResourceCreator.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import { toast } from '$lib/components/index.js';
 	import { goto } from '$app/navigation';
+	import OrganizationMembersSearch from '$lib/cloud/OrganizationMembers/OrganizationMembersSearch.svelte';
 
 	let loading = $state(true);
 	let cloudContext: CloudContextType = $state({} as CloudContextType);
-
 	let nameInput: HTMLInputElement;
 
 	async function init() {
@@ -50,11 +49,6 @@
 		goto('/');
 
 		return true;
-	}
-
-	function handleResourceFinish() {
-		console.log('finish');
-		toast.success('Blog created');
 	}
 
 	onMount(init);
@@ -106,6 +100,12 @@
 						</ResourceCreator>
 					</div>
 				</div>
+
+				<div class="member-search">
+					<div class="ms-inner hds-box">
+						<OrganizationMembersSearch />
+					</div>
+				</div>
 			</CloudContext>
 		{/if}
 	</div>
@@ -122,5 +122,16 @@
 		left: 0;
 		width: 100%;
 		height: 100%;
+	}
+
+	.member-search {
+		height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.ms-inner {
+		padding: 30px 40px;
 	}
 </style>

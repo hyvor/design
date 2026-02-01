@@ -209,11 +209,8 @@
 
 <CodeResult>
 	<div class="box">
-		<IconMessage iconColor="var(--blue)">
+		<IconMessage iconColor="var(--blue)" icon={IconPencilSquare} iconSize={60}>
 			<div>Start Writing Something</div>
-			{#snippet icon()}
-				<IconPencilSquare size={60} />
-			{/snippet}
 		</IconMessage>
 	</div>
 

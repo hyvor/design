@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { setContext } from 'svelte';
 
 	interface Props {
@@ -12,12 +10,8 @@
 
 	let { selection = 'none', selectionAlign = 'start', children, ...rest }: Props = $props();
 
-	run(() => {
-		setContext('action-list-selection', selection);
-	});
-	run(() => {
-		setContext('action-list-selection-align', selectionAlign);
-	});
+	setContext('action-list-selection', () => selection);
+	setContext('action-list-selection-align', () => selectionAlign);
 </script>
 
 <div class="action-list" {...rest}>

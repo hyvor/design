@@ -5,8 +5,8 @@
 	import { getContext, createEventDispatcher } from 'svelte';
 	import Selected from './Selected.svelte';
 
-	const selection: 'none' | 'single' | 'multi' = getContext('action-list-selection');
-	const selectionAlign: 'start' | 'end' = getContext('action-list-selection-align');
+	const selection: () => 'none' | 'single' | 'multi' = getContext('action-list-selection');
+	const selectionAlign: () => 'start' | 'end' = getContext('action-list-selection-align');
 
 	interface Props {
 		selected?: boolean;
@@ -30,7 +30,7 @@
 		...rest
 	}: Props = $props();
 
-	selected = selection !== 'none' && selected;
+	selected = selection() !== 'none' && selected;
 
 	const dispatch = createEventDispatcher();
 
@@ -53,8 +53,8 @@
 	}}
 	{...rest}
 >
-	{#if selectionAlign === 'start'}
-		<Selected {selection} bind:selected />
+	{#if selectionAlign() === 'start'}
+		<Selected selection={selection()} bind:selected />
 	{/if}
 
 	{#if start}
@@ -79,8 +79,8 @@
 		</span>
 	{/if}
 
-	{#if selectionAlign === 'end'}
-		<Selected {selection} bind:selected />
+	{#if selectionAlign() === 'end'}
+		<Selected selection={selection()} bind:selected />
 	{/if}
 </div>
 

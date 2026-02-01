@@ -94,10 +94,8 @@
 					{#if loading}
 						<Loader size="small" />
 					{/if}
-					<Button
-						size="large"
-						onclick={onButtonClick}
-						disabled={loading || buttonDisabled}>{buttonText}</Button
+					<Button size="large" onclick={onButtonClick} disabled={loading || buttonDisabled}
+						>{buttonText}</Button
 					>
 				</div>
 			</div>

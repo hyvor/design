@@ -3,6 +3,7 @@
 	import './hljs.scss';
 	import Button from '../Button/Button.svelte';
 	import IconCopy from '@hyvor/icons/IconCopy';
+	import toast from '../Toast/toast.js';
 
 	type InputLanguage = 'html' | 'css' | 'js' | 'ts' | 'yaml' | 'json' | 'svelte' | 'jsx' | 'php';
 	const languagesMap: Partial<Record<InputLanguage, Language>> = {
@@ -27,6 +28,11 @@
 	function getCode(code: string, languageCode: any) {
 		// TODO: must change
 		return code.replace(/</g, '&lt;').replace(/>/g, '&gt;').trim();
+	}
+
+	function copyToClipboard() {
+		navigator.clipboard.writeText(code);
+		toast.success('Copied');
 	}
 </script>
 

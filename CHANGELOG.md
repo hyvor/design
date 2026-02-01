@@ -1,6 +1,9 @@
-## Unreleased
+## 2.0.0
 
-- TextInput no longer support on: events
+- Organizations support added
+- new export: @hyvor/design/cloud
+- HyvorBar moved to cloud
+- CloudContext is now required for Consoles
 
 ## 1.1.22 - 2025-11-05
 

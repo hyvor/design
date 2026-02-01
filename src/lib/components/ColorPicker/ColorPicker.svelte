@@ -98,7 +98,7 @@
 				--input-size={size + 'px'}
 				isDialog={false}
 				isAlpha={alpha}
-				on:input={handleInput}
+				onInput={handleInput}
 			/>
 		</div>
 	{/if}

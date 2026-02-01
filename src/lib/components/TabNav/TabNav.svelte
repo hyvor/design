@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { onMount, setContext } from 'svelte';
 	import { writable } from 'svelte/store';
 

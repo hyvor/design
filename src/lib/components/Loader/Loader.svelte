@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import IconCheckCircleFill from '@hyvor/icons/IconCheckCircleFill';
 	import IconXCircleFill from '@hyvor/icons/IconXCircleFill';
 
@@ -58,7 +56,7 @@
 		large: 250
 	};
 	padding = typeof padding === 'number' ? padding : paddings[padding];
-	run(() => {
+	$effect(() => {
 		if (duration && (state === 'success' || state === 'error')) {
 			setTimeout(() => {
 				state = 'none';

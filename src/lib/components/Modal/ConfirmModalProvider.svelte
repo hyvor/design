@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import Modal from './Modal.svelte';
 	import { confirmStore } from './confirm.js';
 	import Button from './../Button/Button.svelte';
@@ -16,7 +14,7 @@
 		$confirmStore!.onConfirm();
 	}
 
-	run(() => {
+	$effect(() => {
 		if (!show) {
 			handleCancel();
 			show = true;

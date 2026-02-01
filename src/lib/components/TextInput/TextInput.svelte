@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { legacyHandlers } from '$lib/legacy.js';
 	import type { Snippet } from 'svelte';
 	import type { HTMLInputAttributes } from 'svelte/elements';
+	import { createBubbler } from 'svelte/legacy';
+
+	const bubble = createBubbler();
 
 	interface Props extends HTMLInputAttributes {
 		state?: 'default' | 'error' | 'success' | 'warning';
@@ -10,9 +14,9 @@
 		input?: HTMLInputElement;
 		start?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		select?: boolean;
 		selectInput?: HTMLSelectElement;
 		children?: Snippet;
+		[key: string]: any;
 
 		onkeyup?: (event: KeyboardEvent) => void;
 		onkeydown?: (event: KeyboardEvent) => void;
@@ -35,7 +39,6 @@
 		input = $bindable(),
 		start,
 		end,
-		select = false,
 		selectInput = $bindable({} as HTMLSelectElement),
 		children,
 
@@ -49,9 +52,7 @@
 		onmouseenter,
 		onmouseleave,
 		onchange,
-		oninput,
-
-		...rest
+		oninput
 	}: Props = $props();
 </script>
 
@@ -62,41 +63,21 @@
 		</span>
 	{/if}
 
-	{#if select}
-		<select
-			bind:value
-			bind:this={selectInput}
-			{onkeyup}
-			{onkeydown}
-			{onkeypress}
-			{onfocus}
-			{onblur}
-			{onclick}
-			{onmouseover}
-			{onmouseenter}
-			{onmouseleave}
-			{onchange}
-			{oninput}
-		>
-			{@render children?.()}
-		</select>
-	{:else}
-		<input
-			bind:value
-			bind:this={input}
-			{onkeyup}
-			{onkeydown}
-			{onkeypress}
-			{onfocus}
-			{onblur}
-			{onclick}
-			{onmouseover}
-			{onmouseenter}
-			{onmouseleave}
-			{onchange}
-			{oninput}
-		/>
-	{/if}
+	<input
+		bind:value
+		bind:this={input}
+		onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+		onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+		onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+		onfocus={legacyHandlers(onfocus, bubble('focus'))}
+		onblur={legacyHandlers(onblur, bubble('blur'))}
+		onclick={legacyHandlers(onclick, bubble('click'))}
+		onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+		onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+		onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+		onchange={legacyHandlers(onchange, bubble('change'))}
+		oninput={legacyHandlers(oninput, bubble('input'))}
+	/>
 
 	{#if end}
 		<span class="slot end">
@@ -139,8 +120,7 @@
 		width: 100%;
 	}
 
-	input,
-	select {
+	input {
 		flex: 1;
 		width: 100%;
 		border: none;
@@ -155,10 +135,6 @@
 		&:focus {
 			outline: none;
 		}
-	}
-
-	select {
-		min-width: 180px;
 	}
 
 	.input-wrap.size-x-small {

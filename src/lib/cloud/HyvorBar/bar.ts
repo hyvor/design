@@ -1,20 +1,11 @@
-import { track } from '$lib/marketing/index.js';
 import { writable } from 'svelte/store';
-
-export type BarProduct = string | 'core';
+import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 
 export interface BarConfig {
 	name: string | null;
 	docs: boolean;
 	chat: boolean;
 	g2: string | null;
-}
-
-export interface BarUser {
-	name: string | null;
-	username?: string | null;
-	email: string;
-	picture_url: string | null;
 }
 
 export interface BarUpdate {
@@ -28,79 +19,54 @@ export interface BarUpdate {
 
 export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'post' | 'relay' | 'fortguard';
 
-export interface BarResolvedLicense {
-	type: 'subscription' | 'trial' | 'custom' | 'expired';
-	license: Record<string, number | boolean> | null;
-	subscription: null | {
-		plan_readable: string;
-		cancel_at: null | number;
-	};
-	trial_ends_at: null | number;
-}
-
-let instance = '';
-let product: string = 'core';
-
-export const barUser = writable<BarUser | null>(null);
 export const barUnreadUpdates = writable<number>(0);
-export const barLicense = writable<BarResolvedLicense | null>(null);
 export const barHasFailedInvoices = writable<boolean>(false);
 
 interface BarResponse {
-	updates: {
-		unread: number;
-	};
-	billing: {
-		has_failed_invoices: boolean;
-		license: BarResolvedLicense | null;
-	};
-	user: {
-		id: number;
-		name: string | null;
-		username: string;
-		email: string;
-		picture_url: string;
-	};
+	user_id: number;
+	organization_id: number | null;
+	has_failed_invoices: boolean;
+	unread_updates: number;
 }
 
-export function setInstanceAndProduct(instance_: string, product_: string) {
-	instance = instance_;
-	product = product_;
-}
+export async function initBar() {
+	const { user, organization, instance, component, deployment } = getCloudContext();
 
-export function initBar() {
+	if (deployment !== 'cloud') {
+		return;
+	}
+
 	const query = new URLSearchParams();
-	query.set('product', product);
+	query.set('component', component);
 
 	const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
 	if (lastUnreadTime) {
 		query.set('last_read_updates_at', lastUnreadTime.toString());
 	}
 
-	fetch(instance + '/api/public/bar?' + query.toString(), {
+	const response = await fetch(instance + '/api/v2/cloud/bar/init?' + query.toString(), {
 		credentials: 'include'
-	})
-		.then((response) => response.json())
-		.then((data: BarResponse) => {
-			barUser.set(data.user);
-			barUnreadUpdates.set(data.updates.unread);
-			barLicense.set(data.billing.license);
-			barHasFailedInvoices.set(data.billing.has_failed_invoices);
+	});
 
-			if (lastUnreadTime === null) {
-				UnreadUpdatesTimeLocalStorage.setNow();
-			}
+	if (!response.ok) {
+		throw new Error('Failed to initialize bar');
+	}
 
-			if (data.user && track.ready()) {
-				track.identify(data.user.id.toString(), {
-					name: data.user.name ?? undefined,
-					avatar: data.user.picture_url ?? undefined
-				});
-			}
-		})
-		.catch((error) => {
-			console.error('Error:', error);
-		});
+	const data: BarResponse = await response.json();
+
+	const currentOrganizationId = organization ? organization.id : null;
+
+	if (user.id !== data.user_id || currentOrganizationId !== data.organization_id) {
+		// something is very wrong
+		// reload Console or something
+	}
+
+	barHasFailedInvoices.set(data.has_failed_invoices);
+	barUnreadUpdates.set(data.unread_updates);
+
+	if (lastUnreadTime === null) {
+		UnreadUpdatesTimeLocalStorage.setNow();
+	}
 }
 
 export class UnreadUpdatesTimeLocalStorage {

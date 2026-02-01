@@ -1,13 +1,10 @@
 <script lang="ts">
 	import { barHasFailedInvoices } from '../bar.js';
-	import { Tag, Tooltip } from '../../index.js';
+	import { Tag, Tooltip } from '$lib/components/index.js';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 
-	interface Props {
-		instance?: string;
-	}
-
-	let { instance = 'https://hyvor.com' }: Props = $props();
+	const { instance } = $derived(getCloudContext());
 </script>
 
 {#if $barHasFailedInvoices}

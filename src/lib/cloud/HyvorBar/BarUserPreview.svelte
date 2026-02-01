@@ -1,25 +1,25 @@
 <script lang="ts">
-	import { barUser } from './bar.js';
+	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 	import BarUserPicture from './BarUserPicture.svelte';
+
+	const { user } = $derived(getCloudContext());
 </script>
 
-{#if $barUser}
-	<div class="preview">
-		<div class="left">
-			<BarUserPicture />
-		</div>
-		<div class="right">
-			<div class="username">
-				{#if $barUser.username}
-					@{$barUser.username}
-				{:else if $barUser.name}
-					{$barUser.name}
-				{/if}
-			</div>
-			<div class="email">{$barUser.email}</div>
-		</div>
+<div class="preview">
+	<div class="left">
+		<BarUserPicture />
 	</div>
-{/if}
+	<div class="right">
+		<div class="username">
+			{#if user.username}
+				@{user.username}
+			{:else if user.name}
+				{user.name}
+			{/if}
+		</div>
+		<div class="email">{user.email}</div>
+	</div>
+</div>
 
 <style>
 	.preview {

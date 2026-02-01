@@ -10,6 +10,7 @@ services:
       - ./package-lock.json:/app/package-lock.json
       - ./vite.config.js:/app/vite.config.js
       - ./tsconfig.json:/app/tsconfig.json
+      - ./svelte.config.js:/app/svelte.config.js
     labels:
       traefik.enable: true
       traefik.http.routers.hds.rule: Host(`design.hyvor.localhost`)

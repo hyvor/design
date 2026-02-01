@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { BarUpdate } from '$lib/components/HyvorBar/bar.js';
 	import { onMount } from 'svelte';
 	import { slide } from 'svelte/transition';
 	import { isCloud } from '../cloud.js';
 	import IconMegaphone from '@hyvor/icons/IconMegaphone';
+	import type { BarUpdate } from '$lib/cloud/HyvorBar/bar.js';
 
 	let notificationUpdate: BarUpdate | null = $state(null);
 

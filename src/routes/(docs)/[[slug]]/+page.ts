@@ -41,6 +41,7 @@ import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import Tracking from './docs/Tracking.svelte';
+import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 
 export const prerender = true;
 
@@ -87,7 +88,10 @@ const nav = {
 	'page-structure': PageStructure,
 	docs: DocsDocs,
 	document: Document,
-	tracking: Tracking
+	tracking: Tracking,
+
+	// cloud
+	'cloud-context': CloudContextDoc
 };
 
 export async function load({ params }) {

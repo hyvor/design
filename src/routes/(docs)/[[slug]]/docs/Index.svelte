@@ -77,6 +77,7 @@
     npm i @hyvor/design
     npm i @hyvor/icons
 `}
+	language="sh"
 />
 
 <p>
@@ -97,6 +98,7 @@
         <slot />
     </Base>
 `}
+	language="svelte"
 />
 
 <p>Then, use the other components as you need!</p>

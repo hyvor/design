@@ -1,13 +1,19 @@
 {
 	"name": "@hyvor/design",
+	"version": "2.0.0.",
 	"license": "MIT",
 	"private": false,
+	"repository": {
+		"url": "https://github.com/hyvor/design"
+	},
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build && npm run package",
 		"preview": "vite preview",
 		"package": "svelte-kit sync && svelte-package && publint",
 		"package:watch": "svelte-package --watch",
+		"package:p": "svelte-kit sync && svelte-package -p",
+		"package:pw": "svelte-kit sync && svelte-package -p --watch",
 		"prepublishOnly": "npm run package",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -22,6 +28,10 @@
 		"./marketing": {
 			"types": "./dist/marketing/index.d.ts",
 			"svelte": "./dist/marketing/index.js"
+		},
+		"./cloud": {
+			"types": "./dist/cloud/index.d.ts",
+			"svelte": "./dist/cloud/index.js"
 		}
 	},
 	"files": [
@@ -30,34 +40,34 @@
 		"!dist/**/*.spec.*"
 	],
 	"peerDependencies": {
-		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/kit": "^2.49.0",
 		"sass": "^1.68.0",
 		"svelte": "^5.0.0"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
 		"@sveltejs/package": "^2.5.7",
-		"@sveltejs/vite-plugin-svelte": "^6.2.1",
-		"prettier": "3.7.4",
-		"prettier-plugin-svelte": "3.3.3",
-		"publint": "^0.1.9",
-		"svelte": "^5.0.0",
-		"svelte-check": "^4.0.0",
-		"tslib": "^2.4.1",
+		"@sveltejs/vite-plugin-svelte": "^6.2.4",
+		"prettier": "3.8.1",
+		"prettier-plugin-svelte": "3.4.1",
+		"publint": "^0.3.17",
+		"svelte": "^5.49.1",
+		"svelte-check": "^4.3.6",
+		"tslib": "^2.8.1",
 		"typescript": "^5.9.3",
-		"vite": "^7.2"
+		"vite": "^7.3"
 	},
 	"dependencies": {
-		"@fontsource/readex-pro": "^5.0.8",
+		"@fontsource/readex-pro": "^5.2.11",
 		"@hyvor/icons": "^1.1.1",
-		"@openpanel/sdk": "^1.0.0",
-		"@openpanel/web": "^1.0.1",
-		"deepmerge-ts": "^5.1.0",
-		"emojibase-data": "^16.0.3",
-		"highlight.js": "^11.9.0",
-		"intl-messageformat": "^10.5.11",
-		"svelte-awesome-color-picker": "^3.0.4",
-		"tocbot": "^4.25.0"
+		"@openpanel/sdk": "^1.0.4",
+		"@openpanel/web": "^1.0.7",
+		"deepmerge-ts": "^7.1.5",
+		"emojibase-data": "^17.0.0",
+		"intl-messageformat": "^11.1.2",
+		"shiki": "^3.22.0",
+		"svelte-awesome-color-picker": "^4.1.1",
+		"tocbot": "^4.36.4"
 	},
 	"type": "module",
 	"publishConfig": {

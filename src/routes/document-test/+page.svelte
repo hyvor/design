@@ -1,28 +1,14 @@
 <script>
 	import Base from '$lib/components/Base/Base.svelte';
-	import HyvorBar from '$lib/components/HyvorBar/HyvorBar.svelte';
 	import Document from '$lib/marketing/Document/Document.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
-
-<HyvorBar
-	product="core"
-	cloud={false}
-	authOverride={{
-		user: {
-			name: 'Test User',
-			// picture_url: 'https://picsum.photos/60/60',
-			picture_url: null,
-			email: 'test@hyvor.com'
-		},
-		logoutUrl: 'https://logout.com'
-	}}
-/>
 
 <Base>
 	<slot />
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>
+
 		<h2 id="heading-2">Heading 2</h2>
 		<p>
 			<!-- lorem ipsum content generate -->

@@ -1,11 +1,15 @@
 services:
-  hyvor-design:
+  design:
     container_name: hyvor-design
     build:
       context: .
     volumes:
       - ./src:/app/src
       - ./static:/app/static
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
+      - ./vite.config.js:/app/vite.config.js
+      - ./tsconfig.json:/app/tsconfig.json
     labels:
       traefik.enable: true
       traefik.http.routers.hds.rule: Host(`design.hyvor.localhost`)

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import BarUser from './BarUser.svelte';
-	import { onMount } from 'svelte';
 	import BarProducts from './BarProducts/BarProducts.svelte';
 	import BarSupport from './BarSupport.svelte';
 	import { initBar, type BarConfig } from './bar.js';
@@ -11,7 +10,6 @@
 	import BarOrganization from './Organization/BarOrganization.svelte';
 	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContext.svelte.js';
 	import { PRODUCTS } from './BarProducts/products.js';
-	import { get } from 'svelte/store';
 
 	interface Props {
 		config?: Partial<BarConfig>;

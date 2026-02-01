@@ -303,8 +303,7 @@
 <h3 id="interactive">Interactive</h3>
 
 <p>
-	Set the <code>interactive</code> property to <code>true</code> to add a hover effect and a pointer
-	cursor.
+	Set the <code>interactive</code> property to <code>true</code> to add a hover effect and a pointer cursor.
 </p>
 
 <CodeBlock
@@ -385,8 +384,7 @@
 <h3 id="custom">Custom colors</h3>
 
 <p>
-	You can use the <code>bg</code> and <code>fg</code> properties to set custom background and text
-	colors.
+	You can use the <code>bg</code> and <code>fg</code> properties to set custom background and text colors.
 </p>
 
 <CodeBlock

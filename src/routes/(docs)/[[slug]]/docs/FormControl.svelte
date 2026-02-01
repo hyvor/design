@@ -65,8 +65,8 @@
 <h2 id="full-form-control">Full Form Control</h2>
 
 <p>
-	The <code>{'<FormControl>'}</code> component can be used to wrap label, caption, validation, and
-	other inputs. It will automatically add spacing between the elements.
+	The <code>{'<FormControl>'}</code> component can be used to wrap label, caption, validation, and other
+	inputs. It will automatically add spacing between the elements.
 </p>
 
 <CodeBlock
@@ -92,9 +92,8 @@
 <h2 id="input-group">Input Group</h2>
 
 <p>
-	The <code>{'<InputGroup>'}</code> component can be used to group multiple inputs together. It will
-	automatically add spacing between the elements. It can be used to group checkboxes, radio buttons,
-	text inputs, etc.
+	The <code>{'<InputGroup>'}</code> component can be used to group multiple inputs together. It will automatically
+	add spacing between the elements. It can be used to group checkboxes, radio buttons, text inputs, etc.
 </p>
 
 <CodeBlock

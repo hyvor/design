@@ -119,16 +119,12 @@
 		</div>
 
 		<div class="horizontal">
-			<Tooltip text="Left tooltip" position="left"><Button color="gray">Left</Button></Tooltip
-			>
-			<Tooltip text="Right tooltip" position="right"
-				><Button color="gray">Right</Button></Tooltip
-			>
+			<Tooltip text="Left tooltip" position="left"><Button color="gray">Left</Button></Tooltip>
+			<Tooltip text="Right tooltip" position="right"><Button color="gray">Right</Button></Tooltip>
 		</div>
 
 		<div class="bottom">
-			<Tooltip text="Bottom tooltip" position="bottom"
-				><Button color="gray">Bottom</Button></Tooltip
+			<Tooltip text="Bottom tooltip" position="bottom"><Button color="gray">Bottom</Button></Tooltip
 			>
 		</div>
 	</div>

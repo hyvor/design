@@ -8,8 +8,6 @@
 	import Docs from '$lib/marketing/Docs/Docs.svelte';
 	import Nav from '$lib/marketing/Docs/Nav/Nav.svelte';
 	import NavCategory from '$lib/marketing/Docs/Nav/NavCategory.svelte';
-
-	import logo from '../../img/logo/hyvor.svg';
 	import Button from '$lib/components/Button/Button.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -74,7 +72,7 @@
 	<title>{title}</title>
 </svelte:head>
 
-<Header {logo} name="HYVOR" subName="Design System">
+<Header product="core" name="HYVOR" subName="Design System">
 	{#snippet end()}
 		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
 		<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">

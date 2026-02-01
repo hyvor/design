@@ -1,7 +1,10 @@
 <script lang="ts">
-	interface Props {
+	import type { Snippet } from 'svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
+
+	interface Props extends HTMLInputAttributes {
 		state?: 'default' | 'error' | 'success' | 'warning';
-		size?: 'small' | 'medium' | 'large' | 'x-small';
+		size?: 'small' | 'medium' | 'large' | 'x-small' | any;
 		block?: boolean;
 		value?: any;
 		input?: HTMLInputElement;
@@ -9,7 +12,7 @@
 		end?: import('svelte').Snippet;
 		select?: boolean;
 		selectInput?: HTMLSelectElement;
-		[key: string]: any;
+		children?: Snippet;
 
 		onkeyup?: (event: KeyboardEvent) => void;
 		onkeydown?: (event: KeyboardEvent) => void;
@@ -34,6 +37,7 @@
 		end,
 		select = false,
 		selectInput = $bindable({} as HTMLSelectElement),
+		children,
 
 		onkeyup,
 		onkeydown,
@@ -60,7 +64,6 @@
 
 	{#if select}
 		<select
-			{...rest}
 			bind:value
 			bind:this={selectInput}
 			{onkeyup}
@@ -75,11 +78,10 @@
 			{onchange}
 			{oninput}
 		>
-			{@render rest?.children()}
+			{@render children?.()}
 		</select>
 	{:else}
 		<input
-			{...rest}
 			bind:value
 			bind:this={input}
 			{onkeyup}

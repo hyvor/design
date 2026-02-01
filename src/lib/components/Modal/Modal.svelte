@@ -1,8 +1,6 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
-	import { clickOutside } from '../directives/clickOutside.js';
 	import IconX from '@hyvor/icons/IconX';
 	import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';
@@ -69,6 +67,13 @@
 		show;
 		setFlex();
 	});
+
+	function handleClose(e: MouseEvent) {
+		// close only when clicking directy on backdrop (not inner content)
+		if (closeOnOutsideClick && !loading && e.target === e.currentTarget) {
+			handleCancel();
+		}
+	}
 </script>
 
 <svelte:window
@@ -80,13 +85,16 @@
 />
 
 {#if show}
-	<div class="wrap" bind:this={wrapEl} in:fade={{ duration: 100 }} out:fade={{ duration: 100 }}>
+	<div
+		role="presentation"
+		class="wrap"
+		bind:this={wrapEl}
+		in:fade={{ duration: 100 }}
+		out:fade={{ duration: 100 }}
+		onclick={(e) => handleClose(e)}
+	>
 		<div
 			class="inner {size}"
-			use:clickOutside={{
-				enabled: closeOnOutsideClick,
-				callback: () => (!loading ? handleCancel() : null)
-			}}
 			in:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			out:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			bind:this={innerEl}

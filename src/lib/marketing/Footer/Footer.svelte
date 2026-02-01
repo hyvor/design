@@ -24,7 +24,7 @@
 		center?: import('svelte').Snippet;
 		affiliate?: boolean;
 		recordVisit?: boolean;
-        max?: boolean;
+		max?: boolean;
 	}
 
 	let {
@@ -33,7 +33,7 @@
 		center,
 		affiliate = true,
 		recordVisit = true,
-        max = false,
+		max = false
 	}: Props = $props();
 
 	social = {

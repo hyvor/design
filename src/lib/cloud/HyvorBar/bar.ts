@@ -17,7 +17,7 @@ export interface BarUpdate {
 	url?: string;
 }
 
-export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'fortguard';
+export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'post' | 'relay' | 'fortguard';
 
 export const barUnreadUpdates = writable<number>(0);
 export const barHasFailedInvoices = writable<boolean>(false);

@@ -36,6 +36,7 @@ jobs:
       - name: Publish to NPM
         env:
           VERSION: ${{ inputs.version }}
+        working-directory: ./icons
         run: |
           npm ci
           npm run package

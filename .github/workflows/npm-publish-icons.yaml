@@ -1,13 +1,16 @@
 name: Publish to NPM
 on:
   workflow_dispatch:
-  release:
-    types: [published]
+    inputs:
+      version:
+        description: 'Version to publish (e.g., 1.0.0 or 1.0.0-beta.1)'
+        required: true
+        type: string
 permissions:
   id-token: write
 jobs:
   publish:
-    name: 'Publish ${{ github.ref_name }}'
+    name: 'Publish ${{ inputs.version }}'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +23,7 @@ jobs:
       - name: Extract tag name
         id: get_tag
         env:
-          VERSION: ${{ github.ref_name }}
+          VERSION: ${{ inputs.version }}
         run: |
           # Check if it's beta
           if [[ "$VERSION" == *-beta* ]]; then
@@ -32,7 +35,7 @@ jobs:
           fi
       - name: Publish to NPM
         env:
-          VERSION: ${{ github.ref_name }}
+          VERSION: ${{ inputs.version }}
         run: |
           npm ci
           npm run package

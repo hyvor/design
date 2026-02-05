@@ -3,7 +3,7 @@
 	"version": "2.0.0",
 	"private": false,
     "repository": {
-		"url": "https://github.com/hyvor/icons"
+		"url": "https://github.com/hyvor/design"
 	},
 	"scripts": {
 		"dev": "vite dev",

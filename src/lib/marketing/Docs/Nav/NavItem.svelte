@@ -6,11 +6,12 @@
 		children?: import('svelte').Snippet;
 	}
 
-	let { href, children }: Props = $props();
+	let { href, children, ...rest }: Props = $props();
 </script>
 
 <a
 	{href}
+	{...rest}
 	class:active={href === $page.url.pathname}
 	aria-current={href === $page.url.pathname ? 'page' : undefined}
 >

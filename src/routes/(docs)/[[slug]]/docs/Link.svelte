@@ -58,7 +58,7 @@
     <Link href="/" color="link">Link</Link>
     <Link href="/" color="accent">Accent Link</Link>
     <Link href="/" color="text">Text Link</Link>
-	<Link href="/" color="inherit">Inherit Link</Link>
+<Link href="/" color="inherit">Inherit Link</Link>
     <Link href="/" color="link" underline={false}>No underline</Link>
 `}
 />

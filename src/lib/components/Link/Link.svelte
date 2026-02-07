@@ -4,7 +4,7 @@
 	const bubble = createBubbler();
 	interface Props {
 		href: string;
-		color?: 'link' | 'accent' | 'text';
+		color?: 'link' | 'accent' | 'text' | 'inherit';
 		underline?: boolean;
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
@@ -56,6 +56,9 @@
 	}
 	a.color-text {
 		--local-color: var(--text);
+	}
+	a.color-inherit {
+		--local-color: inherit;
 	}
 	a.underline {
 		text-decoration: underline;

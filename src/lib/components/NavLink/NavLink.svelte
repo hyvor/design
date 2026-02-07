@@ -13,11 +13,12 @@
 		[key: string]: any;
 	};
 
-	let { href, active = false, disabled = false, start, children, end }: Props = $props();
+	let { href, active = false, disabled = false, start, children, end, ...rest }: Props = $props();
 </script>
 
 <a
 	{href}
+	{...rest}
 	class:active
 	class:disabled
 	onkeyup={bubble('keyup')}

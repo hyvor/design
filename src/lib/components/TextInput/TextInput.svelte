@@ -34,7 +34,7 @@
 	let {
 		state = 'default',
 		size = 'medium',
-		block = false,
+		block = true,
 		value = $bindable(undefined),
 		input = $bindable(),
 		start,

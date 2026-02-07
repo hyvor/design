@@ -29,8 +29,8 @@
 		<div><code>state</code></div>
 		<div><code>default</code></div>
 		<div>
-			The state of the text input. This will change the border color of the text input. States can
-			be one of:
+			The state of the text input. This will change the border color of the text input. States
+			can be one of:
 			<ul>
 				<li><code>default</code></li>
 				<li><code>success</code></li>
@@ -56,9 +56,10 @@
 
 	<TableRow>
 		<div><code>block</code></div>
-		<div><code>false</code></div>
+		<div><code>true</code></div>
 		<div>
-			If <code>true</code>, the text input will take the full width of its parent.
+			If <code>true</code>, the text input will take the full width of its parent. If
+			<code>false</code>, the text input will only take the width of its content.
 		</div>
 	</TableRow>
 

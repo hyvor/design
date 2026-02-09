@@ -14,3 +14,6 @@ export { bar as hyvorBar } from './HyvorBar/bar.js';
 
 export { default as ResourceCreator } from './ResourceCreator/ResourceCreator.svelte';
 export { default as OrganizationMemberSearch } from './OrganizationMembers/OrganizationMembersSearch.svelte';
+
+export { default as OrganizationCreator } from './OrganizationCreator/OrganizationCreator.svelte';
+export { default as OrganizationSwitcher } from './OrganizationSwitcher/OrganizationSwitcher.svelte';

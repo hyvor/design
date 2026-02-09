@@ -29,8 +29,8 @@
 		<div><code>state</code></div>
 		<div><code>default</code></div>
 		<div>
-			The state of the text input. This will change the border color of the text input. States can
-			be one of:
+			The state of the text input. This will change the border color of the text input. States
+			can be one of:
 			<ul>
 				<li><code>default</code></li>
 				<li><code>success</code></li>
@@ -192,6 +192,33 @@
 	The ending slot is useful with the <a href="/loader">Loader</a> component to indicate a loading state,
 	for example in a search input.
 </p>
+
+<h3 id="other-input-props">Other Input Props</h3>
+
+<CodeBlock
+	code={`
+    <TextInput 
+        placeholder="Disabled input" 
+        disabled 
+    />
+    <TextInput 
+        placeholder="Read-only input" 
+        readonly
+    />
+     <TextInput 
+        type="password"
+        placeholder="Password input"
+    />
+`}
+/>
+
+<CodeResult white>
+	<div class="sizes">
+		<TextInput placeholder="Disabled input" disabled />
+		<TextInput placeholder="Read-only input" readonly value="This cannot be edited" />
+		<TextInput type="password" placeholder="Password input" />
+	</div>
+</CodeResult>
 
 <style>
 	.sizes {

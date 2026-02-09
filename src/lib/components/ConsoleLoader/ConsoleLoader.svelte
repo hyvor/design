@@ -35,7 +35,6 @@
 
 <div class="loader">
 	<div class="hyvor-icon">
-		<!-- img -->
 		<img src={logo} alt="Logo" width={size} height={size} />
 	</div>
 	<div class="shadow-wrap">

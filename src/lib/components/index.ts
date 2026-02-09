@@ -31,6 +31,7 @@ export { default as DetailCard } from './DetailCard/DetailCard.svelte';
 export { default as DetailCards } from './DetailCard/DetailCards.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
+export { default as DropdownContent } from './Dropdown/DropdownContent.svelte';
 
 export { default as Divider } from './Divider/Divider.svelte';
 

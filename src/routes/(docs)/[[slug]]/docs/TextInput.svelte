@@ -29,8 +29,8 @@
 		<div><code>state</code></div>
 		<div><code>default</code></div>
 		<div>
-			The state of the text input. This will change the border color of the text input. States
-			can be one of:
+			The state of the text input. This will change the border color of the text input. States can
+			be one of:
 			<ul>
 				<li><code>default</code></li>
 				<li><code>success</code></li>

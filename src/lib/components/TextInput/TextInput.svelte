@@ -52,7 +52,9 @@
 		onmouseenter,
 		onmouseleave,
 		onchange,
-		oninput
+		oninput,
+
+		...rest
 	}: Props = $props();
 </script>
 
@@ -64,6 +66,7 @@
 	{/if}
 
 	<input
+		{...rest}
 		bind:value
 		bind:this={input}
 		onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}

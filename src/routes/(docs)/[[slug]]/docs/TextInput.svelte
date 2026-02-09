@@ -193,6 +193,33 @@
 	for example in a search input.
 </p>
 
+<h3 id="other-input-props">Other Input Props</h3>
+
+<CodeBlock
+	code={`
+    <TextInput 
+        placeholder="Disabled input" 
+        disabled 
+    />
+    <TextInput 
+        placeholder="Read-only input" 
+        readonly
+    />
+     <TextInput 
+        type="password"
+        placeholder="Password input"
+    />
+`}
+/>
+
+<CodeResult white>
+	<div class="sizes">
+		<TextInput placeholder="Disabled input" disabled />
+		<TextInput placeholder="Read-only input" readonly value="This cannot be edited" />
+		<TextInput type="password" placeholder="Password input" />
+	</div>
+</CodeResult>
+
 <style>
 	.sizes {
 		display: flex;

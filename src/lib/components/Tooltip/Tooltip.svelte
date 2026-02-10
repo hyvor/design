@@ -91,7 +91,7 @@
 			{#if $$slots.tooltip}
 				<slot name="tooltip" />
 			{:else}
-				{text}
+				<div class="tooltip-content" style="white-space: nowrap;">{text}</div>
 			{/if}
 		</div>
 	{/if}
@@ -130,6 +130,7 @@
 		border-radius: 20px;
 		font-size: 14px;
 		z-index: 10000;
+		white-space: pre-wrap;
 	}
 
 	.tooltip:after {

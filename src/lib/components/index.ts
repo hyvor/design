@@ -70,6 +70,8 @@ export { default as SplitControl } from './SplitControl/SplitControl.svelte';
 
 export { default as Switch } from './Switch/Switch.svelte';
 
+export { default as Select } from './Select/Select.svelte';
+
 export { default as Table } from './Table/Table.svelte';
 export { default as TableRow } from './Table/TableRow.svelte';
 export { default as TableCell } from './Table/TableCell.svelte';

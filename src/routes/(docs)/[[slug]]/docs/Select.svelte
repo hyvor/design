@@ -1,8 +1,6 @@
 <script lang="ts">
 	import Select, { type Option } from '$lib/components/Select/Select.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
-	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
-	import Label from '$lib/components/FormControl/Label.svelte';
 	import FormControl from '$lib/components/FormControl/FormControl.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 
@@ -18,7 +16,6 @@
 	let address = {
 		country: ''
 	};
-	let countryError = '';
 </script>
 
 <h1>Select</h1>

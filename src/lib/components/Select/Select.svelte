@@ -1,6 +1,4 @@
 <script lang="ts">
-	import Validation from '../FormControl/Validation.svelte';
-
 	interface Props {
 		value?: any;
 		options: Option[];
@@ -121,11 +119,5 @@
 		&:focus-within {
 			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
 		}
-	}
-
-	/* Ensure options are legible */
-	option {
-		background: var(--bg-surface, white);
-		color: black;
 	}
 </style>

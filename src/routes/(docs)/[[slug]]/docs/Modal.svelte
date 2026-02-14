@@ -538,6 +538,52 @@
 	This is a modal with a footer that has a cancel and a confirm button.
 </Modal>
 
+<p>
+	You can disable the buttons in the footer by <code>disabled = true</code> prop in the footer object.
+</p>
+
+<CodeBlock
+	code={`
+	<Modal
+		...
+		footer={{
+			cancel: {
+				text: 'Cancel',
+				disabled: true
+			},
+			confirm: {
+				text: 'Delete',
+				danger: true,
+				disabled: true
+			}
+		}}
+	/>
+`}
+	language="svelte"
+/>
+
+<CodeResult>
+	<Button on:click={() => (show8 = true)}>Modal with Disabled Footer Buttons</Button>
+</CodeResult>
+
+<Modal
+	title="Modal with Disabled Footer Buttons"
+	bind:show={show8}
+	footer={{
+		cancel: {
+			text: 'Cancel',
+			disabled: true
+		},
+		confirm: {
+			text: 'Delete',
+			danger: true,
+			disabled: true
+		}
+	}}
+>
+	This is a modal with a footer that has disabled cancel and confirm buttons.
+</Modal>
+
 <h2 id="confirm">Confirm</h2>
 
 <p>

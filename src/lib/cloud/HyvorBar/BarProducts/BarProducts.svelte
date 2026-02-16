@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ActionList, ActionListItem, Dropdown } from '$lib/components/index.js';
 	import IconGrid from '@hyvor/icons/IconGrid';
-	import { getCloudContext } from '../../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../../CloudContext/cloudContextState.svelte.js';
 	import { getProductsGroupedBySuite, getSuiteName } from './products.js';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import ActionListGroup from '$lib/components/ActionList/ActionListGroup.svelte';
@@ -43,7 +43,10 @@
 												<product.logo size={20} />
 											{:else}
 												<img
-													src={instance + '/api/public/logo/' + product.component + '.svg'}
+													src={instance +
+														'/api/public/logo/' +
+														product.component +
+														'.svg'}
 													alt={product.name}
 													width="20"
 													height="20"

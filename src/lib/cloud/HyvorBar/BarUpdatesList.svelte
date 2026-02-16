@@ -11,7 +11,7 @@
 		Tag,
 		IconMessage
 	} from '$lib/components/index.js';
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 
 	let updates: BarUpdate[] = $state([]);
 	let loading = $state(true);
@@ -89,7 +89,9 @@
 									{update.content}
 								</div>
 								<div class="date">
-									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
+									{new Intl.DateTimeFormat('en-US').format(
+										new Date(update.created_at * 1000)
+									)}
 								</div>
 							</div>
 						{/snippet}

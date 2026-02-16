@@ -20,7 +20,7 @@
 	import Trustpilot from './img/Trustpilot.svelte';
 	import { SOCIAL_LINKS } from '$lib/marketing/social.js';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 	import { PRODUCTS } from './BarProducts/products.js';
 
 	let supportDropdown = $state(false);

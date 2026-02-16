@@ -1,4 +1,4 @@
-import { getCloudContext, type OrganizationMember } from '../CloudContext/cloudContext.svelte.js';
+import { getCloudContext, type OrganizationMember } from '../CloudContext/cloudContextState.svelte.js';
 
 export async function searchMembers(search: string) {
 	const { instance, organization } = getCloudContext();

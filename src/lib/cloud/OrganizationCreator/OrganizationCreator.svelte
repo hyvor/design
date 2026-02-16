@@ -6,13 +6,13 @@
 	import {
 		getCloudContext,
 		type CloudContextOrganization
-	} from '../CloudContext/cloudContext.svelte.js';
-	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
+	} from '../CloudContext/cloudContextState.svelte.js';
+	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcherState.svelte.js';
 	import {
 		createOrganization,
 		getCreatorOpened,
 		setCreatorOpened
-	} from './organizationCreator.svelte.js';
+	} from './organizationCreatorState.svelte.js';
 
 	let name = $state('');
 	let input: HTMLInputElement | undefined = $state(undefined);

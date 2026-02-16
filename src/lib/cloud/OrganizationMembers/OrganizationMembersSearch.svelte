@@ -2,7 +2,10 @@
 	import { clickOutside, IconMessage, toast } from '$lib/components/index.js';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import { getCloudContext, type OrganizationMember } from '../CloudContext/cloudContext.svelte.js';
+	import {
+		getCloudContext,
+		type OrganizationMember
+	} from '../CloudContext/cloudContextState.svelte.js';
 	import { searchMembers } from './members.js';
 	import { dropdownSlide } from '$lib/components/Dropdown/dropdownSlide.js';
 	import UserPicture from '../@components/UserPicture.svelte';

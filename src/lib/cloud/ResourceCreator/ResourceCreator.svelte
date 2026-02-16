@@ -6,15 +6,15 @@
 	import {
 		getCloudContext,
 		type CloudContextOrganization
-	} from '../CloudContext/cloudContext.svelte.js';
+	} from '../CloudContext/cloudContextState.svelte.js';
 	import OrganizationSwitcher from '../OrganizationSwitcher/OrganizationSwitcher.svelte';
 	import Accordian from './Accordian.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
-	import { createOrganization } from '../OrganizationCreator/organizationCreator.svelte.js';
+	import { createOrganization } from '../OrganizationCreator/organizationCreatorState.svelte.js';
 	import { toast } from '$lib/components/index.js';
-	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcher.svelte.js';
+	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcherState.svelte.js';
 	import FormControl from '$lib/components/FormControl/FormControl.svelte';
 	import Validation from '$lib/components/FormControl/Validation.svelte';
 

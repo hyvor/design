@@ -8,7 +8,7 @@
 	import BarNotice from './BarNotice/BarNotice.svelte';
 	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
-	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 	import { PRODUCTS } from './BarProducts/products.js';
 
 	interface Props {

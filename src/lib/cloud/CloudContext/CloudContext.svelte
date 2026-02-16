@@ -4,7 +4,7 @@
 		incrementCloudContextId,
 		setCloudContext,
 		type CloudContext as CloudContextType
-	} from './cloudContext.svelte.js';
+	} from './cloudContextState.svelte.js';
 	import { onMount } from 'svelte';
 	import { track } from '$lib/marketing/index.js';
 

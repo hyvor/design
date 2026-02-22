@@ -1,6 +1,5 @@
 <script lang="ts">
 	import Container from '$lib/marketing/Container/Container.svelte';
-
 	import IconCopy from '@hyvor/icons/IconCopy';
 	import IconDiscord from '@hyvor/icons/IconDiscord';
 	import IconEnvelope from '@hyvor/icons/IconEnvelope';
@@ -8,38 +7,41 @@
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
 	import IconTwitterX from '@hyvor/icons/IconTwitterX';
 	import IconYoutube from '@hyvor/icons/IconYoutube';
-
 	import Link from '../../components/Link/Link.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Tooltip from '../../components/Tooltip/Tooltip.svelte';
 	import LanguageToggle from '$lib/components/Internationalization/LanguageToggle.svelte';
+	import IconBluesky from '@hyvor/icons/IconBluesky';
+	import { SOCIAL_LINKS, type Socials } from '../social.js';
+	import Affiliate from '../Affiliate/Affiliate.svelte';
+	import RecordVisit from './RecordVisit.svelte';
 
 	const year = new Date().getFullYear();
 
 	interface Props {
 		email?: string | null;
-		social?: any;
-		emailCopied?: boolean;
+		social?: Partial<Socials>;
 		center?: import('svelte').Snippet;
+		affiliate?: boolean;
+		recordVisit?: boolean;
+		max?: boolean;
 	}
 
 	let {
 		email = null,
 		social = $bindable({} as Record<string, string | null>),
-		emailCopied = $bindable(false),
-		center
+		center,
+		affiliate = true,
+		recordVisit = true,
+		max = false
 	}: Props = $props();
 
 	social = {
-		...{
-			x: null,
-			discord: 'https://discord.com/invite/2WRJxQB',
-			github: 'https://github.com/hyvor',
-			youtube: 'https://www.youtube.com/@HYVOR',
-			linkedin: 'https://www.linkedin.com/company/30240435'
-		},
+		...SOCIAL_LINKS,
 		...social
 	};
+
+	let emailCopied = $state(false);
 
 	function handleCopy() {
 		navigator.clipboard.writeText(email!);
@@ -51,7 +53,7 @@
 </script>
 
 <footer>
-	<Container>
+	<Container {max}>
 		<div class="footer-top">
 			<div class="footer-top-left">
 				{#if email}
@@ -79,11 +81,14 @@
 					{#if social.github}
 						<a href={social.github} target="_blank" rel="nofollow"><IconGithub /></a>
 					{/if}
-					{#if social.x}
-						<a href={social.x} target="_blank" rel="nofollow"><IconTwitterX /></a>
-					{/if}
 					{#if social.discord}
 						<a href={social.discord} target="_blank" rel="nofollow"><IconDiscord /></a>
+					{/if}
+					{#if social.blueksy}
+						<a href={social.blueksy} target="_blank" rel="nofollow"><IconBluesky /></a>
+					{/if}
+					{#if social.x}
+						<a href={social.x} target="_blank" rel="nofollow"><IconTwitterX /></a>
 					{/if}
 					{#if social.youtube}
 						<a href={social.youtube} target="_blank" rel="nofollow"><IconYoutube /></a>
@@ -96,7 +101,7 @@
 
 			<div class="footer-top-right">
 				<span class="language-toggle-wrap">
-					<LanguageToggle />
+					<LanguageToggle align="end" position="top" staticPage />
 				</span>
 			</div>
 		</div>
@@ -112,6 +117,14 @@
 			<div class="footer-bottom-right">From France 🇫🇷</div>
 		</div>
 	</Container>
+
+	{#if affiliate}
+		<Affiliate />
+	{/if}
+
+	{#if recordVisit}
+		<RecordVisit />
+	{/if}
 </footer>
 
 <style>

@@ -9,8 +9,8 @@
 
 <p>
 	The table component is used to display data in a tabular format. It <strong>does not</strong>
-	use the <code>table</code> element, but rather uses CSS Grid to achieve the same effect. These two
-	components are used to create a table layout:
+	use the <code>table</code> element, but rather uses CSS Grid to achieve the same effect. These two components
+	are used to create a table layout:
 </p>
 
 <ul>

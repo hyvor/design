@@ -49,3 +49,15 @@ a {
 	padding: 0 15px;
 	margin: auto;
 }
+
+.hds-container-max {
+	width: 1400px;
+	max-width: 100%;
+	padding: 0 15px;
+	margin: auto;
+}
+
+.hds-link {
+	color: var(--link);
+	text-decoration: underline;
+}

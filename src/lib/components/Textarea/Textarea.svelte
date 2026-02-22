@@ -28,18 +28,7 @@
 	}: Props = $props();
 </script>
 
-<span
-	class="input-wrap state-{state}"
-	class:block
-	onclick={() => textarea.focus()}
-	onkeydown={(e) => {
-		if (e.key === 'Enter') {
-			textarea.focus();
-		}
-	}}
-	role="textbox"
-	tabindex="0"
->
+<div class="textarea-container" class:block>
 	{#if start}
 		<span class="slot start">
 			{@render start?.()}
@@ -60,6 +49,7 @@
 		onmouseleave={bubble('mouseleave')}
 		onchange={bubble('change')}
 		oninput={bubble('input')}
+		class="state-{state}"
 		{rows}
 		{cols}
 		{...rest}
@@ -70,88 +60,85 @@
 			{@render end?.()}
 		</span>
 	{/if}
-</span>
+</div>
 
-<style lang="scss">
-	.input-wrap {
+<style>
+	.textarea-container {
+		position: relative;
+		display: inline-block;
+		max-width: 100%;
+
+		&.block {
+			display: block;
+			width: 100%;
+		}
+	}
+
+	textarea {
 		padding: 10px 15px;
 		background-color: var(--input);
-		transition: 0.2s box-shadow;
 		font-family: inherit;
 		font-size: 14px;
 		border-radius: 20px;
+		border-bottom-right-radius: 0;
 		border: none;
 		transition: 0.2s box-shadow;
-		max-width: 100%;
+		width: 100%;
 		color: inherit;
-
-		display: inline-flex;
 		resize: vertical;
-		overflow: auto;
-		align-items: flex-start;
-		justify-content: center;
+		box-sizing: border-box;
 
-		&:focus-within {
+		&:focus {
 			outline: 0;
 			box-shadow: 0 0 0 var(--local-shadow-size) var(--accent-light);
 		}
 
 		--local-shadow-size: 2px;
-	}
 
-	.input-wrap.block {
-		display: block;
-		width: 100%;
-		resize: vertical;
-	}
-
-	.input-wrap:focus-visible {
-		outline: 0;
-	}
-
-	.input-wrap.state-error {
-		box-shadow: 0 0 0 var(--local-shadow-size) var(--red-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--red-light);
+		&.state-error {
+			box-shadow: 0 0 0 var(--local-shadow-size) var(--red-light);
+			&:focus {
+				box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--red-light);
+			}
 		}
-	}
-	.input-wrap.state-success {
-		box-shadow: 0 0 0 2px var(--green-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--green-light);
+
+		&.state-success {
+			box-shadow: 0 0 0 2px var(--green-light);
+			&:focus {
+				box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--green-light);
+			}
 		}
-	}
-	.input-wrap.state-warning {
-		box-shadow: 0 0 0 2px var(--orange-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
+
+		&.state-warning {
+			box-shadow: 0 0 0 2px var(--orange-light);
+			&:focus {
+				box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
+			}
 		}
 	}
 
-	.input-wrap .slot {
-		padding: 0 10px;
+	.start ~ textarea {
+		padding-left: 45px;
 	}
 
-	.input-wrap .slot.start {
-		margin-right: 10px;
+	.end ~ textarea {
+		padding-right: 45px;
 	}
 
-	.input-wrap .slot.end {
-		margin-left: 10px;
-	}
+	.slot {
+		position: absolute;
+		top: 10px;
+		pointer-events: none;
+		display: flex;
+		align-items: center;
+		z-index: 1;
 
-	.input-wrap textarea {
-		flex: 1;
-		width: 100%;
-		border: none;
-		font-family: inherit;
-		font-size: inherit;
-		background: transparent;
-		padding: 0;
-		margin: 0;
-		&:focus {
-			outline: none;
+		&.start {
+			left: 15px;
 		}
-		resize: none;
+
+		&.end {
+			right: 15px;
+		}
 	}
 </style>

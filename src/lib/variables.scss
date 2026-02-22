@@ -8,6 +8,7 @@
 	--accent: #000;
 	--accent-light: #bdbdbd;
 	--accent-lightest: #fafafa;
+	--accent-light-mid: #818181;
 	--accent-text: #fff;
 
 	--border: #e1e1e1;
@@ -41,10 +42,13 @@
 	--gray-dark: #555;
 
 	--hover: #fafafa;
+	--hover-dark: #f0f0f0;
+
 	--link: #1d85d2;
 
 	--input: #f3f3f3;
-	--input-hover: #ccc; /* checkbox/radio */
+	--input-hover: #ccc;
+	/* checkbox/radio */
 
 	--box-shadow: 0 0 30px #0000000d;
 	--box-shadow-light: 0 0 10px 6px rgba(0, 0, 0, 0.06);
@@ -63,7 +67,7 @@
 	--box-background: #1c1c1c;
 
 	--accent-light: #555;
-	--accent-lightest: #333;
+	--accent-lightest: #2d2d2d;
 
 	--border: #4a4a4a;
 	--link: #7cb6e1;

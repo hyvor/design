@@ -145,8 +145,8 @@
 <p>
 	You can nest split controls inside of other split controls by adding nested content inside the <code
 		>nested</code
-	> slot. The parent split control may or may not have a control on the right side. The nested split
-	controls will be indented.
+	> slot. The parent split control may or may not have a control on the right side. The nested split controls
+	will be indented.
 </p>
 
 <CodeBlock

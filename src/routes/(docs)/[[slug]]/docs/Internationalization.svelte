@@ -350,7 +350,7 @@ export function getI18n() {
 
 <CodeBlock
 	code={`
-    <T key="withComponent" params={{ 
+    <I18n.T key="withComponent" params={{ 
         a: {
             component: MyCustomLink, 
             props: {
@@ -387,6 +387,26 @@ export function getI18n() {
 <CodeBlock
 	code={`
     <I18n.T key="withElement" params={{b: {element: 'strong'}}} />
+`}
+	language="svelte"
+></CodeBlock>
+
+<p>
+	<code>props</code> can also be passed to the element.
+</p>
+
+<CodeBlock
+	code={`
+    <I18n.T 
+    key="withElement" 
+    params={{
+        b: {
+            element: 'strong', 
+            props: {
+                class: 'diff-email'
+            }
+        }
+    }} />
 `}
 	language="svelte"
 ></CodeBlock>

@@ -40,20 +40,11 @@
 		...rest
 	}: Props = $props();
 
-	// export let size: 'small' | 'medium' | 'large' = 'medium';
-
-	// export let icon: ComponentType | null = null;
-	// export let message: string | null = null;
-
-	// export let iconSize: number | undefined = undefined;
 	const iconsSizes = {
 		small: 35,
 		medium: 50,
 		large: 75
 	};
-	iconSize = iconSize || iconsSizes[size];
-
-	// export let padding: number | undefined = undefined;
 
 	const paddings = {
 		small: 15,
@@ -61,36 +52,31 @@
 		large: 60
 	};
 
-	padding = padding === undefined ? paddings[size] : padding;
+	const config = $derived.by(() => {
+		const ret = {
+			padding: padding === undefined ? paddings[size] : padding,
+			message,
+			icon,
+			iconSize: iconSize || iconsSizes[size],
+			iconColor
+		};
 
-	//console.log(icon?.prototype);
-	// $inspect(icon?.prototype, icon?);
+		if (!ret.message) {
+			if (empty) ret.message = 'No results found';
+			if (error) ret.message = 'Something went wrong';
+		}
 
-	// export let empty: boolean = false;
-	// export let error: boolean = false;
+		if (!ret.icon) {
+			if (empty) ret.icon = IconInbox;
+			if (error) ret.icon = IconBug;
+		}
 
-	// export let iconColor: string | null = null;
+		if (!ret.iconColor) {
+			ret.iconColor = 'var(--gray-dark)';
+		}
 
-	if (empty) {
-		message = message || 'No results found';
-		icon = IconInbox;
-	}
-
-	if (error) {
-		message = message || 'Something went wrong';
-		icon = IconBug;
-		iconColor = iconColor || 'var(--gray-dark)';
-	}
-
-	const Icon = icon;
-
-	iconColor = iconColor || 'var(--gray-dark)';
-
-	// export let cta: {
-	// 	text: string;
-	// 	onClick: (e: MouseEvent) => void;
-	// 	props?: Record<string, any>;
-	// } | null = null;
+		return ret;
+	});
 
 	function onCtaClick(e: MouseEvent) {
 		if (cta && typeof cta === 'object') {
@@ -99,18 +85,18 @@
 	}
 </script>
 
-<div class="icon-message {size}" style:padding={padding + 'px'}>
-	<div class="icon" style:color={iconColor} {...rest}>
-		<Icon size={iconSize + 'px'} />
+<div class="icon-message {size}" style:padding={config.padding + 'px'}>
+	<div class="icon" style:color={config.iconColor} {...rest}>
+		<config.icon size={config.iconSize + 'px'} />
 	</div>
 
 	<div class="message">
 		{#if children}
 			{@render children()}
-		{:else if typeof message === 'string'}
-			{message}
-		{:else if message}
-			{@render message()}
+		{:else if typeof config.message === 'string'}
+			{config.message}
+		{:else if config.message}
+			{@render config.message()}
 		{/if}
 	</div>
 
@@ -146,7 +132,6 @@
 	}
 
 	.message {
-		/* Add message styles here */
 		color: var(--text-light);
 		margin-top: 10px;
 	}

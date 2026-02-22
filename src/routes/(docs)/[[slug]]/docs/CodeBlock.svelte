@@ -1,5 +1,7 @@
 <script>
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
+	import TabbedCodeBlock from '$lib/components/CodeBlock/TabbedCodeBlock.svelte';
+	import CodeResult from './Helper/CodeResult.svelte';
 </script>
 
 <h1>Code Block</h1>
@@ -29,7 +31,53 @@
 `}
 />
 
+<h2 id="tabbed-code-block">Tabbed Code Block</h2>
+
+<CodeBlock
+	code={`
+<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
+    <CodeBlock
+        code="const x = 10;"
+        language="js"
+    />
+    <CodeBlock
+        code="$x = 10;"
+        language="php"
+    />
+    <CodeBlock
+        code="x := 10"
+    />
+</TabbedCodeBlock>
+`}
+/>
+
+<CodeResult>
+	<TabbedCodeBlock tabs={['JavaScript', 'PHP', 'Go']}>
+		<CodeBlock code="const x = 10;" language="js" />
+		<CodeBlock code="$x = 10;" language="php" />
+		<CodeBlock code="x := 10" />
+	</TabbedCodeBlock>
+</CodeResult>
+
 <h2 id="examples">Examples</h2>
+
+<h3 id="plain">Plain</h3>
+
+<p>
+	Set <code>language={'{null}'}</code> to disable sytax highlighting (note that the default is
+	<code>html</code>).
+</p>
+
+<CodeBlock
+	code={`
+From: user1@example.com
+To: user2@example.com
+Subject: Hello World
+
+<p>Hello World!</p>
+`}
+	language={null}
+/>
 
 <h3 id="html">HTML</h3>
 
@@ -113,9 +161,9 @@
     url: https://blogs.hyvor.com
     plans:
         - name: Starter
-          price: $9
+          price: €12
         - name: Growth
-          price: $19
+          price: €40
 `}
 />
 
@@ -130,11 +178,11 @@
         "plans": [
             {
                 "name": "Starter",
-                "price": "$9"
+                "price": "€12"
             },
             {
                 "name": "Growth",
-                "price": "$19"
+                "price": "€40"
             }
         ]
     }

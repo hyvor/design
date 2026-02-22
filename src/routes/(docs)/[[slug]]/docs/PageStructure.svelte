@@ -46,6 +46,11 @@
 		<div><code>true</code></div>
 		<div>Whether to show the dark mode toggle button.</div>
 	</TableRow>
+	<TableRow>
+		<div><code>max</code></div>
+		<div><code>false</code></div>
+		<div>Set the width for 1440px of the header.</div>
+	</TableRow>
 </Table>
 
 <h3 id="slots">Slots</h3>

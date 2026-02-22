@@ -13,3 +13,5 @@ export { default as Footer } from './Footer/Footer.svelte';
 export { default as FooterLinkList } from './Footer/FooterLinkList.svelte';
 
 export { default as Document } from './Document/Document.svelte';
+
+export { default as track } from './track/track.js';

@@ -1,3 +1,91 @@
+## 2.0.0
+
+- Organizations support added
+- new export: @hyvor/design/cloud
+- HyvorBar moved to cloud
+- CloudContext is now required for Consoles
+- CodeBlock now uses Shiki.js instead of Highlight.js
+- CodeBlock requires `compilerOptions.experimental.async = true` in `svelte.config.js` (https://svelte.dev/docs/svelte/await-expressions)
+- TextInput `select` has been removed
+
+## 1.1.22 - 2025-11-05
+
+- OpenPanel tracking for analytics and events
+
+## 1.1.21 - 2025-10-21
+
+- Added `Accordion` component for collapsible content sections
+- Added `x-large` size option to `Button` component
+- Added `max`prop to `Header` component to change width based on page type
+
+## 1.1.19 - 2025-09-29
+
+- Added `FileUploader` component for uploading files
+
+## 1.1.15 - 2025-09-18
+
+- Added `EmojiPicker` component for selecting emojis
+- `emojibase-data` dependency added
+- `TextInput` and `IconButton` now supports props for events (ex: `oninput`)
+
+## 1.1.14 - 2025-08-04
+
+- `HyvorBar` new props to support OIDC authentication in products
+    - `authOverride` prop to override authentication
+    - `logo` prop to set a custom logo URL for self-hostable products
+    - `cloud` prop to indicate if it is a HYVOR cloud-hosted product
+
+## 1.1.13 - 2025-07-12
+
+- Added `recordVisit` prop to `Footer` for marketing signals
+
+## 1.1.12 - 2025-06-27
+
+- Added marketing `Affiliate` component
+- `Footer` now supports `affiliate` prop to automatically add `Affiliate` component, which is true by default
+
+## 1.1.11 - 2025-06-26
+
+- Added `DetailCard` component
+
+## 1.1.10 - 2025-06-24
+
+- `<CodeBlock>` support plain text
+
+## 1.1.8 - 2025-06-22
+
+- Removed `$app/enviroment` and `$app/navigation` imports from the package to make it Kit-agnostic
+
+## 1.1.5 - 2025-06-20
+
+- Fixed Button event on:click bug
+
+## 1.1.4 - 2025-06-15
+
+- Added `TabbedCodeBlock` component for displaying code in tabs
+
+## 1.1.3 - 2025-06-03
+
+- I.T now supports props in elements
+- .hds-link class added to easily made a link style
+
+## 1.1.1 - 2025-06-02
+
+- Bluesky social support added to HyvorBar and Footer
+- Updated default Twitter URL
+
+## 1.1.0 - 2025-05-19
+
+- HyvorBar updated to support any product name so that design system updates are not necessary for new products
+- Bluesky social support
+- Usage component
+- InternationalizationProvider now saves the selected language in local storage
+- I18n now automatically detects the user's language from navigator.language
+
+## 1.0.10 - 2025-02-02
+
+- Adds billing support to HyvorBar
+
 ## 1.0.8 - 2025-01-010
 
 - Adds `TableCell` component for improved Table accessibility

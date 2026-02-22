@@ -1,10 +1,7 @@
 <script lang="ts" generics="StringsT extends I18nStrings">
-	import { run } from 'svelte/legacy';
-
 	import { type ToDotPaths, type I18nStrings, type PrimitiveType } from './types.js';
 	import { getContext, onMount, tick, getAllContexts, type Component, hydrate } from 'svelte';
 	import { InternationalizationService } from './i18n.js';
-	import { browser } from '$app/environment';
 	import { getMessage as getMessageBase } from './t.js';
 
 	type ComponentDeclaration = {
@@ -26,10 +23,18 @@
 
 	let hasComponentParams = false;
 
-	function getElementFunc(el: string) {
+	function getElementFunc(el: string, props: Record<string, any> = {}) {
 		return (chunks: string | string[]) => {
 			const children = typeof chunks === 'string' ? chunks : chunks.join('');
-			return `<${el}>${children}</${el}>`;
+			let propsStr = '';
+			for (let [propKey, propValue] of Object.entries(props)) {
+				if (typeof propValue === 'string' || typeof propValue === 'number') {
+					propsStr += ` ${propKey}="${propValue}"`;
+				} else if (typeof propValue === 'boolean' && propValue) {
+					propsStr += ` ${propKey}`;
+				}
+			}
+			return `<${el}${propsStr}>${children}</${el}>`;
 		};
 	}
 
@@ -52,7 +57,7 @@
 					};
 					hasComponentParams = true;
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string);
+					newValue = getElementFunc((value as any).element as string, (value as any).props || {});
 				}
 			} else {
 				newValue = value as PrimitiveType;
@@ -94,7 +99,7 @@
 						return '<span id="' + id + '">' + children + '</span>';
 					};
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string);
+					newValue = getElementFunc((value as any).element as string, (value as any).props || {});
 				}
 			} else {
 				newValue = value as PrimitiveType;
@@ -137,10 +142,12 @@
 
 	let mounted = $state(false);
 
-	run(() => {
+	const isBrowser = typeof window !== 'undefined';
+
+	$effect(() => {
 		params;
 		key;
-		if (browser && mounted) {
+		if (isBrowser && mounted) {
 			renderFrontend();
 		}
 	});

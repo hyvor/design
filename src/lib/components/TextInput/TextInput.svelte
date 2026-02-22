@@ -1,31 +1,59 @@
 <script lang="ts">
+	import { legacyHandlers } from '$lib/legacy.js';
+	import type { Snippet } from 'svelte';
+	import type { HTMLInputAttributes } from 'svelte/elements';
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
 
-	interface Props {
+	interface Props extends HTMLInputAttributes {
 		state?: 'default' | 'error' | 'success' | 'warning';
-		size?: 'small' | 'medium' | 'large' | 'x-small';
+		size?: 'small' | 'medium' | 'large' | 'x-small' | any;
 		block?: boolean;
 		value?: any;
 		input?: HTMLInputElement;
 		start?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		select?: boolean;
 		selectInput?: HTMLSelectElement;
+		children?: Snippet;
 		[key: string]: any;
+
+		onkeyup?: (event: KeyboardEvent) => void;
+		onkeydown?: (event: KeyboardEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onclick?: (event: MouseEvent) => void;
+		onmouseover?: (event: MouseEvent) => void;
+		onmouseenter?: (event: MouseEvent) => void;
+		onmouseleave?: (event: MouseEvent) => void;
+		onchange?: (event: Event) => void;
+		oninput?: (event: Event) => void;
 	}
 
 	let {
 		state = 'default',
 		size = 'medium',
-		block = false,
+		block = true,
 		value = $bindable(undefined),
-		input = $bindable({} as HTMLInputElement),
+		input = $bindable(),
 		start,
 		end,
-		select = false,
 		selectInput = $bindable({} as HTMLSelectElement),
+		children,
+
+		onkeyup,
+		onkeydown,
+		onkeypress,
+		onfocus,
+		onblur,
+		onclick,
+		onmouseover,
+		onmouseenter,
+		onmouseleave,
+		onchange,
+		oninput,
+
 		...rest
 	}: Props = $props();
 </script>
@@ -37,43 +65,22 @@
 		</span>
 	{/if}
 
-	{#if select}
-		<select
-			{...rest}
-			bind:value
-			bind:this={selectInput}
-			onkeyup={bubble('keyup')}
-			onkeydown={bubble('keydown')}
-			onkeypress={bubble('keypress')}
-			onfocus={bubble('focus')}
-			onblur={bubble('blur')}
-			onclick={bubble('click')}
-			onmouseover={bubble('mouseover')}
-			onmouseenter={bubble('mouseenter')}
-			onmouseleave={bubble('mouseleave')}
-			onchange={bubble('change')}
-			oninput={bubble('input')}
-		>
-			{@render rest?.children()}
-		</select>
-	{:else}
-		<input
-			{...rest}
-			bind:value
-			bind:this={input}
-			onkeyup={bubble('keyup')}
-			onkeydown={bubble('keydown')}
-			onkeypress={bubble('keypress')}
-			onfocus={bubble('focus')}
-			onblur={bubble('blur')}
-			onclick={bubble('click')}
-			onmouseover={bubble('mouseover')}
-			onmouseenter={bubble('mouseenter')}
-			onmouseleave={bubble('mouseleave')}
-			onchange={bubble('change')}
-			oninput={bubble('input')}
-		/>
-	{/if}
+	<input
+		{...rest}
+		bind:value
+		bind:this={input}
+		onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+		onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+		onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+		onfocus={legacyHandlers(onfocus, bubble('focus'))}
+		onblur={legacyHandlers(onblur, bubble('blur'))}
+		onclick={legacyHandlers(onclick, bubble('click'))}
+		onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+		onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+		onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+		onchange={legacyHandlers(onchange, bubble('change'))}
+		oninput={legacyHandlers(oninput, bubble('input'))}
+	/>
 
 	{#if end}
 		<span class="slot end">
@@ -116,8 +123,7 @@
 		width: 100%;
 	}
 
-	input,
-	select {
+	input {
 		flex: 1;
 		width: 100%;
 		border: none;
@@ -132,10 +138,6 @@
 		&:focus {
 			outline: none;
 		}
-	}
-
-	select {
-		min-width: 180px;
 	}
 
 	.input-wrap.size-x-small {

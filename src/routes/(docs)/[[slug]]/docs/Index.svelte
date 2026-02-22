@@ -17,68 +17,6 @@
 	library.
 </p>
 
-<h2 id="adoption">HDS across HYVOR</h2>
-
-<p>We are incrementally adopting HDS in our products. Here is the current status:</p>
-
-<Table columns="1fr 1fr">
-	<TableRow head>
-		<div>Product</div>
-		<div>Accent Colors</div>
-	</TableRow>
-	<TableRow>
-		<div>
-			<a href="https://hyvor.com" target="_blank">HYVOR</a>
-		</div>
-		<div class="color-dots">
-			<ColorDot color="#000000" />
-			<ColorDot color="#bdbdbd" />
-			<ColorDot color="#fafafa" />
-		</div>
-	</TableRow>
-	<TableRow>
-		<div>
-			<a href="https://talk.hyvor.com" target="_blank">Hyvor Talk</a>
-		</div>
-		<div class="color-dots">
-			<ColorDot color="#ffd969" />
-			<ColorDot color="#fff1cb" />
-			<ColorDot color="#fffaec" />
-		</div>
-	</TableRow>
-	<TableRow>
-		<div>
-			<a href="https://blogs.hyvor.com" target="_blank">Hyvor Blogs</a>
-		</div>
-		<div class="color-dots">
-			<ColorDot color="#896c6b" />
-			<ColorDot color="#f1e8e8" />
-			<ColorDot color="#fffaf8" />
-		</div>
-	</TableRow>
-	<!-- <TableRow>
-        <div>
-            <a href="https://reader.hyvor.com" target="_blank">Hyvor Reader</a>
-        </div>
-        <div>100%</div>
-        <div class="color-dots">
-            <ColorDot color="#354f52" />
-            <ColorDot color="#bdc5c6" />
-            <ColorDot color="#eaebe9" />
-        </div>
-    </TableRow> -->
-	<TableRow>
-		<div>
-			<a href="https://fortguard.io" target="_blank">FortGuard</a>
-		</div>
-		<div class="color-dots">
-			<ColorDot color="#836096" />
-			<ColorDot color="#DFCCFB" />
-			<ColorDot color="#fbf7ff" />
-		</div>
-	</TableRow>
-</Table>
-
 <h2 id="dependencies">Dependencies</h2>
 
 <ul>
@@ -117,16 +55,16 @@
 
 <ul>
 	<li>
-		<code>--accent</code> - The accent color of the product. Used for buttons, links, etc. Must be a
-		dark color to be used with white text.
+		<code>--accent</code> - The accent color of the product. Used for buttons, links, etc. Must be a dark
+		color to be used with white text.
 	</li>
 	<li>
 		<code>--accent-light</code> - A lighter version of the accent color. Used for hover effects. Must
 		be a light color to be used with dark text.
 	</li>
 	<li>
-		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds.
-		Must be closer to white.
+		<code>--accent-lightest</code> - A very light version of the accent color. Used for backgrounds. Must
+		be closer to white.
 	</li>
 </ul>
 
@@ -139,6 +77,7 @@
     npm i @hyvor/design
     npm i @hyvor/icons
 `}
+	language="sh"
 />
 
 <p>
@@ -159,6 +98,7 @@
         <slot />
     </Base>
 `}
+	language="svelte"
 />
 
 <p>Then, use the other components as you need!</p>
@@ -195,8 +135,8 @@
 	HDS uses <a href="https://icons.getbootstrap.com/" target="_blank">Bootstrap Icons</a>
 	for icons, which contains over 2000 icons. Svelte components for each icon are available in the
 	<code>@hyvor/icons</code>
-	package. In addition to general SVG attributes, the svelte component supports <code>size</code> to
-	set the width and height of the icon.
+	package. In addition to general SVG attributes, the svelte component supports <code>size</code> to set
+	the width and height of the icon.
 </p>
 
 <CodeBlock

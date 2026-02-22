@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { run } from 'svelte/legacy';
-
 	import { setContext } from 'svelte';
 
 	interface Props {
@@ -12,9 +10,7 @@
 
 	let { title = undefined, divider = false, selection = undefined, children }: Props = $props();
 
-	run(() => {
-		if (selection !== undefined) setContext('action-list-selection', selection);
-	});
+	setContext('action-list-selection', () => selection);
 </script>
 
 <div class="action-list-group" class:has-divider={divider}>

@@ -13,11 +13,12 @@
 		[key: string]: any;
 	};
 
-	let { href, active = false, disabled = false, start, children, end }: Props = $props();
+	let { href, active = false, disabled = false, start, children, end, ...rest }: Props = $props();
 </script>
 
 <a
 	{href}
+	{...rest}
 	class:active
 	class:disabled
 	onkeyup={bubble('keyup')}
@@ -66,6 +67,10 @@
 	a.active {
 		background-color: var(--accent-lightest);
 		border-left: 3px solid var(--accent);
+	}
+
+	:global(:root.dark) a.active {
+		background-color: color-mix(in srgb, var(--accent-lightest), transparent 80%);
 	}
 
 	a.disabled {

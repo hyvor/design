@@ -1,12 +1,14 @@
 <script>
 	import Base from '$lib/components/Base/Base.svelte';
 	import Document from '$lib/marketing/Document/Document.svelte';
+	import Footer from '$lib/marketing/Footer/Footer.svelte';
 </script>
 
 <Base>
 	<slot />
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>
+
 		<h2 id="heading-2">Heading 2</h2>
 		<p>
 			<!-- lorem ipsum content generate -->
@@ -34,3 +36,5 @@
 		</p>
 	</Document>
 </Base>
+
+<Footer></Footer>

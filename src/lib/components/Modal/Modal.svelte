@@ -1,8 +1,6 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
-	import { clickOutside } from '../directives/clickOutside.js';
 	import IconX from '@hyvor/icons/IconX';
 	import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';
@@ -19,6 +17,7 @@
 		closeOnOutsideClick?: boolean;
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
+		onclose?: () => void;
 
 		footer?: Footer | Snippet;
 		children?: Snippet;
@@ -33,6 +32,7 @@
 		closeOnOutsideClick = true,
 		closeOnEscape = true,
 		loading = false,
+		onclose,
 		footer,
 		children
 	}: Props = $props();
@@ -48,6 +48,7 @@
 	function handleCancel() {
 		show = false;
 		dispatch('cancel');
+		onclose?.();
 	}
 
 	async function setFlex() {
@@ -66,24 +67,34 @@
 		show;
 		setFlex();
 	});
+
+	function handleClose(e: MouseEvent) {
+		// close only when clicking directy on backdrop (not inner content)
+		if (closeOnOutsideClick && !loading && e.target === e.currentTarget) {
+			handleCancel();
+		}
+	}
 </script>
 
 <svelte:window
 	on:keyup={(e) => {
 		if (e.key === 'Escape' && closeOnEscape && !loading) {
-			show = false;
+			handleCancel();
 		}
 	}}
 />
 
 {#if show}
-	<div class="wrap" bind:this={wrapEl} in:fade={{ duration: 100 }} out:fade={{ duration: 100 }}>
+	<div
+		role="presentation"
+		class="wrap"
+		bind:this={wrapEl}
+		in:fade={{ duration: 100 }}
+		out:fade={{ duration: 100 }}
+		onclick={(e) => handleClose(e)}
+	>
 		<div
 			class="inner {size}"
-			use:clickOutside={{
-				enabled: closeOnOutsideClick,
-				callback: () => (!loading ? (show = false) : null)
-			}}
 			in:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			out:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			bind:this={innerEl}

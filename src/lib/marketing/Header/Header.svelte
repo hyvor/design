@@ -4,31 +4,46 @@
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
 	import IconList from '@hyvor/icons/IconList';
+	import HeaderNotification from './HeaderNotification.svelte';
 
 	interface Props {
-		logo: string;
+		product: string;
+		instance?: string;
+		logo?: string;
 		name?: string;
+		href?: string;
 		subName?: undefined | string;
 		darkToggle?: boolean;
 		center?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
+		max?: boolean;
 	}
 
 	let {
+		product,
 		logo,
+		instance = 'https://hyvor.com',
 		name = 'HYVOR',
+		href = '/',
 		subName = undefined,
 		darkToggle = true,
 		center,
-		end
+		end,
+		max = false
 	}: Props = $props();
 </script>
 
 <header>
-	<Container as="nav">
+	<HeaderNotification {instance} {product} />
+	<Container as="nav" {max}>
 		<div class="nav-start">
-			<a class="nav-brand" href="/">
-				<img src={logo} alt="Hyvor Logo" width="30" height="30" />
+			<a class="nav-brand" {href}>
+				<img
+					src={logo || `${instance}/api/public/logo/${product}.svg`}
+					alt="{name + (subName ? ' ' + subName : '')} Logo"
+					width="30"
+					height="30"
+				/>
 				<span class="brand-product">
 					<span class="brand">{name}</span>
 					{#if subName}
@@ -52,25 +67,6 @@
 					<DarkToggle />
 				</span>
 			{/if}
-
-			<!-- <span class="mobile-nav-wrap">
-				<Dropdown align="end" width={300}>
-					<IconButton 
-						color="invisible" 
-						slot="trigger"
-					>
-						<IconList size={18} />
-					</IconButton>
-					<div slot="content" class="mobile-content">
-						<div class="mobile-inner center">
-							<slot name="center" />
-						</div>
-						<div class="mobile-inner end">
-							<slot name="end" />
-						</div>
-					</div>
-				</Dropdown>
-			</span> -->
 		</div>
 
 		<span class="mobile-nav-wrap">
@@ -97,7 +93,7 @@
 
 <div class="header-space"></div>
 
-<style lang="scss">
+<style>
 	.header-space {
 		height: var(--header-height);
 	}
@@ -112,12 +108,13 @@
 		border-bottom: 1px solid var(--border);
 		height: var(--header-height);
 		display: flex;
-		align-items: center;
+		flex-direction: column;
 	}
 
-	header :global(nav) {
+	header :global(> nav) {
 		display: flex;
 		align-items: center;
+		flex: 1;
 	}
 	.nav-brand {
 		display: inline-block;

@@ -1,23 +1,19 @@
-import hljs from 'highlight.js/lib/core';
-import javascript from 'highlight.js/lib/languages/javascript';
-import xml from 'highlight.js/lib/languages/xml';
-import css from 'highlight.js/lib/languages/css';
-import ts from 'highlight.js/lib/languages/typescript';
-import yaml from 'highlight.js/lib/languages/yaml';
-import json from 'highlight.js/lib/languages/json';
-import php from 'highlight.js/lib/languages/php';
+import { codeToHtml } from 'shiki';
 
-hljs.registerLanguage('javascript', javascript);
-hljs.registerLanguage('xml', xml);
-hljs.registerLanguage('css', css);
-hljs.registerLanguage('ts', ts);
-hljs.registerLanguage('yaml', yaml);
-hljs.registerLanguage('json', json);
-hljs.registerLanguage('php', php);
+export type Language =
+	| 'html'
+	| 'css'
+	| 'js'
+	| 'ts'
+	| 'yaml'
+	| 'json'
+	| 'svelte'
+	| 'jsx'
+	| 'php'
+	| 'sh'
+	| string; // see https://shiki.style/languages
 
-export type Language = 'html' | 'css' | 'js' | 'ts';
-
-export default function getCode(code: string, language: Language) {
+export function sanitizeLines(code: string) {
 	let ret = code;
 
 	// remove the first empty line
@@ -45,7 +41,15 @@ export default function getCode(code: string, language: Language) {
 		return line;
 	});
 
-	ret = lines.join('\n');
+	return lines.join('\n');
+}
 
-	return hljs.highlight(ret, { language }).value;
+export async function getCode(code: string, language: Language | null): Promise<string> {
+	return await codeToHtml(code, {
+		lang: language || 'text',
+		themes: {
+			light: 'vitesse-light',
+			dark: 'nord'
+		}
+	});
 }

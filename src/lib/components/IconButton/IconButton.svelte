@@ -1,16 +1,28 @@
 <script lang="ts">
 	import { createBubbler } from 'svelte/legacy';
+	import type { IconButtonSize, IconButtonColor, IconButtonVariant } from './iconButton.types.js';
+	import { legacyHandlers } from '$lib/legacy.js';
 
 	const bubble = createBubbler();
 
 	interface Props {
-		size?: 'small' | 'medium' | 'large' | number;
-		// export let color : 'accent' | 'soft' | 'invisible' | 'danger' = 'accent';
-		color?: 'accent' | 'gray' | 'input' | 'green' | 'red' | 'blue' | 'orange';
-		variant?: 'fill' | 'fill-light' | 'outline' | 'outline-fill' | 'invisible';
+		size?: IconButtonSize;
+		color?: IconButtonColor;
+		variant?: IconButtonVariant;
 		as?: 'button' | 'a';
 		children?: import('svelte').Snippet;
 		[key: string]: any;
+
+		onkeyup?: (event: KeyboardEvent) => void;
+		onkeydown?: (event: KeyboardEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onclick?: (event: MouseEvent) => void;
+		onmouseover?: (event: MouseEvent) => void;
+		onmouseenter?: (event: MouseEvent) => void;
+		onmouseleave?: (event: MouseEvent) => void;
+		onchange?: (event: Event) => void;
 	}
 
 	let {
@@ -19,6 +31,18 @@
 		variant = 'fill',
 		as = 'button',
 		children,
+
+		onkeyup,
+		onkeydown,
+		onkeypress,
+		onfocus,
+		onblur,
+		onclick,
+		onmouseover,
+		onmouseenter,
+		onmouseleave,
+		onchange,
+
 		...rest
 	}: Props = $props();
 
@@ -36,16 +60,16 @@
 	class="button {color} {variant}"
 	style:width={size}
 	style:height={size}
-	onkeyup={bubble('keyup')}
-	onkeydown={bubble('keydown')}
-	onkeypress={bubble('keypress')}
-	onfocus={bubble('focus')}
-	onblur={bubble('blur')}
-	onclick={bubble('click')}
-	onmouseover={bubble('mouseover')}
-	onmouseenter={bubble('mouseenter')}
-	onmouseleave={bubble('mouseleave')}
-	onchange={bubble('change')}
+	onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+	onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+	onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+	onfocus={legacyHandlers(onfocus, bubble('focus'))}
+	onblur={legacyHandlers(onblur, bubble('blur'))}
+	onclick={legacyHandlers(onclick, bubble('click'))}
+	onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+	onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+	onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+	onchange={legacyHandlers(onchange, bubble('change'))}
 	role="button"
 	tabindex="0"
 	{...rest}

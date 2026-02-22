@@ -5,9 +5,9 @@
 	import { type Language, type InternationalizationService } from './i18n.js';
 	import ActionList from '../ActionList/ActionList.svelte';
 	import ActionListItem from '../ActionList/ActionListItem.svelte';
-	import Text from '../Text/Text.svelte';
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconButton from '../IconButton/IconButton.svelte';
+	import { get } from 'svelte/store';
 
 	interface Props {
 		position?: ComponentProps<typeof Dropdown>['position'];
@@ -15,6 +15,8 @@
 		caret?: Component;
 		icon?: boolean;
 		size?: 'medium' | 'small';
+		staticPage?: boolean;
+		goto?: Function; // sveltekit goto function, required for static pages
 	}
 
 	let {
@@ -22,7 +24,9 @@
 		align = 'start',
 		caret = IconCaretDown,
 		icon = false,
-		size = 'medium'
+		size = 'medium',
+		staticPage = false,
+		goto
 	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
@@ -30,9 +34,26 @@
 
 	let show = $state(false);
 
-	function handleClick(language: Language) {
-		i18n.setLocale(language.code);
+	async function handleClick(language: Language) {
 		show = false;
+
+		if (staticPage) {
+			const currentLocale = get(i18n.locale);
+
+			if (language.code === currentLocale) {
+				return;
+			}
+			const url = new URL(window.location.href);
+			url.pathname = url.pathname.replace(`/${currentLocale}`, `/${language.code}`);
+
+			if (goto) {
+				goto(url.toString());
+			} else {
+				window.location.href = url.toString();
+			}
+		}
+
+		i18n.setLocale(language.code);
 	}
 </script>
 
@@ -68,9 +89,6 @@
 						<span class="name">
 							{language.name}
 						</span>
-						<Text small light>
-							{language.region}
-						</Text>
 					</ActionListItem>
 				{/each}
 			</ActionList>
@@ -80,7 +98,6 @@
 
 <style>
 	.flag {
-		margin-right: 6px;
-		font-size: 20px;
+		margin-right: 3px;
 	}
 </style>

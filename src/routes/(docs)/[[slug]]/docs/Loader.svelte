@@ -228,8 +228,8 @@
 <h3 id="full loader">Full Loader</h3>
 
 <p>
-	You can set <code>full</code> prop to true to make the loader take up the full width and height of
-	its parent. Padding is not applied in this case.
+	You can set <code>full</code> prop to true to make the loader take up the full width and height of its
+	parent. Padding is not applied in this case.
 </p>
 
 <CodeBlock
@@ -324,8 +324,9 @@
 <h2 id="load-more">Load Button</h2>
 
 <p>
-	You will often need to display a button with a loader conditionally. The <code>LoadButton</code> component
-	can be used for this purpose. One common use case is to display a button to load more items in a list.
+	You will often need to display a button with a loader conditionally. The <code>LoadButton</code>
+	component can be used for this purpose. One common use case is to display a button to load more items
+	in a list.
 </p>
 
 <CodeBlock

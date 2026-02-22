@@ -1,11 +1,12 @@
 <script lang="ts">
+	import { legacyHandlers } from '$lib/legacy.js';
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
 
 	interface Props {
 		as?: 'button' | 'a';
-		size?: 'x-small' | 'small' | 'medium' | 'large';
+		size?: 'x-small' | 'small' | 'medium' | 'large' | 'x-large';
 		color?: 'accent' | 'gray' | 'green' | 'red' | 'blue' | 'orange' | 'input';
 		block?: boolean;
 		variant?: 'fill' | 'fill-light' | 'outline' | 'invisible' | 'outline-fill';
@@ -16,6 +17,17 @@
 		end?: import('svelte').Snippet;
 		action?: import('svelte').Snippet;
 		[key: string]: any;
+
+		onkeyup?: (event: KeyboardEvent) => void;
+		onkeydown?: (event: KeyboardEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onclick?: (event: MouseEvent) => void;
+		onmouseover?: (event: MouseEvent) => void;
+		onmouseenter?: (event: MouseEvent) => void;
+		onmouseleave?: (event: MouseEvent) => void;
+		onchange?: (event: Event) => void;
 	}
 
 	let {
@@ -30,6 +42,18 @@
 		children,
 		end,
 		action,
+
+		onkeyup,
+		onkeydown,
+		onkeypress,
+		onfocus,
+		onblur,
+		onclick,
+		onmouseover,
+		onmouseenter,
+		onmouseleave,
+		onchange,
+
 		...rest
 	}: Props = $props();
 </script>
@@ -38,16 +62,16 @@
 	this={as}
 	class="button {size} {color} {variant} {align}"
 	class:block
-	onkeyup={bubble('keyup')}
-	onkeydown={bubble('keydown')}
-	onkeypress={bubble('keypress')}
-	onfocus={bubble('focus')}
-	onblur={bubble('blur')}
-	onclick={bubble('click')}
-	onmouseover={bubble('mouseover')}
-	onmouseenter={bubble('mouseenter')}
-	onmouseleave={bubble('mouseleave')}
-	onchange={bubble('change')}
+	onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+	onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+	onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+	onfocus={legacyHandlers(onfocus, bubble('focus'))}
+	onblur={legacyHandlers(onblur, bubble('blur'))}
+	onclick={legacyHandlers(onclick, bubble('click'))}
+	onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+	onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+	onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+	onchange={legacyHandlers(onchange, bubble('change'))}
 	role="button"
 	tabindex="0"
 	bind:this={button}
@@ -176,6 +200,12 @@
 		&:active {
 			--local-hover-shadow-size: 5px;
 		}
+	}
+
+	.button.x-large {
+		height: 40px;
+		padding: 0 26px;
+		font-size: 16px;
 	}
 
 	.button {

@@ -4,11 +4,12 @@
 
 	interface Props {
 		languages: Language[];
+		forceLanguage?: string;
 		children?: import('svelte').Snippet;
 	}
 
-	let { languages, children }: Props = $props();
-	const i18n = new InternationalizationService(languages);
+	let { languages, forceLanguage, children }: Props = $props();
+	const i18n = new InternationalizationService(languages, forceLanguage);
 	const locale = i18n.locale;
 	setContext('i18n', i18n);
 </script>

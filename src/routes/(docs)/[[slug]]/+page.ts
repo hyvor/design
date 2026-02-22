@@ -35,6 +35,14 @@ import Slider from './docs/Slider.svelte';
 import ConsoleLoader from './docs/ConsoleLoader.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
+import Usage from './docs/Usage.svelte';
+import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
+import DetailCard from './docs/DetailCard.svelte';
+import EmojiPicker from './docs/EmojiPicker.svelte';
+import FileUploader from './docs/FileUploader.svelte';
+import Accordion from './docs/Accordion.svelte';
+import Tracking from './docs/Tracking.svelte';
+import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 
 export const prerender = true;
 
@@ -43,14 +51,18 @@ const nav = {
 	'action-list': ActionList,
 	avatar: Avatar,
 	button: Button,
+	'box-shadow-picker': BoxShadowPicker,
 	'color-picker': ColorPicker,
 	'icon-button': IconButton,
 	table: Table,
 	callout: Callout,
 	'code-block': CodeBlock,
 	checkbox: Checkbox,
+	'detail-card': DetailCard,
 	dropdown: Dropdown,
 	divider: Divider,
+	'emoji-picker': EmojiPicker,
+	'file-uploader': FileUploader,
 	switch: Switch,
 	radio: Radio,
 	'split-control': SplitControl,
@@ -72,10 +84,16 @@ const nav = {
 	slider: Slider,
 	'icon-message': IconMessage,
 	'console-loader': ConsoleLoader,
+	accordion: Accordion,
 
+	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,
-	document: Document
+	document: Document,
+	tracking: Tracking,
+
+	// cloud
+	'cloud-context': CloudContextDoc
 };
 
 export async function load({ params }) {

@@ -47,6 +47,7 @@
 		{ href: '/modal', label: 'Modal' },
 		{ href: '/icon-message', label: 'Icon Message' },
 		{ href: '/slider', label: 'Slider' },
+		{ href: '/console-loader', label: 'Console Loader' }
 		{ href: '/accordion', label: 'Accordion' }
 	];
 

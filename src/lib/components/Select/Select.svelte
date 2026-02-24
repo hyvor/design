@@ -1,12 +1,13 @@
 <script lang="ts">
+	import type { Snippet } from 'svelte';
+
 	interface Props {
 		value?: any;
 		options: Option[];
 		state?: 'default' | 'error' | 'success' | 'warning';
 		placeholder?: string;
 		size?: 'small' | 'medium' | 'large' | 'x-small';
-		block?: boolean;
-		[key: string]: any;
+		children?: Snippet;
 	}
 
 	export interface Option {
@@ -20,24 +21,28 @@
 		state = 'default',
 		placeholder,
 		size = 'medium',
-		block = true,
+		children,
 		...rest
 	}: Props = $props();
 </script>
 
-<div class="input-wrap state-{state} size-{size}" class:block>
+<div class="input-wrap state-{state} size-{size}">
 	<select bind:value {...rest}>
-		{#if placeholder}
-			<option value="" disabled selected={!value}>{placeholder}</option>
-		{/if}
+		{#if children}
+			{@render children()}
+		{:else}
+			{#if placeholder}
+				<option value="" disabled selected={!value}>{placeholder}</option>
+			{/if}
 
-		{#each options as option}
-			<option value={option.value}>{option.label}</option>
-		{/each}
+			{#each options as option}
+				<option value={option.value}>{option.label}</option>
+			{/each}
+		{/if}
 	</select>
 </div>
 
-<style lang="scss">
+<style>
 	.input-wrap {
 		display: inline-flex;
 		align-items: center;
@@ -48,16 +53,11 @@
 		transition: 0.2s box-shadow;
 		font-size: 14px;
 		--local-shadow-size: 2px;
+	}
 
-		&:focus-within {
-			outline: 0;
-			box-shadow: 0 0 0 var(--local-shadow-size) var(--accent-light);
-		}
-
-		&.block {
-			display: flex;
-			width: 100%;
-		}
+	.input-wrap:focus-within {
+		outline: 0;
+		box-shadow: 0 0 0 var(--local-shadow-size) var(--accent-light);
 	}
 
 	select {
@@ -72,10 +72,9 @@
 		color: inherit;
 		height: 100%;
 		cursor: pointer;
-
-		&:focus {
-			outline: none;
-		}
+	}
+	select:focus {
+		outline: none;
 	}
 
 	/* Sizes for Select */
@@ -101,23 +100,28 @@
 		font-size: 14px;
 	}
 
-	// styles for states
+	/*  styles for states */
 	.input-wrap.state-error {
 		box-shadow: 0 0 0 var(--local-shadow-size) var(--red-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--red-light);
-		}
 	}
+
+	.input-wrap.state-error:focus-within {
+		box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--red-light);
+	}
+
 	.input-wrap.state-success {
 		box-shadow: 0 0 0 2px var(--green-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--green-light);
-		}
 	}
+
+	.input-wrap.state-success:focus-within {
+		box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--green-light);
+	}
+
 	.input-wrap.state-warning {
 		box-shadow: 0 0 0 2px var(--orange-light);
-		&:focus-within {
-			box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
-		}
+	}
+
+	.input-wrap.state-warning:focus-within {
+		box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
 	}
 </style>

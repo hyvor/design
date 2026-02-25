@@ -59,8 +59,8 @@
 
 <CodeResult white>
 	<Accordion title="What is Accordion?" icon={IconLayers}>
-		Accordion is a UI component that allows users to expand and collapse sections of content, making
-		it easier to navigate and manage large amounts of information.
+		Accordion is a UI component that allows users to expand and collapse sections of content,
+		making it easier to navigate and manage large amounts of information.
 	</Accordion>
 </CodeResult>
 

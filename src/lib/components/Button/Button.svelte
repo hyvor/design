@@ -141,7 +141,8 @@
 
 		&:focus-visible {
 			outline: none;
-			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px) var(--local-hover-shadow-color);
+			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px)
+				var(--local-hover-shadow-color);
 		}
 	}
 
@@ -300,7 +301,11 @@
 				background-color: var(--orange-light);
 				color: var(--orange-dark);
 				transition: 0.2s box-shadow;
-				--local-hover-shadow-color: color-mix(in srgb, var(--orange-light) 40%, transparent);
+				--local-hover-shadow-color: color-mix(
+					in srgb,
+					var(--orange-light) 40%,
+					transparent
+				);
 			}
 		}
 
@@ -363,7 +368,11 @@
 				border-color: var(--accent);
 				color: var(--accent);
 				transition: 0.2s box-shadow;
-				--local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
+				--local-hover-shadow-color: color-mix(
+					in srgb,
+					var(--accent-light) 40%,
+					transparent
+				);
 			}
 
 			&.gray {

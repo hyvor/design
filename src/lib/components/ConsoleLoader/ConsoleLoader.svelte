@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	// import anime from 'animejs';
-
 	interface Props {
 		logo: string;
 		size?: number;

@@ -57,7 +57,10 @@
 					};
 					hasComponentParams = true;
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string, (value as any).props || {});
+					newValue = getElementFunc(
+						(value as any).element as string,
+						(value as any).props || {}
+					);
 				}
 			} else {
 				newValue = value as PrimitiveType;
@@ -88,7 +91,11 @@
 					newValue = (chunks: string | string[]) => {
 						const children = typeof chunks === 'string' ? chunks : chunks.join('');
 						const id =
-							key + '-' + Math.random().toString(36).substring(7) + '-' + Date.now().toString();
+							key +
+							'-' +
+							Math.random().toString(36).substring(7) +
+							'-' +
+							Date.now().toString();
 						componentBindings.set(id, {
 							component: component!,
 							props: {
@@ -99,7 +106,10 @@
 						return '<span id="' + id + '">' + children + '</span>';
 					};
 				} else if (value.hasOwnProperty('element')) {
-					newValue = getElementFunc((value as any).element as string, (value as any).props || {});
+					newValue = getElementFunc(
+						(value as any).element as string,
+						(value as any).props || {}
+					);
 				}
 			} else {
 				newValue = value as PrimitiveType;

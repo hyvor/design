@@ -26,7 +26,8 @@
 	let shadowState = $state(parseBoxShadow(value));
 
 	function parseBoxShadow(value: string) {
-		const regex = /(-?\d+px)\s+(-?\d+px)\s+(\d+px)\s+(\d+px)\s+(#[0-9a-fA-F]{8}|\#[0-9a-fA-F]{6})/;
+		const regex =
+			/(-?\d+px)\s+(-?\d+px)\s+(\d+px)\s+(\d+px)\s+(#[0-9a-fA-F]{8}|\#[0-9a-fA-F]{6})/;
 
 		const match = value.match(regex);
 

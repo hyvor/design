@@ -67,8 +67,8 @@
 
 <p>
 	Here is an example of a checkbox with a <a href="/form-control">FormControl</a>
-	component. We also use the <code>{'<InputGroup>'}</code> element to group the checkboxes together with
-	a fine gap between them.
+	component. We also use the <code>{'<InputGroup>'}</code> element to group the checkboxes together
+	with a fine gap between them.
 </p>
 
 <CodeBlock

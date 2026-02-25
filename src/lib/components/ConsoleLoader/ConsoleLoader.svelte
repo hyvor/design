@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import anime from 'animejs';
+	// import anime from 'animejs';
 
 	interface Props {
 		logo: string;
@@ -8,29 +8,6 @@
 	}
 
 	let { logo, size = 100 }: Props = $props();
-
-	onMount(() => {
-		const icon = document.querySelector('.hyvor-icon') as HTMLElement;
-		const shadow = document.querySelector('.shadow') as HTMLElement;
-
-		anime({
-			targets: icon,
-			translateY: [
-				{ value: -24, duration: 400, easing: 'easeOutQuad' },
-				{ value: 0, duration: 500, easing: 'easeInQuad' }
-			],
-			loop: true
-		});
-
-		anime({
-			targets: shadow,
-			scale: [
-				{ value: 1.3, duration: 400, easing: 'easeOutQuad' },
-				{ value: 1.2, duration: 500, easing: 'easeInQuad' }
-			],
-			loop: true
-		});
-	});
 </script>
 
 <div class="loader">
@@ -46,14 +23,48 @@
 </div>
 
 <style>
+	/* css styles for the animations start here */
+
+	/* bounce animation */
+
+	@keyframes bounce {
+		0% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-24px);
+		}
+		100% {
+			transform: translateY(0);
+		}
+	}
+
+	/* shadow animation */
+	@keyframes shadowPulse {
+		0%,
+		100% {
+			transform: scale(1.2);
+			opacity: 1;
+			animation-timing-function: ease-out;
+		}
+		50% {
+			transform: scale(0.8);
+			opacity: 0.4;
+			animation-timing-function: ease-in;
+		}
+	}
+
 	.loader {
 		position: fixed;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		height: 100vh;
-		width: 100vw;
+		inset: 0;
+	}
+
+	.hyvor-icon {
+		animation: bounce 0.9s infinite;
 	}
 
 	.shadow-wrap {
@@ -64,9 +75,10 @@
 	}
 
 	.shadow {
-		background: rgba(0, 0, 0, 0.25);
+		background: rgba(0, 0, 0, 0.2);
 		border-radius: 50%;
 		filter: blur(8px);
 		will-change: transform, opacity;
+		animation: shadowPulse 0.9s infinite;
 	}
 </style>

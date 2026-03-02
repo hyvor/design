@@ -12,15 +12,14 @@
 		<img src={logo} alt="Logo" width={size} height={size} />
 	</div>
 	<div class="shadow-wrap">
-		<div class="shadow" style="width: calc({size}px * 0.95); height: calc({size}px * 0.12);"></div>
+		<div
+			class="shadow"
+			style="width: calc({size}px * 0.95); height: calc({size}px * 0.12);"
+		></div>
 	</div>
 </div>
 
 <style>
-	/* css styles for the animations start here */
-
-	/* bounce animation */
-
 	@keyframes bounce {
 		0% {
 			transform: translateY(0);
@@ -33,18 +32,15 @@
 		}
 	}
 
-	/* shadow animation */
 	@keyframes shadowPulse {
 		0%,
 		100% {
 			transform: scale(1.2);
 			opacity: 1;
-			animation-timing-function: ease-out;
 		}
 		50% {
 			transform: scale(0.8);
 			opacity: 0.4;
-			animation-timing-function: ease-in;
 		}
 	}
 
@@ -58,7 +54,8 @@
 	}
 
 	.hyvor-icon {
-		animation: bounce 0.9s infinite;
+		animation: bounce 1.2s infinite;
+		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	.shadow-wrap {
@@ -73,6 +70,7 @@
 		border-radius: 50%;
 		filter: blur(8px);
 		will-change: transform, opacity;
-		animation: shadowPulse 0.9s infinite;
+		animation: shadowPulse 1.2s infinite;
+		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 	}
 </style>

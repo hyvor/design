@@ -12,10 +12,7 @@
 		<img src={logo} alt="Logo" width={size} height={size} />
 	</div>
 	<div class="shadow-wrap">
-		<div
-			class="shadow"
-			style="width: calc({size}px * 0.95); height: calc({size}px * 0.12);"
-		></div>
+		<div class="shadow" style="width: calc({size}px * 0.95); height: calc({size}px * 0.12);"></div>
 	</div>
 </div>
 

@@ -98,8 +98,7 @@
 
 		&:focus-visible {
 			outline: none;
-			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px)
-				var(--local-hover-shadow-color);
+			box-shadow: 0 0 0 calc(var(--local-hover-shadow-size) + 1px) var(--local-hover-shadow-color);
 		}
 	}
 
@@ -189,11 +188,7 @@
 			&.orange {
 				background-color: var(--orange-light);
 				color: var(--orange-dark);
-				--local-hover-shadow-color: color-mix(
-					in srgb,
-					var(--orange-light) 40%,
-					transparent
-				);
+				--local-hover-shadow-color: color-mix(in srgb, var(--orange-light) 40%, transparent);
 			}
 		}
 
@@ -246,11 +241,7 @@
 				background-color: var(--accent-light);
 				border-color: var(--accent);
 				color: var(--accent);
-				--local-hover-shadow-color: color-mix(
-					in srgb,
-					var(--accent-light) 40%,
-					transparent
-				);
+				--local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
 			}
 
 			&.gray {

@@ -27,8 +27,7 @@
 		}
 
 		const category =
-			(activeEl.closest('.nav-category')?.querySelector('.name') as HTMLElement)?.innerText ||
-			null;
+			(activeEl.closest('.nav-category')?.querySelector('.name') as HTMLElement)?.innerText || null;
 
 		active = {
 			name: activeEl.innerText,

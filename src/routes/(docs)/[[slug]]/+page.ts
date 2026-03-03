@@ -43,6 +43,7 @@ import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
+import Select from './docs/Select.svelte';
 
 export const prerender = true;
 
@@ -85,7 +86,7 @@ const nav = {
 	'icon-message': IconMessage,
 	'console-loader': ConsoleLoader,
 	accordion: Accordion,
-
+	select: Select,
 	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,

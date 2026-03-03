@@ -157,7 +157,9 @@
 <CodeBlock
 	code={`
     <TextInput placeholder="Search">
-        <IconSearch slot="start" />
+        {#snippet start()}
+            <IconSearch />
+        {/snippet}
     </TextInput>
 `}
 />
@@ -175,7 +177,9 @@
 <CodeBlock
 	code={`
     <TextInput placeholder="Delay" type="number">
-        <span slot="end">minutes</span>
+        {#snippet end()}
+            <span>minutes</span>
+        {/snippet}
     </TextInput>
 `}
 />

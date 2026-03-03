@@ -268,7 +268,9 @@ All other properties will be forwarded to the underlying element.
 		<CodeBlock
 			code={`
                 <Button>
-                    <IconSearch slot="start" />
+                    {#snippet start()}
+                        <IconSearch />
+                    {/snippet}
                     Search
                 </Button>
             `}
@@ -290,7 +292,9 @@ All other properties will be forwarded to the underlying element.
 			code={`
                 <Button>
                     Search
-                    <IconSearch slot="end" />
+                    {#snippet end()}
+                        <IconSearch />
+                    {/snippet}
                 </Button>
             `}
 		/>
@@ -311,9 +315,13 @@ All other properties will be forwarded to the underlying element.
 		<CodeBlock
 			code={`
                 <Button block color="gray">
-                    <IconSearch slot="start" />
+                    {#snippet start()}
+                        <IconSearch />
+                    {/snippet}
                     Search
-                    <IconCaretDown slot="action" />
+                    {#snippet action()}
+                        <IconCaretDown />
+                    {/snippet}
                 </Button>
             `}
 		/>
@@ -343,7 +351,10 @@ All other properties will be forwarded to the underlying element.
 <CodeBlock
 	code={`
         <Button as="a" href="https://hyvor.com" target="_blank">
-            HYVOR <IconBoxArrowUpRight slot="end" />
+            HYVOR
+            {#snippet end()}
+                <IconBoxArrowUpRight />
+            {/snippet}
         </Button>
     `}
 />
@@ -366,7 +377,9 @@ All other properties will be forwarded to the underlying element.
 	code={`
         <Button>
             Submit
-            <Loader slot="action" size="small" invert />
+            {#snippet action()}
+                <Loader size="small" invert />
+            {/snippet}
         </Button>
     `}
 />
@@ -384,7 +397,9 @@ All other properties will be forwarded to the underlying element.
 <CodeBlock
 	code={`
     <Button>
-        <svelte:fragment slot="start">{#if loading}<Loader  />{/if}</svelte:fragment>
+        {#snippet start()}
+            {#if loading}<Loader />{/if}
+        {/snippet}
         Button
     </Button>
 `}

@@ -79,8 +79,18 @@
 
 <CodeBlock
 	code={`
-    <Link href="/"><IconHouse slot="start" />Home</Link>
-    <Link href="/" underline={false}><IconHouse slot="start" />Home</Link>
+    <Link href="/">
+        {#snippet start()}
+            <IconHouse />
+        {/snippet}
+        Home
+    </Link>
+    <Link href="/" underline={false}>
+        {#snippet start()}
+            <IconHouse />
+        {/snippet}
+        Home
+    </Link>
 `}
 />
 
@@ -107,11 +117,15 @@
 	code={`
     <Link href="/" target="_blank">
         Open
-        <IconBoxArrowUpRight slot="end" />
+        {#snippet end()}
+            <IconBoxArrowUpRight />
+        {/snippet}
     </Link>
-    <Link href="/" target="_blank" underline={false} >
+    <Link href="/" target="_blank" underline={false}>
         Open
-        <IconBoxArrowUpRight slot="end" />
+        {#snippet end()}
+            <IconBoxArrowUpRight />
+        {/snippet}
     </Link>
 `}
 />

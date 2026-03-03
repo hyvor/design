@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 
 export interface BarConfig {
 	name: string | null;

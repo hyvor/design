@@ -48,7 +48,9 @@
 		{ href: '/icon-message', label: 'Icon Message' },
 		{ href: '/slider', label: 'Slider' },
 		{ href: '/accordion', label: 'Accordion' },
-		{ href: '/select', label: 'Select' }
+		{ href: '/select', label: 'Select' },
+		{ href: '/console-loader', label: 'Console Loader' },
+		{ href: '/accordion', label: 'Accordion' }
 	];
 
 	const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));

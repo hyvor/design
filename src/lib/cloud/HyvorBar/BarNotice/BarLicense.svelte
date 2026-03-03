@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import Tag from '$lib/components/Tag/Tag.svelte';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 	import IconBuilding from '@hyvor/icons/IconBuilding';

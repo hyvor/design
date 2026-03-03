@@ -5,7 +5,7 @@
 	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import ActionList from '$lib/components/ActionList/ActionList.svelte';
 	import ActionListItem from '$lib/components/ActionList/ActionListItem.svelte';
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 
 	const cloudContext = $derived(getCloudContext());
 	const logoutUrl = `${cloudContext.instance}/account/logout`;

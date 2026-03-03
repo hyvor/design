@@ -4,13 +4,13 @@
 
 	interface Props {
 		selection: 'none' | 'single' | 'multi';
-		selected: boolean;
+		selected?: boolean | undefined;
 	}
 
-	let { selection, selected = $bindable(false) }: Props = $props();
+	let { selection, selected = $bindable() }: Props = $props();
 </script>
 
-{#if selection !== 'none'}
+{#if selection !== 'none' && selected !== undefined}
 	<span class="selected">
 		{#if selection === 'multi'}
 			<span style="transform:scale(0.9);transform-origin:top">

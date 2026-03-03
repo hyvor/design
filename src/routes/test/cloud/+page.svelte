@@ -6,7 +6,7 @@
 	import {
 		type CloudContextOrganization,
 		type CloudContext as CloudContextType
-	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	} from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import { onMount } from 'svelte';
 	import ResourceCreator from '$lib/cloud/ResourceCreator/ResourceCreator.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';

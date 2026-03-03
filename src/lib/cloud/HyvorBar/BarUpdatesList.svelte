@@ -11,7 +11,7 @@
 		Tag,
 		IconMessage
 	} from '$lib/components/index.js';
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 
 	let updates: BarUpdate[] = $state([]);
 	let loading = $state(true);

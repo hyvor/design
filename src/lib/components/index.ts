@@ -23,6 +23,7 @@ export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 export { default as TabbedCodeBlock } from './CodeBlock/TabbedCodeBlock.svelte';
 
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
+export { default as ConsoleLoader } from './ConsoleLoader/ConsoleLoader.svelte';
 
 export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';

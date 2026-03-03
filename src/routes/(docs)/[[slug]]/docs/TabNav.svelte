@@ -114,16 +114,24 @@
 
     <TabNav bind:active={active}>
         <TabNavItem name="settings">
-            <IconGear slot="start" />
+            {#snippet start()}
+                <IconGear />
+            {/snippet}
             Settings
         </TabNavItem>
         <TabNavItem name="seo">
-            <IconSearchHeart slot="start" />
+            {#snippet start()}
+                <IconSearchHeart />
+            {/snippet}
             SEO
-            <Tag size="x-small" color="green" slot="end">80%</Tag>
+            {#snippet end()}
+                <Tag size="x-small" color="green">80%</Tag>
+            {/snippet}
         </TabNavItem>
         <TabNavItem name="links">
-            <IconLink45deg slot="start" />
+            {#snippet start()}
+                <IconLink45deg />
+            {/snippet}
             Links
         </TabNavItem>
     </TabNav>
@@ -159,5 +167,5 @@
 		Active tab is {active1}
 	</p>
 
-	<Button on:click={() => (active1 = 'seo')}>Set SEO as active</Button>
+	<Button onclick={() => (active1 = 'seo')}>Set SEO as active</Button>
 </CodeResult>

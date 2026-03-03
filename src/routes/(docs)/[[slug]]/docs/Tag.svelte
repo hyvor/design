@@ -190,7 +190,9 @@
 <CodeBlock
 	code={`
     <Tag>
-        <IconJournalText slot="start" size={12} />
+        {#snippet start()}
+            <IconJournalText size={12} />
+        {/snippet}
         Draft
     </Tag>
 `}
@@ -286,7 +288,10 @@
 <CodeBlock
 	code={`
     <Tag>
-        Loading<Loader size="small" slot="end" invert />
+        Loading
+        {#snippet end()}
+            <Loader size="small" invert />
+        {/snippet}
     </Tag>
 `}
 />

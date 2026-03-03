@@ -10,13 +10,13 @@
 	import {
 		getCloudContext,
 		type CloudContextOrganization
-	} from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	} from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import {
 		getMyOrganizations,
 		getLoadedOrganizations,
 		switchOrganization
-	} from './organizationSwitcher.svelte.js';
-	import { setCreatorOpened } from '../OrganizationCreator/organizationCreator.svelte.js';
+	} from './organizationSwitcherState.svelte.js';
+	import { setCreatorOpened } from '../OrganizationCreator/organizationCreatorState.svelte.js';
 
 	let loading = $state(true);
 	let error = $state('');

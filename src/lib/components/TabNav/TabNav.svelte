@@ -25,10 +25,10 @@
 	});
 
 	onMount(() => {
-		const unsubscribe = tabNavState.subscribe((value) => {
-			active = value.activeTab;
-		});
-		return unsubscribe;
+		// const unsubscribe = tabNavState.subscribe((value) => {
+		// 	active = value.activeTab;
+		// });
+		// return unsubscribe;
 	});
 </script>
 

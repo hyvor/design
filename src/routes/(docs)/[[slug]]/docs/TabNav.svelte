@@ -10,6 +10,7 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	let active1 = $state('settings');
 </script>
@@ -101,19 +102,19 @@
 	</TableRow>
 </Table>
 
-<h2 id="usage">Usage</h2>
+<h2 id="usage">Usage with URLs</h2>
 
 <CodeBlock
+	language="svelte"
 	code={`
     <` +
 		`script lang="ts">
         import { TabNav, TabNavItem } from '@hyvor/design';
-        let active = 'settings';
     </` +
 		`script>
 
-    <TabNav bind:active={active}>
-        <TabNavItem name="settings">
+    <TabNav basePath="/settings">
+        <TabNavItem name="settings" index>
             {#snippet start()}
                 <IconGear />
             {/snippet}
@@ -138,15 +139,66 @@
 `}
 />
 
+<a href="/test/tabnav" target="_blank">
+	<Button color="input">
+		View Demo
+		{#snippet end()}
+			<IconBoxArrowUpRight size={14} />
+		{/snippet}
+	</Button>
+</a>
+
+<h2 id="usage">Manual usage</h2>
+
+<CodeBlock
+	language="svelte"
+	code={`
+    <` +
+		`script lang="ts">
+        import { TabNav, TabNavItem } from '@hyvor/design';
+        let active = 'settings';
+    </` +
+		`script>
+
+    <TabNav>
+        <TabNavItem name="settings" active={active === 'settings'} onclick={() => active = 'settings'}>
+            {#snippet start()}
+                <IconGear />
+            {/snippet}
+            Settings
+        </TabNavItem>
+        <TabNavItem name="seo" active={active === 'seo'} onclick={() => active = 'seo'}>
+            {#snippet start()}
+                <IconSearchHeart />
+            {/snippet}
+            SEO
+            {#snippet end()}
+                <Tag size="x-small" color="green">80%</Tag>
+            {/snippet}
+        </TabNavItem>
+        <TabNavItem name="links" active={active === 'links'} onclick={() => active = 'links'}>
+            {#snippet start()}
+                <IconLink45deg />
+            {/snippet}
+            Links
+        </TabNavItem>
+    </TabNav>
+`}
+/>
+
 <CodeResult>
-	<TabNav bind:active={active1}>
-		<TabNavItem name="settings">
+	<TabNav>
+		<TabNavItem
+			name="settings"
+			active={active1 === 'settings'}
+			onclick={() => (active1 = 'settings')}
+		>
 			{#snippet start()}
 				<IconGear />
 			{/snippet}
 			Settings
 		</TabNavItem>
-		<TabNavItem name="seo">
+		<TabNavItem name="seo" active={active1 === 'seo'} onclick={() => (active1 = 'seo')}>
 			{#snippet start()}
 				<IconSearchHeart />
 			{/snippet}
@@ -155,7 +207,7 @@
 				<Tag size="x-small" color="green">80%</Tag>
 			{/snippet}
 		</TabNavItem>
-		<TabNavItem name="links">
+		<TabNavItem name="links" active={active1 === 'links'} onclick={() => (active1 = 'links')}>
 			{#snippet start()}
 				<IconLink45deg />
 			{/snippet}

@@ -20,6 +20,7 @@
 	let show4 = $state(false);
 
 	let show5 = $state(false);
+	let show5Active = $state('paste');
 
 	let show6 = $state(false);
 
@@ -322,14 +323,22 @@
 
 <Modal bind:show={show5} size="large">
 	{#snippet title()}
-		<TabNav active="paste">
-			<TabNavItem name="paste">
+		<TabNav>
+			<TabNavItem
+				name="paste"
+				active={show5Active === 'paste'}
+				onclick={() => (show5Active = 'paste')}
+			>
 				{#snippet start()}
 					<IconLink45deg />
 				{/snippet}
 				Paste Link
 			</TabNavItem>
-			<TabNavItem name="posts">
+			<TabNavItem
+				name="posts"
+				active={show5Active === 'posts'}
+				onclick={() => (show5Active = 'posts')}
+			>
 				{#snippet start()}
 					<IconSearch size={13} />
 				{/snippet}

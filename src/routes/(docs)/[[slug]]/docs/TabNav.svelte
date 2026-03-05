@@ -10,6 +10,7 @@
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
+	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	let active1 = $state('settings');
 </script>
@@ -71,8 +72,8 @@
 	<TableRow>
 		<div><code>active</code></div>
 		<div>
-			Set to <code>true</code> to make the tab active (optional). Only use if you want to control the
-			active tab from outside.
+			Set to <code>true</code> to make the tab active (optional). Only use if you want to control
+			the active tab from outside.
 		</div>
 	</TableRow>
 </Table>
@@ -101,9 +102,56 @@
 	</TableRow>
 </Table>
 
-<h2 id="usage">Usage</h2>
+<h2 id="usage">Usage with URLs</h2>
 
 <CodeBlock
+	language="svelte"
+	code={`
+    <` +
+		`script lang="ts">
+        import { TabNav, TabNavItem } from '@hyvor/design';
+    </` +
+		`script>
+
+    <TabNav basePath="/settings">
+        <TabNavItem name="settings" index>
+            {#snippet start()}
+                <IconGear />
+            {/snippet}
+            Settings
+        </TabNavItem>
+        <TabNavItem name="seo">
+            {#snippet start()}
+                <IconSearchHeart />
+            {/snippet}
+            SEO
+            {#snippet end()}
+                <Tag size="x-small" color="green">80%</Tag>
+            {/snippet}
+        </TabNavItem>
+        <TabNavItem name="links">
+            {#snippet start()}
+                <IconLink45deg />
+            {/snippet}
+            Links
+        </TabNavItem>
+    </TabNav>
+`}
+/>
+
+<a href="/test/tabnav" target="_blank">
+	<Button color="input">
+		View Demo
+		{#snippet end()}
+			<IconBoxArrowUpRight size={14} />
+		{/snippet}
+	</Button>
+</a>
+
+<h2 id="usage">Manual usage</h2>
+
+<CodeBlock
+	language="svelte"
 	code={`
     <` +
 		`script lang="ts">

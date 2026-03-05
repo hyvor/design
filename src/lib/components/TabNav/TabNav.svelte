@@ -21,7 +21,7 @@
 	setContext('tab-nav-state', tabNavState);
 
 	$effect(() => {
-		tabNavState.update((state) => ({ ...state, activeTab: active }));
+		//tabNavState.update((state) => ({ ...state, activeTab: active }));
 	});
 
 	onMount(() => {

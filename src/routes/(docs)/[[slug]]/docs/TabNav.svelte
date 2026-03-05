@@ -160,14 +160,14 @@
     </` +
 		`script>
 
-    <TabNav bind:active={active}>
-        <TabNavItem name="settings">
+    <TabNav>
+        <TabNavItem name="settings" active={active === 'settings'} onclick={() => active = 'settings'}>
             {#snippet start()}
                 <IconGear />
             {/snippet}
             Settings
         </TabNavItem>
-        <TabNavItem name="seo">
+        <TabNavItem name="seo" active={active === 'seo'} onclick={() => active = 'seo'}>
             {#snippet start()}
                 <IconSearchHeart />
             {/snippet}
@@ -176,7 +176,7 @@
                 <Tag size="x-small" color="green">80%</Tag>
             {/snippet}
         </TabNavItem>
-        <TabNavItem name="links">
+        <TabNavItem name="links" active={active === 'links'} onclick={() => active = 'links'}>
             {#snippet start()}
                 <IconLink45deg />
             {/snippet}
@@ -187,14 +187,18 @@
 />
 
 <CodeResult>
-	<TabNav bind:active={active1}>
-		<TabNavItem name="settings">
+	<TabNav>
+		<TabNavItem
+			name="settings"
+			active={active1 === 'settings'}
+			onclick={() => (active1 = 'settings')}
+		>
 			{#snippet start()}
 				<IconGear />
 			{/snippet}
 			Settings
 		</TabNavItem>
-		<TabNavItem name="seo">
+		<TabNavItem name="seo" active={active1 === 'seo'} onclick={() => (active1 = 'seo')}>
 			{#snippet start()}
 				<IconSearchHeart />
 			{/snippet}
@@ -203,7 +207,7 @@
 				<Tag size="x-small" color="green">80%</Tag>
 			{/snippet}
 		</TabNavItem>
-		<TabNavItem name="links">
+		<TabNavItem name="links" active={active1 === 'links'} onclick={() => (active1 = 'links')}>
 			{#snippet start()}
 				<IconLink45deg />
 			{/snippet}

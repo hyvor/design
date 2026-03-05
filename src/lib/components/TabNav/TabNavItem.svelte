@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
 	import { page } from '$app/state';
 	import { goto } from '$app/navigation';
 	import type { TabNavState } from './tabnav.js';
@@ -18,25 +17,28 @@
 
 	let { active = false, name, start, children, end, index, onclick }: Props = $props();
 
-	const tabNavState = getContext('tab-nav-state') as Writable<TabNavState>;
+	const tabNavState = getContext('tab-nav-state') as TabNavState;
+
+	function getTabPath() {
+		if (!tabNavState.basePath) return '';
+		return index ? `${tabNavState.basePath}` : `${tabNavState.basePath}/${name}`;
+	}
 
 	let isActive = $derived.by(() => {
-		if ($tabNavState.basePath) {
+		if (active) return true;
+
+		if (tabNavState.basePath) {
 			const currentUrl = page.url.pathname;
-			const tabPath = index ? `${$tabNavState.basePath}` : `${$tabNavState.basePath}/${name}`;
-			return currentUrl === tabPath;
+			return currentUrl === getTabPath();
 		}
 
-		return $tabNavState.activeTab === name || active;
+		return false;
 	});
 
 	function handleClick(event: MouseEvent) {
-		if ($tabNavState.basePath) {
-			goto(index ? `${$tabNavState.basePath}` : `${$tabNavState.basePath}/${name}`);
-		} else {
-			tabNavState.update((state) => ({ ...state, activeTab: name }));
+		if (tabNavState.basePath) {
+			goto(getTabPath());
 		}
-
 		onclick?.(event);
 	}
 </script>

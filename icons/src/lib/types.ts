@@ -1,4 +1,4 @@
-// auto-generated via copy.ts    
+// auto-generated via generate.ts    
 export type IconName = 'zoom-out' |
 	'zoom-in' |
 	'youtube' |

@@ -22,7 +22,7 @@ async function create() {
         .map(n => `'${n}'`)
         .join(" |\n\t");
 
-    const types = `// auto-generated via copy.ts    
+    const types = `// auto-generated via generate.ts    
 export type IconName = ${nameTypes};
 `;
 

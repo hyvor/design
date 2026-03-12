@@ -1,3 +1,6 @@
+## 2.0.0 - 2026-02-05
+- BREAKING: Icons are no longer Svelte Components. Use new <Icon name="airplane" />
+
 ## 1.1.1 - 2025-05-10
 - Icons updated to bootstrap icons `1.13.1`.
 

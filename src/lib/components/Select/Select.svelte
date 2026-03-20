@@ -2,12 +2,16 @@
 	import type { Snippet } from 'svelte';
 
 	interface Props {
-		value?: any;
-		options: Option[];
+		value?: string;
+		options?: Option[];
 		state?: 'default' | 'error' | 'success' | 'warning';
 		placeholder?: string;
 		size?: 'small' | 'medium' | 'large' | 'x-small';
 		children?: Snippet;
+		start?: import('svelte').Snippet;
+		end?: import('svelte').Snippet;
+		block?: boolean;
+		disabled?: boolean;
 	}
 
 	export interface Option {
@@ -16,18 +20,27 @@
 	}
 
 	let {
-		value = $bindable(undefined),
-		options,
+		value = $bindable(''),
+		options = [],
 		state = 'default',
 		placeholder,
 		size = 'medium',
 		children,
+		start,
+		end,
+		block = true,
+		disabled = false,
 		...rest
 	}: Props = $props();
 </script>
 
-<div class="input-wrap state-{state} size-{size}">
-	<select bind:value {...rest}>
+<div class="input-wrap state-{state} size-{size}" class:block class:disabled>
+	{#if start}
+		<span class="slot start">
+			{@render start?.()}
+		</span>
+	{/if}
+	<select bind:value {disabled} {...rest}>
 		{#if children}
 			{@render children()}
 		{:else}
@@ -40,6 +53,11 @@
 			{/each}
 		{/if}
 	</select>
+	{#if end}
+		<span class="slot end">
+			{@render end?.()}
+		</span>
+	{/if}
 </div>
 
 <style>
@@ -123,5 +141,34 @@
 
 	.input-wrap.state-warning:focus-within {
 		box-shadow: 0 0 0 calc(var(--local-shadow-size) + 1px) var(--orange-light);
+	}
+
+	.input-wrap.block {
+		display: flex;
+		width: 100%;
+	}
+
+	.slot {
+		display: inline-flex;
+		align-items: center;
+		color: var(--text-light);
+	}
+
+	.slot.start {
+		margin-right: 8px;
+	}
+
+	.slot.end {
+		margin-left: 8px;
+	}
+
+	.input-wrap.disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+
+	.input-wrap.disabled select {
+		cursor: not-allowed;
+		/* pointer-events: none; */
 	}
 </style>

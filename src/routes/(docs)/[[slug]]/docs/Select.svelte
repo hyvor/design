@@ -8,6 +8,9 @@
 	import TableCell from '$lib/components/Table/TableCell.svelte';
 	import Label from '$lib/components/FormControl/Label.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
+	import IconSearch from '@hyvor/icons/IconSearch';
+	import IconButton from './IconButton.svelte';
+	import T from '$lib/components/Internationalization/T.svelte';
 
 	const roleOptions: Option[] = [
 		{ value: 'admin', label: 'Administrator' },
@@ -20,6 +23,9 @@
 		role: '',
 		status: 'active'
 	};
+
+	let region = $state('');
+	let plan = $state('');
 </script>
 
 <h1>Select</h1>
@@ -27,7 +33,7 @@
 	The <code>Select</code> component is a wrapper around the native <code>&lt;select&gt;</code> element.
 </p>
 
-<h2>Usage</h2>
+<h2>Properties</h2>
 
 <p>You can use the <code>Select</code> component, with the following props:</p>
 
@@ -44,8 +50,10 @@
 	</TableRow>
 	<TableRow>
 		<div><code>options</code></div>
-		<div></div>
-		<div>An array of options to display.</div>
+		<div><code>[]</code></div>
+		<div>
+			An array of options to display. Optional when using custom <code>children</code>.
+		</div>
 	</TableRow>
 
 	<TableRow>
@@ -81,9 +89,27 @@
 			</ul>
 		</div>
 	</TableRow>
+
+	<TableRow>
+		<div><code>block</code></div>
+		<div><code>true</code></div>
+		<div>Whether the select should take the full width of its container.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>disabled</code></div>
+		<div><code>false</code></div>
+		<div>Whether the select is disabled.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>block</code></div>
+		<div><code>true</code></div>
+		<div>Whether the select should take the full width of its container.</div>
+	</TableRow>
 </Table>
 
-<h2>Example</h2>
+<h2>Examples</h2>
 <CodeBlock
 	language="svelte"
 	code={`
@@ -105,48 +131,128 @@
 <CodeBlock
 	language="svelte"
 	code={`
-	<FormControl>
-		<Label>X-Small</Label>
-		<Select size="x-small" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
-	<FormControl>
-		<Label>Small</Label>
-		<Select size="small" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
+	<Select size="x-small" options={roleOptions} placeholder="Select a role" />
 
-	<FormControl>
-		<Label>Medium</Label>
-		<Select size="medium" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
+	<Select size="small" options={roleOptions} placeholder="Select a role" />
 
-	<FormControl>
-		<Label>Large</Label>
-		<Select size="large" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
+	<Select size="medium" options={roleOptions} placeholder="Select a role" />
+
+	<Select size="large" options={roleOptions} placeholder="Select a role" />
 `}
 />
 
 <CodeResult>
-	<FormControl>
-		<Label>X-Small</Label>
+	<div class="wrapper-for-select">
 		<Select size="x-small" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
-	<br />
+	</div>
 
-	<FormControl label="Small">
-		<Label>Small</Label>
+	<div class="wrapper-for-select">
 		<Select size="small" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
-	<br />
+	</div>
 
-	<FormControl label="Medium">
-		<Label>Medium</Label>
+	<div class="wrapper-for-select">
 		<Select size="medium" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
-	<br />
+	</div>
 
-	<FormControl label="Large">
-		<Label>Large</Label>
+	<div class="wrapper-for-select">
 		<Select size="large" options={roleOptions} placeholder="Select a role" />
-	</FormControl>
+	</div>
 </CodeResult>
+
+<h3>Slots</h3>
+<p>
+	The <code>Select</code> component supports custom slots for adding icons or other elements
+	inside the select. Available slots include: <code>start</code> and <code>end</code>.
+</p>
+<CodeBlock
+	language="svelte"
+	code={`
+	<Select options={roleOptions} placeholder="Select a role">
+		{#snippet start()}
+			<IconSearch />
+		{/snippet}
+	</Select>
+`}
+/>
+
+<CodeResult>
+	<Select options={roleOptions} placeholder="Select a role">
+		{#snippet start()}
+			<IconSearch size={13} />
+		{/snippet}
+	</Select>
+</CodeResult>
+
+<h3>Custom Children</h3>
+<p>
+	For advanced use cases, you can pass custom children to the <code>Select</code> component
+	instead of using the <code>options</code> prop. This lets you use native
+	<code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> elements directly, allowing for grouped
+	options, disabled options, or any other native select features.
+</p>
+<CodeBlock
+	language="svelte"
+	code={`
+	<Select bind:value={region}>
+		{#snippet children()}
+			<option value="" disabled>Select a region</option>
+			<optgroup label="Americas">
+				<option value="us-east">US East</option>
+				<option value="us-west">US West</option>
+				<option value="ca-central">Canada Central</option>
+			</optgroup>
+			<optgroup label="Europe">
+				<option value="eu-west">EU West</option>
+				<option value="eu-central">EU Central</option>
+			</optgroup>
+			<optgroup label="Asia Pacific">
+				<option value="ap-southeast">AP Southeast</option>
+				<option value="ap-northeast">AP Northeast</option>
+			</optgroup>
+		{/snippet}
+	</Select>
+`}
+/>
+
+<CodeResult>
+	<Select bind:value={region}>
+		{#snippet children()}
+			<option value="" disabled selected={!region}>Select a region</option>
+			<optgroup label="Americas">
+				<option value="us-east">US East</option>
+				<option value="us-west">US West</option>
+				<option value="ca-central">Canada Central</option>
+			</optgroup>
+			<optgroup label="Europe">
+				<option value="eu-west">EU West</option>
+				<option value="eu-central">EU Central</option>
+			</optgroup>
+			<optgroup label="Asia Pacific">
+				<option value="ap-southeast">AP Southeast</option>
+				<option value="ap-northeast">AP Northeast</option>
+			</optgroup>
+		{/snippet}
+	</Select>
+</CodeResult>
+
+<h3>Other input props</h3>
+<CodeBlock
+	language="svelte"
+	code={`
+	<Select placeholder="Select a role" options={roleOptions} disabled />
+`}
+/>
+
+<CodeResult>
+	<Select placeholder="Select a role" options={roleOptions} disabled />
+</CodeResult>
+
+<style>
+	.wrapper-for-select {
+		margin-bottom: 15px;
+	}
+
+	.wrapper-for-select:last-child {
+		margin-bottom: 0;
+	}
+</style>

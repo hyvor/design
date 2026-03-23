@@ -19,13 +19,15 @@
 		{ value: 'billing', label: 'Billing Manager' }
 	];
 
-	let user = {
+	let user = $state({
 		role: '',
 		status: 'active'
-	};
+	});
 
+	let sizeValue = $state('');
+	let slotValue = $state('');
 	let region = $state('');
-	let plan = $state('');
+	let disabledValue = $state('');
 </script>
 
 <h1>Select</h1>
@@ -113,6 +115,16 @@
 <CodeBlock
 	language="svelte"
 	code={`
+		<` +
+		`script lang="ts">
+			const roleOptions: Option[] = [
+		{ value: 'admin', label: 'Administrator' },
+		{ value: 'editor', label: 'Editor' },
+		{ value: 'viewer', label: 'Viewer' },
+		{ value: 'billing', label: 'Billing Manager' }
+	];
+		<` +
+		`/script>
 		<Select
 			bind:value={user.role}
 			options={roleOptions}
@@ -125,6 +137,7 @@
 	<FormControl>
 		<Select bind:value={user.role} options={roleOptions} placeholder="Select a role" />
 	</FormControl>
+	<p>Currently selected value: {user.role}</p>
 </CodeResult>
 
 <h3>Sizes</h3>
@@ -132,37 +145,55 @@
 	language="svelte"
 	code={`
 	<Select size="x-small" options={roleOptions} placeholder="Select a role" />
-
 	<Select size="small" options={roleOptions} placeholder="Select a role" />
-
 	<Select size="medium" options={roleOptions} placeholder="Select a role" />
-
 	<Select size="large" options={roleOptions} placeholder="Select a role" />
 `}
 />
 
 <CodeResult>
 	<div class="wrapper-for-select">
-		<Select size="x-small" options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="x-small"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select size="small" options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="small"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select size="medium" options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="medium"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select size="large" options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="large"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
+	<p>Currently selected value: {sizeValue}</p>
 </CodeResult>
 
-<h3>Slots</h3>
+<h3>Snippets</h3>
 <p>
-	The <code>Select</code> component supports custom slots for adding icons or other elements
-	inside the select. Available slots include: <code>start</code> and <code>end</code>.
+	The <code>Select</code> component supports custom snippets for adding icons or other elements
+	inside the select. Available snippets include: <code>start</code> and <code>end</code>.
 </p>
 <CodeBlock
 	language="svelte"
@@ -176,11 +207,12 @@
 />
 
 <CodeResult>
-	<Select options={roleOptions} placeholder="Select a role">
+	<Select bind:value={slotValue} options={roleOptions} placeholder="Select a role">
 		{#snippet start()}
 			<IconSearch size={13} />
 		{/snippet}
 	</Select>
+	<p>Currently selected value: {slotValue}</p>
 </CodeResult>
 
 <h3>Custom Children</h3>
@@ -233,18 +265,25 @@
 			</optgroup>
 		{/snippet}
 	</Select>
+	<p>Currently selected value: {region}</p>
 </CodeResult>
 
 <h3>Other input props</h3>
 <CodeBlock
 	language="svelte"
 	code={`
-	<Select placeholder="Select a role" options={roleOptions} disabled />
+	<Select 
+		bind:value={value}
+		placeholder="Select a role"
+		options={roleOptions} 
+		disabled
+	/>
 `}
 />
 
 <CodeResult>
-	<Select placeholder="Select a role" options={roleOptions} disabled />
+	<Select bind:value={disabledValue} placeholder="Select a role" options={roleOptions} disabled />
+	<p>Currently selected value: {disabledValue}</p>
 </CodeResult>
 
 <style>

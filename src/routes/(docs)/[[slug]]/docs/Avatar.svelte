@@ -80,6 +80,6 @@
 </CodeResult>
 
 <p>
-	If you set a <code>size</code> in your <code>{'<Avatar>'}</code>s, make sure to set the same size
-	to the <code>{'<AvatarStack>'}</code> component.
+	If you set a <code>size</code> in your <code>{'<Avatar>'}</code>s, make sure to set the same
+	size to the <code>{'<AvatarStack>'}</code> component.
 </p>

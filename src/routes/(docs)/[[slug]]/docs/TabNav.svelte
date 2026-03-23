@@ -71,8 +71,8 @@
 	<TableRow>
 		<div><code>active</code></div>
 		<div>
-			Set to <code>true</code> to make the tab active (optional). Only use if you want to control the
-			active tab from outside.
+			Set to <code>true</code> to make the tab active (optional). Only use if you want to control
+			the active tab from outside.
 		</div>
 	</TableRow>
 </Table>

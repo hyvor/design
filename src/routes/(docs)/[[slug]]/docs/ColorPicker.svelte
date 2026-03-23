@@ -39,7 +39,11 @@
 />
 
 <CodeResult>
-	<ColorPicker bind:color={color1} oninput={() => inputTimes1++} onchange={() => changedTimes1++} />
+	<ColorPicker
+		bind:color={color1}
+		oninput={() => inputTimes1++}
+		onchange={() => changedTimes1++}
+	/>
 
 	<div style="margin-top: 4px;font-size:14px;color:var(--text-light)">
 		Color: {color1}, inputs: {inputTimes1}, changes: {changedTimes1}

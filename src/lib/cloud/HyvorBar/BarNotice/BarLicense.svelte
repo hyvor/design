@@ -1,5 +1,8 @@
 <script lang="ts">
-	import { getCloudContext, type ResolvedLicense } from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
+	import {
+		getCloudContext,
+		type ResolvedLicense
+	} from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import Tag from '$lib/components/Tag/Tag.svelte';
 	import type { TagSize } from '$lib/components/Tag/tag.types.js';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
@@ -14,7 +17,13 @@
 		href?: string | null;
 	}
 
-	let { name, customLicense, size = 'medium', tooltip: showTooltip = true, href = "/console/billing" }: Props = $props();
+	let {
+		name,
+		customLicense,
+		size = 'medium',
+		tooltip: showTooltip = true,
+		href = '/console/billing'
+	}: Props = $props();
 
 	const license = $derived(customLicense || getCloudContext().license);
 
@@ -100,7 +109,7 @@
 </script>
 
 {#if config}
-	<a class="wrap" href={href}>
+	<a class="wrap" {href}>
 		<Tooltip position="bottom" disabled={showTooltip === false}>
 			{#snippet tooltip()}
 				{config.tooltip}

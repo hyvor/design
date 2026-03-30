@@ -20,7 +20,6 @@
 	let nameInput: HTMLInputElement;
 
 	async function init() {
-
 		cloudContext = {
 			instance: 'https://hyvor.com',
 			component: 'talk',
@@ -92,12 +91,18 @@
 			>
 				<HyvorBar url="/test/org" />
 
-				<BarLicense name="Hyvor Talk" customLicense={{
-					type: 'trial',
-					license: {},
-					trial_ends_at: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
-					subscription: null,
-				}} tooltip={false} size="small" href={null} /> 
+				<BarLicense
+					name="Hyvor Talk"
+					customLicense={{
+						type: 'trial',
+						license: {},
+						trial_ends_at: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
+						subscription: null
+					}}
+					tooltip={false}
+					size="small"
+					href={null}
+				/>
 
 				<!-- <div class="content">
 					<div class="resource">

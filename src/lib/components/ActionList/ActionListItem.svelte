@@ -20,7 +20,7 @@
 	}
 
 	let {
-		selected = $bindable(false),
+		selected = $bindable(),
 		disabled = false,
 		type = 'default',
 		start,
@@ -29,8 +29,6 @@
 		end,
 		...rest
 	}: Props = $props();
-
-	selected = selection() !== 'none' && selected;
 
 	const dispatch = createEventDispatcher();
 

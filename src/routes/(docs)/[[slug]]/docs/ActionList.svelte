@@ -456,19 +456,31 @@
 	code={`
     <ActionList>
         <ActionListItem>
-            <IconHandThumbsUp slot="start" />
+            {#snippet start()}
+                <IconHandThumbsUp />
+            {/snippet}
             Vote
-            <Text light slot="end">⌘⇧V</Text>
+            {#snippet end()}
+                <Text light>⌘⇧V</Text>
+            {/snippet}
         </ActionListItem>
         <ActionListItem>
-            <IconPencil slot="start" />
+            {#snippet start()}
+                <IconPencil />
+            {/snippet}
             Edit
-            <Text light slot="end">⌘⇧E</Text>
+            {#snippet end()}
+                <Text light>⌘⇧E</Text>
+            {/snippet}
         </ActionListItem>
         <ActionListItem type="danger">
-            <IconTrash slot="start" />
+            {#snippet start()}
+                <IconTrash />
+            {/snippet}
             Delete
-            <Text light slot="end">⌘⇧D</Text>
+            {#snippet end()}
+                <Text light>⌘⇧D</Text>
+            {/snippet}
         </ActionListItem>
     </ActionList>
 `}
@@ -512,22 +524,40 @@
 	code={`
     <ActionList>
         <ActionListItem>
-            <IconHandThumbsUp slot="start" />
+            {#snippet start()}
+                <IconHandThumbsUp />
+            {/snippet}
             Vote
-            <div slot="description">Add a vote to this comment.</div>
-            <Text light slot="end">⌘⇧V</Text>
+            {#snippet description()}
+                <div>Add a vote to this comment.</div>
+            {/snippet}
+            {#snippet end()}
+                <Text light>⌘⇧V</Text>
+            {/snippet}
         </ActionListItem>
         <ActionListItem>
-            <IconPencil slot="start" />
+            {#snippet start()}
+                <IconPencil />
+            {/snippet}
             Edit
-            <div slot="description">Edit this comment.</div>
-            <Text light slot="end">⌘⇧E</Text>
+            {#snippet description()}
+                <div>Edit this comment.</div>
+            {/snippet}
+            {#snippet end()}
+                <Text light>⌘⇧E</Text>
+            {/snippet}
         </ActionListItem>
         <ActionListItem type="danger">
-            <IconTrash slot="start" />
+            {#snippet start()}
+                <IconTrash />
+            {/snippet}
             Delete
-            <div slot="description">Delete this comment.</div>
-            <Text light slot="end">⌘⇧D</Text>
+            {#snippet description()}
+                <div>Delete this comment.</div>
+            {/snippet}
+            {#snippet end()}
+                <Text light>⌘⇧D</Text>
+            {/snippet}
         </ActionListItem>
     </ActionList>
 `}
@@ -580,16 +610,28 @@
 	code={`
     <ActionList>
         <ActionListItem disabled>
-            <IconHandThumbsUp slot="start" />
+            {#snippet start()}
+                <IconHandThumbsUp />
+            {/snippet}
             Vote
-            <div slot="description">Add a vote to this comment.</div>
-            <Text light slot="end">⌘⇧V</Text>
+            {#snippet description()}
+                <div>Add a vote to this comment.</div>
+            {/snippet}
+            {#snippet end()}
+                <Text light>⌘⇧V</Text>
+            {/snippet}
         </ActionListItem>
         <ActionListItem disabled>
-            <IconPencil slot="start" />
+            {#snippet start()}
+                <IconPencil />
+            {/snippet}
             Edit
-            <div slot="description">Edit this comment.</div>
-            <Text light slot="end">⌘⇧E</Text>
+            {#snippet description()}
+                <div>Edit this comment.</div>
+            {/snippet}
+            {#snippet end()}
+                <Text light>⌘⇧E</Text>
+            {/snippet}
         </ActionListItem>
     </ActionList>
 `}

@@ -32,6 +32,7 @@ import ColorPicker from './docs/ColorPicker.svelte';
 import IconMessage from './docs/IconMessage.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
+import ConsoleLoader from './docs/ConsoleLoader.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
 import Usage from './docs/Usage.svelte';
@@ -82,6 +83,7 @@ const nav = {
 	box: Box,
 	slider: Slider,
 	'icon-message': IconMessage,
+	'console-loader': ConsoleLoader,
 	accordion: Accordion,
 
 	usage: Usage,

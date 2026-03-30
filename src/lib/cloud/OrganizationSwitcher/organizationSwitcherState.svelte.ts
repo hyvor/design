@@ -1,7 +1,7 @@
 import {
 	getCloudContext,
 	type CloudContextOrganization
-} from '../CloudContext/cloudContext.svelte.js';
+} from '../CloudContext/cloudContextState.svelte.js';
 
 let loadedOrganizations: CloudContextOrganization[] | undefined = $state(undefined);
 

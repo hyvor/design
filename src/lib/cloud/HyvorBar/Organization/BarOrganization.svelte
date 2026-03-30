@@ -3,7 +3,7 @@
 	import DropdownContent from '$lib/components/Dropdown/DropdownContent.svelte';
 	import OrganizationSwitcher from '$lib/cloud/OrganizationSwitcher/OrganizationSwitcher.svelte';
 	import OrganizationCreator from '$lib/cloud/OrganizationCreator/OrganizationCreator.svelte';
-	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 
 	let disableTooltip = $state(false);

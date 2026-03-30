@@ -79,17 +79,17 @@
 			<NavLink
 				href="javascript:void(0)"
 				active={active === 'overview'}
-				on:click={() => (active = 'overview')}>Overview</NavLink
+				onclick={() => (active = 'overview')}>Overview</NavLink
 			>
 			<NavLink
 				href="javascript:void(0)"
 				active={active === 'comments'}
-				on:click={() => (active = 'comments')}>Comments</NavLink
+				onclick={() => (active = 'comments')}>Comments</NavLink
 			>
 			<NavLink
 				href="javascript:void(0)"
 				active={active === 'pages'}
-				on:click={() => (active = 'pages')}>Pages</NavLink
+				onclick={() => (active = 'pages')}>Pages</NavLink
 			>
 			<!-- disabled state -->
 			<NavLink href="javascript:void(0)" disabled>Disabled</NavLink>
@@ -101,25 +101,35 @@
 
 <CodeBlock
 	code={`
-    <NavLink href ="/" active>
-        <IconColumns slot="start"></IconColumns>
+    <NavLink href="/" active>
+        {#snippet start()}
+            <IconColumns />
+        {/snippet}
         Overview
     </NavLink>
 
     <NavLink href="/">
-        <IconChat slot="start"></IconChat>
+        {#snippet start()}
+            <IconChat />
+        {/snippet}
         Comments
     </NavLink>
 
     <NavLink href="/">
-        <IconFile slot="start"></IconFile>
+        {#snippet start()}
+            <IconFile />
+        {/snippet}
         Pages
     </NavLink>
 
     <NavLink href="/">
-        <IconCoin slot="start"></IconCoin>
+        {#snippet start()}
+            <IconCoin />
+        {/snippet}
         Billing
-        <IconExclamationCircle slot="end"></IconExclamationCircle>
+        {#snippet end()}
+            <IconExclamationCircle />
+        {/snippet}
     </NavLink>
 `}
 />
@@ -131,7 +141,7 @@
 				<NavLink
 					href="javascript:void(0)"
 					active={active2 === 'overview'}
-					on:click={() => (active2 = 'overview')}
+					onclick={() => (active2 = 'overview')}
 				>
 					{#snippet start()}
 						<IconColumns></IconColumns>
@@ -142,7 +152,7 @@
 				<NavLink
 					href="javascript:void(0)"
 					active={active2 === 'comments'}
-					on:click={() => (active2 = 'comments')}
+					onclick={() => (active2 = 'comments')}
 				>
 					{#snippet start()}
 						<IconChat></IconChat>
@@ -153,7 +163,7 @@
 				<NavLink
 					href="javascript:void(0)"
 					active={active2 === 'pages'}
-					on:click={() => (active2 = 'pages')}
+					onclick={() => (active2 = 'pages')}
 				>
 					{#snippet start()}
 						<IconFile></IconFile>
@@ -164,7 +174,7 @@
 				<NavLink
 					href="javascript:void(0)"
 					active={active2 === 'billing'}
-					on:click={() => (active2 = 'billing')}
+					onclick={() => (active2 = 'billing')}
 					disabled
 				>
 					{#snippet start()}

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import IconCardImage from '@hyvor/icons/IconCardImage';
 	import IconCaretLeft from '@hyvor/icons/IconCaretLeft';
 	import IconCloudUpload from '@hyvor/icons/IconCloudUpload';
 	import Button from '../Button/Button.svelte';
@@ -46,8 +45,8 @@
 						Back
 					</Button>
 				{:else}
-					<TabNav bind:active={tab}>
-						<TabNavItem name="upload">
+					<TabNav>
+						<TabNavItem name="upload" active>
 							{#snippet start()}
 								<IconCloudUpload />
 							{/snippet}

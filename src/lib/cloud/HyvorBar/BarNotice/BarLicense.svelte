@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getCloudContext, type ResolvedLicense } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import { getCloudContext, type ResolvedLicense } from '$lib/cloud/CloudContext/cloudContextState.svelte.js';
 	import Tag from '$lib/components/Tag/Tag.svelte';
 	import type { TagSize } from '$lib/components/Tag/tag.types.js';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';

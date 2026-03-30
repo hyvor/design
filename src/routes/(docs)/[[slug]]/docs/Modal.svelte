@@ -20,6 +20,7 @@
 	let show4 = $state(false);
 
 	let show5 = $state(false);
+	let show5Active = $state('paste');
 
 	let show6 = $state(false);
 
@@ -196,33 +197,35 @@
     </` +
 		`script>
 
-    <Button on:click={() => show = true}>Show modal</Button>
+    <Button onclick={() => show = true}>Show modal</Button>
 
     <Modal title="Confirm to delete" bind:show={show}>
 
         Please confirm that you want to delete this item. This action cannot be undone.
 
-        <div slot="footer">
-            <Button variant="invisible" on:click={() => show = false}>Cancel</Button>
-            <Button color="red">Delete</Button>
-        </div>
+        {#snippet footer()}
+            <div>
+                <Button variant="invisible" onclick={() => show = false}>Cancel</Button>
+                <Button color="red">Delete</Button>
+            </div>
+        {/snippet}
 
     </Modal>
 `}
 />
 
 <CodeResult>
-	<Button on:click={() => (show1 = true)}>Show modal</Button>
+	<Button onclick={() => (show1 = true)}>Show modal</Button>
 
 	<Modal title="Confirm to delete" bind:show={show1}>
 		Please confirm that you want to delete this item. This action cannot be undone.
 
 		{#snippet footer()}
 			<div>
-				<Button variant="invisible" on:click={() => (show1 = false)}>Cancel</Button>
+				<Button variant="invisible" onclick={() => (show1 = false)}>Cancel</Button>
 				<Button
 					color="red"
-					on:click={() => {
+					onclick={() => {
 						show1 = false;
 						toast.success('Item deleted');
 					}}>Delete</Button
@@ -240,9 +243,9 @@
 </p>
 
 <CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-	<Button on:click={() => (show2 = true)}>Small Modal</Button>
-	<Button on:click={() => (show3 = true)}>Medium Modal</Button>
-	<Button on:click={() => (show4 = true)}>Large Modal</Button>
+	<Button onclick={() => (show2 = true)}>Small Modal</Button>
+	<Button onclick={() => (show3 = true)}>Medium Modal</Button>
+	<Button onclick={() => (show4 = true)}>Large Modal</Button>
 </CodeResult>
 
 <Modal title="Small Modal" bind:show={show2} size="small">
@@ -250,7 +253,7 @@
 
 	{#snippet footer()}
 		<div>
-			<Button variant="invisible" on:click={() => (show2 = false)}>Close</Button>
+			<Button variant="invisible" onclick={() => (show2 = false)}>Close</Button>
 		</div>
 	{/snippet}
 </Modal>
@@ -260,7 +263,7 @@
 
 	{#snippet footer()}
 		<div>
-			<Button variant="invisible" on:click={() => (show3 = false)}>Close</Button>
+			<Button variant="invisible" onclick={() => (show3 = false)}>Close</Button>
 		</div>
 	{/snippet}
 </Modal>
@@ -270,7 +273,7 @@
 
 	{#snippet footer()}
 		<div>
-			<Button variant="invisible" on:click={() => (show4 = false)}>Close</Button>
+			<Button variant="invisible" onclick={() => (show4 = false)}>Close</Button>
 		</div>
 	{/snippet}
 </Modal>
@@ -285,41 +288,57 @@
 	code={`
     <Modal bind:show={show} size="large">
 
-        <TabNav active="paste" slot="title">
-            <TabNavItem name="paste">
-                <IconLink45deg slot="start" />
-                Paste Link
-            </TabNavItem>
-            <TabNavItem name="posts">
-                <IconSearch slot="start" />
-                Search Posts
-            </TabNavItem>
-        </TabNav>
+        {#snippet title()}
+            <TabNav active="paste">
+                <TabNavItem name="paste">
+                    {#snippet start()}
+                        <IconLink45deg />
+                    {/snippet}
+                    Paste Link
+                </TabNavItem>
+                <TabNavItem name="posts">
+                    {#snippet start()}
+                        <IconSearch />
+                    {/snippet}
+                    Search Posts
+                </TabNavItem>
+            </TabNav>
+        {/snippet}
 
         This is a modal with a tab navigation in the title.
 
-        <div slot="footer">
-            <Button variant="invisible" on:click={() => show5 = false}>Close</Button>
-        </div>
+        {#snippet footer()}
+            <div>
+                <Button variant="invisible" onclick={() => show5 = false}>Close</Button>
+            </div>
+        {/snippet}
 
     </Modal>
 `}
 />
 
 <CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-	<Button on:click={() => (show5 = true)}>Title Slot Modal</Button>
+	<Button onclick={() => (show5 = true)}>Title Slot Modal</Button>
 </CodeResult>
 
 <Modal bind:show={show5} size="large">
 	{#snippet title()}
-		<TabNav active="paste">
-			<TabNavItem name="paste">
+		<TabNav>
+			<TabNavItem
+				name="paste"
+				active={show5Active === 'paste'}
+				onclick={() => (show5Active = 'paste')}
+			>
 				{#snippet start()}
 					<IconLink45deg />
 				{/snippet}
 				Paste Link
 			</TabNavItem>
-			<TabNavItem name="posts">
+			<TabNavItem
+				name="posts"
+				active={show5Active === 'posts'}
+				onclick={() => (show5Active = 'posts')}
+			>
 				{#snippet start()}
 					<IconSearch size={13} />
 				{/snippet}
@@ -332,7 +351,7 @@
 
 	{#snippet footer()}
 		<div>
-			<Button variant="invisible" on:click={() => (show5 = false)}>Close</Button>
+			<Button variant="invisible" onclick={() => (show5 = false)}>Close</Button>
 		</div>
 	{/snippet}
 </Modal>
@@ -345,7 +364,7 @@
 </p>
 
 <CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
-	<Button on:click={() => (show6 = true)}>Scrollable Modal</Button>
+	<Button onclick={() => (show6 = true)}>Scrollable Modal</Button>
 </CodeResult>
 
 <Modal bind:show={show6} title="Scrollable Modal">
@@ -431,9 +450,9 @@
 
 	{#snippet footer()}
 		<div>
-			<Button variant="invisible" on:click={() => (show7 = false)}>Close</Button>
+			<Button variant="invisible" onclick={() => (show7 = false)}>Close</Button>
 			<Button
-				on:click={() => {
+				onclick={() => {
 					loading7 = 'Loading...';
 					setTimeout(() => {
 						loading7 = false;
@@ -446,7 +465,7 @@
 </Modal>
 
 <CodeResult>
-	<Button on:click={() => (show7 = true)}>Loading Modal</Button>
+	<Button onclick={() => (show7 = true)}>Loading Modal</Button>
 </CodeResult>
 
 <p>
@@ -514,7 +533,7 @@
 />
 
 <CodeResult>
-	<Button on:click={() => (show8 = true)}>Modal with Footer</Button>
+	<Button onclick={() => (show8 = true)}>Modal with Footer</Button>
 </CodeResult>
 
 <Modal
@@ -536,6 +555,52 @@
 	}}
 >
 	This is a modal with a footer that has a cancel and a confirm button.
+</Modal>
+
+<p>
+	You can disable the buttons in the footer by <code>disabled = true</code> prop in the footer object.
+</p>
+
+<CodeBlock
+	code={`
+	<Modal
+		...
+		footer={{
+			cancel: {
+				text: 'Cancel',
+				disabled: true
+			},
+			confirm: {
+				text: 'Delete',
+				danger: true,
+				disabled: true
+			}
+		}}
+	/>
+`}
+	language="svelte"
+/>
+
+<CodeResult>
+	<Button on:click={() => (show8 = true)}>Modal with Disabled Footer Buttons</Button>
+</CodeResult>
+
+<Modal
+	title="Modal with Disabled Footer Buttons"
+	bind:show={show8}
+	footer={{
+		cancel: {
+			text: 'Cancel',
+			disabled: true
+		},
+		confirm: {
+			text: 'Delete',
+			danger: true,
+			disabled: true
+		}
+	}}
+>
+	This is a modal with a footer that has disabled cancel and confirm buttons.
 </Modal>
 
 <h2 id="confirm">Confirm</h2>
@@ -602,9 +667,9 @@
 />
 
 <CodeResult>
-	<Button on:click={handleConfirm1}>Delete</Button>
+	<Button onclick={handleConfirm1}>Delete</Button>
 
-	<Button on:click={handleConfirm2}>Delete with Custom Content</Button>
+	<Button onclick={handleConfirm2}>Delete with Custom Content</Button>
 </CodeResult>
 
 <h3 id="confirm-loader">Confirm with Loader</h3>
@@ -640,5 +705,5 @@
 />
 
 <CodeResult>
-	<Button on:click={handleConfirmLoader}>Confirm with Loader</Button>
+	<Button onclick={handleConfirmLoader}>Confirm with Loader</Button>
 </CodeResult>

@@ -1,0 +1,1 @@
+export type TagSize = 'x-small' | 'small' | 'medium' | 'large';

@@ -5,6 +5,7 @@
 </script>
 
 <Base>
+
 	<slot />
 	<Document title="Document Test" subtitle="This is a test document">
 		<p>This is a test document</p>

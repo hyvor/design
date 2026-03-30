@@ -1,13 +1,22 @@
 <script lang="ts">
-	import { getCloudContext } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
+	import { getCloudContext, type ResolvedLicense } from '$lib/cloud/CloudContext/cloudContext.svelte.js';
 	import Tag from '$lib/components/Tag/Tag.svelte';
+	import type { TagSize } from '$lib/components/Tag/tag.types.js';
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 	import IconBuilding from '@hyvor/icons/IconBuilding';
 	import type { Component } from 'svelte';
 
-	let { name } = $props();
+	interface Props {
+		name: string; // product name like Hyvor Talk
+		customLicense?: ResolvedLicense;
+		size?: TagSize;
+		tooltip?: boolean;
+		href?: string | null;
+	}
 
-	const { license } = $derived(getCloudContext());
+	let { name, customLicense, size = 'medium', tooltip: showTooltip = true, href = "/console/billing" }: Props = $props();
+
+	const license = $derived(customLicense || getCloudContext().license);
 
 	function daysDiff(unix: number) {
 		const date = new Date(unix * 1000);
@@ -72,7 +81,7 @@
 			const s = trialDays === 1 ? '' : 's';
 
 			return {
-				name: `Trial License (${trialDays}d)`,
+				name: `Trial (${trialDays}d)`,
 				tooltip: `You organization is currently using a trial license for ${name}. It will expire in ${trialDays} day${s}.`,
 				tagColor: 'orange'
 			};
@@ -91,12 +100,12 @@
 </script>
 
 {#if config}
-	<a class="wrap" href="/console/billing">
-		<Tooltip position="bottom">
+	<a class="wrap" href={href}>
+		<Tooltip position="bottom" disabled={showTooltip === false}>
 			{#snippet tooltip()}
 				{config.tooltip}
 			{/snippet}
-			<Tag color={config.tagColor}>
+			<Tag color={config.tagColor} {size}>
 				{#snippet start()}
 					{#if config.tagIcon}
 						<config.tagIcon size={10} />

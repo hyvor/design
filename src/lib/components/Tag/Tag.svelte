@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { createBubbler } from 'svelte/legacy';
+	import type { TagSize } from './tag.types.js';
 
 	const bubble = createBubbler();
 
 	interface Props {
 		as?: 'button' | 'a' | 'span';
-		size?: 'x-small' | 'small' | 'medium' | 'large';
+		size?: TagSize;
 		color?:
 			| 'default' // default tag (categories)
 			| 'accent'

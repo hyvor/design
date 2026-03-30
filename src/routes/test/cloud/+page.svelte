@@ -13,12 +13,32 @@
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import { goto } from '$app/navigation';
 	import OrganizationMembersSearch from '$lib/cloud/OrganizationMembers/OrganizationMembersSearch.svelte';
+	import { BarLicense } from '$lib/cloud/index.js';
 
 	let loading = $state(true);
 	let cloudContext: CloudContextType = $state({} as CloudContextType);
 	let nameInput: HTMLInputElement;
 
 	async function init() {
+		cloudContext = {
+			instance: 'https://hyvor.com',
+			component: 'talk',
+			deployment: 'cloud',
+			organization: null,
+			user: {
+				id: 123,
+				name: 'John Doe',
+				email: 'john.doe@example.com',
+				picture_url: 'https://randomuser.me/api/portraits'
+			},
+			license: null,
+			callbacks: {
+				onOrganizationSwitch: onOrganizationSwitch
+			}
+		};
+		loading = false;
+		return;
+
 		loading = true;
 
 		const response = await fetch('https://hyvor.localhost/api/v2/local/bar', {
@@ -71,7 +91,20 @@
 			>
 				<HyvorBar url="/test/org" />
 
-				<div class="content">
+				<BarLicense
+					name="Hyvor Talk"
+					customLicense={{
+						type: 'trial',
+						license: {},
+						trial_ends_at: Math.floor(Date.now() / 1000) + 7 * 24 * 60 * 60,
+						subscription: null
+					}}
+					tooltip={false}
+					size="small"
+					href={null}
+				/>
+
+				<!-- <div class="content">
 					<div class="resource">
 						<ResourceCreator
 							onback={() => alert('Going back')}
@@ -101,7 +134,7 @@
 					<div class="ms-inner hds-box">
 						<OrganizationMembersSearch />
 					</div>
-				</div>
+				</div> -->
 			</CloudContext>
 		{/if}
 	</div>

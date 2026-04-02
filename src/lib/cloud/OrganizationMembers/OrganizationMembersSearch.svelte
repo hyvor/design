@@ -138,18 +138,18 @@
 			</div>
 		{/if}
 	</div>
-    {#if deployment === 'cloud'}
-        <div class="invite-note">
-            Looking for a user outside your organization?
-            {#if role === 'admin' || role === 'manager'}
-                <a href={instance + '/account/org/members?invite'} target="_blank" class="hds-link">
-                    Invite them
-                </a>
-            {:else}
-                Ask an admin to invite them
-            {/if} to your organization first.
-        </div>
-    {/if}
+	{#if deployment === 'cloud'}
+		<div class="invite-note">
+			Looking for a user outside your organization?
+			{#if role === 'admin' || role === 'manager'}
+				<a href={instance + '/account/org/members?invite'} target="_blank" class="hds-link">
+					Invite them
+				</a>
+			{:else}
+				Ask an admin to invite them
+			{/if} to your organization first.
+		</div>
+	{/if}
 {/if}
 
 <style>

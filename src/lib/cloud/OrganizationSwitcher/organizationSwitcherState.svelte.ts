@@ -23,7 +23,12 @@ export async function getMyOrganizations(): Promise<CloudContextOrganization[]> 
 	// 	{ id: 4, name: 'Org 4', member_role: 'manager' }
 	// ];
 
-	const { instance } = getCloudContext();
+	const { instance, deployment, organization } = getCloudContext();
+
+	if (deployment !== 'cloud') {
+		loadedOrganizations = organization ? [organization] : [];
+		return loadedOrganizations;
+	}
 
 	const response = await fetch(instance + '/api/v2/cloud/organizations/my', {
 		credentials: 'include'
@@ -36,7 +41,11 @@ export async function getMyOrganizations(): Promise<CloudContextOrganization[]> 
 }
 
 export async function switchOrganization(orgId: number): Promise<CloudContextOrganization> {
-	const { instance } = getCloudContext();
+	const { instance, deployment, organization } = getCloudContext();
+
+	if (deployment !== 'cloud') {
+		return organization!;
+	}
 
 	const response = await fetch(instance + '/api/v2/cloud/organizations/switch', {
 		method: 'POST',

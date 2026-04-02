@@ -6,16 +6,16 @@ import {
 export async function searchMembers(search: string) {
 	const { instance, organization, deployment } = getCloudContext();
 
+    const query = new URLSearchParams({
+        organization_id: organization?.id.toString() || '',
+        search
+    });
+
     let url: string;
 
     if (deployment === 'cloud') {
-        const query = new URLSearchParams({
-            organization_id: organization?.id.toString() || '',
-            search
-        });
         url = instance + '/api/v2/cloud/members/search?' + query.toString();
     } else {
-        const query = new URLSearchParams({ search });
         url = '/api/oidc/search?' + query.toString();
     }
 

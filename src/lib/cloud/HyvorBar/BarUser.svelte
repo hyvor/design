@@ -8,9 +8,9 @@
 	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 
 	const cloudContext = $derived(getCloudContext());
-    const logoutUrl = cloudContext.deployment === 'cloud'
+    const logoutUrl = $derived(cloudContext.deployment === 'cloud'
         ? `${cloudContext.instance}/account/logout`
-        : '/api/oidc/logout';
+        : '/api/oidc/logout');
 </script>
 
 <div class="wrap">

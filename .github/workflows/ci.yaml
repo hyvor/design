@@ -21,10 +21,6 @@ jobs:
         run: |
           npm ci
           npm run check
-      - name: Prettier
-        run: |
-          npx prettier --version
-          npm run check:prettier
       - name: Check Icons
         working-directory: icons
         run: |

@@ -106,6 +106,9 @@
 		border-radius: 2px;
 		outline: 1px solid var(--accent);
 		position: relative;
+		transition:
+			0.2s background-color,
+			0.2s box-shadow;
 	}
 
 	span.placeholder:focus-visible {

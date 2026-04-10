@@ -5,12 +5,7 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
-	import TableCell from '$lib/components/Table/TableCell.svelte';
-	import Label from '$lib/components/FormControl/Label.svelte';
-	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconSearch from '@hyvor/icons/IconSearch';
-	import IconButton from './IconButton.svelte';
-	import T from '$lib/components/Internationalization/T.svelte';
 
 	const roleOptions: Option[] = [
 		{ value: 'admin', label: 'Administrator' },
@@ -112,24 +107,29 @@
 </Table>
 
 <h2>Examples</h2>
+
+<h3 id="options">Using Options</h3>
+
 <CodeBlock
 	language="svelte"
 	code={`
-		<` +
+<` +
 		`script lang="ts">
-			const roleOptions: Option[] = [
+	const roleOptions = [
 		{ value: 'admin', label: 'Administrator' },
 		{ value: 'editor', label: 'Editor' },
 		{ value: 'viewer', label: 'Viewer' },
 		{ value: 'billing', label: 'Billing Manager' }
 	];
-		<` +
+	let role = $state('admin');
+<` +
 		`/script>
-		<Select
-			bind:value={user.role}
-			options={roleOptions}
-			placeholder="Select a role"
-		/>
+
+<Select
+	bind:value={role}
+	options={roleOptions}
+	placeholder="Select a role"
+/>
 `}
 />
 
@@ -137,7 +137,7 @@
 	<FormControl>
 		<Select bind:value={user.role} options={roleOptions} placeholder="Select a role" />
 	</FormControl>
-	<p>Currently selected value: {user.role}</p>
+	<p class="selected">Currently selected value: {user.role}</p>
 </CodeResult>
 
 <h3>Sizes</h3>
@@ -162,7 +162,12 @@
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select size="small" bind:value={sizeValue} options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="small"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
 
 	<div class="wrapper-for-select">
@@ -175,12 +180,17 @@
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select size="large" bind:value={sizeValue} options={roleOptions} placeholder="Select a role" />
+		<Select
+			size="large"
+			bind:value={sizeValue}
+			options={roleOptions}
+			placeholder="Select a role"
+		/>
 	</div>
-	<p>Currently selected value: {sizeValue}</p>
 </CodeResult>
 
-<h3>Snippets</h3>
+<h3 id="snippets">Snippets</h3>
+
 <p>
 	The <code>Select</code> component supports custom snippets for adding icons or other elements
 	inside the select. Available snippets include: <code>start</code> and <code>end</code>.
@@ -202,13 +212,13 @@
 			<IconSearch size={13} />
 		{/snippet}
 	</Select>
-	<p>Currently selected value: {slotValue}</p>
+	<p class="selected">Currently selected value: {slotValue}</p>
 </CodeResult>
 
 <h3>Custom Children</h3>
 <p>
-	For advanced use cases, you can pass custom children to the <code>Select</code> component instead
-	of using the <code>options</code> prop. This lets you use native
+	For advanced use cases, you can pass custom children to the <code>Select</code> component
+	instead of using the <code>options</code> prop. This lets you use native
 	<code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> elements directly, allowing for grouped
 	options, disabled options, or any other native select features.
 </p>
@@ -255,7 +265,7 @@
 			</optgroup>
 		{/snippet}
 	</Select>
-	<p>Currently selected value: {region}</p>
+	<p class="selected">Currently selected value: {region}</p>
 </CodeResult>
 
 <h3>Other input props</h3>
@@ -273,7 +283,6 @@
 
 <CodeResult>
 	<Select bind:value={disabledValue} placeholder="Select a role" options={roleOptions} disabled />
-	<p>Currently selected value: {disabledValue}</p>
 </CodeResult>
 
 <style>
@@ -283,5 +292,11 @@
 
 	.wrapper-for-select:last-child {
 		margin-bottom: 0;
+	}
+
+	.selected {
+		margin-bottom: 0;
+		font-size: 14px;
+		color: var(--text-light);
 	}
 </style>

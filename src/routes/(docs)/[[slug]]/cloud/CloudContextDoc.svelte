@@ -6,8 +6,8 @@
 
 <p>
 	The <code>CloudContext</code> component is used to provide user and organization context to the
-	other Cloud components. It is generally used in <strong>Consoles</strong>. Once the required
-	data is loaded from the backend, all the other components must be wrapped inside the
+	other Cloud components. It is generally used in <strong>Consoles</strong>. Once the required data
+	is loaded from the backend, all the other components must be wrapped inside the
 	<code>CloudContext</code> component to function properly.
 </p>
 

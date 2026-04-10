@@ -94,8 +94,7 @@
 						<a href={social.youtube} target="_blank" rel="nofollow"><IconYoutube /></a>
 					{/if}
 					{#if social.linkedin}
-						<a href={social.linkedin} target="_blank" rel="nofollow"><IconLinkedin /></a
-						>
+						<a href={social.linkedin} target="_blank" rel="nofollow"><IconLinkedin /></a>
 					{/if}
 				</div>
 			</div>

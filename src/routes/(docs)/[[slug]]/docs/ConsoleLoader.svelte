@@ -24,9 +24,7 @@
 	</TableRow>
 	<TableRow>
 		<TableCell><code>logo</code></TableCell>
-		<TableCell
-			>The URL of the logo to be displayed in the loader. This prop is required.</TableCell
-		>
+		<TableCell>The URL of the logo to be displayed in the loader. This prop is required.</TableCell>
 	</TableRow>
 	<TableRow>
 		<TableCell><code>size</code></TableCell>

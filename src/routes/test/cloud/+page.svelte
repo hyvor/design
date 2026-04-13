@@ -104,11 +104,7 @@
 								nameInput.focus();
 							}}
 						>
-							<SplitControl
-								label="Name"
-								noHorizonalPadding
-								caption="A name for your blog"
-							>
+							<SplitControl label="Name" noHorizonalPadding caption="A name for your blog">
 								<TextInput block bind:input={nameInput} />
 							</SplitControl>
 							<SplitControl

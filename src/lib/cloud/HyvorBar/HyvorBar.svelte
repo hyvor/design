@@ -80,16 +80,21 @@
 					{getName()}
 				</span>
 			</a>
-			<BarProducts mobile={mobileShow} />
 
-			{#if organization}
-				<BarOrganization />
+			{#if deployment === 'cloud'}
+				<BarProducts mobile={mobileShow} />
+
+				{#if organization}
+					<BarOrganization />
+				{/if}
+				<BarLicense name={getName()} />
 			{/if}
-			<BarLicense name={getName()} />
 		</div>
 		<div class="center"></div>
 		<div class="right">
-			<BarNotice />
+			{#if deployment === 'cloud'}
+				<BarNotice />
+			{/if}
 
 			<div class="hidden-on-mobile">
 				{#if deployment === 'cloud'}

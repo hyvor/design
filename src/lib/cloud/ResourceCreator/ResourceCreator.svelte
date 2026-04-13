@@ -1,8 +1,6 @@
 <script lang="ts">
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import IconX from '@hyvor/icons/IconX';
-	import Button from '$lib/components/Button/Button.svelte';
-	import { onMount, type ComponentProps } from 'svelte';
 	import {
 		getCloudContext,
 		type CloudContextOrganization
@@ -56,7 +54,7 @@
 		ondisplay
 	}: Props = $props();
 
-	const { callbacks, organization } = $derived(getCloudContext());
+	const { callbacks, organization, deployment } = $derived(getCloudContext());
 
 	let orgName = $state('');
 	let orgNameError = $state('');
@@ -130,62 +128,64 @@
 		</div>
 
 		<div class="content">
-			<Accordian
-				title="Organization"
-				belowTitle={organization?.name}
-				show={organizationAccordianOpen}
-				footer={!organization}
-				buttonText="Create Organization"
-				onButtonClick={handleOrganizationCreation}
-				onToggle={() => {
-					organizationAccordianOpen = !organizationAccordianOpen;
+			{#if deployment === 'cloud'}
+				<Accordian
+					title="Organization"
+					belowTitle={organization?.name}
+					show={organizationAccordianOpen}
+					footer={!organization}
+					buttonText="Create Organization"
+					onButtonClick={handleOrganizationCreation}
+					onToggle={() => {
+						organizationAccordianOpen = !organizationAccordianOpen;
 
-					if (organizationAccordianOpen && contentAccordianOpen) {
-						contentAccordianOpen = false;
-					}
-				}}
-				toggleLocked={creatingResource}
-				loading={creatingOrganization}
-			>
-				{#if organization}
-					<div class="org-switcher">
-						<OrganizationSwitcher
-							manageButton={false}
-							createButtonText="Create new organization"
-							createButtonProps={{
-								size: 'medium',
-								color: 'input'
-							}}
-						/>
-					</div>
-				{:else}
-					<div class="org-creator">
-						<FormControl>
-							<TextInput
-								bind:value={orgName}
-								bind:input={orgNameInput}
-								block
-								placeholder="Organization Name"
-								disabled={creatingOrganization}
-								onkeyup={(e) => {
-									if (e.key === 'Enter') {
-										handleOrganizationCreation();
-									}
+						if (organizationAccordianOpen && contentAccordianOpen) {
+							contentAccordianOpen = false;
+						}
+					}}
+					toggleLocked={creatingResource}
+					loading={creatingOrganization}
+				>
+					{#if organization}
+						<div class="org-switcher">
+							<OrganizationSwitcher
+								manageButton={false}
+								createButtonText="Create new organization"
+								createButtonProps={{
+									size: 'medium',
+									color: 'input'
 								}}
 							/>
-
-							{#if orgNameError}
-								<Validation state="error">{orgNameError}</Validation>
-							{/if}
-						</FormControl>
-
-						<div class="org-note">
-							<IconInfoCircle size={12} />
-							Organizations can be used across HYVOR products.
 						</div>
-					</div>
-				{/if}
-			</Accordian>
+					{:else}
+						<div class="org-creator">
+							<FormControl>
+								<TextInput
+									bind:value={orgName}
+									bind:input={orgNameInput}
+									block
+									placeholder="Organization Name"
+									disabled={creatingOrganization}
+									onkeyup={(e) => {
+										if (e.key === 'Enter') {
+											handleOrganizationCreation();
+										}
+									}}
+								/>
+
+								{#if orgNameError}
+									<Validation state="error">{orgNameError}</Validation>
+								{/if}
+							</FormControl>
+
+							<div class="org-note">
+								<IconInfoCircle size={12} />
+								Organizations can be used across HYVOR products.
+							</div>
+						</div>
+					{/if}
+				</Accordian>
+			{/if}
 
 			<Accordian
 				title={resourceTitle}

@@ -14,11 +14,32 @@
 	import { goto } from '$app/navigation';
 	import OrganizationMembersSearch from '$lib/cloud/OrganizationMembers/OrganizationMembersSearch.svelte';
 
-	let loading = $state(true);
-	let cloudContext: CloudContextType = $state({} as CloudContextType);
+	let loading = $state(false);
+	let cloudContext: CloudContextType = $state({
+		component: 'core',
+		deployment: 'on-prem',
+		instance: '',
+		user: {
+			id: 1,
+			name: 'Supun',
+			username: 'supun',
+			email: 'supun@hyvor.com',
+			picture_url: null
+		},
+		organization: {
+			id: 1,
+			name: 'Default',
+			role: 'admin'
+		},
+		license: null,
+		callbacks: {
+			onOrganizationSwitch: () => null
+		}
+	});
 	let nameInput: HTMLInputElement;
 
 	async function init() {
+		return;
 		loading = true;
 
 		const response = await fetch('https://hyvor.localhost/api/v2/local/bar', {

@@ -12,6 +12,7 @@
 	import TabNav from '$lib/components/TabNav/TabNav.svelte';
 	import { confirm } from '$lib/components/Modal/confirm.js';
 	import ConfirmContent1 from './Modal/ConfirmContent1.svelte';
+	import { TRUE } from 'sass';
 
 	let show1 = $state(false);
 
@@ -138,7 +139,15 @@
 	<TableRow>
 		<div><code>closeOnEscape</code></div>
 		<div><code>true</code></div>
-		<div>Whether to close the modal when pressing the escape key.</div>
+		<div>
+			Whether to close the modal when pressing the escape key. By default, close button is shown.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>isCloseOn</code></div>
+		<div><code>true</code></div>
+		<div>Whether to show the close button.</div>
 	</TableRow>
 
 	<TableRow>

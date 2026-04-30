@@ -12,6 +12,7 @@
 	import TabNav from '$lib/components/TabNav/TabNav.svelte';
 	import { confirm } from '$lib/components/Modal/confirm.js';
 	import ConfirmContent1 from './Modal/ConfirmContent1.svelte';
+	import { TRUE } from 'sass';
 
 	let show1 = $state(false);
 
@@ -32,7 +33,8 @@
 	async function handleConfirm1() {
 		const confirmed = await confirm({
 			title: 'Confirm to delete',
-			content: 'Please confirm that you want to delete this item. This action cannot be undone.',
+			content:
+				'Please confirm that you want to delete this item. This action cannot be undone.',
 			danger: true
 		});
 
@@ -116,8 +118,8 @@
 		<div><code>id</code></div>
 		<div><code>modal</code></div>
 		<div>
-			An id to be used in the aria-labelledby and aria-describedby attributes. Only required if you
-			are using multiple modals at the same time.
+			An id to be used in the aria-labelledby and aria-describedby attributes. Only required
+			if you are using multiple modals at the same time.
 		</div>
 	</TableRow>
 
@@ -125,7 +127,8 @@
 		<div><code>role</code></div>
 		<div><code>alertdialog</code></div>
 		<div>
-			<code>alertdialog</code> or <code>dialog</code>. Use the latter if the modal is not an alert.
+			<code>alertdialog</code> or <code>dialog</code>. Use the latter if the modal is not an
+			alert.
 		</div>
 	</TableRow>
 
@@ -138,7 +141,16 @@
 	<TableRow>
 		<div><code>closeOnEscape</code></div>
 		<div><code>true</code></div>
-		<div>Whether to close the modal when pressing the escape key.</div>
+		<div>
+			Whether to close the modal when pressing the escape key. By default, close button is
+			shown.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>isCloseOn</code></div>
+		<div><code>true</code></div>
+		<div>Whether to show the close button.</div>
 	</TableRow>
 
 	<TableRow>
@@ -153,8 +165,8 @@
 		<div><code>footer</code></div>
 		<div><code>null</code></div>
 		<div>
-			To display a common footer with a cancel and a confirm button. See <a href="#modal-footer"
-				>Modal Footer</a
+			To display a common footer with a cancel and a confirm button. See <a
+				href="#modal-footer">Modal Footer</a
 			>.
 		</div>
 	</TableRow>
@@ -359,8 +371,8 @@
 <h3 id="scrollable">Scrollable Modal</h3>
 
 <p>
-	If a modal grows larger than the screen, it will be scrollable. The inner content will be aligned
-	to the top of the modal.
+	If a modal grows larger than the screen, it will be scrollable. The inner content will be
+	aligned to the top of the modal.
 </p>
 
 <CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">

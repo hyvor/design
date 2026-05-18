@@ -45,7 +45,8 @@
 	<TableRow>
 		<div><code>style</code></div>
 		<div>
-			The style of the table. Can be either <code>default</code> or <code>bordered</code>. Default is <code>default</code>.
+			The style of the table. Can be either <code>default</code> or <code>bordered</code>. Default
+			is <code>default</code>.
 		</div>
 	</TableRow>
 
@@ -140,9 +141,7 @@
 		<TableCell>Hyvor Blogs</TableCell>
 		<TableCell>WordPress</TableCell>
 	</TableRow>
-	<TableRow section>
-		Hosting & Infrastructure
-	</TableRow>
+	<TableRow section>Hosting & Infrastructure</TableRow>
 	<TableRow>
 		<TableCell>Fully managed hosting</TableCell>
 		<TableCell>Yes</TableCell>
@@ -158,9 +157,7 @@
 		<TableCell>Yes</TableCell>
 		<TableCell>No</TableCell>
 	</TableRow>
-	<TableRow section>
-		SEO & Performance
-	</TableRow>
+	<TableRow section>SEO & Performance</TableRow>
 	<TableRow>
 		<TableCell>Built-in SEO tools</TableCell>
 		<TableCell>Yes</TableCell>

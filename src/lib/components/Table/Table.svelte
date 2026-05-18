@@ -2,11 +2,11 @@
 	interface Props {
 		columns: string;
 		hover?: boolean;
-		style?: "default" | "bordered";
+		style?: 'default' | 'bordered';
 		children?: import('svelte').Snippet;
 	}
 
-	let { columns, hover = false, style = "default", children }: Props = $props();
+	let { columns, hover = false, style = 'default', children }: Props = $props();
 
 	const hoverCss = hover ? '--local-hover-color: var(--hover);' : '';
 </script>

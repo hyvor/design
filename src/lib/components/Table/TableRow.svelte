@@ -33,7 +33,7 @@
 	:global(.table.bordered) div {
 		border-radius: 0;
 		padding: 13px 20px;
-    	border-top: 1px solid var(--border);
+		border-top: 1px solid var(--border);
 	}
 
 	:global(.table.bordered) div.head {
@@ -41,7 +41,7 @@
 		font-weight: 600;
 		font-size: 13px;
 		padding: 12px 20px;
-		margin-bottom:0;
+		margin-bottom: 0;
 		border-top: 0;
 	}
 

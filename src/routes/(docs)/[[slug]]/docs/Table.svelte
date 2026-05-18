@@ -36,9 +36,16 @@
 	</TableRow>
 
 	<TableRow>
-		<div><code>column</code></div>
+		<div><code>columns</code></div>
 		<div>
 			This is the CSS Grid <code>grid-template-columns</code> property.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>style</code></div>
+		<div>
+			The style of the table. Can be either <code>default</code> or <code>bordered</code>. Default is <code>default</code>.
 		</div>
 	</TableRow>
 
@@ -101,5 +108,62 @@
 	<TableRow>
 		<TableCell>Value 3</TableCell>
 		<TableCell>Value 4</TableCell>
+	</TableRow>
+</Table>
+
+<h2 id="bordered">Bordered Style Table</h2>
+
+<CodeBlock
+	code={`
+<Table columns="1fr 100px 100px" style="bordered">
+	<TableRow head>
+		<TableCell>Feature</TableCell>
+		<TableCell>Hyvor Blogs</TableCell>
+		<TableCell>WordPress</TableCell>
+	</TableRow>
+	<TableRow section>
+		Hosting & Infrastructure
+	</TableRow>
+	<TableRow>
+		<TableCell>Fully managed hosting</TableCell>
+		<TableCell>Yes</TableCell>
+		<TableCell>No</TableCell>
+	</TableRow>
+	...
+</Table>
+`}
+/>
+
+<Table columns="1fr 100px 100px" style="bordered">
+	<TableRow head>
+		<TableCell>Feature</TableCell>
+		<TableCell>Hyvor Blogs</TableCell>
+		<TableCell>WordPress</TableCell>
+	</TableRow>
+	<TableRow section>
+		Hosting & Infrastructure
+	</TableRow>
+	<TableRow>
+		<TableCell>Fully managed hosting</TableCell>
+		<TableCell>Yes</TableCell>
+		<TableCell>No</TableCell>
+	</TableRow>
+	<TableRow>
+		<TableCell>Automatic security updates</TableCell>
+		<TableCell>Yes</TableCell>
+		<TableCell>No</TableCell>
+	</TableRow>
+	<TableRow>
+		<TableCell>Automatic backups</TableCell>
+		<TableCell>Yes</TableCell>
+		<TableCell>No</TableCell>
+	</TableRow>
+	<TableRow section>
+		SEO & Performance
+	</TableRow>
+	<TableRow>
+		<TableCell>Built-in SEO tools</TableCell>
+		<TableCell>Yes</TableCell>
+		<TableCell>No</TableCell>
 	</TableRow>
 </Table>

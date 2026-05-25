@@ -68,22 +68,6 @@ export async function initBar() {
 	}
 }
 
-export async function readBar() {
-	const { instance } = getCloudContext();
-
-	const response = await fetch(instance + '/api/v2/cloud/bar/read', {
-		method: 'POST',
-		credentials: 'include'
-	});
-
-	if (!response.ok) {
-		throw new Error('Failed to mark updates as read');
-	}
-
-	barUnreadUpdates.set(0);
-	barLastReadUpdatesAt.set(Math.floor(Date.now() / 1000));
-}
-
 // exported to be used from outside
 export const bar = {
 	/**

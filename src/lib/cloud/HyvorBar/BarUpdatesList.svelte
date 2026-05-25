@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { barUnreadUpdates, barLastReadUpdatesAt, readBar, type BarUpdate } from './bar.js';
+	import { barUnreadUpdates, barLastReadUpdatesAt, type BarUpdate } from './bar.js';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 
 	import {
@@ -25,13 +25,15 @@
 		error = false;
 		loading = true;
 
-		fetch(cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component)
+		fetch(cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component, {
+			credentials: 'include'
+		})
 			.then((response) => response.json())
-			.then(async (data) => {
+			.then((data) => {
 				updates = data;
 
 				barUnreadUpdates.set(0);
-				await readBar();
+				barLastReadUpdatesAt.set(Math.floor(Date.now() / 1000));
 			})
 			.catch(() => {
 				error = true;
@@ -87,9 +89,7 @@
 									{update.content}
 								</div>
 								<div class="date">
-									{new Intl.DateTimeFormat('en-US').format(
-										new Date(update.created_at * 1000)
-									)}
+									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
 								</div>
 							</div>
 						{/snippet}

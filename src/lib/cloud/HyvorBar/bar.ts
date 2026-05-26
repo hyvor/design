@@ -21,12 +21,14 @@ export type BarUpdateType = 'company' | 'core' | 'talk' | 'blogs' | 'post' | 're
 
 export const barUnreadUpdates = writable<number>(0);
 export const barHasFailedInvoices = writable<boolean>(false);
+export const barLastReadUpdatesAt = writable<number | null>(null);
 
 interface BarResponse {
 	user_id: number;
 	organization_id: number | null;
 	has_failed_invoices: boolean;
 	unread_updates: number;
+	last_read_updates_at: number | null;
 }
 
 export async function initBar() {
@@ -38,11 +40,6 @@ export async function initBar() {
 
 	const query = new URLSearchParams();
 	query.set('component', component);
-
-	const lastUnreadTime = UnreadUpdatesTimeLocalStorage.get();
-	if (lastUnreadTime) {
-		query.set('last_read_updates_at', lastUnreadTime.toString());
-	}
 
 	const response = await fetch(instance + '/api/v2/cloud/bar/init?' + query.toString(), {
 		credentials: 'include'
@@ -64,63 +61,10 @@ export async function initBar() {
 	barHasFailedInvoices.set(data.has_failed_invoices);
 	barUnreadUpdates.set(data.unread_updates);
 
-	if (lastUnreadTime === null) {
-		UnreadUpdatesTimeLocalStorage.setNow();
-	}
-}
-
-export class UnreadUpdatesTimeLocalStorage {
-	static KEY = 'unread_updates';
-
-	static get() {
-		const val = BarLocalStorage.get(UnreadUpdatesTimeLocalStorage.KEY);
-		if (val) {
-			return Number(val);
-		}
-		return null;
-	}
-
-	static set(value: string) {
-		BarLocalStorage.set(UnreadUpdatesTimeLocalStorage.KEY, value);
-	}
-
-	static setNow() {
-		UnreadUpdatesTimeLocalStorage.set(Math.floor(Date.now() / 1000).toString());
-	}
-}
-
-class BarLocalStorage {
-	static KEY = 'hyvor_bar';
-
-	static getJson() {
-		try {
-			const data = localStorage.getItem(BarLocalStorage.KEY);
-			if (data) {
-				return JSON.parse(data);
-			}
-		} catch (e) {
-			console.error(e);
-			return null;
-		}
-		return null;
-	}
-
-	static get(key: string): string | null {
-		const data = BarLocalStorage.getJson();
-		if (data) {
-			return data[key];
-		}
-		return null;
-	}
-
-	static set(key: string, value: string) {
-		try {
-			const data = BarLocalStorage.getJson() || {};
-			data[key] = value;
-			localStorage.setItem(BarLocalStorage.KEY, JSON.stringify(data));
-		} catch (e) {
-			console.error(e);
-		}
+	if (data.last_read_updates_at !== null) {
+		barLastReadUpdatesAt.set(data.last_read_updates_at);
+	} else {
+		barLastReadUpdatesAt.set(Math.floor(Date.now() / 1000));
 	}
 }
 

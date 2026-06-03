@@ -23,6 +23,7 @@
 				dispatch('cancel');
 			}}
 			{...footer.cancel?.props}
+			disabled={footer.cancel?.disabled}
 		>
 			{footer.cancel?.text || 'Cancel'}
 		</Button>
@@ -34,6 +35,7 @@
 			color={footer.confirm?.danger ? 'red' : 'accent'}
 			on:click={() => dispatch('confirm')}
 			{...footer.confirm?.props}
+			disabled={footer.confirm?.disabled}
 		>
 			{footer.confirm?.text || 'Confirm'}
 		</Button>

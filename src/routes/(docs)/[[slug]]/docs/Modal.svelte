@@ -568,7 +568,6 @@
 		footer={{
 			cancel: {
 				text: 'Cancel',
-				disabled: true
 			},
 			confirm: {
 				text: 'Delete',
@@ -582,16 +581,15 @@
 />
 
 <CodeResult>
-	<Button on:click={() => (show8 = true)}>Modal with Disabled Footer Buttons</Button>
+	<Button on:click={() => (show8 = true)}>Modal with Disabled Footer Button</Button>
 </CodeResult>
 
 <Modal
-	title="Modal with Disabled Footer Buttons"
+	title="Modal with Disabled Footer Button"
 	bind:show={show8}
 	footer={{
 		cancel: {
-			text: 'Cancel',
-			disabled: true
+			text: 'Cancel'
 		},
 		confirm: {
 			text: 'Delete',

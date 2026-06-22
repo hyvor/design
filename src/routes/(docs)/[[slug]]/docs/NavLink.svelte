@@ -193,14 +193,12 @@
 	</CodeResult>
 </div>
 
-<h3 id="group">
-	NavLinkGroup
-</h3>
+<h3 id="group">NavLinkGroup</h3>
 
 <p>
-	<code>NavLinkGroup</code> provides better animations for a group of <code>NavLink</code> components. It is recommended to use this to wrap same-level navigation links.
+	<code>NavLinkGroup</code> provides better animations for a group of <code>NavLink</code> components.
+	It is recommended to use this to wrap same-level navigation links.
 </p>
-
 
 <CodeBlock
 	code={`
@@ -232,7 +230,6 @@
 </NavLinkGroup>
 `}
 />
-
 
 <div class="no-link-color">
 	<CodeResult gap={5} white>

@@ -29,7 +29,14 @@
 
 	const isNavLinkGroup = !!getContext('navlink-group');
 
-	let { href, active = false, disabled = false, start, children, end, onkeyup,
+	let {
+		href,
+		active = false,
+		disabled = false,
+		start,
+		children,
+		end,
+		onkeyup,
 		onkeydown,
 		onkeypress,
 		onfocus,
@@ -38,7 +45,9 @@
 		onmouseover,
 		onmouseenter,
 		onmouseleave,
-		onchange, ...rest }: Props = $props();
+		onchange,
+		...rest
+	}: Props = $props();
 </script>
 
 <a

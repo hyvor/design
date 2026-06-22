@@ -107,19 +107,6 @@
 					</ActionListItem>
 				</a>
 			{/if}
-			{#if config.chat}
-				<a href="/chat" onclick={openLiveChat}>
-					<ActionListItem>
-						Live Chat
-						{#snippet description()}
-							<div>Chat with our team</div>
-						{/snippet}
-						{#snippet start()}
-							<IconChatDots />
-						{/snippet}
-					</ActionListItem>
-				</a>
-			{/if}
 
 			<ActionListGroup title="Social">
 				<a href={SOCIAL_LINKS.discord} target="_blank">

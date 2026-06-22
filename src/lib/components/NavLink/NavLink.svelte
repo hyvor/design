@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { legacyHandlers } from '$lib/legacy.js';
+	import { getContext } from 'svelte';
 	import { createBubbler } from 'svelte/legacy';
 
 	const bubble = createBubbler();
@@ -10,27 +12,52 @@
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
+
+		onkeyup?: (event: KeyboardEvent) => void;
+		onkeydown?: (event: KeyboardEvent) => void;
+		onkeypress?: (event: KeyboardEvent) => void;
+		onfocus?: (event: FocusEvent) => void;
+		onblur?: (event: FocusEvent) => void;
+		onclick?: (event: MouseEvent) => void;
+		onmouseover?: (event: MouseEvent) => void;
+		onmouseenter?: (event: MouseEvent) => void;
+		onmouseleave?: (event: MouseEvent) => void;
+		onchange?: (event: Event) => void;
+
 		[key: string]: any;
 	};
 
-	let { href, active = false, disabled = false, start, children, end, ...rest }: Props = $props();
+	const isNavLinkGroup = !!getContext('navlink-group');
+
+	let { href, active = false, disabled = false, start, children, end, onkeyup,
+		onkeydown,
+		onkeypress,
+		onfocus,
+		onblur,
+		onclick,
+		onmouseover,
+		onmouseenter,
+		onmouseleave,
+		onchange, ...rest }: Props = $props();
 </script>
 
 <a
 	{href}
 	{...rest}
+	class="nav-link"
 	class:active
 	class:disabled
-	onkeyup={bubble('keyup')}
-	onkeydown={bubble('keydown')}
-	onkeypress={bubble('keypress')}
-	onfocus={bubble('focus')}
-	onblur={bubble('blur')}
-	onclick={bubble('click')}
-	onmouseover={bubble('mouseover')}
-	onmouseenter={bubble('mouseenter')}
-	onmouseleave={bubble('mouseleave')}
-	onchange={bubble('change')}
+	class:group={isNavLinkGroup}
+	onkeyup={legacyHandlers(onkeyup, bubble('keyup'))}
+	onkeydown={legacyHandlers(onkeydown, bubble('keydown'))}
+	onkeypress={legacyHandlers(onkeypress, bubble('keypress'))}
+	onfocus={legacyHandlers(onfocus, bubble('focus'))}
+	onblur={legacyHandlers(onblur, bubble('blur'))}
+	onclick={legacyHandlers(onclick, bubble('click'))}
+	onmouseover={legacyHandlers(onmouseover, bubble('mouseover'))}
+	onmouseenter={legacyHandlers(onmouseenter, bubble('mouseenter'))}
+	onmouseleave={legacyHandlers(onmouseleave, bubble('mouseleave'))}
+	onchange={legacyHandlers(onchange, bubble('change'))}
 >
 	{#if start}
 		<span class="start">
@@ -60,16 +87,16 @@
 		align-items: center;
 	}
 
-	a:hover {
+	a:hover:not(.group) {
 		background-color: var(--hover);
 	}
 
-	a.active {
+	a.active:not(.group) {
 		background-color: var(--accent-lightest);
 		border-left: 3px solid var(--accent);
 	}
 
-	:global(:root.dark) a.active {
+	:global(:root.dark) a.active:not(.group) {
 		background-color: color-mix(in srgb, var(--accent-lightest), transparent 80%);
 	}
 

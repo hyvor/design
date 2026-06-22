@@ -10,6 +10,8 @@
 	import IconFile from '@hyvor/icons/IconFile';
 	import IconCoin from '@hyvor/icons/IconCoin';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
+	import NavLinkGroup from '$lib/components/NavLink/NavLinkGroup.svelte';
+	import Divider from '$lib/components/Divider/Divider.svelte';
 
 	let active = $state('overview');
 	let active2 = $state('overview');
@@ -63,6 +65,8 @@
 </Table>
 
 <h2>Examples</h2>
+
+<h3>Basic</h3>
 
 <CodeBlock
 	code={`
@@ -175,7 +179,6 @@
 					href="javascript:void(0)"
 					active={active2 === 'billing'}
 					onclick={() => (active2 = 'billing')}
-					disabled
 				>
 					{#snippet start()}
 						<IconCoin></IconCoin>
@@ -187,5 +190,47 @@
 				</NavLink>
 			</div>
 		</Box>
+	</CodeResult>
+</div>
+
+<h3 id="group">
+	NavLinkGroup
+</h3>
+
+<p>
+	<code>NavLinkGroup</code> provides better animations for a group of <code>NavLink</code> components. It is recommended to use this to wrap same-level navigation links.
+</p>
+
+
+<div class="no-link-color">
+	<CodeResult gap={5} white>
+		<NavLinkGroup>
+			<div style="padding: 15px 0;width:100%" class="hds-box">
+				<NavLink
+					href="javascript:void(0)"
+					active={active === 'overview'}
+					onclick={() => (active = 'overview')}>Overview</NavLink
+				>
+				<NavLink
+					href="javascript:void(0)"
+					active={active === 'comments'}
+					onclick={() => (active = 'comments')}>Comments</NavLink
+				>
+
+				<Divider margin={10} />
+
+				<NavLink
+					href="javascript:void(0)"
+					active={active === 'pages'}
+					onclick={() => (active = 'pages')}>Pages</NavLink
+				>
+
+				<NavLink
+					href="javascript:void(0)"
+					active={active === 'posts'}
+					onclick={() => (active = 'posts')}>Posts</NavLink
+				>
+			</div>
+		</NavLinkGroup>
 	</CodeResult>
 </div>

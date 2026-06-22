@@ -79,6 +79,7 @@
 <style>
 	a {
 		display: flex;
+		width: 100%;
 		padding: 12px 29px;
 		font-size: 14px;
 		letter-spacing: 0.3px;

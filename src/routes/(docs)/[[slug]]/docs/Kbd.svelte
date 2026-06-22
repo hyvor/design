@@ -29,8 +29,8 @@
 		<div></div>
 		<div>
 			A single key string or an array of key strings. Modifier keys (<code>mod</code>,
-			<code>ctrl</code>, <code>alt</code>, <code>shift</code>, <code>meta</code>) are
-			recognized and formatted for the current platform.
+			<code>ctrl</code>, <code>alt</code>, <code>shift</code>, <code>meta</code>) are recognized and
+			formatted for the current platform.
 		</div>
 	</TableRow>
 	<TableRow>
@@ -109,8 +109,8 @@
 <h3 id="inline-badge">Inline badge</h3>
 
 <p>
-	Pair a single-letter shortcut badge with a button using the <code>start</code> snippet. The badge
-	sizes to a square for single characters.
+	Pair a single-letter shortcut badge with a button using the <code>start</code> snippet. The badge sizes
+	to a square for single characters.
 </p>
 
 <CodeBlock
@@ -269,8 +269,8 @@
 <h3 id="platform">Platform formatting</h3>
 
 <p>
-	On Mac, modifiers are shown as symbols with no separator and in canonical order (Control →
-	Option → Shift → Command). On other platforms, full names are joined with <code>+</code>.
+	On Mac, modifiers are shown as symbols with no separator and in canonical order (Control → Option
+	→ Shift → Command). On other platforms, full names are joined with <code>+</code>.
 </p>
 
 <CodeBlock
@@ -288,6 +288,6 @@
 <h3 id="accessibility">Accessibility</h3>
 
 <p>
-	The component adds an <code>aria-label</code> that spells out symbols as words, so screen
-	readers announce <em>"Shift plus Command plus K"</em> rather than reading glyph names.
+	The component adds an <code>aria-label</code> that spells out symbols as words, so screen readers
+	announce <em>"Shift plus Command plus K"</em> rather than reading glyph names.
 </p>

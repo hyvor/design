@@ -4,19 +4,19 @@
 	type ModKey = 'mod' | 'ctrl' | 'alt' | 'shift' | 'meta';
 
 	const PLATFORM_LABELS: Record<ModKey, { mac: string; other: string }> = {
-		mod:   { mac: '⌘', other: 'Ctrl' },
-		ctrl:  { mac: '⌃', other: 'Ctrl' },
-		alt:   { mac: '⌥', other: 'Alt' },
+		mod: { mac: '⌘', other: 'Ctrl' },
+		ctrl: { mac: '⌃', other: 'Ctrl' },
+		alt: { mac: '⌥', other: 'Alt' },
 		shift: { mac: '⇧', other: 'Shift' },
-		meta:  { mac: '⌘', other: 'Win' },
+		meta: { mac: '⌘', other: 'Win' }
 	};
 
 	const MAC_ARIA: Record<ModKey, string> = {
-		mod:   'Command',
-		ctrl:  'Control',
-		alt:   'Option',
+		mod: 'Command',
+		ctrl: 'Control',
+		alt: 'Option',
 		shift: 'Shift',
-		meta:  'Command',
+		meta: 'Command'
 	};
 
 	// Canonical Mac modifier order: Control → Option → Shift → Command
@@ -59,8 +59,8 @@
 	}
 
 	function sortKeys(keyArr: string[]): string[] {
-		const mods = MOD_ORDER.filter(m => keyArr.some(k => k.toLowerCase() === m));
-		const regular = keyArr.filter(k => !MOD_SET.has(k.toLowerCase()));
+		const mods = MOD_ORDER.filter((m) => keyArr.some((k) => k.toLowerCase() === m));
+		const regular = keyArr.filter((k) => !MOD_SET.has(k.toLowerCase()));
 		return [...mods, ...regular];
 	}
 
@@ -69,13 +69,11 @@
 
 	let display = $derived(
 		isMac
-			? sorted.map(k => keyLabel(k, true)).join('')
-			: sorted.map(k => keyLabel(k, false)).join(' + ')
+			? sorted.map((k) => keyLabel(k, true)).join('')
+			: sorted.map((k) => keyLabel(k, false)).join(' + ')
 	);
 
-	let ariaLabel = $derived(
-		sorted.map(k => keyAria(k, isMac)).join(' plus ')
-	);
+	let ariaLabel = $derived(sorted.map((k) => keyAria(k, isMac)).join(' plus '));
 </script>
 
 <kbd aria-label={ariaLabel} class={sizeClass} style={sizeStyle} {...rest}>{display}</kbd>

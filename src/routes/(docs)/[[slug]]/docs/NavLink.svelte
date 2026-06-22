@@ -202,6 +202,38 @@
 </p>
 
 
+<CodeBlock
+	code={`
+<NavLinkGroup>
+	<NavLink
+		href="javascript:void(0)"
+		active={active === 'overview'}
+		onclick={() => (active = 'overview')}>Overview</NavLink
+	>
+	<NavLink
+		href="javascript:void(0)"
+		active={active === 'comments'}
+		onclick={() => (active = 'comments')}>Comments</NavLink
+	>
+
+	<Divider margin={10} />
+
+	<NavLink
+		href="javascript:void(0)"
+		active={active === 'pages'}
+		onclick={() => (active = 'pages')}>Pages</NavLink
+	>
+
+	<NavLink
+		href="javascript:void(0)"
+		active={active === 'posts'}
+		onclick={() => (active = 'posts')}>Posts</NavLink
+	>
+</NavLinkGroup>
+`}
+/>
+
+
 <div class="no-link-color">
 	<CodeResult gap={5} white>
 		<NavLinkGroup>

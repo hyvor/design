@@ -64,6 +64,7 @@ export { default as Modal } from './Modal/Modal.svelte';
 export { confirm } from './Modal/confirm.js';
 
 export { default as NavLink } from './NavLink/NavLink.svelte';
+export { default as NavLinkGroup } from './NavLink/NavLinkGroup.svelte';
 
 export { default as Radio } from './Radio/Radio.svelte';
 

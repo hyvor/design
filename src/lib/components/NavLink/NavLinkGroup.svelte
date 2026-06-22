@@ -3,9 +3,17 @@
 
 	interface Props {
 		children: Snippet;
+		activeBackground?: string;
+		activeBorderColor?: string;
+		hoverBackground?: string;
 	}
 
-	let { children }: Props = $props();
+	let {
+		children,
+		activeBackground = 'var(--accent-lightest)',
+		activeBorderColor = 'var(--accent)',
+		hoverBackground = 'var(--hover)'
+	}: Props = $props();
 
 	setContext('navlink-group', true);
 
@@ -16,18 +24,19 @@
 	let hoverVisible = $state(false);
 	let firstRender = true;
 	let hoverFirstRender = true;
+	let hoverTarget: HTMLElement | null = null;
 
-	function positionIndicator(el: HTMLDivElement, target: HTMLElement, isFirstRender: boolean) {
+	function positionIndicator(el: HTMLDivElement, target: HTMLElement, instant: boolean) {
 		const rect = target.getBoundingClientRect();
 
-		el.style.transition = isFirstRender ? 'none' : '';
+		el.style.transition = instant ? 'none' : '';
 		el.style.top = `${rect.top}px`;
 		el.style.left = `${rect.left}px`;
 		el.style.width = `${rect.width}px`;
 		el.style.height = `${rect.height}px`;
 	}
 
-	function updateIndicator() {
+	function updateIndicator(instant = false) {
 		if (!container || !indicator) return;
 
 		const activeLink = container.querySelector<HTMLElement>('.nav-link.active');
@@ -37,7 +46,7 @@
 			return;
 		}
 
-		positionIndicator(indicator, activeLink, firstRender);
+		positionIndicator(indicator, activeLink, firstRender || instant);
 		visible = true;
 
 		if (firstRender) {
@@ -45,7 +54,7 @@
 		}
 	}
 
-	function updateHoverIndicator(target: HTMLElement | null) {
+	function updateHoverIndicator(target: HTMLElement | null, instant = false) {
 		if (!hoverIndicator) return;
 
 		if (!target || target.classList.contains('active') || target.classList.contains('disabled')) {
@@ -53,7 +62,7 @@
 			return;
 		}
 
-		positionIndicator(hoverIndicator, target, hoverFirstRender);
+		positionIndicator(hoverIndicator, target, hoverFirstRender || instant);
 		hoverVisible = true;
 
 		if (hoverFirstRender) {
@@ -62,18 +71,27 @@
 	}
 
 	function onMouseOver(event: MouseEvent) {
-		const target = (event.target as HTMLElement).closest<HTMLElement>('.nav-link');
-		updateHoverIndicator(target);
+		hoverTarget = (event.target as HTMLElement).closest<HTMLElement>('.nav-link');
+		updateHoverIndicator(hoverTarget);
 	}
 
 	function onMouseLeave() {
+		hoverTarget = null;
 		hoverVisible = false;
+	}
+
+	function onScrollOrResize() {
+		updateIndicator(true);
+
+		if (hoverVisible && hoverTarget) {
+			updateHoverIndicator(hoverTarget, true);
+		}
 	}
 
 	onMount(() => {
 		updateIndicator();
 
-		const observer = new MutationObserver(updateIndicator);
+		const observer = new MutationObserver(() => updateIndicator());
 		observer.observe(container, {
 			attributes: true,
 			attributeFilter: ['class'],
@@ -83,20 +101,26 @@
 		container.addEventListener('mouseover', onMouseOver);
 		container.addEventListener('mouseleave', onMouseLeave);
 
-		window.addEventListener('resize', updateIndicator);
-		window.addEventListener('scroll', updateIndicator, true);
+		window.addEventListener('resize', onScrollOrResize);
+		window.addEventListener('scroll', onScrollOrResize, true);
 
 		return () => {
 			observer.disconnect();
 			container.removeEventListener('mouseover', onMouseOver);
 			container.removeEventListener('mouseleave', onMouseLeave);
-			window.removeEventListener('resize', updateIndicator);
-			window.removeEventListener('scroll', updateIndicator, true);
+			window.removeEventListener('resize', onScrollOrResize);
+			window.removeEventListener('scroll', onScrollOrResize, true);
 		};
 	});
 </script>
 
-<div class="nav-link-group" bind:this={container}>
+<div
+	class="nav-link-group"
+	bind:this={container}
+	style:--nlg-active-bg={activeBackground}
+	style:--nlg-active-border={activeBorderColor}
+	style:--nlg-hover-bg={hoverBackground}
+>
 	<div
 		class="nav-link-group-indicator hover"
 		class:visible={hoverVisible}
@@ -135,13 +159,13 @@
 	}
 
 	.nav-link-group-indicator.active {
-		background-color: var(--accent-lightest);
-		border-left: 3px solid var(--accent);
+		background-color: var(--nlg-active-bg);
+		border-left: 3px solid var(--nlg-active-border);
 	}
 
 	.nav-link-group-indicator.hover {
 		z-index: 0;
-		background-color: var(--hover);
+		background-color: var(--nlg-hover-bg);
 		transition:
 			top 0.1s ease,
 			left 0.1s ease,
@@ -151,7 +175,7 @@
 	}
 
 	:global(:root.dark) .nav-link-group-indicator.active {
-		background-color: color-mix(in srgb, var(--accent-lightest), transparent 80%);
+		background-color: color-mix(in srgb, var(--nlg-active-bg), transparent 80%);
 	}
 
 	:global(.nav-link.group) {

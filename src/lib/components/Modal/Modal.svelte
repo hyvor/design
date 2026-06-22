@@ -18,6 +18,7 @@
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
 		onclose?: () => void;
+		hasClose?: boolean | string;
 
 		footer?: Footer | Snippet;
 		children?: Snippet;
@@ -33,6 +34,7 @@
 		closeOnEscape = true,
 		loading = false,
 		onclose,
+		hasClose = true,
 		footer,
 		children
 	}: Props = $props();
@@ -113,9 +115,11 @@
 				</div>
 
 				<div class="close-wrap">
-					<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
-						<IconX size={25} />
-					</IconButton>
+					{#if hasClose}
+						<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
+							<IconX size={25} />
+						</IconButton>
+					{/if}
 				</div>
 			</div>
 

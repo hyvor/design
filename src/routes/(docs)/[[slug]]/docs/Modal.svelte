@@ -138,7 +138,15 @@
 	<TableRow>
 		<div><code>closeOnEscape</code></div>
 		<div><code>true</code></div>
-		<div>Whether to close the modal when pressing the escape key.</div>
+		<div>
+			Whether to close the modal when pressing the escape key. By default, close button is shown.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>hasClose</code></div>
+		<div><code>true</code></div>
+		<div>Whether to show the close button.</div>
 	</TableRow>
 
 	<TableRow>

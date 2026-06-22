@@ -53,6 +53,8 @@ export {
 
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
+export { default as Kbd } from './Kbd/Kbd.svelte';
+
 export { default as Link } from './Link/Link.svelte';
 
 export { default as Loader } from './Loader/Loader.svelte';

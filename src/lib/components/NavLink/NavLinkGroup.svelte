@@ -1,18 +1,21 @@
 <script lang="ts">
 	import { setContext, onMount, type Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
 	interface Props {
 		children: Snippet;
 		activeBackground?: string;
 		activeBorderColor?: string;
 		hoverBackground?: string;
+		wrapProps?: HTMLAttributes<HTMLElement>;
 	}
 
 	let {
 		children,
 		activeBackground = 'var(--accent-lightest)',
 		activeBorderColor = 'var(--accent)',
-		hoverBackground = 'var(--hover)'
+		hoverBackground = 'var(--hover)',
+		wrapProps = {}
 	}: Props = $props();
 
 	setContext('navlink-group', true);
@@ -120,6 +123,7 @@
 	style:--nlg-active-bg={activeBackground}
 	style:--nlg-active-border={activeBorderColor}
 	style:--nlg-hover-bg={hoverBackground}
+	{...wrapProps}
 >
 	<div
 		class="nav-link-group-indicator hover"

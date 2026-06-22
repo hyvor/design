@@ -30,6 +30,7 @@ import Tag from './docs/Tag.svelte';
 import TabNav from './docs/TabNav.svelte';
 import ColorPicker from './docs/ColorPicker.svelte';
 import IconMessage from './docs/IconMessage.svelte';
+import Kbd from './docs/Kbd.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import ConsoleLoader from './docs/ConsoleLoader.svelte';
@@ -84,6 +85,7 @@ const nav = {
 	box: Box,
 	slider: Slider,
 	'icon-message': IconMessage,
+	kbd: Kbd,
 	'console-loader': ConsoleLoader,
 	accordion: Accordion,
 	select: Select,

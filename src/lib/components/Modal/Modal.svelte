@@ -18,7 +18,7 @@
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
 		onclose?: () => void;
-		isCloseOn?: boolean | string;
+		hasClose?: boolean | string;
 
 		footer?: Footer | Snippet;
 		children?: Snippet;
@@ -34,7 +34,7 @@
 		closeOnEscape = true,
 		loading = false,
 		onclose,
-		isCloseOn = true,
+		hasClose = true,
 		footer,
 		children
 	}: Props = $props();
@@ -115,7 +115,7 @@
 				</div>
 
 				<div class="close-wrap">
-					{#if isCloseOn}
+					{#if hasClose}
 						<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
 							<IconX size={25} />
 						</IconButton>

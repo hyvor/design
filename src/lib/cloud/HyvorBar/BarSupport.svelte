@@ -12,7 +12,6 @@
 	import IconDiscord from '@hyvor/icons/IconDiscord';
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 	import IconFileEarmark from '@hyvor/icons/IconFileEarmark';
-	import IconChatDots from '@hyvor/icons/IconChatDots';
 	import IconBluesky from '@hyvor/icons/IconBluesky';
 	import IconLinkedin from '@hyvor/icons/IconLinkedin';
 	import type { BarConfig } from './bar.js';
@@ -33,14 +32,6 @@
 	let { mobile = false, config }: Props = $props();
 
 	const cloudContext = $derived(getCloudContext());
-
-	function openLiveChat(e: any) {
-		e.preventDefault();
-		if ((window as any).$crisp) {
-			(window as any).$crisp.push(['do', 'chat:open']);
-		}
-		supportDropdown = false;
-	}
 
 	function getName() {
 		if (config.name) {

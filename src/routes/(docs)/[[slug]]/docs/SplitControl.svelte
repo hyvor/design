@@ -121,8 +121,12 @@
 <CodeBlock
 	code={`
     <SplitControl>
-        <Label slot="label">Spam Detection</Label>
-        <Caption slot="caption">Check for spam in comments</Caption>
+        {#snippet label()}
+            <Label>Spam Detection</Label>
+        {/snippet}
+        {#snippet caption()}
+            <Caption>Check for spam in comments</Caption>
+        {/snippet}
         <Switch />
     </SplitControl>
 `}
@@ -153,11 +157,13 @@
 	code={`
     <SplitControl label="Guest Commenting" caption="Comment without logging in">
         <Switch />
-        <div slot="nested">
-            <SplitControl label="Guest Comment Moderation" caption="Moderate guest comments before they are published.">
-                <Switch />
-            </SplitControl>
-        </div>
+        {#snippet nested()}
+            <div>
+                <SplitControl label="Guest Comment Moderation" caption="Moderate guest comments before they are published.">
+                    <Switch />
+                </SplitControl>
+            </div>
+        {/snippet}
     </SplitControl>
 `}
 />

@@ -8,7 +8,7 @@
 	import BarNotice from './BarNotice/BarNotice.svelte';
 	import BarLicense from './BarNotice/BarLicense.svelte';
 	import BarOrganization from './Organization/BarOrganization.svelte';
-	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { cloudContextId, getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 	import { PRODUCTS } from './BarProducts/products.js';
 
 	interface Props {
@@ -80,16 +80,21 @@
 					{getName()}
 				</span>
 			</a>
-			<BarProducts mobile={mobileShow} />
 
-			{#if organization}
-				<BarOrganization />
+			{#if deployment === 'cloud'}
+				<BarProducts mobile={mobileShow} />
+
+				{#if organization}
+					<BarOrganization />
+				{/if}
+				<BarLicense name={getName()} />
 			{/if}
-			<BarLicense name={getName()} />
 		</div>
 		<div class="center"></div>
 		<div class="right">
-			<BarNotice />
+			{#if deployment === 'cloud'}
+				<BarNotice />
+			{/if}
 
 			<div class="hidden-on-mobile">
 				{#if deployment === 'cloud'}

@@ -30,8 +30,10 @@ import Tag from './docs/Tag.svelte';
 import TabNav from './docs/TabNav.svelte';
 import ColorPicker from './docs/ColorPicker.svelte';
 import IconMessage from './docs/IconMessage.svelte';
+import Kbd from './docs/Kbd.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
+import ConsoleLoader from './docs/ConsoleLoader.svelte';
 import Document from './docs/Document/Document.svelte';
 import { error } from '@sveltejs/kit';
 import Usage from './docs/Usage.svelte';
@@ -42,6 +44,7 @@ import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
+import Select from './docs/Select.svelte';
 
 export const prerender = true;
 
@@ -82,8 +85,10 @@ const nav = {
 	box: Box,
 	slider: Slider,
 	'icon-message': IconMessage,
+	kbd: Kbd,
+	'console-loader': ConsoleLoader,
 	accordion: Accordion,
-
+	select: Select,
 	usage: Usage,
 	'page-structure': PageStructure,
 	docs: DocsDocs,

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { ActionList, ActionListItem, Dropdown } from '$lib/components/index.js';
 	import IconGrid from '@hyvor/icons/IconGrid';
-	import { getCloudContext } from '../../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../../CloudContext/cloudContextState.svelte.js';
 	import { getProductsGroupedBySuite, getSuiteName } from './products.js';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
 	import ActionListGroup from '$lib/components/ActionList/ActionListGroup.svelte';

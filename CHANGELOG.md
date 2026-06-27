@@ -1,3 +1,8 @@
+## 2.0.7
+
+- TabNav supports basePath for URL-based activation
+- TabNav no longer supports active. active can be set at TabNavItem manually if needed
+
 ## 2.0.0
 
 - Organizations support added

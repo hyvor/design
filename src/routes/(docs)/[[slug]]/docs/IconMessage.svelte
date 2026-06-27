@@ -202,7 +202,9 @@
         <div>
             There are no results to show.
         </div>
-        <IconInbox slot="icon" size={60} />    
+        {#snippet icon()}
+            <IconInbox size={60} />
+        {/snippet}
     </IconMessage>
 `}
 />

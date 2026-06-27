@@ -35,6 +35,7 @@
 				<li><code>link</code></li>
 				<li><code>accent</code></li>
 				<li><code>text</code></li>
+				<li><code>inherit</code></li>
 			</ul>
 		</div>
 	</TableRow>
@@ -57,6 +58,7 @@
     <Link href="/" color="link">Link</Link>
     <Link href="/" color="accent">Accent Link</Link>
     <Link href="/" color="text">Text Link</Link>
+	<Link href="/" color="inherit">Inherit Link</Link>
     <Link href="/" color="link" underline={false}>No underline</Link>
 `}
 />
@@ -66,6 +68,7 @@
 		<Link href="/" color="link">Link</Link>
 		<Link href="/" color="accent">Accent Link</Link>
 		<Link href="/" color="text">Text Link</Link>
+		<Link href="/" color="inherit">Inherit Link</Link>
 		<Link href="/" color="link" underline={false}>No underline</Link>
 	</CodeResult>
 </div>
@@ -76,8 +79,18 @@
 
 <CodeBlock
 	code={`
-    <Link href="/"><IconHouse slot="start" />Home</Link>
-    <Link href="/" underline={false}><IconHouse slot="start" />Home</Link>
+    <Link href="/">
+        {#snippet start()}
+            <IconHouse />
+        {/snippet}
+        Home
+    </Link>
+    <Link href="/" underline={false}>
+        {#snippet start()}
+            <IconHouse />
+        {/snippet}
+        Home
+    </Link>
 `}
 />
 
@@ -104,11 +117,15 @@
 	code={`
     <Link href="/" target="_blank">
         Open
-        <IconBoxArrowUpRight slot="end" />
+        {#snippet end()}
+            <IconBoxArrowUpRight />
+        {/snippet}
     </Link>
-    <Link href="/" target="_blank" underline={false} >
+    <Link href="/" target="_blank" underline={false}>
         Open
-        <IconBoxArrowUpRight slot="end" />
+        {#snippet end()}
+            <IconBoxArrowUpRight />
+        {/snippet}
     </Link>
 `}
 />

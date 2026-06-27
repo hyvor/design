@@ -106,6 +106,9 @@
 		border-radius: 2px;
 		outline: 1px solid var(--accent);
 		position: relative;
+		transition:
+			0.2s background-color,
+			0.2s box-shadow;
 	}
 
 	span.placeholder:focus-visible {
@@ -113,10 +116,10 @@
 	}
 
 	/* the check icon */
-	span.placeholder:after {
+	span.placeholder::after {
 		content: '';
 		position: absolute;
-		display: none;
+		/* display: none; */
 
 		/* check icon */
 		left: 4.5px;
@@ -127,6 +130,7 @@
 		border-width: 0 3px 3px 0;
 		transform: rotate(45deg);
 		transition: 0.2s box-shadow;
+		opacity: 0;
 	}
 
 	.checkbox-wrap:hover span.placeholder {
@@ -142,20 +146,22 @@
 	}
 
 	input:checked ~ span.placeholder:after {
-		display: block;
+		opacity: 1;
 	}
-
-	/* disabled styles */
 	input:disabled ~ span.placeholder {
 		background-color: var(--accent-light);
-		border: none !important;
-		opacity: 0.2;
-		cursor: not-allowed;
 		box-shadow: none !important;
+		outline: rgba(0, 0, 0, 0.1);
 	}
 
-	input:disabled:checked ~ span.placeholder:after {
-		display: none;
-		pointer-events: none;
+	input:disabled ~ span.placeholder::after {
+		opacity: 0.6;
+		border-color: var(--accent-text);
+	}
+
+	/* If the wrapper contains a disabled input, cursor changes to not-allowed */
+	.checkbox-wrap:has(input:disabled),
+	.checkbox-wrap:has(input:disabled) label {
+		cursor: not-allowed;
 	}
 </style>

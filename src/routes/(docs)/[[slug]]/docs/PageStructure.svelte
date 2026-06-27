@@ -99,23 +99,27 @@
         subName="Talk"
     >
 
-        <div slot="center">
-            <Button as="a" href="/docs" color="invisible">
-                Docs
-            </Button>
-            <Button as="a" href="/pricing" color="invisible">
-                Pricing
-            </Button>
-        </div>
+        {#snippet center()}
+            <div>
+                <Button as="a" href="/docs" color="invisible">
+                    Docs
+                </Button>
+                <Button as="a" href="/pricing" color="invisible">
+                    Pricing
+                </Button>
+            </div>
+        {/snippet}
 
-        <div slot="end">
-            <Button as="a" href="/login" color="invisible">
-                Login
-            </Button>
-            <Button as="a" href="/signup">
-                Signup
-            </Button>
-        </div>
+        {#snippet end()}
+            <div>
+                <Button as="a" href="/login" color="invisible">
+                    Login
+                </Button>
+                <Button as="a" href="/signup">
+                    Signup
+                </Button>
+            </div>
+        {/snippet}
 
     </Header>
 `}
@@ -188,8 +192,7 @@
     }}
 >
 
-    <div slot="center">
-
+    {#snippet center()}
         <div style="display:flex">
             <FooterLinkList title="Product">
                 <a href="pricing" target="_blank">Pricing</a>
@@ -201,8 +204,7 @@
                 <a href="https://hyvor.com" target="_blank">hyvor.com</a>
             </FooterLinkList>
         </div>
-
-    </div>
+    {/snippet}
 
 </Footer>
            

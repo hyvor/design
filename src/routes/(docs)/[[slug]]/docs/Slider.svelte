@@ -83,20 +83,20 @@
 <h3 id="dots">with Dots</h3>
 
 <p>
-	This example also uses the <code>on:change</code> event instead of binding.
+	This example also uses the <code>onchange</code> callback instead of binding.
 </p>
 
 <CodeBlock
-	code={`<Slider 
-    min={0} 
-    max={10} 
+	code={`<Slider
+    min={0}
+    max={10}
     dots
     value={progress}
-    on:change={e => progress = e.detail}
+    onchange={value => progress = value}
 />`}
 	language="svelte"
 />
 
 <CodeResult>
-	<Slider min={0} max={10} dots value={val2} on:change={(e) => (val2 = e.detail)} />
+	<Slider min={0} max={10} dots value={val2} onchange={(value) => (val2 = value)} />
 </CodeResult>

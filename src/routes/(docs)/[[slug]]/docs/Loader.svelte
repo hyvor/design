@@ -186,7 +186,9 @@
 	code={`
         <Button>
             Submit
-            <Loader slot="action" size="small" invert />
+            {#snippet action()}
+                <Loader size="small" invert />
+            {/snippet}
         </Button>
     `}
 />
@@ -295,25 +297,31 @@
     <` +
 		`/script>
 
-    <Button on:click={handleButtonClickS}>Toggle State Success 
-        <Loader slot="action" size="small" state={loaderStateS} />  
+    <Button onclick={handleButtonClickS}>
+        Toggle State Success
+        {#snippet action()}
+            <Loader size="small" state={loaderStateS} />
+        {/snippet}
     </Button>
 
-    <Button on:click={handleButtonClickE}>Toggle State Error
-        <Loader slot="action" size="small" state={loaderStateE} />  
+    <Button onclick={handleButtonClickE}>
+        Toggle State Error
+        {#snippet action()}
+            <Loader size="small" state={loaderStateE} />
+        {/snippet}
     </Button>
 `}
 />
 
 <CodeResult white>
-	<Button on:click={handleButtonClickS} color="gray"
+	<Button onclick={handleButtonClickS} color="gray"
 		>Success State
 		{#snippet action()}
 			<Loader size="small" state={loaderStateS} />
 		{/snippet}
 	</Button>
 
-	<Button on:click={handleButtonClickE} color="gray"
+	<Button onclick={handleButtonClickE} color="gray"
 		>Error State
 		{#snippet action()}
 			<Loader size="small" state={loaderStateE} />
@@ -335,7 +343,7 @@
         text="Load More"
         show={hasMore}
         loading={isLoadingMore}
-        on:click={handleLoadMore}
+        buttonProps={{ onclick: handleLoadMore }}
     />
 `}
 />
@@ -345,7 +353,7 @@
 		text="Load More"
 		show={hasMore1}
 		loading={isLoadingMore1}
-		on:click={handleLoadMore1}
+		buttonProps={{ onclick: handleLoadMore1 }}
 	/>
 </CodeResult>
 

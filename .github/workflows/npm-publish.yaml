@@ -20,7 +20,7 @@ jobs:
       - name: Extract tag name
         id: get_tag
         env:
-          VERSION: ${{ github.ref_name }}
+          VERSION: ${{ github.event.release.tag_name }}
         run: |
           # Check if it's beta
           if [[ "$VERSION" == *-beta* ]]; then
@@ -32,7 +32,7 @@ jobs:
           fi
       - name: Publish to NPM
         env:
-          VERSION: ${{ github.ref_name }}
+          VERSION: ${{ github.event.release.tag_name }}
         run: |
           npm ci
           npm run package

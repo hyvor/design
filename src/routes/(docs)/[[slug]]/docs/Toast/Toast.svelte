@@ -36,34 +36,34 @@
 />
 
 <CodeResult style="display:flex;gap:10px;flex-direction:column;align-items:flex-start" white>
-	<Button on:click={() => toast('Blank toast')} color="input">Blank toast</Button>
+	<Button onclick={() => toast('Blank toast')} color="input">Blank toast</Button>
 
-	<Button on:click={() => toast.success('Success toast')} color="input">
+	<Button onclick={() => toast.success('Success toast')} color="input">
 		{#snippet start()}
 			<IconCheckCircleFill style="color:var(--green)" />
 		{/snippet} Success toast
 	</Button>
 
-	<Button on:click={() => toast.error('Error toast')} color="input">
+	<Button onclick={() => toast.error('Error toast')} color="input">
 		{#snippet start()}
 			<IconXCircleFill color="var(--red)" />
 		{/snippet} Error toast
 	</Button>
 
-	<Button on:click={() => toast.warning('Warning toast')} color="input">
+	<Button onclick={() => toast.warning('Warning toast')} color="input">
 		{#snippet start()}
 			<IconExclamationCircleFill color="var(--orange)" />
 		{/snippet} Warning toast
 	</Button>
 
-	<Button on:click={() => toast.info('Info toast')} color="input">
+	<Button onclick={() => toast.info('Info toast')} color="input">
 		{#snippet start()}
 			<IconInfoCircleFill color="var(--blue)" />
 		{/snippet} Info toast
 	</Button>
 
 	<Button
-		on:click={() => {
+		onclick={() => {
 			const id = toast.loading('Loading toast');
 			setTimeout(() => {
 				const rand = Math.random();
@@ -113,7 +113,7 @@
 />
 
 <CodeResult>
-	<Button on:click={() => toast.success('<strong>Success</strong> toast')}>Toast with HTML</Button>
+	<Button onclick={() => toast.success('<strong>Success</strong> toast')}>Toast with HTML</Button>
 </CodeResult>
 
 <p>
@@ -137,13 +137,13 @@
         import toastService from '$lib/components/Toast/toast.ts';
         import Button from '$lib/components/Button/Button.svelte';
 
-        export let toast;
+        let { toast } = $props();
     </` +
 		`script>
 
     This is a Svelte Component notification
     <Button 
-        on:click={() => toastService.close(toast.id)} 
+        onclick={() => toastService.close(toast.id)} 
         size="x-small"
     >Close</Button>
 `}
@@ -151,7 +151,7 @@
 />
 
 <CodeResult>
-	<Button on:click={() => toast(Message1)}>Toast with Svelte Component</Button>
+	<Button onclick={() => toast(Message1)}>Toast with Svelte Component</Button>
 </CodeResult>
 
 <h2 id="examples">Loading</h2>

@@ -56,9 +56,10 @@
 
 	<TableRow>
 		<div><code>block</code></div>
-		<div><code>false</code></div>
+		<div><code>true</code></div>
 		<div>
-			If <code>true</code>, the text input will take the full width of its parent.
+			If <code>true</code>, the text input will take the full width of its parent. If
+			<code>false</code>, the text input will only take the width of its content.
 		</div>
 	</TableRow>
 
@@ -156,7 +157,9 @@
 <CodeBlock
 	code={`
     <TextInput placeholder="Search">
-        <IconSearch slot="start" />
+        {#snippet start()}
+            <IconSearch />
+        {/snippet}
     </TextInput>
 `}
 />
@@ -174,7 +177,9 @@
 <CodeBlock
 	code={`
     <TextInput placeholder="Delay" type="number">
-        <span slot="end">minutes</span>
+        {#snippet end()}
+            <span>minutes</span>
+        {/snippet}
     </TextInput>
 `}
 />
@@ -191,6 +196,33 @@
 	The ending slot is useful with the <a href="/loader">Loader</a> component to indicate a loading state,
 	for example in a search input.
 </p>
+
+<h3 id="other-input-props">Other Input Props</h3>
+
+<CodeBlock
+	code={`
+    <TextInput 
+        placeholder="Disabled input" 
+        disabled 
+    />
+    <TextInput 
+        placeholder="Read-only input" 
+        readonly
+    />
+     <TextInput 
+        type="password"
+        placeholder="Password input"
+    />
+`}
+/>
+
+<CodeResult white>
+	<div class="sizes">
+		<TextInput placeholder="Disabled input" disabled />
+		<TextInput placeholder="Read-only input" readonly value="This cannot be edited" />
+		<TextInput type="password" placeholder="Password input" />
+	</div>
+</CodeResult>
 
 <style>
 	.sizes {

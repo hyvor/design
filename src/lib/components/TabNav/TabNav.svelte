@@ -1,31 +1,23 @@
 <script lang="ts">
-	import { onMount, setContext } from 'svelte';
-	import { writable } from 'svelte/store';
+	import { setContext } from 'svelte';
 
 	interface Props {
-		active: string;
+		basePath?: string;
+		replaceState?: boolean;
 		children?: import('svelte').Snippet;
-		[key: string]: any;
 	}
 
-	let { active = $bindable(), children, ...rest }: Props = $props();
+	let { children, basePath, replaceState = false }: Props = $props();
 
-	const activeStore = writable(active);
-	setContext('tab-nav-active', activeStore);
+	const tabNavState = {
+		basePath,
+		replaceState
+	};
 
-	$effect(() => {
-		activeStore.set(active);
-	});
-
-	onMount(() => {
-		const unsubscribe = activeStore.subscribe((value) => {
-			active = value;
-		});
-		return unsubscribe;
-	});
+	setContext('tab-nav-state', tabNavState);
 </script>
 
-<div class="tab-nav" {...rest}>
+<div class="tab-nav">
 	{@render children?.()}
 </div>
 

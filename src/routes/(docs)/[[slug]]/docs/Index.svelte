@@ -155,25 +155,25 @@
 <p>Form elements in HDS forward the following events from the underlying HTML elements:</p>
 
 <ul>
-	<li><code>on:keyup</code></li>
-	<li><code>on:keydown</code></li>
-	<li><code>on:keypress</code></li>
-	<li><code>on:focus</code></li>
-	<li><code>on:blur</code></li>
-	<li><code>on:click</code></li>
-	<li><code>on:mouseover</code></li>
-	<li><code>on:mouseenter</code></li>
-	<li><code>on:mouseleave</code></li>
-	<li><code>on:change</code></li>
+	<li><code>onkeyup</code></li>
+	<li><code>onkeydown</code></li>
+	<li><code>onkeypress</code></li>
+	<li><code>onfocus</code></li>
+	<li><code>onblur</code></li>
+	<li><code>onclick</code></li>
+	<li><code>onmouseover</code></li>
+	<li><code>onmouseenter</code></li>
+	<li><code>onmouseleave</code></li>
+	<li><code>onchange</code></li>
 	<li>
-		<code>on:input</code> (only <code>{'<TextInput>'}</code> and
+		<code>oninput</code> (only <code>{'<TextInput>'}</code> and
 		<code>{'<Textarea>'}</code>)
 	</li>
 </ul>
 
 <CodeBlock
 	code={`
-    <Checkbox on:change={handleFocus} />
+    <Checkbox onchange={handleChange} />
 `}
 />
 

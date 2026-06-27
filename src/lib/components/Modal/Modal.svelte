@@ -18,6 +18,7 @@
 		closeOnEscape?: boolean;
 		loading?: boolean | string;
 		onclose?: () => void;
+		hasClose?: boolean | string;
 
 		footer?: Footer | Snippet;
 		children?: Snippet;
@@ -33,6 +34,7 @@
 		closeOnEscape = true,
 		loading = false,
 		onclose,
+		hasClose = true,
 		footer,
 		children
 	}: Props = $props();
@@ -89,14 +91,12 @@
 		role="presentation"
 		class="wrap"
 		bind:this={wrapEl}
-		in:fade={{ duration: 100 }}
-		out:fade={{ duration: 100 }}
+		transition:fade|global={{ duration: 100 }}
 		onclick={(e) => handleClose(e)}
 	>
 		<div
 			class="inner {size}"
-			in:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
-			out:scale={{ duration: 100, start: 0.9, opacity: 0.9 }}
+			transition:scale|global={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			bind:this={innerEl}
 			{role}
 			aria-modal="true"
@@ -113,9 +113,11 @@
 				</div>
 
 				<div class="close-wrap">
-					<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
-						<IconX size={25} />
-					</IconButton>
+					{#if hasClose}
+						<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
+							<IconX size={25} />
+						</IconButton>
+					{/if}
 				</div>
 			</div>
 

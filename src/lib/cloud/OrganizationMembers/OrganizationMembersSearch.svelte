@@ -2,7 +2,10 @@
 	import { clickOutside, IconMessage, toast } from '$lib/components/index.js';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
-	import { getCloudContext, type OrganizationMember } from '../CloudContext/cloudContext.svelte.js';
+	import {
+		getCloudContext,
+		type OrganizationMember
+	} from '../CloudContext/cloudContextState.svelte.js';
 	import { searchMembers } from './members.js';
 	import { dropdownSlide } from '$lib/components/Dropdown/dropdownSlide.js';
 	import UserPicture from '../@components/UserPicture.svelte';
@@ -13,7 +16,7 @@
 	}
 	let { selectedUserId = $bindable(undefined) }: Props = $props();
 
-	const { instance, organization } = getCloudContext();
+	const { instance, organization, deployment } = getCloudContext();
 
 	let search = $state('');
 	let role = $derived(organization?.role);
@@ -135,16 +138,18 @@
 			</div>
 		{/if}
 	</div>
-	<div class="invite-note">
-		Looking for a user outside your organization?
-		{#if role === 'admin' || role === 'manager'}
-			<a href={instance + '/account/org/members?invite'} target="_blank" class="hds-link">
-				Invite them
-			</a>
-		{:else}
-			Ask an admin to invite them
-		{/if} to your organization first.
-	</div>
+	{#if deployment === 'cloud'}
+		<div class="invite-note">
+			Looking for a user outside your organization?
+			{#if role === 'admin' || role === 'manager'}
+				<a href={instance + '/account/org/members?invite'} target="_blank" class="hds-link">
+					Invite them
+				</a>
+			{:else}
+				Ask an admin to invite them
+			{/if} to your organization first.
+		</div>
+	{/if}
 {/if}
 
 <style>

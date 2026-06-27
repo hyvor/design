@@ -46,7 +46,11 @@
 		{ href: '/usage', label: 'Usage' },
 		{ href: '/modal', label: 'Modal' },
 		{ href: '/icon-message', label: 'Icon Message' },
+		{ href: '/kbd', label: 'Kbd' },
 		{ href: '/slider', label: 'Slider' },
+		{ href: '/accordion', label: 'Accordion' },
+		{ href: '/select', label: 'Select' },
+		{ href: '/console-loader', label: 'Console Loader' },
 		{ href: '/accordion', label: 'Accordion' }
 	];
 

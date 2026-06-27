@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { getCloudContext } from '../CloudContext/cloudContext.svelte.js';
+	import { getCloudContext } from '../CloudContext/cloudContextState.svelte.js';
 	import BarUserPicture from './BarUserPicture.svelte';
 
 	const { user } = $derived(getCloudContext());

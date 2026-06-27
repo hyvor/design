@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { createBubbler, handlers } from 'svelte/legacy';
-
-	const bubble = createBubbler();
 	import { getContext } from 'svelte';
-	import type { Writable } from 'svelte/store';
+	import { page } from '$app/state';
+	import { goto } from '$app/navigation';
+	import type { TabNavState } from './tabnav.js';
 
 	interface Props {
 		active?: boolean;
@@ -11,26 +10,40 @@
 		start?: import('svelte').Snippet;
 		children?: import('svelte').Snippet;
 		end?: import('svelte').Snippet;
-		[key: string]: any;
+		index?: boolean; // index for path-based activation
+
+		onclick?: (event: MouseEvent) => void;
 	}
 
-	let { active = false, name, start, children, end, ...rest }: Props = $props();
+	let { active = false, name, start, children, end, index, onclick }: Props = $props();
 
-	const activeStore = getContext('tab-nav-active') as Writable<string>;
+	const tabNavState = getContext('tab-nav-state') as TabNavState;
 
-	let isActive = $derived($activeStore === name || active);
+	function getTabPath() {
+		if (!tabNavState.basePath) return '';
+		return index ? `${tabNavState.basePath}` : `${tabNavState.basePath}/${name}`;
+	}
 
-	function handleClick() {
-		activeStore.set(name);
+	let isActive = $derived.by(() => {
+		if (active) return true;
+
+		if (tabNavState.basePath) {
+			const currentUrl = page.url.pathname;
+			return currentUrl === getTabPath();
+		}
+
+		return false;
+	});
+
+	function handleClick(event: MouseEvent) {
+		if (tabNavState.basePath) {
+			goto(getTabPath());
+		}
+		onclick?.(event);
 	}
 </script>
 
-<button
-	class="tab"
-	class:active={isActive}
-	onclick={handlers(handleClick, bubble('click'))}
-	{...rest}
->
+<button class="tab" class:active={isActive} onclick={handleClick}>
 	{#if start}
 		<span class="start">
 			{@render start?.()}

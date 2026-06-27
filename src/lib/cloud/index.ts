@@ -6,11 +6,15 @@ export {
 	type CloudContextUser,
 	type CloudContextOrganization,
 	type OrganizationRole,
-	type OrganizationMember
-} from './CloudContext/cloudContext.svelte.js';
+	type OrganizationMember,
+	type ResolvedLicense
+} from './CloudContext/cloudContextState.svelte.js';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
 export { bar as hyvorBar } from './HyvorBar/bar.js';
 
 export { default as ResourceCreator } from './ResourceCreator/ResourceCreator.svelte';
 export { default as OrganizationMemberSearch } from './OrganizationMembers/OrganizationMembersSearch.svelte';
+
+export { default as OrganizationCreator } from './OrganizationCreator/OrganizationCreator.svelte';
+export { default as OrganizationSwitcher } from './OrganizationSwitcher/OrganizationSwitcher.svelte';

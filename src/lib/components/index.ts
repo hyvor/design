@@ -23,6 +23,7 @@ export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
 export { default as TabbedCodeBlock } from './CodeBlock/TabbedCodeBlock.svelte';
 
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
+export { default as ConsoleLoader } from './ConsoleLoader/ConsoleLoader.svelte';
 
 export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
@@ -31,6 +32,7 @@ export { default as DetailCard } from './DetailCard/DetailCard.svelte';
 export { default as DetailCards } from './DetailCard/DetailCards.svelte';
 
 export { default as Dropdown } from './Dropdown/Dropdown.svelte';
+export { default as DropdownContent } from './Dropdown/DropdownContent.svelte';
 
 export { default as Divider } from './Divider/Divider.svelte';
 
@@ -51,6 +53,8 @@ export {
 
 export { default as IconButton } from './IconButton/IconButton.svelte';
 
+export { default as Kbd } from './Kbd/Kbd.svelte';
+
 export { default as Link } from './Link/Link.svelte';
 
 export { default as Loader } from './Loader/Loader.svelte';
@@ -60,6 +64,7 @@ export { default as Modal } from './Modal/Modal.svelte';
 export { confirm } from './Modal/confirm.js';
 
 export { default as NavLink } from './NavLink/NavLink.svelte';
+export { default as NavLinkGroup } from './NavLink/NavLinkGroup.svelte';
 
 export { default as Radio } from './Radio/Radio.svelte';
 
@@ -68,6 +73,8 @@ export { default as Slider } from './Slider/Slider.svelte';
 export { default as SplitControl } from './SplitControl/SplitControl.svelte';
 
 export { default as Switch } from './Switch/Switch.svelte';
+
+export { default as Select } from './Select/Select.svelte';
 
 export { default as Table } from './Table/Table.svelte';
 export { default as TableRow } from './Table/TableRow.svelte';

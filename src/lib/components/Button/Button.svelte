@@ -122,6 +122,7 @@
 		font-weight: 600;
 		font-size: 14px;
 		border-radius: 20px;
+		line-height: 1;
 		cursor: pointer;
 
 		--local-hover-shadow-size: 2.5px;
@@ -164,8 +165,8 @@
 
 	/* Sizes */
 	.button.x-small {
-		height: 20px;
-		padding: 0 8px;
+		// height: 20px;
+		padding: 4px 8px;
 		font-size: 12px;
 		--local-hover-shadow-size: 1px;
 		&:active {
@@ -174,8 +175,8 @@
 	}
 
 	.button.small {
-		height: 26px;
-		padding: 0 12px;
+		// height: 26px;
+		padding: 6px 12px;
 
 		--local-hover-shadow-size: 2px;
 		&:active {
@@ -190,12 +191,12 @@
 		}
 	}
 	.button.medium {
-		height: 30px;
-		padding: 0 14px;
+		// height: 30px;
+		padding: 8px 14px;
 	}
 	.button.large {
-		height: 36px;
-		padding: 0 20px;
+		// height: 36px;
+		padding: 11px 20px;
 		--local-hover-shadow-size: 3px;
 		&:active {
 			--local-hover-shadow-size: 5px;
@@ -203,8 +204,8 @@
 	}
 
 	.button.x-large {
-		height: 40px;
-		padding: 0 26px;
+		// height: 40px;
+		padding: 12px 26px;
 		font-size: 16px;
 	}
 

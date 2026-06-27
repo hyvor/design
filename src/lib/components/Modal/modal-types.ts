@@ -11,12 +11,14 @@ export interface Footer {
 		| false
 		| {
 				text?: string;
+				disabled?: boolean;
 				props?: ComponentProps<typeof Button>;
 		  };
 	confirm?:
 		| false
 		| {
 				danger?: boolean;
+				disabled?: boolean;
 				text?: string;
 				props?: ComponentProps<typeof Button>;
 		  };

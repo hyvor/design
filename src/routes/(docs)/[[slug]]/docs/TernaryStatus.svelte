@@ -42,13 +42,6 @@
 		</div>
 	</TableRow>
 	<TableRow>
-		<div><code>showIcon</code></div>
-		<div><code>true</code></div>
-		<div>
-			Set to <code>false</code> to hide the icon and show only the text label.
-		</div>
-	</TableRow>
-	<TableRow>
 		<div><code>iconSize</code></div>
 		<div><code>20</code></div>
 		<div>Size of the default icon in pixels.</div>
@@ -69,7 +62,7 @@
 	<TableRow>
 		<div><code>icon</code></div>
 		<div></div>
-		<div>Replaces the default icon.</div>
+		<div>Replaces the default icon. Pass <code>false</code> to hide the icon entirely.</div>
 	</TableRow>
 </Table>
 
@@ -94,22 +87,22 @@
 <h3 id="examples-no-icon">Without icon</h3>
 
 <p>
-	Set <code>showIcon={false}</code> to render text only — useful when you want a cleaner look or the icon
+	Set <code>icon={'{false}'}</code> to render text only — useful when you want a cleaner look or the icon
 	adds no extra meaning in context.
 </p>
 
 <CodeBlock
 	code={`
-    <TernaryStatus status="positive" showIcon={false} />
-    <TernaryStatus status="negative" showIcon={false} />
-    <TernaryStatus status="neutral" text="Plugin required" showIcon={false} />
+    <TernaryStatus status="positive" icon={false} />
+    <TernaryStatus status="negative" icon={false} />
+    <TernaryStatus status="neutral" text="Plugin required" icon={false} />
 `}
 />
 
 <CodeResult gap={12}>
-	<TernaryStatus status="positive" showIcon={false} />
-	<TernaryStatus status="negative" showIcon={false} />
-	<TernaryStatus status="neutral" text="Plugin required" showIcon={false} />
+	<TernaryStatus status="positive" icon={false} />
+	<TernaryStatus status="negative" icon={false} />
+	<TernaryStatus status="neutral" text="Plugin required" icon={false} />
 </CodeResult>
 
 <h3 id="examples-custom-text">Custom text</h3>

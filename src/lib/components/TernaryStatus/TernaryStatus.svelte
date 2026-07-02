@@ -7,7 +7,6 @@
 	interface Props {
 		status: 'positive' | 'negative' | 'neutral';
 		text?: string;
-		showIcon?: boolean;
 		iconSize?: number;
 		fontSize?: string;
 		color?: string;
@@ -17,7 +16,6 @@
 	let {
 		status,
 		text = undefined,
-		showIcon = true,
 		iconSize = 20,
 		fontSize = undefined,
 		color = undefined,
@@ -39,7 +37,7 @@
 </script>
 
 <span class="ternary-status" style:color={resolvedColor} style:font-size={fontSize}>
-	{#if showIcon}
+	{#if icon !== false}
 		<span class="icon">
 			{#if icon}
 				{@render icon()}

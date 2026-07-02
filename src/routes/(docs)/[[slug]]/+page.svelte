@@ -51,7 +51,8 @@
 		{ href: '/accordion', label: 'Accordion' },
 		{ href: '/select', label: 'Select' },
 		{ href: '/console-loader', label: 'Console Loader' },
-		{ href: '/accordion', label: 'Accordion' }
+		{ href: '/accordion', label: 'Accordion' },
+		{ href: '/ternary-status', label: 'Ternary Status' }
 	];
 
 	const sortedComponents = components.sort((a, b) => a.label.localeCompare(b.label));

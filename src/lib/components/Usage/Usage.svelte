@@ -63,9 +63,7 @@
 		</div>
 		{#if limit > 0}
 			<div class="usage-number">
-				<span
-					class="usage-now"
-					style:color={color === 'var(--accent)' ? 'var(--text)' : color}
+				<span class="usage-now" style:color={color === 'var(--accent)' ? 'var(--text)' : color}
 					>{getReadableValue(current)}</span
 				>
 				<span class="usage-full">/ {getReadableValue(limit)}</span>

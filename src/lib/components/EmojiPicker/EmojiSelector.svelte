@@ -84,19 +84,12 @@
 			</div>
 			<div class="right">
 				{#if removable}
-					<Button size="small" color="input" onclick={() => onselect(undefined)}
-						>Remove</Button
-					>
+					<Button size="small" color="input" onclick={() => onselect(undefined)}>Remove</Button>
 				{/if}
 			</div>
 		</div>
 		<div class="input">
-			<TextInput
-				block
-				bind:value={search}
-				bind:input={searchInput}
-				onkeydown={handleKeydown}
-			/>
+			<TextInput block bind:value={search} bind:input={searchInput} onkeydown={handleKeydown} />
 		</div>
 		<div class="groups" bind:this={groupsEl}>
 			{#if searchedEmojis !== null}
@@ -131,11 +124,7 @@
 {/snippet}
 
 {#snippet SectionButton(icon: string, group: number)}
-	<button
-		class="section-button"
-		data-group={group}
-		onclick={() => handleSectionButtonClick(group)}
-	>
+	<button class="section-button" data-group={group} onclick={() => handleSectionButtonClick(group)}>
 		{icon}
 	</button>
 {/snippet}

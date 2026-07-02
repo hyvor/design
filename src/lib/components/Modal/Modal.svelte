@@ -114,11 +114,7 @@
 
 				<div class="close-wrap">
 					{#if hasClose}
-						<IconButton
-							variant="invisible"
-							on:click={handleCancel}
-							aria-label="Close modal"
-						>
+						<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
 							<IconX size={25} />
 						</IconButton>
 					{/if}

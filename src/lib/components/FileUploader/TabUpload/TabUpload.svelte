@@ -46,9 +46,7 @@
 			.then((blob) => {
 				if (!validateMimeType(blob.type)) {
 					const names = getMimeNamesJoined();
-					toast.error(
-						`Only ${names} files are allowed. Current file type is ${blob.type}`
-					);
+					toast.error(`Only ${names} files are allowed. Current file type is ${blob.type}`);
 					return;
 				}
 

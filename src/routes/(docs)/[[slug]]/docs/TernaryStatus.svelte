@@ -94,8 +94,8 @@
 <h3 id="examples-no-icon">Without icon</h3>
 
 <p>
-	Set <code>showIcon={false}</code> to render text only — useful when you want a cleaner look or the
-	icon adds no extra meaning in context.
+	Set <code>showIcon={false}</code> to render text only — useful when you want a cleaner look or the icon
+	adds no extra meaning in context.
 </p>
 
 <CodeBlock

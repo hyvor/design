@@ -25,12 +25,9 @@
 		error = false;
 		loading = true;
 
-		fetch(
-			cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component,
-			{
-				credentials: 'include'
-			}
-		)
+		fetch(cloudContext.instance + '/api/public/updates?types=company,' + cloudContext.component, {
+			credentials: 'include'
+		})
 			.then((response) => response.json())
 			.then((data) => {
 				updates = data;
@@ -92,9 +89,7 @@
 									{update.content}
 								</div>
 								<div class="date">
-									{new Intl.DateTimeFormat('en-US').format(
-										new Date(update.created_at * 1000)
-									)}
+									{new Intl.DateTimeFormat('en-US').format(new Date(update.created_at * 1000))}
 								</div>
 							</div>
 						{/snippet}

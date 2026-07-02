@@ -13,8 +13,7 @@
 <h1>Textarea</h1>
 
 <p>
-	<code>{'<Textarea>'}</code> is a multi-line text input control. It is a wrapper around the
-	native
+	<code>{'<Textarea>'}</code> is a multi-line text input control. It is a wrapper around the native
 	<code>{'<textarea>'}</code>
 	element. The
 	<a href="/#events">default events</a> are forwarded from the input element.

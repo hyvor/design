@@ -162,12 +162,7 @@
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select
-			size="small"
-			bind:value={sizeValue}
-			options={roleOptions}
-			placeholder="Select a role"
-		/>
+		<Select size="small" bind:value={sizeValue} options={roleOptions} placeholder="Select a role" />
 	</div>
 
 	<div class="wrapper-for-select">
@@ -180,12 +175,7 @@
 	</div>
 
 	<div class="wrapper-for-select">
-		<Select
-			size="large"
-			bind:value={sizeValue}
-			options={roleOptions}
-			placeholder="Select a role"
-		/>
+		<Select size="large" bind:value={sizeValue} options={roleOptions} placeholder="Select a role" />
 	</div>
 </CodeResult>
 
@@ -217,8 +207,8 @@
 
 <h3>Custom Children</h3>
 <p>
-	For advanced use cases, you can pass custom children to the <code>Select</code> component
-	instead of using the <code>options</code> prop. This lets you use native
+	For advanced use cases, you can pass custom children to the <code>Select</code> component instead
+	of using the <code>options</code> prop. This lets you use native
 	<code>&lt;option&gt;</code> and <code>&lt;optgroup&gt;</code> elements directly, allowing for grouped
 	options, disabled options, or any other native select features.
 </p>

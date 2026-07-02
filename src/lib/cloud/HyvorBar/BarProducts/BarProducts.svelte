@@ -43,10 +43,7 @@
 												<product.logo size={20} />
 											{:else}
 												<img
-													src={instance +
-														'/api/public/logo/' +
-														product.component +
-														'.svg'}
+													src={instance + '/api/public/logo/' + product.component + '.svg'}
 													alt={product.name}
 													width="20"
 													height="20"

@@ -9,8 +9,8 @@
 
 <p>
 	The table component is used to display data in a tabular format. It <strong>does not</strong>
-	use the <code>table</code> element, but rather uses CSS Grid to achieve the same effect. These two components
-	are used to create a table layout:
+	use the <code>table</code> element, but rather uses CSS Grid to achieve the same effect. These two
+	components are used to create a table layout:
 </p>
 
 <ul>
@@ -45,8 +45,8 @@
 	<TableRow>
 		<div><code>style</code></div>
 		<div>
-			The style of the table. Can be either <code>default</code> or <code>bordered</code>. Default
-			is <code>default</code>.
+			The style of the table. Can be either <code>default</code> or <code>bordered</code>.
+			Default is <code>default</code>.
 		</div>
 	</TableRow>
 
@@ -69,7 +69,8 @@
 	<TableRow>
 		<div><code>head</code></div>
 		<div>
-			Whether the row is a header row or not. This will change the background color and font weight.
+			Whether the row is a header row or not. This will change the background color and font
+			weight.
 		</div>
 	</TableRow>
 </Table>

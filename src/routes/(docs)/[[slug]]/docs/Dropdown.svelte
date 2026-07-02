@@ -96,7 +96,9 @@
 	<TableRow>
 		<div><code>closeOnOutsideClick</code></div>
 		<div><code>true</code></div>
-		<div>Whether the dropdown should be closed when the user clicks outside of the dropdown.</div>
+		<div>
+			Whether the dropdown should be closed when the user clicks outside of the dropdown.
+		</div>
 	</TableRow>
 
 	<TableRow>
@@ -375,7 +377,10 @@
 		{/snippet}
 		{#snippet content()}
 			<ActionList selection="multi">
-				<ActionListItem selected={x2.includes('talk')} onselect={() => handleX2Select('talk')}>
+				<ActionListItem
+					selected={x2.includes('talk')}
+					onselect={() => handleX2Select('talk')}
+				>
 					{#snippet start()}
 						<Avatar src={hyvorTalkLogo} size="small" />
 					{/snippet}
@@ -384,7 +389,10 @@
 						<div>Commenting Platform</div>
 					{/snippet}
 				</ActionListItem>
-				<ActionListItem selected={x2.includes('blogs')} onselect={() => handleX2Select('blogs')}>
+				<ActionListItem
+					selected={x2.includes('blogs')}
+					onselect={() => handleX2Select('blogs')}
+				>
 					{#snippet start()}
 						<Avatar src={hyvorBlogsLogo} size="small" />
 					{/snippet}
@@ -478,7 +486,10 @@
 		{#snippet content()}
 			<ActionList>
 				<ActionListGroup selection="multi" title="Product">
-					<ActionListItem selected={x3.includes('talk')} onselect={() => handleX3Select('talk')}>
+					<ActionListItem
+						selected={x3.includes('talk')}
+						onselect={() => handleX3Select('talk')}
+					>
 						{#snippet start()}
 							<Avatar src={hyvorTalkLogo} size="small" />
 						{/snippet}
@@ -487,7 +498,10 @@
 							<div>Commenting Platform</div>
 						{/snippet}
 					</ActionListItem>
-					<ActionListItem selected={x3.includes('blogs')} onselect={() => handleX3Select('blogs')}>
+					<ActionListItem
+						selected={x3.includes('blogs')}
+						onselect={() => handleX3Select('blogs')}
+					>
 						{#snippet start()}
 							<Avatar src={hyvorBlogsLogo} size="small" />
 						{/snippet}

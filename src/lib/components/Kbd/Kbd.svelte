@@ -45,7 +45,9 @@
 	function keyLabel(key: string, mac: boolean): string {
 		const lower = key.toLowerCase();
 		if (MOD_SET.has(lower)) {
-			return mac ? PLATFORM_LABELS[lower as ModKey].mac : PLATFORM_LABELS[lower as ModKey].other;
+			return mac
+				? PLATFORM_LABELS[lower as ModKey].mac
+				: PLATFORM_LABELS[lower as ModKey].other;
 		}
 		return key.length === 1 ? key.toUpperCase() : key.charAt(0).toUpperCase() + key.slice(1);
 	}

@@ -45,6 +45,7 @@ import Accordion from './docs/Accordion.svelte';
 import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
+import TernaryStatus from './docs/TernaryStatus.svelte';
 
 export const prerender = true;
 
@@ -94,6 +95,7 @@ const nav = {
 	docs: DocsDocs,
 	document: Document,
 	tracking: Tracking,
+	'ternary-status': TernaryStatus,
 
 	// cloud
 	'cloud-context': CloudContextDoc

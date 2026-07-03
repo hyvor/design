@@ -85,6 +85,8 @@ export { default as TabNavItem } from './TabNav/TabNavItem.svelte';
 
 export { default as Tag } from './Tag/Tag.svelte';
 
+export { default as TernaryStatus } from './TernaryStatus/TernaryStatus.svelte';
+
 export { default as Textarea } from './Textarea/Textarea.svelte';
 
 export { default as Text } from './Text/Text.svelte';

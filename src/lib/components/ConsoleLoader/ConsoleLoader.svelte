@@ -4,7 +4,7 @@
 		size?: number;
 	}
 
-	let { logo, size = 100 }: Props = $props();
+	let { logo, size = 80 }: Props = $props();
 </script>
 
 <div class="loader">

@@ -28,14 +28,14 @@
 	</TableRow>
 	<TableRow>
 		<TableCell><code>size</code></TableCell>
-		<TableCell>The size of the logo in pixels. The default is <code>100</code>.</TableCell>
+		<TableCell>The size of the logo in pixels. The default is <code>80</code>.</TableCell>
 	</TableRow>
 </Table>
 <CodeBlock
 	code={`
    	<ConsoleLoader 
     	logo="https://hyvor.com/api/public/logo/core.svg" 
-    	size={100} 
+    	size={80} 
     />
 `}
 />

@@ -141,8 +141,28 @@
 {/snippet}
 
 <style>
+	/*
+	using global to override styles
+	*/
 	.wrap {
 		font-size: 16px;
+	}
+	.wrap :global(.input-wrap input) {
+		height: 100% !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		border: none !important;
+		border-radius: 0 !important;
+		font-size: inherit !important;
+		line-height: normal !important;
+	}
+	.wrap :global(.button) {
+		height: 26px !important;
+		padding: 0 12px !important;
+		margin: 0 !important;
+		border: none !important;
+		border-radius: 20px !important;
+		font-size: 14px !important;
 	}
 	.group {
 		display: flex;
@@ -154,7 +174,7 @@
 		margin-bottom: 10px;
 	}
 	.input {
-		padding: 0 10px;
+		padding: 0 15px;
 		margin: 10px 0;
 	}
 	.groups {
@@ -168,13 +188,17 @@
 		flex-wrap: wrap;
 	}
 	.emoji {
-		font-size: 22px;
+		font-size: 22px !important;
 		cursor: pointer;
 		transition: transform 0.2s;
-		width: 34px;
-		height: 34px;
+		width: 34px !important;
+		height: 34px !important;
+		padding: 0 !important;
+		margin: 0 !important;
+		border: none !important;
+		/* background: transparent; */
 		text-align: center;
-		border-radius: 5px;
+		border-radius: 5px !important;
 	}
 	.emoji:hover {
 		background-color: var(--hover-dark);
@@ -198,18 +222,22 @@
 	}
 
 	.section-button {
-		font-size: 20px;
-		padding: 10px 4px;
+		font-size: 20px !important;
+		padding: 10px 4px !important;
+		margin: 0 !important;
+		border-style: none none solid none !important;
+		border-width: 0 0 2px 0 !important;
+		border-color: transparent !important;
 		cursor: pointer;
+		background: transparent;
 		color: var(--text-light);
 		filter: grayscale(100%);
-		border-bottom: 2px solid transparent;
 		transition:
 			filter 0.2s,
-			border-bottom 0.2s;
+			border-bottom-color 0.2s;
 	}
 	.section-button:hover {
 		filter: grayscale(50%);
-		border-bottom: 2px solid var(--text-light);
+		border-bottom-color: var(--text-light) !important;
 	}
 </style>

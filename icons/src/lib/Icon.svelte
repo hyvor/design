@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { icons } from "./index.js";
 	import type { IconName } from "./types.js";
 
     interface Props {
@@ -21,12 +22,11 @@
     }
 
     async function getSvg() {
-        try {
-            const svgModule = await import(`./icons/${name}.svg?raw`);
-            return addAttributes(svgModule.default);
-        } catch (e) {
-            return `[?] <!-- ${e} -->`;
-        }
+        const path = `./icons/${name}.svg`;
+        const loader = icons[path];
+        if (!loader) return '[?]';
+        const raw = await loader();
+        return addAttributes(raw as string);
     }
 
     const svg = await getSvg();

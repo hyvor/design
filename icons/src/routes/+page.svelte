@@ -5,9 +5,11 @@
 	let loading = $state(true);
 
 	onMount(() => {
+		console.log("onMount");
 		setTimeout(() => {
+			console.log("loading false");
 			loading = false;
-		}, 1000);
+		}, 500);
 	});
 </script>
 

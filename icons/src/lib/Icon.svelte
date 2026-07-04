@@ -25,7 +25,7 @@
             const svgModule = await import(`./icons/${name}.svg?raw`);
             return addAttributes(svgModule.default);
         } catch (e) {
-            return '[?]';
+            return `[?] <!-- ${e} -->`;
         }
     }
 

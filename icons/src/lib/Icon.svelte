@@ -22,11 +22,10 @@
     }
 
     async function getSvg() {
-        const path = `./icons/${name}.svg`;
-        const loader = icons[path];
+        const loader = icons[name];
         if (!loader) return '[?]';
         const raw = await loader();
-        return addAttributes(raw as string);
+        return addAttributes(raw.default as string);
     }
 
     const svg = await getSvg();

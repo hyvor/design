@@ -28,4 +28,15 @@ export type IconName = ${nameTypes};
 
     fs.writeFileSync('src/lib/types.ts', types);
 
+    const imports = names
+        .map(n => `\t'${n}': () => import('./icons/${n}.svg?raw'),`)
+        .join("\n");
+    
+    const icons = `// auto-generated via generate.ts
+export const icons = {
+${imports}
+};`;
+
+    fs.writeFileSync('src/lib/icons.ts', icons);
+
 }

@@ -6,7 +6,7 @@
 		type CloudContextOrganization
 	} from '../CloudContext/cloudContextState.svelte.js';
 	import OrganizationSwitcher from '../OrganizationSwitcher/OrganizationSwitcher.svelte';
-	import Accordian from './Accordian.svelte';
+	import Accordion from '$lib/components/Accordion/Accordion.svelte';
 	import TextInput from '$lib/components/TextInput/TextInput.svelte';
 	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
@@ -129,7 +129,7 @@
 
 		<div class="content">
 			{#if deployment === 'cloud'}
-				<Accordian
+				<Accordion
 					title="Organization"
 					belowTitle={organization?.name}
 					show={organizationAccordianOpen}
@@ -184,10 +184,10 @@
 							</div>
 						</div>
 					{/if}
-				</Accordian>
+				</Accordion>
 			{/if}
 
-			<Accordian
+			<Accordion
 				title={resourceTitle}
 				show={contentAccordianOpen}
 				buttonText={cta}
@@ -208,7 +208,7 @@
 						create: handleResourceCreation
 					})}
 				</div>
-			</Accordian>
+			</Accordion>
 		</div>
 	</div>
 </div>

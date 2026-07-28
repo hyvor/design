@@ -42,6 +42,7 @@ import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
+import DetailsAccordion from './docs/DetailsAccordion.svelte';
 import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
@@ -96,6 +97,7 @@ const nav = {
 	document: Document,
 	tracking: Tracking,
 	'ternary-status': TernaryStatus,
+	'details-accordion': DetailsAccordion,
 
 	// cloud
 	'cloud-context': CloudContextDoc

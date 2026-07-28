@@ -51,7 +51,6 @@
 		{ href: '/accordion', label: 'Accordion' },
 		{ href: '/select', label: 'Select' },
 		{ href: '/console-loader', label: 'Console Loader' },
-		{ href: '/accordion', label: 'Accordion' },
 		{ href: '/ternary-status', label: 'Ternary Status' }
 	];
 
@@ -116,6 +115,7 @@
 				<NavItem href="/docs">Docs</NavItem>
 				<NavItem href="/document">Document</NavItem>
 				<NavItem href="/tracking">Tracking</NavItem>
+				<NavItem href="/details-accordion">Details Accordion</NavItem>
 			</NavCategory>
 		</Nav>
 	{/snippet}

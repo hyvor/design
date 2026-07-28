@@ -1,16 +1,26 @@
 <script lang="ts">
 	import Accordion from '$lib/components/Accordion/Accordion.svelte';
-	import IconLayers from '@hyvor/icons/IconLayers';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
+
+	let show = $state(true);
+	let loading = $state(false);
+
+	function onButtonClick() {
+		loading = true;
+		setTimeout(() => {
+			loading = false;
+			show = false;
+		}, 1000);
+	}
 </script>
 
 <h1>Accordion</h1>
 <p>
-	This component can be used to expand and collapse sections of content, making it easier to
-	navigate and manage large amounts of information.
+	A collapsible section with a header, content area, and an optional footer action button. Commonly
+	used for step-by-step flows where each step is confirmed with a button.
 </p>
 
 <h2>Properties</h2>
@@ -22,27 +32,72 @@
 	</TableRow>
 
 	<TableRow>
+		<div><code>show</code></div>
+		<div><code>false</code></div>
+		<div>Whether the accordion is expanded.</div>
+	</TableRow>
+
+	<TableRow>
 		<div><code>title</code></div>
 		<div></div>
-		<div>The title of the accordion item.</div>
+		<div>The title shown in the header.</div>
 	</TableRow>
 
 	<TableRow>
-		<div><code>content</code></div>
+		<div><code>belowTitle</code></div>
 		<div></div>
-		<div>The content of the accordion item. This can include HTML strings.</div>
+		<div>A snippet or string shown below the title.</div>
 	</TableRow>
 
 	<TableRow>
-		<div><code>open</code></div>
+		<div><code>buttonText</code></div>
+		<div></div>
+		<div>The text of the footer action button.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>buttonDisabled</code></div>
+		<div></div>
+		<div>Whether the footer action button is disabled.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>onButtonClick</code></div>
+		<div></div>
+		<div>Called when the footer action button is clicked.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>onToggle</code></div>
+		<div></div>
+		<div>Called when the header is clicked to expand or collapse the accordion.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>toggleLocked</code></div>
 		<div><code>false</code></div>
-		<div>A bindable boolean indicating whether the accordion item is open or closed.</div>
+		<div>When true, clicking the header does not toggle the accordion.</div>
 	</TableRow>
 
 	<TableRow>
-		<div><code>icon</code></div>
+		<div><code>complete</code></div>
 		<div></div>
-		<div>An icon component to display alongside the title.</div>
+		<div>Marks the accordion as complete, applying the <code>complete</code> style.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>footer</code></div>
+		<div><code>true</code></div>
+		<div>Whether to show the footer with the action button.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>loading</code></div>
+		<div><code>false</code></div>
+		<div>
+			Shows a loader next to the footer action button and disables it. Bindable with
+			<code>bind:loading</code>.
+		</div>
 	</TableRow>
 </Table>
 
@@ -50,93 +105,26 @@
 
 <CodeBlock
 	code={`
-      <Accordion title="What is Accordion?" icon={IconLayers}>
-         Accordion is a UI component that allows users to expand and collapse sections of content, making
-         it easier to navigate and manage large amounts of information.
-      </Accordion>
-   `}
-/>
-
-<CodeResult white>
-	<Accordion title="What is Accordion?" icon={IconLayers}>
-		Accordion is a UI component that allows users to expand and collapse sections of content, making
-		it easier to navigate and manage large amounts of information.
-	</Accordion>
-</CodeResult>
-
-<h2>Custom Colors</h2>
-
-<p>
-	The Accordion component allows you to customize its appearance by changing various color
-	properties such as <code>headerColor</code>, <code>textColor</code>, <code>openedColor</code>,
-	<code>borderColor</code>, and <code>topBorderColor</code>.
-</p>
-
-<Table columns="2fr 2fr 3fr">
-	<TableRow head>
-		<div>Name</div>
-		<div>Default</div>
-		<div>Description</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>headerColor</code></div>
-		<div><code>none</code></div>
-		<div>Sets the background color of the accordion header.</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>textColor</code></div>
-		<div><code>var(--text)</code></div>
-		<div>Sets the text color of the accordion title and content.</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>openedColor</code></div>
-		<div><code>var(--hover)</code></div>
-		<div>Sets the background color of the accordion header when it is opened.</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>borderColor</code></div>
-		<div><code>var(--border)</code></div>
-		<div>Sets the border color of the accordion.</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>topBorderColor</code></div>
-		<div><code>var(--border)</code></div>
-		<div>Sets the top border color of the accordion.</div>
-	</TableRow>
-</Table>
-
-<h2>Example</h2>
-<CodeBlock
-	code={`
-       <Accordion
-        title="Custom Colors"
-        icon={IconLayers}
-        headerColor="#d5d5fd"
-        textColor="#fffff"
-        openedColor="#cacaf1"
-        borderColor="#fbf3ff"
-        topBorderColor="#fbf3ff"
-    >
-        Set custom colors for the Accordion component.
-    </Accordion>
+      <Accordion
+         title="Step 1"
+         show={show}
+         buttonText="Continue"
+         onButtonClick={() => (show = false)}
+         onToggle={() => (show = !show)}
+      >
+         Content of the accordion.
    `}
 />
 
 <CodeResult white>
 	<Accordion
-		title="Custom Colors"
-		icon={IconLayers}
-		headerColor="#d5d5fd"
-		textColor="#fffff"
-		openedColor="#cacaf1"
-		borderColor="#fbf3ff"
-		topBorderColor="#fbf3ff"
+		title="Step 1"
+		{show}
+		{loading}
+		buttonText="Continue"
+		{onButtonClick}
+		onToggle={() => (show = !show)}
 	>
-		Set custom colors for the Accordion component.
+		<div class="p" style="padding: 1rem;">Content of the accordion.</div>
 	</Accordion>
 </CodeResult>

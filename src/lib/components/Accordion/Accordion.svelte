@@ -1,143 +1,147 @@
 <script lang="ts">
-	import type { Component, Snippet } from 'svelte';
-	import IconCaretDownFill from '@hyvor/icons/IconCaretDownFill';
+	import { Button, Loader } from '$lib/components/index.js';
+	import { type Snippet } from 'svelte';
+	import { slide } from 'svelte/transition';
 
-	interface Props {
+	type Props = {
+		show: boolean;
 		title: string;
-		children?: Snippet;
-		open?: boolean;
-		icon?: Component;
-		headerColor?: string;
-		textColor?: string;
-		openedColor?: string;
-		borderColor?: string;
-		topBorderColor?: string;
-	}
+		belowTitle?: Snippet | string;
+		buttonText: string;
+		buttonDisabled?: boolean;
+		children: Snippet;
+		onButtonClick: () => void;
+		onToggle: () => void;
+		toggleLocked?: boolean;
+		complete?: boolean;
+		footer?: boolean;
+		loading?: boolean;
+	};
 
 	let {
+		show = false,
 		title,
 		children,
-		open = $bindable(false),
-		icon,
-		headerColor,
-		textColor,
-		openedColor,
-		borderColor,
-		topBorderColor
+		buttonText,
+		buttonDisabled,
+		onButtonClick,
+		onToggle,
+		toggleLocked = false,
+		complete,
+		belowTitle,
+		footer = true,
+		loading = $bindable(false)
 	}: Props = $props();
 
-	const Icon = icon;
+	let contentEl: HTMLElement;
 
-	function handleClick() {
-		open = !open;
+	let heightAutoTimeout: ReturnType<typeof setTimeout>;
+
+	function setHeight(show: boolean) {
+		if (!contentEl) return;
+		if (show) {
+			contentEl.style.height = contentEl.scrollHeight + 'px';
+		} else {
+			contentEl.style.height = contentEl.scrollHeight + 'px';
+			setTimeout(() => {
+				contentEl.style.height = '0px';
+			}, 0);
+		}
+
+		clearTimeout(heightAutoTimeout);
+		heightAutoTimeout = setTimeout(() => {
+			if (show) {
+				contentEl.style.height = 'auto';
+			}
+		}, 300);
 	}
+
+	function toggle() {
+		if (toggleLocked) return;
+		const showBefore = show;
+		onToggle();
+		if (showBefore === show) return;
+		setHeight(show);
+	}
+
+	$effect(() => {
+		setHeight(show);
+	});
 </script>
 
-<div
-	class="accordion-item"
-	style:--custom-border={borderColor}
-	style:--custom-text={textColor}
-	style:--custom-opened={openedColor}
-	style:--custom-header={headerColor}
->
-	<button class="accordion-header" class:open onclick={handleClick}>
-		{#if icon}
-			<span class="icon">
-				<Icon size={20} />
-			</span>
-		{/if}
-		<span class="title">{title}</span>
-		<span class="chevron" class:rotated={open}>
-			<IconCaretDownFill />
-		</span>
-	</button>
-
-	<div class="accordion-content" class:show={open}>
-		<div
-			class="content-text"
-			style:--custom-top-border={topBorderColor}
-			style:--custom-header={headerColor}
-		>
-			{@render children?.()}
+<div class="accordion" class:show class:complete>
+	<button class="title-wrap" onclick={toggle}>
+		<div class="left">
+			<div class="title">
+				{title}
+			</div>
+			{#if belowTitle}
+				{#if typeof belowTitle === 'string'}
+					{belowTitle}
+				{:else}
+					{@render belowTitle()}
+				{/if}
+			{/if}
 		</div>
+		<!-- <Dot {complete} /> -->
+	</button>
+	<div class="content" bind:this={contentEl} transition:slide={{ axis: 'y' }}>
+		{@render children()}
+
+		{#if footer}
+			<div class="footer">
+				<div class="button-wrap">
+					{#if loading}
+						<Loader size="small" />
+					{/if}
+					<Button size="large" onclick={onButtonClick} disabled={loading || buttonDisabled}
+						>{buttonText}</Button
+					>
+				</div>
+			</div>
+		{/if}
 	</div>
 </div>
 
 <style>
-	.accordion-item {
-		overflow: hidden;
+	.accordion {
+		border: 1px solid #eee;
 		border-radius: 20px;
-		border: 1px solid var(--custom-border, var(--border));
 	}
-
-	.accordion-header {
-		width: 100%;
-		padding: 14px 20px;
-		background: var(--custom-header, none);
-		border: none;
+	.title-wrap {
 		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		cursor: pointer;
-		font-size: 16px;
-		border-radius: 20px;
-		color: var(--custom-text, var(--text));
-	}
-
-	.accordion-header.open {
-		border-radius: 20px 20px 0 0;
-		background-color: var(--custom-opened, var(--hover));
-	}
-
-	.title {
-		font-weight: 500;
 		text-align: left;
-	}
-
-	.chevron {
-		display: flex;
 		align-items: center;
-		transition: transform 0.3s ease;
-		color: var(--custom-text, var(--text));
+		padding: 15px 20px;
+		border-radius: 20px 20px 0 0;
+		cursor: pointer;
+		width: 100%;
+	}
+	.title-wrap .left {
+		flex: 1;
+	}
+	.title {
+		font-weight: 600;
+	}
+	.show .title-wrap {
+		background-color: var(--hover);
+		border-bottom: 1px solid #eee;
 	}
 
-	.chevron.rotated {
-		transform: rotate(180deg);
-	}
-
-	.accordion-content {
-		height: 0;
+	.content {
 		overflow: hidden;
+		height: 0;
+		transition: height 0.3s;
+	}
+	.footer {
+		padding: 10px 20px;
+		border-top: 1px solid #eee;
 	}
 
-	.accordion-content.show {
-		height: auto;
-		overflow: visible;
-		animation: slideDown 0.3s ease-out;
-	}
-
-	.content-text {
-		padding: 20px;
-		color: var(--custom-text, var(--text));
-		line-height: 1.6;
-		border-top: 1px solid var(--custom-top-border, var(--border));
-		background: var(--custom-header, none);
-	}
-
-	.icon {
-		display: inline-block;
-		margin-right: 10px;
-		vertical-align: middle;
-	}
-
-	@keyframes slideDown {
-		from {
-			opacity: 0;
-			transform: translateY(-10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
+	.button-wrap {
+		display: flex;
+		justify-content: flex-end;
+		align-items: center;
+		gap: 10px;
 	}
 </style>

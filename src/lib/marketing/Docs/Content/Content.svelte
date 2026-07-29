@@ -92,6 +92,10 @@
 		margin-bottom: 8px;
 	}
 
+	content :global(ul) {
+		margin-top: 8px;
+	}
+
 	content :global(.table) {
 		margin: 20px 0;
 	}

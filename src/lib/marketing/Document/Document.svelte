@@ -81,12 +81,15 @@
 			margin-top: 20px;
 		}
 
-		content :global(ul) {
-			margin-top: 20px;
-		}
-
+		content :global(ul),
 		content :global(ol) {
 			margin-top: 20px;
+			margin-bottom: 0;
+		}
+
+		content :global(li ul),
+		content :global(li ol) {
+			margin-top: 0;
 		}
 
 		content :global(hr) {

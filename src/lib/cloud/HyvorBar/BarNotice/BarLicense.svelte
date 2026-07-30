@@ -4,6 +4,7 @@
 	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 	import IconBuilding from '@hyvor/icons/IconBuilding';
 	import type { Component } from 'svelte';
+	import { PRODUCTS } from '../BarProducts/products.js';
 
 	let { name } = $props();
 
@@ -36,11 +37,11 @@
 	interface Config {
 		name: string;
 		tooltip: string;
-		tagColor: 'green' | 'blue' | 'red' | 'orange';
+		tagColor: 'green' | 'blue' | 'red' | 'orange' | 'default';
 		tagIcon?: Component;
 	}
 
-	let config: Config | null = $derived.by(() => {
+	let mainConfig: Config | null = $derived.by(() => {
 		if (!license) {
 			return null;
 		}
@@ -79,6 +80,11 @@
 		}
 
 		if (license.type === 'expired') {
+			if (license.complimentary_licenses.length > 0) {
+				// if the org has a complimentary license, we do not show the "Expired" tag to prevent confusing the user
+				return null;
+			}
+
 			return {
 				name: `License Expired`,
 				tooltip: `Your organization's license for ${name} has expired. Please renew or upgrade to continue using the service.`,
@@ -88,30 +94,83 @@
 
 		return null;
 	});
+
+	let complimentaryConfig: Config | null = $derived.by(() => {
+		if (!license) {
+			return null;
+		}
+
+		if (!license.complimentary_licenses.length) {
+			return null;
+		}
+
+		// for now, we only care about the 1st one
+		// we may later add other licenses
+		const complimentaryLicense = license.complimentary_licenses[0];
+		const providerName = PRODUCTS[complimentaryLicense.provider].name;
+
+		return {
+			name: 'Complimentary',
+			tooltip: `Your organization has a complimentary license for ${name} thanks to your ${providerName} ${complimentaryLicense.type}.`,
+			tagColor: 'default'
+		};
+	});
 </script>
 
-{#if config}
-	<a class="wrap" href="/console/billing">
-		<Tooltip position="bottom">
-			{#snippet tooltip()}
-				{config.tooltip}
-			{/snippet}
-			<Tag color={config.tagColor}>
-				{#snippet start()}
-					{#if config.tagIcon}
-						<config.tagIcon size={10} />
-					{/if}
+<div class="outer">
+	{#if mainConfig}
+		<a class="wrap" href="/console/billing">
+			<Tooltip position="bottom">
+				{#snippet tooltip()}
+					{mainConfig.tooltip}
 				{/snippet}
-				{config.name}
-			</Tag>
-		</Tooltip>
-	</a>
-{/if}
+				<Tag color={mainConfig.tagColor}>
+					{#snippet start()}
+						{#if mainConfig.tagIcon}
+							<mainConfig.tagIcon size={10} />
+						{/if}
+					{/snippet}
+					{mainConfig.name}
+				</Tag>
+			</Tooltip>
+		</a>
+	{/if}
+
+	{#if mainConfig && complimentaryConfig}
+		<span class="pls">+</span>
+	{/if}
+
+	{#if complimentaryConfig}
+		<a class="wrap complimentary" href="/console/billing">
+			<Tooltip position="bottom">
+				{#snippet tooltip()}
+					{complimentaryConfig.tooltip}
+				{/snippet}
+				<Tag color={complimentaryConfig.tagColor}>
+					{complimentaryConfig.name}
+				</Tag>
+			</Tooltip>
+		</a>
+	{/if}
+</div>
 
 <style>
+	.outer {
+		display: flex;
+		align-items: center;
+		padding: 0 20px;
+	}
+
 	.wrap {
 		display: inline-flex;
 		align-items: center;
-		margin-left: 20px;
+	}
+
+	.pls {
+		display: inline-flex;
+		margin: 0 6px;
+		color: var(--text-light);
+		font-size: 12px;
+		font-weight: normal;
 	}
 </style>

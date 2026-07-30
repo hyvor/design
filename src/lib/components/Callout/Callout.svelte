@@ -67,7 +67,8 @@
 	}
 
 	.callout.soft {
-		background-color: var(--accent-light);
+		background-color: var(--gray-light);
+		color: var(--gray-dark);
 	}
 
 	.callout.info {

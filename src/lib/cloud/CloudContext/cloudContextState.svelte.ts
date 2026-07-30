@@ -95,8 +95,15 @@ export interface ResolvedLicense {
 	type: 'enterprise_contract' | 'subscription' | 'trial' | 'expired' | 'none';
 	license: Record<string, number | boolean> | null;
 	subscription: null | {
+		id: number;
+		status: string;
+		monthly_price: number;
+		is_annual: boolean;
+		plan: string;
+		plan_version: number;
 		plan_readable_name: string;
 		cancel_at: null | number;
+		is_legacy_paddle: boolean;
 	};
 	trial_ends_at: null | number;
 	complimentary_licenses: ResolvedComplimentaryLicense[];

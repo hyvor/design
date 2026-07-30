@@ -16,9 +16,9 @@
 
 	let loading = $state(false);
 	let cloudContext: CloudContextType = $state({
-		component: 'core',
-		deployment: 'on-prem',
-		instance: '',
+		component: 'post',
+		deployment: 'cloud',
+		instance: 'https://hyvor.localhost',
 		user: {
 			id: 1,
 			name: 'Supun',
@@ -32,6 +32,20 @@
 			role: 'admin'
 		},
 		license: null,
+		// license: {
+		// 	type: 'expired',
+		// 	trial_ends_at: 1000,
+		// 	subscription: {
+		// 		plan_readable_name: '25k'
+		// 	},
+		// 	complimentary_licenses: [
+		// 		{
+		// 			provider: 'blogs',
+		// 			type: 'trial',
+		// 			license: {}
+		// 		}
+		// 	]
+		// },
 		callbacks: {
 			onOrganizationSwitch: () => null
 		}

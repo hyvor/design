@@ -99,6 +99,13 @@ export interface ResolvedLicense {
 		cancel_at: null | number;
 	};
 	trial_ends_at: null | number;
+	complimentary_licenses: ResolvedComplimentaryLicense[];
+}
+
+export interface ResolvedComplimentaryLicense {
+	provider: string; // component
+	type: 'trial' | 'subscription'; // how did the provider provide it
+	license: Record<string, number | boolean>; // the license object
 }
 
 export interface OrganizationMember {

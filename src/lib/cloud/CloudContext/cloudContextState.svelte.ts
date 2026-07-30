@@ -99,7 +99,7 @@ export interface ResolvedLicense {
 		cancel_at: null | number;
 	};
 	trial_ends_at: null | number;
-	complimentary_licenses: ResolvedComplimentaryLicense[]
+	complimentary_licenses: ResolvedComplimentaryLicense[];
 }
 
 export interface ResolvedComplimentaryLicense {

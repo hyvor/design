@@ -95,9 +95,9 @@ export interface ResolvedLicense {
 	type: 'enterprise_contract' | 'subscription' | 'trial' | 'expired' | 'none';
 	license: Record<string, number | boolean> | null;
 	subscription: null | {
-		id: number,
-		status: string,
-		monthly_price: number,
+		id: number;
+		status: string;
+		monthly_price: number;
 		is_annual: boolean;
 		plan: string;
 		plan_version: number;

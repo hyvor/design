@@ -14,6 +14,9 @@ export interface NavPageConfig {
 	name: string;
 	slug: string;
 	content: Component;
+	// when true, the page content takes the full width of the content area
+	// (no fixed reading-width column, no right sidebar) - useful for API references
+	wide?: boolean;
 }
 
 export interface NavFoldingSectionConfig {

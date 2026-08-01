@@ -58,6 +58,7 @@
 		"vite": "^7.3"
 	},
 	"dependencies": {
+		"@apidevtools/json-schema-ref-parser": "^15.5.1",
 		"@fontsource/readex-pro": "^5.2.11",
 		"@hyvor/icons": "^1.1.1",
 		"@openpanel/sdk": "^1.0.4",

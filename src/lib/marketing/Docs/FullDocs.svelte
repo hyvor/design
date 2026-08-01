@@ -29,14 +29,16 @@
 	</nav>
 
 	<div class="content-wrap hds-box">
-		<content>
+		<content class:wide={page.wide}>
 			<page.content />
 		</content>
 	</div>
 
-	<div class="sidebar hds-box">
-		<!--  -->
-	</div>
+	{#if !page.wide}
+		<div class="sidebar hds-box">
+			<!--  -->
+		</div>
+	{/if}
 </div>
 
 <style>
@@ -63,6 +65,7 @@
 	.content-wrap {
 		flex: 1;
 		padding: 15px 25px;
+		min-width: 0;
 	}
 
 	content {
@@ -70,6 +73,9 @@
 		margin: auto;
 		width: 650px;
 		max-width: 100%;
+	}
+	content.wide {
+		width: 100%;
 	}
 
 	.sidebar {

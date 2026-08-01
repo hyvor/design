@@ -44,7 +44,8 @@ const SECTIONS: NavSectionConfig[] = [
 				type: 'page',
 				name: 'Console API',
 				slug: 'api-console',
-				content: ConsoleApiDoc
+				content: ConsoleApiDoc,
+				wide: true
 			}
 		]
 	},

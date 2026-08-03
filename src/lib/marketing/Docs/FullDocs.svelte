@@ -22,7 +22,7 @@
 				{/if}
 
 				{#each section.navs as nav}
-					<NavItem {nav} {basepath} />
+					<NavItem {nav} {basepath} currentSlug={page.slug} />
 				{/each}
 			</div>
 		{/each}
@@ -64,7 +64,7 @@
 
 	.content-wrap {
 		flex: 1;
-		padding: 15px 25px;
+		padding: 10px 45px;
 		min-width: 0;
 	}
 

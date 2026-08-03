@@ -6,9 +6,10 @@
 	interface Props {
 		basepath: string;
 		nav: NavConfig;
+		currentSlug: string;
 	}
 
-	let { nav, basepath }: Props = $props();
+	let { nav, basepath, currentSlug }: Props = $props();
 
 	let foldingOpen = $state(false);
 
@@ -28,11 +29,11 @@
 	</button>
 	<div class="folded-content" class:open={foldingOpen}>
 		{#each nav.navs as innerNav}
-			<NavItem nav={innerNav} {basepath} />
+			<NavItem nav={innerNav} {basepath} {currentSlug} />
 		{/each}
 	</div>
 {:else}
-	<a {href} class="nav-item">
+	<a {href} class="nav-item" class:active={nav.type === 'page' && nav.slug === currentSlug}>
 		<div class="nav-name">{nav.name}</div>
 	</a>
 {/if}
@@ -49,7 +50,12 @@
 		text-align: initial;
 	}
 
-	.nav-item:hover {
+	.nav-item.active {
+		border-left: 3px solid var(--accent);
+		background-color: var(--accent-lightest);
+	}
+
+	.nav-item:not(.active):hover {
 		background-color: var(--hover);
 	}
 

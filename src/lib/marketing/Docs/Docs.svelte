@@ -28,6 +28,36 @@
 		void page.slug;
 		mobileNavOpen = false;
 	});
+
+	let contentEl: HTMLElement | undefined = $state();
+
+	// adds a clickable anchor link to each heading that has an id, so
+	// readers can link directly to a section of the page
+	function linkifyHeadings() {
+		if (!contentEl) return;
+
+		const headings = contentEl.querySelectorAll<HTMLElement>('h2[id], h3[id], h4[id]');
+		for (const h of headings) {
+			const icon = document.createElement('a');
+			icon.className = 'heading-anchor-link';
+			icon.innerHTML =
+				'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16"><path d="M4.715 6.542 3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.002 1.002 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/><path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 1 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 1 0-4.243-4.243L6.586 4.672z"/></svg>';
+			icon.tabIndex = -1;
+			h.appendChild(icon);
+
+			const id = h.getAttribute('id');
+			const link = document.createElement('a');
+			link.className = 'heading-anchor';
+			link.setAttribute('href', '#' + id);
+			link.innerHTML = h.innerHTML;
+			h.innerHTML = link.outerHTML;
+		}
+	}
+
+	$effect(() => {
+		void page.slug;
+		linkifyHeadings();
+	});
 </script>
 
 <div class="wrap docs">
@@ -55,12 +85,18 @@
 			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
 		>
 			<div class="breadcrumb">
-				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+				<a
+					class="breadcrumb-item"
+					href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}
+				>
 					{rootName}
 				</a>
 				{#each subSectionPath as sub}
 					<span class="breadcrumb-sep"></span>
-					<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}>
+					<a
+						class="breadcrumb-item"
+						href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
+					>
 						{sub.name}
 					</a>
 				{/each}
@@ -83,7 +119,7 @@
 	</div>
 
 	<div class="content-wrap hds-box">
-		<content class:wide={page.wide}>
+		<content class:wide={page.wide} bind:this={contentEl}>
 			<page.content />
 		</content>
 	</div>
@@ -130,6 +166,9 @@
 			width: 100%;
 			padding: 0 15px;
 			order: 1;
+			height: auto;
+			position: static;
+			top: auto;
 		}
 
 		.content-wrap {
@@ -162,7 +201,7 @@
 		nav {
 			display: none;
 			position: absolute;
-			width: 100%;
+			width: calc(100% - 30px);
 			height: auto;
 			max-height: 500px;
 			margin-top: 8px;

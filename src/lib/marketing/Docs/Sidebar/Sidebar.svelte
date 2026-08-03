@@ -21,7 +21,6 @@
 			position: relative;
 			top: initial;
 			padding: 0 15px;
-			margin-bottom: 20px;
 			width: 100%;
 		}
 	}

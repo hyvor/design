@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { NavConfig, NavSubSectionConfig } from '../types.js';
+	import type { NavConfig } from '../types.js';
+	import { getFirstPageSlug } from './fulldocs.js';
 	import IconCaretRight from '@hyvor/icons/IconCaretRight';
 	import IconArrowRight from '@hyvor/icons/IconArrowRight';
 	import NavItem from './NavItem.svelte';
@@ -8,16 +9,17 @@
 		basepath: string;
 		nav: NavConfig;
 		currentSlug: string;
-		onOpenSubSection: (nav: NavSubSectionConfig) => void;
 	}
 
-	let { nav, basepath, currentSlug, onOpenSubSection }: Props = $props();
+	let { nav, basepath, currentSlug }: Props = $props();
 
 	let foldingOpen = $state(false);
 
 	const href = $derived.by(() => {
 		if (nav.type === 'page') {
 			return basepath + '/' + nav.slug;
+		} else if (nav.type === 'sub-section') {
+			return basepath + '/' + (getFirstPageSlug(nav.sections) ?? '');
 		}
 	});
 </script>
@@ -31,16 +33,16 @@
 	</button>
 	<div class="folded-content" class:open={foldingOpen}>
 		{#each nav.navs as innerNav}
-			<NavItem nav={innerNav} {basepath} {currentSlug} {onOpenSubSection} />
+			<NavItem nav={innerNav} {basepath} {currentSlug} />
 		{/each}
 	</div>
 {:else if nav.type === 'sub-section'}
-	<button class="nav-item" onclick={() => onOpenSubSection(nav)}>
+	<a {href} class="nav-item">
 		<div class="nav-name">{nav.name}</div>
 		<span class="nav-icon">
 			<IconArrowRight size={10} />
 		</span>
-	</button>
+	</a>
 {:else}
 	<a {href} class="nav-item" class:active={nav.type === 'page' && nav.slug === currentSlug}>
 		<div class="nav-name">{nav.name}</div>

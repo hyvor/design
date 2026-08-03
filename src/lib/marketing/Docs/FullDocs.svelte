@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NavItem from './FullDocs/NavItem.svelte';
-	import { getSubSectionPathForSlug } from './FullDocs/fulldocs.js';
-	import type { NavPageConfig, NavSectionConfig, NavSubSectionConfig } from './types.js';
+	import { getSubSectionPathForSlug, getFirstPageSlug } from './FullDocs/fulldocs.js';
+	import type { NavPageConfig, NavSectionConfig } from './types.js';
 
 	interface Props {
 		basepath: string;
@@ -11,34 +11,27 @@
 
 	let { basepath = '/', sections, page }: Props = $props();
 
-	let subSectionPath = $state<NavSubSectionConfig[]>(
-		getSubSectionPathForSlug(sections, page.slug) ?? []
-	);
-
-	$effect(() => {
-		subSectionPath = getSubSectionPathForSlug(sections, page.slug) ?? [];
-	});
+	const subSectionPath = $derived(getSubSectionPathForSlug(sections, page.slug) ?? []);
 
 	const currentSections = $derived(
 		subSectionPath.length > 0 ? subSectionPath[subSectionPath.length - 1].sections : sections
 	);
-
-	function openSubSection(nav: NavSubSectionConfig) {
-		subSectionPath = [...subSectionPath, nav];
-	}
-
-	function goToDepth(depth: number) {
-		subSectionPath = subSectionPath.slice(0, depth);
-	}
 </script>
 
 <div class="wrap">
 	<nav class="hds-box">
 		<div class="breadcrumb">
-			<button class="breadcrumb-item" onclick={() => goToDepth(0)}>Docs</button>
-			{#each subSectionPath as sub, i}
+			<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+				Docs
+			</a>
+			{#each subSectionPath as sub}
 				<span class="breadcrumb-sep"></span>
-				<button class="breadcrumb-item" onclick={() => goToDepth(i + 1)}>{sub.name}</button>
+				<a
+					class="breadcrumb-item"
+					href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
+				>
+					{sub.name}
+				</a>
 			{/each}
 		</div>
 
@@ -51,12 +44,7 @@
 				{/if}
 
 				{#each section.navs as nav}
-					<NavItem
-						{nav}
-						{basepath}
-						currentSlug={page.slug}
-						onOpenSubSection={openSubSection}
-					/>
+					<NavItem {nav} {basepath} currentSlug={page.slug} />
 				{/each}
 			</div>
 		{/each}
@@ -93,7 +81,7 @@
 		align-items: center;
 		flex-wrap: wrap;
 		gap: 6px;
-		padding: 0 22px 12px;
+		padding: 0 25px 12px;
 		font-size: 13px;
 	}
 

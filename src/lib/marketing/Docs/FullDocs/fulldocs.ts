@@ -88,3 +88,33 @@ function getSubSectionPathForSlugInNavs(
 		}
 	}
 }
+
+// returns the slug of the first page found (in traversal order) under the
+// given sections. used to know where a sub-section link or breadcrumb item
+// should navigate to.
+export function getFirstPageSlug(sections: NavSectionConfig[]): string | undefined {
+	for (const section of sections) {
+		const slug = getFirstPageSlugInNavs(section.navs);
+		if (slug !== undefined) {
+			return slug;
+		}
+	}
+}
+
+function getFirstPageSlugInNavs(navs: NavConfig[]): string | undefined {
+	for (const nav of navs) {
+		if (nav.type === 'page') {
+			return nav.slug;
+		} else if (nav.type === 'folding-section') {
+			const slug = getFirstPageSlugInNavs(nav.navs);
+			if (slug !== undefined) {
+				return slug;
+			}
+		} else if (nav.type === 'sub-section') {
+			const slug = getFirstPageSlug(nav.sections);
+			if (slug !== undefined) {
+				return slug;
+			}
+		}
+	}
+}

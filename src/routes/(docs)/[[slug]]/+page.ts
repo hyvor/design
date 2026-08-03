@@ -35,7 +35,6 @@ import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import ConsoleLoader from './docs/ConsoleLoader.svelte';
 import Document from './docs/Document/Document.svelte';
-import { error } from '@sveltejs/kit';
 import Usage from './docs/Usage.svelte';
 import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 import DetailCard from './docs/DetailCard.svelte';
@@ -43,76 +42,104 @@ import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import DetailsAccordion from './docs/DetailsAccordion.svelte';
-import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
+import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
+import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
+import type { Component } from 'svelte';
 
 export const prerender = true;
 
-const nav = {
-	index: Index,
-	'action-list': ActionList,
-	avatar: Avatar,
-	button: Button,
-	'box-shadow-picker': BoxShadowPicker,
-	'color-picker': ColorPicker,
-	'icon-button': IconButton,
-	table: Table,
-	callout: Callout,
-	'code-block': CodeBlock,
-	checkbox: Checkbox,
-	'detail-card': DetailCard,
-	dropdown: Dropdown,
-	divider: Divider,
-	'emoji-picker': EmojiPicker,
-	'file-uploader': FileUploader,
-	switch: Switch,
-	radio: Radio,
-	'split-control': SplitControl,
-	'form-control': FormControl,
-	'text-input': TextInput,
-	'tab-nav': TabNav,
-	tag: Tag,
-	text: Text,
-	toast: Toast,
-	'nav-link': NavLink,
-	modal: Modal,
-	textarea: Textarea,
-	loader: Loader,
-	link: Link,
-	tooltip: Tooltip,
-	dark: Dark,
-	i18n: Internationalization,
-	box: Box,
-	slider: Slider,
-	'icon-message': IconMessage,
-	kbd: Kbd,
-	'console-loader': ConsoleLoader,
-	accordion: Accordion,
-	select: Select,
-	usage: Usage,
-	'page-structure': PageStructure,
-	docs: DocsDocs,
-	document: Document,
-	tracking: Tracking,
-	'ternary-status': TernaryStatus,
-	'details-accordion': DetailsAccordion,
+const COMPONENTS: { slug: string; name: string; content: Component }[] = [
+	{ slug: 'action-list', name: 'Action List', content: ActionList },
+	{ slug: 'avatar', name: 'Avatar', content: Avatar },
+	{ slug: 'button', name: 'Button', content: Button },
+	{ slug: 'box', name: 'Box', content: Box },
+	{ slug: 'box-shadow-picker', name: 'Box Shadow Picker', content: BoxShadowPicker },
+	{ slug: 'color-picker', name: 'Color Picker', content: ColorPicker },
+	{ slug: 'icon-button', name: 'Icon Button', content: IconButton },
+	{ slug: 'callout', name: 'Callout', content: Callout },
+	{ slug: 'code-block', name: 'Code Block', content: CodeBlock },
+	{ slug: 'checkbox', name: 'Checkbox', content: Checkbox },
+	{ slug: 'detail-card', name: 'Detail Card', content: DetailCard },
+	{ slug: 'divider', name: 'Divider', content: Divider },
+	{ slug: 'dropdown', name: 'Dropdown', content: Dropdown },
+	{ slug: 'file-uploader', name: 'File Uploader', content: FileUploader },
+	{ slug: 'emoji-picker', name: 'Emoji Picker', content: EmojiPicker },
+	{ slug: 'nav-link', name: 'Nav Link', content: NavLink },
+	{ slug: 'radio', name: 'Radio', content: Radio },
+	{ slug: 'switch', name: 'Switch', content: Switch },
+	{ slug: 'textarea', name: 'Textarea', content: Textarea },
+	{ slug: 'tab-nav', name: 'Tab Nav', content: TabNav },
+	{ slug: 'table', name: 'Table', content: Table },
+	{ slug: 'text', name: 'Text', content: Text },
+	{ slug: 'text-input', name: 'Text Input', content: TextInput },
+	{ slug: 'form-control', name: 'Form Control', content: FormControl },
+	{ slug: 'split-control', name: 'Split Control', content: SplitControl },
+	{ slug: 'loader', name: 'Loader', content: Loader },
+	{ slug: 'link', name: 'Link', content: Link },
+	{ slug: 'tag', name: 'Tag', content: Tag },
+	{ slug: 'tooltip', name: 'Tooltip', content: Tooltip },
+	{ slug: 'toast', name: 'Toast', content: Toast },
+	{ slug: 'usage', name: 'Usage', content: Usage },
+	{ slug: 'modal', name: 'Modal', content: Modal },
+	{ slug: 'icon-message', name: 'Icon Message', content: IconMessage },
+	{ slug: 'kbd', name: 'Kbd', content: Kbd },
+	{ slug: 'slider', name: 'Slider', content: Slider },
+	{ slug: 'accordion', name: 'Accordion', content: Accordion },
+	{ slug: 'select', name: 'Select', content: Select },
+	{ slug: 'console-loader', name: 'Console Loader', content: ConsoleLoader },
+	{ slug: 'ternary-status', name: 'Ternary Status', content: TernaryStatus }
+].sort((a, b) => a.name.localeCompare(b.name));
 
-	// cloud
-	'cloud-context': CloudContextDoc
-};
+const SECTIONS: NavSectionConfig[] = [
+	{
+		navs: [
+			{ type: 'page', name: 'Overview', slug: '', content: Index },
+			{ type: 'page', name: 'Dark Mode', slug: 'dark', content: Dark },
+			{ type: 'page', name: 'i18n', slug: 'i18n', content: Internationalization }
+		]
+	},
+	{
+		name: 'Components',
+		navs: COMPONENTS.map((component) => ({
+			type: 'page',
+			name: component.name,
+			slug: component.slug,
+			content: component.content
+		}))
+	},
+	{
+		name: 'Cloud',
+		navs: [{ type: 'page', name: 'Cloud Context', slug: 'cloud-context', content: CloudContextDoc }]
+	},
+	{
+		name: 'Marketing',
+		navs: [
+			{
+				type: 'page',
+				name: 'Page Structure',
+				slug: 'page-structure',
+				content: PageStructure
+			},
+			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
+			{ type: 'page', name: 'Document', slug: 'document', content: Document },
+			{
+				type: 'page',
+				name: 'Details Accordion',
+				slug: 'details-accordion',
+				content: DetailsAccordion
+			}
+		]
+	}
+];
 
 export async function load({ params }) {
-	const slug = params.slug;
-	const fileName = (slug || 'index') as keyof typeof nav;
-
-	if (!nav[fileName]) {
-		throw error(404, 'Not found');
-	}
-
-	return {
-		slug: params.slug,
-		content: nav[fileName]
-	};
+	return loadDocsPage({
+		basepath: '',
+		sections: SECTIONS,
+		slug: params.slug ?? '',
+		rootName: 'Design System'
+	});
 }

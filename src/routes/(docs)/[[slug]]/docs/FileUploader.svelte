@@ -2,7 +2,7 @@
 	import Button from '$lib/components/Button/Button.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import { uploadFile } from '$lib/components/FileUploader/file-uploader.js';
-	import DocsImage from '$lib/marketing/Docs/Content/DocsImage.svelte';
+	import DocsImage from '$lib/marketing/Docs/DocsImage.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 
 	let imageUrl = $state('');

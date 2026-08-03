@@ -9,8 +9,7 @@
 <style>
 	.sidebar {
 		width: 220px;
-		top: var(--header-height, 0);
-		padding: 25px 0;
+		top: calc(var(--header-height, 0) + 15px);
 		position: sticky;
 		flex-shrink: 0;
 		align-self: flex-start;

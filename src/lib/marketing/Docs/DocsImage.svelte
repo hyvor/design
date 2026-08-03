@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { scale } from 'svelte/transition';
-	import { clickOutside } from '../../../components/index.js';
+	import { clickOutside } from '../../components/index.js';
 
 	interface Props {
 		src: string;

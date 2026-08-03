@@ -13,3 +13,4 @@ vite.config.ts.timestamp-*
 /testapp
 .idea/
 tmp/
+*.tmp

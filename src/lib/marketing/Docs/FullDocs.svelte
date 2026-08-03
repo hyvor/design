@@ -1,6 +1,7 @@
 <script lang="ts">
 	import NavItem from './FullDocs/NavItem.svelte';
-	import type { NavPageConfig, NavSectionConfig } from './types.js';
+	import { getSubSectionPathForSlug } from './FullDocs/fulldocs.js';
+	import type { NavPageConfig, NavSectionConfig, NavSubSectionConfig } from './types.js';
 
 	interface Props {
 		basepath: string;
@@ -9,11 +10,39 @@
 	}
 
 	let { basepath = '/', sections, page }: Props = $props();
+
+	let subSectionPath = $state<NavSubSectionConfig[]>(
+		getSubSectionPathForSlug(sections, page.slug) ?? []
+	);
+
+	$effect(() => {
+		subSectionPath = getSubSectionPathForSlug(sections, page.slug) ?? [];
+	});
+
+	const currentSections = $derived(
+		subSectionPath.length > 0 ? subSectionPath[subSectionPath.length - 1].sections : sections
+	);
+
+	function openSubSection(nav: NavSubSectionConfig) {
+		subSectionPath = [...subSectionPath, nav];
+	}
+
+	function goToDepth(depth: number) {
+		subSectionPath = subSectionPath.slice(0, depth);
+	}
 </script>
 
 <div class="wrap">
 	<nav class="hds-box">
-		{#each sections as section}
+		<div class="breadcrumb">
+			<button class="breadcrumb-item" onclick={() => goToDepth(0)}>Docs</button>
+			{#each subSectionPath as sub, i}
+				<span class="breadcrumb-sep"></span>
+				<button class="breadcrumb-item" onclick={() => goToDepth(i + 1)}>{sub.name}</button>
+			{/each}
+		</div>
+
+		{#each currentSections as section}
 			<div class="section">
 				{#if section.name}
 					<div class="section-name">
@@ -22,7 +51,12 @@
 				{/if}
 
 				{#each section.navs as nav}
-					<NavItem {nav} {basepath} currentSlug={page.slug} />
+					<NavItem
+						{nav}
+						{basepath}
+						currentSlug={page.slug}
+						onOpenSubSection={openSubSection}
+					/>
 				{/each}
 			</div>
 		{/each}
@@ -52,6 +86,48 @@
 		width: 280px;
 		height: calc(100vh - var(--header-height) - 30px);
 		padding: 15px 0;
+	}
+
+	.breadcrumb {
+		display: flex;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 6px;
+		padding: 0 22px 12px;
+		font-size: 13px;
+	}
+
+	.breadcrumb-item {
+		color: var(--text-light);
+	}
+
+	.breadcrumb-item:last-child {
+		color: inherit;
+		font-weight: 600;
+	}
+
+	.breadcrumb-item:not(:last-child):hover {
+		text-decoration: underline;
+	}
+
+	.breadcrumb-sep {
+		color: var(--text-light);
+		position: relative;
+		width: 4px;
+	}
+
+	.breadcrumb-sep::before {
+		content: '';
+		width: 4px;
+		height: 4px;
+		border-right: 1px solid var(--text-light);
+		border-bottom: 1px solid var(--text-light);
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -40%) rotate(-45deg);
+		margin-left: -1px;
+		opacity: 0.5;
 	}
 
 	.section-name {

@@ -63,6 +63,50 @@ const SECTIONS: NavSectionConfig[] = [
 						content: IntroductionDoc
 					}
 				]
+			},
+			{
+				type: 'sub-section',
+				name: 'Self Hosting',
+				sections: [
+					{
+						navs: [
+							{
+								type: 'page',
+								name: 'Installation',
+								slug: 'self-hosting-installation',
+								content: IntroductionDoc
+							},
+							{
+								type: 'page',
+								name: 'Configuration',
+								slug: 'self-hosting-configuration',
+								content: IntroductionDoc
+							},
+							{
+								type: 'sub-section',
+								name: 'Docker',
+								sections: [
+									{
+										navs: [
+											{
+												type: 'page',
+												name: 'Docker Compose',
+												slug: 'self-hosting-docker-compose',
+												content: IntroductionDoc
+											},
+											{
+												type: 'page',
+												name: 'Kubernetes',
+												slug: 'self-hosting-docker-kubernetes',
+												content: IntroductionDoc
+											}
+										]
+									}
+								]
+							}
+						]
+					}
+				]
 			}
 		]
 	}

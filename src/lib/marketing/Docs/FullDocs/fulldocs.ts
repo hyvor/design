@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { NavSectionConfig, NavConfig, NavPageConfig } from '../types.js';
+import type { NavSectionConfig, NavConfig, NavPageConfig, NavSubSectionConfig } from '../types.js';
 
 // for docs, create a /docs/[[slug]]/+page.svelte and +page.ts files
 // add this to +page.ts in the load function
@@ -47,6 +47,43 @@ export function getPageFromNavs(navs: NavConfig[], slug: string): NavPageConfig 
 			const page = getPageFromSections(nav.sections, slug);
 			if (page) {
 				return page;
+			}
+		}
+	}
+}
+
+// returns the chain of sub-sections that need to be opened to reach the page
+// with the given slug, e.g. [subSectionA, subSectionB] means subSectionA is
+// open, and within it, subSectionB is open. returns undefined if the slug
+// isn't found under the given sections.
+export function getSubSectionPathForSlug(
+	sections: NavSectionConfig[],
+	slug: string
+): NavSubSectionConfig[] | undefined {
+	for (const section of sections) {
+		const path = getSubSectionPathForSlugInNavs(section.navs, slug);
+		if (path) {
+			return path;
+		}
+	}
+}
+
+function getSubSectionPathForSlugInNavs(
+	navs: NavConfig[],
+	slug: string
+): NavSubSectionConfig[] | undefined {
+	for (const nav of navs) {
+		if (nav.type === 'page' && nav.slug === slug) {
+			return [];
+		} else if (nav.type === 'folding-section') {
+			const path = getSubSectionPathForSlugInNavs(nav.navs, slug);
+			if (path) {
+				return path;
+			}
+		} else if (nav.type === 'sub-section') {
+			const path = getSubSectionPathForSlug(nav.sections, slug);
+			if (path) {
+				return [nav, ...path];
 			}
 		}
 	}

@@ -55,18 +55,12 @@
 			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
 		>
 			<div class="breadcrumb">
-				<a
-					class="breadcrumb-item"
-					href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}
-				>
+				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
 					{rootName}
 				</a>
 				{#each subSectionPath as sub}
 					<span class="breadcrumb-sep"></span>
-					<a
-						class="breadcrumb-item"
-						href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
-					>
+					<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}>
 						{sub.name}
 					</a>
 				{/each}

@@ -1,2266 +1,2145 @@
 {
-    "openapi": "3.0.0",
-    "info": {
-        "title": "Hyvor Post",
-        "description": "Privacy-first, simple newsletter platform",
-        "version": "1.0.0"
-    },
-    "paths": {
-        "/api/console/api-keys": {
-            "get": {
-                "summary": "Get all API keys for a newsletter",
-                "operationId": "get_api_console_app_api_console_apikey_getapikeys",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "summary": "Create a new API key",
-                "description": "Creates a new API key for the specified newsletter. The API key will be returned in the response, and it is important to store it securely as it will not be retrievable again.",
-                "operationId": "post_api_console_app_api_console_apikey_createapikey",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateApiKeyInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/api-keys/{id}": {
-            "post": {
-                "summary": "Regenerate an API key",
-                "operationId": "post_api_console_app_api_console_apikey_regenerateapikey",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "summary": "Delete an API key",
-                "operationId": "delete_api_console_app_api_console_apikey_deleteapikey",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "summary": "Update an API key",
-                "operationId": "patch_api_console_app_api_console_apikey_updateapikey",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateApiKeyInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/approvals": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_approval_getapproval",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_approval_approve",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateApprovalInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Approval created successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/ApprovalObject"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/console/approvals/{id}": {
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_approval_updateapproval",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateApprovalInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/billing/usage": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_billing_getusage",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/init": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_console_initconsole",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/init/newsletter": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_console_initnewsletter",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/domains": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_domain_getdomains",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_domain_createdomain",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateDomainInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/domains/{id}/verify": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_domain_verifydomain",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/domains/{id}": {
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_domain_deletedomain",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/export": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_export_listexports",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_export_exportsubscribers",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/imports/upload": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_import_upload",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UploadImportInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/imports/{id}": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_import_import",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/ImportInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/imports": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_import_listimports",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/imports/limits": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_import_importcounts",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_getissues",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_issue_createissue",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_getbyid",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_issue_deleteissue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_issue_updateissue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateIssueInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/send": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_issue_sendissue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/test": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_gettestdata",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_issue_sendtest",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SendTestInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/preview": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_previewissue",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/progress": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_getissueprogress",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/sends": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_getissuesends",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/issues/{id}/report": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_issue_getissuereport",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/lists": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_list_createnewsletterlist",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateListInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/lists/{id}": {
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_list_deletenewsletterlist",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_list_updatenewsletterlist",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateListInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/media": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_media_upload",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/MediaUploadInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/newsletter/subdomain": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_newsletter_getsubdomainavailability",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/SubdomainAvailabilityInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/newsletters": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_newsletter_createnewsletter",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateNewsletterInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/newsletter": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_newsletter_getnewsletter",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_newsletter_deletenewsletter",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_newsletter_updatenewsletter",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateNewsletterInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/sending-profiles": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_sendingprofile_getsendingprofiles",
-                "responses": {
-                    "200": {
-                        "description": "List of sending profiles",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/SendingProfileObject"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_sendingprofile_createsendingprofile",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateSendingProfileInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Sending profile created successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SendingProfileObject"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/console/sending-profiles/{id}": {
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_sendingprofile_deletesendingprofile",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Sending profile deleted successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SendingProfileObject"
-                                }
-                            }
-                        }
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_sendingprofile_updatesendingprofile",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateSendingProfileInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Sending profile updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "$ref": "#/components/schemas/SendingProfileObject"
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        "/api/console/subscribers": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_subscriber_getsubscribers",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_subscriber_createsubscriber",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateSubscriberInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscribers/email/{email}": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_subscriber_getsubscriberbyemail",
-                "parameters": [
-                    {
-                        "name": "email",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscribers/{id}/resend-opt-in": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_subscriber_resendoptin",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscribers/{id}": {
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_subscriber_deletesubscriber",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscribers/bulk": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_subscriber_bulkactions",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BulkActionSubscriberInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscriber-metadata-definitions": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_subscribermetadata_createmetadata",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateSubscriberMetadataDefinitionInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/subscriber-metadata-definitions/{id}": {
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_subscribermetadata_deletemetadata",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_subscribermetadata_updatemetadata",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateSubscriberMetadataDefinitionInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/templates": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_template_getnewslettertemplate",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "patch": {
-                "operationId": "patch_api_console_app_api_console_template_updatetemplate",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/UpdateTemplateInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/templates/render": {
-            "post": {
-                "operationId": "post_api_console_app_api_console_template_rendertemplate",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/RenderTemplateInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        },
-        "/api/console/users": {
-            "get": {
-                "operationId": "get_api_console_app_api_console_user_getusers",
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "post": {
-                "operationId": "post_api_console_app_api_console_user_createuser",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/CreateUserInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            },
-            "delete": {
-                "operationId": "delete_api_console_app_api_console_user_deleteuser",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/DeleteUserInput"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "default": {
-                        "description": ""
-                    }
-                }
-            }
-        }
-    },
-    "components": {
-        "schemas": {
-            "CreateApiKeyInput": {
-                "required": [
-                    "name",
-                    "scopes"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "scopes": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateApiKeyInput": {
-                "required": [
-                    "name",
-                    "is_enabled",
-                    "scopes"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "is_enabled": {
-                        "type": "boolean"
-                    },
-                    "scopes": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "CreateApprovalInput": {
-                "required": [
-                    "company_name",
-                    "country",
-                    "website",
-                    "type_of_content"
-                ],
-                "properties": {
-                    "company_name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "country": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "website": {
-                        "type": "string",
-                        "maxLength": 1024
-                    },
-                    "social_links": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "type_of_content": {
-                        "type": "string"
-                    },
-                    "frequency": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "existing_list": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "sample": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "why_post": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateApprovalInput": {
-                "required": [
-                    "company_name",
-                    "country",
-                    "website"
-                ],
-                "properties": {
-                    "company_name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "country": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "website": {
-                        "type": "string"
-                    },
-                    "social_links": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "type_of_content": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "frequency": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "existing_list": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "sample": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "why_post": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "CreateDomainInput": {
-                "required": [
-                    "domain"
-                ],
-                "properties": {
-                    "domain": {
-                        "type": "string",
-                        "pattern": "(?!://)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?"
-                    }
-                },
-                "type": "object"
-            },
-            "UploadImportInput": {
-                "required": [
-                    "source"
-                ],
-                "properties": {
-                    "source": {
-                        "type": "string",
-                        "maxLength": 1024
-                    }
-                },
-                "type": "object"
-            },
-            "ImportInput": {
-                "required": [
-                    "mapping"
-                ],
-                "properties": {
-                    "mapping": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string",
-                            "nullable": true
-                        }
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateIssueInput": {
-                "required": [
-                    "lists",
-                    "sending_profile_id"
-                ],
-                "properties": {
-                    "subject": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "lists": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "integer"
-                                }
-                            }
-                        ],
-                        "minItems": 1
-                    },
-                    "content": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "sending_profile_id": {
-                        "type": "integer"
-                    }
-                },
-                "type": "object"
-            },
-            "SendTestInput": {
-                "required": [
-                    "emails"
-                ],
-                "properties": {
-                    "emails": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ],
-                        "minItems": 1
-                    }
-                },
-                "type": "object"
-            },
-            "CreateListInput": {
-                "required": [
-                    "name"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "description": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateListInput": {
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "description": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "MediaFolder": {
-                "type": "string",
-                "enum": [
-                    "issue_images",
-                    "newsletter_images",
-                    "import",
-                    "export"
-                ]
-            },
-            "MediaUploadInput": {
-                "required": [
-                    "folder"
-                ],
-                "properties": {
-                    "folder": {
-                        "$ref": "#/components/schemas/MediaFolder"
-                    }
-                },
-                "type": "object"
-            },
-            "SubdomainAvailabilityInput": {
-                "required": [
-                    "subdomain"
-                ],
-                "properties": {
-                    "subdomain": {
-                        "type": "string",
-                        "maxLength": 50,
-                        "minLength": 1
-                    }
-                },
-                "type": "object"
-            },
-            "CreateNewsletterInput": {
-                "required": [
-                    "name",
-                    "subdomain"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "subdomain": {
-                        "type": "string",
-                        "maxLength": 50,
-                        "minLength": 1
-                    },
-                    "autogenerate_subdomain_on_duplicate": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "default": [],
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    },
-                    "start_trial": {
-                        "type": "boolean",
-                        "default": true
-                    }
-                },
-                "type": "object"
-            },
-            "NewsletterFormDefaultColorPalette": {
-                "type": "string",
-                "enum": [
-                    "light",
-                    "dark",
-                    "os"
-                ]
-            },
-            "UpdateNewsletterInput": {
-                "required": [
-                    "name",
-                    "subdomain",
-                    "id",
-                    "created_at",
-                    "is_rtl",
-                    "metadata"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    },
-                    "subdomain": {
-                        "type": "string"
-                    },
-                    "setProperties": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ],
-                        "default": []
-                    },
-                    "id": {
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "type": "integer"
-                    },
-                    "language_code": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "is_rtl": {
-                        "type": "boolean"
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    },
-                    "address": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "unsubscribe_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "branding": {
-                        "type": "boolean",
-                        "default": true
-                    },
-                    "template_color_accent": {
-                        "title": "Template variables",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_color_accent_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_color_background": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_color_background_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_color_box": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_color_box_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_box_shadow": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_box_radius": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_box_border": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_font_family": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_font_size": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_font_weight": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_font_weight_heading": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "template_font_line_height": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_title": {
-                        "title": "Signup Form",
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_description": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_footer_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_button_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_success_message": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_width": {
-                        "type": "integer",
-                        "nullable": true,
-                        "default": 425
-                    },
-                    "form_custom_css": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_text_light": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_accent": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_accent_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_input": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_light_input_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_light_input_box_shadow": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_light_input_border": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_light_border_radius": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "form_color_dark_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_dark_text_light": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_dark_accent": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_dark_accent_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_dark_input": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_color_dark_input_text": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_dark_input_box_shadow": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_dark_input_border": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "form_dark_border_radius": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "form_default_color_palette": {
-                        "$ref": "#/components/schemas/NewsletterFormDefaultColorPalette"
-                    },
-                    "form_input_border_radius": {
-                        "type": "integer",
-                        "default": 20
-                    }
-                },
-                "type": "object"
-            },
-            "CreateSendingProfileInput": {
-                "required": [
-                    "from_email"
-                ],
-                "properties": {
-                    "from_email": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "from_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "reply_to_email": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "brand_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "brand_logo": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "brand_url": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateSendingProfileInput": {
-                "required": [
-                    "from_email",
-                    "is_default"
-                ],
-                "properties": {
-                    "from_email": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "from_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "reply_to_email": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "brand_name": {
-                        "type": "string",
-                        "nullable": true,
-                        "maxLength": 255
-                    },
-                    "brand_logo": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "brand_url": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "is_default": {
-                        "type": "boolean"
-                    }
-                },
-                "type": "object"
-            },
-            "SubscriberStatus": {
-                "type": "string",
-                "enum": [
-                    "subscribed",
-                    "pending"
-                ]
-            },
-            "SubscriberSource": {
-                "type": "string",
-                "enum": [
-                    "console",
-                    "form",
-                    "import"
-                ]
-            },
-            "ListsStrategy": {
-                "type": "string",
-                "enum": [
-                    "merge",
-                    "overwrite",
-                    "remove"
-                ]
-            },
-            "ListRemovalReason": {
-                "type": "string",
-                "enum": [
-                    "unsubscribe",
-                    "bounce",
-                    "complaint",
-                    "other"
-                ]
-            },
-            "MetadataStrategy": {
-                "type": "string",
-                "enum": [
-                    "overwrite",
-                    "merge"
-                ]
-            },
-            "ClockInterface": {
-                "type": "object"
-            },
-            "CreateSubscriberInput": {
-                "required": [
-                    "email",
-                    "clock",
-                    "listSkipResubscribeOn",
-                    "listResubscribeOnValues"
-                ],
-                "properties": {
-                    "email": {
-                        "type": "string",
-                        "maxLength": 255
-                    },
-                    "lists": {
-                        "nullable": true,
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "oneOf": [
-                                        {
-                                            "type": "integer"
-                                        },
-                                        {
-                                            "type": "string"
-                                        }
-                                    ]
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "oneOf": [
-                                        {
-                                            "type": "integer"
-                                        },
-                                        {
-                                            "type": "string"
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    },
-                    "status": {
-                        "nullable": true,
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/SubscriberStatus"
-                            }
-                        ]
-                    },
-                    "source": {
-                        "nullable": true,
-                        "oneOf": [
-                            {
-                                "$ref": "#/components/schemas/SubscriberSource"
-                            }
-                        ]
-                    },
-                    "subscribe_ip": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "subscribed_at": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "nullable": true,
-                        "additionalProperties": {
-                            "oneOf": [
-                                {
-                                    "type": "boolean"
-                                },
-                                {
-                                    "type": "number",
-                                    "format": "float"
-                                },
-                                {
-                                    "type": "integer"
-                                },
-                                {
-                                    "type": "string"
-                                }
-                            ]
-                        }
-                    },
-                    "lists_strategy": {
-                        "$ref": "#/components/schemas/ListsStrategy"
-                    },
-                    "list_skip_resubscribe_on": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ],
-                        "default": [
-                            "unsubscribe",
-                            "bounce",
-                            "complaint"
-                        ]
-                    },
-                    "list_removal_reason": {
-                        "$ref": "#/components/schemas/ListRemovalReason"
-                    },
-                    "metadata_strategy": {
-                        "$ref": "#/components/schemas/MetadataStrategy"
-                    },
-                    "send_pending_confirmation_email": {
-                        "type": "boolean",
-                        "default": false
-                    },
-                    "clock": {
-                        "$ref": "#/components/schemas/ClockInterface"
-                    },
-                    "subscribeIp": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "subscribedAt": {
-                        "type": "string",
-                        "format": "date-time",
-                        "nullable": true
-                    },
-                    "listSkipResubscribeOn": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "$ref": "#/components/schemas/ListRemovalReason"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "$ref": "#/components/schemas/ListRemovalReason"
-                                }
-                            }
-                        ]
-                    },
-                    "listResubscribeOnValues": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "BulkActionSubscriberInput": {
-                "required": [
-                    "subscribers_ids",
-                    "action",
-                    "metadata"
-                ],
-                "properties": {
-                    "subscribers_ids": {
-                        "oneOf": [
-                            {
-                                "type": "array",
-                                "items": {
-                                    "type": "integer"
-                                }
-                            },
-                            {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "integer"
-                                }
-                            }
-                        ]
-                    },
-                    "action": {
-                        "type": "string",
-                        "enum": [
-                            "delete",
-                            "metadata_update",
-                            "status_change"
-                        ]
-                    },
-                    "status": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "metadata": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "type": "object"
-            },
-            "CreateSubscriberMetadataDefinitionInput": {
-                "required": [
-                    "key",
-                    "name"
-                ],
-                "properties": {
-                    "key": {
-                        "type": "string",
-                        "pattern": "[a-zA-Z0-9_]+",
-                        "maxLength": 255
-                    },
-                    "name": {
-                        "type": "string",
-                        "maxLength": 255
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateSubscriberMetadataDefinitionInput": {
-                "required": [
-                    "name"
-                ],
-                "properties": {
-                    "name": {
-                        "type": "string"
-                    }
-                },
-                "type": "object"
-            },
-            "UpdateTemplateInput": {
-                "properties": {
-                    "template": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "RenderTemplateInput": {
-                "properties": {
-                    "template": {
-                        "type": "string",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "DeleteUserInput": {
-                "properties": {
-                    "user_id": {
-                        "type": "integer",
-                        "nullable": true,
-                        "minimum": 0,
-                        "exclusiveMinimum": true
-                    },
-                    "id": {
-                        "type": "integer",
-                        "nullable": true,
-                        "minimum": 0,
-                        "exclusiveMinimum": true
-                    }
-                },
-                "type": "object"
-            },
-            "CreateUserInput": {
-                "required": [
-                    "user_id"
-                ],
-                "properties": {
-                    "user_id": {
-                        "type": "integer",
-                        "minimum": 0,
-                        "exclusiveMinimum": true
-                    },
-                    "on_duplicate": {
-                        "type": "string",
-                        "default": "throw",
-                        "enum": [
-                            "throw",
-                            "ignore"
-                        ]
-                    }
-                },
-                "type": "object"
-            },
-            "ApprovalStatus": {
-                "type": "string",
-                "enum": [
-                    "pending",
-                    "reviewing",
-                    "approved",
-                    "rejected"
-                ]
-            },
-            "ApprovalObject": {
-                "required": [
-                    "id",
-                    "created_at",
-                    "status",
-                    "company_name",
-                    "country",
-                    "website"
-                ],
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "type": "integer"
-                    },
-                    "status": {
-                        "$ref": "#/components/schemas/ApprovalStatus"
-                    },
-                    "company_name": {
-                        "type": "string"
-                    },
-                    "country": {
-                        "type": "string"
-                    },
-                    "website": {
-                        "type": "string"
-                    },
-                    "social_links": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "type_of_content": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "frequency": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "existing_list": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "sample": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "why_post": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "public_note": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "approved_at": {
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "rejected_at": {
-                        "type": "integer",
-                        "nullable": true
-                    }
-                },
-                "type": "object"
-            },
-            "SendingProfileObject": {
-                "required": [
-                    "id",
-                    "created_at",
-                    "from_email",
-                    "is_default",
-                    "is_system"
-                ],
-                "properties": {
-                    "id": {
-                        "type": "integer"
-                    },
-                    "created_at": {
-                        "type": "integer"
-                    },
-                    "from_email": {
-                        "type": "string"
-                    },
-                    "from_name": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "reply_to_email": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "brand_name": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "brand_logo": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "brand_url": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "is_default": {
-                        "type": "boolean"
-                    },
-                    "is_system": {
-                        "type": "boolean"
-                    }
-                },
-                "type": "object"
-            }
-        }
-    }
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Hyvor Post",
+		"description": "Privacy-first, simple newsletter platform",
+		"version": "1.0.0"
+	},
+	"paths": {
+		"/api/console/api-keys": {
+			"get": {
+				"summary": "Get all API keys for a newsletter",
+				"operationId": "get_api_console_app_api_console_apikey_getapikeys",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"summary": "Create a new API key",
+				"description": "Creates a new API key for the specified newsletter. The API key will be returned in the response, and it is important to store it securely as it will not be retrievable again.",
+				"operationId": "post_api_console_app_api_console_apikey_createapikey",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateApiKeyInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/api-keys/{id}": {
+			"post": {
+				"summary": "Regenerate an API key",
+				"operationId": "post_api_console_app_api_console_apikey_regenerateapikey",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"summary": "Delete an API key",
+				"operationId": "delete_api_console_app_api_console_apikey_deleteapikey",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"summary": "Update an API key",
+				"operationId": "patch_api_console_app_api_console_apikey_updateapikey",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateApiKeyInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/approvals": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_approval_getapproval",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_approval_approve",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateApprovalInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Approval created successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ApprovalObject"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/console/approvals/{id}": {
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_approval_updateapproval",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateApprovalInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/billing/usage": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_billing_getusage",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/init": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_console_initconsole",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/init/newsletter": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_console_initnewsletter",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/domains": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_domain_getdomains",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_domain_createdomain",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateDomainInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/domains/{id}/verify": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_domain_verifydomain",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/domains/{id}": {
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_domain_deletedomain",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/export": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_export_listexports",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_export_exportsubscribers",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/imports/upload": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_import_upload",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UploadImportInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/imports/{id}": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_import_import",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/ImportInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/imports": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_import_listimports",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/imports/limits": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_import_importcounts",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_getissues",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_issue_createissue",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_getbyid",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_issue_deleteissue",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_issue_updateissue",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateIssueInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/send": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_issue_sendissue",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/test": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_gettestdata",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_issue_sendtest",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SendTestInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/preview": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_previewissue",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/progress": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_getissueprogress",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/sends": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_getissuesends",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/issues/{id}/report": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_issue_getissuereport",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/lists": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_list_createnewsletterlist",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateListInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/lists/{id}": {
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_list_deletenewsletterlist",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_list_updatenewsletterlist",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateListInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/media": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_media_upload",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/MediaUploadInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/newsletter/subdomain": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_newsletter_getsubdomainavailability",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SubdomainAvailabilityInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/newsletters": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_newsletter_createnewsletter",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateNewsletterInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/newsletter": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_newsletter_getnewsletter",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_newsletter_deletenewsletter",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_newsletter_updatenewsletter",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateNewsletterInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/sending-profiles": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_sendingprofile_getsendingprofiles",
+				"responses": {
+					"200": {
+						"description": "List of sending profiles",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/SendingProfileObject"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_sendingprofile_createsendingprofile",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateSendingProfileInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Sending profile created successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SendingProfileObject"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/console/sending-profiles/{id}": {
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_sendingprofile_deletesendingprofile",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Sending profile deleted successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SendingProfileObject"
+								}
+							}
+						}
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_sendingprofile_updatesendingprofile",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateSendingProfileInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"200": {
+						"description": "Sending profile updated successfully",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SendingProfileObject"
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/api/console/subscribers": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_subscriber_getsubscribers",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_subscriber_createsubscriber",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateSubscriberInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscribers/email/{email}": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_subscriber_getsubscriberbyemail",
+				"parameters": [
+					{
+						"name": "email",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscribers/{id}/resend-opt-in": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_subscriber_resendoptin",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscribers/{id}": {
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_subscriber_deletesubscriber",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscribers/bulk": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_subscriber_bulkactions",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/BulkActionSubscriberInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscriber-metadata-definitions": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_subscribermetadata_createmetadata",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateSubscriberMetadataDefinitionInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/subscriber-metadata-definitions/{id}": {
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_subscribermetadata_deletemetadata",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_subscribermetadata_updatemetadata",
+				"parameters": [
+					{
+						"name": "id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateSubscriberMetadataDefinitionInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/templates": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_template_getnewslettertemplate",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"patch": {
+				"operationId": "patch_api_console_app_api_console_template_updatetemplate",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateTemplateInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/templates/render": {
+			"post": {
+				"operationId": "post_api_console_app_api_console_template_rendertemplate",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RenderTemplateInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		},
+		"/api/console/users": {
+			"get": {
+				"operationId": "get_api_console_app_api_console_user_getusers",
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"post": {
+				"operationId": "post_api_console_app_api_console_user_createuser",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			},
+			"delete": {
+				"operationId": "delete_api_console_app_api_console_user_deleteuser",
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteUserInput"
+							}
+						}
+					}
+				},
+				"responses": {
+					"default": {
+						"description": ""
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"CreateApiKeyInput": {
+				"required": ["name", "scopes"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"scopes": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"UpdateApiKeyInput": {
+				"required": ["name", "is_enabled", "scopes"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"is_enabled": {
+						"type": "boolean"
+					},
+					"scopes": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"CreateApprovalInput": {
+				"required": ["company_name", "country", "website", "type_of_content"],
+				"properties": {
+					"company_name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"country": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"website": {
+						"type": "string",
+						"maxLength": 1024
+					},
+					"social_links": {
+						"type": "string",
+						"nullable": true
+					},
+					"type_of_content": {
+						"type": "string"
+					},
+					"frequency": {
+						"type": "string",
+						"nullable": true
+					},
+					"existing_list": {
+						"type": "string",
+						"nullable": true
+					},
+					"sample": {
+						"type": "string",
+						"nullable": true
+					},
+					"why_post": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"UpdateApprovalInput": {
+				"required": ["company_name", "country", "website"],
+				"properties": {
+					"company_name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"country": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"website": {
+						"type": "string"
+					},
+					"social_links": {
+						"type": "string",
+						"nullable": true
+					},
+					"type_of_content": {
+						"type": "string",
+						"nullable": true
+					},
+					"frequency": {
+						"type": "string",
+						"nullable": true
+					},
+					"existing_list": {
+						"type": "string",
+						"nullable": true
+					},
+					"sample": {
+						"type": "string",
+						"nullable": true
+					},
+					"why_post": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"CreateDomainInput": {
+				"required": ["domain"],
+				"properties": {
+					"domain": {
+						"type": "string",
+						"pattern": "(?!://)([a-zA-Z0-9-_]+\\.)*[a-zA-Z0-9][a-zA-Z0-9-_]+\\.[a-zA-Z]{2,11}?"
+					}
+				},
+				"type": "object"
+			},
+			"UploadImportInput": {
+				"required": ["source"],
+				"properties": {
+					"source": {
+						"type": "string",
+						"maxLength": 1024
+					}
+				},
+				"type": "object"
+			},
+			"ImportInput": {
+				"required": ["mapping"],
+				"properties": {
+					"mapping": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string",
+							"nullable": true
+						}
+					}
+				},
+				"type": "object"
+			},
+			"UpdateIssueInput": {
+				"required": ["lists", "sending_profile_id"],
+				"properties": {
+					"subject": {
+						"type": "string",
+						"nullable": true
+					},
+					"lists": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "integer"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "integer"
+								}
+							}
+						],
+						"minItems": 1
+					},
+					"content": {
+						"type": "string",
+						"nullable": true
+					},
+					"sending_profile_id": {
+						"type": "integer"
+					}
+				},
+				"type": "object"
+			},
+			"SendTestInput": {
+				"required": ["emails"],
+				"properties": {
+					"emails": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						],
+						"minItems": 1
+					}
+				},
+				"type": "object"
+			},
+			"CreateListInput": {
+				"required": ["name"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"UpdateListInput": {
+				"properties": {
+					"name": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"MediaFolder": {
+				"type": "string",
+				"enum": ["issue_images", "newsletter_images", "import", "export"]
+			},
+			"MediaUploadInput": {
+				"required": ["folder"],
+				"properties": {
+					"folder": {
+						"$ref": "#/components/schemas/MediaFolder"
+					}
+				},
+				"type": "object"
+			},
+			"SubdomainAvailabilityInput": {
+				"required": ["subdomain"],
+				"properties": {
+					"subdomain": {
+						"type": "string",
+						"maxLength": 50,
+						"minLength": 1
+					}
+				},
+				"type": "object"
+			},
+			"CreateNewsletterInput": {
+				"required": ["name", "subdomain"],
+				"properties": {
+					"name": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"subdomain": {
+						"type": "string",
+						"maxLength": 50,
+						"minLength": 1
+					},
+					"autogenerate_subdomain_on_duplicate": {
+						"type": "boolean",
+						"default": false
+					},
+					"metadata": {
+						"type": "object",
+						"default": [],
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"start_trial": {
+						"type": "boolean",
+						"default": true
+					}
+				},
+				"type": "object"
+			},
+			"NewsletterFormDefaultColorPalette": {
+				"type": "string",
+				"enum": ["light", "dark", "os"]
+			},
+			"UpdateNewsletterInput": {
+				"required": ["name", "subdomain", "id", "created_at", "is_rtl", "metadata"],
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"subdomain": {
+						"type": "string"
+					},
+					"setProperties": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						],
+						"default": []
+					},
+					"id": {
+						"type": "integer"
+					},
+					"created_at": {
+						"type": "integer"
+					},
+					"language_code": {
+						"type": "string",
+						"nullable": true
+					},
+					"is_rtl": {
+						"type": "boolean"
+					},
+					"metadata": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					},
+					"address": {
+						"type": "string",
+						"nullable": true
+					},
+					"unsubscribe_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"branding": {
+						"type": "boolean",
+						"default": true
+					},
+					"template_color_accent": {
+						"title": "Template variables",
+						"type": "string",
+						"nullable": true
+					},
+					"template_color_accent_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_color_background": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_color_background_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_color_box": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_color_box_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_box_shadow": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_box_radius": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_box_border": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_font_family": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_font_size": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_font_weight": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_font_weight_heading": {
+						"type": "string",
+						"nullable": true
+					},
+					"template_font_line_height": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_title": {
+						"title": "Signup Form",
+						"type": "string",
+						"nullable": true
+					},
+					"form_description": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_footer_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_button_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_success_message": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_width": {
+						"type": "integer",
+						"nullable": true,
+						"default": 425
+					},
+					"form_custom_css": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_text_light": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_accent": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_accent_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_input": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_light_input_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_light_input_box_shadow": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_light_input_border": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_light_border_radius": {
+						"type": "integer",
+						"nullable": true
+					},
+					"form_color_dark_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_dark_text_light": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_dark_accent": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_dark_accent_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_dark_input": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_color_dark_input_text": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_dark_input_box_shadow": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_dark_input_border": {
+						"type": "string",
+						"nullable": true
+					},
+					"form_dark_border_radius": {
+						"type": "integer",
+						"nullable": true
+					},
+					"form_default_color_palette": {
+						"$ref": "#/components/schemas/NewsletterFormDefaultColorPalette"
+					},
+					"form_input_border_radius": {
+						"type": "integer",
+						"default": 20
+					}
+				},
+				"type": "object"
+			},
+			"CreateSendingProfileInput": {
+				"required": ["from_email"],
+				"properties": {
+					"from_email": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"from_name": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"reply_to_email": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"brand_name": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"brand_logo": {
+						"type": "string",
+						"nullable": true
+					},
+					"brand_url": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"UpdateSendingProfileInput": {
+				"required": ["from_email", "is_default"],
+				"properties": {
+					"from_email": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"from_name": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"reply_to_email": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"brand_name": {
+						"type": "string",
+						"nullable": true,
+						"maxLength": 255
+					},
+					"brand_logo": {
+						"type": "string",
+						"nullable": true
+					},
+					"brand_url": {
+						"type": "string",
+						"nullable": true
+					},
+					"is_default": {
+						"type": "boolean"
+					}
+				},
+				"type": "object"
+			},
+			"SubscriberStatus": {
+				"type": "string",
+				"enum": ["subscribed", "pending"]
+			},
+			"SubscriberSource": {
+				"type": "string",
+				"enum": ["console", "form", "import"]
+			},
+			"ListsStrategy": {
+				"type": "string",
+				"enum": ["merge", "overwrite", "remove"]
+			},
+			"ListRemovalReason": {
+				"type": "string",
+				"enum": ["unsubscribe", "bounce", "complaint", "other"]
+			},
+			"MetadataStrategy": {
+				"type": "string",
+				"enum": ["overwrite", "merge"]
+			},
+			"ClockInterface": {
+				"type": "object"
+			},
+			"CreateSubscriberInput": {
+				"required": ["email", "clock", "listSkipResubscribeOn", "listResubscribeOnValues"],
+				"properties": {
+					"email": {
+						"type": "string",
+						"maxLength": 255
+					},
+					"lists": {
+						"nullable": true,
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"oneOf": [
+										{
+											"type": "integer"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"oneOf": [
+										{
+											"type": "integer"
+										},
+										{
+											"type": "string"
+										}
+									]
+								}
+							}
+						]
+					},
+					"status": {
+						"nullable": true,
+						"oneOf": [
+							{
+								"$ref": "#/components/schemas/SubscriberStatus"
+							}
+						]
+					},
+					"source": {
+						"nullable": true,
+						"oneOf": [
+							{
+								"$ref": "#/components/schemas/SubscriberSource"
+							}
+						]
+					},
+					"subscribe_ip": {
+						"type": "string",
+						"nullable": true
+					},
+					"subscribed_at": {
+						"type": "integer",
+						"nullable": true
+					},
+					"metadata": {
+						"type": "object",
+						"nullable": true,
+						"additionalProperties": {
+							"oneOf": [
+								{
+									"type": "boolean"
+								},
+								{
+									"type": "number",
+									"format": "float"
+								},
+								{
+									"type": "integer"
+								},
+								{
+									"type": "string"
+								}
+							]
+						}
+					},
+					"lists_strategy": {
+						"$ref": "#/components/schemas/ListsStrategy"
+					},
+					"list_skip_resubscribe_on": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						],
+						"default": ["unsubscribe", "bounce", "complaint"]
+					},
+					"list_removal_reason": {
+						"$ref": "#/components/schemas/ListRemovalReason"
+					},
+					"metadata_strategy": {
+						"$ref": "#/components/schemas/MetadataStrategy"
+					},
+					"send_pending_confirmation_email": {
+						"type": "boolean",
+						"default": false
+					},
+					"clock": {
+						"$ref": "#/components/schemas/ClockInterface"
+					},
+					"subscribeIp": {
+						"type": "string",
+						"nullable": true
+					},
+					"subscribedAt": {
+						"type": "string",
+						"format": "date-time",
+						"nullable": true
+					},
+					"listSkipResubscribeOn": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"$ref": "#/components/schemas/ListRemovalReason"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"$ref": "#/components/schemas/ListRemovalReason"
+								}
+							}
+						]
+					},
+					"listResubscribeOnValues": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						]
+					}
+				},
+				"type": "object"
+			},
+			"BulkActionSubscriberInput": {
+				"required": ["subscribers_ids", "action", "metadata"],
+				"properties": {
+					"subscribers_ids": {
+						"oneOf": [
+							{
+								"type": "array",
+								"items": {
+									"type": "integer"
+								}
+							},
+							{
+								"type": "object",
+								"additionalProperties": {
+									"type": "integer"
+								}
+							}
+						]
+					},
+					"action": {
+						"type": "string",
+						"enum": ["delete", "metadata_update", "status_change"]
+					},
+					"status": {
+						"type": "string",
+						"nullable": true
+					},
+					"metadata": {
+						"type": "object",
+						"additionalProperties": {
+							"type": "string"
+						}
+					}
+				},
+				"type": "object"
+			},
+			"CreateSubscriberMetadataDefinitionInput": {
+				"required": ["key", "name"],
+				"properties": {
+					"key": {
+						"type": "string",
+						"pattern": "[a-zA-Z0-9_]+",
+						"maxLength": 255
+					},
+					"name": {
+						"type": "string",
+						"maxLength": 255
+					}
+				},
+				"type": "object"
+			},
+			"UpdateSubscriberMetadataDefinitionInput": {
+				"required": ["name"],
+				"properties": {
+					"name": {
+						"type": "string"
+					}
+				},
+				"type": "object"
+			},
+			"UpdateTemplateInput": {
+				"properties": {
+					"template": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"RenderTemplateInput": {
+				"properties": {
+					"template": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"DeleteUserInput": {
+				"properties": {
+					"user_id": {
+						"type": "integer",
+						"nullable": true,
+						"minimum": 0,
+						"exclusiveMinimum": true
+					},
+					"id": {
+						"type": "integer",
+						"nullable": true,
+						"minimum": 0,
+						"exclusiveMinimum": true
+					}
+				},
+				"type": "object"
+			},
+			"CreateUserInput": {
+				"required": ["user_id"],
+				"properties": {
+					"user_id": {
+						"type": "integer",
+						"minimum": 0,
+						"exclusiveMinimum": true
+					},
+					"on_duplicate": {
+						"type": "string",
+						"default": "throw",
+						"enum": ["throw", "ignore"]
+					}
+				},
+				"type": "object"
+			},
+			"ApprovalStatus": {
+				"type": "string",
+				"enum": ["pending", "reviewing", "approved", "rejected"]
+			},
+			"ApprovalObject": {
+				"required": ["id", "created_at", "status", "company_name", "country", "website"],
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"created_at": {
+						"type": "integer"
+					},
+					"status": {
+						"$ref": "#/components/schemas/ApprovalStatus"
+					},
+					"company_name": {
+						"type": "string"
+					},
+					"country": {
+						"type": "string"
+					},
+					"website": {
+						"type": "string"
+					},
+					"social_links": {
+						"type": "string",
+						"nullable": true
+					},
+					"type_of_content": {
+						"type": "string",
+						"nullable": true
+					},
+					"frequency": {
+						"type": "string",
+						"nullable": true
+					},
+					"existing_list": {
+						"type": "string",
+						"nullable": true
+					},
+					"sample": {
+						"type": "string",
+						"nullable": true
+					},
+					"why_post": {
+						"type": "string",
+						"nullable": true
+					},
+					"public_note": {
+						"type": "string",
+						"nullable": true
+					},
+					"approved_at": {
+						"type": "integer",
+						"nullable": true
+					},
+					"rejected_at": {
+						"type": "integer",
+						"nullable": true
+					}
+				},
+				"type": "object"
+			},
+			"SendingProfileObject": {
+				"required": ["id", "created_at", "from_email", "is_default", "is_system"],
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"created_at": {
+						"type": "integer"
+					},
+					"from_email": {
+						"type": "string"
+					},
+					"from_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"reply_to_email": {
+						"type": "string",
+						"nullable": true
+					},
+					"brand_name": {
+						"type": "string",
+						"nullable": true
+					},
+					"brand_logo": {
+						"type": "string",
+						"nullable": true
+					},
+					"brand_url": {
+						"type": "string",
+						"nullable": true
+					},
+					"is_default": {
+						"type": "boolean"
+					},
+					"is_system": {
+						"type": "boolean"
+					}
+				},
+				"type": "object"
+			}
+		}
+	}
 }

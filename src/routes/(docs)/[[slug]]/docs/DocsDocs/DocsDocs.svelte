@@ -8,8 +8,8 @@
 
 <p>
 	The <code>Docs</code> component renders a full documentation site: a collapsible nav with breadcrumbs,
-	the page content, and a table of contents sidebar generated from the page's headings. It is fully
-	mobile responsive.
+	the page content, and a table of contents sidebar generated from the page's headings. It is fully mobile
+	responsive.
 </p>
 
 <h2 id="structure">Folder Structure</h2>
@@ -31,8 +31,8 @@
 />
 
 <p>
-	Each file in <code>docs</code> is a plain Svelte component that renders the content of a single
-	page - headings, paragraphs, code blocks, images, or whatever else the page needs.
+	Each file in <code>docs</code> is a plain Svelte component that renders the content of a single page
+	- headings, paragraphs, code blocks, images, or whatever else the page needs.
 </p>
 
 <h2 id="navigation">Defining the Navigation</h2>
@@ -86,19 +86,18 @@
 <ul>
 	<li>
 		<code>page</code> - a leaf page. Needs a unique <code>slug</code> and a <code>content</code>
-		component. Set <code>wide: true</code> on a page to make it take the full content width, with
-		no fixed reading column and no table of contents sidebar - useful for API references.
+		component. Set <code>wide: true</code> on a page to make it take the full content width, with no fixed
+		reading column and no table of contents sidebar - useful for API references.
 	</li>
 	<li>
-		<code>folding-section</code> - a collapsible group of nav items, nested inline in the same nav
-		list.
+		<code>folding-section</code> - a collapsible group of nav items, nested inline in the same nav list.
 	</li>
 	<li>
-		<code>sub-section</code> - an entirely separate <code>NavSectionConfig[]</code> tree, reached by
-		navigating to it. The nav swaps to show only that sub-section's own items, and a breadcrumb
-		(e.g. "Docs -&gt; Self Hosting") appears above it to navigate back out. Useful for keeping large,
-		self-contained parts of the docs out of the main nav list. Sub-sections can be nested within
-		each other, and within folding sections.
+		<code>sub-section</code> - an entirely separate <code>NavSectionConfig[]</code> tree, reached by navigating
+		to it. The nav swaps to show only that sub-section's own items, and a breadcrumb (e.g. "Docs -&gt;
+		Self Hosting") appears above it to navigate back out. Useful for keeping large, self-contained parts
+		of the docs out of the main nav list. Sub-sections can be nested within each other, and within folding
+		sections.
 	</li>
 </ul>
 

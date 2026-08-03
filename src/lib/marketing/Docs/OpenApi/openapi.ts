@@ -11,7 +11,16 @@ if (typeof globalWithBuffer.Buffer === 'undefined') {
 
 export type HttpMethod = 'get' | 'put' | 'post' | 'delete' | 'options' | 'head' | 'patch' | 'trace';
 
-const HTTP_METHODS: HttpMethod[] = ['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace'];
+const HTTP_METHODS: HttpMethod[] = [
+	'get',
+	'put',
+	'post',
+	'delete',
+	'options',
+	'head',
+	'patch',
+	'trace'
+];
 
 // a minimal, permissive JSON Schema shape - just enough to render docs & examples
 export interface JsonSchema {
@@ -242,9 +251,12 @@ export function describeType(schema?: JsonSchema, schemaNames?: SchemaNameMap): 
 		return schemaNames.get(schema)!;
 	}
 
-	if (schema.oneOf?.length) return schema.oneOf.map((s) => describeType(s, schemaNames)).join(' | ');
-	if (schema.anyOf?.length) return schema.anyOf.map((s) => describeType(s, schemaNames)).join(' | ');
-	if (schema.allOf?.length) return schema.allOf.map((s) => describeType(s, schemaNames)).join(' & ');
+	if (schema.oneOf?.length)
+		return schema.oneOf.map((s) => describeType(s, schemaNames)).join(' | ');
+	if (schema.anyOf?.length)
+		return schema.anyOf.map((s) => describeType(s, schemaNames)).join(' | ');
+	if (schema.allOf?.length)
+		return schema.allOf.map((s) => describeType(s, schemaNames)).join(' & ');
 	if (schema.enum) return schema.enum.map((v) => JSON.stringify(v)).join(' | ');
 
 	if (schema.type === 'array') {
@@ -263,7 +275,10 @@ export function describeType(schema?: JsonSchema, schemaNames?: SchemaNameMap): 
 
 // unwraps a top-level "array of X" schema (eg. a `SendingProfileObject[]` response) so
 // callers can render the item schema's fields directly, with the array-ness shown separately
-export function unwrapArraySchema(schema: JsonSchema): { isArray: boolean; itemSchema: JsonSchema } {
+export function unwrapArraySchema(schema: JsonSchema): {
+	isArray: boolean;
+	itemSchema: JsonSchema;
+} {
 	if (schema.type === 'array' && schema.items) {
 		return { isArray: true, itemSchema: schema.items };
 	}

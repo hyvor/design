@@ -8,6 +8,6 @@
 </script>
 
 <Base>
-	<Header />
+	<Header product="core" />
 	<Docs {...data} />
 </Base>

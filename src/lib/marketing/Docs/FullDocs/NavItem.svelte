@@ -83,6 +83,7 @@
 
 	.folded-content {
 		display: none;
+		padding-left: 14px;
 	}
 	.folded-content.open {
 		display: block;

@@ -1,15 +1,17 @@
 <script lang="ts">
 	import NavItem from './FullDocs/NavItem.svelte';
+	import Sidebar from './Sidebar/Sidebar.svelte';
 	import { getSubSectionPathForSlug, getFirstPageSlug } from './FullDocs/fulldocs.js';
 	import type { NavPageConfig, NavSectionConfig } from './types.js';
 
 	interface Props {
 		basepath: string;
+		rootName?: string;
 		sections: NavSectionConfig[];
 		page: NavPageConfig;
 	}
 
-	let { basepath = '/', sections, page }: Props = $props();
+	let { basepath = '/', rootName = 'Docs', sections, page }: Props = $props();
 
 	const subSectionPath = $derived(getSubSectionPathForSlug(sections, page.slug) ?? []);
 
@@ -18,11 +20,11 @@
 	);
 </script>
 
-<div class="wrap">
+<div class="wrap docs">
 	<nav class="hds-box">
 		<div class="breadcrumb">
 			<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
-				Docs
+				{rootName}
 			</a>
 			{#each subSectionPath as sub}
 				<span class="breadcrumb-sep"></span>
@@ -57,9 +59,7 @@
 	</div>
 
 	{#if !page.wide}
-		<div class="sidebar hds-box">
-			<!--  -->
-		</div>
+		<Sidebar />
 	{/if}
 </div>
 
@@ -74,6 +74,8 @@
 		width: 280px;
 		height: calc(100vh - var(--header-height) - 30px);
 		padding: 15px 0;
+		overflow-y: auto;
+		flex-shrink: 0;
 	}
 
 	.breadcrumb {
@@ -128,7 +130,7 @@
 
 	.content-wrap {
 		flex: 1;
-		padding: 10px 45px;
+		padding: 30px 45px;
 		min-width: 0;
 	}
 
@@ -142,9 +144,118 @@
 		width: 100%;
 	}
 
-	.sidebar {
-		width: 200px;
-		min-height: 100px;
-		padding: 15px;
+	/* content styles */
+
+	content :global(p),
+	content :global(li) {
+		line-height: var(--line-height-content);
+	}
+
+	content :global(h1:first-child) {
+		margin-top: 0;
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: -0.03em;
+		margin: 0 0 30px;
+		position: relative;
+		display: table;
+		&:after {
+			position: absolute;
+			content: '';
+			bottom: -13px;
+			left: 0px;
+			width: 30%;
+			height: 3px;
+			background: var(--accent);
+			margin-top: 10px;
+		}
+	}
+	content :global(a:not(.no-link-color a)) {
+		color: var(--link);
+		text-decoration: underline;
+	}
+	content :global(li) {
+		margin-bottom: 8px;
+	}
+
+	content :global(ul) {
+		margin-top: 8px;
+	}
+
+	content :global(.table) {
+		margin: 20px 0;
+	}
+
+	content :global(code) {
+		font-size: 14px;
+		padding: 0.2em 0.4em;
+		display: inline-block;
+		background-color: #f4f2f0;
+		color: #905;
+		font-family: inherit;
+		border-radius: 4px;
+		line-height: normal;
+		font-weight: 400;
+	}
+	:global(:root.dark) content :global(code) {
+		background-color: #282c34;
+		color: #e06c75;
+	}
+
+	content :global(a.heading-anchor-link) {
+		position: absolute;
+		right: 100%;
+		margin-right: 7px;
+		opacity: 0;
+		top: 50%;
+		transform: translateY(-50%);
+		display: inline-flex;
+		align-items: center;
+	}
+
+	content {
+		:global(h1),
+		:global(h2),
+		:global(h3),
+		:global(h4),
+		:global(h5),
+		:global(h6) {
+			position: relative;
+			margin: 20px 0;
+		}
+
+		:global(h1) {
+			font-size: 2em;
+		}
+		:global(h2) {
+			font-size: 1.5em;
+		}
+		:global(h3) {
+			font-size: 1.3em;
+		}
+		:global(h4) {
+			font-size: 1.2em;
+		}
+		:global(h5) {
+			font-size: 1.1em;
+		}
+		:global(h6) {
+			font-size: 1em;
+		}
+	}
+
+	content {
+		:global(.heading-anchor:hover + .heading-anchor-link) {
+			opacity: 1;
+		}
+
+		:global(h2 a:not(.heading-anchor-link)),
+		:global(h3 a:not(.heading-anchor-link)),
+		:global(h4 a:not(.heading-anchor-link)),
+		:global(h5 a:not(.heading-anchor-link)),
+		:global(h6 a:not(.heading-anchor-link)) {
+			text-decoration: none;
+			color: inherit;
+		}
 	}
 </style>

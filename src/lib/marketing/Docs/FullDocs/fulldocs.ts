@@ -6,10 +6,11 @@ import type { NavSectionConfig, NavConfig, NavPageConfig, NavSubSectionConfig } 
 // return loadDocsPage(sections, slug);
 export function loadDocsPage(config: {
 	basepath?: string;
+	rootName?: string;
 	sections: NavSectionConfig[];
 	slug: string;
 }) {
-	const { basepath = '/', sections, slug } = config;
+	const { basepath = '/', rootName = 'Docs', sections, slug } = config;
 
 	const page = getPageFromSections(sections, slug);
 
@@ -19,6 +20,7 @@ export function loadDocsPage(config: {
 
 	return {
 		basepath,
+		rootName,
 		sections,
 		slug,
 		page

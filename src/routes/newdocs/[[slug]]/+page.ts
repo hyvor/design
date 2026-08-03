@@ -61,6 +61,48 @@ const SECTIONS: NavSectionConfig[] = [
 						name: 'Overview',
 						slug: 'themes-overview',
 						content: IntroductionDoc
+					},
+					{
+						// nested folding section (folding within folding)
+						type: 'folding-section',
+						name: 'Advanced',
+						navs: [
+							{
+								type: 'page',
+								name: 'Custom Fields',
+								slug: 'themes-advanced-custom-fields',
+								content: IntroductionDoc
+							},
+							{
+								type: 'page',
+								name: 'Hooks',
+								slug: 'themes-advanced-hooks',
+								content: IntroductionDoc
+							}
+						]
+					},
+					{
+						// sub-section within a folding section
+						type: 'sub-section',
+						name: 'Migration Guides',
+						sections: [
+							{
+								navs: [
+									{
+										type: 'page',
+										name: 'From v1',
+										slug: 'themes-migration-from-v1',
+										content: IntroductionDoc
+									},
+									{
+										type: 'page',
+										name: 'From v2',
+										slug: 'themes-migration-from-v2',
+										content: IntroductionDoc
+									}
+								]
+							}
+						]
 					}
 				]
 			},
@@ -101,6 +143,25 @@ const SECTIONS: NavSectionConfig[] = [
 												content: IntroductionDoc
 											}
 										]
+									}
+								]
+							},
+							{
+								// folding section within a subsection
+								type: 'folding-section',
+								name: 'Networking',
+								navs: [
+									{
+										type: 'page',
+										name: 'Ports',
+										slug: 'self-hosting-networking-ports',
+										content: IntroductionDoc
+									},
+									{
+										type: 'page',
+										name: 'Firewall',
+										slug: 'self-hosting-networking-firewall',
+										content: IntroductionDoc
 									}
 								]
 							}

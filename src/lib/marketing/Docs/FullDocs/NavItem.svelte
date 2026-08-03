@@ -53,7 +53,7 @@
 	.nav-item {
 		display: flex;
 		align-items: center;
-		padding: 8px 22px;
+		padding: 7px 22px;
 		font-size: 14px;
 		border-left: 3px solid transparent;
 		transition: 0.1s background-color ease;

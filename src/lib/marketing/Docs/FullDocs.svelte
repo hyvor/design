@@ -55,7 +55,10 @@
 			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
 		>
 			<div class="breadcrumb">
-				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+				<a
+					class="breadcrumb-item"
+					href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}
+				>
 					{rootName}
 				</a>
 				{#each subSectionPath as sub}
@@ -105,7 +108,9 @@
 
 	.nav-wrap {
 		flex-shrink: 0;
-		position: relative;
+		height: calc(100vh - var(--header-height) - 30px);
+		position: sticky;
+		top: calc(var(--header-height, 0) + 15px);
 	}
 
 	.mobile-toggle {
@@ -114,7 +119,7 @@
 
 	nav {
 		width: 280px;
-		height: calc(100vh - var(--header-height) - 30px);
+		height: 100%;
 		padding: 15px 0;
 		overflow-y: auto;
 		flex-shrink: 0;

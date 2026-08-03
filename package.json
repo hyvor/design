@@ -61,8 +61,6 @@
 		"@apidevtools/json-schema-ref-parser": "^15.5.1",
 		"@fontsource/readex-pro": "^5.2.11",
 		"@hyvor/icons": "^1.1.1",
-		"@openpanel/sdk": "^1.0.4",
-		"@openpanel/web": "^1.0.7",
 		"deepmerge-ts": "^7.1.5",
 		"emojibase-data": "^17.0.0",
 		"intl-messageformat": "^11.1.2",

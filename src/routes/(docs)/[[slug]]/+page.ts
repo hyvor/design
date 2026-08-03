@@ -42,11 +42,10 @@ import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import DetailsAccordion from './docs/DetailsAccordion.svelte';
-import Tracking from './docs/Tracking.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
-import { loadDocsPage } from '$lib/marketing/Docs/FullDocs/fulldocs.js';
+import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
 
@@ -128,7 +127,6 @@ const SECTIONS: NavSectionConfig[] = [
 			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{ type: 'page', name: 'Document', slug: 'document', content: Document },
-			{ type: 'page', name: 'Tracking', slug: 'tracking', content: Tracking },
 			{
 				type: 'page',
 				name: 'Details Accordion',

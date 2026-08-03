@@ -3,7 +3,7 @@
 	import IconGithub from '@hyvor/icons/IconGithub';
 	import Header from '$lib/marketing/Header/Header.svelte';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
-	import FullDocs from '$lib/marketing/Docs/FullDocs.svelte';
+	import Docs from '$lib/marketing/Docs/Docs.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
@@ -42,7 +42,7 @@
 	{/snippet}
 </Header>
 
-<FullDocs {...data} />
+<Docs {...data} />
 
 <Footer
 	email="foss@hyvor.com"

@@ -121,7 +121,7 @@
     <` +
 		`script>
         import { TextInput, Checkbox } from "@hyvor/design/components";
-        import { DocsNav, Header } from '@hyvor/design/marketing';
+        import { Docs, Header } from '@hyvor/design/marketing';
         import IconSearch from '@hyvor/icons/IconSearch';
     </script>
 

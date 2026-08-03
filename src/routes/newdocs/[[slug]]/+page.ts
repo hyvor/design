@@ -1,4 +1,4 @@
-import { loadDocsPage } from '$lib/marketing/Docs/FullDocs/fulldocs.js';
+import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import ConsoleApiDoc from './ConsoleApiDoc.svelte';
 import IntroductionDoc from './IntroductionDoc.svelte';

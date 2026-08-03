@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { NavConfig } from '../types.js';
+	import type { NavConfig } from './types.js';
 	import { getFirstPageSlug } from './fulldocs.js';
 	import IconCaretRight from '@hyvor/icons/IconCaretRight';
 	import IconArrowRight from '@hyvor/icons/IconArrowRight';

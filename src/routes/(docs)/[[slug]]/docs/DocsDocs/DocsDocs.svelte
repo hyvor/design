@@ -1,144 +1,167 @@
 <script>
-	import DocImage from '$lib/marketing/Docs/Content/DocsImage.svelte';
+	import DocImage from '$lib/marketing/Docs/DocsImage.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import img from './img.avif';
 </script>
 
 <h1>Docs</h1>
 
-<p>There are a few components to create documentation pages.</p>
+<p>
+	The <code>Docs</code> component renders a full documentation site: a collapsible nav with breadcrumbs,
+	the page content, and a table of contents sidebar generated from the page's headings. It is fully
+	mobile responsive.
+</p>
 
-<h2 id="structure">Docs Structure</h2>
+<h2 id="structure">Folder Structure</h2>
 
 <p>Create a route structure like this:</p>
 
 <CodeBlock
 	code={`
     src/routes
-    ├── docs
-    |   ├── [[slug]]
-    |   |   ├── content
-    |   |   |   ├── Index.svelte
-    |   |   |   ├── ...
-    |   |   ├── +page.svelte
-    |   |   ├── +page.ts
-    |   |   ├── docs.ts
+    ├── my-docs
+    │   ├── [[slug]]
+    │   │   ├── docs
+    │   │   │   ├── Introduction.svelte
+    │   │   │   ├── Installation.svelte
+    │   │   │   ├── ...
+    │   │   ├── +page.svelte
+    │   │   ├── +page.ts
 `}
 />
 
 <p>
-	First, define the docs categories and pages in the <code>docs.ts</code> file.
+	Each file in <code>docs</code> is a plain Svelte component that renders the content of a single
+	page - headings, paragraphs, code blocks, images, or whatever else the page needs.
+</p>
+
+<h2 id="navigation">Defining the Navigation</h2>
+
+<p>
+	In <code>+page.ts</code>, build a <code>NavSectionConfig[]</code> tree describing every page and
+	pass it, along with the current slug, to <code>loadDocsPage</code> inside the <code>load</code>
+	function.
 </p>
 
 <CodeBlock
 	code={`
-    export const categories = [
+    import { loadDocsPage } from '@hyvor/design/marketing';
+    import type { NavSectionConfig } from '@hyvor/design/marketing';
+    import Introduction from './docs/Introduction.svelte';
+    import Installation from './docs/Installation.svelte';
+    import Configuration from './docs/Configuration.svelte';
+
+    const SECTIONS: NavSectionConfig[] = [
         {
-            name: 'Getting Started',
-            pages: [
-                {
-                    name: 'Introduction',
-                    slug: 'introduction'
-                },
-                {
-                    name: 'Installation',
-                    slug: 'installation'
-                }
+            navs: [
+                { type: 'page', name: 'Introduction', slug: '', content: Introduction }
             ]
         },
-        ...
-    ] as Category[];
-    export const pages = categories.reduce((acc, category) => acc.concat(category.pages), [] as Page[]);
+        {
+            name: 'Getting Started',
+            navs: [
+                { type: 'page', name: 'Installation', slug: 'installation', content: Installation },
+                { type: 'page', name: 'Configuration', slug: 'configuration', content: Configuration }
+            ]
+        }
+    ];
 
-    interface Category {
-        name: string,
-        pages: Page[]
-    }
-
-    interface Page {
-        slug: string,
-        name: string,
-        component: ComponentType
+    export async function load({ params }) {
+        return loadDocsPage({
+            basepath: '/my-docs',
+            sections: SECTIONS,
+            slug: params.slug ?? ''
+        });
     }
 `}
 	language="ts"
 />
 
 <p>
-	Then, load the docs content in the <code>page.ts</code> file.
+	A <code>NavSectionConfig</code> is a group of nav items with an optional <code>name</code>, shown
+	as a heading above the group (omit it for an untitled top group, as with "Introduction" above).
+	Each item inside <code>navs</code> is a <code>NavConfig</code>, one of three types:
 </p>
+
+<ul>
+	<li>
+		<code>page</code> - a leaf page. Needs a unique <code>slug</code> and a <code>content</code>
+		component. Set <code>wide: true</code> on a page to make it take the full content width, with
+		no fixed reading column and no table of contents sidebar - useful for API references.
+	</li>
+	<li>
+		<code>folding-section</code> - a collapsible group of nav items, nested inline in the same nav
+		list.
+	</li>
+	<li>
+		<code>sub-section</code> - an entirely separate <code>NavSectionConfig[]</code> tree, reached by
+		navigating to it. The nav swaps to show only that sub-section's own items, and a breadcrumb
+		(e.g. "Docs -&gt; Self Hosting") appears above it to navigate back out. Useful for keeping large,
+		self-contained parts of the docs out of the main nav list. Sub-sections can be nested within
+		each other, and within folding sections.
+	</li>
+</ul>
 
 <CodeBlock
 	code={`
-    import { error } from "@sveltejs/kit";
-    import { pages } from "./docs";
+    {
+        type: 'folding-section',
+        name: 'Guides',
+        navs: [
+            { type: 'page', name: 'Overview', slug: 'guides-overview', content: GuidesOverview }
+        ]
+    }
 
-    export async function load({ params }) {
-        const slug = params.slug;
-        const page = slug === undefined ? pages[0] : pages.find(p => p.slug === slug);
-
-        if(!page) {
-            error(404, 'Not found');
-        }
-
-        return {
-            slug: params.slug,
-            name: page.name,
-            component: page.component
-        }
+    {
+        type: 'sub-section',
+        name: 'Self Hosting',
+        sections: [
+            {
+                navs: [
+                    {
+                        type: 'page',
+                        name: 'Installation',
+                        slug: 'self-hosting-installation',
+                        content: SelfHostingInstallation
+                    }
+                ]
+            }
+        ]
     }
 `}
 	language="ts"
 />
 
 <p>
-	Then, design the layout in the <code>+page.svelte</code> file using the data from the previous step.
+	The root breadcrumb label defaults to "Docs" - pass <code>rootName</code> to
+	<code>loadDocsPage</code> to customize it.
+</p>
+
+<h2 id="page">The Page Component</h2>
+
+<p>
+	In <code>+page.svelte</code>, render the <code>Docs</code> component with the data returned by
+	<code>load</code>. Wrap it with your own header/footer as needed (see
+	<a href="/page-structure">Page Structure</a>).
 </p>
 
 <CodeBlock
 	code={`
     <` +
 		`script lang="ts">
-        import { 
-            Docs, 
-            DocsNav as Nav, 
-            DocsNavCategory as NavCategory, 
-            DocsNavItem as NavItem, 
-            DocsContent as Content
-        } from '@hyvor/design/marketing';
-        import { categories } from "./docs";
+        import { Docs } from '@hyvor/design/marketing';
         let { data } = $props();
     </` +
 		`script>
-    <Docs>
-        {#snippet nav()}
-            <Nav>
-                {#each categories as category}
-                    <NavCategory name={category.name}>
-                        {#each category.pages as page}
-                            <NavItem
-                                href={page.slug === '' ? '/docs' : ` +
-		'`/docs/${page.slug}`' +
-		`}
-                            >{page.name}</NavItem>
-                        {/each}
-                    </NavCategory>
-                {/each}
-            </Nav>
-        {/snippet}
-        {#snippet content()}
-            <Content>
-                <data.component />
-            </Content>
-        {/snippet}
-    </Docs>
+
+    <Docs {...data} />
 `}
 	language="svelte"
 />
 
 <h2 id="content-components">Content Components</h2>
 
-<p>There are a few components to create content pages.</p>
+<p>There are a few components to use inside your content pages.</p>
 
 <h3 id="image">DocsImage</h3>
 

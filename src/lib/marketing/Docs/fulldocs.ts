@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import type { NavSectionConfig, NavConfig, NavPageConfig, NavSubSectionConfig } from '../types.js';
+import type { NavSectionConfig, NavConfig, NavPageConfig, NavSubSectionConfig } from './types.js';
 
 // for docs, create a /docs/[[slug]]/+page.svelte and +page.ts files
 // add this to +page.ts in the load function

@@ -3,6 +3,8 @@
 	import Sidebar from './Sidebar/Sidebar.svelte';
 	import { getSubSectionPathForSlug, getFirstPageSlug } from './FullDocs/fulldocs.js';
 	import type { NavPageConfig, NavSectionConfig } from './types.js';
+	import { clickOutside } from '../../components/index.js';
+	import IconList from '@hyvor/icons/IconList';
 
 	interface Props {
 		basepath: string;
@@ -18,39 +20,70 @@
 	const currentSections = $derived(
 		subSectionPath.length > 0 ? subSectionPath[subSectionPath.length - 1].sections : sections
 	);
+
+	// mobile nav is collapsed behind a toggle button; close it whenever the
+	// active page changes (e.g. after clicking a nav link on mobile)
+	let mobileNavOpen = $state(false);
+	$effect(() => {
+		void page.slug;
+		mobileNavOpen = false;
+	});
 </script>
 
 <div class="wrap docs">
-	<nav class="hds-box">
-		<div class="breadcrumb">
-			<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
-				{rootName}
-			</a>
-			{#each subSectionPath as sub}
-				<span class="breadcrumb-sep"></span>
-				<a
-					class="breadcrumb-item"
-					href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
-				>
-					{sub.name}
-				</a>
-			{/each}
-		</div>
-
-		{#each currentSections as section}
-			<div class="section">
-				{#if section.name}
-					<div class="section-name">
-						{section.name}
-					</div>
+	<div class="nav-wrap">
+		<button
+			class="mobile-toggle hds-box"
+			onclick={(e) => {
+				e.stopPropagation();
+				mobileNavOpen = !mobileNavOpen;
+			}}
+		>
+			<div class="mobile-toggle-label">
+				{#if subSectionPath.length > 0}
+					<span class="category">{subSectionPath[subSectionPath.length - 1].name}</span>
+					<span class="sep">&raquo;</span>
 				{/if}
+				<span class="name">{page.name}</span>
+			</div>
+			<IconList size={18} />
+		</button>
 
-				{#each section.navs as nav}
-					<NavItem {nav} {basepath} currentSlug={page.slug} />
+		<nav
+			class="hds-box"
+			class:open={mobileNavOpen}
+			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
+		>
+			<div class="breadcrumb">
+				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+					{rootName}
+				</a>
+				{#each subSectionPath as sub}
+					<span class="breadcrumb-sep"></span>
+					<a
+						class="breadcrumb-item"
+						href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
+					>
+						{sub.name}
+					</a>
 				{/each}
 			</div>
-		{/each}
-	</nav>
+
+			{#each currentSections as section}
+				<div class="section">
+					{#if section.name}
+						<div class="section-name">
+							{section.name}
+						</div>
+					{/if}
+
+					{#each section.navs as nav}
+						<NavItem {nav} {basepath} currentSlug={page.slug} />
+					{/each}
+				</div>
+			{/each}
+		</nav>
+	</div>
 
 	<div class="content-wrap hds-box">
 		<content class:wide={page.wide}>
@@ -70,12 +103,76 @@
 		gap: 15px;
 	}
 
+	.nav-wrap {
+		flex-shrink: 0;
+		position: relative;
+	}
+
+	.mobile-toggle {
+		display: none;
+	}
+
 	nav {
 		width: 280px;
 		height: calc(100vh - var(--header-height) - 30px);
 		padding: 15px 0;
 		overflow-y: auto;
 		flex-shrink: 0;
+	}
+
+	@media (max-width: 992px) {
+		.wrap {
+			flex-direction: column;
+			width: 100%;
+			padding: 15px 0;
+		}
+
+		.nav-wrap {
+			width: 100%;
+			padding: 0 15px;
+			order: 1;
+		}
+
+		.content-wrap {
+			order: 2;
+		}
+
+		.mobile-toggle {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding: 10px 20px;
+			cursor: pointer;
+		}
+		.mobile-toggle:hover {
+			background-color: var(--hover);
+		}
+
+		.mobile-toggle-label {
+			flex: 1;
+			text-align: left;
+		}
+		.category,
+		.sep {
+			color: var(--text-light);
+		}
+		.sep {
+			margin: 0 4px;
+		}
+
+		nav {
+			display: none;
+			position: absolute;
+			width: 100%;
+			height: auto;
+			max-height: 500px;
+			margin-top: 8px;
+			padding: 15px 0;
+			z-index: 100;
+		}
+		nav.open {
+			display: block;
+		}
 	}
 
 	.breadcrumb {

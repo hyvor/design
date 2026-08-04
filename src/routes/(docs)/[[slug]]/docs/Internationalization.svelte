@@ -175,8 +175,8 @@ export function getI18n() {
 <p>
 	On cloud, pass the language saved on the user to <code>forceLanguage</code>, and
 	<code>undefined</code>
-	when they have never chosen one. This is how the app opens in the right language on the very first
-	render. <code>CloudContext</code>'s <code>user.language</code> carries this value.
+	when they have never chosen one. This is how the app opens in the right language on the very first render.
+	<code>CloudContext</code>'s <code>user.language</code> carries this value.
 </p>
 
 <p>The resolution order for the initial language is:</p>

@@ -53,7 +53,12 @@
 			}
 		}
 
-		i18n.setLocale(language.code);
+		try {
+			await i18n.setLocale(language.code);
+		} catch {
+			// The locale is applied before it is saved, so the UI already shows the
+			// new language. Saving it (Cloud API on cloud deployments) failed.
+		}
 	}
 </script>
 

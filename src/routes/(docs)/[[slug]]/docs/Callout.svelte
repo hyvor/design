@@ -35,6 +35,22 @@
 		<div><code>title</code></div>
 		<div>Title of the callout</div>
 	</TableRow>
+
+	<TableRow>
+		<div><code>color</code></div>
+		<div>
+			Custom text/border color, overriding <code>type</code>. If <code>bg</code> is not also set,
+			a matching background is derived from it.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>bg</code></div>
+		<div>
+			Custom background color, overriding <code>type</code>. If <code>color</code> is not also
+			set, a matching text/border color is derived from it.
+		</div>
+	</TableRow>
 </Table>
 
 <h2 id="slots">Slots</h2>
@@ -174,5 +190,49 @@
 			<div>👋</div>
 		{/snippet}
 		This is a callout with an icon and a title.
+	</Callout>
+</CodeResult>
+
+<h3 id="examples-custom-color">Custom Color / Background</h3>
+
+<p>
+	Use <code>color</code> and/or <code>bg</code> to go outside the built-in <code>type</code>s. Set
+	just one and a matching pair is derived automatically; set both for full control.
+</p>
+
+<CodeBlock
+	code={`
+    <Callout color="#7c3aed">Only "color" is set, "bg" is derived from it.</Callout>
+    <Callout bg="#d9f2e6">Only "bg" is set, "color" is derived from it.</Callout>
+    <Callout color="#7c3aed" bg="#efe6fc">Both "color" and "bg" are set explicitly.</Callout>
+`}
+/>
+
+<CodeResult style="gap:10px;display:flex;flex-direction:column">
+	<Callout color="#7c3aed">Only "color" is set, "bg" is derived from it.</Callout>
+	<Callout bg="#d9f2e6">Only "bg" is set, "color" is derived from it.</Callout>
+	<Callout color="#7c3aed" bg="#efe6fc">Both "color" and "bg" are set explicitly.</Callout>
+</CodeResult>
+
+<h3 id="examples-multi-paragraph">Multi-paragraph Callout</h3>
+
+<CodeBlock
+	code={`
+    <Callout type="info" title="Heads up">
+        <p>This is the first paragraph of the callout.</p>
+        <p>This is the second paragraph, to check that the line height and spacing between paragraphs look right.</p>
+        <p>And a third one, just to be sure it holds up with more content.</p>
+    </Callout>
+`}
+/>
+
+<CodeResult>
+	<Callout type="info" title="Heads up">
+		<p>This is the first paragraph of the callout.</p>
+		<p>
+			This is the second paragraph, to check that the line height and spacing between paragraphs
+			look right.
+		</p>
+		<p>And a third one, just to be sure it holds up with more content.</p>
 	</Callout>
 </CodeResult>

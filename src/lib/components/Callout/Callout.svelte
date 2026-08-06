@@ -7,18 +7,33 @@
 		children = undefined,
 		text = undefined,
 		icon = undefined,
-		...rest
+		color = undefined,
+		bg = undefined
 	}: {
 		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
 		title?: string | Snippet;
 		icon?: Snippet;
 		text?: string | Snippet;
 		children?: Snippet;
-		[key: string]: any;
+		/** Custom text color. Overrides `type`. If `bg` is not set, a matching background is derived from it. */
+		color?: string;
+		/** Custom background color. Overrides `type`. If `color` is not set, a matching text color is derived from it. */
+		bg?: string;
 	} = $props();
+
+	const style = $derived.by(() => {
+		if (color === undefined && bg === undefined) {
+			return undefined;
+		}
+
+		const finalColor = color ?? `color-mix(in srgb, ${bg} 55%, black)`;
+		const finalBg = bg ?? `color-mix(in srgb, ${color} 15%, white)`;
+
+		return `color: ${finalColor}; background-color: ${finalBg};`;
+	});
 </script>
 
-<div class={'callout ' + type} {...rest}>
+<div class={'callout ' + type} {style}>
 	{#if typeof title === 'string'}
 		<div class="title-wrap">
 			{#if icon}
@@ -61,7 +76,7 @@
 
 <style>
 	.callout {
-		padding: 15px 25px;
+		padding: 10px 18px;
 		border-radius: var(--box-radius);
 		line-height: var(--line-height-content);
 	}
@@ -92,16 +107,14 @@
 	}
 
 	.title-wrap {
-		margin-bottom: 4px;
 		display: flex;
 		align-items: center;
 		font-weight: 600;
-		font-size: 18px;
 	}
 
 	.title-icon {
 		vertical-align: middle;
-		margin-right: 8px;
+		margin-right: 6px;
 	}
 
 	.text-wrap {
@@ -110,7 +123,19 @@
 	}
 
 	.icon {
-		margin-right: 8px;
-		font-size: 18px;
+		margin-right: 6px;
+		font-size: 16px;
+	}
+
+	.text :global(p) {
+		margin: 0.5em 0;
+	}
+
+	.text :global(p:first-child) {
+		margin-top: 0;
+	}
+
+	.text :global(p:last-child) {
+		margin-bottom: 0;
 	}
 </style>

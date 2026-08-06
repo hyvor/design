@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ModalFooter from './ModalFooter.svelte';
 	import type { Footer } from './modal-types.js';
+	import { portal } from './portal.js';
 	import IconX from '@hyvor/icons/IconX';
 	import IconButton from './../IconButton/IconButton.svelte';
 	import { fade, scale } from 'svelte/transition';
@@ -15,6 +16,7 @@
 		width?: string;
 		height?: string;
 		bare?: boolean;
+		appendToBody?: boolean;
 		id?: string;
 		role?: 'dialog' | 'alertdialog';
 		closeOnOutsideClick?: boolean;
@@ -34,6 +36,7 @@
 		width,
 		height,
 		bare = false,
+		appendToBody = false,
 		id = 'modal',
 		role = 'alertdialog',
 		closeOnOutsideClick = true,
@@ -101,6 +104,7 @@
 		role="presentation"
 		class="wrap"
 		bind:this={wrapEl}
+		use:portal={appendToBody ? '#hds-base' : false}
 		transition:fade|global={{ duration: 100 }}
 		onclick={(e) => handleClose(e)}
 	>
@@ -127,11 +131,7 @@
 
 					<div class="close-wrap">
 						{#if hasClose}
-							<IconButton
-								variant="invisible"
-								on:click={handleCancel}
-								aria-label="Close modal"
-							>
+							<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
 								<IconX size={25} />
 							</IconButton>
 						{/if}

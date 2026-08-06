@@ -31,6 +31,8 @@
 
 	let show9 = $state(false);
 
+	let show10 = $state(false);
+
 	async function handleConfirm1() {
 		const confirmed = await confirm({
 			title: 'Confirm to delete',
@@ -126,7 +128,10 @@
 	<TableRow>
 		<div><code>height</code></div>
 		<div></div>
-		<div>Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>, etc).</div>
+		<div>
+			Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>,
+			etc).
+		</div>
 	</TableRow>
 
 	<TableRow>
@@ -136,6 +141,18 @@
 			If true, hides the header and footer of the modal, showing only the content. See <a
 				href="#bare">Bare Modal</a
 			>.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>appendToBody</code></div>
+		<div><code>false</code></div>
+		<div>
+			If true, the modal is appended to <code>#hds-base</code> (rendered by
+			<code>Base.svelte</code>), falling back to <code>document.body</code> if not found, instead of
+			rendering in place. Useful when the modal is opened from within an element with
+			<code>overflow: hidden</code>
+			or a low <code>z-index</code> stacking context.
 		</div>
 	</TableRow>
 
@@ -770,3 +787,32 @@
 <CodeResult>
 	<Button onclick={handleConfirmLoader}>Confirm with Loader</Button>
 </CodeResult>
+
+<h2 id="append-to-body">Append To Body</h2>
+
+<p>
+	By default, the modal renders in place, as a child of wherever the <code>{'<Modal>'}</code>
+	component is used. Some containers create a new containing block for fixed-position elements &mdash;
+	for example, one with a CSS <code>transform</code>, or one with <code>overflow: hidden</code>
+	&mdash; which can clip the modal or break its stacking. Set the <code>appendToBody</code> property
+	to move the modal to <code>#hds-base</code> (rendered by <code>Base.svelte</code>), falling back
+	to
+	<code>document.body</code> if not found, escaping any such container.
+</p>
+
+<CodeBlock
+	code={`
+    <Modal bind:show={show} appendToBody>
+        This modal is appended to #hds-base (or document.body), escaping any clipping
+        or stacking context of its parent container.
+    </Modal>
+`}
+/>
+
+<CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+	<Button onclick={() => (show10 = true)}>Modal with appendToBody</Button>
+</CodeResult>
+
+<Modal title="Modal with appendToBody" bind:show={show10} appendToBody>
+	This modal is appended to <code>#hds-base</code> instead of rendering in place.
+</Modal>

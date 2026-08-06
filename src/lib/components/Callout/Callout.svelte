@@ -1,5 +1,17 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import IconCheckCircle from '@hyvor/icons/IconCheckCircle';
+	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
+	import IconExclamationTriangle from '@hyvor/icons/IconExclamationTriangle';
+	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
+
+	const defaultIcons = {
+		soft: undefined,
+		info: IconInfoCircle,
+		success: IconCheckCircle,
+		warning: IconExclamationCircle,
+		danger: IconExclamationTriangle
+	};
 
 	const {
 		type = 'soft',
@@ -7,34 +19,59 @@
 		children = undefined,
 		text = undefined,
 		icon = undefined,
-		...rest
+		showIcon = true,
+		fg = undefined,
+		bg = undefined
 	}: {
 		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
 		title?: string | Snippet;
 		icon?: Snippet;
+		/** Whether to show an icon. Defaults to the icon matching `type`, unless a custom `icon` snippet is given. */
+		showIcon?: boolean;
 		text?: string | Snippet;
 		children?: Snippet;
-		[key: string]: any;
+		/** Custom text color. Overrides `type`. If `bg` is not set, a matching background is derived from it. */
+		fg?: string;
+		/** Custom background color. Overrides `type`. If `fg` is not set, a matching text color is derived from it. */
+		bg?: string;
 	} = $props();
+
+	const DefaultIcon = $derived(defaultIcons[type]);
+
+	const style = $derived.by(() => {
+		if (fg === undefined && bg === undefined) {
+			return undefined;
+		}
+
+		const finalFg = fg ?? `color-mix(in srgb, ${bg} 55%, black)`;
+		const finalBg = bg ?? `color-mix(in srgb, ${fg} 15%, white)`;
+
+		return `color: ${finalFg}; background-color: ${finalBg};`;
+	});
 </script>
 
-<div class={'callout ' + type} {...rest}>
+{#snippet iconContent()}
+	{#if icon}
+		{@render icon()}
+	{:else}
+		<DefaultIcon />
+	{/if}
+{/snippet}
+
+<div class={'callout ' + type} {style}>
 	{#if typeof title === 'string'}
 		<div class="title-wrap">
-			{#if icon}
-				<span
-					class="title-icon
-		"
-				>
-					{@render icon()}
+			{#if showIcon}
+				<span class="title-icon">
+					{@render iconContent()}
 				</span>
 			{/if}
 			<div class="title">{title}</div>
 		</div>
 	{:else if title !== undefined}
 		<div class="title-wrap">
-			{#if icon}
-				<span class="title-icon">{@render icon()}</span>
+			{#if showIcon}
+				<span class="title-icon">{@render iconContent()}</span>
 			{/if}
 
 			<div class="title">{@render title?.()}</div>
@@ -42,8 +79,8 @@
 	{/if}
 
 	<div class="text-wrap">
-		{#if icon && !title}
-			<span class="icon">{@render icon()}</span>
+		{#if showIcon && !title}
+			<span class="icon">{@render iconContent()}</span>
 		{/if}
 
 		<div class="text">
@@ -61,7 +98,7 @@
 
 <style>
 	.callout {
-		padding: 15px 25px;
+		padding: 10px 20px;
 		border-radius: var(--box-radius);
 		line-height: var(--line-height-content);
 	}
@@ -92,16 +129,16 @@
 	}
 
 	.title-wrap {
-		margin-bottom: 4px;
 		display: flex;
 		align-items: center;
 		font-weight: 600;
-		font-size: 18px;
 	}
 
 	.title-icon {
-		vertical-align: middle;
-		margin-right: 8px;
+		margin-right: 6px;
+		display: inline-flex;
+		height: var(--line-height-content);
+		align-items: center;
 	}
 
 	.text-wrap {
@@ -110,7 +147,22 @@
 	}
 
 	.icon {
-		margin-right: 8px;
-		font-size: 18px;
+		margin-right: 6px;
+		font-size: 16px;
+		display: inline-flex;
+		height: var(--line-height-content);
+		align-items: center;
+	}
+
+	.text :global(p) {
+		margin: 0.5em 0;
+	}
+
+	.text :global(p:first-child) {
+		margin-top: 0;
+	}
+
+	.text :global(p:last-child) {
+		margin-bottom: 0;
 	}
 </style>

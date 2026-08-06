@@ -128,7 +128,10 @@
 	<TableRow>
 		<div><code>height</code></div>
 		<div></div>
-		<div>Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>, etc).</div>
+		<div>
+			Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>,
+			etc).
+		</div>
 	</TableRow>
 
 	<TableRow>
@@ -145,10 +148,11 @@
 		<div><code>appendToBody</code></div>
 		<div><code>false</code></div>
 		<div>
-			If true, the modal is appended to <code>#hds-base</code> (rendered by <code>Base.svelte</code
-			>), falling back to <code>document.body</code> if not found, instead of rendering in place.
-			Useful when the modal is opened from within an element with <code>overflow: hidden</code> or
-			a low <code>z-index</code> stacking context.
+			If true, the modal is appended to <code>#hds-base</code> (rendered by
+			<code>Base.svelte</code>), falling back to <code>document.body</code> if not found, instead of
+			rendering in place. Useful when the modal is opened from within an element with
+			<code>overflow: hidden</code>
+			or a low <code>z-index</code> stacking context.
 		</div>
 	</TableRow>
 
@@ -791,7 +795,8 @@
 	component is used. Some containers create a new containing block for fixed-position elements &mdash;
 	for example, one with a CSS <code>transform</code>, or one with <code>overflow: hidden</code>
 	&mdash; which can clip the modal or break its stacking. Set the <code>appendToBody</code> property
-	to move the modal to <code>#hds-base</code> (rendered by <code>Base.svelte</code>), falling back to
+	to move the modal to <code>#hds-base</code> (rendered by <code>Base.svelte</code>), falling back
+	to
 	<code>document.body</code> if not found, escaping any such container.
 </p>
 

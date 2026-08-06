@@ -29,6 +29,8 @@
 
 	let show8 = $state(false);
 
+	let show9 = $state(false);
+
 	async function handleConfirm1() {
 		const confirmed = await confirm({
 			title: 'Confirm to delete',
@@ -109,6 +111,31 @@
 				<li><code>medium</code></li>
 				<li><code>large</code></li>
 			</ul>
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>width</code></div>
+		<div></div>
+		<div>
+			Any CSS width value (<code>px</code>, <code>%</code>, <code>vw</code>, <code>calc()</code>,
+			etc). Overrides the <code>size</code> property.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>height</code></div>
+		<div></div>
+		<div>Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>, etc).</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>bare</code></div>
+		<div><code>false</code></div>
+		<div>
+			If true, hides the header and footer of the modal, showing only the content. See <a
+				href="#bare">Bare Modal</a
+			>.
 		</div>
 	</TableRow>
 
@@ -284,6 +311,36 @@
 			<Button variant="invisible" onclick={() => (show4 = false)}>Close</Button>
 		</div>
 	{/snippet}
+</Modal>
+
+<h3 id="bare">Bare Modal</h3>
+
+<p>
+	Set the <code>bare</code> attribute to hide the header and footer, showing only the content (with
+	its padding removed). This is useful for displaying custom content, such as images, that should
+	not have the default modal padding and chrome. Combine it with the <code>width</code> and
+	<code>height</code> properties to set a custom size, which overrides the <code>size</code>
+	property.
+</p>
+
+<CodeBlock
+	code={`
+    <Modal bind:show={show} bare width="400px" height="300px">
+        <img src="/some-image.jpg" alt="Some image" style="display:block;width:100%;height:100%;" />
+    </Modal>
+`}
+/>
+
+<CodeResult style="display:flex;flex-direction:column;gap:6px;align-items:flex-start;">
+	<Button onclick={() => (show9 = true)}>Bare Modal</Button>
+</CodeResult>
+
+<Modal bind:show={show9} bare width="400px" height="300px">
+	<div
+		style="height:100%;display:flex;align-items:center;justify-content:center;background:var(--hover-dark);border-radius:var(--box-radius);"
+	>
+		Bare content, no header or footer
+	</div>
 </Modal>
 
 <h3 id="slot">Title Slot</h3>

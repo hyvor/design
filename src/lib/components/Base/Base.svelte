@@ -14,7 +14,7 @@
 	let { dark = false, children }: Props = $props();
 </script>
 
-<div id="base">
+<div id="hds-base">
 	{@render children?.()}
 </div>
 

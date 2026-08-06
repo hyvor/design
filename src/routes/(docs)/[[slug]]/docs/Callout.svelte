@@ -47,7 +47,7 @@
 	</TableRow>
 
 	<TableRow>
-		<div><code>color</code></div>
+		<div><code>fg</code></div>
 		<div>
 			Custom text/border color, overriding <code>type</code>. If <code>bg</code> is not also set,
 			a matching background is derived from it.
@@ -57,8 +57,8 @@
 	<TableRow>
 		<div><code>bg</code></div>
 		<div>
-			Custom background color, overriding <code>type</code>. If <code>color</code> is not also set,
-			a matching text/border color is derived from it.
+			Custom background color, overriding <code>type</code>. If <code>fg</code> is not also set, a
+			matching text/border color is derived from it.
 		</div>
 	</TableRow>
 </Table>
@@ -218,25 +218,25 @@
 	</Callout>
 </CodeResult>
 
-<h3 id="examples-custom-color">Custom Color / Background</h3>
+<h3 id="examples-custom-color">Custom Foreground / Background</h3>
 
 <p>
-	Use <code>color</code> and/or <code>bg</code> to go outside the built-in <code>type</code>s. Set
+	Use <code>fg</code> and/or <code>bg</code> to go outside the built-in <code>type</code>s. Set
 	just one and a matching pair is derived automatically; set both for full control.
 </p>
 
 <CodeBlock
 	code={`
-    <Callout color="#7c3aed">Only "color" is set, "bg" is derived from it.</Callout>
-    <Callout bg="#d9f2e6">Only "bg" is set, "color" is derived from it.</Callout>
-    <Callout color="#7c3aed" bg="#efe6fc">Both "color" and "bg" are set explicitly.</Callout>
+    <Callout fg="#7c3aed">Only "fg" is set, "bg" is derived from it.</Callout>
+    <Callout bg="#d9f2e6">Only "bg" is set, "fg" is derived from it.</Callout>
+    <Callout fg="#7c3aed" bg="#efe6fc">Both "fg" and "bg" are set explicitly.</Callout>
 `}
 />
 
 <CodeResult style="gap:10px;display:flex;flex-direction:column">
-	<Callout color="#7c3aed">Only "color" is set, "bg" is derived from it.</Callout>
-	<Callout bg="#d9f2e6">Only "bg" is set, "color" is derived from it.</Callout>
-	<Callout color="#7c3aed" bg="#efe6fc">Both "color" and "bg" are set explicitly.</Callout>
+	<Callout fg="#7c3aed">Only "fg" is set, "bg" is derived from it.</Callout>
+	<Callout bg="#d9f2e6">Only "bg" is set, "fg" is derived from it.</Callout>
+	<Callout fg="#7c3aed" bg="#efe6fc">Both "fg" and "bg" are set explicitly.</Callout>
 </CodeResult>
 
 <h3 id="examples-multi-paragraph">Multi-paragraph Callout</h3>

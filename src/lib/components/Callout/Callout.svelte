@@ -20,7 +20,7 @@
 		text = undefined,
 		icon = undefined,
 		showIcon = true,
-		color = undefined,
+		fg = undefined,
 		bg = undefined
 	}: {
 		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
@@ -31,22 +31,22 @@
 		text?: string | Snippet;
 		children?: Snippet;
 		/** Custom text color. Overrides `type`. If `bg` is not set, a matching background is derived from it. */
-		color?: string;
-		/** Custom background color. Overrides `type`. If `color` is not set, a matching text color is derived from it. */
+		fg?: string;
+		/** Custom background color. Overrides `type`. If `fg` is not set, a matching text color is derived from it. */
 		bg?: string;
 	} = $props();
 
 	const DefaultIcon = $derived(defaultIcons[type]);
 
 	const style = $derived.by(() => {
-		if (color === undefined && bg === undefined) {
+		if (fg === undefined && bg === undefined) {
 			return undefined;
 		}
 
-		const finalColor = color ?? `color-mix(in srgb, ${bg} 55%, black)`;
-		const finalBg = bg ?? `color-mix(in srgb, ${color} 15%, white)`;
+		const finalFg = fg ?? `color-mix(in srgb, ${bg} 55%, black)`;
+		const finalBg = bg ?? `color-mix(in srgb, ${fg} 15%, white)`;
 
-		return `color: ${finalColor}; background-color: ${finalBg};`;
+		return `color: ${finalFg}; background-color: ${finalBg};`;
 	});
 </script>
 
@@ -98,7 +98,7 @@
 
 <style>
 	.callout {
-		padding: 10px 18px;
+		padding: 10px 20px;
 		border-radius: var(--box-radius);
 		line-height: var(--line-height-content);
 	}

@@ -22,7 +22,7 @@
 		<div>
 			Defines the type of callout (used for colors). Can be one of:
 			<ul>
-				<li><code>soft</code></li>
+				<li><code>soft</code> (default)</li>
 				<li><code>info</code></li>
 				<li><code>warning</code></li>
 				<li><code>success</code></li>
@@ -37,6 +37,16 @@
 	</TableRow>
 
 	<TableRow>
+		<div><code>showIcon</code></div>
+		<div>
+			Whether to show an icon. Defaults to <code>true</code>, showing the icon matching
+			<code>type</code> unless a custom <code>icon</code> snippet is given. Set to <code
+				>false</code
+			> to hide the icon entirely.
+		</div>
+	</TableRow>
+
+	<TableRow>
 		<div><code>color</code></div>
 		<div>
 			Custom text/border color, overriding <code>type</code>. If <code>bg</code> is not also set,
@@ -47,8 +57,8 @@
 	<TableRow>
 		<div><code>bg</code></div>
 		<div>
-			Custom background color, overriding <code>type</code>. If <code>color</code> is not also
-			set, a matching text/border color is derived from it.
+			Custom background color, overriding <code>type</code>. If <code>color</code> is not also set,
+			a matching text/border color is derived from it.
 		</div>
 	</TableRow>
 </Table>
@@ -66,7 +76,10 @@
 	</TableRow>
 	<TableRow>
 		<div><code>icon</code></div>
-		<div>Icon to display before the content, or before the title if there is one.</div>
+		<div>
+			Icon to display before the content, or before the title if there is one. Overrides the
+			default icon for <code>type</code>.
+		</div>
 	</TableRow>
 	<TableRow>
 		<div><code>title</code></div>
@@ -94,6 +107,18 @@
 	<Callout type="warning">This is a warning callout.</Callout>
 	<Callout type="success">This is a success callout.</Callout>
 	<Callout type="danger">This is a danger callout.</Callout>
+</CodeResult>
+
+<p>Each <code>type</code> shows a matching icon by default. Set <code>showIcon={false}</code> to hide it.</p>
+
+<CodeBlock
+	code={`
+    <Callout type="info" showIcon={false}>This is an info callout without an icon.</Callout>
+`}
+/>
+
+<CodeResult>
+	<Callout type="info" showIcon={false}>This is an info callout without an icon.</Callout>
 </CodeResult>
 
 <h3 id="examples-with-title">Callout with Title</h3>
@@ -230,8 +255,8 @@
 	<Callout type="info" title="Heads up">
 		<p>This is the first paragraph of the callout.</p>
 		<p>
-			This is the second paragraph, to check that the line height and spacing between paragraphs
-			look right.
+			This is the second paragraph, to check that the line height and spacing between
+			paragraphs look right.
 		</p>
 		<p>And a third one, just to be sure it holds up with more content.</p>
 	</Callout>

@@ -12,6 +12,9 @@
 		show?: boolean;
 		title?: string | Snippet;
 		size?: 'small' | 'medium' | 'large';
+		width?: string;
+		height?: string;
+		bare?: boolean;
 		id?: string;
 		role?: 'dialog' | 'alertdialog';
 		closeOnOutsideClick?: boolean;
@@ -28,6 +31,9 @@
 		show = $bindable(false),
 		title,
 		size = 'medium',
+		width,
+		height,
+		bare = false,
 		id = 'modal',
 		role = 'alertdialog',
 		closeOnOutsideClick = true,
@@ -43,6 +49,10 @@
 
 	const titleId = id + '-title';
 	const descId = id + '-desc';
+
+	const innerStyle = $derived(
+		[width ? `width: ${width}` : '', height ? `height: ${height}` : ''].filter(Boolean).join('; ')
+	);
 
 	let wrapEl: HTMLDivElement | undefined = $state();
 	let innerEl: HTMLDivElement | undefined = $state();
@@ -96,36 +106,44 @@
 	>
 		<div
 			class="inner {size}"
+			class:bare
+			style={innerStyle || undefined}
 			transition:scale|global={{ duration: 100, start: 0.9, opacity: 0.9 }}
 			bind:this={innerEl}
 			{role}
 			aria-modal="true"
-			aria-labelledby={titleId}
+			aria-labelledby={bare ? undefined : titleId}
 			aria-describedby={descId}
 		>
-			<div class="header">
-				<div class="title" id={titleId}>
-					{#if typeof title === 'string'}
-						<span>{title}</span>
-					{:else}
-						{@render title?.()}
-					{/if}
-				</div>
+			{#if !bare}
+				<div class="header">
+					<div class="title" id={titleId}>
+						{#if typeof title === 'string'}
+							<span>{title}</span>
+						{:else}
+							{@render title?.()}
+						{/if}
+					</div>
 
-				<div class="close-wrap">
-					{#if hasClose}
-						<IconButton variant="invisible" on:click={handleCancel} aria-label="Close modal">
-							<IconX size={25} />
-						</IconButton>
-					{/if}
+					<div class="close-wrap">
+						{#if hasClose}
+							<IconButton
+								variant="invisible"
+								on:click={handleCancel}
+								aria-label="Close modal"
+							>
+								<IconX size={25} />
+							</IconButton>
+						{/if}
+					</div>
 				</div>
-			</div>
+			{/if}
 
 			<div class="content" id={descId}>
 				{@render children?.()}
 			</div>
 
-			{#if footer}
+			{#if footer && !bare}
 				<div class="footer">
 					{#if typeof footer === 'object'}
 						<ModalFooter {footer} bind:show on:cancel on:confirm />
@@ -168,7 +186,7 @@
 		z-index: 10000000;
 		width: 100%;
 		height: 100%;
-		background: rgba(0, 0, 0, 0.5);
+		background: rgba(0, 0, 0, 0.15);
 		display: flex;
 		align-items: center;
 		justify-content: center;
@@ -208,6 +226,14 @@
 
 	.content {
 		padding: 20px 25px;
+	}
+	.inner.bare {
+		display: flex;
+		flex-direction: column;
+	}
+	.inner.bare .content {
+		padding: 0;
+		flex: 1;
 	}
 
 	.footer {

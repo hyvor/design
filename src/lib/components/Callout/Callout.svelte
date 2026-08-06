@@ -2,7 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import IconCheckCircle from '@hyvor/icons/IconCheckCircle';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
-	import IconXCircle from '@hyvor/icons/IconXCircle';
+	import IconExclamationTriangle from '@hyvor/icons/IconExclamationTriangle';
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 
 	const defaultIcons = {
@@ -10,7 +10,7 @@
 		info: IconInfoCircle,
 		success: IconCheckCircle,
 		warning: IconExclamationCircle,
-		danger: IconXCircle
+		danger: IconExclamationTriangle
 	};
 
 	const {
@@ -135,8 +135,10 @@
 	}
 
 	.title-icon {
-		vertical-align: middle;
 		margin-right: 6px;
+		display: inline-flex;
+		height: var(--line-height-content);
+		align-items: center;
 	}
 
 	.text-wrap {
@@ -147,6 +149,9 @@
 	.icon {
 		margin-right: 6px;
 		font-size: 16px;
+		display: inline-flex;
+		height: var(--line-height-content);
+		align-items: center;
 	}
 
 	.text :global(p) {

@@ -60,6 +60,14 @@
 			text/border color is derived from it.
 		</div>
 	</TableRow>
+
+	<TableRow>
+		<div><code>wrapperProps</code></div>
+		<div>
+			Additional props (e.g. <code>class</code>, <code>id</code>, other HTML attributes) applied to
+			the wrapper <code>&lt;div&gt;</code> element.
+		</div>
+	</TableRow>
 </Table>
 
 <h2 id="slots">Slots</h2>

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 	import IconCheckCircle from '@hyvor/icons/IconCheckCircle';
 	import IconExclamationCircle from '@hyvor/icons/IconExclamationCircle';
 	import IconExclamationTriangle from '@hyvor/icons/IconExclamationTriangle';
@@ -21,7 +22,8 @@
 		icon = undefined,
 		showIcon = true,
 		fg = undefined,
-		bg = undefined
+		bg = undefined,
+		wrapperProps = {}
 	}: {
 		type?: 'info' | 'success' | 'warning' | 'danger' | 'soft';
 		title?: string | Snippet;
@@ -34,6 +36,8 @@
 		fg?: string;
 		/** Custom background color. Overrides `type`. If `fg` is not set, a matching text color is derived from it. */
 		bg?: string;
+		/** Additional props (e.g. class, id, attributes) to apply to the wrapper element. */
+		wrapperProps?: HTMLAttributes<HTMLDivElement>;
 	} = $props();
 
 	const DefaultIcon = $derived(defaultIcons[type]);
@@ -58,7 +62,7 @@
 	{/if}
 {/snippet}
 
-<div class={'callout ' + type} {style}>
+<div class={'callout ' + type} {style} {...wrapperProps}>
 	{#if typeof title === 'string'}
 		<div class="title-wrap">
 			{#if showIcon}

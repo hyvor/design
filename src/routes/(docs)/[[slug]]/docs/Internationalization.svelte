@@ -141,8 +141,8 @@ export function getI18n() {
 <h2 id="persistence">Language Persistence</h2>
 
 <p>
-	The <code>LanguageToggle</code> component renders a language switcher and saves the choice for
-	you. Where it saves depends on the <code>deployment</code> prop of the provider.
+	<code>LanguageToggle</code> renders a language switcher and saves the choice. Set
+	<code>deployment</code> on the provider to choose where it is saved.
 </p>
 
 <CodeBlock
@@ -152,53 +152,29 @@ export function getI18n() {
         forceLanguage={user.language ?? undefined}
         {languages}
     >
+        <LanguageToggle
+            onSaved={() => toast.success(I18n.t('common.save.saved'))}
+            onError={() => toast.error(I18n.t('common.wentWrong'))}
+        />
+    </InternationalizationProvider>
 `}
 	language="svelte"
 ></CodeBlock>
 
 <ul>
 	<li>
-		<code>deployment="on-prem"</code> (the default) saves the choice in
-		<code>localStorage</code>
-		under the <code>hds-language</code> key, and reads it back on load.
+		<code>on-prem</code> (the default) saves to <code>localStorage</code>.
 	</li>
 	<li>
-		<code>deployment="cloud"</code> means the language belongs to the logged-in user, so
-		<code>localStorage</code>
-		is neither read nor written. Wrap your app in a <code>CloudContext</code>
-		(from <code>@hyvor/design/cloud</code>) and the toggle saves the choice to the user's HYVOR
-		account through the Cloud API automatically, so it follows them across devices and across all
-		HYVOR products.
+		<code>cloud</code> saves to the user's HYVOR account, so the language follows them across
+		devices and products. Wrap your app in a <code>CloudContext</code> (from
+		<code>@hyvor/design/cloud</code>), and set <code>forceLanguage</code> to the user's saved
+		language — <code>CloudContext</code>'s <code>user.language</code> carries it.
 	</li>
 </ul>
 
-<p>
-	On cloud, pass the language saved on the user to <code>forceLanguage</code>, and
-	<code>undefined</code>
-	when they have never chosen one. This is how the app opens in the right language on the very first render.
-	<code>CloudContext</code>'s <code>user.language</code> carries this value.
-</p>
-
-<p>The resolution order for the initial language is:</p>
-
-<CodeBlock
-	code={`
-cloud     forceLanguage (the user's language)  ->  navigator  ->  default
-on-prem   localStorage['hds-language']         ->  navigator  ->  default
-`}
-	language="text"
-></CodeBlock>
-
-<p>
-	Every candidate is matched with <code>getClosestLanguageCode</code>, so a code your app does not
-	register still resolves to the nearest one it does — a saved <code>fr-FR</code> matches a
-	registered <code>fr</code>. The initial resolution never saves anything.
-</p>
-
 <Callout type="info">
-	To save the choice somewhere else, call <code>i18n.setPersister(fn)</code>. Your function receives
-	the language code and may return a promise. It replaces the default behaviour entirely, and is not
-	called for the initial resolution.
+	To save the choice somewhere else, call <code>i18n.setPersister(fn)</code> with your own handler.
 </Callout>
 
 <h2 id="strings">Strings</h2>

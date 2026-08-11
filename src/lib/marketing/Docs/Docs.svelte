@@ -64,6 +64,7 @@
 	<div class="nav-wrap">
 		<button
 			class="mobile-toggle hds-box"
+			class:open={mobileNavOpen}
 			onclick={(e) => {
 				e.stopPropagation();
 				mobileNavOpen = !mobileNavOpen;
@@ -76,7 +77,9 @@
 				{/if}
 				<span class="name">{page.name}</span>
 			</div>
-			<IconList size={18} />
+			<span class="mobile-toggle-icon">
+				<IconList size={18} />
+			</span>
 		</button>
 
 		<nav
@@ -85,12 +88,18 @@
 			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
 		>
 			<div class="breadcrumb">
-				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+				<a
+					class="breadcrumb-item"
+					href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}
+				>
 					{rootName}
 				</a>
 				{#each subSectionPath as sub}
 					<span class="breadcrumb-sep"></span>
-					<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}>
+					<a
+						class="breadcrumb-item"
+						href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}
+					>
 						{sub.name}
 					</a>
 				{/each}
@@ -113,9 +122,11 @@
 	</div>
 
 	<div class="content-wrap hds-box">
-		<content class:wide={page.wide} bind:this={contentEl}>
-			<page.content />
-		</content>
+		{#key page.slug}
+			<content class:wide={page.wide} bind:this={contentEl}>
+				<page.content />
+			</content>
+		{/key}
 	</div>
 
 	{#if !page.wide}
@@ -175,6 +186,7 @@
 			width: 100%;
 			padding: 10px 20px;
 			cursor: pointer;
+			transition: 0.15s background-color ease;
 		}
 		.mobile-toggle:hover {
 			background-color: var(--hover);
@@ -183,6 +195,14 @@
 		.mobile-toggle-label {
 			flex: 1;
 			text-align: left;
+		}
+
+		.mobile-toggle-icon {
+			display: inline-flex;
+			transition: 0.2s transform ease;
+		}
+		.mobile-toggle.open .mobile-toggle-icon {
+			transform: rotate(90deg);
 		}
 		.category,
 		.sep {
@@ -204,6 +224,18 @@
 		}
 		nav.open {
 			display: block;
+			animation: nav-open 0.2s ease-out;
+		}
+	}
+
+	@keyframes nav-open {
+		from {
+			opacity: 0;
+			transform: translateY(-6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
 		}
 	}
 
@@ -261,6 +293,11 @@
 		flex: 1;
 		padding: 30px 45px;
 		min-width: 0;
+		background-image: radial-gradient(
+			ellipse 700px 300px at top right,
+			var(--accent-lightest),
+			transparent 70%
+		);
 	}
 
 	content {
@@ -268,9 +305,21 @@
 		margin: auto;
 		width: 650px;
 		max-width: 100%;
+		animation: content-in 0.35s ease-out;
 	}
 	content.wide {
 		width: 100%;
+	}
+
+	@keyframes content-in {
+		from {
+			opacity: 0;
+			transform: translateY(6px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
 	}
 
 	/* content styles */
@@ -288,6 +337,7 @@
 		margin: 0 0 30px;
 		position: relative;
 		display: table;
+		font-family: var(--font-serif);
 		&:after {
 			position: absolute;
 			content: '';
@@ -295,6 +345,7 @@
 			left: 0px;
 			width: 30%;
 			height: 3px;
+			border-radius: 2px;
 			background: var(--accent);
 			margin-top: 10px;
 		}
@@ -302,6 +353,14 @@
 	content :global(a:not(.no-link-color a)) {
 		color: var(--link);
 		text-decoration: underline;
+		text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent);
+		transition: 0.15s text-decoration-color ease;
+	}
+	content :global(a:not(.no-link-color a):hover) {
+		text-decoration-color: var(--link);
+	}
+	content :global(p) {
+		margin: 0 0 16px;
 	}
 	content :global(li) {
 		margin-bottom: 8px;
@@ -340,6 +399,8 @@
 		transform: translateY(-50%);
 		display: inline-flex;
 		align-items: center;
+		color: var(--accent-light);
+		transition: 0.15s opacity ease;
 	}
 
 	content {

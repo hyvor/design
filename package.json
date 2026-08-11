@@ -60,6 +60,7 @@
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "^15.5.1",
 		"@fontsource/readex-pro": "^5.2.11",
+		"@fontsource/source-serif-4": "^5.3.0",
 		"@hyvor/icons": "^1.1.1",
 		"deepmerge-ts": "^7.1.5",
 		"emojibase-data": "^17.0.0",

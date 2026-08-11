@@ -53,17 +53,27 @@
 	.nav-item {
 		display: flex;
 		align-items: center;
-		padding: 7px 22px;
+		padding: 7px 25px;
 		font-size: 14px;
-		border-left: 3px solid transparent;
-		transition: 0.1s background-color ease;
+		position: relative;
+		transition: 0.15s background-color ease;
 		width: 100%;
 		text-align: initial;
 	}
 
 	.nav-item.active {
-		border-left: 3px solid var(--accent);
 		background-color: var(--accent-lightest);
+	}
+
+	.nav-item.active::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 2px;
+		bottom: 2px;
+		width: 3px;
+		border-radius: 2px;
+		background: var(--accent);
 	}
 
 	.nav-item:not(.active):hover {

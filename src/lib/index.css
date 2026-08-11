@@ -1,6 +1,6 @@
 /* font */
 :root {
-	font-family: 'Readex Pro', Avenir, Inter, Helvetica, Arial, sans-serif;
+	font-family: var(--font-sans-serif);
 	font-size: 16px;
 	font-weight: 400;
 	text-rendering: optimizeLegibility;

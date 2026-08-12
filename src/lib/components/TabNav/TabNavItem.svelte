@@ -1,7 +1,5 @@
 <script lang="ts">
 	import { getContext } from 'svelte';
-	import { page } from '$app/state';
-	import { goto } from '$app/navigation';
 	import type { TabNavState } from './tabnav.js';
 
 	interface Props {
@@ -28,8 +26,7 @@
 		if (active) return true;
 
 		if (tabNavState.basePath) {
-			const currentUrl = page.url.pathname;
-			return currentUrl === getTabPath();
+			return tabNavState.pathname === getTabPath();
 		}
 
 		return false;
@@ -37,7 +34,14 @@
 
 	function handleClick(event: MouseEvent) {
 		if (tabNavState.basePath) {
-			goto(getTabPath());
+			const path = getTabPath();
+
+			if (tabNavState.goto) {
+				tabNavState.goto(path, { replaceState: tabNavState.replaceState });
+				tabNavState.pathname = path;
+			} else {
+				window.location.href = path;
+			}
 		}
 		onclick?.(event);
 	}

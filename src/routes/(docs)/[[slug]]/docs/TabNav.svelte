@@ -35,8 +35,38 @@
 	</TableRow>
 
 	<TableRow>
-		<div><code>active</code></div>
-		<div>The name of the active tab.</div>
+		<div><code>basePath</code></div>
+		<div>
+			The base URL path. When set, tabs become active based on the current URL instead of the
+			<code>active</code> prop on <code>TabNavItem</code>.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>pathname</code></div>
+		<div>
+			The current URL pathname (optional), e.g. <code>page.url.pathname</code> from
+			<code>$app/state</code>. Only used with <code>basePath</code>. Falls back to
+			<code>window.location.pathname</code> when not passed - pass it in SvelteKit apps for a correctly
+			server-rendered active tab.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>goto</code></div>
+		<div>
+			SvelteKit's <code>goto</code> function (optional), e.g. from
+			<code>$app/navigation</code>. Only used with <code>basePath</code>. Enables client-side
+			navigation - falls back to a normal navigation when not passed.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>replaceState</code></div>
+		<div>
+			Whether to replace the current history entry when navigating, instead of pushing a new
+			one. Only used with <code>basePath</code> and <code>goto</code>.
+		</div>
 	</TableRow>
 </Table>
 
@@ -72,8 +102,8 @@
 	<TableRow>
 		<div><code>active</code></div>
 		<div>
-			Set to <code>true</code> to make the tab active (optional). Only use if you want to control the
-			active tab from outside.
+			Set to <code>true</code> to make the tab active (optional). Only use if you want to control
+			the active tab from outside.
 		</div>
 	</TableRow>
 </Table>
@@ -104,16 +134,25 @@
 
 <h2 id="usage">Usage with URLs</h2>
 
+<p>
+	<code>TabNav</code> does not depend on SvelteKit, so it also works in non-SvelteKit Svelte apps.
+	In a SvelteKit app, pass <code>pathname</code> and <code>goto</code> so that the active tab is rendered
+	correctly on the server and tab clicks navigate client-side without a full page reload. If they are
+	not passed, a normal (full-page) navigation is used instead.
+</p>
+
 <CodeBlock
 	language="svelte"
 	code={`
     <` +
 		`script lang="ts">
         import { TabNav, TabNavItem } from '@hyvor/design';
+        import { page } from '$app/state';
+        import { goto } from '$app/navigation';
     </` +
 		`script>
 
-    <TabNav basePath="/settings">
+    <TabNav basePath="/settings" pathname={page.url.pathname} {goto}>
         <TabNavItem name="settings" index>
             {#snippet start()}
                 <IconGear />

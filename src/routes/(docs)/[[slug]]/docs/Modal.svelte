@@ -126,7 +126,10 @@
 	<TableRow>
 		<div><code>height</code></div>
 		<div></div>
-		<div>Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>, etc).</div>
+		<div>
+			Any CSS height value (<code>px</code>, <code>%</code>, <code>vh</code>, <code>calc()</code>,
+			etc).
+		</div>
 	</TableRow>
 
 	<TableRow>

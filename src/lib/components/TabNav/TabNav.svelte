@@ -20,13 +20,7 @@
 		children?: import('svelte').Snippet;
 	};
 
-	let {
-		children,
-		basePath,
-		replaceState = false,
-		pathname: pathnameProp,
-		goto
-	}: Props = $props();
+	let { children, basePath, replaceState = false, pathname: pathnameProp, goto }: Props = $props();
 
 	let fallbackPathname = $state(typeof window !== 'undefined' ? window.location.pathname : '');
 

@@ -64,8 +64,8 @@
 	<TableRow>
 		<div><code>replaceState</code></div>
 		<div>
-			Whether to replace the current history entry when navigating, instead of pushing a new
-			one. Only used with <code>basePath</code> and <code>goto</code>.
+			Whether to replace the current history entry when navigating, instead of pushing a new one.
+			Only used with <code>basePath</code> and <code>goto</code>.
 		</div>
 	</TableRow>
 </Table>
@@ -102,8 +102,8 @@
 	<TableRow>
 		<div><code>active</code></div>
 		<div>
-			Set to <code>true</code> to make the tab active (optional). Only use if you want to control
-			the active tab from outside.
+			Set to <code>true</code> to make the tab active (optional). Only use if you want to control the
+			active tab from outside.
 		</div>
 	</TableRow>
 </Table>

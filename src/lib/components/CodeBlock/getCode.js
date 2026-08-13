@@ -1,7 +1,7 @@
 import { codeToHtml } from 'shiki';
 
 /**
- * @param {string} code 
+ * @param {string} code
  * @returns {string}
  */
 export function sanitizeLines(code) {
@@ -40,8 +40,8 @@ export function sanitizeLines(code) {
 }
 
 /**
- * @param {string} code 
- * @param {import('./types.codeblock.ts').Language | null} language 
+ * @param {string} code
+ * @param {import('./types.codeblock.ts').Language | null} language
  * @returns {Promise<string>}
  */
 export async function highlightCode(code, language) {

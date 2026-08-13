@@ -9,10 +9,7 @@ const config = {
 
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
-	preprocess: [
-		markdownPlugin(),
-		vitePreprocess()
-	],
+	preprocess: [markdownPlugin(), vitePreprocess()],
 
 	kit: {
 		adapter: adapter({

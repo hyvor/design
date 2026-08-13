@@ -2,7 +2,8 @@
 	import Button from '../Button/Button.svelte';
 	import IconCopy from '@hyvor/icons/IconCopy';
 	import toast from '../Toast/toast.js';
-	import { highlightCode, sanitizeLines, type Language } from './getCode';
+	import { highlightCode, sanitizeLines } from './getCode.js';
+	import type { Language } from './types.codeblock.js';
 
 	interface Props {
 		code: string;

@@ -13,3 +13,13 @@ const config = {
 
 export default config;
 ```
+
+Then, you can import markdown files directly into your Svelte components.
+
+```svelte
+<script>
+	import Markdown from './markdown.md';
+</script>
+
+<Markdown />
+```

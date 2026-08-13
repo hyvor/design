@@ -1,7 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
-import { markdownPlugin } from './src/lib/components/markdown/markdown.js';
+import { markdownPlugin } from './src/lib/dev/markdown.js';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {

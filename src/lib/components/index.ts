@@ -20,8 +20,7 @@ export { default as Callout } from './Callout/Callout.svelte';
 export { default as Checkbox } from './Checkbox/Checkbox.svelte';
 
 export { default as CodeBlock } from './CodeBlock/CodeBlock.svelte';
-export { highlightCode } from './CodeBlock/getCode.js';
-export { markdownPlugin } from './markdown/markdown.js';
+export { highlightCode } from './CodeBlock/getCode';
 export { default as TabbedCodeBlock } from './CodeBlock/TabbedCodeBlock.svelte';
 
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';

@@ -48,6 +48,7 @@ import TernaryStatus from './docs/TernaryStatus.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
+import MarkdownDoc from './docs/markdown.md';
 
 export const prerender = true;
 
@@ -98,7 +99,8 @@ const SECTIONS: NavSectionConfig[] = [
 		navs: [
 			{ type: 'page', name: 'Overview', slug: '', content: Index },
 			{ type: 'page', name: 'Dark Mode', slug: 'dark', content: Dark },
-			{ type: 'page', name: 'i18n', slug: 'i18n', content: Internationalization }
+			{ type: 'page', name: 'i18n', slug: 'i18n', content: Internationalization },
+			{ type: 'page', name: 'Markdown', slug: 'markdown', content: MarkdownDoc }
 		]
 	},
 	{

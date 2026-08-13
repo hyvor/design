@@ -61,3 +61,34 @@ a {
 	color: var(--link);
 	text-decoration: underline;
 }
+
+/** code block styles */
+.hds-code-block pre {
+	text-align: left;
+	white-space: pre;
+	word-spacing: normal;
+	word-break: normal;
+	word-wrap: normal;
+	overflow: auto;
+	border-radius: 20px;
+	padding: 20px;
+	line-height: 1.2;
+	background-color: #f4f2f0 !important;
+}
+
+.hds-code-block pre code {
+	all: unset;
+	font-size: 14px;
+	line-height: 1.5 !important;
+	tab-size: 4;
+	hyphens: none;
+}
+
+:root.dark .shiki,
+:root.dark .shiki span {
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
+}

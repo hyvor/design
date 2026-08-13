@@ -1,19 +1,10 @@
 import { codeToHtml } from 'shiki';
 
-export type Language =
-	| 'html'
-	| 'css'
-	| 'js'
-	| 'ts'
-	| 'yaml'
-	| 'json'
-	| 'svelte'
-	| 'jsx'
-	| 'php'
-	| 'sh'
-	| string; // see https://shiki.style/languages
-
-export function sanitizeLines(code: string) {
+/**
+ * @param {string} code
+ * @returns {string}
+ */
+export function sanitizeLines(code) {
 	let ret = code;
 
 	// remove the first empty line
@@ -22,7 +13,11 @@ export function sanitizeLines(code: string) {
 	ret = ret.replace(/\n[^\S\r\n]*$/, '');
 
 	let lines = ret.split('\n');
-	let indent: null | number = null; // number of spaces to remove from each line
+
+	/**
+	 * @type {null | number}
+	 */
+	let indent = null; // number of spaces to remove from each line
 
 	lines = lines.map((line) => {
 		if (indent === null) {
@@ -44,7 +39,12 @@ export function sanitizeLines(code: string) {
 	return lines.join('\n');
 }
 
-export async function getCode(code: string, language: Language | null): Promise<string> {
+/**
+ * @param {string} code
+ * @param {import('./types.codeblock.ts').Language | null} language
+ * @returns {Promise<string>}
+ */
+export async function highlightCode(code, language) {
 	return await codeToHtml(code, {
 		lang: language || 'text',
 		themes: {

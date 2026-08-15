@@ -111,7 +111,7 @@
 						{/snippet}
 					</ActionListItem>
 				</a>
-				<a href={SOCIAL_LINKS.blueksy} target="_blank">
+				<a href={SOCIAL_LINKS.bluesky} target="_blank">
 					<ActionListItem>
 						Bluesky
 						{#snippet start()}

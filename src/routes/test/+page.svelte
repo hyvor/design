@@ -1,11 +1,28 @@
-<script>
+<script lang="ts">
 	import Base from '$lib/components/Base/Base.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
+	import HeaderNavLink from '$lib/marketing/Header/HeaderNavLink.svelte';
 	import Button from '../../lib/components/Button/Button.svelte';
+	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconGithub from '@hyvor/icons/IconGithub';
+	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
+	import { page } from '$app/stores';
+
+	let resourcesOpen = $state(false);
+
+	const isThemesOrIntegrations = $derived(
+		$page.url.pathname === '/themes' || $page.url.pathname.startsWith('/integrations')
+	);
+
+	function closeOnLinkClick(e: MouseEvent) {
+		const target = e.target as HTMLElement;
+		if (target.tagName === 'A' || target.closest('a')) {
+			resourcesOpen = false;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -14,7 +31,43 @@
 
 <Header product="relay" name="HYVOR" subName="Design System" max={true}>
 	{#snippet center()}
-		<!-- Center content can go here -->
+		<HeaderNavLink href="/pricing" active={$page.url.pathname === '/pricing'}>
+			Pricing
+		</HeaderNavLink>
+		<HeaderNavLink href="/test" active={$page.url.pathname === '/test'}>Docs</HeaderNavLink>
+		<HeaderNavLink href="/hosting" active={$page.url.pathname.startsWith('/hosting')}>
+			Hosting
+		</HeaderNavLink>
+
+		<Dropdown bind:show={resourcesOpen} contentPadding={8}>
+			{#snippet trigger()}
+				<HeaderNavLink active={isThemesOrIntegrations}>
+					Resources
+					{#snippet end()}<IconCaretDown size={11} />{/snippet}
+				</HeaderNavLink>
+			{/snippet}
+			{#snippet content()}
+				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+				<div onclick={closeOnLinkClick}>
+					<HeaderNavLink href="/themes" menu active={$page.url.pathname === '/themes'}>
+						Themes
+					</HeaderNavLink>
+					<HeaderNavLink
+						href="/integrations"
+						menu
+						active={$page.url.pathname.startsWith('/integrations')}
+					>
+						Integrations
+					</HeaderNavLink>
+				</div>
+			{/snippet}
+		</Dropdown>
+
+		<HeaderNavLink href="https://github.com/hyvor/design" target="_blank">
+			{#snippet start()}<IconGithub size={12} />{/snippet}
+			Github
+			{#snippet end()}<IconBoxArrowUpRight size={11} />{/snippet}
+		</HeaderNavLink>
 	{/snippet}
 	{#snippet end()}
 		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
@@ -30,7 +83,7 @@
 </Header>
 
 <Base>
-	<div class="hds-container-max">
+	<div class="hds-container-max demo-spacer">
 		<h1>This is a test page</h1>
 
 		<p>
@@ -44,7 +97,13 @@
 	</div>
 </Base>
 
-<Footer email="talk.support@hyvor.com" max={true}>
+<Footer
+	name="Hyvor Talk"
+	logo="/favicon.svg"
+	background="#574443"
+	email="talk.support@hyvor.com"
+	max={true}
+>
 	{#snippet center()}
 		<div class="footer-wrap">
 			<div style="display:flex" class="footer">
@@ -90,7 +149,7 @@
 		}
 	}
 
-	div {
+	.demo-spacer {
 		height: 5000px;
 		padding: 100px 0;
 	}

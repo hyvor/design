@@ -1,9 +1,12 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import type { Snippet } from 'svelte';
 	import Container from './../Container/Container.svelte';
 	import DarkToggle from '../../components/Dark/DarkToggle.svelte';
 	import IconButton from '../../components/IconButton/IconButton.svelte';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
 	import IconList from '@hyvor/icons/IconList';
+	import IconX from '@hyvor/icons/IconX';
 	import HeaderNotification from './HeaderNotification.svelte';
 
 	interface Props {
@@ -14,8 +17,8 @@
 		href?: string;
 		subName?: undefined | string;
 		darkToggle?: boolean;
-		center?: import('svelte').Snippet;
-		end?: import('svelte').Snippet;
+		center?: Snippet;
+		end?: Snippet;
 		max?: boolean;
 	}
 
@@ -31,9 +34,27 @@
 		end,
 		max = false
 	}: Props = $props();
+
+	let scrolled = $state(false);
+	let mobileOpen = $state(false);
+
+	onMount(() => {
+		const onScroll = () => (scrolled = window.scrollY > 8);
+		onScroll();
+		window.addEventListener('scroll', onScroll, { passive: true });
+		return () => window.removeEventListener('scroll', onScroll);
+	});
+
+	// close the mobile menu once a link inside it is clicked
+	function closeOnLinkClick(e: MouseEvent) {
+		const target = e.target as HTMLElement;
+		if (target.tagName === 'A' || target.closest('a')) {
+			mobileOpen = false;
+		}
+	}
 </script>
 
-<header>
+<header class:scrolled>
 	<HeaderNotification {instance} {product} />
 	<Container as="nav" {max}>
 		<div class="nav-start">
@@ -41,8 +62,8 @@
 				<img
 					src={logo || `${instance}/api/public/logo/${product}.svg`}
 					alt="{name + (subName ? ' ' + subName : '')} Logo"
-					width="30"
-					height="30"
+					width="26"
+					height="26"
 				/>
 				<span class="brand-product">
 					<span class="brand">{name}</span>
@@ -70,20 +91,30 @@
 		</div>
 
 		<span class="mobile-nav-wrap">
-			<Dropdown align="end" width={300}>
+			<Dropdown bind:show={mobileOpen} align="end" width={300} contentPadding={8}>
 				{#snippet trigger()}
-					<IconButton variant="invisible">
-						<IconList size={18} />
+					<IconButton variant="invisible" aria-label="Menu">
+						{#if mobileOpen}
+							<IconX size={18} />
+						{:else}
+							<IconList size={18} />
+						{/if}
 					</IconButton>
 				{/snippet}
 				{#snippet content()}
-					<div class="mobile-content">
-						<div class="mobile-inner center">
-							{@render center?.()}
-						</div>
-						<div class="mobile-inner end">
-							{@render end?.()}
-						</div>
+					<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+					<div class="mobile-content" onclick={closeOnLinkClick}>
+						{#if center}
+							<div class="mobile-inner">
+								{@render center()}
+							</div>
+						{/if}
+						{#if end}
+							<div class="mobile-divider"></div>
+							<div class="mobile-inner end">
+								{@render end()}
+							</div>
+						{/if}
 					</div>
 				{/snippet}
 			</Dropdown>
@@ -105,10 +136,15 @@
 		width: 100%;
 		z-index: 100;
 		background-color: var(--background, var(--accent-lightest));
-		border-bottom: 1px solid var(--border);
+		border-bottom: 1px solid transparent;
 		height: var(--header-height);
 		display: flex;
 		flex-direction: column;
+		transition: border-color 0.2s ease;
+	}
+
+	header.scrolled {
+		border-bottom-color: var(--border);
 	}
 
 	header :global(> nav) {
@@ -117,7 +153,9 @@
 		flex: 1;
 	}
 	.nav-brand {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
 		line-height: inherit;
 		white-space: nowrap;
 		color: inherit;
@@ -125,11 +163,10 @@
 		font-weight: 600;
 	}
 	.nav-brand img {
-		vertical-align: middle;
+		display: block;
 	}
 
 	.brand-product {
-		vertical-align: middle;
 		display: inline-flex;
 		flex-direction: column;
 		justify-content: center;
@@ -148,7 +185,7 @@
 		flex: 1;
 		display: flex;
 		align-items: center;
-		gap: 6px;
+		gap: 2px;
 		justify-content: center;
 	}
 
@@ -192,16 +229,20 @@
 	.mobile-inner {
 		display: flex;
 		flex-direction: column;
-	}
-	.mobile-content {
-		gap: 10px;
+		gap: 2px;
 	}
 
 	.mobile-content :global(.button) {
 		display: flex;
 	}
 
-	/* 
+	.mobile-divider {
+		height: 1px;
+		background: var(--border);
+		margin: 6px 4px;
+	}
+
+	/*
 		Scroll padding top is used to prevent the content from being hidden behind the header
 		https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-top
 	*/

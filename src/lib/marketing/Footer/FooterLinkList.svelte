@@ -17,12 +17,16 @@
 <style>
 	.link-list {
 		flex: 1;
+		min-width: 150px;
 	}
 
 	.title {
-		font-weight: 600;
+		font-size: 12px;
+		font-weight: 700;
 		text-transform: uppercase;
-		margin-bottom: 10px;
+		letter-spacing: 0.05em;
+		color: var(--footer-muted, var(--text-light));
+		margin-bottom: 14px;
 	}
 
 	.links {
@@ -32,9 +36,12 @@
 	}
 
 	.links :global(a) {
-		margin-top: 12px;
+		font-size: 14px;
+		color: var(--footer-text, var(--text-light));
+		margin-top: 10px;
 	}
 	.links :global(a:hover) {
+		color: var(--footer-text-strong, var(--text));
 		text-decoration: underline;
 	}
 </style>

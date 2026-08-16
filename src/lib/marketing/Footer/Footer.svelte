@@ -172,12 +172,7 @@
 						{#each SOCIAL_PLATFORMS as platform (platform.key)}
 							{@const href = socialLinks[platform.key]}
 							{#if href}
-								<a
-									{href}
-									target="_blank"
-									rel="nofollow"
-									aria-label={platform.label}
-								>
+								<a {href} target="_blank" rel="nofollow" aria-label={platform.label}>
 									<platform.icon size={16} />
 								</a>
 							{/if}
@@ -206,11 +201,7 @@
 								<svg class="ring" viewBox="0 0 32 32" aria-hidden="true">
 									<circle cx="16" cy="16" r="16" fill="#173a8a" />
 									{#each gdprStars as s}
-										<path
-											d={gdprStarPath}
-											fill="#ffcd3c"
-											transform="translate({s.x}, {s.y})"
-										/>
+										<path d={gdprStarPath} fill="#ffcd3c" transform="translate({s.x}, {s.y})" />
 									{/each}
 								</svg>
 								<span class="lock"><IconLockFill size={10} /></span>

@@ -80,9 +80,8 @@
 	On mobile and tablets (<code>&lt;=992px</code>), content in both
 	<code>center</code>
 	and <code>end</code> slots will be hidden, and a hamburger menu will be shown instead. The hamburger
-	menu opens a dropdown with the content of both slots (with a divider between them), and its icon
-	switches from a hamburger to a close (X) icon while open. Clicking any link inside the menu closes
-	it automatically.
+	menu opens a dropdown with the content of both slots (with a divider between them), and its icon switches
+	from a hamburger to a close (X) icon while open. Clicking any link inside the menu closes it automatically.
 </p>
 
 <p>
@@ -231,8 +230,8 @@
 		<div><code>logo</code></div>
 		<div></div>
 		<div>
-			URL/path to an optional mascot/logo image. When given, it's shown peeking above the footer
-			and tilts/fades in once scrolled into view. Omit it for no mascot.
+			URL/path to an optional mascot/logo image. When given, it's shown peeking above the footer and
+			tilts/fades in once scrolled into view. Omit it for no mascot.
 		</div>
 	</TableRow>
 
@@ -266,7 +265,7 @@
 				<li><code>linkedin</code></li>
 				<li><code>bluesky</code></li>
 			</ul>
-			All six are shown by default (with HYVOR's own accounts) — pass a key as <code>undefined</code>
+			All six are shown by default (with HYVOR's own accounts) — pass a key as<code>undefined</code>
 			to hide that one icon.
 		</div>
 	</TableRow>
@@ -315,8 +314,8 @@
 		<div><code>center</code></div>
 		<div>
 			The link columns area, between the top row (brand/email/socials) and the bottom bar
-			(copyright/GDPR badge). Usually built with one <code>FooterLinkList</code> per column, wrapped
-			in your own flex/grid container.
+			(copyright/GDPR badge). Usually built with one <code>FooterLinkList</code> per column, wrapped in
+			your own flex/grid container.
 		</div>
 	</TableRow>
 </Table>

@@ -62,6 +62,23 @@
 		<div>300</div>
 		<div>The max width of the tooltip in pixels.</div>
 	</TableRow>
+
+	<TableRow>
+		<div><code>delay</code></div>
+		<div>100</div>
+		<div>The delay in milliseconds before the tooltip is shown after hovering.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>wrapperProps</code></div>
+		<div></div>
+		<div>
+			Props to pass to the wrapping <code>&lt;div&gt;</code> element, such as
+			<code>class</code>
+			or
+			<code>style</code>.
+		</div>
+	</TableRow>
 </Table>
 
 <h2 id="slots">Slots</h2>
@@ -119,12 +136,16 @@
 		</div>
 
 		<div class="horizontal">
-			<Tooltip text="Left tooltip" position="left"><Button color="gray">Left</Button></Tooltip>
-			<Tooltip text="Right tooltip" position="right"><Button color="gray">Right</Button></Tooltip>
+			<Tooltip text="Left tooltip" position="left"><Button color="gray">Left</Button></Tooltip
+			>
+			<Tooltip text="Right tooltip" position="right"
+				><Button color="gray">Right</Button></Tooltip
+			>
 		</div>
 
 		<div class="bottom">
-			<Tooltip text="Bottom tooltip" position="bottom"><Button color="gray">Bottom</Button></Tooltip
+			<Tooltip text="Bottom tooltip" position="bottom"
+				><Button color="gray">Bottom</Button></Tooltip
 			>
 		</div>
 	</div>
@@ -206,6 +227,27 @@
 		text="This is a very long text with a lot of characters and words. Let's see how this is displayed in a tooltip"
 		maxWidth={200}
 	>
+		<Button>Hover me</Button>
+	</Tooltip>
+</CodeResult>
+
+<h3 id="delay">Delay</h3>
+
+<p>
+	By default, the tooltip is shown <code>100ms</code> after hovering. You can change this value by
+	setting the <code>delay</code> prop.
+</p>
+
+<CodeBlock
+	code={`
+    <Tooltip text="Shows after 1 second" delay={1000}>
+        <Button>Hover me</Button>
+    </Tooltip>
+`}
+/>
+
+<CodeResult>
+	<Tooltip text="Shows after 1 second" delay={1000}>
 		<Button>Hover me</Button>
 	</Tooltip>
 </CodeResult>

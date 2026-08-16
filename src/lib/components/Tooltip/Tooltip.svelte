@@ -1,22 +1,43 @@
-<!-- @migration-task Error while migrating Svelte code: This migration would change the name of a slot making the component unusable -->
 <script lang="ts">
-	import { tick, onMount, onDestroy } from 'svelte';
+	import { tick, onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	export let text: string = '';
-	export let position: 'top' | 'bottom' | 'left' | 'right' = 'top';
-	export let color: 'black' | 'accent' | 'soft' | 'danger' = 'black';
-	export let show = false;
-	export let maxWidth: number = 300;
-	export let disabled = false;
+	interface Props {
+		text?: string;
+		position?: 'top' | 'bottom' | 'left' | 'right';
+		color?: 'black' | 'accent' | 'soft' | 'danger';
+		show?: boolean;
+		maxWidth?: number;
+		disabled?: boolean;
+		delay?: number;
+		children?: Snippet;
+		tooltip?: Snippet;
+		wrapperProps?: HTMLAttributes<HTMLDivElement>;
+	}
 
-	let wrap: HTMLDivElement;
-	let tooltip: HTMLDivElement;
+	let {
+		text = '',
+		position = 'top',
+		color = 'black',
+		show = $bindable(false),
+		maxWidth = 300,
+		disabled = false,
+		delay = 100,
+		children,
+		tooltip,
+		wrapperProps = {}
+	}: Props = $props();
+
+	let wrap: HTMLDivElement | undefined = $state();
+	let tooltipEl: HTMLDivElement | undefined = $state();
+	let showTimeout: ReturnType<typeof setTimeout>;
 
 	function positionTooltip() {
-		if (wrap && tooltip && show) {
+		if (wrap && tooltipEl && show) {
 			const wrapRect = wrap.getBoundingClientRect();
-			const tooltipRect = tooltip.getBoundingClientRect();
+			const tooltipRect = tooltipEl.getBoundingClientRect();
 
 			let top, left;
 
@@ -36,36 +57,41 @@
 				left = position === 'left' ? leftVal : wrapRect.right + 10;
 			}
 
-			tooltip.style.top = top + 'px';
-			tooltip.style.left = left + 'px';
+			tooltipEl.style.top = top + 'px';
+			tooltipEl.style.left = left + 'px';
 		}
 	}
 
-	async function handleMouseEnter() {
+	function handleMouseEnter() {
 		if (!disabled) {
-			show = true;
-			await tick();
-			positionTooltip();
+			clearTimeout(showTimeout);
+			showTimeout = setTimeout(async () => {
+				show = true;
+				await tick();
+				positionTooltip();
+			}, delay);
 		}
 	}
 
 	function handleMouseLeave() {
+		clearTimeout(showTimeout);
 		show = false;
 	}
 
-	$: {
+	$effect(() => {
 		if (text) {
 			tick().then(() => {
 				positionTooltip();
 			});
 		}
-	}
+	});
 
 	onMount(() => {
 		positionTooltip();
 		document.addEventListener('scroll', positionTooltip);
 
 		return () => {
+			clearTimeout(showTimeout);
 			document.removeEventListener('scroll', positionTooltip);
 		};
 	});
@@ -73,23 +99,23 @@
 
 <div
 	class="tooltip-wrap {color}"
-	on:mouseenter={handleMouseEnter}
-	on:mouseleave={handleMouseLeave}
+	onmouseenter={handleMouseEnter}
+	onmouseleave={handleMouseLeave}
 	role="tooltip"
 	bind:this={wrap}
-	{...$$restProps}
+	{...wrapperProps}
 >
-	<slot />
+	{@render children?.()}
 
 	{#if !disabled && show}
 		<div
 			class="tooltip {position}"
 			style:max-width={maxWidth + 'px'}
-			bind:this={tooltip}
+			bind:this={tooltipEl}
 			transition:fade={{ duration: 100 }}
 		>
-			{#if $$slots.tooltip}
-				<slot name="tooltip" />
+			{#if tooltip}
+				{@render tooltip()}
 			{:else}
 				{text}
 			{/if}

@@ -28,7 +28,7 @@
 	position="bottom"
 	text="Switch Organization"
 	disabled={disableTooltip}
-	style="height: 100%"
+	wrapperProps={{ style: 'height: 100%' }}
 >
 	<button class="wrap" onclick={() => (show = true)} bind:this={trigger}>
 		<div class="data">

@@ -368,7 +368,7 @@
 		margin: 20px 0;
 	}
 
-	content :global(code) {
+	content :global(code:not(pre code)) {
 		font-size: 14px;
 		padding: 0.2em 0.4em;
 		display: inline-block;
@@ -379,7 +379,7 @@
 		line-height: normal;
 		font-weight: 400;
 	}
-	:global(:root.dark) content :global(code) {
+	:global(:root.dark) content :global(code:not(pre code)) {
 		background-color: #282c34;
 		color: #e06c75;
 	}

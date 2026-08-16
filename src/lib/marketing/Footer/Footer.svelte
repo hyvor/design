@@ -21,6 +21,7 @@
 
 	interface Props {
 		name?: string;
+		subname?: string;
 		product?: string;
 		instance?: string;
 		logo?: string;
@@ -37,10 +38,11 @@
 
 	let {
 		name = 'HYVOR',
+		subname,
 		product,
 		instance = 'https://hyvor.com',
 		logo,
-		background,
+		background = '#ececec',
 		email = null,
 		social = {},
 		languageToggle = true,
@@ -55,7 +57,9 @@
 	// `product` (e.g. "blogs") for the mascot to follow that product's logo
 	// automatically, or `logo` to override it directly. Neither given means
 	// no mascot.
-	const mascotLogo = $derived(logo || (product ? `${instance}/api/public/logo/${product}.svg` : undefined));
+	const mascotLogo = $derived(
+		logo || (product ? `${instance}/api/public/logo/${product}.svg` : undefined)
+	);
 
 	const socialLinks = $derived({ ...SOCIAL_LINKS, ...social });
 
@@ -124,7 +128,13 @@
 <div class="footer-outer">
 	{#if mascotLogo}
 		<div class="mascot-wrap" use:onView={() => (mascotInView = true)}>
-			<img src={mascotLogo} alt="{name} Logo" width="100" height="100" class:in-view={mascotInView} />
+			<img
+				src={mascotLogo}
+				alt="{name} Logo"
+				width="100"
+				height="100"
+				class:in-view={mascotInView}
+			/>
 		</div>
 	{/if}
 
@@ -133,6 +143,9 @@
 			<div class="top-row">
 				<div class="brand">
 					<span>{name}</span>
+					{#if subname}
+						<div class="subname">{subname}</div>
+					{/if}
 				</div>
 
 				<div class="top-row-right">
@@ -159,7 +172,12 @@
 						{#each SOCIAL_PLATFORMS as platform (platform.key)}
 							{@const href = socialLinks[platform.key]}
 							{#if href}
-								<a {href} target="_blank" rel="nofollow" aria-label={platform.label}>
+								<a
+									{href}
+									target="_blank"
+									rel="nofollow"
+									aria-label={platform.label}
+								>
 									<platform.icon size={16} />
 								</a>
 							{/if}
@@ -221,6 +239,7 @@
 <style>
 	.footer-outer {
 		position: relative;
+		margin-top: 100px;
 	}
 
 	.mascot-wrap {
@@ -277,7 +296,6 @@
 		z-index: 1;
 		background: var(--footer-bg, transparent);
 		color: var(--footer-text);
-		border-top: 1px solid var(--footer-border);
 		padding-top: 50px;
 	}
 
@@ -287,13 +305,13 @@
 		is assumed to be a branded dark card (as opposed to the default,
 		which just inherits the page background and follows the site theme).
 	*/
-	footer.card {
+	/* footer.card {
 		--footer-text: rgba(255, 255, 255, 0.75);
 		--footer-text-strong: #fff;
 		--footer-muted: rgba(255, 255, 255, 0.45);
 		--footer-border: rgba(255, 255, 255, 0.08);
 		--footer-hover: #fff;
-	}
+	} */
 
 	.top-row {
 		display: flex;
@@ -306,12 +324,15 @@
 	}
 
 	.brand {
-		display: flex;
-		align-items: center;
-		gap: 10px;
 		font-size: 16px;
 		font-weight: 700;
 		color: var(--footer-text-strong);
+	}
+
+	.subname {
+		font-size: 13px;
+		font-weight: 400;
+		color: var(--footer-muted);
 	}
 
 	.top-row-right {

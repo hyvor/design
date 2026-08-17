@@ -10,6 +10,7 @@
 		start?: Snippet;
 		children?: Snippet;
 		end?: Snippet;
+		description?: Snippet;
 		onclick?: (event: MouseEvent) => void;
 		[key: string]: unknown;
 	}
@@ -23,16 +24,12 @@
 		start,
 		children,
 		end,
+		description,
 		onclick,
 		...rest
 	}: Props = $props();
 </script>
 
-<!--
-	Renders as an <a> when `href` is given. Otherwise, it renders as a <span>
-	so it can be used as a Dropdown trigger (e.g. a "Resources" menu with a
-	caret icon in `end`).
--->
 <svelte:element
 	this={href ? 'a' : 'span'}
 	{href}
@@ -43,15 +40,26 @@
 	tabindex={href ? undefined : 0}
 	class="header-nav-link"
 	class:active
-	class:menu
+	class:menu={menu || !!description}
+	class:rich={!!description}
 	{...rest}
 >
-	{#if start}
-		<span class="start">{@render start()}</span>
-	{/if}
-	{@render children?.()}
-	{#if end}
-		<span class="end">{@render end()}</span>
+	{#if description}
+		{#if start}
+			<span class="icon-box">{@render start()}</span>
+		{/if}
+		<span class="text-stack">
+			<span class="title">{@render children?.()}</span>
+			<span class="desc">{@render description()}</span>
+		</span>
+	{:else}
+		{#if start}
+			<span class="start">{@render start()}</span>
+		{/if}
+		{@render children?.()}
+		{#if end}
+			<span class="end">{@render end()}</span>
+		{/if}
 	{/if}
 </svelte:element>
 
@@ -84,14 +92,6 @@
 		color: var(--text);
 	}
 
-	/*
-		Compact style for links placed inside a Dropdown's menu content
-		(e.g. a "Resources" submenu, or Header's own mobile menu). The
-		outer box radius is --box-radius (20px), and Dropdown content is
-		usually given an 8px padding — 20 - 8 = 12 keeps the gap between
-		the box edge and this pill visually even all the way around,
-		including through the corners, instead of pinching at the diagonal.
-	*/
 	.header-nav-link.menu {
 		width: 100%;
 		padding: 8px 10px;
@@ -102,5 +102,47 @@
 	.end {
 		display: inline-flex;
 		align-items: center;
+	}
+
+	/* icon + title + description layout, see `description` above */
+	.header-nav-link.rich {
+		align-items: flex-start;
+		gap: 10px;
+		white-space: normal;
+	}
+
+	.icon-box {
+		flex: none;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 30px;
+		height: 30px;
+		border-radius: 8px;
+		background: var(--accent-light);
+		color: var(--accent);
+	}
+
+	.header-nav-link.rich.active .icon-box {
+		background: var(--background);
+	}
+
+	.text-stack {
+		display: flex;
+		flex-direction: column;
+		gap: 1px;
+		padding-top: 1px;
+	}
+
+	.title {
+		font-size: 13px;
+		font-weight: 600;
+		color: var(--text);
+	}
+
+	.desc {
+		font-size: 12px;
+		font-weight: 400;
+		color: var(--text-light);
 	}
 </style>

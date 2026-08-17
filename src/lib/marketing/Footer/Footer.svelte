@@ -26,6 +26,8 @@
 		instance?: string;
 		logo?: string;
 		background?: string;
+		backgroundDark?: string;
+		card?: boolean;
 		email?: string | null;
 		social?: Partial<Socials>;
 		languageToggle?: boolean;
@@ -42,7 +44,9 @@
 		product,
 		instance = 'https://hyvor.com',
 		logo,
-		background = '#ececec',
+		background,
+		backgroundDark,
+		card = false,
 		email = null,
 		social = {},
 		languageToggle = true,
@@ -138,7 +142,7 @@
 		</div>
 	{/if}
 
-	<footer class:card={!!background} style:--footer-bg={background}>
+	<footer class:card style:--footer-bg={background} style:--footer-bg-dark={backgroundDark}>
 		<Container {max}>
 			<div class="top-row">
 				<div class="brand">
@@ -291,18 +295,19 @@
 	}
 
 	/*
-		"card" mode kicks in whenever a `background` color is given — it swaps
-		the footer to a light-text-on-dark scheme, since a custom background
-		is assumed to be a branded dark card (as opposed to the default,
-		which just inherits the page background and follows the site theme).
+		`backgroundDark` only when needed for dark mode - not complusory
 	*/
-	/* footer.card {
+	:global(:root.dark) footer {
+		background: var(--footer-bg-dark, var(--footer-bg, transparent));
+	}
+
+	footer.card {
 		--footer-text: rgba(255, 255, 255, 0.75);
 		--footer-text-strong: #fff;
 		--footer-muted: rgba(255, 255, 255, 0.45);
 		--footer-border: rgba(255, 255, 255, 0.08);
 		--footer-hover: #fff;
-	} */
+	}
 
 	.top-row {
 		display: flex;
@@ -374,12 +379,7 @@
 		padding: 48px 0;
 	}
 
-	/*
-		The bottom bar only gets its own top border when there's actual
-		`center` content above it — otherwise that border would sit right
-		on top of .top-row's bottom border (since .footer-center collapses
-		to zero height when empty), making a single divider look doubled.
-	*/
+	/* only if there is no center element - to prevent double border apperance */
 	.footer-center:not(:empty) + .bottom-bar {
 		border-top: 1px solid var(--footer-border);
 	}
@@ -408,11 +408,6 @@
 		gap: 6px;
 	}
 
-	/*
-		The GDPR badge carries its own fixed navy/gold EU colors so it stays
-		legible regardless of the footer's background — a compliance badge
-		shouldn't fade into a light theme the way muted footer text does.
-	*/
 	.gdpr-chip {
 		display: inline-flex;
 		align-items: center;

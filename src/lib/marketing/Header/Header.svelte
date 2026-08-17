@@ -243,8 +243,7 @@
 	}
 
 	/*
-		Scroll padding top is used to prevent the content from being hidden behind the header
-		https://developer.mozilla.org/en-US/docs/Web/CSS/scroll-padding-top
+		used to prevent the content from being hidden behind the header
 	*/
 	:global(html) {
 		scroll-padding-top: calc(var(--header-height) + 20px);

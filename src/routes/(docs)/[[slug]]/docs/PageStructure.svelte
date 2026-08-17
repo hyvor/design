@@ -20,11 +20,24 @@
 
 <h3 id="props">Properties</h3>
 
-<Table columns="2fr 2fr 3fr">
+<Table columns="1fr 2fr 3fr">
 	<TableRow head>
 		<div>Name</div>
 		<div>Default</div>
 		<div>Description</div>
+	</TableRow>
+	<TableRow>
+		<div><code>product</code></div>
+		<div></div>
+		<div>
+			Product slug (e.g. <code>"blogs"</code>). Derives the default logo and fetches the cloud
+			updates banner on <code>hyvor.com</code>.
+		</div>
+	</TableRow>
+	<TableRow>
+		<div><code>instance</code></div>
+		<div><code>"https://hyvor.com"</code></div>
+		<div>Base URL used to build the default logo and updates banner.</div>
 	</TableRow>
 	<TableRow>
 		<div><code>name</code></div>
@@ -39,7 +52,7 @@
 	<TableRow>
 		<div><code>logo</code></div>
 		<div></div>
-		<div>URL/path to the logo image.</div>
+		<div>URL/path to the logo image. Overrides the <code>product</code>-derived default.</div>
 	</TableRow>
 	<TableRow>
 		<div><code>darkToggle</code></div>
@@ -119,8 +132,8 @@
 		<div><code>menu</code></div>
 		<div><code>false</code></div>
 		<div>
-			Use the compact style meant for links placed inside a Dropdown's menu content (e.g. a
-			"Resources" submenu, or the header's own mobile menu).
+			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu). Implied
+			automatically when <code>description</code> is given.
 		</div>
 	</TableRow>
 </Table>
@@ -134,7 +147,10 @@
 	</TableRow>
 	<TableRow>
 		<div><code>start</code></div>
-		<div>Content before the label. Usually an icon.</div>
+		<div>
+			Content before the label, usually an icon. Renders inside a tinted icon box when
+			<code>description</code> is given.
+		</div>
 	</TableRow>
 	<TableRow>
 		<div><code>children</code></div>
@@ -142,7 +158,17 @@
 	</TableRow>
 	<TableRow>
 		<div><code>end</code></div>
-		<div>Content after the label. Usually an icon, e.g. a caret for a dropdown trigger.</div>
+		<div>
+			Content after the label, usually a caret icon. Not used when <code>description</code>
+			is given.
+		</div>
+	</TableRow>
+	<TableRow>
+		<div><code>description</code></div>
+		<div>
+			A one-line description shown under the label. Switches to a richer layout (icon box, bold
+			title, muted description) for menus needing more than a label.
+		</div>
 	</TableRow>
 </Table>
 
@@ -156,6 +182,8 @@
         import { HeaderNavLink } from "@hyvor/design/marketing";
         import { Button, Dropdown } from "@hyvor/design/components";
         import IconCaretDown from "@hyvor/icons/IconCaretDown";
+        import IconPalette from "@hyvor/icons/IconPalette";
+        import IconPuzzle from "@hyvor/icons/IconPuzzle";
 
         import logo from '../img/logo.svg';
 
@@ -185,8 +213,16 @@
                     </HeaderNavLink>
                 {/snippet}
                 {#snippet content()}
-                    <HeaderNavLink href="/blog" menu>Blog</HeaderNavLink>
-                    <HeaderNavLink href="/themes" menu>Themes</HeaderNavLink>
+                    <HeaderNavLink href="/themes" active={page.url.pathname === '/themes'}>
+                        {#snippet start()}<IconPalette size={15} />{/snippet}
+                        Themes
+                        {#snippet description()}Blog themes to match your brand{/snippet}
+                    </HeaderNavLink>
+                    <HeaderNavLink href="/integrations" active={page.url.pathname.startsWith('/integrations')}>
+                        {#snippet start()}<IconPuzzle size={15} />{/snippet}
+                        Integrations
+                        {#snippet description()}Connect with your favorite tools{/snippet}
+                    </HeaderNavLink>
                 {/snippet}
             </Dropdown>
         {/snippet}
@@ -210,7 +246,7 @@
 
 <h3 id="props">Properties</h3>
 
-<Table columns="2fr 2fr 3fr">
+<Table columns="1fr 2fr 3fr">
 	<TableRow head>
 		<div>Name</div>
 		<div>Default</div>
@@ -220,18 +256,36 @@
 	<TableRow>
 		<div><code>name</code></div>
 		<div><code>"HYVOR"</code></div>
+		<div>The brand name shown top-left.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>subname</code></div>
+		<div></div>
+		<div>An optional line shown under <code>name</code>.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>product</code></div>
+		<div></div>
 		<div>
-			The brand name shown top-left. Note this is separate from the "HYVOR © year" line in the
-			bottom bar, which always refers to the company regardless of <code>name</code>.
+			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the mascot's
+			<code>logo</code> automatically when not given directly.
 		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>instance</code></div>
+		<div><code>"https://hyvor.com"</code></div>
+		<div>Base URL used to build the <code>product</code>-derived mascot logo.</div>
 	</TableRow>
 
 	<TableRow>
 		<div><code>logo</code></div>
 		<div></div>
 		<div>
-			URL/path to an optional mascot/logo image. When given, it's shown peeking above the footer and
-			tilts/fades in once scrolled into view. Omit it for no mascot.
+			URL/path to an optional mascot/logo image, overriding the <code>product</code>-derived
+			default.
 		</div>
 	</TableRow>
 
@@ -239,9 +293,26 @@
 		<div><code>background</code></div>
 		<div></div>
 		<div>
-			A CSS color (e.g. <code>"#574443"</code>) for a branded, always-dark footer card. When set,
-			text/border colors automatically switch to a light-on-dark scheme. When omitted, the footer
-			stays transparent and follows the app's own light/dark theme, like before.
+			A CSS color for the footer. When omitted, the footer stays transparent and follows the app's
+			theme.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>backgroundDark</code></div>
+		<div></div>
+		<div>
+			Overrides <code>background</code> in dark mode (e.g. a darker variant). Optional —
+			<code>background</code> is used in both themes if omitted.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>card</code></div>
+		<div><code>false</code></div>
+		<div>
+			Whether <code>background</code> is a branded color needing light text/borders regardless of theme.
+			Leave off for a subtle tint that should keep the app's normal text color.
 		</div>
 	</TableRow>
 
@@ -255,18 +326,9 @@
 		<div><code>social</code></div>
 		<div>null</div>
 		<div>
-			An object with social media links. The keys should be the names of the social media, and the
-			values should be the URLs. The accepted keys are
-			<ul>
-				<li><code>x</code></li>
-				<li><code>discord</code></li>
-				<li><code>github</code></li>
-				<li><code>youtube</code></li>
-				<li><code>linkedin</code></li>
-				<li><code>bluesky</code></li>
-			</ul>
-			All six are shown by default (with HYVOR's own accounts) — pass a key as<code>undefined</code>
-			to hide that one icon.
+			An object mapping social keys to URLs: <code>x</code>, <code>discord</code>,
+			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>. All
+			show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
 		</div>
 	</TableRow>
 
@@ -313,9 +375,8 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The link columns area, between the top row (brand/email/socials) and the bottom bar
-			(copyright/GDPR badge). Usually built with one <code>FooterLinkList</code> per column, wrapped in
-			your own flex/grid container.
+			The link columns area, between the top row and bottom bar. Usually one
+			<code>FooterLinkList</code> per column, wrapped in your own container.
 		</div>
 	</TableRow>
 </Table>
@@ -332,6 +393,8 @@
     name="Hyvor Blogs"
     logo="/logo.svg"
     background="#574443"
+    backgroundDark="#2a1f1e"
+    card={true}
     email="blogs.support@hyvor.com"
     social={{
         x: 'https://x.com/HyvorHQ'

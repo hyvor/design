@@ -48,6 +48,8 @@
 <Footer
 	product="core"
 	subname="Design System"
+	background="#ececec"
+	backgroundDark="#1c1c1c"
 	email="foss@hyvor.com"
 	social={{
 		youtube: undefined

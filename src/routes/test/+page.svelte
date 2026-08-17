@@ -7,6 +7,8 @@
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconGithub from '@hyvor/icons/IconGithub';
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
+	import IconPalette from '@hyvor/icons/IconPalette';
+	import IconPuzzle from '@hyvor/icons/IconPuzzle';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
 	import { page } from '$app/stores';
@@ -39,7 +41,7 @@
 			Hosting
 		</HeaderNavLink>
 
-		<Dropdown bind:show={resourcesOpen} contentPadding={8}>
+		<Dropdown bind:show={resourcesOpen} contentPadding={8} width={300}>
 			{#snippet trigger()}
 				<HeaderNavLink active={isThemesOrIntegrations}>
 					Resources
@@ -49,15 +51,18 @@
 			{#snippet content()}
 				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 				<div onclick={closeOnLinkClick}>
-					<HeaderNavLink href="/themes" menu active={$page.url.pathname === '/themes'}>
+					<HeaderNavLink href="/themes" active={$page.url.pathname === '/themes'}>
+						{#snippet start()}<IconPalette size={15} />{/snippet}
 						Themes
+						{#snippet description()}Blog themes to match your brand{/snippet}
 					</HeaderNavLink>
 					<HeaderNavLink
 						href="/integrations"
-						menu
 						active={$page.url.pathname.startsWith('/integrations')}
 					>
+						{#snippet start()}<IconPuzzle size={15} />{/snippet}
 						Integrations
+						{#snippet description()}Connect with your favorite tools{/snippet}
 					</HeaderNavLink>
 				</div>
 			{/snippet}
@@ -101,6 +106,8 @@
 	name="Hyvor Talk"
 	logo="/favicon.svg"
 	background="#574443"
+	backgroundDark="#2a1f1e"
+	card={true}
 	email="talk.support@hyvor.com"
 	max={true}
 >

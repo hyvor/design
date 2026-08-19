@@ -203,7 +203,10 @@ export function groupOperations(doc: OpenApiDocument): OperationGroup[] {
 			const responseEntry = responses['200'] ?? responses['201'] ?? responses['default'];
 			const responseContent = responseEntry?.content?.['application/json'];
 			if (responseEntry && (responseEntry.description || responseContent?.schema)) {
-				response = { description: responseEntry.description, schema: responseContent?.schema };
+				response = {
+					description: responseEntry.description,
+					schema: responseContent?.schema
+				};
 			}
 
 			groups.get(groupKey)!.operations.push({

@@ -68,7 +68,9 @@
 						<div class="meta">{field.schema.description}</div>
 					{/if}
 					{#if field.schema.default !== undefined}
-						<div class="meta">Default: <code>{JSON.stringify(field.schema.default)}</code></div>
+						<div class="meta">
+							Default: <code>{JSON.stringify(field.schema.default)}</code>
+						</div>
 					{/if}
 					{#if field.schema.pattern}
 						<div class="meta">Pattern: <code>{field.schema.pattern}</code></div>

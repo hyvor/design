@@ -108,12 +108,7 @@
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
-					<svg
-						class="avatar"
-						viewBox="0 0 5 5"
-						style="background: {av.bg}"
-						aria-hidden="true"
-					>
+					<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
 						{#each av.cells as cell}
 							<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
 						{/each}
@@ -136,13 +131,7 @@
 					</div>
 
 					<button class="play-btn" aria-label="Play video testimonial" disabled>
-						<svg
-							width="20"
-							height="20"
-							viewBox="0 0 16 16"
-							fill="currentColor"
-							aria-hidden="true"
-						>
+						<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
 							<path d="M5 3.5v9l8-4.5-8-4.5z" />
 						</svg>
 					</button>

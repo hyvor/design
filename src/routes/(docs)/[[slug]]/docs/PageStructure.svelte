@@ -30,8 +30,8 @@
 </ul>
 
 <p>
-	And for the main content area, stack the following sections in whatever order tells your
-	product's story:
+	And for the main content area, stack the following sections in whatever order tells your product's
+	story:
 </p>
 
 <ul>
@@ -103,9 +103,8 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The content in the center of the header. Usually, the navigation links like "Docs",
-			"Pricing", etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>.
-			You can also use
+			The content in the center of the header. Usually, the navigation links like "Docs", "Pricing",
+			etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>. You can also use
 			<a href="dropdown">Dropdowns</a> here (e.g. for a "Resources" menu).
 		</div>
 	</TableRow>
@@ -160,8 +159,8 @@
 		<div><code>menu</code></div>
 		<div><code>false</code></div>
 		<div>
-			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu).
-			Implied automatically when <code>description</code> is given.
+			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu). Implied
+			automatically when <code>description</code> is given.
 		</div>
 	</TableRow>
 </Table>
@@ -194,8 +193,8 @@
 	<TableRow>
 		<div><code>description</code></div>
 		<div>
-			A one-line description shown under the label. Switches to a richer layout (icon box,
-			bold title, muted description) for menus needing more than a label.
+			A one-line description shown under the label. Switches to a richer layout (icon box, bold
+			title, muted description) for menus needing more than a label.
 		</div>
 	</TableRow>
 </Table>
@@ -274,8 +273,8 @@
 
 <p>
 	These are the sections used to redesign the Hyvor Blogs homepage. Each is a self-contained
-	<code>{'<section>'}</code>, generic on copy and (where it makes brand sense) color, so they
-	stack to build the body of any marketing page — not just Hyvor Blogs.
+	<code>{'<section>'}</code>, generic on copy and (where it makes brand sense) color, so they stack
+	to build the body of any marketing page — not just Hyvor Blogs.
 </p>
 
 <h3 id="hero">Hero</h3>
@@ -319,8 +318,8 @@
 		<div><code>buttons</code></div>
 		<div></div>
 		<div>
-			A button config (<code>{'{ href, label, external?, size?, variant? }'}</code>), or an
-			array of them, rendered centered under the subtitle.
+			A button config (<code>{'{ href, label, external?, size?, variant? }'}</code>), or an array of
+			them, rendered centered under the subtitle.
 		</div>
 	</TableRow>
 
@@ -340,8 +339,8 @@
 		<div><code>fullHeight</code></div>
 		<div><code>true</code></div>
 		<div>
-			Fills the viewport below the header. Turn off for a shorter, content-sized hero — e.g.
-			on an inner page.
+			Fills the viewport below the header. Turn off for a shorter, content-sized hero — e.g. on an
+			inner page.
 		</div>
 	</TableRow>
 
@@ -349,8 +348,8 @@
 		<div><code>accentColor</code></div>
 		<div><code>var(--accent)</code></div>
 		<div>
-			Overrides the theme accent — used by the badge, <code>.hl</code>, <code>.marker</code>,
-			and the scroll indicator's dot — just for this hero, without touching
+			Overrides the theme accent — used by the badge, <code>.hl</code>, <code>.marker</code>, and
+			the scroll indicator's dot — just for this hero, without touching
 			<code>--accent</code> for the rest of the page.
 		</div>
 	</TableRow>
@@ -359,8 +358,8 @@
 		<div><code>accentColorDark</code></div>
 		<div></div>
 		<div>
-			Overrides <code>accentColor</code> in dark mode. Optional — <code>accentColor</code> is used
-			in both themes if omitted.
+			Overrides <code>accentColor</code> in dark mode. Optional — <code>accentColor</code> is used in
+			both themes if omitted.
 		</div>
 	</TableRow>
 </Table>
@@ -421,8 +420,8 @@
 <h3 id="feature-split">Feature Split</h3>
 
 <p>
-	A two-column "text next to a visual" section, used to walk through one feature at a time. The
-	text column (eyebrow, title, description, checklist bullets, buttons) sits next to a
+	A two-column "text next to a visual" section, used to walk through one feature at a time. The text
+	column (eyebrow, title, description, checklist bullets, buttons) sits next to a
 	<code>visual</code> snippet you control — a screenshot, an illustration, an interactive mockup, anything.
 </p>
 
@@ -494,8 +493,8 @@
 		<div><code>interactiveBullets</code></div>
 		<div><code>false</code></div>
 		<div>
-			Makes the bullets clickable tabs. The clicked (or auto-advancing) bullet's index is
-			passed to the <code>visual</code> snippet, so it can switch state to match.
+			Makes the bullets clickable tabs. The clicked (or auto-advancing) bullet's index is passed to
+			the <code>visual</code> snippet, so it can switch state to match.
 		</div>
 	</TableRow>
 
@@ -507,10 +506,10 @@
 </Table>
 
 <p>
-	Slots: <code>visual</code> is the right (or left, with <code>flip</code>) column, and receives
-	the active bullet index as its only argument. <code>left</code> replaces the entire text column
-	with your own content, when the default layout doesn't fit. <code>after</code> renders extra content
-	below the split, inside a wider (1400px) container.
+	Slots: <code>visual</code> is the right (or left, with <code>flip</code>) column, and receives the
+	active bullet index as its only argument. <code>left</code> replaces the entire text column with
+	your own content, when the default layout doesn't fit. <code>after</code> renders extra content below
+	the split, inside a wider (1400px) container.
 </p>
 
 <h4 id="feature-split-example">Example</h4>
@@ -564,8 +563,8 @@
 
 <p>
 	A drag-to-scroll row of customer quote cards, with a matching "coming soon" style card for video
-	testimonials. Each text review gets a deterministic, placeholder avatar (a colored identicon)
-	when no real photo exists yet.
+	testimonials. Each text review gets a deterministic, placeholder avatar (a colored identicon) when
+	no real photo exists yet.
 </p>
 
 <h4 id="testimonials-props">Properties</h4>
@@ -604,8 +603,8 @@
 		<div><code>handwrittenNames</code></div>
 		<div><code>true</code></div>
 		<div>
-			Sets reviewer names in a handwritten-style font (loaded from Bunny Fonts). Turn off to
-			use the regular typeface, e.g. if the page can't reach an external font host.
+			Sets reviewer names in a handwritten-style font (loaded from Bunny Fonts). Turn off to use the
+			regular typeface, e.g. if the page can't reach an external font host.
 		</div>
 	</TableRow>
 </Table>
@@ -650,7 +649,8 @@
 				type: 'text',
 				name: 'Lionel S.',
 				role: 'Blogger',
-				quote: 'I need a simple, easy-to-use, fast, beautiful and mature blogging tool. Hyvor Blogs handles this beautifully.'
+				quote:
+					'I need a simple, easy-to-use, fast, beautiful and mature blogging tool. Hyvor Blogs handles this beautifully.'
 			},
 			{
 				type: 'video',
@@ -661,7 +661,8 @@
 				type: 'text',
 				name: 'Manoj P.',
 				role: 'Senior Application Engineer',
-				quote: 'The platform offers a seamless and user-friendly experience for both bloggers and readers.'
+				quote:
+					'The platform offers a seamless and user-friendly experience for both bloggers and readers.'
 			}
 		]}
 	/>
@@ -700,9 +701,9 @@
 		<div><code>categories</code></div>
 		<div></div>
 		<div>
-			An array of <code>{'{ label, icon, color?, features }'}</code>. <code>color</code> is
-			any CSS color (e.g. <code>"var(--green)"</code> or <code>"#4b874b"</code>) and defaults
-			to the theme accent. Each <code>features</code> entry is
+			An array of <code>{'{ label, icon, color?, features }'}</code>. <code>color</code> is any CSS
+			color (e.g. <code>"var(--green)"</code> or <code>"#4b874b"</code>) and defaults to the theme
+			accent. Each <code>features</code> entry is
 			<code>{'{ icon, title, description }'}</code>.
 		</div>
 	</TableRow>
@@ -801,8 +802,8 @@
 
 <p>
 	Renders a list of questions as an accordion, split into one or two columns. It also emits a
-	matching <code>FAQPage</code> JSON-LD rich schema into <code>&lt;svelte:head&gt;</code>,
-	generated from the same data that renders the accordion.
+	matching <code>FAQPage</code> JSON-LD rich schema into <code>&lt;svelte:head&gt;</code>, generated
+	from the same data that renders the accordion.
 </p>
 
 <h4 id="faq-props">Properties</h4>
@@ -818,9 +819,8 @@
 		<div><code>items</code></div>
 		<div></div>
 		<div>
-			An array of <code>{'{ q, a }'}</code>. <code>a</code> is answer HTML — used verbatim
-			both as the rendered answer and as the rich schema's answer text, so keep it to the
-			limited formatting
+			An array of <code>{'{ q, a }'}</code>. <code>a</code> is answer HTML — used verbatim both as
+			the rendered answer and as the rich schema's answer text, so keep it to the limited formatting
 			<a
 				href="https://developers.google.com/search/docs/appearance/structured-data/faqpage"
 				target="_blank">Google's FAQPage guidelines</a
@@ -833,8 +833,8 @@
 		<div><code>columns</code></div>
 		<div><code>2</code></div>
 		<div>
-			<code>1</code> or <code>2</code>. With 2, items are split left-to-right, top-to-bottom,
-			and stack to a single column under 768px regardless.
+			<code>1</code> or <code>2</code>. With 2, items are split left-to-right, top-to-bottom, and
+			stack to a single column under 768px regardless.
 		</div>
 	</TableRow>
 
@@ -882,9 +882,9 @@
 <h3 id="full-trial-signup">Full Trial Signup</h3>
 
 <p>
-	A full-width, centered call-to-action section — typically used near the bottom of a marketing
-	page — with a title, a description, one or more buttons, and a row of reassurance checks (e.g.
-	"No credit card required").
+	A full-width, centered call-to-action section — typically used near the bottom of a marketing page
+	— with a title, a description, one or more buttons, and a row of reassurance checks (e.g. "No
+	credit card required").
 </p>
 
 <h4 id="full-trial-signup-props">Properties</h4>
@@ -985,8 +985,7 @@
 		<div><code>product</code></div>
 		<div></div>
 		<div>
-			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the
-			mascot's
+			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the mascot's
 			<code>logo</code> automatically when not given directly.
 		</div>
 	</TableRow>
@@ -1010,8 +1009,8 @@
 		<div><code>background</code></div>
 		<div></div>
 		<div>
-			A CSS color for the footer. When omitted, the footer stays transparent and follows the
-			app's theme.
+			A CSS color for the footer. When omitted, the footer stays transparent and follows the app's
+			theme.
 		</div>
 	</TableRow>
 
@@ -1028,8 +1027,8 @@
 		<div><code>card</code></div>
 		<div><code>false</code></div>
 		<div>
-			Whether <code>background</code> is a branded color needing light text/borders regardless of
-			theme. Leave off for a subtle tint that should keep the app's normal text color.
+			Whether <code>background</code> is a branded color needing light text/borders regardless of theme.
+			Leave off for a subtle tint that should keep the app's normal text color.
 		</div>
 	</TableRow>
 
@@ -1044,8 +1043,8 @@
 		<div>null</div>
 		<div>
 			An object mapping social keys to URLs: <code>x</code>, <code>discord</code>,
-			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>.
-			All show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
+			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>. All
+			show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
 		</div>
 	</TableRow>
 

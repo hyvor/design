@@ -114,9 +114,7 @@ const SECTIONS: NavSectionConfig[] = [
 	},
 	{
 		name: 'Cloud',
-		navs: [
-			{ type: 'page', name: 'Cloud Context', slug: 'cloud-context', content: CloudContextDoc }
-		]
+		navs: [{ type: 'page', name: 'Cloud Context', slug: 'cloud-context', content: CloudContextDoc }]
 	},
 	{
 		name: 'Marketing',

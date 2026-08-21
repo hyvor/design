@@ -20,3 +20,16 @@ export { default as Footer } from './Footer/Footer.svelte';
 export { default as FooterLinkList } from './Footer/FooterLinkList.svelte';
 
 export { default as Document } from './Document/Document.svelte';
+
+export { default as Hero } from './Hero/Hero.svelte';
+
+export { default as FeatureSplit } from './FeatureSplit/FeatureSplit.svelte';
+
+export { default as Testimonials } from './Testimonials/Testimonials.svelte';
+
+export { default as FullTrialSignup } from './FullTrialSignup/FullTrialSignup.svelte';
+
+export { default as AllFeaturesAccordion } from './AllFeaturesAccordion/AllFeaturesAccordion.svelte';
+export { default as AllFeaturesAccordionFeature } from './AllFeaturesAccordion/AllFeaturesAccordionFeature.svelte';
+
+export { default as FAQ } from './FAQ/FAQ.svelte';

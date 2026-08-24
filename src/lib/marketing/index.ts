@@ -2,6 +2,9 @@ export { default as Accordion } from './DetailsAccordion/DetailsAccordion.svelte
 
 export { default as Header } from './Header/Header.svelte';
 export { default as HeaderNavLink } from './Header/HeaderNavLink.svelte';
+export { default as HeaderLanguageToggle } from './Header/HeaderLanguageToggle.svelte';
+export { buildLocalizedUrl } from './Header/language.js';
+export type { LanguageOption } from './Header/language.js';
 
 export { default as Container } from './Container/Container.svelte';
 

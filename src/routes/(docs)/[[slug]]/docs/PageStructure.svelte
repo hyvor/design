@@ -1,7 +1,24 @@
-<script>
+<script lang="ts">
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
+	import CodeResult from './Helper/CodeResult.svelte';
+	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
+	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
+
+	const demoLanguages = [
+		{ code: 'en', flag: '🇬🇧', name: 'English' },
+		{ code: 'fr', flag: '🇫🇷', name: 'Français' }
+	];
+	let demoCurrentLang = $state('en');
+
+	function onDemoLanguageClick(e: MouseEvent) {
+		const a = (e.target as HTMLElement).closest('a[data-lang]');
+		if (a) {
+			e.preventDefault();
+			demoCurrentLang = a.getAttribute('data-lang') ?? demoCurrentLang;
+		}
+	}
 </script>
 
 <h1>Page Structure</h1>
@@ -76,8 +93,9 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The content in the center of the header. Usually, the navigation links like "Docs", "Pricing",
-			etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>. You can also use
+			The content in the center of the header. Usually, the navigation links like "Docs",
+			"Pricing", etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>.
+			You can also use
 			<a href="dropdown">Dropdowns</a> here (e.g. for a "Resources" menu).
 		</div>
 	</TableRow>
@@ -132,8 +150,8 @@
 		<div><code>menu</code></div>
 		<div><code>false</code></div>
 		<div>
-			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu). Implied
-			automatically when <code>description</code> is given.
+			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu).
+			Implied automatically when <code>description</code> is given.
 		</div>
 	</TableRow>
 </Table>
@@ -166,8 +184,8 @@
 	<TableRow>
 		<div><code>description</code></div>
 		<div>
-			A one-line description shown under the label. Switches to a richer layout (icon box, bold
-			title, muted description) for menus needing more than a label.
+			A one-line description shown under the label. Switches to a richer layout (icon box,
+			bold title, muted description) for menus needing more than a label.
 		</div>
 	</TableRow>
 </Table>
@@ -242,6 +260,138 @@
 `}
 />
 
+<h3 id="header-language-toggle">HeaderLanguageToggle</h3>
+
+<p>
+	<code>HeaderLanguageToggle</code> is for marketing sites that serve each language on its own URL
+	(e.g. a SvelteKit <code>[[lang]]</code> route param) rather than switching language client-side
+	on one page. Use it inside the <code>center</code> slot, next to your
+	<code>HeaderNavLink</code>s. It's not related to
+	<a href="i18n"><code>InternationalizationService</code></a>/<code>LanguageToggle</code>, which
+	swap translated strings in place on a single page; use that instead if you don't have
+	per-language routes.
+</p>
+
+<h4 id="header-language-toggle-props">Properties</h4>
+
+<Table columns="1fr 2fr 3fr">
+	<TableRow head>
+		<div>Name</div>
+		<div>Default</div>
+		<div>Description</div>
+	</TableRow>
+	<TableRow>
+		<div><code>languages</code></div>
+		<div></div>
+		<div>An array of <code>{'{ code, flag, name }'}</code>.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>current</code></div>
+		<div></div>
+		<div>Code of the language the current page is showing.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>href</code></div>
+		<div></div>
+		<div>
+			<code>{'(code: string) => string'}</code>. Returns the URL for switching to the given
+			language code. Build it however your routing works, e.g. with
+			<code>buildLocalizedUrl</code> below.
+		</div>
+	</TableRow>
+	<TableRow>
+		<div><code>showName</code></div>
+		<div><code>false</code></div>
+		<div>Shows the language name next to the flag in the trigger, not just the flag.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>align</code></div>
+		<div><code>"center"</code></div>
+		<div>Passed to the underlying <code>Dropdown</code>.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>position</code></div>
+		<div><code>"bottom"</code></div>
+		<div>Passed to the underlying <code>Dropdown</code>.</div>
+	</TableRow>
+</Table>
+
+<h4 id="header-language-toggle-url">buildLocalizedUrl</h4>
+
+<p>
+	A small helper for the common convention where the default language is served without a prefix
+	and every other language is served under <code>/{'{code}'}</code>:
+</p>
+
+<CodeBlock
+	code={`
+buildLocalizedUrl(path: string, currentLang: string, targetLang: string, defaultLang: string): string
+
+buildLocalizedUrl('/pricing', 'en', 'fr', 'en') // '/fr/pricing'
+buildLocalizedUrl('/fr/pricing', 'fr', 'en', 'en') // '/pricing'
+buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
+`}
+/>
+
+<p>
+	If your app routes languages differently (a subdomain per locale, a query param, ...), skip
+	<code>buildLocalizedUrl</code> and build <code>href</code> yourself.
+	<code>HeaderLanguageToggle</code>
+	doesn't assume any particular URL scheme.
+</p>
+
+<h4 id="header-language-toggle-example">Example</h4>
+
+<CodeBlock
+	code={`
+<` +
+		`script>
+    import { HeaderLanguageToggle, buildLocalizedUrl } from "@hyvor/design/marketing";
+    import { page } from '$app/stores';
+
+    const languages = [
+        { code: 'en', flag: '🇬🇧', name: 'English' },
+        { code: 'fr', flag: '🇫🇷', name: 'Français' }
+    ];
+    const defaultLanguage = 'en';
+
+    const currentLang = $derived(
+        languages.find((l) => l.code === $page.url.pathname.split('/')[1])?.code ?? defaultLanguage
+    );
+</script>
+
+<Header product="blogs">
+    {#snippet center()}
+        <HeaderNavLink href="/pricing">Pricing</HeaderNavLink>
+        <HeaderNavLink href="/docs">Docs</HeaderNavLink>
+
+        <HeaderLanguageToggle
+            {languages}
+            current={currentLang}
+            href={(code) => buildLocalizedUrl($page.url.pathname, currentLang, code, defaultLanguage)}
+        />
+    {/snippet}
+</Header>
+`}
+/>
+
+<p>
+	<em
+		>The preview below fakes navigation so you can click through it without leaving this page.</em
+	>
+</p>
+
+<CodeResult white>
+	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+	<div onclick={onDemoLanguageClick}>
+		<HeaderLanguageToggle
+			languages={demoLanguages}
+			current={demoCurrentLang}
+			href={(code) => buildLocalizedUrl('/pricing', demoCurrentLang, code, 'en')}
+		/>
+	</div>
+</CodeResult>
+
 <h2 id="footer">Footer</h2>
 
 <h3 id="props">Properties</h3>
@@ -269,7 +419,8 @@
 		<div><code>product</code></div>
 		<div></div>
 		<div>
-			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the mascot's
+			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the
+			mascot's
 			<code>logo</code> automatically when not given directly.
 		</div>
 	</TableRow>
@@ -293,8 +444,8 @@
 		<div><code>background</code></div>
 		<div></div>
 		<div>
-			A CSS color for the footer. When omitted, the footer stays transparent and follows the app's
-			theme.
+			A CSS color for the footer. When omitted, the footer stays transparent and follows the
+			app's theme.
 		</div>
 	</TableRow>
 
@@ -311,8 +462,8 @@
 		<div><code>card</code></div>
 		<div><code>false</code></div>
 		<div>
-			Whether <code>background</code> is a branded color needing light text/borders regardless of theme.
-			Leave off for a subtle tint that should keep the app's normal text color.
+			Whether <code>background</code> is a branded color needing light text/borders regardless of
+			theme. Leave off for a subtle tint that should keep the app's normal text color.
 		</div>
 	</TableRow>
 
@@ -327,8 +478,8 @@
 		<div>null</div>
 		<div>
 			An object mapping social keys to URLs: <code>x</code>, <code>discord</code>,
-			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>. All
-			show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
+			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>.
+			All show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
 		</div>
 	</TableRow>
 

@@ -11,12 +11,23 @@
 	import IconPuzzle from '@hyvor/icons/IconPuzzle';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
+	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
+	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
 	import { page } from '$app/stores';
 
 	let resourcesOpen = $state(false);
 
 	const isThemesOrIntegrations = $derived(
 		$page.url.pathname === '/themes' || $page.url.pathname.startsWith('/integrations')
+	);
+
+	const LANGUAGES = [
+		{ code: 'en', flag: '🇬🇧', name: 'English' },
+		{ code: 'fr', flag: '🇫🇷', name: 'Français' }
+	];
+	const DEFAULT_LANGUAGE = 'en';
+	const currentLang = $derived(
+		LANGUAGES.find((l) => l.code === $page.url.pathname.split('/')[1])?.code ?? DEFAULT_LANGUAGE
 	);
 
 	function closeOnLinkClick(e: MouseEvent) {
@@ -73,6 +84,13 @@
 			Github
 			{#snippet end()}<IconBoxArrowUpRight size={11} />{/snippet}
 		</HeaderNavLink>
+
+		<HeaderLanguageToggle
+			languages={LANGUAGES}
+			current={currentLang}
+			href={(code) =>
+				buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
+		/>
 	{/snippet}
 	{#snippet end()}
 		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
@@ -92,12 +110,13 @@
 		<h1>This is a test page</h1>
 
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-			laboris nisi ut aliquip ex ea commodo <consequat class=""> </consequat>
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-			nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-			mollit anim id est laborum.
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+			incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+			exercitation ullamco laboris nisi ut aliquip ex ea commodo <consequat class="">
+			</consequat>
+			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+			fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+			deserunt mollit anim id est laborum.
 		</p>
 	</div>
 </Base>

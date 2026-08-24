@@ -20,6 +20,8 @@
 		center?: Snippet;
 		end?: Snippet;
 		max?: boolean;
+		logoAltText?: string;
+		menuLabel?: string;
 	}
 
 	let {
@@ -32,7 +34,9 @@
 		darkToggle = true,
 		center,
 		end,
-		max = false
+		max = false,
+		logoAltText = 'Logo',
+		menuLabel = 'Menu'
 	}: Props = $props();
 
 	let scrolled = $state(false);
@@ -61,7 +65,7 @@
 			<a class="nav-brand" {href}>
 				<img
 					src={logo || `${instance}/api/public/logo/${product}.svg`}
-					alt="{name + (subName ? ' ' + subName : '')} Logo"
+					alt="{name + (subName ? ' ' + subName : '')} {logoAltText}"
 					width="26"
 					height="26"
 				/>
@@ -93,7 +97,7 @@
 		<span class="mobile-nav-wrap">
 			<Dropdown bind:show={mobileOpen} align="end" width={300} contentPadding={8}>
 				{#snippet trigger()}
-					<IconButton variant="invisible" aria-label="Menu">
+					<IconButton variant="invisible" aria-label={menuLabel} aria-expanded={mobileOpen}>
 						{#if mobileOpen}
 							<IconX size={18} />
 						{:else}

@@ -81,6 +81,22 @@
 		<div><code>false</code></div>
 		<div>Set the width for 1440px of the header.</div>
 	</TableRow>
+	<TableRow>
+		<div><code>menuLabel</code></div>
+		<div><code>"Menu"</code></div>
+		<div>
+			<code>aria-label</code> for the mobile hamburger menu button. Translate this when localizing the
+			page.
+		</div>
+	</TableRow>
+	<TableRow>
+		<div><code>logoAltText</code></div>
+		<div><code>"Logo"</code></div>
+		<div>
+			The word appended to the logo's alt text (e.g. "HYVOR Design Logo"). Translate this when
+			localizing the page - <code>name</code>/<code>subName</code> are product-defined and stay as-is.
+		</div>
+	</TableRow>
 </Table>
 
 <h3 id="slots">Slots</h3>
@@ -313,6 +329,13 @@
 		<div><code>"bottom"</code></div>
 		<div>Passed to the underlying <code>Dropdown</code>.</div>
 	</TableRow>
+	<TableRow>
+		<div><code>label</code></div>
+		<div><code>"Change language"</code></div>
+		<div>
+			<code>aria-label</code> for the trigger button. Translate this when localizing the page.
+		</div>
+	</TableRow>
 </Table>
 
 <h4 id="header-language-toggle-url">buildLocalizedUrl</h4>
@@ -507,6 +530,43 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 		<div><code>max</code></div>
 		<div><code>false</code></div>
 		<div>Set the width for 1440px of the footer.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>logoAltText</code></div>
+		<div><code>"Logo"</code></div>
+		<div>
+			The word appended to the mascot's alt text (e.g. "HYVOR Logo"). Translate this when localizing
+			the page - <code>name</code> is product-defined and stays as-is.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>copyEmailLabel</code></div>
+		<div><code>"Copy email"</code></div>
+		<div>Tooltip shown on the "copy email" button. Translate this when localizing the page.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>copiedLabel</code></div>
+		<div><code>"Copied!"</code></div>
+		<div>
+			Tooltip shown after the email address is copied. Translate this when localizing the page.
+		</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>gdprText</code></div>
+		<div><code>"GDPR Compliant"</code></div>
+		<div>Text on the GDPR compliance chip. Translate this when localizing the page.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>fromFranceText</code></div>
+		<div><code>"From France"</code></div>
+		<div>
+			Text next to the France flag in the bottom bar. Translate this when localizing the page.
+		</div>
 	</TableRow>
 </Table>
 

@@ -14,6 +14,7 @@
 		showName?: boolean;
 		align?: DropdownAlign;
 		position?: DropdownPosition;
+		label?: string;
 	}
 
 	let {
@@ -22,7 +23,8 @@
 		href,
 		showName = false,
 		align = 'center',
-		position = 'bottom'
+		position = 'bottom',
+		label = 'Change language'
 	}: Props = $props();
 
 	const currentLanguage = $derived(languages.find((l) => l.code === current) ?? languages[0]);
@@ -42,7 +44,7 @@
 	<div class="header-language-toggle">
 		<Dropdown bind:show {align} {position} contentPadding={8}>
 			{#snippet trigger()}
-				<HeaderNavLink aria-label="Change language">
+				<HeaderNavLink aria-label={label} aria-expanded={show}>
 					<span class="flag">{currentLanguage.flag}</span>
 					{#if showName}{currentLanguage.name}{/if}
 				</HeaderNavLink>

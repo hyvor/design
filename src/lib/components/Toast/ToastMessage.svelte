@@ -11,11 +11,7 @@
 	let { toast }: Props = $props();
 </script>
 
-<div
-	class="toast"
-	in:fly={{ y: 20, duration: 250, easing: cubicOut }}
-	out:fade={{ duration: 150 }}
->
+<div class="toast" in:fly={{ y: 20, duration: 250, easing: cubicOut }} out:fade={{ duration: 150 }}>
 	{#if toast.type !== 'blank'}
 		<div class="icon-wrap">
 			<ToastIcon {toast} />

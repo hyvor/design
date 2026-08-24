@@ -39,12 +39,12 @@
 </p>
 
 <ul>
-	<li><code>{'<Hero>'}</code></li>
-	<li><code>{'<FeatureSplit>'}</code></li>
-	<li><code>{'<Testimonials>'}</code></li>
-	<li><code>{'<AllFeaturesAccordion>'}</code></li>
-	<li><code>{'<FAQ>'}</code></li>
-	<li><code>{'<FullTrialSignup>'}</code></li>
+	<li><a href="/hero"><code>{'<Hero>'}</code></a></li>
+	<li><a href="/feature-split"><code>{'<FeatureSplit>'}</code></a></li>
+	<li><a href="/testimonials"><code>{'<Testimonials>'}</code></a></li>
+	<li><a href="/all-features-accordion"><code>{'<AllFeaturesAccordion>'}</code></a></li>
+	<li><a href="/faq"><code>{'<FAQ>'}</code></a></li>
+	<li><a href="/full-trial-signup"><code>{'<FullTrialSignup>'}</code></a></li>
 </ul>
 
 <h2 id="header">Header</h2>

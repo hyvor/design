@@ -10,15 +10,11 @@
 		eyebrow: string;
 		title: string | Snippet;
 		description: string;
-		bullets?: string[];
+		bullets?: string[] | Snippet;
 		button?: ButtonConfig | ButtonConfig[] | null;
 		flip?: boolean;
 		altBg?: boolean;
-		// lets the visual bleed under the text column (e.g. negative margin on the visual)
-		// while keeping the text readable on top of it
 		overlap?: boolean;
-		// when true, bullets become clickable and the active index is passed to `visual`,
-		// so the visual can switch state to match whichever bullet is selected
 		interactiveBullets?: boolean;
 		visual: Snippet<[activeBullet: number]>;
 		after?: Snippet;
@@ -49,9 +45,8 @@
 	const AUTO_ADVANCE_MS = 5000;
 
 	$effect(() => {
-		if (!interactiveBullets || !inView || bullets.length <= 1) return;
-		// read explicitly so the effect re-runs (and reschedules) every time
-		// activeBullet changes — from this timer firing, or from a manual click
+		if (!interactiveBullets || !inView) return;
+		if (!Array.isArray(bullets) || bullets.length <= 1) return;
 		activeBullet;
 		const count = bullets.length;
 		const timer = setTimeout(() => {
@@ -95,26 +90,30 @@
 				</h2>
 				<p>{description}</p>
 
-				{#if bullets.length}
-					<ul class="bullets" class:interactive={interactiveBullets}>
-						{#each bullets as b, i}
-							<li>
-								{#if interactiveBullets}
-									<button
-										type="button"
-										class="bullet-btn"
-										class:active={activeBullet === i}
-										style="animation-duration: {AUTO_ADVANCE_MS}ms"
-										onclick={() => (activeBullet = i)}
-									>
+				{#if Array.isArray(bullets)}
+					{#if bullets.length}
+						<ul class="bullets" class:interactive={interactiveBullets}>
+							{#each bullets as b, i}
+								<li>
+									{#if interactiveBullets}
+										<button
+											type="button"
+											class="bullet-btn"
+											class:active={activeBullet === i}
+											style="animation-duration: {AUTO_ADVANCE_MS}ms"
+											onclick={() => (activeBullet = i)}
+										>
+											<IconCheckCircleFill size={14} />{b}
+										</button>
+									{:else}
 										<IconCheckCircleFill size={14} />{b}
-									</button>
-								{:else}
-									<IconCheckCircleFill size={14} />{b}
-								{/if}
-							</li>
-						{/each}
-					</ul>
+									{/if}
+								</li>
+							{/each}
+						</ul>
+					{/if}
+				{:else if bullets}
+					{@render bullets()}
 				{/if}
 
 				{#if button}
@@ -188,10 +187,6 @@
 		opacity: 1;
 		transform: none;
 	}
-
-	/* flex items honor z-index for paint order without needing `position` —
-	   important here, since giving .visual-col its own stacking context would
-	   trap the theme dropdown's position:fixed popup beneath the text column */
 	.split.overlap .text-col {
 		z-index: 2;
 	}
@@ -233,10 +228,6 @@
 
 	.bullets li {
 		display: flex;
-		/* flex-start, not center — with center, a wrapped second line still
-		   centers independently under the first (inheriting text-align:center
-		   from .text-col on mobile) and the icon centers against the whole
-		   multi-line block instead of sitting with the first line */
 		align-items: flex-start;
 		gap: 10px;
 		font-size: 1rem;
@@ -246,8 +237,6 @@
 	.bullets li :global(svg) {
 		color: var(--accent);
 		flex-shrink: 0;
-		/* optically align with the first line's cap-height now that the row
-		   is top- rather than center-aligned */
 		margin-top: 0.3em;
 	}
 
@@ -284,7 +273,6 @@
 
 	.bullet-btn.active {
 		color: var(--text);
-		font-weight: 600;
 		animation-name: bullet-fill;
 		animation-timing-function: linear;
 		animation-fill-mode: forwards;

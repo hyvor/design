@@ -12,8 +12,6 @@
 	interface Category {
 		label: string;
 		icon: Component;
-		// any CSS color, e.g. 'var(--green)' or '#4b874b' — defaults to the
-		// theme accent so this works out of the box on any product
 		color?: string;
 		features: FeatureItem[];
 	}
@@ -22,15 +20,18 @@
 		title?: string;
 		description?: string;
 		categories: Category[];
-		// index open by default; -1 for none
 		defaultOpenIndex?: number;
+		accentColor?: string;
+		accentColorDark?: string;
 	}
 
 	let {
 		title = "And There's More...",
 		description = '',
 		categories,
-		defaultOpenIndex = 0
+		defaultOpenIndex = 0,
+		accentColor,
+		accentColorDark
 	}: Props = $props();
 
 	let openIndex = $state(defaultOpenIndex);
@@ -40,7 +41,11 @@
 	}
 </script>
 
-<section class="hds-all-features-accordion hds-container">
+<section
+	class="hds-all-features-accordion hds-container"
+	style:--afa-accent={accentColor}
+	style:--afa-accent-dark={accentColorDark}
+>
 	<div class="section-header">
 		<h2>{title}</h2>
 		{#if description}
@@ -135,7 +140,15 @@
 	}
 
 	.accordion-item.open {
-		background: var(--accent-light-mid);
+		background: color-mix(in srgb, var(--afa-accent, var(--accent)) 6%, transparent);
+	}
+
+	:global(:root.dark) .accordion-item.open {
+		background: color-mix(
+			in srgb,
+			var(--afa-accent-dark, var(--afa-accent, var(--accent))) 6%,
+			transparent
+		);
 	}
 
 	.accordion-heading {
@@ -225,6 +238,7 @@
 	}
 
 	/* Override AllFeaturesAccordionFeature's width since we're using grid now */
+	/* TODO */
 	.features-grid :global(.feature) {
 		width: auto;
 	}

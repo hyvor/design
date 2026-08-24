@@ -12,6 +12,7 @@
 		buttons?: ButtonProps | ButtonProps[] | null;
 		accentColor?: string;
 		accentColorDark?: string;
+		fullHeight?: boolean;
 		after?: Snippet;
 	}
 
@@ -22,13 +23,19 @@
 		buttons = null,
 		accentColor,
 		accentColorDark,
+		fullHeight = false,
 		after
 	}: Props = $props();
 
 	const buttonList = $derived(buttons ? (Array.isArray(buttons) ? buttons : [buttons]) : []);
 </script>
 
-<section class="hero" style:--hero-accent={accentColor} style:--hero-accent-dark={accentColorDark}>
+<section
+	class="hero"
+	class:full-height={fullHeight}
+	style:--hero-accent={accentColor}
+	style:--hero-accent-dark={accentColorDark}
+>
 	<svg class="hero-pattern" aria-hidden="true" focusable="false">
 		<defs>
 			<pattern id="hero-dot-pattern" width="28" height="28" patternUnits="userSpaceOnUse">
@@ -103,8 +110,6 @@
 
 <style>
 	.hero {
-		/* resolve to the override prop(s) when given, else fall back to the
-		   theme accent — same two-step override as Footer's --footer-bg */
 		--hero-accent-resolved: var(--hero-accent, var(--accent));
 
 		position: relative;
@@ -188,20 +193,15 @@
 		font-size: clamp(22px, 3vw, 26px);
 		line-height: 1.6;
 		color: color-mix(in srgb, var(--text) 70%, var(--text-light));
-		/* max-width alone (not width+max-width:100%) — a fixed width here would
-		   inflate the flex column's min-content sizing on mobile (percentages
-		   can't resolve during that pass), pushing the whole hero out wide and
-		   getting clipped by .hero's overflow:hidden */
 		max-width: 480px;
 	}
 
-	/* helper classes for words emphasized inside a title/subtitle snippet */
-	.left :global(.hl) {
+	.left :global(.hds-hl) {
 		color: var(--hero-accent-resolved);
 		font-weight: 700;
 	}
 
-	.left :global(.marker) {
+	.left :global(.hds-marker) {
 		position: relative;
 		font-weight: 700;
 		background-image: linear-gradient(

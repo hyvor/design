@@ -45,6 +45,12 @@ import DetailsAccordion from './docs/DetailsAccordion.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
+import HeroDoc from './docs/Hero.svelte';
+import FeatureSplitDoc from './docs/FeatureSplit.svelte';
+import TestimonialsDoc from './docs/Testimonials.svelte';
+import AllFeaturesAccordionDoc from './docs/AllFeaturesAccordion.svelte';
+import FAQDoc from './docs/FAQ.svelte';
+import FullTrialSignupDoc from './docs/FullTrialSignup.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
@@ -124,6 +130,36 @@ const SECTIONS: NavSectionConfig[] = [
 				name: 'Page Structure',
 				slug: 'page-structure',
 				content: PageStructure
+			},
+			{ type: 'page', name: 'Hero', slug: 'hero', content: HeroDoc, wide: true },
+			{
+				type: 'page',
+				name: 'Feature Split',
+				slug: 'feature-split',
+				content: FeatureSplitDoc,
+				wide: true
+			},
+			{
+				type: 'page',
+				name: 'Testimonials',
+				slug: 'testimonials',
+				content: TestimonialsDoc,
+				wide: true
+			},
+			{
+				type: 'page',
+				name: 'All Features Accordion',
+				slug: 'all-features-accordion',
+				content: AllFeaturesAccordionDoc,
+				wide: true
+			},
+			{ type: 'page', name: 'FAQ', slug: 'faq', content: FAQDoc, wide: true },
+			{
+				type: 'page',
+				name: 'Full Trial Signup',
+				slug: 'full-trial-signup',
+				content: FullTrialSignupDoc,
+				wide: true
 			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{ type: 'page', name: 'Document', slug: 'document', content: Document },

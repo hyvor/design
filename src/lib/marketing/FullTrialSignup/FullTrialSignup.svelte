@@ -10,6 +10,8 @@
 		description?: string;
 		button?: ButtonConfig | ButtonConfig[] | null;
 		checks?: string[];
+		accentColor?: string;
+		accentColorDark?: string;
 		[key: string]: any;
 	}
 
@@ -19,13 +21,20 @@
 		description = '',
 		button = null,
 		checks = ['14-day free trial', 'No credit card required', 'Cancel anytime'],
+		accentColor,
+		accentColorDark,
 		...rest
 	}: Props = $props();
 
 	const buttons = $derived(button ? (Array.isArray(button) ? button : [button]) : []);
 </script>
 
-<section class="hds-full-trial-signup" {...rest}>
+<section
+	class="hds-full-trial-signup"
+	style:--fts-accent={accentColor}
+	style:--fts-accent-dark={accentColorDark}
+	{...rest}
+>
 	<div class="hds-container inner">
 		{#if badge}
 			<div class="badge">{badge}</div>
@@ -68,13 +77,18 @@
 
 <style>
 	.hds-full-trial-signup {
+		--fts-accent-resolved: var(--fts-accent, var(--accent));
 		padding: 96px 0 138px;
 		background: linear-gradient(
 			to bottom,
-			var(--background),
-			color-mix(in srgb, var(--accent) 40%, var(--background))
+			var(--background, var(--box-background)),
+			color-mix(in srgb, var(--fts-accent-resolved) 40%, var(--background, var(--box-background)))
 		);
 		text-align: center;
+	}
+
+	:global(:root.dark) .hds-full-trial-signup {
+		--fts-accent-resolved: var(--fts-accent-dark, var(--fts-accent, var(--accent)));
 	}
 
 	.inner {
@@ -88,9 +102,9 @@
 		border-radius: 100px;
 		font-size: 13px;
 		font-weight: 600;
-		background: color-mix(in srgb, var(--accent) 12%, transparent);
-		color: var(--accent);
-		border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+		background: color-mix(in srgb, var(--fts-accent-resolved) 12%, transparent);
+		color: var(--fts-accent-resolved);
+		border: 1px solid color-mix(in srgb, var(--fts-accent-resolved) 25%, transparent);
 		margin-bottom: 24px;
 	}
 
@@ -134,14 +148,10 @@
 	}
 
 	.check :global(svg) {
-		color: var(--accent);
+		color: var(--fts-accent-resolved);
 	}
 
 	@media (max-width: 600px) {
-		/* same fix as .bullets in FeatureSplit.svelte — center the list as a
-		   single block, sized to its widest row, instead of wrapping into
-		   independently-centered lines (which leaves each row's icon at a
-		   different x position whenever the rows' text lengths differ) */
 		.checks {
 			flex-direction: column;
 			align-items: flex-start;

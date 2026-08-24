@@ -17,10 +17,27 @@
 	import IconRss from '@hyvor/icons/IconRss';
 	import IconLightning from '@hyvor/icons/IconLightning';
 	import IconSearchHeart from '@hyvor/icons/IconSearchHeart';
+	import IconRegex from '@hyvor/icons/IconRegex';
+	import IconMarkdown from '@hyvor/icons/IconMarkdown';
+	import IconHourglass from '@hyvor/icons/IconHourglass';
+	import IconGlobe from '@hyvor/icons/IconGlobe';
+	import IconGlobe2 from '@hyvor/icons/IconGlobe2';
+	import IconEnvelope from '@hyvor/icons/IconEnvelope';
+	import IconChatDots from '@hyvor/icons/IconChatDots';
+	import IconGraphUp from '@hyvor/icons/IconGraphUp';
+	import IconKey from '@hyvor/icons/IconKey';
+	import IconPlug from '@hyvor/icons/IconPlug';
+	import IconDatabase from '@hyvor/icons/IconDatabase';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
 	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
 	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
+	import Hero from '$lib/marketing/Hero/Hero.svelte';
+	import FeatureSplit from '$lib/marketing/FeatureSplit/FeatureSplit.svelte';
+	import Testimonials from '$lib/marketing/Testimonials/Testimonials.svelte';
+	import AllFeaturesAccordion from '$lib/marketing/AllFeaturesAccordion/AllFeaturesAccordion.svelte';
+	import FAQ from '$lib/marketing/FAQ/FAQ.svelte';
+	import FullTrialSignup from '$lib/marketing/FullTrialSignup/FullTrialSignup.svelte';
 	import { page } from '$app/stores';
 
 	let resourcesOpen = $state(false);
@@ -136,7 +153,7 @@
 <Base>
 	<!-- Hero -->
 	<Hero
-		fullHeight={false}
+		fullHeight={true}
 		badge="Open-source & free to try"
 		buttons={{ href: '/console?signup', label: 'Start your blog' }}
 	>
@@ -144,9 +161,9 @@
 			You Publish.<br /><span class="heading-small">(We'll handle the rest)</span>
 		{/snippet}
 		{#snippet subtitle()}
-			Hyvor Blogs is our <span class="marker">blogging platform</span>. It's
-			<span class="hl">fast</span>, <span class="hl">simple</span>, and
-			<span class="hl">open-source</span>!
+			Hyvor Blogs is our <span class="hds-marker">blogging platform</span>. It's
+			<span class="hds-hl">fast</span>, <span class="hds-hl">simple</span>, and
+			<span class="hds-hl">open-source</span>!
 		{/snippet}
 	</Hero>
 
@@ -204,12 +221,27 @@
 				role: 'Senior Application Engineer',
 				quote:
 					'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
+			},
+			{
+				type: 'text',
+				name: 'Aisha K.',
+				role: 'Newsletter writer',
+				quote:
+					'Migrating was painless, and the editor is the best I have used for long-form writing.'
+			},
+			{
+				type: 'text',
+				name: 'Diego R.',
+				role: 'Indie hacker',
+				quote: 'Fast, simple, and it just works. Exactly what I wanted for my blog.'
 			}
 		]}
 	/>
 
 	<!-- All Features Accordion -->
 	<AllFeaturesAccordion
+		accentColor="#574443"
+		accentColorDark="#a8867e"
 		categories={[
 			{
 				label: 'Post Editor',
@@ -224,12 +256,27 @@
 					{
 						icon: IconImage,
 						title: 'Images',
-						description: 'Upload, paste, drag and drop, and more ways to add images.'
+						description: 'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
 					},
 					{
 						icon: IconCode,
 						title: 'Embeds',
 						description: 'Easily embed from YouTube, X, Instagram, and 1000+ platforms.'
+					},
+					{
+						icon: IconRegex,
+						title: 'Syntax Highlighting',
+						description: 'Add code blocks with syntax highlighting for 100+ languages.'
+					},
+					{
+						icon: IconMarkdown,
+						title: 'Markdown-friendly',
+						description: 'Markdown shortcuts for all the formatting you need.'
+					},
+					{
+						icon: IconHourglass,
+						title: 'Drafts & Scheduling',
+						description: 'Save drafts and schedule posts to be published in the future.'
 					}
 				]
 			},
@@ -243,6 +290,31 @@
 						icon: IconRss,
 						title: 'Atom (RSS) Feed',
 						description: 'Atom feeds are generated automatically.'
+					},
+					{
+						icon: IconGlobe2,
+						title: 'Custom Domain',
+						description: 'Use your own domain for your blog.'
+					},
+					{
+						icon: IconPalette,
+						title: 'Themes',
+						description: 'Pick from official themes, or build your own.'
+					},
+					{
+						icon: IconEnvelope,
+						title: 'Newsletter',
+						description: 'Turn readers into subscribers with a built-in newsletter.'
+					},
+					{
+						icon: IconChatDots,
+						title: 'Comments',
+						description: 'Built-in, spam-free commenting for every post.'
+					},
+					{
+						icon: IconGraphUp,
+						title: 'Analytics',
+						description: 'See what is working with built-in, privacy-friendly analytics.'
 					}
 				]
 			},
@@ -260,6 +332,38 @@
 						icon: IconLightning,
 						title: 'Speed',
 						description: 'All official themes are optimized for speed.'
+					},
+					{
+						icon: IconGlobe,
+						title: 'Global CDN',
+						description: 'Every asset is served from a CDN close to your readers.'
+					}
+				]
+			},
+			{
+				label: 'Developers',
+				icon: IconDatabase,
+				color: 'var(--red)',
+				features: [
+					{
+						icon: IconKey,
+						title: 'REST API',
+						description: 'Full API access to build custom integrations.'
+					},
+					{
+						icon: IconPlug,
+						title: 'Webhooks',
+						description: 'Get notified in real-time when things happen on your blog.'
+					},
+					{
+						icon: IconCode,
+						title: 'Custom Code',
+						description: 'Inject custom CSS and JavaScript into your theme.'
+					},
+					{
+						icon: IconDatabase,
+						title: 'Data Export',
+						description: 'Export your full content and data at any time.'
 					}
 				]
 			}
@@ -278,6 +382,8 @@
 		title="Start your blog today"
 		description="Join hundreds of bloggers and businesses building with Hyvor Blogs."
 		button={{ href: '/console?signup', label: 'Start your blog →' }}
+		accentColor="#574443"
+		accentColorDark="#a8867e"
 	/>
 </Base>
 

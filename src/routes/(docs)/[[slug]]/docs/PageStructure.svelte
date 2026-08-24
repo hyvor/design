@@ -33,6 +33,20 @@
 	<li><code>{'<Footer>'}</code></li>
 </ul>
 
+<p>
+	And for the main content area, stack the following sections in whatever order tells your product's
+	story:
+</p>
+
+<ul>
+	<li><code>{'<Hero>'}</code></li>
+	<li><code>{'<FeatureSplit>'}</code></li>
+	<li><code>{'<Testimonials>'}</code></li>
+	<li><code>{'<AllFeaturesAccordion>'}</code></li>
+	<li><code>{'<FAQ>'}</code></li>
+	<li><code>{'<FullTrialSignup>'}</code></li>
+</ul>
+
 <h2 id="header">Header</h2>
 
 <h3 id="props">Properties</h3>
@@ -627,3 +641,17 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 
                 `}
 />
+
+<style>
+	.visual-placeholder {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		height: 260px;
+		color: var(--text-light);
+	}
+
+	:global(.heading-small) {
+		font-size: 0.75em;
+	}
+</style>

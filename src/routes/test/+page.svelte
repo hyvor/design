@@ -9,6 +9,14 @@
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconPalette from '@hyvor/icons/IconPalette';
 	import IconPuzzle from '@hyvor/icons/IconPuzzle';
+	import IconImage from '@hyvor/icons/IconImage';
+	import IconCode from '@hyvor/icons/IconCode';
+	import IconPencil from '@hyvor/icons/IconPencil';
+	import IconSignpost2 from '@hyvor/icons/IconSignpost2';
+	import IconTag from '@hyvor/icons/IconTag';
+	import IconRss from '@hyvor/icons/IconRss';
+	import IconLightning from '@hyvor/icons/IconLightning';
+	import IconSearchHeart from '@hyvor/icons/IconSearchHeart';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
 	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
@@ -36,6 +44,27 @@
 			resourcesOpen = false;
 		}
 	}
+
+	const editorBullets = [
+		'Markdown shortcuts for all the formatting you need',
+		'Paste, drag and drop, or pick images from Unsplash',
+		'Syntax highlighting for 100+ languages'
+	];
+
+	const speedBullets = ['Automatic webp conversion', 'Aggressive edge caching', 'Global CDN'];
+
+	const faqItems = [
+		{ q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial.' },
+		{ q: 'Can I cancel anytime?', a: 'Yes, there are no long-term contracts.' },
+		{
+			q: 'Do you offer discounts?',
+			a: 'Yes, see our <a href="/pricing">pricing page</a> for details.'
+		},
+		{
+			q: 'Is my data secure?',
+			a: 'Yes, see our <a href="/security">security page</a> for details.'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -105,18 +134,151 @@
 </Header>
 
 <Base>
-	<div class="hds-container-max demo-spacer">
-		<h1>This is a test page</h1>
+	<!-- Hero -->
+	<Hero
+		fullHeight={false}
+		badge="Open-source & free to try"
+		buttons={{ href: '/console?signup', label: 'Start your blog' }}
+	>
+		{#snippet title()}
+			You Publish.<br /><span class="heading-small">(We'll handle the rest)</span>
+		{/snippet}
+		{#snippet subtitle()}
+			Hyvor Blogs is our <span class="marker">blogging platform</span>. It's
+			<span class="hl">fast</span>, <span class="hl">simple</span>, and
+			<span class="hl">open-source</span>!
+		{/snippet}
+	</Hero>
 
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut
-			labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-			laboris nisi ut aliquip ex ea commodo <consequat class=""> </consequat>
-			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
-			nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-			mollit anim id est laborum.
-		</p>
+	<!-- Feature Split -->
+	<FeatureSplit
+		eyebrow="Post Editor"
+		title="Write without friction"
+		description="A clean, distraction-free editor with everything you need to write and format posts."
+		bullets={editorBullets}
+		button={{ href: '/console?signup', label: 'Start writing' }}
+		interactiveBullets
+	>
+		{#snippet visual(activeBullet)}
+			<div class="visual-placeholder hds-box">
+				<IconImage size={40} />
+				<span>Active bullet: {activeBullet + 1}</span>
+			</div>
+		{/snippet}
+	</FeatureSplit>
+
+	<!-- Feature Split, flipped + alt background -->
+	<FeatureSplit
+		eyebrow="Optimizations"
+		title="Built for speed"
+		description="All official themes are optimized for speed. We use caching extensively to make your blog blazing fast."
+		bullets={speedBullets}
+		flip
+		altBg
+	>
+		{#snippet visual()}
+			<div class="visual-placeholder hds-box">
+				<IconCode size={40} />
+			</div>
+		{/snippet}
+	</FeatureSplit>
+
+	<!-- Testimonials -->
+	<Testimonials
+		reviews={[
+			{
+				type: 'text',
+				name: 'Lionel S.',
+				role: 'Blogger',
+				quote:
+					'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
+			},
+			{
+				type: 'video',
+				name: 'Video testimonial',
+				role: 'Coming soon'
+			},
+			{
+				type: 'text',
+				name: 'Manoj P.',
+				role: 'Senior Application Engineer',
+				quote:
+					'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
+			}
+		]}
+	/>
+
+	<!-- All Features Accordion -->
+	<AllFeaturesAccordion
+		categories={[
+			{
+				label: 'Post Editor',
+				icon: IconPencil,
+				color: 'var(--green)',
+				features: [
+					{
+						icon: IconPencil,
+						title: 'All the basics',
+						description: 'Bold, italic, headings, lists, quotes, links, and more.'
+					},
+					{
+						icon: IconImage,
+						title: 'Images',
+						description: 'Upload, paste, drag and drop, and more ways to add images.'
+					},
+					{
+						icon: IconCode,
+						title: 'Embeds',
+						description: 'Easily embed from YouTube, X, Instagram, and 1000+ platforms.'
+					}
+				]
+			},
+			{
+				label: 'Your Blog',
+				icon: IconSignpost2,
+				color: 'var(--blue)',
+				features: [
+					{ icon: IconTag, title: 'Tags', description: 'Organize your posts with tags.' },
+					{
+						icon: IconRss,
+						title: 'Atom (RSS) Feed',
+						description: 'Atom feeds are generated automatically.'
+					}
+				]
+			},
+			{
+				label: 'Optimizations',
+				icon: IconLightning,
+				color: 'var(--orange)',
+				features: [
+					{
+						icon: IconSearchHeart,
+						title: 'SEO',
+						description: 'Meta tags, Open Graph tags, Canonical URLs, and more.'
+					},
+					{
+						icon: IconLightning,
+						title: 'Speed',
+						description: 'All official themes are optimized for speed.'
+					}
+				]
+			}
+		]}
+	/>
+
+	<!-- FAQ -->
+	<div class="hds-container faq-wrap">
+		<h2 class="faq-title">Frequently asked questions</h2>
+		<FAQ items={faqItems} />
 	</div>
+
+	<!-- Full Trial Signup -->
+	<FullTrialSignup
+		badge="Open-source & free to try"
+		title="Start your blog today"
+		description="Join hundreds of bloggers and businesses building with Hyvor Blogs."
+		button={{ href: '/console?signup', label: 'Start your blog →' }}
+	/>
 </Base>
 
 <Footer
@@ -173,8 +335,30 @@
 		}
 	}
 
-	.demo-spacer {
-		height: 5000px;
-		padding: 100px 0;
+	.visual-placeholder {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		gap: 10px;
+		height: 260px;
+		color: var(--text-light);
+		font-size: 13px;
+	}
+
+	.faq-wrap {
+		padding: 80px 15px;
+	}
+
+	.faq-title {
+		font-size: 32px;
+		font-weight: 700;
+		margin: 0 0 40px;
+		text-align: center;
+		font-family: var(--font-serif);
+	}
+
+	:global(.heading-small) {
+		font-size: 0.75em;
 	}
 </style>

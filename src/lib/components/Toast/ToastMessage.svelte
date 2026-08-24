@@ -1,7 +1,8 @@
 <script lang="ts">
 	import ToastIcon from './ToastIcon.svelte';
 	import type { Toast } from './toast.ts';
-	import { fade } from 'svelte/transition';
+	import { fade, fly } from 'svelte/transition';
+	import { cubicOut } from 'svelte/easing';
 
 	interface Props {
 		toast: Toast;
@@ -10,7 +11,7 @@
 	let { toast }: Props = $props();
 </script>
 
-<div class="toast" out:fade={{ duration: 200 }} in:fade={{ duration: 50 }}>
+<div class="toast" in:fly={{ y: 20, duration: 250, easing: cubicOut }} out:fade={{ duration: 150 }}>
 	{#if toast.type !== 'blank'}
 		<div class="icon-wrap">
 			<ToastIcon {toast} />
@@ -28,7 +29,6 @@
 
 <style>
 	.toast {
-		margin-bottom: 10px;
 		box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
 		border-radius: var(--box-radius);
 		background-color: var(--box-background);
@@ -37,9 +37,6 @@
 		align-items: center;
 		max-width: 350px;
 		pointer-events: initial;
-	}
-	.toast:first-child {
-		margin-top: 10px;
 	}
 	.icon-wrap {
 		margin-right: 8px;

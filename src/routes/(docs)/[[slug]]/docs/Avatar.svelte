@@ -83,3 +83,25 @@
 	If you set a <code>size</code> in your <code>{'<Avatar>'}</code>s, make sure to set the same size
 	to the <code>{'<AvatarStack>'}</code> component.
 </p>
+
+<h3 id="username">Username fallback</h3>
+
+<p>
+	When <code>src</code> is not set (or <code>null</code>), pass a <code>username</code> to render an
+	SVG avatar with the user's initials instead. Use the optional <code>bg</code> and <code>fg</code>
+	props to customize the background and text colors.
+</p>
+
+<CodeBlock
+	code={`
+    <Avatar username="Jane Doe" />
+    <Avatar username="Jane Doe" bg="#c05959" />
+    <Avatar username="Jane Doe" bg="#dae5ff" fg="#334b81" />
+`}
+/>
+
+<CodeResult>
+	<Avatar username="Jane Doe" />
+	<Avatar username="Jane Doe" bg="#c05959" />
+	<Avatar username="Jane Doe" bg="#dae5ff" fg="#334b81" />
+</CodeResult>

@@ -93,9 +93,8 @@
 	<TableRow>
 		<div><code>center</code></div>
 		<div>
-			The content in the center of the header. Usually, the navigation links like "Docs",
-			"Pricing", etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>.
-			You can also use
+			The content in the center of the header. Usually, the navigation links like "Docs", "Pricing",
+			etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>. You can also use
 			<a href="dropdown">Dropdowns</a> here (e.g. for a "Resources" menu).
 		</div>
 	</TableRow>
@@ -150,8 +149,8 @@
 		<div><code>menu</code></div>
 		<div><code>false</code></div>
 		<div>
-			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu).
-			Implied automatically when <code>description</code> is given.
+			Compact style for links inside a Dropdown's menu (e.g. the header's mobile menu). Implied
+			automatically when <code>description</code> is given.
 		</div>
 	</TableRow>
 </Table>
@@ -184,8 +183,8 @@
 	<TableRow>
 		<div><code>description</code></div>
 		<div>
-			A one-line description shown under the label. Switches to a richer layout (icon box,
-			bold title, muted description) for menus needing more than a label.
+			A one-line description shown under the label. Switches to a richer layout (icon box, bold
+			title, muted description) for menus needing more than a label.
 		</div>
 	</TableRow>
 </Table>
@@ -264,12 +263,12 @@
 
 <p>
 	<code>HeaderLanguageToggle</code> is for marketing sites that serve each language on its own URL
-	(e.g. a SvelteKit <code>[[lang]]</code> route param) rather than switching language client-side
-	on one page. Use it inside the <code>center</code> slot, next to your
+	(e.g. a SvelteKit <code>[[lang]]</code> route param) rather than switching language client-side on
+	one page. Use it inside the <code>center</code> slot, next to your
 	<code>HeaderNavLink</code>s. It's not related to
 	<a href="i18n"><code>InternationalizationService</code></a>/<code>LanguageToggle</code>, which
-	swap translated strings in place on a single page; use that instead if you don't have
-	per-language routes.
+	swap translated strings in place on a single page; use that instead if you don't have per-language
+	routes.
 </p>
 
 <h4 id="header-language-toggle-props">Properties</h4>
@@ -294,8 +293,8 @@
 		<div><code>href</code></div>
 		<div></div>
 		<div>
-			<code>{'(code: string) => string'}</code>. Returns the URL for switching to the given
-			language code. Build it however your routing works, e.g. with
+			<code>{'(code: string) => string'}</code>. Returns the URL for switching to the given language
+			code. Build it however your routing works, e.g. with
 			<code>buildLocalizedUrl</code> below.
 		</div>
 	</TableRow>
@@ -319,8 +318,8 @@
 <h4 id="header-language-toggle-url">buildLocalizedUrl</h4>
 
 <p>
-	A small helper for the common convention where the default language is served without a prefix
-	and every other language is served under <code>/{'{code}'}</code>:
+	A small helper for the common convention where the default language is served without a prefix and
+	every other language is served under <code>/{'{code}'}</code>:
 </p>
 
 <CodeBlock
@@ -376,9 +375,7 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 />
 
 <p>
-	<em
-		>The preview below fakes navigation so you can click through it without leaving this page.</em
-	>
+	<em>The preview below fakes navigation so you can click through it without leaving this page.</em>
 </p>
 
 <CodeResult white>
@@ -419,8 +416,7 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 		<div><code>product</code></div>
 		<div></div>
 		<div>
-			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the
-			mascot's
+			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the mascot's
 			<code>logo</code> automatically when not given directly.
 		</div>
 	</TableRow>
@@ -444,8 +440,8 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 		<div><code>background</code></div>
 		<div></div>
 		<div>
-			A CSS color for the footer. When omitted, the footer stays transparent and follows the
-			app's theme.
+			A CSS color for the footer. When omitted, the footer stays transparent and follows the app's
+			theme.
 		</div>
 	</TableRow>
 
@@ -462,8 +458,8 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 		<div><code>card</code></div>
 		<div><code>false</code></div>
 		<div>
-			Whether <code>background</code> is a branded color needing light text/borders regardless of
-			theme. Leave off for a subtle tint that should keep the app's normal text color.
+			Whether <code>background</code> is a branded color needing light text/borders regardless of theme.
+			Leave off for a subtle tint that should keep the app's normal text color.
 		</div>
 	</TableRow>
 
@@ -478,8 +474,8 @@ buildLocalizedUrl('/fr', 'fr', 'en', 'en') // '/'
 		<div>null</div>
 		<div>
 			An object mapping social keys to URLs: <code>x</code>, <code>discord</code>,
-			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>.
-			All show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
+			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>. All
+			show by default with HYVOR's accounts — pass a key as <code>undefined</code> to hide it.
 		</div>
 	</TableRow>
 

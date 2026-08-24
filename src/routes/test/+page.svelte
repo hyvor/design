@@ -19,18 +19,23 @@
 	import IconSearchHeart from '@hyvor/icons/IconSearchHeart';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
 	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
-	import Hero from '$lib/marketing/Hero/Hero.svelte';
-	import FeatureSplit from '$lib/marketing/FeatureSplit/FeatureSplit.svelte';
-	import Testimonials from '$lib/marketing/Testimonials/Testimonials.svelte';
-	import AllFeaturesAccordion from '$lib/marketing/AllFeaturesAccordion/AllFeaturesAccordion.svelte';
-	import FullTrialSignup from '$lib/marketing/FullTrialSignup/FullTrialSignup.svelte';
-	import FAQ from '$lib/marketing/FAQ/FAQ.svelte';
+	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
+	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
 	import { page } from '$app/stores';
 
 	let resourcesOpen = $state(false);
 
 	const isThemesOrIntegrations = $derived(
 		$page.url.pathname === '/themes' || $page.url.pathname.startsWith('/integrations')
+	);
+
+	const LANGUAGES = [
+		{ code: 'en', flag: '🇬🇧', name: 'English' },
+		{ code: 'fr', flag: '🇫🇷', name: 'Français' }
+	];
+	const DEFAULT_LANGUAGE = 'en';
+	const currentLang = $derived(
+		LANGUAGES.find((l) => l.code === $page.url.pathname.split('/')[1])?.code ?? DEFAULT_LANGUAGE
 	);
 
 	function closeOnLinkClick(e: MouseEvent) {
@@ -108,6 +113,12 @@
 			Github
 			{#snippet end()}<IconBoxArrowUpRight size={11} />{/snippet}
 		</HeaderNavLink>
+
+		<HeaderLanguageToggle
+			languages={LANGUAGES}
+			current={currentLang}
+			href={(code) => buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
+		/>
 	{/snippet}
 	{#snippet end()}
 		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>

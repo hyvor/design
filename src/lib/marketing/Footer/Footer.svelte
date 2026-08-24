@@ -36,6 +36,11 @@
 		recordVisit?: boolean;
 		center?: Snippet;
 		max?: boolean;
+		logoAltText?: string;
+		copyEmailLabel?: string;
+		copiedLabel?: string;
+		gdprText?: string;
+		fromFranceText?: string;
 	}
 
 	let {
@@ -54,13 +59,13 @@
 		affiliate = true,
 		recordVisit = true,
 		center,
-		max = false
+		max = false,
+		logoAltText = 'Logo',
+		copyEmailLabel = 'Copy email',
+		copiedLabel = 'Copied!',
+		gdprText = 'GDPR Compliant',
+		fromFranceText = 'From France'
 	}: Props = $props();
-
-	// same "explicit logo, else derive from product" pattern as Header — pass
-	// `product` (e.g. "blogs") for the mascot to follow that product's logo
-	// automatically, or `logo` to override it directly. Neither given means
-	// no mascot.
 	const mascotLogo = $derived(
 		logo || (product ? `${instance}/api/public/logo/${product}.svg` : undefined)
 	);
@@ -134,7 +139,7 @@
 		<div class="mascot-wrap" use:onView={() => (mascotInView = true)}>
 			<img
 				src={mascotLogo}
-				alt="{name} Logo"
+				alt="{name} {logoAltText}"
 				width="100"
 				height="100"
 				class:in-view={mascotInView}
@@ -159,7 +164,7 @@
 								<IconEnvelope size={14} />
 								{email}
 							</a>
-							<Tooltip text={emailCopied ? 'Copied!' : 'Copy email'} position="top">
+							<Tooltip text={emailCopied ? copiedLabel : copyEmailLabel} position="top">
 								<IconButton
 									size="small"
 									variant="invisible"
@@ -210,13 +215,13 @@
 								</svg>
 								<span class="lock"><IconLockFill size={10} /></span>
 							</span>
-							<span class="gdpr-chip-text">GDPR Compliant</span>
+							<span class="gdpr-chip-text">{gdprText}</span>
 						</a>
 					</div>
 				{/if}
 
 				<div class="bottom-right">
-					<div class="france">From France <span class="flag">🇫🇷</span></div>
+					<div class="france">{fromFranceText} <span class="flag">🇫🇷</span></div>
 				</div>
 			</div>
 		</Container>

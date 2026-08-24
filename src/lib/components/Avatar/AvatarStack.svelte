@@ -22,13 +22,16 @@
 		display: inline-flex;
 		cursor: pointer;
 	}
-	.stack :global(img) {
+	.stack :global(img),
+	.stack :global(svg) {
 		transition: 0.2s;
 	}
-	.stack :global(img:not(:first-child)) {
+	.stack :global(img:not(:first-child)),
+	.stack :global(svg:not(:first-child)) {
 		margin-left: calc(var(--local-size) * -0.5);
 	}
-	.stack:hover :global(img:not(:first-child)) {
+	.stack:hover :global(img:not(:first-child)),
+	.stack:hover :global(svg:not(:first-child)) {
 		margin-left: 3px;
 	}
 </style>

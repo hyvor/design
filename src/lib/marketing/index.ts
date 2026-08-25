@@ -32,6 +32,14 @@ export { default as Testimonials } from './Testimonials/Testimonials.svelte';
 
 export { default as FullTrialSignup } from './FullTrialSignup/FullTrialSignup.svelte';
 
+export { default as SpotlightSplit } from './SpotlightSplit/SpotlightSplit.svelte';
+
+export { default as Seal } from './Seal/Seal.svelte';
+export { default as GdprSeal } from './Seal/GdprSeal.svelte';
+export { default as CcpaSeal } from './Seal/CcpaSeal.svelte';
+export { default as SsoSeal } from './Seal/SsoSeal.svelte';
+export { default as IsoSeal } from './Seal/IsoSeal.svelte';
+
 export { default as AllFeaturesAccordion } from './AllFeaturesAccordion/AllFeaturesAccordion.svelte';
 export { default as AllFeaturesAccordionFeature } from './AllFeaturesAccordion/AllFeaturesAccordionFeature.svelte';
 

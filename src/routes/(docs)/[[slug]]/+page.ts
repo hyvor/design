@@ -51,6 +51,7 @@ import TestimonialsDoc from './docs/Testimonials.svelte';
 import AllFeaturesAccordionDoc from './docs/AllFeaturesAccordion.svelte';
 import FAQDoc from './docs/FAQ.svelte';
 import FullTrialSignupDoc from './docs/FullTrialSignup.svelte';
+import SpotlightSplitDoc from './docs/SpotlightSplit.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
@@ -159,6 +160,13 @@ const SECTIONS: NavSectionConfig[] = [
 				name: 'Full Trial Signup',
 				slug: 'full-trial-signup',
 				content: FullTrialSignupDoc,
+				wide: true
+			},
+			{
+				type: 'page',
+				name: 'Spotlight Split',
+				slug: 'spotlight-split',
+				content: SpotlightSplitDoc,
 				wide: true
 			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },

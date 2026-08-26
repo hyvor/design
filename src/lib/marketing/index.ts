@@ -40,6 +40,8 @@ export { default as CcpaSeal } from './Seal/CcpaSeal.svelte';
 export { default as SsoSeal } from './Seal/SsoSeal.svelte';
 export { default as IsoSeal } from './Seal/IsoSeal.svelte';
 
+export { default as LogoStrip } from './LogoStrip/LogoStrip.svelte';
+
 export { default as AllFeaturesAccordion } from './AllFeaturesAccordion/AllFeaturesAccordion.svelte';
 export { default as AllFeaturesAccordionFeature } from './AllFeaturesAccordion/AllFeaturesAccordionFeature.svelte';
 

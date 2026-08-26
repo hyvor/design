@@ -41,17 +41,13 @@ import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
-import DetailsAccordion from './docs/DetailsAccordion.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
-import HeroDoc from './docs/Hero.svelte';
-import FeatureSplitDoc from './docs/FeatureSplit.svelte';
-import TestimonialsDoc from './docs/Testimonials.svelte';
-import AllFeaturesAccordionDoc from './docs/AllFeaturesAccordion.svelte';
-import FAQDoc from './docs/FAQ.svelte';
-import FullTrialSignupDoc from './docs/FullTrialSignup.svelte';
-import SpotlightSplitDoc from './docs/SpotlightSplit.svelte';
+import HeaderDoc from './docs/Header.svelte';
+import FooterDoc from './docs/Footer.svelte';
+import HomepageComponentsDoc from './docs/HomepageComponents.svelte';
+import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
@@ -132,42 +128,13 @@ const SECTIONS: NavSectionConfig[] = [
 				slug: 'page-structure',
 				content: PageStructure
 			},
-			{ type: 'page', name: 'Hero', slug: 'hero', content: HeroDoc, wide: true },
+			{ type: 'page', name: 'Header', slug: 'header', content: HeaderDoc },
+			{ type: 'page', name: 'Footer', slug: 'footer', content: FooterDoc },
 			{
 				type: 'page',
-				name: 'Feature Split',
-				slug: 'feature-split',
-				content: FeatureSplitDoc,
-				wide: true
-			},
-			{
-				type: 'page',
-				name: 'Testimonials',
-				slug: 'testimonials',
-				content: TestimonialsDoc,
-				wide: true
-			},
-			{
-				type: 'page',
-				name: 'All Features Accordion',
-				slug: 'all-features-accordion',
-				content: AllFeaturesAccordionDoc,
-				wide: true
-			},
-			{ type: 'page', name: 'FAQ', slug: 'faq', content: FAQDoc, wide: true },
-			{
-				type: 'page',
-				name: 'Full Trial Signup',
-				slug: 'full-trial-signup',
-				content: FullTrialSignupDoc,
-				wide: true
-			},
-			{
-				type: 'page',
-				name: 'Spotlight Split',
-				slug: 'spotlight-split',
-				content: SpotlightSplitDoc,
-				wide: true
+				name: 'Homepage Components',
+				slug: 'homepage-components',
+				content: HomepageComponentsDoc
 			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{ type: 'page', name: 'Document', slug: 'document', content: Document },
@@ -175,7 +142,7 @@ const SECTIONS: NavSectionConfig[] = [
 				type: 'page',
 				name: 'Details Accordion',
 				slug: 'details-accordion',
-				content: DetailsAccordion
+				content: DetailsAccordionDoc
 			}
 		]
 	}

@@ -1,9 +1,25 @@
 <script lang="ts">
 	import Base from '$lib/components/Base/Base.svelte';
+	import Button from '$lib/components/Button/Button.svelte';
+	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
 	import HeaderNavLink from '$lib/marketing/Header/HeaderNavLink.svelte';
-	import Button from '../../lib/components/Button/Button.svelte';
-	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
+	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
+	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
+	import Footer from '$lib/marketing/Footer/Footer.svelte';
+	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
+	import Hero from '$lib/marketing/Hero/Hero.svelte';
+	import LogoStrip from '$lib/marketing/LogoStrip/LogoStrip.svelte';
+	import FeatureSplit from '$lib/marketing/FeatureSplit/FeatureSplit.svelte';
+	import SpotlightSplit from '$lib/marketing/SpotlightSplit/SpotlightSplit.svelte';
+	import Testimonials from '$lib/marketing/Testimonials/Testimonials.svelte';
+	import AllFeaturesAccordion from '$lib/marketing/AllFeaturesAccordion/AllFeaturesAccordion.svelte';
+	import FAQ from '$lib/marketing/FAQ/FAQ.svelte';
+	import FullTrialSignup from '$lib/marketing/FullTrialSignup/FullTrialSignup.svelte';
+	import GdprSeal from '$lib/marketing/Seal/GdprSeal.svelte';
+	import CcpaSeal from '$lib/marketing/Seal/CcpaSeal.svelte';
+	import SsoSeal from '$lib/marketing/Seal/SsoSeal.svelte';
+	import IsoSeal from '$lib/marketing/Seal/IsoSeal.svelte';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconGithub from '@hyvor/icons/IconGithub';
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
@@ -28,17 +44,10 @@
 	import IconKey from '@hyvor/icons/IconKey';
 	import IconPlug from '@hyvor/icons/IconPlug';
 	import IconDatabase from '@hyvor/icons/IconDatabase';
-	import Footer from '$lib/marketing/Footer/Footer.svelte';
-	import FooterLinkList from '$lib/marketing/Footer/FooterLinkList.svelte';
-	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
-	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
-	import Hero from '$lib/marketing/Hero/Hero.svelte';
-	import FeatureSplit from '$lib/marketing/FeatureSplit/FeatureSplit.svelte';
-	import Testimonials from '$lib/marketing/Testimonials/Testimonials.svelte';
-	import AllFeaturesAccordion from '$lib/marketing/AllFeaturesAccordion/AllFeaturesAccordion.svelte';
-	import FAQ from '$lib/marketing/FAQ/FAQ.svelte';
-	import FullTrialSignup from '$lib/marketing/FullTrialSignup/FullTrialSignup.svelte';
 	import { page } from '$app/stores';
+	import type { ComponentProps } from 'svelte';
+
+	// --- Header ---
 
 	let resourcesOpen = $state(false);
 
@@ -62,6 +71,39 @@
 		}
 	}
 
+	// --- Logo Strip ---
+
+	// placeholder customer logos, just a name rendered as an inline SVG data URI;
+	// swap these for real logo files when wiring this up on an actual site
+	function placeholderLogo(name: string, width = 120) {
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28"><text x="0" y="21" font-family="sans-serif" font-size="20" font-weight="700" fill="black">${name}</text></svg>`;
+		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+	}
+
+	// an opaque, full-color "app icon" square, to test the `color` override
+	// (skips the shared white-silhouette treatment)
+	function placeholderIcon(letter: string, bg: string) {
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"><rect width="44" height="44" rx="10" fill="${bg}"/><text x="22" y="29" font-family="sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">${letter}</text></svg>`;
+		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+	}
+
+	const customerLogos = [
+		{ name: 'Aqeez', src: placeholderLogo('Aqeez') },
+		{ name: 'Globex', src: placeholderLogo('Globex') },
+		{ name: 'Initech', src: placeholderLogo('Initech', 100) },
+		{
+			name: 'Nikonish',
+			src: placeholderIcon('N', '#f2c200'),
+			width: 44,
+			height: 44,
+			color: true
+		},
+		{ name: 'Umbrella Co', src: placeholderLogo('Umbrella Co', 140) },
+		{ name: 'Soylent', src: placeholderLogo('Soylent') }
+	];
+
+	// --- Feature Split ---
+
 	const editorBullets = [
 		'Markdown shortcuts for all the formatting you need',
 		'Paste, drag and drop, or pick images from Unsplash',
@@ -69,6 +111,173 @@
 	];
 
 	const speedBullets = ['Automatic webp conversion', 'Aggressive edge caching', 'Global CDN'];
+
+	// --- Testimonials ---
+
+	const testimonialReviews: ComponentProps<typeof Testimonials>['reviews'] = [
+		{
+			type: 'text',
+			name: 'Lionel S.',
+			role: 'Blogger',
+			quote:
+				'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
+		},
+		{
+			type: 'video',
+			name: 'Video testimonial',
+			role: 'Coming soon'
+		},
+		{
+			type: 'text',
+			name: 'Manoj P.',
+			role: 'Senior Application Engineer',
+			quote:
+				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
+		},
+		{
+			type: 'text',
+			name: 'Aisha K.',
+			role: 'Newsletter writer',
+			quote: 'Migrating was painless, and the editor is the best I have used for long-form writing.'
+		},
+		{
+			type: 'text',
+			name: 'Diego R.',
+			role: 'Indie hacker',
+			quote: 'Fast, simple, and it just works. Exactly what I wanted for my blog.'
+		}
+	];
+
+	// --- All Features Accordion ---
+
+	const featureCategories = [
+		{
+			label: 'Post Editor',
+			icon: IconPencil,
+			color: 'var(--green)',
+			features: [
+				{
+					icon: IconPencil,
+					title: 'All the basics',
+					description: 'Bold, italic, headings, lists, quotes, links, and more.'
+				},
+				{
+					icon: IconImage,
+					title: 'Images',
+					description: 'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
+				},
+				{
+					icon: IconCode,
+					title: 'Embeds',
+					description: 'Easily embed from YouTube, X, Instagram, and 1000+ platforms.'
+				},
+				{
+					icon: IconRegex,
+					title: 'Syntax Highlighting',
+					description: 'Add code blocks with syntax highlighting for 100+ languages.'
+				},
+				{
+					icon: IconMarkdown,
+					title: 'Markdown-friendly',
+					description: 'Markdown shortcuts for all the formatting you need.'
+				},
+				{
+					icon: IconHourglass,
+					title: 'Drafts & Scheduling',
+					description: 'Save drafts and schedule posts to be published in the future.'
+				}
+			]
+		},
+		{
+			label: 'Your Blog',
+			icon: IconSignpost2,
+			color: 'var(--blue)',
+			features: [
+				{ icon: IconTag, title: 'Tags', description: 'Organize your posts with tags.' },
+				{
+					icon: IconRss,
+					title: 'Atom (RSS) Feed',
+					description: 'Atom feeds are generated automatically.'
+				},
+				{
+					icon: IconGlobe2,
+					title: 'Custom Domain',
+					description: 'Use your own domain for your blog.'
+				},
+				{
+					icon: IconPalette,
+					title: 'Themes',
+					description: 'Pick from official themes, or build your own.'
+				},
+				{
+					icon: IconEnvelope,
+					title: 'Newsletter',
+					description: 'Turn readers into subscribers with a built-in newsletter.'
+				},
+				{
+					icon: IconChatDots,
+					title: 'Comments',
+					description: 'Built-in, spam-free commenting for every post.'
+				},
+				{
+					icon: IconGraphUp,
+					title: 'Analytics',
+					description: 'See what is working with built-in, privacy-friendly analytics.'
+				}
+			]
+		},
+		{
+			label: 'Optimizations',
+			icon: IconLightning,
+			color: 'var(--orange)',
+			features: [
+				{
+					icon: IconSearchHeart,
+					title: 'SEO',
+					description: 'Meta tags, Open Graph tags, Canonical URLs, and more.'
+				},
+				{
+					icon: IconLightning,
+					title: 'Speed',
+					description: 'All official themes are optimized for speed.'
+				},
+				{
+					icon: IconGlobe,
+					title: 'Global CDN',
+					description: 'Every asset is served from a CDN close to your readers.'
+				}
+			]
+		},
+		{
+			label: 'Developers',
+			icon: IconDatabase,
+			color: 'var(--red)',
+			features: [
+				{
+					icon: IconKey,
+					title: 'REST API',
+					description: 'Full API access to build custom integrations.'
+				},
+				{
+					icon: IconPlug,
+					title: 'Webhooks',
+					description: 'Get notified in real-time when things happen on your blog.'
+				},
+				{
+					icon: IconCode,
+					title: 'Custom Code',
+					description: 'Inject custom CSS and JavaScript into your theme.'
+				},
+				{
+					icon: IconDatabase,
+					title: 'Data Export',
+					description: 'Export your full content and data at any time.'
+				}
+			]
+		}
+	];
+
+	// --- FAQ ---
 
 	const faqItems = [
 		{ q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial.' },
@@ -88,6 +297,7 @@
 	<title>Test Page - HDS</title>
 </svelte:head>
 
+<!-- Header -->
 <Header product="relay" name="HYVOR" subName="Design System" max={true}>
 	{#snippet center()}
 		<HeaderNavLink href="/pricing" active={$page.url.pathname === '/pricing'}>
@@ -167,6 +377,9 @@
 		{/snippet}
 	</Hero>
 
+	<!-- Logo Strip -->
+	<LogoStrip label="Trusted by 10,000+ websites & businesses" logos={customerLogos} />
+
 	<!-- Feature Split -->
 	<FeatureSplit
 		eyebrow="Post Editor"
@@ -200,175 +413,33 @@
 		{/snippet}
 	</FeatureSplit>
 
-	<!-- Testimonials -->
-	<Testimonials
-		reviews={[
-			{
-				type: 'text',
-				name: 'Lionel S.',
-				role: 'Blogger',
-				quote:
-					'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
-			},
-			{
-				type: 'video',
-				name: 'Video testimonial',
-				role: 'Coming soon'
-			},
-			{
-				type: 'text',
-				name: 'Manoj P.',
-				role: 'Senior Application Engineer',
-				quote:
-					'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
-			},
-			{
-				type: 'text',
-				name: 'Aisha K.',
-				role: 'Newsletter writer',
-				quote:
-					'Migrating was painless, and the editor is the best I have used for long-form writing.'
-			},
-			{
-				type: 'text',
-				name: 'Diego R.',
-				role: 'Indie hacker',
-				quote: 'Fast, simple, and it just works. Exactly what I wanted for my blog.'
-			}
-		]}
-	/>
+	<!-- Spotlight Split -->
+	<SpotlightSplit
+		title="Enterprise-ready."
+		description="Enterprise-grade security and compliance, without adding complexity to your publishing workflow."
+		stats={['> 99.9% Uptime', 'Priority Support']}
+		button={{ href: 'https://hyvor.com/enterprise', label: 'Contact Sales', external: true }}
+		background="#574443"
+	>
+		{#snippet content()}
+			<div class="seal-grid">
+				<GdprSeal />
+				<CcpaSeal />
+				<SsoSeal />
+				<IsoSeal />
+			</div>
+		{/snippet}
+	</SpotlightSplit>
 
 	<!-- All Features Accordion -->
 	<AllFeaturesAccordion
 		accentColor="#574443"
 		accentColorDark="#a8867e"
-		categories={[
-			{
-				label: 'Post Editor',
-				icon: IconPencil,
-				color: 'var(--green)',
-				features: [
-					{
-						icon: IconPencil,
-						title: 'All the basics',
-						description: 'Bold, italic, headings, lists, quotes, links, and more.'
-					},
-					{
-						icon: IconImage,
-						title: 'Images',
-						description: 'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
-					},
-					{
-						icon: IconCode,
-						title: 'Embeds',
-						description: 'Easily embed from YouTube, X, Instagram, and 1000+ platforms.'
-					},
-					{
-						icon: IconRegex,
-						title: 'Syntax Highlighting',
-						description: 'Add code blocks with syntax highlighting for 100+ languages.'
-					},
-					{
-						icon: IconMarkdown,
-						title: 'Markdown-friendly',
-						description: 'Markdown shortcuts for all the formatting you need.'
-					},
-					{
-						icon: IconHourglass,
-						title: 'Drafts & Scheduling',
-						description: 'Save drafts and schedule posts to be published in the future.'
-					}
-				]
-			},
-			{
-				label: 'Your Blog',
-				icon: IconSignpost2,
-				color: 'var(--blue)',
-				features: [
-					{ icon: IconTag, title: 'Tags', description: 'Organize your posts with tags.' },
-					{
-						icon: IconRss,
-						title: 'Atom (RSS) Feed',
-						description: 'Atom feeds are generated automatically.'
-					},
-					{
-						icon: IconGlobe2,
-						title: 'Custom Domain',
-						description: 'Use your own domain for your blog.'
-					},
-					{
-						icon: IconPalette,
-						title: 'Themes',
-						description: 'Pick from official themes, or build your own.'
-					},
-					{
-						icon: IconEnvelope,
-						title: 'Newsletter',
-						description: 'Turn readers into subscribers with a built-in newsletter.'
-					},
-					{
-						icon: IconChatDots,
-						title: 'Comments',
-						description: 'Built-in, spam-free commenting for every post.'
-					},
-					{
-						icon: IconGraphUp,
-						title: 'Analytics',
-						description: 'See what is working with built-in, privacy-friendly analytics.'
-					}
-				]
-			},
-			{
-				label: 'Optimizations',
-				icon: IconLightning,
-				color: 'var(--orange)',
-				features: [
-					{
-						icon: IconSearchHeart,
-						title: 'SEO',
-						description: 'Meta tags, Open Graph tags, Canonical URLs, and more.'
-					},
-					{
-						icon: IconLightning,
-						title: 'Speed',
-						description: 'All official themes are optimized for speed.'
-					},
-					{
-						icon: IconGlobe,
-						title: 'Global CDN',
-						description: 'Every asset is served from a CDN close to your readers.'
-					}
-				]
-			},
-			{
-				label: 'Developers',
-				icon: IconDatabase,
-				color: 'var(--red)',
-				features: [
-					{
-						icon: IconKey,
-						title: 'REST API',
-						description: 'Full API access to build custom integrations.'
-					},
-					{
-						icon: IconPlug,
-						title: 'Webhooks',
-						description: 'Get notified in real-time when things happen on your blog.'
-					},
-					{
-						icon: IconCode,
-						title: 'Custom Code',
-						description: 'Inject custom CSS and JavaScript into your theme.'
-					},
-					{
-						icon: IconDatabase,
-						title: 'Data Export',
-						description: 'Export your full content and data at any time.'
-					}
-				]
-			}
-		]}
+		categories={featureCategories}
 	/>
+
+	<!-- Testimonials -->
+	<Testimonials reviews={testimonialReviews} />
 
 	<!-- FAQ -->
 	<div class="hds-container faq-wrap">
@@ -387,6 +458,7 @@
 	/>
 </Base>
 
+<!-- Footer -->
 <Footer
 	name="Hyvor Talk"
 	logo="/favicon.svg"
@@ -450,6 +522,12 @@
 		height: 260px;
 		color: var(--text-light);
 		font-size: 13px;
+	}
+
+	.seal-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 20px;
 	}
 
 	.faq-wrap {

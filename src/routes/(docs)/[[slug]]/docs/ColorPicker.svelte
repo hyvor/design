@@ -1,9 +1,12 @@
-<script>
+<script lang="ts">
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import ColorPicker from '$lib/components/ColorPicker/ColorPicker.svelte';
 	import CodeResult from './Helper/CodeResult.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
 	import TableRow from '$lib/components/Table/TableRow.svelte';
+	import SplitControl from '$lib/components/SplitControl/SplitControl.svelte';
+	import InputGroup from '$lib/components/FormControl/InputGroup.svelte';
+	import Radio from '$lib/components/Radio/Radio.svelte';
 
 	let color1 = $state('#000000');
 	let inputTimes1 = $state(0);
@@ -12,6 +15,10 @@
 	let color2 = $state('#00000066');
 	let inputTimes2 = $state(0);
 	let changedTimes2 = $state(0);
+
+	let color3 = $state('#ff5722');
+	let paPosition: 'top' | 'bottom' | 'left' | 'right' = $state('bottom');
+	let paAlign: 'start' | 'center' | 'end' = $state('start');
 </script>
 
 <h1>Color Picker</h1>
@@ -108,6 +115,42 @@
 		</div>
 	</TableRow>
 </Table>
+
+<h2 id="positioning">Positioning and Alignment</h2>
+
+<p>
+	Use <code>position</code> and <code>align</code> to control where the picker popover opens
+	relative to the swatch. They work the same way as the <a href="/dropdown#props">Dropdown</a> props.
+</p>
+
+<CodeBlock
+	code={`
+    <ColorPicker bind:color={color} position="bottom" align="start" />
+`}
+/>
+
+<CodeResult>
+	<SplitControl label="Position" caption="Side the popover opens on">
+		<InputGroup>
+			<Radio name="cpPosition" value="top" bind:group={paPosition}>Top</Radio>
+			<Radio name="cpPosition" value="bottom" bind:group={paPosition}>Bottom</Radio>
+			<Radio name="cpPosition" value="left" bind:group={paPosition}>Left</Radio>
+			<Radio name="cpPosition" value="right" bind:group={paPosition}>Right</Radio>
+		</InputGroup>
+	</SplitControl>
+
+	<SplitControl label="Align" caption="Alignment along that side">
+		<InputGroup>
+			<Radio name="cpAlign" value="start" bind:group={paAlign}>Start</Radio>
+			<Radio name="cpAlign" value="center" bind:group={paAlign}>Center</Radio>
+			<Radio name="cpAlign" value="end" bind:group={paAlign}>End</Radio>
+		</InputGroup>
+	</SplitControl>
+
+	<div style="margin:120px 0; text-align: center;">
+		<ColorPicker bind:color={color3} position={paPosition} align={paAlign} />
+	</div>
+</CodeResult>
 
 <h3 id="alpha">With Alpha</h3>
 

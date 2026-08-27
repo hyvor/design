@@ -11,7 +11,7 @@ export { default as Base } from './Base/Base.svelte';
 export { default as Box } from './Box/Box.svelte';
 
 export { default as Button } from './Button/Button.svelte';
-export { default as ButtonGroup } from './Button/ButtonGroup.svelte';
+export { default as ButtonGroup } from './ButtonGroup/ButtonGroup.svelte';
 
 export { default as BoxShadowPicker } from './BoxShadowPicker/BoxShadowPicker.svelte';
 

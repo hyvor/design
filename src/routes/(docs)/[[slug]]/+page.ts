@@ -1,6 +1,7 @@
 import ActionList from './docs/ActionList.svelte';
 import Avatar from './docs/Avatar.svelte';
 import Button from './docs/Button.svelte';
+import ButtonGroup from './docs/ButtonGroup.svelte';
 import Callout from './docs/Callout.svelte';
 import Checkbox from './docs/Checkbox.svelte';
 import Dark from './docs/Dark.svelte';
@@ -56,6 +57,7 @@ const COMPONENTS: { slug: string; name: string; content: Component }[] = [
 	{ slug: 'action-list', name: 'Action List', content: ActionList },
 	{ slug: 'avatar', name: 'Avatar', content: Avatar },
 	{ slug: 'button', name: 'Button', content: Button },
+	{ slug: 'button-group', name: 'Button Group', content: ButtonGroup },
 	{ slug: 'box', name: 'Box', content: Box },
 	{ slug: 'box-shadow-picker', name: 'Box Shadow Picker', content: BoxShadowPicker },
 	{ slug: 'color-picker', name: 'Color Picker', content: ColorPicker },

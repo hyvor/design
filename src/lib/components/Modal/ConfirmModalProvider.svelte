@@ -2,7 +2,6 @@
 	import Modal from './Modal.svelte';
 	import { confirmStore } from './confirm.js';
 	import Button from './../Button/Button.svelte';
-	import ButtonGroup from './../Button/ButtonGroup.svelte';
 
 	let show = $state(true);
 
@@ -32,14 +31,12 @@
 		{/if}
 
 		{#snippet footer()}
-			<ButtonGroup>
-				<Button variant="invisible" on:click={handleCancel}>
-					{$confirmStore.cancelText || 'Cancel'}
-				</Button>
-				<Button color={$confirmStore.danger ? 'red' : 'accent'} on:click={handleConfirm}>
-					{$confirmStore.confirmText || 'Confirm'}
-				</Button>
-			</ButtonGroup>
+			<Button variant="invisible" on:click={handleCancel}>
+				{$confirmStore.cancelText || 'Cancel'}
+			</Button>
+			<Button color={$confirmStore.danger ? 'red' : 'accent'} on:click={handleConfirm}>
+				{$confirmStore.confirmText || 'Confirm'}
+			</Button>
 		{/snippet}
 	</Modal>
 {/if}

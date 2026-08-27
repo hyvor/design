@@ -12,7 +12,7 @@
 		text="You have an unpaid invoice. Please settle to avoid service interruption."
 		position="bottom"
 	>
-		<a href={instance + '/account/billing?pay-failed'}>
+		<a href={instance + '/account/org/billing?pay-failed'}>
 			<Tag color="orange">
 				{#snippet start()}
 					<IconExclamationCircle size={14} />

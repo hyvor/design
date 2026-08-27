@@ -1,6 +1,6 @@
 <script>
 	import Button from '$lib/components/Button/Button.svelte';
-	import ButtonGroup from '$lib/components/Button/ButtonGroup.svelte';
+	import ButtonGroup from '$lib/components/ButtonGroup/ButtonGroup.svelte';
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 	import Loader from '$lib/components/Loader/Loader.svelte';
 	import Table from '$lib/components/Table/Table.svelte';
@@ -432,7 +432,8 @@ All other properties will be forwarded to the underlying element.
 <h2 id="group">Button Group</h2>
 
 <p>
-	You can use the <code>ButtonGroup</code> component to group buttons together.
+	Use the <a href="/button-group"><code>ButtonGroup</code></a> component to visually connect a set of
+	related buttons into a single control.
 </p>
 
 <CodeBlock

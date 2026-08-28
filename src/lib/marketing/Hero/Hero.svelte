@@ -177,7 +177,6 @@
 		font-family: var(--font-serif);
 	}
 
-	/* smaller second line inside the title, e.g. a parenthetical sub-line */
 	.left :global(h1 .heading-small) {
 		font-size: clamp(35px, 5vw, 46px);
 		font-weight: 800;
@@ -224,7 +223,6 @@
 		justify-content: center;
 	}
 
-	/* Entrance animation */
 	.anim {
 		opacity: 0;
 		animation: hero-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -269,7 +267,6 @@
 		}
 	}
 
-	/* Scroll indicator */
 	.scroll-indicator {
 		position: absolute;
 		left: 50%;
@@ -322,7 +319,6 @@
 		}
 	}
 
-	/* Responsive */
 	@media (max-width: 992px) {
 		.hero.full-height {
 			min-height: unset;

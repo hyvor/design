@@ -755,6 +755,14 @@
 			generated straight from <code>items</code>, for Google's FAQ rich results.
 		</div>
 	</TableRow>
+
+	<TableRow>
+		<div><code>toggleIconBg</code></div>
+		<div><code>var(--accent-light)</code></div>
+		<div>
+			Overrides the background color of the round expand/collapse icon.
+		</div>
+	</TableRow>
 </Table>
 
 <h3>Example</h3>

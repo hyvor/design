@@ -1,8 +1,7 @@
 <script lang="ts">
 	interface FaqItem {
 		q: string;
-		/** answer content as HTML — also used verbatim as the rich schema's answer text */
-		a: string;
+		a: string; // as HTML - also used in rich schema
 	}
 
 	interface Props {
@@ -10,14 +9,13 @@
 		columns?: 1 | 2;
 		// emit the FAQPage JSON-LD rich schema into <svelte:head>
 		richSchema?: boolean;
+		toggleIconBg?: string;
 	}
 
-	let { items, columns = 2, richSchema = true }: Props = $props();
+	let { items, columns = 2, richSchema = true, toggleIconBg }: Props = $props();
 
 	const uid = $props.id();
 
-	// which items go in which column (left-to-right, top-to-bottom within each column),
-	// carrying each item's original index along so column splitting doesn't affect it
 	const cols = $derived.by(() => {
 		const indexed = items.map((item, index) => ({ item, index }));
 		if (columns === 1) return [indexed];
@@ -32,8 +30,6 @@
 		openStates[i] = !openStates[i];
 	}
 
-	// FAQPage rich schema, generated straight from the same array that renders the accordion
-	// (Google's FAQPage guidelines allow a limited set of formatting HTML in the answer text)
 	const richSchemaObj = $derived({
 		'@context': 'https://schema.org',
 		'@type': 'FAQPage',
@@ -48,7 +44,11 @@
 	});
 
 	const richSchemaScript = $derived(
-		'<' + 'script type="application/ld+json">' + JSON.stringify(richSchemaObj) + '<' + '/script>'
+		'<' +
+			'script type="application/ld+json">' +
+			JSON.stringify(richSchemaObj) +
+			'<' +
+			'/script>'
 	);
 </script>
 
@@ -58,7 +58,7 @@
 	{/if}
 </svelte:head>
 
-<div class="hds-faq" class:single={columns === 1}>
+<div class="hds-faq" class:single={columns === 1} style:--faq-toggle-icon-bg={toggleIconBg}>
 	{#each cols as col, colIndex (colIndex)}
 		<div class="faq-col">
 			{#each col as { item, index } (item.q)}
@@ -148,7 +148,7 @@
 		width: 24px;
 		height: 24px;
 		border-radius: 50%;
-		background: var(--accent-light-mid);
+		background: var(--faq-toggle-icon-bg, var(--accent-light));
 		color: var(--accent);
 		transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1);
 	}
@@ -217,8 +217,6 @@
 		transition-delay: 0.08s;
 	}
 
-	/* answers are raw HTML (@html) — style plain <a> tags to match the design
-	   system's Link component, which snippet-based answers would use */
 	.a :global(a) {
 		color: var(--link);
 		text-decoration: underline;

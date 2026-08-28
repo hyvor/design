@@ -56,52 +56,33 @@
 	}}
 	max={true}
 >
-	{#snippet center()}
-		<div class="footer-columns">
-			<FooterLinkList title="Products">
-				<a href="https://talk.hyvor.com" target="_blank">Hyvor Talk</a>
-				<a href="https://blogs.hyvor.com" target="_blank">Hyvor Blogs</a>
-				<a href="https://post.hyvor.com" target="_blank">Hyvor Post</a>
-				<a href="https://fortguard.io" target="_blank">Fortguard</a>
-			</FooterLinkList>
+	<FooterLinkList title="Products">
+		<a href="https://talk.hyvor.com" target="_blank">Hyvor Talk</a>
+		<a href="https://blogs.hyvor.com" target="_blank">Hyvor Blogs</a>
+		<a href="https://post.hyvor.com" target="_blank">Hyvor Post</a>
+		<a href="https://fortguard.io" target="_blank">Fortguard</a>
+	</FooterLinkList>
 
-			<FooterLinkList title="Legal">
-				<a href="https://hyvor.com/terms" target="_blank">Terms of Service</a>
-				<a href="https://hyvor.com/privacy" target="_blank">Privacy Policy</a>
-				<a href="https://hyvor.com/sub" target="_blank">Sub-Processors</a>
-				<a href="https://hyvor.com/compliance" target="_blank">Compliance (GDPR)</a>
-				<a href="https://hyvor.com/compliance#dpa" target="_blank">DPA</a>
-			</FooterLinkList>
+	<FooterLinkList title="Legal">
+		<a href="https://hyvor.com/terms" target="_blank">Terms of Service</a>
+		<a href="https://hyvor.com/privacy" target="_blank">Privacy Policy</a>
+		<a href="https://hyvor.com/sub" target="_blank">Sub-Processors</a>
+		<a href="https://hyvor.com/compliance" target="_blank">Compliance (GDPR)</a>
+		<a href="https://hyvor.com/compliance#dpa" target="_blank">DPA</a>
+	</FooterLinkList>
 
-			<FooterLinkList title="HYVOR">
-				<a href="https://hyvor.com/enterprise" target="_blank">Enterprise</a>
-				<a href="https://hyvor.com/support" target="_blank">Support</a>
-				<a href="https://hyvor.com/security" target="_blank">Security</a>
-				<a href="https://hyvor.com/updates" target="_blank">Updates</a>
-				<a href="https://status.hyvor.com" target="_blank">Status</a>
-			</FooterLinkList>
+	<FooterLinkList title="HYVOR">
+		<a href="https://hyvor.com/enterprise" target="_blank">Enterprise</a>
+		<a href="https://hyvor.com/support" target="_blank">Support</a>
+		<a href="https://hyvor.com/security" target="_blank">Security</a>
+		<a href="https://hyvor.com/updates" target="_blank">Updates</a>
+		<a href="https://status.hyvor.com" target="_blank">Status</a>
+	</FooterLinkList>
 
-			<FooterLinkList title="Resources">
-				<a href="https://hyvor.com/docs" target="_blank">Docs</a>
-				<a href="https://hyvor.com/blog" target="_blank">Blog</a>
-				<a href="https://hyvor.com/compare" target="_blank">Comparisons</a>
-				<a href="https://hyvor.community" target="_blank">Community</a>
-			</FooterLinkList>
-		</div>
-	{/snippet}
+	<FooterLinkList title="Resources">
+		<a href="https://hyvor.com/docs" target="_blank">Docs</a>
+		<a href="https://hyvor.com/blog" target="_blank">Blog</a>
+		<a href="https://hyvor.com/compare" target="_blank">Comparisons</a>
+		<a href="https://hyvor.community" target="_blank">Community</a>
+	</FooterLinkList>
 </Footer>
-
-<style>
-	.footer-columns {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 32px;
-	}
-
-	@media screen and (max-width: 560px) {
-		.footer-columns {
-			flex-direction: column;
-			gap: 24px;
-		}
-	}
-</style>

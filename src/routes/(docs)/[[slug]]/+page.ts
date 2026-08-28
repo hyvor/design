@@ -42,10 +42,13 @@ import DetailCard from './docs/DetailCard.svelte';
 import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
-import DetailsAccordion from './docs/DetailsAccordion.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
+import HeaderDoc from './docs/Header.svelte';
+import FooterDoc from './docs/Footer.svelte';
+import LandingPageComponents from './docs/LandingPageComponents.svelte';
+import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
 import type { Component } from 'svelte';
@@ -127,13 +130,21 @@ const SECTIONS: NavSectionConfig[] = [
 				slug: 'page-structure',
 				content: PageStructure
 			},
+			{ type: 'page', name: 'Header', slug: 'header', content: HeaderDoc },
+			{ type: 'page', name: 'Footer', slug: 'footer', content: FooterDoc },
+			{
+				type: 'page',
+				name: 'Homepage Components',
+				slug: 'homepage-components',
+				content: LandingPageComponents
+			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{ type: 'page', name: 'Document', slug: 'document', content: Document },
 			{
 				type: 'page',
 				name: 'Details Accordion',
 				slug: 'details-accordion',
-				content: DetailsAccordion
+				content: DetailsAccordionDoc
 			}
 		]
 	}

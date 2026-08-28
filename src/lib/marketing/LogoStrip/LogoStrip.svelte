@@ -5,9 +5,6 @@
 		href?: string;
 		width?: number;
 		height?: number;
-		// keep this one logo in its real colors instead of the shared white
-		// silhouette treatment below, for opaque, full-color icons (e.g. a
-		// square app icon) that would otherwise crush into a blank box
 		color?: boolean;
 	}
 
@@ -29,8 +26,7 @@
 		speed = 34
 	}: Props = $props();
 
-	// the track is rendered twice back to back and animated exactly -50%,
-	// since both halves are pixel-identical, the loop point is invisible
+	// render twice for marquee effect
 	const track = $derived(marquee ? [...logos, ...logos] : logos);
 </script>
 
@@ -69,7 +65,7 @@
 	</div>
 
 	{#if marquee}
-		<div class="marquee">
+		<div class="marquee hds-container-max">
 			<div class="marquee-track">
 				{#each track as logo, i}
 					{@const hidden = i >= logos.length}
@@ -109,7 +105,6 @@
 		margin: 0 0 36px;
 	}
 
-	/* static (non-marquee) layout */
 	.logos {
 		display: flex;
 		align-items: center;

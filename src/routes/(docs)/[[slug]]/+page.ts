@@ -134,7 +134,7 @@ const SECTIONS: NavSectionConfig[] = [
 				type: 'page',
 				name: 'Homepage Components',
 				slug: 'homepage-components',
-				content: LandingPageComponents,
+				content: LandingPageComponents
 			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{ type: 'page', name: 'Document', slug: 'document', content: Document },

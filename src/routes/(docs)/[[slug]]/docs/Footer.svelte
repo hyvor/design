@@ -7,8 +7,8 @@
 <h1>Footer</h1>
 
 <p>
-	The marketing site footer: brand name, an email/social row, a center slot for link columns, and
-	a bottom bar with copyright, a GDPR badge, and the "From France" flag. Place it right after
+	The marketing site footer: brand name, an email/social row, a center slot for link columns, and a
+	bottom bar with copyright, a GDPR badge, and the "From France" flag. Place it right after
 	<code>{'<Base>'}</code>, as the last thing on the page.
 </p>
 
@@ -37,8 +37,7 @@
 		<div><code>product</code></div>
 		<div></div>
 		<div>
-			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the
-			mascot's
+			Product slug (e.g. <code>"blogs"</code>), same as <code>Header</code>. Derives the mascot's
 			<code>logo</code> automatically when not given directly.
 		</div>
 	</TableRow>
@@ -62,8 +61,8 @@
 		<div><code>background</code></div>
 		<div></div>
 		<div>
-			A CSS color for the footer. When omitted, the footer stays transparent and follows the
-			app's theme.
+			A CSS color for the footer. When omitted, the footer stays transparent and follows the app's
+			theme.
 		</div>
 	</TableRow>
 
@@ -80,8 +79,8 @@
 		<div><code>card</code></div>
 		<div><code>false</code></div>
 		<div>
-			Whether <code>background</code> is a branded color needing light text/borders regardless of
-			theme. Leave off for a subtle tint that should keep the app's normal text color.
+			Whether <code>background</code> is a branded color needing light text/borders regardless of theme.
+			Leave off for a subtle tint that should keep the app's normal text color.
 		</div>
 	</TableRow>
 
@@ -96,8 +95,8 @@
 		<div>null</div>
 		<div>
 			An object mapping social keys to URLs: <code>x</code>, <code>discord</code>,
-			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>.
-			All show by default with HYVOR's accounts; pass a key as <code>undefined</code> to hide it.
+			<code>github</code>, <code>youtube</code>, <code>linkedin</code>, <code>bluesky</code>. All
+			show by default with HYVOR's accounts; pass a key as <code>undefined</code> to hide it.
 		</div>
 	</TableRow>
 
@@ -135,25 +134,22 @@
 		<div><code>logoAltText</code></div>
 		<div><code>"Logo"</code></div>
 		<div>
-			The word appended to the mascot's alt text (e.g. "HYVOR Logo"). Translate this when
-			localizing the page - <code>name</code> is product-defined and stays as-is.
+			The word appended to the mascot's alt text (e.g. "HYVOR Logo"). Translate this when localizing
+			the page - <code>name</code> is product-defined and stays as-is.
 		</div>
 	</TableRow>
 
 	<TableRow>
 		<div><code>copyEmailLabel</code></div>
 		<div><code>"Copy email"</code></div>
-		<div>
-			Tooltip shown on the "copy email" button. Translate this when localizing the page.
-		</div>
+		<div>Tooltip shown on the "copy email" button. Translate this when localizing the page.</div>
 	</TableRow>
 
 	<TableRow>
 		<div><code>copiedLabel</code></div>
 		<div><code>"Copied!"</code></div>
 		<div>
-			Tooltip shown after the email address is copied. Translate this when localizing the
-			page.
+			Tooltip shown after the email address is copied. Translate this when localizing the page.
 		</div>
 	</TableRow>
 
@@ -193,8 +189,8 @@
 <h2 id="examples">Example</h2>
 <p>
 	The following example shows how to use the <code>Footer</code> and
-	<code>FooterLinkList</code> components to create a branded footer with two columns. See it in
-	the full page assembled on <a href="/test">/test</a>.
+	<code>FooterLinkList</code> components to create a branded footer with two columns. See it in the
+	full page assembled on <a href="/test">/test</a>.
 </p>
 
 <CodeBlock

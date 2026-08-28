@@ -44,11 +44,7 @@
 	});
 
 	const richSchemaScript = $derived(
-		'<' +
-			'script type="application/ld+json">' +
-			JSON.stringify(richSchemaObj) +
-			'<' +
-			'/script>'
+		'<' + 'script type="application/ld+json">' + JSON.stringify(richSchemaObj) + '<' + '/script>'
 	);
 </script>
 

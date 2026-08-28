@@ -9,9 +9,9 @@
 <p>
 	Stack these inside <code>{'<Base>'}</code>, between
 	<a href="/header"><code>{'<Header>'}</code></a>
-	and <a href="/footer"><code>{'<Footer>'}</code></a>, in whatever order tells your product's
-	story. See them all assembled on a real page at <a href="/test">/test</a>, which is also where
-	to check how a component actually looks, since the examples below are code-only.
+	and <a href="/footer"><code>{'<Footer>'}</code></a>, in whatever order tells your product's story.
+	See them all assembled on a real page at <a href="/test">/test</a>, which is also where to check
+	how a component actually looks, since the examples below are code-only.
 </p>
 
 <ul>
@@ -47,8 +47,8 @@
 		<div></div>
 		<div>
 			The main heading. A plain string, or a Snippet if you need inline markup (e.g. a smaller
-			second line). See <a href="#hero-highlighting">Highlighting translatable text</a> below for
-			how to emphasize part of it.
+			second line). See <a href="#hero-highlighting">Highlighting translatable text</a> below for how
+			to emphasize part of it.
 		</div>
 	</TableRow>
 
@@ -65,8 +65,7 @@
 		<div><code>badge</code></div>
 		<div></div>
 		<div>
-			A small pill shown above the title, e.g. <code>"Open-source &amp; free to try"</code>.
-			Also
+			A small pill shown above the title, e.g. <code>"Open-source &amp; free to try"</code>. Also
 			<code>string | Snippet</code>.
 		</div>
 	</TableRow>
@@ -85,8 +84,8 @@
 		<div><code>accentColor</code></div>
 		<div><code>var(--accent)</code></div>
 		<div>
-			Overrides the accent used for the badge, the <code>.hds-hl</code> highlight color, and the
-			scroll dot, in light mode.
+			Overrides the accent used for the badge, the <code>.hds-hl</code> highlight color, and the scroll
+			dot, in light mode.
 		</div>
 	</TableRow>
 
@@ -103,8 +102,8 @@
 		<div><code>fullHeight</code></div>
 		<div><code>false</code></div>
 		<div>
-			When <code>true</code>, the hero fills the viewport height below the header instead of
-			sizing to its content.
+			When <code>true</code>, the hero fills the viewport height below the header instead of sizing
+			to its content.
 		</div>
 	</TableRow>
 
@@ -112,8 +111,7 @@
 		<div><code>after</code></div>
 		<div></div>
 		<div>
-			Snippet rendered below the buttons, e.g. a product screenshot or a row of customer
-			logos.
+			Snippet rendered below the buttons, e.g. a product screenshot or a row of customer logos.
 		</div>
 	</TableRow>
 </Table>
@@ -142,8 +140,8 @@
 
 <p>
 	Two helper classes are styled globally inside the title/subtitle: <code>.hds-hl</code>
-	(accent-colored text) and <code>.hds-marker</code> (a highlighter-style background). Wrap the
-	part you want emphasized in one of these, inside a <code>{'{#snippet}'}</code> as shown above.
+	(accent-colored text) and <code>.hds-marker</code> (a highlighter-style background). Wrap the part
+	you want emphasized in one of these, inside a <code>{'{#snippet}'}</code> as shown above.
 </p>
 
 <p>
@@ -174,9 +172,9 @@
 <h2 id="logo-strip">LogoStrip</h2>
 
 <p>
-	A strip of customer/partner logos, usually placed right under <a href="#hero">Hero</a>. By
-	default it scrolls as an infinite <code>marquee</code> (pauses on hover, and falls back to a
-	static wrapped row for <code>prefers-reduced-motion</code>); set <code>marquee={false}</code>
+	A strip of customer/partner logos, usually placed right under <a href="#hero">Hero</a>. By default
+	it scrolls as an infinite <code>marquee</code> (pauses on hover, and falls back to a static
+	wrapped row for <code>prefers-reduced-motion</code>); set <code>marquee={false}</code>
 	for a plain wrapped row instead. Logos are dimmed and forced to a single color by default (<code
 		>invert</code
 	>), so a mixed set of brand marks reads as one consistent row instead of competing with each
@@ -200,11 +198,11 @@
 			<code>{'{ name, src, href?, width?, height?, color? }'}</code>. <code>width</code>/<code
 				>height</code
 			>
-			default to <code>120</code>/<code>28</code> per logo, matching each logo's own aspect
-			ratio. Set <code>color</code> on a logo to keep it in its real colors regardless of
+			default to <code>120</code>/<code>28</code> per logo, matching each logo's own aspect ratio.
+			Set <code>color</code> on a logo to keep it in its real colors regardless of
 			<code>invert</code>
-			(e.g. an opaque, full-color app icon that would otherwise crush into a blank box under the
-			white silhouette treatment).
+			(e.g. an opaque, full-color app icon that would otherwise crush into a blank box under the white
+			silhouette treatment).
 		</div>
 	</TableRow>
 
@@ -220,8 +218,9 @@
 		<div><code>background</code></div>
 		<div><code>var(--accent)</code></div>
 		<div>
-			The section's background color. Any CSS color works: a hex value, another theme
-			variable, <code>rgb()</code>/<code>hsl()</code>, etc.
+			The section's background color. Any CSS color works: a hex value, another theme variable, <code
+				>rgb()</code
+			>/<code>hsl()</code>, etc.
 		</div>
 	</TableRow>
 
@@ -230,8 +229,8 @@
 		<div><code>true</code></div>
 		<div>
 			Forces every logo (except ones marked <code>color</code>) to solid white via
-			<code>filter</code>, for a colored/dark <code>background</code>. Turn off on a
-			light/neutral background to show logos in their original colors.
+			<code>filter</code>, for a colored/dark <code>background</code>. Turn off on a light/neutral
+			background to show logos in their original colors.
 		</div>
 	</TableRow>
 
@@ -332,8 +331,8 @@
 		<div>
 			<b>Required.</b> Snippet for the other column: an image, a code block, a mock UI, etc.
 			Receives
-			<code>activeBullet: number</code> when <code>interactiveBullets</code> is on, so the visual
-			can switch state to match the selected bullet.
+			<code>activeBullet: number</code> when <code>interactiveBullets</code> is on, so the visual can
+			switch state to match the selected bullet.
 		</div>
 	</TableRow>
 
@@ -341,8 +340,8 @@
 		<div><code>interactiveBullets</code></div>
 		<div><code>false</code></div>
 		<div>
-			Makes the bullets clickable tabs that auto-advance every 5s once the section scrolls
-			into view.
+			Makes the bullets clickable tabs that auto-advance every 5s once the section scrolls into
+			view.
 		</div>
 	</TableRow>
 
@@ -356,8 +355,7 @@
 		<div><code>altBg</code></div>
 		<div><code>false</code></div>
 		<div>
-			Gives the section an alternate background, to visually separate it from the ones around
-			it.
+			Gives the section an alternate background, to visually separate it from the ones around it.
 		</div>
 	</TableRow>
 
@@ -365,8 +363,8 @@
 		<div><code>overlap</code></div>
 		<div><code>false</code></div>
 		<div>
-			Lets the visual bleed under the text column (e.g. a visual with a negative margin),
-			while keeping the text readable on top.
+			Lets the visual bleed under the text column (e.g. a visual with a negative margin), while
+			keeping the text readable on top.
 		</div>
 	</TableRow>
 
@@ -383,8 +381,7 @@
 		<div><code>left</code></div>
 		<div></div>
 		<div>
-			Snippet that replaces the entire text column, when <code>eyebrow</code>/<code
-				>title</code
+			Snippet that replaces the entire text column, when <code>eyebrow</code>/<code>title</code
 			>/<code>description</code>/<code>bullets</code>/<code>button</code> aren't flexible enough.
 		</div>
 	</TableRow>
@@ -472,8 +469,8 @@
 		<div><code>reviews</code></div>
 		<div></div>
 		<div>
-			Required. An array of text or video reviews, see the shape below. Any number of reviews
-			can be passed; the row scrolls once they overflow the screen.
+			Required. An array of text or video reviews, see the shape below. Any number of reviews can be
+			passed; the row scrolls once they overflow the screen.
 		</div>
 	</TableRow>
 
@@ -493,9 +490,8 @@
 		<div><code>handwrittenNames</code></div>
 		<div><code>true</code></div>
 		<div>
-			Sets the reviewer name in a handwritten-style font (Caveat, loaded from Bunny Fonts).
-			Turn off to use the regular typeface instead, e.g. if the host page can't reach an
-			external font host.
+			Sets the reviewer name in a handwritten-style font (Caveat, loaded from Bunny Fonts). Turn off
+			to use the regular typeface instead, e.g. if the host page can't reach an external font host.
 		</div>
 	</TableRow>
 </Table>
@@ -627,8 +623,8 @@
 		<div><code>var(--accent)</code></div>
 		<div>
 			Overrides the accent used to tint the open category's background, in light mode. This is
-			separate from each category's own <code>color</code>, which only tints that category's
-			icon badge and its features' watermarks.
+			separate from each category's own <code>color</code>, which only tints that category's icon
+			badge and its features' watermarks.
 		</div>
 	</TableRow>
 
@@ -663,8 +659,8 @@
 	<TableRow>
 		<div><code>color</code></div>
 		<div>
-			Optional. Any CSS color, e.g. <code>'var(--green)'</code> or <code>'#4b874b'</code>,
-			defaults to the theme accent.
+			Optional. Any CSS color, e.g. <code>'var(--green)'</code> or <code>'#4b874b'</code>, defaults
+			to the theme accent.
 		</div>
 	</TableRow>
 
@@ -718,9 +714,9 @@
 <h2 id="faq">FAQ</h2>
 
 <p>
-	A two-column accordion of frequently asked questions. Unlike the other homepage sections, this
-	one isn't full-bleed, so wrap it in your own heading and a <code>.hds-container</code>, as shown
-	in the example.
+	A two-column accordion of frequently asked questions. Unlike the other homepage sections, this one
+	isn't full-bleed, so wrap it in your own heading and a <code>.hds-container</code>, as shown in
+	the example.
 </p>
 
 <h3>Properties</h3>
@@ -736,8 +732,8 @@
 		<div><code>items</code></div>
 		<div></div>
 		<div>
-			Required. An array of <code>{'{ q, a }'}</code>. <code>a</code> is rendered as HTML, and used
-			verbatim as the rich schema's answer text.
+			Required. An array of <code>{'{ q, a }'}</code>. <code>a</code> is rendered as HTML, and used verbatim
+			as the rich schema's answer text.
 		</div>
 	</TableRow>
 
@@ -745,9 +741,9 @@
 		<div><code>columns</code></div>
 		<div><code>2</code></div>
 		<div>
-			<code>1</code> or <code>2</code>. Items are split left-to-right, top-to-bottom within
-			each column. Regardless of this setting, the layout always collapses to a single column
-			below 768px, so mobile visitors never see a cramped two-column grid.
+			<code>1</code> or <code>2</code>. Items are split left-to-right, top-to-bottom within each
+			column. Regardless of this setting, the layout always collapses to a single column below
+			768px, so mobile visitors never see a cramped two-column grid.
 		</div>
 	</TableRow>
 
@@ -839,8 +835,8 @@
 		<div><code>accentColor</code></div>
 		<div><code>var(--accent)</code></div>
 		<div>
-			Overrides the accent used by the background gradient, the badge, and the check icons, in
-			light mode.
+			Overrides the accent used by the background gradient, the badge, and the check icons, in light
+			mode.
 		</div>
 	</TableRow>
 
@@ -934,8 +930,8 @@
 		<div><code>content</code></div>
 		<div></div>
 		<div>
-			<b>Required.</b> Snippet for the other column. Not limited to any particular shape; lay out
-			whatever fits (a grid of icons, a logo wall, a single quote, stat cards, ...).
+			<b>Required.</b> Snippet for the other column. Not limited to any particular shape; lay out whatever
+			fits (a grid of icons, a logo wall, a single quote, stat cards, ...).
 		</div>
 	</TableRow>
 
@@ -949,10 +945,9 @@
 		<div><code>background</code></div>
 		<div><code>var(--accent)</code></div>
 		<div>
-			The section's background color. Any CSS color works: a hex value (<code>"#574443"</code
-			>), another theme variable (<code>"var(--red)"</code>), <code>rgb()</code>/<code
-				>hsl()</code
-			>, etc.
+			The section's background color. Any CSS color works: a hex value (<code>"#574443"</code>),
+			another theme variable (<code>"var(--red)"</code>), <code>rgb()</code>/<code>hsl()</code>,
+			etc.
 		</div>
 	</TableRow>
 
@@ -960,9 +955,7 @@
 		<div><code>highlightColor</code></div>
 		<div><code>rgba(255, 238, 217, 0.9)</code></div>
 		<div>
-			Color of the grid lines that light up around the cursor. Pair it with <code
-				>background</code
-			>.
+			Color of the grid lines that light up around the cursor. Pair it with <code>background</code>.
 		</div>
 	</TableRow>
 </Table>
@@ -974,8 +967,8 @@
 		>GdprSeal</code
 	>, <code>CcpaSeal</code>, <code>SsoSeal</code>, <code>IsoSeal</code>) ship as ready-made presets
 	built on the generic <code>Seal</code> component, which takes a
-	<code>size</code>, an optional <code>pending</code> state (dashed border, muted colors, e.g. for a
-	certification that's still in progress), and any content as children.
+	<code>size</code>, an optional <code>pending</code> state (dashed border, muted colors, e.g. for a certification
+	that's still in progress), and any content as children.
 </p>
 
 <CodeBlock

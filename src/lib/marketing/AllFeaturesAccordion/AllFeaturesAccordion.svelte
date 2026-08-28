@@ -1,7 +1,7 @@
 <script lang="ts">
-	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import type { Component } from 'svelte';
 	import Feature from './AllFeaturesAccordionFeature.svelte';
+	import IconChevronDown from '@hyvor/icons/IconChevronDown';
 
 	interface FeatureItem {
 		icon: Component;
@@ -73,7 +73,7 @@
 						<span class="cat-label">{cat.label}</span>
 						<span class="cat-count">{cat.features.length} features</span>
 						<span class="chevron" class:rotated={openIndex === i} aria-hidden="true">
-							<IconCaretDown size={16} />
+							<IconChevronDown size={14} />
 						</span>
 					</button>
 				</h3>

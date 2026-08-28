@@ -5,8 +5,6 @@
 		icon: Component;
 		title: string;
 		description: string;
-		// any CSS color, e.g. 'var(--green)' or '#4b874b' — defaults to the
-		// theme accent so this works out of the box on any product
 		color?: string;
 	}
 
@@ -17,7 +15,7 @@
 
 <li class="feature">
 	<div class="icon-bg" style:color aria-hidden="true">
-		<SvelteComponent size={52} />
+		<SvelteComponent size={30} />
 	</div>
 	<div class="content">
 		<h4 class="title">{title}</h4>
@@ -38,13 +36,10 @@
 		z-index: 1;
 	}
 
-	/* a large, faint watermark of the feature's own icon, sitting behind the
-	   title/description rather than as a small marker above them */
 	.icon-bg {
 		position: absolute;
-		top: 50%;
-		right: -8px;
-		transform: translateY(-50%);
+		top: 0;
+		right: 4px;
 		z-index: 0;
 		opacity: 0.14;
 		pointer-events: none;

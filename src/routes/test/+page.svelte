@@ -87,6 +87,13 @@
 		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 	}
 
+	// portrait placeholder poster for the video testimonial card, matching the
+	// aspect ratio of the placeholder video itself
+	function placeholderPoster() {
+		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"><rect width="1080" height="1920" fill="#574443"/><text x="540" y="960" font-family="sans-serif" font-size="72" font-weight="700" fill="white" text-anchor="middle">Video</text></svg>`;
+		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
+	}
+
 	const customerLogos = [
 		{ name: 'Aqeez', src: placeholderLogo('Aqeez') },
 		{ name: 'Globex', src: placeholderLogo('Globex') },
@@ -123,8 +130,11 @@
 		},
 		{
 			type: 'video',
-			name: 'Video testimonial',
-			role: 'Coming soon'
+			name: 'Nadia F.',
+			role: 'Newsletter creator',
+			videoUrl: 'https://placeholdervideo.dev/1080x1920',
+			posterUrl: placeholderPoster(),
+			summary: 'Amazing Product'
 		},
 		{
 			type: 'text',

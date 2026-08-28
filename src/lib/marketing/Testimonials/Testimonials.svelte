@@ -12,6 +12,7 @@
 		role: string;
 		videoUrl?: string;
 		posterUrl?: string;
+		summary?: string;
 	}
 
 	type Review = TextReview | VideoReview;
@@ -20,9 +21,6 @@
 		label?: string;
 		title?: string;
 		reviews: Review[];
-		// the reviewer name is set in a handwritten-style font (Caveat, loaded
-		// from Bunny Fonts) by default — turn off to use the regular typeface,
-		// e.g. if the host page can't reach an external font host
 		handwrittenNames?: boolean;
 	}
 
@@ -33,8 +31,6 @@
 		handwrittenNames = true
 	}: Props = $props();
 
-	// deterministic, non-photographic "identicon" per reviewer name — used as a
-	// placeholder avatar when no photo is available for a text review
 	function identicon(seed: string) {
 		let hash = 0;
 		for (let i = 0; i < seed.length; i++) {
@@ -62,8 +58,28 @@
 	let dragStartX = 0;
 	let dragStartScroll = 0;
 
+	let started: boolean[] = $state(reviews.map(() => false));
+	let playing: boolean[] = $state(reviews.map(() => false));
+	let videoEls: (HTMLVideoElement | undefined)[] = $state([]);
+
+	function play(i: number) {
+		started[i] = true;
+		videoEls[i]?.play().catch(() => {});
+	}
+
+	function autoplayVideo(node: HTMLVideoElement) {
+		node.play().catch(() => {});
+	}
+
+	function onVideoPause(e: Event, i: number) {
+		if ((e.currentTarget as HTMLVideoElement).seeking) return;
+		playing[i] = false;
+	}
+
 	function onPointerDown(e: PointerEvent) {
 		if (!scrollEl) return;
+		// let clicks and native <video> controls work
+		if ((e.target as HTMLElement).closest('button, video, a')) return;
 		dragging = true;
 		dragStartX = e.clientX;
 		dragStartScroll = scrollEl.scrollLeft;
@@ -104,11 +120,16 @@
 		role="region"
 		aria-label={label}
 	>
-		{#each reviews as review}
+		{#each reviews as review, i}
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
-					<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
+					<svg
+						class="avatar"
+						viewBox="0 0 5 5"
+						style="background: {av.bg}"
+						aria-hidden="true"
+					>
 						{#each av.cells as cell}
 							<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
 						{/each}
@@ -120,26 +141,57 @@
 					</figcaption>
 				</figure>
 			{:else}
-				<figure class="card video-card hds-box">
-					<div class="poster">
-						<img src={review.posterUrl} alt="" />
+				<figure class="card video-card hds-box" class:playing={playing[i]}>
+					{#if started[i]}
+						<!-- svelte-ignore a11y_media_has_caption -->
+						<video
+							class="video"
+							src={review.videoUrl}
+							poster={review.posterUrl}
+							controls={playing[i]}
+							playsinline
+							bind:this={videoEls[i]}
+							use:autoplayVideo
+							onplay={() => (playing[i] = true)}
+							onpause={(e) => onVideoPause(e, i)}
+							onended={() => (playing[i] = false)}
+						></video>
+					{:else}
+						<div class="poster">
+							<img src={review.posterUrl} alt="" />
+						</div>
+					{/if}
+
+					{#if !playing[i]}
 						<div class="poster-scrim"></div>
-					</div>
 
-					<div class="video-avatar">
-						<img src={review.posterUrl} alt="" />
-					</div>
+						{#if !started[i] && review.summary}
+							<p class="video-summary">"{review.summary}"</p>
+						{/if}
 
-					<button class="play-btn" aria-label="Play video testimonial" disabled>
-						<svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-							<path d="M5 3.5v9l8-4.5-8-4.5z" />
-						</svg>
-					</button>
+						<button
+							class="play-btn"
+							aria-label={started[i]
+								? 'Resume video testimonial'
+								: 'Play video testimonial'}
+							onclick={() => play(i)}
+						>
+							<svg
+								width="20"
+								height="20"
+								viewBox="0 0 16 16"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<path d="M5 3.5v9l8-4.5-8-4.5z" />
+							</svg>
+						</button>
 
-					<figcaption>
-						<span class="name">{review.name}</span>
-						<span class="role">{review.role}</span>
-					</figcaption>
+						<figcaption>
+							<span class="name">{review.name}</span>
+							<span class="role">{review.role}</span>
+						</figcaption>
+					{/if}
 				</figure>
 			{/if}
 		{/each}
@@ -177,28 +229,26 @@
 	}
 
 	.scroll-row {
+		--side-padding: max(15px, calc((100vw - 1000px) / 2));
+
 		display: flex;
 		align-items: stretch;
 		gap: 20px;
 		overflow-x: auto;
-		/* explicit, not left to default — a lone overflow-x: auto silently
-		   forces overflow-y to auto too (per spec, when only one axis is
-		   'visible'), which was clipping each card's box-shadow into a hard
-		   line at the top/bottom of the row instead of letting it fade out */
 		overflow-y: visible;
-		scroll-snap-type: x proximity;
+		scroll-behavior: smooth;
 		cursor: grab;
-		/* top/bottom padding must clear --box-shadow's blur radius, or the
-		   shadow still gets clipped by the row's own padding-box edge */
-		padding: 32px 15px 36px max(15px, calc((100vw - 1000px) / 2));
+		padding: 32px var(--side-padding) 36px;
 		scrollbar-width: none;
 		-webkit-overflow-scrolling: touch;
 		touch-action: pan-y;
+		user-select: none;
+		-webkit-user-select: none;
 	}
 
 	.scroll-row.dragging {
 		cursor: grabbing;
-		scroll-snap-type: none;
+		scroll-behavior: auto;
 	}
 
 	.scroll-row::-webkit-scrollbar {
@@ -212,7 +262,9 @@
 		height: 440px;
 		margin: 0;
 		box-sizing: border-box;
-		scroll-snap-align: start;
+		transition:
+			width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+			height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.text-card {
@@ -268,6 +320,12 @@
 		padding: 0;
 	}
 
+	.video-card.playing {
+		width: 340px;
+		height: 520px;
+		z-index: 1;
+	}
+
 	.poster {
 		position: absolute;
 		inset: 0;
@@ -280,30 +338,26 @@
 		display: block;
 	}
 
-	/* even out contrast across whatever poster photo lands here, so the
-	   play button and captions stay legible */
 	.poster-scrim {
 		position: absolute;
 		inset: 0;
 		background: linear-gradient(160deg, rgba(20, 14, 12, 0.45), rgba(20, 14, 12, 0.65));
 	}
 
-	.video-avatar {
+	.video-summary {
 		position: absolute;
-		top: 16px;
-		left: 16px;
-		width: 40px;
-		height: 40px;
-		border-radius: 50%;
-		overflow: hidden;
-		box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.85);
-	}
-
-	.video-avatar img {
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
+		top: 24px;
+		left: 20px;
+		right: 20px;
+		margin: 0;
+		font-family: var(--font-serif);
+		font-size: 18px;
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+		color: #fff;
+		text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+		font-style: italic;
 	}
 
 	.play-btn {
@@ -322,19 +376,27 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		cursor: default;
+		cursor: pointer;
 		transition:
 			transform 0.2s,
 			background 0.2s;
 	}
 
-	.play-btn:not(:disabled):hover {
+	.play-btn:hover {
 		transform: translate(-50%, -50%) scale(1.08);
 		background: rgba(255, 255, 255, 0.28);
 	}
 
 	.play-btn svg {
 		margin-left: 3px;
+	}
+
+	.video {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		background: #000;
 	}
 
 	.video-card figcaption {
@@ -357,10 +419,9 @@
 	}
 
 	@media (max-width: 600px) {
-		/* keep in step with the wider .hds-container gutter set globally for
-		   the host page at this same breakpoint */
 		.scroll-row {
-			padding: 32px 20px 36px max(20px, calc((100vw - 1000px) / 2));
+			--side-padding: max(20px, calc((100vw - 1000px) / 2));
+			padding: 32px var(--side-padding) 36px;
 		}
 	}
 
@@ -377,6 +438,11 @@
 
 		.video-card {
 			width: 240px;
+		}
+
+		.video-card.playing {
+			width: 280px;
+			height: 460px;
 		}
 	}
 </style>

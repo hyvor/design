@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-	interface Props {
+	interface ComponentProps {
 		href?: string;
 		active?: boolean;
 		menu?: boolean;
@@ -12,8 +13,9 @@
 		end?: Snippet;
 		description?: Snippet;
 		onclick?: (event: MouseEvent) => void;
-		[key: string]: unknown;
 	}
+
+	type Props = ComponentProps & Omit<HTMLAttributes<HTMLElement>, keyof ComponentProps>;
 
 	let {
 		href,
@@ -104,7 +106,6 @@
 		align-items: center;
 	}
 
-	/* icon + title + description layout, see `description` above */
 	.header-nav-link.rich {
 		align-items: flex-start;
 		gap: 10px;

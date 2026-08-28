@@ -1,16 +1,6 @@
-// Shared helpers for marketing sites that serve translated pages on their own
-// URLs (e.g. a SvelteKit `[[lang]]` route param) rather than switching
-// language client-side on one page. This is a different case from
-// `InternationalizationService`/`LanguageToggle` in
-// `$lib/components/Internationalization`, which swap translated strings in
-// place on a single page; use that instead if you don't have per-language
-// routes.
-
 export interface LanguageOption {
-	/** language/locale code, e.g. "en", "fr" */
-	code: string;
-	/** an emoji flag shown next to the name */
-	flag: string;
+	code: string; // e.g. "fr"
+	flag: string; // e.g. "🇫🇷"
 	name: string;
 }
 

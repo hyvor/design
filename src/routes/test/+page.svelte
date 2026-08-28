@@ -119,8 +119,7 @@
 			type: 'text',
 			name: 'Lionel S.',
 			role: 'Blogger',
-			quote:
-				'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
+			quote: 'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
 		},
 		{
 			type: 'video',
@@ -131,8 +130,7 @@
 			type: 'text',
 			name: 'Manoj P.',
 			role: 'Senior Application Engineer',
-			quote:
-				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
+			quote: 'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
 		},
 		{
 			type: 'text',
@@ -164,7 +162,8 @@
 				{
 					icon: IconImage,
 					title: 'Images',
-					description: 'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
+					description:
+						'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
 				},
 				{
 					icon: IconCode,
@@ -300,15 +299,11 @@
 <!-- Header -->
 <Header product="relay" name="HYVOR" subName="Design System" max={true}>
 	{#snippet center()}
-		<HeaderNavLink href="/pricing" active={$page.url.pathname === '/pricing'}>
-			Pricing
-		</HeaderNavLink>
-		<HeaderNavLink href="/test" active={$page.url.pathname === '/test'}>Docs</HeaderNavLink>
-		<HeaderNavLink href="/hosting" active={$page.url.pathname.startsWith('/hosting')}>
-			Hosting
-		</HeaderNavLink>
+		<HeaderNavLink href="#">Pricing</HeaderNavLink>
+		<HeaderNavLink href="#" active={true}>Docs</HeaderNavLink>
+		<HeaderNavLink href="#">Hosting</HeaderNavLink>
 
-		<Dropdown bind:show={resourcesOpen} contentPadding={8} width={300}>
+		<Dropdown bind:show={resourcesOpen} contentPadding={8} width={300} align="center">
 			{#snippet trigger()}
 				<HeaderNavLink active={isThemesOrIntegrations}>
 					Resources
@@ -318,15 +313,12 @@
 			{#snippet content()}
 				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 				<div onclick={closeOnLinkClick}>
-					<HeaderNavLink href="/themes" active={$page.url.pathname === '/themes'}>
+					<HeaderNavLink href="#">
 						{#snippet start()}<IconPalette size={15} />{/snippet}
 						Themes
 						{#snippet description()}Blog themes to match your brand{/snippet}
 					</HeaderNavLink>
-					<HeaderNavLink
-						href="/integrations"
-						active={$page.url.pathname.startsWith('/integrations')}
-					>
+					<HeaderNavLink href="#">
 						{#snippet start()}<IconPuzzle size={15} />{/snippet}
 						Integrations
 						{#snippet description()}Connect with your favorite tools{/snippet}
@@ -344,7 +336,8 @@
 		<HeaderLanguageToggle
 			languages={LANGUAGES}
 			current={currentLang}
-			href={(code) => buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
+			href={(code) =>
+				buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
 		/>
 	{/snippet}
 	{#snippet end()}
@@ -468,37 +461,31 @@
 	email="talk.support@hyvor.com"
 	max={true}
 >
-	{#snippet center()}
-		<div class="footer-wrap">
-			<div style="display:flex" class="footer">
-				<FooterLinkList title="HYVOR TALK">
-					<a href="/console">Console</a>
-					<a href="/pricing">Pricing</a>
-					<a href="/docs">Docs</a>
-				</FooterLinkList>
+	<FooterLinkList title="HYVOR TALK">
+		<a href="/console">Console</a>
+		<a href="/pricing">Pricing</a>
+		<a href="/docs">Docs</a>
+	</FooterLinkList>
 
-				<FooterLinkList title="LEGAL">
-					<a href="/terms">Terms</a>
-					<a href="/privacy">Privacy Policy</a>
-					<a href="https://hyvor.com/compliance" target="_blank">Compliance</a>
-				</FooterLinkList>
+	<FooterLinkList title="LEGAL">
+		<a href="/terms">Terms</a>
+		<a href="/privacy">Privacy Policy</a>
+		<a href="https://hyvor.com/compliance" target="_blank">Compliance</a>
+	</FooterLinkList>
 
-				<FooterLinkList title="HYVOR">
-					<a href="https://hyvor.com" target="_blank">hyvor.com</a>
-					<a href="https://hyvor.com/#letter" target="_blank">About</a>
-					<a href="https://hyvor.com/security" target="_blank">Security</a>
-					<a href="https://status.hyvor.com/" target="_blank">System status</a>
-					<a href="https://hyvor.com/blog" target="_blank">Blog</a>
-				</FooterLinkList>
+	<FooterLinkList title="HYVOR">
+		<a href="https://hyvor.com" target="_blank">hyvor.com</a>
+		<a href="https://hyvor.com/#letter" target="_blank">About</a>
+		<a href="https://hyvor.com/security" target="_blank">Security</a>
+		<a href="https://status.hyvor.com/" target="_blank">System status</a>
+		<a href="https://hyvor.com/blog" target="_blank">Blog</a>
+	</FooterLinkList>
 
-				<FooterLinkList title="RESOURCES">
-					<a href="/blog">Blog</a>
-					<a href="/docs">Documentation</a>
-					<a href="https://hyvor.design" target="_blank">Design System</a>
-				</FooterLinkList>
-			</div>
-		</div>
-	{/snippet}
+	<FooterLinkList title="RESOURCES">
+		<a href="/blog">Blog</a>
+		<a href="/docs">Documentation</a>
+		<a href="https://hyvor.design" target="_blank">Design System</a>
+	</FooterLinkList>
 </Footer>
 
 <style lang="scss">

@@ -34,7 +34,7 @@
 		gdpr?: boolean;
 		affiliate?: boolean;
 		recordVisit?: boolean;
-		center?: Snippet;
+		children?: Snippet;
 		max?: boolean;
 		logoAltText?: string;
 		copyEmailLabel?: string;
@@ -58,8 +58,8 @@
 		gdpr = true,
 		affiliate = true,
 		recordVisit = true,
-		center,
-		max = false,
+		children,
+		max = true,
 		logoAltText = 'Logo',
 		copyEmailLabel = 'Copy email',
 		copiedLabel = 'Copied!',
@@ -89,8 +89,6 @@
 		setTimeout(() => (emailCopied = false), 1000);
 	}
 
-	// the floating mascot (only shown when a `logo` is given) tilts/fades in
-	// once it's scrolled into view, instead of just appearing on page load
 	let mascotInView = $state(false);
 	function onView(node: HTMLElement, callback: () => void) {
 		const observer = new IntersectionObserver(
@@ -110,9 +108,6 @@
 		};
 	}
 
-	// a single 5-pointed star (outer/inner vertices alternating), centered on
-	// its own origin — reused via `transform="translate(...)"` per position
-	// below, rather than a plain dot, for the EU ring on the GDPR badge
 	function starPath(outerR: number, innerR: number) {
 		const points: string[] = [];
 		for (let i = 0; i < 10; i++) {
@@ -164,10 +159,14 @@
 								<IconEnvelope size={14} />
 								{email}
 							</a>
-							<Tooltip text={emailCopied ? copiedLabel : copyEmailLabel} position="top">
+							<Tooltip
+								text={emailCopied ? copiedLabel : copyEmailLabel}
+								position="top"
+							>
 								<IconButton
 									size="small"
 									variant="invisible"
+									color="input"
 									onclick={handleCopyEmail}
 									onmouseleave={() => (emailCopied = false)}
 								>
@@ -181,7 +180,12 @@
 						{#each SOCIAL_PLATFORMS as platform (platform.key)}
 							{@const href = socialLinks[platform.key]}
 							{#if href}
-								<a {href} target="_blank" rel="nofollow" aria-label={platform.label}>
+								<a
+									{href}
+									target="_blank"
+									rel="nofollow"
+									aria-label={platform.label}
+								>
 									<platform.icon size={16} />
 								</a>
 							{/if}
@@ -197,7 +201,7 @@
 			</div>
 
 			<div class="footer-center">
-				{@render center?.()}
+				{@render children?.()}
 			</div>
 
 			<div class="bottom-bar">
@@ -210,7 +214,11 @@
 								<svg class="ring" viewBox="0 0 32 32" aria-hidden="true">
 									<circle cx="16" cy="16" r="16" fill="#173a8a" />
 									{#each gdprStars as s}
-										<path d={gdprStarPath} fill="#ffcd3c" transform="translate({s.x}, {s.y})" />
+										<path
+											d={gdprStarPath}
+											fill="#ffcd3c"
+											transform="translate({s.x}, {s.y})"
+										/>
 									{/each}
 								</svg>
 								<span class="lock"><IconLockFill size={10} /></span>
@@ -299,9 +307,6 @@
 		padding-top: 50px;
 	}
 
-	/*
-		`backgroundDark` only when needed for dark mode - not complusory
-	*/
 	:global(:root.dark) footer {
 		background: var(--footer-bg-dark, var(--footer-bg, transparent));
 	}
@@ -380,11 +385,14 @@
 		font-size: 18px;
 	}
 
+	.footer-center {
+		display: flex;
+	}
+
 	.footer-center:not(:empty) {
 		padding: 48px 0;
 	}
 
-	/* only if there is no center element - to prevent double border apperance */
 	.footer-center:not(:empty) + .bottom-bar {
 		border-top: 1px solid var(--footer-border);
 	}
@@ -460,8 +468,6 @@
 		color: #fff;
 	}
 
-	/* emoji glyphs are pre-colored — never let the surrounding muted text
-	   color dim or filter them */
 	.flag {
 		color: initial;
 		filter: none;
@@ -469,7 +475,6 @@
 
 	@media (max-width: 560px) {
 		.mascot-wrap {
-			/* keep it clear of the brand wordmark that sits right below it */
 			margin-bottom: -40px;
 		}
 

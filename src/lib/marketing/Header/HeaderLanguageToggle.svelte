@@ -80,8 +80,6 @@
 		padding-left: 12px;
 	}
 
-	/* a short divider, centered on the toggle, separating it from nav links,
-	   rather than a full-height border-left */
 	.header-language-toggle::before {
 		content: '';
 		position: absolute;

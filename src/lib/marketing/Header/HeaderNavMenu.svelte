@@ -24,15 +24,10 @@
 
 	let { label, active = false, children, width = 300, align = 'center' }: Props = $props();
 
-	/*
-		On mobile/tablet the header nav collapses into the hamburger menu, which is
-		itself a dropdown. Opening another floating dropdown inside it overflows the
-		viewport and looks broken, so below the breakpoint we render the group as a
-		collapsible inline section (a plain, native-looking list of links) instead.
-	*/
+	// below the breakpoint: render as a collapsible inline section, not a dropdown
 	const mobile = new MediaQuery(`(max-width: ${HEADER_MOBILE_BREAKPOINT}px)`);
 
-	// lets child <HeaderNavLink>s render as flat sub-nav items (no icon) on mobile
+	// lets child HeaderNavLinks render as flat sub-nav items (no icon) on mobile
 	setHeaderNavMenuContext({
 		get inlineMobile() {
 			return mobile.current;
@@ -41,7 +36,7 @@
 
 	let open = $state(false);
 
-	// close the desktop dropdown once a link inside it is clicked
+	// close the dropdown when a link inside it is clicked
 	function closeOnLinkClick(e: MouseEvent) {
 		const target = e.target as HTMLElement;
 		if (target.tagName === 'A' || target.closest('a')) {

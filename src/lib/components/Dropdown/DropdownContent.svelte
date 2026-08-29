@@ -86,9 +86,7 @@
 			contentWrap.style.width = width + 'px';
 		}
 
-		// Cap the panel to the space available in the viewport and let it scroll
-		// internally, so a tall menu (e.g. the mobile header menu) stays fully
-		// reachable instead of running off-screen and scrolling the page behind it.
+		// cap to viewport height; the panel scrolls internally past that
 		let available: number;
 		if (position === 'bottom') {
 			available = window.innerHeight - (triggerRect.bottom + GAP) - SPACE_AROUND;

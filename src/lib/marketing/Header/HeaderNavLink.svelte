@@ -32,8 +32,7 @@
 		...rest
 	}: Props = $props();
 
-	// When placed inside a <HeaderNavMenu> that has collapsed into the mobile
-	// hamburger menu, render as a flat sub-nav item: no icon, no rich card layout.
+	// flat = inside a HeaderNavMenu collapsed into the mobile menu (no icon/card)
 	const navMenu = getHeaderNavMenuContext();
 	const flat = $derived(navMenu?.inlineMobile ?? false);
 </script>

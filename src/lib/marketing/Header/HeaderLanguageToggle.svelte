@@ -32,16 +32,12 @@
 
 	const currentLanguage = $derived(languages.find((l) => l.code === current) ?? languages[0]);
 
-	/*
-		On mobile/tablet this sits inside the hamburger menu (itself a dropdown), so
-		a nested floating dropdown looks broken. Below the breakpoint we render the
-		languages as a collapsible inline section, with no trigger and no divider.
-	*/
+	// below the breakpoint: render as a collapsible inline section, not a dropdown
 	const mobile = new MediaQuery(`(max-width: ${HEADER_MOBILE_BREAKPOINT}px)`);
 
 	let show = $state(false);
 
-	// close the dropdown once a language link inside it is clicked
+	// close the dropdown when a language link inside it is clicked
 	function closeOnLinkClick(e: MouseEvent) {
 		const target = e.target as HTMLElement;
 		if (target.tagName === 'A' || target.closest('a')) {

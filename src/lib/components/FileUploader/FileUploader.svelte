@@ -1,6 +1,7 @@
 <script lang="ts">
 	import IconCaretLeft from '@hyvor/icons/IconCaretLeft';
 	import IconCloudUpload from '@hyvor/icons/IconCloudUpload';
+	import IconCardImage from '@hyvor/icons/IconCardImage';
 	import Button from '../Button/Button.svelte';
 	import Modal from '../Modal/Modal.svelte';
 	import TabNav from '../TabNav/TabNav.svelte';
@@ -13,8 +14,16 @@
 	} from './file-uploader.js';
 	import TabUpload from './TabUpload/TabUpload.svelte';
 	import Preview from './Preview/Preview.svelte';
+	import Media from './Media/Media.svelte';
+	import Unsplash from './Unsplash/Unsplash.svelte';
+	import Excalidraw from './Excalidraw/Excalidraw.svelte';
+	import ExcalidrawIcon from './Excalidraw/ExcalidrawIcon.svelte';
 
 	const config = getFileUploaderConfig();
+
+	const showMedia = config.type !== 'file' && !!config.mediaLoad;
+	const showUnsplash = config.type === 'image' && !!config.unsplashSearch;
+	const showExcalidraw = config.type === 'image' && !!config.excalidraw;
 
 	let tab = $state('upload');
 
@@ -46,22 +55,28 @@
 					</Button>
 				{:else}
 					<TabNav>
-						<TabNavItem name="upload" active>
+						<TabNavItem name="upload" active={tab === 'upload'} onclick={() => (tab = 'upload')}>
 							{#snippet start()}
 								<IconCloudUpload />
 							{/snippet}
 							Upload
 						</TabNavItem>
 
-						<!-- <TabNavItem name="media">
-							{#snippet start()}
-								<IconCardImage />
-							{/snippet}
-							Media Library
-						</TabNavItem> -->
+						{#if showMedia}
+							<TabNavItem name="media" active={tab === 'media'} onclick={() => (tab = 'media')}>
+								{#snippet start()}
+									<IconCardImage />
+								{/snippet}
+								Media Library
+							</TabNavItem>
+						{/if}
 
-						{#if config.type === 'image'}
-							<!-- <TabNavItem name="unsplash">
+						{#if showUnsplash}
+							<TabNavItem
+								name="unsplash"
+								active={tab === 'unsplash'}
+								onclick={() => (tab = 'unsplash')}
+							>
 								{#snippet start()}
 									<svg
 										role="img"
@@ -77,37 +92,38 @@
 								{/snippet}
 								Unsplash
 							</TabNavItem>
-							<TabNavItem name="excalidraw">
+						{/if}
+
+						{#if showExcalidraw}
+							<TabNavItem
+								name="excalidraw"
+								active={tab === 'excalidraw'}
+								onclick={() => (tab = 'excalidraw')}
+							>
 								{#snippet start()}
 									<ExcalidrawIcon />
 								{/snippet}
 								Excalidraw
-							</TabNavItem> -->
+							</TabNavItem>
 						{/if}
 					</TabNav>
 				{/if}
 			</div>
 		{/snippet}
-		<div class="body" style:position={selectedFile ? 'relative' : undefined}>
+		<div class="body" style:position={$selectedFile ? 'relative' : undefined}>
 			{#if tab === 'upload'}
 				<TabUpload />
+			{:else if tab === 'media'}
+				<Media />
+			{:else if tab === 'unsplash'}
+				<Unsplash />
+			{:else if tab === 'excalidraw'}
+				<Excalidraw />
 			{/if}
 
 			{#if $selectedFile}
 				<Preview />
 			{/if}
-
-			<!-- {#if tab === 'upload'}
-				<TabUpload {type} on:select={handleSelect} />
-			{:else if tab === 'media' && type !== 'any'}
-				<Media {type} on:select={handleSelect} />
-			{:else if tab === 'unsplash'}
-				<Unsplash on:select={handleSelect} />
-			{:else if tab === 'excalidraw'}
-				<Excalidraw on:select={handleSelect} />
-			{/if}
-
-			 -->
 		</div>
 	</Modal>
 </div>

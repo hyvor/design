@@ -49,7 +49,9 @@ export {
 	uploadFile,
 	type FileUploaderConfig,
 	type UploadedFile as FileUploaderUploadedFile,
-	type SelectedFile as FileUploaderSelectedFile
+	type SelectedFile as FileUploaderSelectedFile,
+	type UnsplashImage as FileUploaderUnsplashImage,
+	type MediaItem as FileUploaderMediaItem
 } from './FileUploader/file-uploader.js';
 
 export { default as IconButton } from './IconButton/IconButton.svelte';

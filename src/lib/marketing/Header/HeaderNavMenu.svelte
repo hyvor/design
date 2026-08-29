@@ -7,18 +7,12 @@
 	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import type { DropdownAlign } from '../../components/Dropdown/dropdown.types.js';
 	import { HEADER_MOBILE_BREAKPOINT } from './breakpoint.js';
-	import { setHeaderNavMenuContext } from './navMenuContext.js';
 
 	interface Props {
-		/** The trigger label, e.g. "Resources". */
 		label: string;
-		/** Highlights the trigger (e.g. when a child page is active). */
 		active?: boolean;
-		/** The menu items, usually a list of <HeaderNavLink>s. */
 		children: Snippet;
-		/** Width of the desktop dropdown panel. */
 		width?: number;
-		/** Alignment of the desktop dropdown panel. */
 		align?: DropdownAlign;
 	}
 
@@ -26,13 +20,6 @@
 
 	// below the breakpoint: render as a collapsible inline section, not a dropdown
 	const mobile = new MediaQuery(`(max-width: ${HEADER_MOBILE_BREAKPOINT}px)`);
-
-	// lets child HeaderNavLinks render as flat sub-nav items (no icon) on mobile
-	setHeaderNavMenuContext({
-		get inlineMobile() {
-			return mobile.current;
-		}
-	});
 
 	let open = $state(false);
 

@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { getHeaderNavMenuContext } from './navMenuContext.js';
 
 	interface ComponentProps {
 		href?: string;
@@ -31,10 +30,6 @@
 		onclick,
 		...rest
 	}: Props = $props();
-
-	// flat = inside a HeaderNavMenu collapsed into the mobile menu (no icon/card)
-	const navMenu = getHeaderNavMenuContext();
-	const flat = $derived(navMenu?.inlineMobile ?? false);
 </script>
 
 <svelte:element
@@ -48,11 +43,10 @@
 	class="header-nav-link"
 	class:active
 	class:menu={menu || !!description}
-	class:rich={!!description && !flat}
-	class:flat
+	class:rich={!!description}
 	{...rest}
 >
-	{#if description && !flat}
+	{#if description}
 		{#if start}
 			<span class="icon-box">{@render start()}</span>
 		{/if}
@@ -60,11 +54,6 @@
 			<span class="title">{@render children?.()}</span>
 			<span class="desc">{@render description()}</span>
 		</span>
-	{:else if flat}
-		<span class="title">{@render children?.()}</span>
-		{#if description}
-			<span class="desc">{@render description()}</span>
-		{/if}
 	{:else}
 		{#if start}
 			<span class="start">{@render start()}</span>
@@ -109,25 +98,6 @@
 		width: 100%;
 		padding: 8px 10px;
 		border-radius: 12px;
-	}
-
-	/* flat sub-nav item inside a collapsed mobile HeaderNavMenu */
-	.header-nav-link.flat {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 2px;
-		white-space: normal;
-	}
-
-	.header-nav-link.flat .title {
-		font-weight: 500;
-		color: inherit;
-	}
-
-	.header-nav-link.flat .desc {
-		font-size: 12px;
-		font-weight: 400;
-		color: var(--text-light);
 	}
 
 	.start,

@@ -203,10 +203,11 @@
 	<code>HeaderNavMenu</code> is a labelled submenu for the <code>center</code> slot (e.g. a
 	"Resources" menu). On desktop it opens a <a href="dropdown">Dropdown</a> panel below a caret
 	trigger. Below <code>992px</code>, where the header collapses into the hamburger menu, it renders
-	inline as a collapsible section: a labelled row with a chevron that expands/collapses a flat,
-	native-looking list of sub-nav items (starts collapsed). No nested floating panel, and each child
-	<code>HeaderNavLink</code> drops its icon and rich card layout so it reads as a plain sub-item.
-	Put your <code>HeaderNavLink</code>s directly inside it as <code>children</code>.
+	inline as a collapsible section: a labelled row with a chevron that expands/collapses a
+	native-looking list of sub-nav items (starts collapsed). No nested floating panel, and child
+	<code>HeaderNavLink</code>s drop their <code>start</code> icon in the mobile menu (label and
+	<code>description</code> stay). Put your <code>HeaderNavLink</code>s directly inside it as
+	<code>children</code>.
 </p>
 
 <Table columns="2fr 2fr 3fr">

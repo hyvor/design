@@ -97,7 +97,11 @@
 		<span class="mobile-nav-wrap">
 			<Dropdown bind:show={mobileOpen} align="end" width={300} contentPadding={8}>
 				{#snippet trigger()}
-					<IconButton variant="invisible" aria-label={menuLabel} aria-expanded={mobileOpen}>
+					<IconButton
+						variant="invisible"
+						aria-label={menuLabel}
+						aria-expanded={mobileOpen}
+					>
 						{#if mobileOpen}
 							<IconX size={18} />
 						{:else}
@@ -250,15 +254,22 @@
 		border-radius: 12px;
 	}
 
+	/* hide submenu link icon in the mobile menu */
+	.mobile-content :global(.header-nav-link .icon-box),
+	.mobile-content :global(.header-nav-link .start) {
+		display: none;
+	}
+
+	.mobile-content :global(.header-nav-link.rich) {
+		gap: 0;
+	}
+
 	.mobile-divider {
 		height: 1px;
 		background: var(--border);
 		margin: 6px 4px;
 	}
 
-	/*
-		used to prevent the content from being hidden behind the header
-	*/
 	:global(html) {
 		scroll-padding-top: calc(var(--header-height) + 20px);
 	}

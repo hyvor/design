@@ -140,12 +140,7 @@
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
-					<svg
-						class="avatar"
-						viewBox="0 0 5 5"
-						style="background: {av.bg}"
-						aria-hidden="true"
-					>
+					<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
 						{#each av.cells as cell}
 							<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
 						{/each}
@@ -188,9 +183,7 @@
 
 						<button
 							class="play-btn"
-							aria-label={started[i]
-								? 'Resume video testimonial'
-								: 'Play video testimonial'}
+							aria-label={started[i] ? 'Resume video testimonial' : 'Play video testimonial'}
 							onclick={() => play(i)}
 						>
 							<svg

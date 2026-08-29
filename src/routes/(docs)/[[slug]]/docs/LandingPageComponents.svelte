@@ -461,8 +461,8 @@
 	<code>posterUrl</code> image with a play button and the optional <code>summary</code> headline
 	overlaid; tapping play swaps in a <code>&lt;video&gt;</code> with native controls and the card
 	grows. Pausing brings the poster overlay (and <code>summary</code>) back with a "Resume" button.
-	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the
-	bottom of every card.
+	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the bottom
+	of every card.
 </p>
 
 <h3>Properties</h3>
@@ -545,8 +545,8 @@
 		<div><code>companyUrl</code></div>
 		<div>both</div>
 		<div>
-			Optional. Makes <code>company</code> a link to this URL (opens in a new tab). Leave unset for
-			plain text.
+			Optional. Makes <code>company</code> a link to this URL (opens in a new tab). Leave unset for plain
+			text.
 		</div>
 	</TableRow>
 

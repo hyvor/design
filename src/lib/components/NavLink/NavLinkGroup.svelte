@@ -98,6 +98,7 @@
 		observer.observe(container, {
 			attributes: true,
 			attributeFilter: ['class'],
+			childList: true,
 			subtree: true
 		});
 

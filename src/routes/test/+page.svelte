@@ -133,6 +133,8 @@
 			type: 'video',
 			name: 'Nadia F.',
 			role: 'Newsletter creator',
+			company: 'Draft & Send',
+			companyUrl: 'https://example.com',
 			videoUrl: 'https://placeholdervideo.dev/1080x1920',
 			posterUrl: placeholderPoster(),
 			summary: 'Amazing Product'
@@ -141,6 +143,7 @@
 			type: 'text',
 			name: 'Manoj P.',
 			role: 'Senior Application Engineer',
+			company: 'Nordwind Labs',
 			quote:
 				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
 		},

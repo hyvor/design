@@ -456,6 +456,15 @@
 	touch/trackpad swipe and mouse drag both work, and it snaps to each card as you scroll.
 </p>
 
+<p>
+	<b>Text reviews</b> show the quote with a generated identicon. <b>Video reviews</b> show the
+	<code>posterUrl</code> image with a play button and the optional <code>summary</code> headline
+	overlaid; tapping play swaps in a <code>&lt;video&gt;</code> with native controls and the card
+	grows. Pausing brings the poster overlay (and <code>summary</code>) back with a "Resume" button.
+	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the
+	bottom of every card.
+</p>
+
 <h3>Properties</h3>
 
 <Table columns="1fr 1fr 3fr">
@@ -527,6 +536,21 @@
 	</TableRow>
 
 	<TableRow>
+		<div><code>company</code></div>
+		<div>both</div>
+		<div>Optional. Company name shown on its own line under the role.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>companyUrl</code></div>
+		<div>both</div>
+		<div>
+			Optional. Makes <code>company</code> a link to this URL (opens in a new tab). Leave unset for
+			plain text.
+		</div>
+	</TableRow>
+
+	<TableRow>
 		<div><code>quote</code></div>
 		<div><code>'text'</code></div>
 		<div>The quote text.</div>
@@ -541,7 +565,15 @@
 	<TableRow>
 		<div><code>posterUrl</code></div>
 		<div><code>'video'</code></div>
-		<div>Optional. Poster image shown before the video plays.</div>
+		<div>Optional. Poster image shown before the video plays and while it is paused.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>summary</code></div>
+		<div><code>'video'</code></div>
+		<div>
+			Optional. Short headline shown over the poster, and again whenever the video is paused.
+		</div>
 	</TableRow>
 </Table>
 
@@ -555,13 +587,19 @@
 					type: 'text',
 					name: 'Lionel S.',
 					role: 'Blogger',
+					company: 'Solo Press',
+					companyUrl: 'https://example.com',
 					quote:
 						'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
 				},
 				{
 					type: 'video',
-					name: 'Video testimonial',
-					role: 'Coming soon'
+					name: 'Nadia F.',
+					role: 'Newsletter creator',
+					company: 'Draft & Send',
+					videoUrl: '/testimonials/nadia.mp4',
+					posterUrl: '/testimonials/nadia.jpg',
+					summary: 'Amazing Product'
 				},
 				{
 					type: 'text',

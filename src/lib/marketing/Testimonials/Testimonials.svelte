@@ -3,6 +3,8 @@
 		type: 'text';
 		name: string;
 		role: string;
+		company?: string;
+		companyUrl?: string;
 		quote: string;
 	}
 
@@ -10,6 +12,8 @@
 		type: 'video';
 		name: string;
 		role: string;
+		company?: string;
+		companyUrl?: string;
 		videoUrl?: string;
 		posterUrl?: string;
 		summary?: string;
@@ -102,6 +106,18 @@
 	{/if}
 </svelte:head>
 
+{#snippet companyLine(review: Review)}
+	{#if review.company}
+		{#if review.companyUrl}
+			<a class="company" href={review.companyUrl} target="_blank" rel="noopener">
+				{review.company}
+			</a>
+		{:else}
+			<span class="company">{review.company}</span>
+		{/if}
+	{/if}
+{/snippet}
+
 <section class="hds-testimonials" class:handwritten={handwrittenNames}>
 	<div class="hds-container head">
 		<p class="label">{label}</p>
@@ -124,7 +140,12 @@
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
-					<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
+					<svg
+						class="avatar"
+						viewBox="0 0 5 5"
+						style="background: {av.bg}"
+						aria-hidden="true"
+					>
 						{#each av.cells as cell}
 							<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
 						{/each}
@@ -133,6 +154,7 @@
 					<figcaption>
 						<span class="name">{review.name}</span>
 						<span class="role">{review.role}</span>
+						{@render companyLine(review)}
 					</figcaption>
 				</figure>
 			{:else}
@@ -160,13 +182,15 @@
 					{#if !playing[i]}
 						<div class="poster-scrim"></div>
 
-						{#if !started[i] && review.summary}
+						{#if review.summary}
 							<p class="video-summary">"{review.summary}"</p>
 						{/if}
 
 						<button
 							class="play-btn"
-							aria-label={started[i] ? 'Resume video testimonial' : 'Play video testimonial'}
+							aria-label={started[i]
+								? 'Resume video testimonial'
+								: 'Play video testimonial'}
 							onclick={() => play(i)}
 						>
 							<svg
@@ -183,6 +207,7 @@
 						<figcaption>
 							<span class="name">{review.name}</span>
 							<span class="role">{review.role}</span>
+							{@render companyLine(review)}
 						</figcaption>
 					{/if}
 				</figure>
@@ -307,6 +332,22 @@
 		color: var(--text-light);
 	}
 
+	.company {
+		align-self: flex-start;
+		font-size: 13px;
+		font-weight: 500;
+		color: var(--text);
+		text-decoration: none;
+	}
+
+	a.company:hover {
+		text-decoration: underline;
+	}
+
+	.handwritten .company {
+		font-weight: 600;
+	}
+
 	.video-card {
 		width: 280px;
 		overflow: hidden;
@@ -409,6 +450,10 @@
 
 	.video-card .role {
 		color: rgba(255, 255, 255, 0.75);
+	}
+
+	.video-card .company {
+		color: rgba(255, 255, 255, 0.9);
 	}
 
 	@media (max-width: 600px) {

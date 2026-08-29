@@ -60,7 +60,11 @@
 	function updateHoverIndicator(target: HTMLElement | null, instant = false) {
 		if (!hoverIndicator) return;
 
-		if (!target || target.classList.contains('active') || target.classList.contains('disabled')) {
+		if (
+			!target ||
+			target.classList.contains('active') ||
+			target.classList.contains('disabled')
+		) {
 			hoverVisible = false;
 			return;
 		}
@@ -98,6 +102,7 @@
 		observer.observe(container, {
 			attributes: true,
 			attributeFilter: ['class'],
+			childList: true,
 			subtree: true
 		});
 

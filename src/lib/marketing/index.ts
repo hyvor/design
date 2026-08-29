@@ -5,6 +5,7 @@ export { default as Accordion } from './DetailsAccordion/DetailsAccordion.svelte
 // ## Header
 export { default as Header } from './Header/Header.svelte';
 export { default as HeaderNavLink } from './Header/HeaderNavLink.svelte';
+export { default as HeaderNavMenu } from './Header/HeaderNavMenu.svelte';
 export { default as HeaderLanguageToggle } from './Header/HeaderLanguageToggle.svelte';
 export { buildLocalizedUrl } from './Header/language.js';
 export type { LanguageOption } from './Header/language.js';

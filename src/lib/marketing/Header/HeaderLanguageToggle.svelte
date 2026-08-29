@@ -1,11 +1,14 @@
 <script lang="ts">
+	import { MediaQuery } from 'svelte/reactivity';
 	import Dropdown from '../../components/Dropdown/Dropdown.svelte';
 	import HeaderNavLink from './HeaderNavLink.svelte';
+	import HeaderMobileSection from './HeaderMobileSection.svelte';
 	import type {
 		DropdownAlign,
 		DropdownPosition
 	} from '../../components/Dropdown/dropdown.types.js';
 	import type { LanguageOption } from './language.js';
+	import { HEADER_MOBILE_BREAKPOINT } from './breakpoint.js';
 
 	interface Props {
 		languages: LanguageOption[];
@@ -29,6 +32,13 @@
 
 	const currentLanguage = $derived(languages.find((l) => l.code === current) ?? languages[0]);
 
+	/*
+		On mobile/tablet this sits inside the hamburger menu (itself a dropdown), so
+		a nested floating dropdown looks broken. Below the breakpoint we render the
+		languages as a collapsible inline section, with no trigger and no divider.
+	*/
+	const mobile = new MediaQuery(`(max-width: ${HEADER_MOBILE_BREAKPOINT}px)`);
+
 	let show = $state(false);
 
 	// close the dropdown once a language link inside it is clicked
@@ -40,36 +50,51 @@
 	}
 </script>
 
+{#snippet languageLink(language: LanguageOption)}
+	<HeaderNavLink
+		href={href(language.code)}
+		active={language.code === current}
+		data-lang={language.code}
+		menu
+	>
+		<span class="lang-row">
+			<span class="flag">{language.flag}</span>
+			<span class="name">{language.name}</span>
+			<span class="code">{language.code.toUpperCase()}</span>
+		</span>
+	</HeaderNavLink>
+{/snippet}
+
 {#if currentLanguage}
-	<div class="header-language-toggle">
-		<Dropdown bind:show {align} {position} contentPadding={8}>
-			{#snippet trigger()}
-				<HeaderNavLink aria-label={label} aria-expanded={show}>
-					<span class="flag">{currentLanguage.flag}</span>
-					{#if showName}{currentLanguage.name}{/if}
-				</HeaderNavLink>
+	{#if mobile.current}
+		<HeaderMobileSection {label}>
+			{#snippet trailing()}
+				<span class="flag">{currentLanguage.flag}</span>
 			{/snippet}
-			{#snippet content()}
-				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-				<div class="menu" onclick={closeOnLinkClick}>
-					{#each languages as language (language.code)}
-						<HeaderNavLink
-							href={href(language.code)}
-							active={language.code === current}
-							data-lang={language.code}
-							menu
-						>
-							<span class="lang-row">
-								<span class="flag">{language.flag}</span>
-								<span class="name">{language.name}</span>
-								<span class="code">{language.code.toUpperCase()}</span>
-							</span>
-						</HeaderNavLink>
-					{/each}
-				</div>
-			{/snippet}
-		</Dropdown>
-	</div>
+			{#each languages as language (language.code)}
+				{@render languageLink(language)}
+			{/each}
+		</HeaderMobileSection>
+	{:else}
+		<div class="header-language-toggle">
+			<Dropdown bind:show {align} {position} contentPadding={8}>
+				{#snippet trigger()}
+					<HeaderNavLink aria-label={label} aria-expanded={show}>
+						<span class="flag">{currentLanguage.flag}</span>
+						{#if showName}{currentLanguage.name}{/if}
+					</HeaderNavLink>
+				{/snippet}
+				{#snippet content()}
+					<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+					<div class="menu" onclick={closeOnLinkClick}>
+						{#each languages as language (language.code)}
+							{@render languageLink(language)}
+						{/each}
+					</div>
+				{/snippet}
+			</Dropdown>
+		</div>
+	{/if}
 {/if}
 
 <style>

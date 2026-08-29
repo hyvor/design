@@ -114,7 +114,9 @@
 							</div>
 						{/if}
 						{#if end}
-							<div class="mobile-divider"></div>
+							{#if center}
+								<div class="mobile-divider"></div>
+							{/if}
 							<div class="mobile-inner end">
 								{@render end()}
 							</div>
@@ -238,6 +240,14 @@
 
 	.mobile-content :global(.button) {
 		display: flex;
+	}
+
+	/* make every nav link a full-width list row inside the mobile menu */
+	.mobile-content :global(.header-nav-link) {
+		width: 100%;
+		justify-content: flex-start;
+		padding: 8px 10px;
+		border-radius: 12px;
 	}
 
 	.mobile-divider {

@@ -19,15 +19,9 @@
 		<nav>
 			<NavLinkGroup>
 				{#if show}
-					<NavLink href="#" active={active === 1} onclick={() => (active = 1)}
-						>Link 1</NavLink
-					>
-					<NavLink href="#" active={active === 2} onclick={() => (active = 2)}
-						>Link 2</NavLink
-					>
-					<NavLink href="#" active={active === 3} onclick={() => (active = 3)}
-						>Link 3</NavLink
-					>
+					<NavLink href="#" active={active === 1} onclick={() => (active = 1)}>Link 1</NavLink>
+					<NavLink href="#" active={active === 2} onclick={() => (active = 2)}>Link 2</NavLink>
+					<NavLink href="#" active={active === 3} onclick={() => (active = 3)}>Link 3</NavLink>
 				{/if}
 			</NavLinkGroup>
 		</nav>

@@ -1,0 +1,33 @@
+{
+	"name": "@hyvor/translator",
+	"version": "0.1.0",
+	"description": "AI-powered CLI that translates a project's JSON, Markdown, and Svelte source files into other languages using the Anthropic API.",
+	"license": "MIT",
+	"type": "module",
+	"bin": {
+		"hyvor-translator": "./dist/cli.js"
+	},
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"dev": "tsx src/cli.ts",
+		"build": "tsc -p tsconfig.json && chmod +x dist/cli.js",
+		"prepublishOnly": "npm run build"
+	},
+	"dependencies": {
+		"@anthropic-ai/sdk": "^0.120.0",
+		"minimatch": "^9.0.5"
+	},
+	"devDependencies": {
+		"@types/node": "^22.20.1",
+		"tsx": "^4.19.2",
+		"typescript": "^5.9.3"
+	},
+	"engines": {
+		"node": ">=20"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
+}

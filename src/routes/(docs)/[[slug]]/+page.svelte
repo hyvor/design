@@ -8,6 +8,7 @@
 	import Button from '$lib/components/Button/Button.svelte';
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
+	import HeaderNavLink from '$lib/marketing/Header/HeaderNavLink.svelte';
 
 	let { data } = $props();
 
@@ -30,16 +31,17 @@
 </svelte:head>
 
 <Header product="core" name="HYVOR" subName="Design System" max={true}>
-	{#snippet end()}
-		<Button size="small" as="a" href="https://hyvor.com" variant="invisible">HYVOR</Button>
-		<Button as="a" size="small" href="https://github.com/hyvor/design" target="_blank">
+	{#snippet center()}
+		<HeaderNavLink href="https://hyvor.com" target="_blank">HYVOR</HeaderNavLink>
+		<HeaderNavLink href="https://github.com/hyvor/design" target="_blank">
 			{#snippet start()}
 				<IconGithub size={14} />
 			{/snippet}
-			Github {#snippet end()}
+			Github
+			{#snippet end()}
 				<IconBoxArrowUpRight size={11} />
 			{/snippet}
-		</Button>
+		</HeaderNavLink>
 	{/snippet}
 </Header>
 

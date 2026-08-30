@@ -20,7 +20,9 @@ import TextInput from './docs/TextInput.svelte';
 import Textarea from './docs/Textarea.svelte';
 import Tooltip from './docs/Tooltip.svelte';
 import CodeBlock from './docs/CodeBlock.svelte';
-import Internationalization from './docs/Internationalization.svelte';
+// import Internationalization from './docs/Internationalization.svelte';
+import Internationalization from './docs/i18n/i18n.md';
+import I18nAI from './docs/i18n/i18n-ai.md';
 import NavLink from './docs/NavLink.svelte';
 import Divider from './docs/Divider.svelte';
 import Text from './docs/Text.svelte';
@@ -104,7 +106,29 @@ const SECTIONS: NavSectionConfig[] = [
 		navs: [
 			{ type: 'page', name: 'Overview', slug: '', content: Index },
 			{ type: 'page', name: 'Dark Mode', slug: 'dark', content: Dark },
-			{ type: 'page', name: 'i18n', slug: 'i18n', content: Internationalization },
+			{
+				type: 'sub-section',
+				name: 'i18n',
+				sections: [
+					{
+						name: '',
+						navs: [
+							{
+								type: 'page',
+								name: 'Internationalization',
+								slug: 'i18n',
+								content: Internationalization
+							},
+							{
+								type: 'page',
+								name: 'AI Translations',
+								slug: 'i18n-ai',
+								content: I18nAI
+							}
+						]
+					}
+				]
+			},
 			{ type: 'page', name: 'Markdown', slug: 'markdown', content: MarkdownDoc }
 		]
 	},

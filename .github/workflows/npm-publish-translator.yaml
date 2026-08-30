@@ -1,0 +1,26 @@
+name: Publish Translator to NPM
+on:
+  workflow_dispatch:
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check
+        working-directory: ./translator
+        run: |
+          npm ci
+          npm run check
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.HYVOR_ORG_NPM_TOKEN }}
+        working-directory: ./translator
+        run: |
+          npm run build
+          npm publish

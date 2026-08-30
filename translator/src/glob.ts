@@ -74,7 +74,11 @@ function walkMatch(baseDir: string, globSegments: string[]): string[] {
 
 export type ResolvedPair = { source: string; target: string; nested: boolean };
 
-export function resolvePairs(spec: TranslatableSpec, root: string, langCode: string): ResolvedPair[] {
+export function resolvePairs(
+	spec: TranslatableSpec,
+	root: string,
+	langCode: string
+): ResolvedPair[] {
 	const targetPattern = spec.target.replaceAll('{lang}', langCode);
 
 	const src = splitStaticAndGlob(spec.source);

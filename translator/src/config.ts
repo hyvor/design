@@ -76,7 +76,12 @@ function validate(parsed: unknown, configPath: string): TranslatorConfig {
 	}
 	const languages: Language[] = obj.languages.map((l, i) => {
 		const lang = l as Record<string, unknown>;
-		if (typeof lang !== 'object' || lang === null || typeof lang.code !== 'string' || typeof lang.name !== 'string') {
+		if (
+			typeof lang !== 'object' ||
+			lang === null ||
+			typeof lang.code !== 'string' ||
+			typeof lang.name !== 'string'
+		) {
 			throw new Error(`${configPath}: languages[${i}] must be { code: string, name: string }.`);
 		}
 		return { code: lang.code, name: lang.name };
@@ -100,7 +105,9 @@ function validate(parsed: unknown, configPath: string): TranslatorConfig {
 			);
 		}
 		if (!spec.target.includes('{lang}')) {
-			throw new Error(`${configPath}: translatables[${i}].target must contain the "{lang}" placeholder.`);
+			throw new Error(
+				`${configPath}: translatables[${i}].target must contain the "{lang}" placeholder.`
+			);
 		}
 		if (spec.shortname.includes('/')) {
 			throw new Error(`${configPath}: translatables[${i}].shortname must not contain "/".`);

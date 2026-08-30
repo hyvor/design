@@ -3,7 +3,12 @@ import path from 'node:path';
 
 export const DEFAULT_MODEL = 'claude-sonnet-5';
 
-function buildSystemPrompt(ext: string, langName: string, langCode: string, isUpdate: boolean): string {
+function buildSystemPrompt(
+	ext: string,
+	langName: string,
+	langCode: string,
+	isUpdate: boolean
+): string {
 	const shared = `You are a professional translator working on the source files of a software project. Translate the given file from English into ${langName} (${langCode}).
 
 Rules:

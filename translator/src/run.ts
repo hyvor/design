@@ -35,7 +35,11 @@ export function matchesSelector(
 			return relSource === suffix || relSource.endsWith(`/${suffix}`);
 		}
 
-		return relSource === normalized || relSource.endsWith(`/${normalized}`) || path.resolve(root, selector) === absSource;
+		return (
+			relSource === normalized ||
+			relSource.endsWith(`/${normalized}`) ||
+			path.resolve(root, selector) === absSource
+		);
 	});
 }
 
@@ -90,7 +94,10 @@ export async function run(argv: string[]) {
 					continue;
 				}
 
-				if (args.only.length > 0 && !matchesSelector(args.only, spec.shortname, relSource, source, root)) {
+				if (
+					args.only.length > 0 &&
+					!matchesSelector(args.only, spec.shortname, relSource, source, root)
+				) {
 					continue;
 				}
 
@@ -104,7 +111,8 @@ export async function run(argv: string[]) {
 				const cached = cache[relSource]?.[lang.code];
 				const targetExists = existsSync(target);
 				const forced =
-					args.forceAll || matchesSelector(args.forceFiles, spec.shortname, relSource, source, root);
+					args.forceAll ||
+					matchesSelector(args.forceFiles, spec.shortname, relSource, source, root);
 
 				if (!forced && targetExists && cached === hash) {
 					skippedCount++;
@@ -133,7 +141,10 @@ export async function run(argv: string[]) {
 					translatedCount++;
 				} catch (err) {
 					failedCount++;
-					console.error(`Failed to translate ${relSource} -> ${lang.code}:`, err instanceof Error ? err.message : err);
+					console.error(
+						`Failed to translate ${relSource} -> ${lang.code}:`,
+						err instanceof Error ? err.message : err
+					);
 				}
 			}
 		}
@@ -141,6 +152,8 @@ export async function run(argv: string[]) {
 
 	saveCache(cacheFile, cache);
 
-	console.log(`Done. Translated ${translatedCount}, skipped ${skippedCount}, ignored ${ignoredCount}, failed ${failedCount}.`);
+	console.log(
+		`Done. Translated ${translatedCount}, skipped ${skippedCount}, ignored ${ignoredCount}, failed ${failedCount}.`
+	);
 	if (failedCount > 0) process.exit(1);
 }

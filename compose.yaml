@@ -11,6 +11,7 @@ services:
       - ./vite.config.js:/app/vite.config.js
       - ./tsconfig.json:/app/tsconfig.json
       - ./svelte.config.js:/app/svelte.config.js
+      - ./translator:/app/translator # for prettier
     labels:
       traefik.enable: true
       traefik.http.routers.hds.rule: Host(`design.hyvor.localhost`)

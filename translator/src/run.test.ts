@@ -20,8 +20,8 @@ describe('matchesSelector', () => {
 		expect(
 			matchesSelector(['frontend/src/docs/en/api-console.md'], 'docs', relSource, absSource, root)
 		).toBe(true);
-		expect(matchesSelector(['frontend/src/docs/en/other.md'], 'docs', relSource, absSource, root)).toBe(
-			false
-		);
+		expect(
+			matchesSelector(['frontend/src/docs/en/other.md'], 'docs', relSource, absSource, root)
+		).toBe(false);
 	});
 });

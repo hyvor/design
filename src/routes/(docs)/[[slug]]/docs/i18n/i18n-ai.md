@@ -12,21 +12,21 @@ Then, set up a JSON config file (recommended to add this to the project root):
 
 ```json
 {
-    "translatables": [
-        {
-            "source": "frontend/src/locales/en.json",
-            "target": "frontend/src/locales/{lang}.json",
-            "shortname": "app",
-        },
-        {
-            "source": "frontend/src/docs/en/*.md",
-            "target": "frontend/src/docs/{lang}/*.md",
-            "shortname": "docs"
-        }
-    ],
-    "ignore": [
-        // any files or directories to ignore always:
-    ]
+	"translatables": [
+		{
+			"source": "frontend/src/locales/en.json",
+			"target": "frontend/src/locales/{lang}.json",
+			"shortname": "app"
+		},
+		{
+			"source": "frontend/src/docs/en/*.md",
+			"target": "frontend/src/docs/{lang}/*.md",
+			"shortname": "docs"
+		}
+	],
+	"ignore": [
+		// any files or directories to ignore always:
+	]
 }
 ```
 

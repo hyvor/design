@@ -18,7 +18,7 @@ function relTo(root: string, absPath: string): string {
  *  - "shortname/relative/path" (one file within it), or
  *  - a raw path matching the source's path relative to the project root
  */
-function matchesSelector(
+export function matchesSelector(
 	selectors: string[],
 	shortname: string,
 	relSource: string,
@@ -113,8 +113,18 @@ export async function run(argv: string[]) {
 
 				console.log(`Translating ${relSource} -> ${lang.code} (${relTo(root, target)})`);
 
+				const previousTranslation = targetExists ? readFileSync(target, 'utf-8') : undefined;
+
 				try {
-					const translated = await translateContent(anthropic, model, source, lang.name, lang.code, content);
+					const translated = await translateContent(
+						anthropic,
+						model,
+						source,
+						lang.name,
+						lang.code,
+						content,
+						previousTranslation
+					);
 					mkdirSync(path.dirname(target), { recursive: true });
 					writeFileSync(target, translated, 'utf-8');
 

@@ -26,3 +26,18 @@ jobs:
         run: |
           npm ci
           npm run check
+  translator:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Check
+        working-directory: translator
+        run: |
+          npm ci
+          npm run check

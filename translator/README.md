@@ -88,6 +88,15 @@ only translates what's new or edited. Commit this file (or not) depending on
 whether you'd rather have collaborators/CI re-translate unchanged files, or
 share the cache and its avoided API cost.
 
+### Incremental updates
+
+When a target file already exists (e.g. `fr.json`, or after `--force`), its
+current content is sent to the model alongside the updated English source,
+with instructions to make minimal edits — keeping existing wording wherever
+the English didn't meaningfully change, and only updating the parts that
+did. This keeps re-translations close to the previous version instead of
+rephrasing the whole file from scratch every time.
+
 ## Local development
 
 To work on the translator itself (in this `translator/` directory):
@@ -130,8 +139,9 @@ Since `npm link` symlinks the package, any subsequent `npm run build` in
 command — no need to re-link. Run `npm unlink -g @hyvor/translator` when
 you're done.
 
-### Type-checking
+### Tests and type-checking
 
 ```bash
-npx tsc --noEmit -p tsconfig.json
+npm run test    # vitest
+npm run check   # tsc --noEmit, then the test suite — what CI runs
 ```

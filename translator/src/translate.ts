@@ -3,7 +3,7 @@ import path from 'node:path';
 
 export const DEFAULT_MODEL = 'claude-sonnet-5';
 
-function buildSystemPrompt(ext: string, langName: string, langCode: string): string {
+function buildSystemPrompt(ext: string, langName: string, langCode: string, isUpdate: boolean): string {
 	const shared = `You are a professional translator working on the source files of a software project. Translate the given file from English into ${langName} (${langCode}).
 
 Rules:
@@ -14,6 +14,10 @@ Rules:
 - Do not add, remove, or reorder keys/elements/attributes. Do not add comments, notes, or explanations of your own.
 - Output ONLY the fully translated file content and nothing else: no markdown code fences, no preamble, no trailing remarks.`;
 
+	const updateHint = isUpdate
+		? `You are updating an existing ${langName} translation to match an updated English source, given as <existing_translation> and <updated_source> below. Make MINIMAL changes: keep the existing translation's wording, phrasing, and structure wherever the corresponding English text is unchanged in meaning. Only retranslate the specific parts where the English content actually changed, was added, or was removed. Do not rewrite, rephrase, or "improve" parts that didn't change in the source, even if you would have translated them differently starting from scratch. Still output the full updated file, matching the structure of <updated_source> — not a diff or partial excerpt.`
+		: undefined;
+
 	const hints: Record<string, string> = {
 		'.json': `This is a JSON file of UI strings used for i18n. Translate every string VALUE naturally and idiomatically. Never translate, rename, add, or remove JSON keys. Keep the same nesting.`,
 		'.svelte': `This is a Svelte component. Translate the visible text content (paragraphs, headings, list items, link text, callouts, and human-facing attribute values like "title" or "alt"). Do NOT translate: the <script> block, Svelte syntax (e.g. {#if}, {#each}, {@html}, {expression}), component and prop names, class/style/href/id attribute values, and code shown to the reader inside <code>, <pre>, or a CodeBlock's "code" prop.`,
@@ -21,7 +25,7 @@ Rules:
 		'.mdx': `This is an MDX file (Markdown with embedded JSX). Translate the prose the same way as Markdown. Do NOT translate JSX component/prop names, code fences, inline code, or URLs.`
 	};
 
-	return [shared, hints[ext]].filter(Boolean).join('\n\n');
+	return [shared, updateHint, hints[ext]].filter(Boolean).join('\n\n');
 }
 
 // ---------------------------------------------------------------------------
@@ -86,10 +90,16 @@ export async function translateContent(
 	filePath: string,
 	langName: string,
 	langCode: string,
-	content: string
+	content: string,
+	previousTranslation?: string
 ): Promise<string> {
 	const ext = path.extname(filePath);
-	const system = buildSystemPrompt(ext, langName, langCode);
+	const system = buildSystemPrompt(ext, langName, langCode, previousTranslation !== undefined);
+
+	const userContent =
+		previousTranslation !== undefined
+			? `<existing_translation lang="${langCode}">\n${previousTranslation}\n</existing_translation>\n\n<updated_source lang="en">\n${content}\n</updated_source>`
+			: content;
 
 	const maxAttempts = 3;
 
@@ -104,7 +114,7 @@ export async function translateContent(
 				max_tokens: 64000,
 				//temperature: 0,
 				system,
-				messages: [{ role: 'user', content }]
+				messages: [{ role: 'user', content: userContent }]
 			});
 
 			stream.on('text', (_delta, snapshot) => preview.update(snapshot));

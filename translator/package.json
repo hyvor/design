@@ -13,6 +13,8 @@
 	"scripts": {
 		"dev": "tsx src/cli.ts",
 		"build": "tsc -p tsconfig.json && chmod +x dist/cli.js",
+		"test": "vitest run",
+		"check": "tsc --noEmit -p tsconfig.json && npm run test",
 		"prepublishOnly": "npm run build"
 	},
 	"dependencies": {
@@ -22,7 +24,8 @@
 	"devDependencies": {
 		"@types/node": "^22.20.1",
 		"tsx": "^4.19.2",
-		"typescript": "^5.9.3"
+		"typescript": "^5.9.3",
+		"vitest": "^4.1.11"
 	},
 	"engines": {
 		"node": ">=20"

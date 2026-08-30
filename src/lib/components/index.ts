@@ -26,6 +26,8 @@ export { default as TabbedCodeBlock } from './CodeBlock/TabbedCodeBlock.svelte';
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
 export { default as ConsoleLoader } from './ConsoleLoader/ConsoleLoader.svelte';
 
+export { confetti } from './Confetti/confetti.js';
+
 export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 

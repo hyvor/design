@@ -2,3 +2,7 @@
 	--accent: #fff;
 	--accent-text: #000;
 }
+
+:root {
+	--selection: var(--gray-light);
+}

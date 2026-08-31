@@ -44,8 +44,9 @@ export interface FileUploaderConfig {
 	maxFileSizeInMB?: number;
 
 	// shows the "Media Library" tab, and is called to load a page of media items
+	// receives the uploader type ('image' | 'audio'), so items can be filtered by file type
 	// return fewer items than requested (or an empty array) to signal there are no more
-	mediaLoad?: (page: number) => Promise<MediaItem[]>;
+	mediaLoad?: (page: number, type: UploadType) => Promise<MediaItem[]>;
 
 	// shows the "Unsplash" tab (image type only), and is called to search Unsplash
 	// return an empty array to signal there are no more results

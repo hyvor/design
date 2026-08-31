@@ -165,6 +165,8 @@ async function handleUpload() {
 	These tabs are opt-in: each is shown only when the matching config option is provided.
 	<code>mediaLoad</code> and <code>unsplashSearch</code> are callbacks the host app implements to
 	fetch data from its own backend — this component never talks to an API directly.
+	<code>mediaLoad</code> receives the requested page and the uploader's <code>type</code>
+	(<code>'image'</code> or <code>'audio'</code>), so you can filter items by file type.
 	<code>excalidraw</code>
 	is a boolean flag; when enabled, Excalidraw is loaded on demand directly in the browser (no dependency
 	is installed for it), and the drawing is exported to an SVG blob that flows through the same
@@ -184,8 +186,10 @@ async function handleUpload() {
 		},
 
 		// shows the "Media Library" tab; called to load a page of items
-		mediaLoad: async (page) => {
-			const items = await myApi.listMedia(page);
+		// the second argument is the uploader type ('image' | 'audio'),
+		// so you can filter items by file type
+		mediaLoad: async (page, type) => {
+			const items = await myApi.listMedia(page, type);
 			return items; // return [] when there are no more
 		},
 

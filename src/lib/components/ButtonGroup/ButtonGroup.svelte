@@ -1,13 +1,14 @@
 <script lang="ts">
 	interface Props {
 		column?: boolean;
+		divider?: boolean;
 		children?: import('svelte').Snippet;
 	}
 
-	let { column = false, children }: Props = $props();
+	let { column = false, divider = true, children }: Props = $props();
 </script>
 
-<div class="button-group" class:column>
+<div class="button-group" class:column class:no-divider={!divider}>
 	{@render children?.()}
 </div>
 
@@ -55,7 +56,7 @@
 		margin-top: -1px;
 	}
 
-	.button-group:not(.column)
+	.button-group:not(.no-divider):not(.column)
 		:global(> .button:not(.outline):not(.outline-fill):not(:first-child))::before {
 		content: '';
 		position: absolute;
@@ -67,7 +68,7 @@
 		opacity: 0.25;
 		pointer-events: none;
 	}
-	.button-group.column
+	.button-group.column:not(.no-divider)
 		:global(> .button:not(.outline):not(.outline-fill):not(:first-child))::before {
 		content: '';
 		position: absolute;

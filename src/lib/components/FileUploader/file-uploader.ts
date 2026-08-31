@@ -56,12 +56,13 @@ export interface FileUploaderConfig {
 	excalidraw?: boolean;
 }
 
-const defaults: Required<Omit<FileUploaderConfig, 'mediaLoad' | 'unsplashSearch' | 'excalidraw'>> = {
-	type: 'image',
-	uploader: null as any,
-	allowedMimeTypes: [],
-	maxFileSizeInMB: 10
-};
+const defaults: Required<Omit<FileUploaderConfig, 'mediaLoad' | 'unsplashSearch' | 'excalidraw'>> =
+	{
+		type: 'image',
+		uploader: null as any,
+		allowedMimeTypes: [],
+		maxFileSizeInMB: 10
+	};
 
 export type SelectedFileFrom = 'upload' | 'media' | 'unsplash' | 'excalidraw';
 export type SelectedFileUploadType = 'paste' | 'dnd' | 'browse' | 'url' | 'excalidraw';

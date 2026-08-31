@@ -163,11 +163,12 @@ async function handleUpload() {
 
 <p>
 	These tabs are opt-in: each is shown only when the matching config option is provided.
-	<code>mediaLoad</code> and <code>unsplashSearch</code> are callbacks the host app implements to fetch data
-	from its own backend — this component never talks to an API directly. <code>excalidraw</code> is a boolean
-	flag; when enabled, Excalidraw is loaded on demand directly in the browser (no dependency is installed for
-	it), and the drawing is exported to an SVG blob that flows through the same <code>uploader</code> callback
-	as any other upload.
+	<code>mediaLoad</code> and <code>unsplashSearch</code> are callbacks the host app implements to
+	fetch data from its own backend — this component never talks to an API directly.
+	<code>excalidraw</code>
+	is a boolean flag; when enabled, Excalidraw is loaded on demand directly in the browser (no
+	dependency is installed for it), and the drawing is exported to an SVG blob that flows through the
+	same <code>uploader</code> callback as any other upload.
 </p>
 
 <CodeBlock

@@ -26,6 +26,8 @@ export { default as TabbedCodeBlock } from './CodeBlock/TabbedCodeBlock.svelte';
 export { default as ColorPicker } from './ColorPicker/ColorPicker.svelte';
 export { default as ConsoleLoader } from './ConsoleLoader/ConsoleLoader.svelte';
 
+export { confetti } from './Confetti/confetti.js';
+
 export { default as DarkProvider } from './Dark/DarkProvider.svelte';
 export { default as DarkToggle } from './Dark/DarkToggle.svelte';
 
@@ -49,7 +51,9 @@ export {
 	uploadFile,
 	type FileUploaderConfig,
 	type UploadedFile as FileUploaderUploadedFile,
-	type SelectedFile as FileUploaderSelectedFile
+	type SelectedFile as FileUploaderSelectedFile,
+	type UnsplashImage as FileUploaderUnsplashImage,
+	type MediaItem as FileUploaderMediaItem
 } from './FileUploader/file-uploader.js';
 
 export { default as IconButton } from './IconButton/IconButton.svelte';

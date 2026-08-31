@@ -46,13 +46,10 @@
 
 		if (position === 'bottom') {
 			contentWrap.style.top = triggerRect.bottom + GAP + 'px';
-			if (contentRect.height + triggerRect.bottom > window.innerHeight) {
-				contentWrap.style.bottom = SPACE_AROUND + 'px';
-			} else {
-				contentWrap.style.bottom = 'auto';
-			}
+			contentWrap.style.bottom = 'auto';
 		} else if (position === 'top') {
-			contentWrap.style.top = triggerRect.top - contentRect.height - GAP + 'px';
+			contentWrap.style.top =
+				Math.max(triggerRect.top - contentRect.height - GAP, SPACE_AROUND) + 'px';
 		} else if (position === 'left') {
 			contentWrap.style.left = triggerRect.left - width - GAP + 'px';
 		} else if (position === 'right') {
@@ -88,6 +85,17 @@
 		} else {
 			contentWrap.style.width = width + 'px';
 		}
+
+		// cap to viewport height; the panel scrolls internally past that
+		let available: number;
+		if (position === 'bottom') {
+			available = window.innerHeight - (triggerRect.bottom + GAP) - SPACE_AROUND;
+		} else if (position === 'top') {
+			available = triggerRect.top - GAP - SPACE_AROUND;
+		} else {
+			available = window.innerHeight - SPACE_AROUND * 2;
+		}
+		contentWrap.style.maxHeight = Math.max(available, 120) + 'px';
 	}
 
 	$effect(() => {
@@ -138,5 +146,13 @@
 	.content-wrap {
 		position: fixed;
 		z-index: 1000000;
+		display: flex;
+		flex-direction: column;
+	}
+
+	.content {
+		overflow-y: auto;
+		min-height: 0;
+		overscroll-behavior: contain;
 	}
 </style>

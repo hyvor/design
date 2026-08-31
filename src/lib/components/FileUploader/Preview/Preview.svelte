@@ -21,7 +21,13 @@
 		if (file.upload) {
 			return URL.createObjectURL(file.upload.blob);
 		}
-		return ''; // TODO
+		if (file.unsplash) {
+			return file.unsplash.url;
+		}
+		if (file.media) {
+			return file.media.url;
+		}
+		return '';
 	}
 
 	let imageSize = $state(getInitialImageSize());
@@ -39,7 +45,12 @@
 		if (file.upload && file.upload.blob instanceof File) {
 			return file.upload.blob.name;
 		}
-		// TODO: add other
+		if (file.unsplash) {
+			return file.unsplash.title || file.unsplash.alt;
+		}
+		if (file.media) {
+			return file.media.name;
+		}
 		return null;
 	}
 
@@ -129,7 +140,7 @@
 				});
 		} else {
 			completeFileUpload({
-				url: file.upload!.fetchedUrl!,
+				url: file.upload?.fetchedUrl || file.unsplash?.url || file.media?.url || '',
 				selectedFile: file
 			});
 		}

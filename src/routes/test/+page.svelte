@@ -1,9 +1,9 @@
 <script lang="ts">
 	import Base from '$lib/components/Base/Base.svelte';
 	import Button from '$lib/components/Button/Button.svelte';
-	import Dropdown from '$lib/components/Dropdown/Dropdown.svelte';
 	import Header from '$lib/marketing/Header/Header.svelte';
 	import HeaderNavLink from '$lib/marketing/Header/HeaderNavLink.svelte';
+	import HeaderNavMenu from '$lib/marketing/Header/HeaderNavMenu.svelte';
 	import HeaderLanguageToggle from '$lib/marketing/Header/HeaderLanguageToggle.svelte';
 	import { buildLocalizedUrl } from '$lib/marketing/Header/language.js';
 	import Footer from '$lib/marketing/Footer/Footer.svelte';
@@ -22,7 +22,6 @@
 	import IsoSeal from '$lib/marketing/Seal/IsoSeal.svelte';
 	import IconBoxArrowUpRight from '@hyvor/icons/IconBoxArrowUpRight';
 	import IconGithub from '@hyvor/icons/IconGithub';
-	import IconCaretDown from '@hyvor/icons/IconCaretDown';
 	import IconPalette from '@hyvor/icons/IconPalette';
 	import IconPuzzle from '@hyvor/icons/IconPuzzle';
 	import IconImage from '@hyvor/icons/IconImage';
@@ -48,8 +47,6 @@
 	import type { ComponentProps } from 'svelte';
 
 	// --- Header ---
-
-	let resourcesOpen = $state(false);
 
 	const isThemesOrIntegrations = $derived(
 		$page.url.pathname === '/themes' || $page.url.pathname.startsWith('/integrations')
@@ -311,29 +308,18 @@
 		<HeaderNavLink href="#" active={true}>Docs</HeaderNavLink>
 		<HeaderNavLink href="#">Hosting</HeaderNavLink>
 
-		<Dropdown bind:show={resourcesOpen} contentPadding={8} width={300} align="center">
-			{#snippet trigger()}
-				<HeaderNavLink active={isThemesOrIntegrations}>
-					Resources
-					{#snippet end()}<IconCaretDown size={11} />{/snippet}
-				</HeaderNavLink>
-			{/snippet}
-			{#snippet content()}
-				<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
-				<div onclick={closeOnLinkClick}>
-					<HeaderNavLink href="#">
-						{#snippet start()}<IconPalette size={15} />{/snippet}
-						Themes
-						{#snippet description()}Blog themes to match your brand{/snippet}
-					</HeaderNavLink>
-					<HeaderNavLink href="#">
-						{#snippet start()}<IconPuzzle size={15} />{/snippet}
-						Integrations
-						{#snippet description()}Connect with your favorite tools{/snippet}
-					</HeaderNavLink>
-				</div>
-			{/snippet}
-		</Dropdown>
+		<HeaderNavMenu label="Resources" active={isThemesOrIntegrations}>
+			<HeaderNavLink href="#">
+				{#snippet start()}<IconPalette size={15} />{/snippet}
+				Themes
+				{#snippet description()}Blog themes to match your brand{/snippet}
+			</HeaderNavLink>
+			<HeaderNavLink href="#">
+				{#snippet start()}<IconPuzzle size={15} />{/snippet}
+				Integrations
+				{#snippet description()}Connect with your favorite tools{/snippet}
+			</HeaderNavLink>
+		</HeaderNavMenu>
 
 		<HeaderNavLink href="https://github.com/hyvor/design" target="_blank">
 			{#snippet start()}<IconGithub size={12} />{/snippet}

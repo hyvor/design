@@ -87,8 +87,9 @@
 		<div><code>center</code></div>
 		<div>
 			The content in the center of the header. Usually, the navigation links like "Docs", "Pricing",
-			etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>. You can also use
-			<a href="dropdown">Dropdowns</a> here (e.g. for a "Resources" menu).
+			etc., built with <a href="#header-nav-link"><code>HeaderNavLink</code></a>. For a submenu
+			(e.g. a "Resources" dropdown), use <a href="#header-nav-menu"><code>HeaderNavMenu</code></a>
+			rather than a raw <a href="dropdown">Dropdown</a> so it collapses cleanly on mobile.
 		</div>
 	</TableRow>
 	<TableRow>
@@ -108,6 +109,21 @@
 </p>
 
 <p>
+	Nested dropdowns don't work well inside the hamburger menu, so
+	<a href="#header-nav-menu"><code>HeaderNavMenu</code></a> and
+	<a href="#header-language-toggle"><code>HeaderLanguageToggle</code></a> automatically switch to an
+	collapsible chevron section below <code>992px</code> instead of opening a floating panel. If you
+	place a raw <a href="dropdown"><code>Dropdown</code></a> in the
+	<code>center</code> slot yourself, it will <em>not</em> get this treatment - prefer
+	<code>HeaderNavMenu</code>.
+</p>
+
+<p>
+	The hamburger panel itself caps its height to the viewport and scrolls internally, so a long menu
+	stays fully reachable on short screens.
+</p>
+
+<p>
 	The header also gains a bottom border once the page is scrolled, so it stays visually separated
 	from the content beneath it.
 </p>
@@ -117,9 +133,8 @@
 <p>
 	<code>HeaderNavLink</code> is a pill-shaped nav link meant to be used inside the
 	<code>center</code>
-	slot (and inside dropdown menus placed there). It renders an <code>{'<a>'}</code> when given an
-	<code>href</code>, or a <code>{'<span>'}</code> otherwise, so it can also be used as a
-	<a href="dropdown">Dropdown</a> trigger (e.g. a "Resources" link that opens a submenu).
+	slot (and inside submenus placed there). It renders an <code>{'<a>'}</code> when given an
+	<code>href</code>, or a <code>{'<span>'}</code> otherwise.
 </p>
 
 <Table columns="2fr 2fr 3fr">
@@ -182,6 +197,49 @@
 	</TableRow>
 </Table>
 
+<h2 id="header-nav-menu">HeaderNavMenu</h2>
+
+<p>
+	<code>HeaderNavMenu</code> is a labelled submenu for the <code>center</code> slot (e.g. a
+	"Resources" menu). On desktop it opens a <a href="dropdown">Dropdown</a> panel below a caret
+	trigger. Below <code>992px</code>, where the header collapses into the hamburger menu, it renders
+	inline as a collapsible section: a labelled row with a chevron that expands/collapses a
+	native-looking list of sub-nav items (starts collapsed). No nested floating panel, and child
+	<code>HeaderNavLink</code>s drop their <code>start</code> icon in the mobile menu (label and
+	<code>description</code> stay). Put your <code>HeaderNavLink</code>s directly inside it as
+	<code>children</code>.
+</p>
+
+<Table columns="2fr 2fr 3fr">
+	<TableRow head>
+		<div>Name</div>
+		<div>Default</div>
+		<div>Description</div>
+	</TableRow>
+	<TableRow>
+		<div><code>label</code></div>
+		<div></div>
+		<div>
+			<b>Required.</b> The trigger text / mobile section label, e.g. <code>"Resources"</code>.
+		</div>
+	</TableRow>
+	<TableRow>
+		<div><code>active</code></div>
+		<div><code>false</code></div>
+		<div>Highlights the trigger, e.g. when one of the child pages is the current page.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>width</code></div>
+		<div><code>300</code></div>
+		<div>Width of the desktop dropdown panel.</div>
+	</TableRow>
+	<TableRow>
+		<div><code>align</code></div>
+		<div><code>"center"</code></div>
+		<div>Alignment of the desktop dropdown panel, passed to <code>Dropdown</code>.</div>
+	</TableRow>
+</Table>
+
 <h2 id="examples">Example</h2>
 
 <CodeBlock
@@ -189,15 +247,12 @@
     <` +
 		`script>
         import Header from "@hyvor/design/marketing/Header.svelte";
-        import { HeaderNavLink } from "@hyvor/design/marketing";
-        import { Button, Dropdown } from "@hyvor/design/components";
-        import IconCaretDown from "@hyvor/icons/IconCaretDown";
+        import { HeaderNavLink, HeaderNavMenu } from "@hyvor/design/marketing";
+        import { Button } from "@hyvor/design/components";
         import IconPalette from "@hyvor/icons/IconPalette";
         import IconPuzzle from "@hyvor/icons/IconPuzzle";
 
         import logo from '../img/logo.svg';
-
-        let resourcesOpen = $state(false);
     </script>
 
     <Header
@@ -213,28 +268,21 @@
                 Pricing
             </HeaderNavLink>
 
-            <Dropdown bind:show={resourcesOpen} contentPadding={8}>
-                {#snippet trigger()}
-                    <HeaderNavLink active={resourcesOpen}>
-                        Resources
-                        {#snippet end()}
-                            <IconCaretDown size={11} />
-                        {/snippet}
-                    </HeaderNavLink>
-                {/snippet}
-                {#snippet content()}
-                    <HeaderNavLink href="/themes" active={page.url.pathname === '/themes'}>
-                        {#snippet start()}<IconPalette size={15} />{/snippet}
-                        Themes
-                        {#snippet description()}Blog themes to match your brand{/snippet}
-                    </HeaderNavLink>
-                    <HeaderNavLink href="/integrations" active={page.url.pathname.startsWith('/integrations')}>
-                        {#snippet start()}<IconPuzzle size={15} />{/snippet}
-                        Integrations
-                        {#snippet description()}Connect with your favorite tools{/snippet}
-                    </HeaderNavLink>
-                {/snippet}
-            </Dropdown>
+            <HeaderNavMenu
+                label="Resources"
+                active={page.url.pathname === '/themes' || page.url.pathname.startsWith('/integrations')}
+            >
+                <HeaderNavLink href="/themes" active={page.url.pathname === '/themes'}>
+                    {#snippet start()}<IconPalette size={15} />{/snippet}
+                    Themes
+                    {#snippet description()}Blog themes to match your brand{/snippet}
+                </HeaderNavLink>
+                <HeaderNavLink href="/integrations" active={page.url.pathname.startsWith('/integrations')}>
+                    {#snippet start()}<IconPuzzle size={15} />{/snippet}
+                    Integrations
+                    {#snippet description()}Connect with your favorite tools{/snippet}
+                </HeaderNavLink>
+            </HeaderNavMenu>
         {/snippet}
 
         {#snippet end()}
@@ -262,6 +310,13 @@
 	<a href="i18n"><code>InternationalizationService</code></a>/<code>LanguageToggle</code>, which
 	swap translated strings in place on a single page; use that instead if you don't have per-language
 	routes. See it in action in the header of <a href="/test">/test</a>.
+</p>
+
+<p>
+	On desktop it shows the current flag as a caret-less trigger (separated from the nav links by a
+	thin divider) and opens a dropdown of languages. Below <code>992px</code>, inside the hamburger
+	menu, it drops the divider and renders the languages as a collapsible "Change language" section
+	(same chevron pattern as <a href="#header-nav-menu"><code>HeaderNavMenu</code></a>).
 </p>
 
 <h3 id="header-language-toggle-props">Properties</h3>

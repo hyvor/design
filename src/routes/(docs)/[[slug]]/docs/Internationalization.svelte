@@ -3,7 +3,7 @@
 	import CodeBlock from '$lib/components/CodeBlock/CodeBlock.svelte';
 </script>
 
-<h1>i18n</h1>
+<h1>Internationalization</h1>
 
 <p>HDS comes with a built-in internationalization (i18n) system.</p>
 

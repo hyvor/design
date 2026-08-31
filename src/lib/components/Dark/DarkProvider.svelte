@@ -11,8 +11,11 @@
 	<script>
 		// to prevent white screen on page load
 		// until the dark mode is initialized from the store
-		const isDarkMode = !!localStorage.getItem('hds-dark');
-		if (isDarkMode) {
+		var hdsStored = localStorage.getItem('hds-dark');
+		var hsdIsDarkMode = hdsStored
+			? !!hdsStored
+			: window.matchMedia('(prefers-color-scheme: dark)').matches;
+		if (hsdIsDarkMode) {
 			document.documentElement.classList.add('dark');
 		}
 	</script>

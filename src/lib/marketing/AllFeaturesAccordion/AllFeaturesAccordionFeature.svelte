@@ -60,11 +60,24 @@
 	@media (max-width: 992px) {
 		.feature {
 			width: 100%;
-			text-align: center;
 		}
 
 		.icon-bg {
-			display: none;
+			opacity: 0.1;
+		}
+
+		.icon-bg :global(svg) {
+			width: 22px;
+			height: 22px;
+		}
+
+		.title {
+			font-size: 15px;
+		}
+
+		.description {
+			font-size: 13px;
+			margin-top: 4px;
 		}
 	}
 </style>

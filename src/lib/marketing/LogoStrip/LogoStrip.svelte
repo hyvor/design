@@ -26,8 +26,15 @@
 		speed = 34
 	}: Props = $props();
 
-	// render twice for marquee effect
-	const track = $derived(marquee ? [...logos, ...logos] : logos);
+	let containerWidth = $state(0);
+	let setWidths = $state<number[]>([]);
+	const setWidth = $derived(setWidths[0] ?? 0);
+
+	const copies = $derived.by(() => {
+		if (!setWidth || !containerWidth) return 2;
+		const needed = Math.ceil((containerWidth * 2) / setWidth);
+		return Math.min(20, Math.max(2, needed % 2 === 0 ? needed : needed + 1));
+	});
 </script>
 
 {#snippet logoImg(logo: Logo, hidden = false)}
@@ -65,23 +72,27 @@
 	</div>
 
 	{#if marquee}
-		<div class="marquee hds-container-max">
-			<div class="marquee-track">
-				{#each track as logo, i}
-					{@const hidden = i >= logos.length}
-					{#if logo.href}
-						<a
-							href={logo.href}
-							target="_blank"
-							rel="noopener"
-							class="logo-link"
-							tabindex={hidden ? -1 : undefined}
-						>
-							{@render logoImg(logo, hidden)}
-						</a>
-					{:else}
-						{@render logoImg(logo, hidden)}
-					{/if}
+		<div class="marquee hds-container-max" bind:clientWidth={containerWidth}>
+			<div class="marquee-track" style:--ls-copies={copies}>
+				{#each Array.from({ length: copies }) as _, setIndex (setIndex)}
+					{@const hidden = setIndex > 0}
+					<div class="marquee-set" bind:clientWidth={setWidths[setIndex]} aria-hidden={hidden}>
+						{#each logos as logo}
+							{#if logo.href}
+								<a
+									href={logo.href}
+									target="_blank"
+									rel="noopener"
+									class="logo-link"
+									tabindex={hidden ? -1 : undefined}
+								>
+									{@render logoImg(logo, hidden)}
+								</a>
+							{:else}
+								{@render logoImg(logo, hidden)}
+							{/if}
+						{/each}
+					</div>
 				{/each}
 			</div>
 		</div>
@@ -134,9 +145,18 @@
 	.marquee-track {
 		display: flex;
 		align-items: center;
-		gap: 52px;
 		width: max-content;
-		animation: marquee-scroll var(--ls-speed) linear infinite;
+		/* keep a constant per-set speed regardless of how many sets we repeat */
+		animation: marquee-scroll calc(var(--ls-speed) * var(--ls-copies, 2) / 2) linear infinite;
+	}
+
+	.marquee-set {
+		display: flex;
+		align-items: center;
+		flex: none;
+		gap: 52px;
+		/* trailing gap so every set is an identical width and -50% lands cleanly */
+		padding-right: 52px;
 	}
 
 	.marquee:hover .marquee-track {
@@ -148,7 +168,6 @@
 			transform: translateX(0);
 		}
 		to {
-			/* one full set-width, since the track is two identical sets back to back */
 			transform: translateX(-50%);
 		}
 	}
@@ -186,13 +205,18 @@
 
 		.marquee-track {
 			animation: none;
-			flex-wrap: wrap;
-			justify-content: center;
 			width: 100%;
 			padding: 0 15px;
 		}
 
-		.marquee-track :global(.logo[aria-hidden='true']) {
+		.marquee-set {
+			flex-wrap: wrap;
+			justify-content: center;
+			width: 100%;
+			padding-right: 0;
+		}
+
+		.marquee-set:not(:first-child) {
 			display: none;
 		}
 	}

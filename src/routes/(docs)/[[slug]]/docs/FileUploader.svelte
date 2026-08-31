@@ -45,9 +45,9 @@
 
 	// mock media library, backed by a couple of placeholder images
 	const mockMedia: MediaItem[] = [
-		{ id: 1, name: 'mountains', url: 'https://picsum.photos/id/1018/400/300' },
-		{ id: 2, name: 'forest', url: 'https://picsum.photos/id/1015/400/300' },
-		{ id: 3, name: 'ocean', url: 'https://picsum.photos/id/1016/400/300' }
+		{ id: 1, name: 'mountains', url: 'https://loremflickr.com/400/300/mountain?lock=1' },
+		{ id: 2, name: 'forest', url: 'https://loremflickr.com/400/300/forest?lock=2' },
+		{ id: 3, name: 'ocean', url: 'https://loremflickr.com/400/300/ocean?lock=3' }
 	];
 
 	async function onAdvancedUpload() {
@@ -65,11 +65,13 @@
 			// called when the user searches on the "Unsplash" tab
 			unsplashSearch: async (search, page): Promise<UnsplashImage[]> => {
 				if (page > 1) return [];
+				// loremflickr supports single-word keywords only
+				const keyword = search.trim().split(/\s+/)[0]?.replace(/\W/g, '') || 'random';
 				return [
 					{
-						url: `https://picsum.photos/seed/${encodeURIComponent(search)}/400/300`,
-						author: 'Picsum (mocked)',
-						author_url: 'https://picsum.photos',
+						url: `https://loremflickr.com/400/300/${keyword}?lock=1`,
+						author: 'LoremFlickr (mocked)',
+						author_url: 'https://loremflickr.com',
 						title: search,
 						alt: search
 					}

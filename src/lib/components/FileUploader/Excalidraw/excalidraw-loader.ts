@@ -2,11 +2,10 @@ const EXCALIDRAW_VERSION = '0.18.0';
 const REACT_VERSION = '19.0.0';
 
 const REACT_URL = `https://esm.sh/react@${REACT_VERSION}`;
-const REACT_JSX_RUNTIME_URL = `https://esm.sh/react@${REACT_VERSION}/jsx-runtime`;
-const REACT_DOM_URL = `https://esm.sh/react-dom@${REACT_VERSION}`;
 const REACT_DOM_CLIENT_URL = `https://esm.sh/react-dom@${REACT_VERSION}/client`;
+
 const EXCALIDRAW_ASSET_PATH = `https://esm.sh/@excalidraw/excalidraw@${EXCALIDRAW_VERSION}/dist/prod/`;
-const EXCALIDRAW_JS_URL = `${EXCALIDRAW_ASSET_PATH}index.js?external=react,react-dom`;
+const EXCALIDRAW_JS_URL = `${EXCALIDRAW_ASSET_PATH}index.js?deps=react@${REACT_VERSION},react-dom@${REACT_VERSION}`;
 const EXCALIDRAW_CSS_URL = `${EXCALIDRAW_ASSET_PATH}index.css`;
 
 export interface LoadedExcalidraw {
@@ -16,24 +15,6 @@ export interface LoadedExcalidraw {
 }
 
 let loadPromise: Promise<LoadedExcalidraw> | null = null;
-
-function ensureImportMap() {
-	// Excalidraw's browser build imports "react" and "react-dom" as bare specifiers.
-	// An import map is the only way to resolve those without a bundler.
-	if (document.querySelector('script[type="importmap"]')) return;
-
-	const script = document.createElement('script');
-	script.type = 'importmap';
-	script.textContent = JSON.stringify({
-		imports: {
-			react: REACT_URL,
-			'react/jsx-runtime': REACT_JSX_RUNTIME_URL,
-			'react-dom': REACT_DOM_URL,
-			'react-dom/client': REACT_DOM_CLIENT_URL
-		}
-	});
-	document.head.appendChild(script);
-}
 
 function ensureStylesheet() {
 	if (document.querySelector(`link[href="${EXCALIDRAW_CSS_URL}"]`)) return;
@@ -53,7 +34,6 @@ export function loadExcalidraw(): Promise<LoadedExcalidraw> {
 
 	(window as any).EXCALIDRAW_ASSET_PATH = EXCALIDRAW_ASSET_PATH;
 
-	ensureImportMap();
 	ensureStylesheet();
 
 	loadPromise = Promise.all([

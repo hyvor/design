@@ -61,13 +61,6 @@
 		LANGUAGES.find((l) => l.code === $page.url.pathname.split('/')[1])?.code ?? DEFAULT_LANGUAGE
 	);
 
-	function closeOnLinkClick(e: MouseEvent) {
-		const target = e.target as HTMLElement;
-		if (target.tagName === 'A' || target.closest('a')) {
-			resourcesOpen = false;
-		}
-	}
-
 	// logos
 	function placeholderLogo(name: string, width = 120) {
 		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28"><text x="0" y="21" font-family="sans-serif" font-size="20" font-weight="700" fill="black">${name}</text></svg>`;
@@ -112,6 +105,7 @@
 			type: 'text',
 			name: 'Lionel S.',
 			role: 'Blogger',
+			company: 'Lionel Writes',
 			imageUrl: 'https://i.pravatar.cc/150?img=12',
 			summary: 'The WordPress bloat, solved',
 			quote:
@@ -142,6 +136,7 @@
 			type: 'text',
 			name: 'Aisha K.',
 			role: 'Newsletter writer',
+			company: 'Aisha Writes',
 			imageUrl: 'https://i.pravatar.cc/150?img=32',
 			summary: 'Painless migration',
 			quote: 'Migrating was painless, and the editor is the best I have used for long-form writing.'
@@ -150,6 +145,7 @@
 			type: 'text',
 			name: 'Diego R.',
 			role: 'Indie hacker',
+			company: 'Indie Hackers',
 			imageUrl: 'https://i.pravatar.cc/150?img=15',
 			summary: 'It just works',
 			quote: 'Fast, simple, and it just works. Exactly what I wanted for my blog.'

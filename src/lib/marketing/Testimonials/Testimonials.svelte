@@ -14,7 +14,7 @@
 		type: 'video';
 		name: string;
 		role: string;
-		company?: string;
+		company: string;
 		companyUrl?: string;
 		imageUrl?: string;
 		videoUrl?: string;
@@ -109,8 +109,9 @@
 	{/if}
 </svelte:head>
 
-{#snippet companyLine(review: Review)}
-	{#if review.company}
+{#snippet meta(review: Review)}
+	<div class="role">
+		{review.role}, <br />
 		{#if review.companyUrl}
 			<a
 				class="company"
@@ -121,9 +122,9 @@
 				{review.company}
 			</a>
 		{:else}
-			<span class="company">{review.company}</span>
+			{review.company}
 		{/if}
-	{/if}
+	</div>
 {/snippet}
 
 <section class="hds-testimonials" class:handwritten={handwrittenNames}>
@@ -148,6 +149,20 @@
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
+					{#if review.imageUrl}
+						<img class="avatar photo card-avatar" src={review.imageUrl} alt={review.name} />
+					{:else}
+						<svg
+							class="avatar card-avatar"
+							viewBox="0 0 5 5"
+							style="background: {av.bg}"
+							aria-hidden="true"
+						>
+							{#each av.cells as cell}
+								<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
+							{/each}
+						</svg>
+					{/if}
 					<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
 						<path
 							d="M10 7c-3.3 0-6 2.7-6 6v4h6v-6H7c0-1.7 1.3-3 3-3V7zm10 0c-3.3 0-6 2.7-6 6v4h6v-6h-3c0-1.7 1.3-3 3-3V7z"
@@ -158,19 +173,9 @@
 					{/if}
 					<blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
 					<figcaption>
-						{#if review.imageUrl}
-							<img class="avatar photo" src={review.imageUrl} alt={review.name} />
-						{:else}
-							<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
-								{#each av.cells as cell}
-									<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
-								{/each}
-							</svg>
-						{/if}
 						<span class="caption-text">
 							<span class="name">{review.name}</span>
-							<span class="role">{review.role}</span>
-							{@render companyLine(review)}
+							{@render meta(review)}
 						</span>
 					</figcaption>
 				</figure>
@@ -200,7 +205,7 @@
 						<div class="poster-scrim"></div>
 
 						{#if review.summary}
-							<p class="video-summary">"{review.summary}"</p>
+							<p class="video-summary">“{review.summary}”</p>
 						{/if}
 
 						<button
@@ -225,8 +230,7 @@
 							{/if}
 							<span class="caption-text">
 								<span class="name">{review.name}</span>
-								<span class="role">{review.role}</span>
-								{@render companyLine(review)}
+								{@render meta(review)}
 							</span>
 						</figcaption>
 					{/if}
@@ -320,6 +324,13 @@
 		flex-shrink: 0;
 	}
 
+	.card-avatar {
+		position: absolute;
+		top: 28px;
+		right: 28px;
+		z-index: 1;
+	}
+
 	.avatar {
 		width: 46px;
 		height: 46px;
@@ -349,6 +360,7 @@
 		color: var(--text);
 		margin: 0 0 20px;
 		flex: 1;
+		font-family: var(--font-serif);
 	}
 
 	.text-card figcaption {
@@ -360,6 +372,8 @@
 	.caption-text {
 		display: flex;
 		flex-direction: column;
+		justify-content: center;
+		gap: 2px;
 		min-width: 0;
 	}
 
@@ -367,23 +381,28 @@
 		font-size: 16px;
 		font-weight: 600;
 		color: var(--text);
-		line-height: 1.2;
+		line-height: 1.3;
 	}
 
 	.handwritten .name {
 		font-family: 'Caveat', cursive;
 		font-size: 28px;
 		font-weight: 600;
+		line-height: 1.15;
 	}
 
 	.role {
-		font-size: 13px;
+		font-size: 14px;
+		line-height: 1.35;
 		color: var(--text-light);
+		margin-top: 4px;
+		font-family: var(--font-serif);
 	}
 
 	.company {
 		align-self: flex-start;
 		font-size: 13px;
+		line-height: 1.35;
 		font-weight: 500;
 		color: var(--text);
 		text-decoration: none;
@@ -434,13 +453,12 @@
 		right: 20px;
 		margin: 0;
 		font-family: var(--font-serif);
-		font-size: 18px;
+		font-size: 16px;
 		font-weight: 800;
 		line-height: 1.25;
 		letter-spacing: -0.01em;
 		color: #fff;
 		text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
-		font-style: italic;
 	}
 
 	.play-btn {

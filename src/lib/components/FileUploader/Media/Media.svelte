@@ -20,7 +20,7 @@
 		nextPage === 1 ? (isLoading = true) : (isLoadingMore = true);
 
 		config
-			.mediaLoad(nextPage)
+			.mediaLoad(nextPage, config.type)
 			.then((results) => {
 				items = nextPage === 1 ? results : [...items, ...results];
 				hasMore = results.length > 0;

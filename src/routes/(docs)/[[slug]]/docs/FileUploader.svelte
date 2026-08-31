@@ -184,8 +184,8 @@ async function handleUpload() {
 		},
 
 		// shows the "Media Library" tab; called to load a page of items
-		mediaLoad: async (page) => {
-			const items = await myApi.listMedia(page);
+		mediaLoad: async (page, type) => {
+			const items = await myApi.listMedia(page, type);
 			return items; // return [] when there are no more
 		},
 

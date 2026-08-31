@@ -71,24 +71,17 @@
 		}
 	}
 
-	// --- Logo Strip ---
-
-	// placeholder customer logos, just a name rendered as an inline SVG data URI;
-	// swap these for real logo files when wiring this up on an actual site
+	// logos
 	function placeholderLogo(name: string, width = 120) {
 		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="28"><text x="0" y="21" font-family="sans-serif" font-size="20" font-weight="700" fill="black">${name}</text></svg>`;
 		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 	}
 
-	// an opaque, full-color "app icon" square, to test the `color` override
-	// (skips the shared white-silhouette treatment)
 	function placeholderIcon(letter: string, bg: string) {
 		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44"><rect width="44" height="44" rx="10" fill="${bg}"/><text x="22" y="29" font-family="sans-serif" font-size="20" font-weight="700" fill="white" text-anchor="middle">${letter}</text></svg>`;
 		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
 	}
 
-	// portrait placeholder poster for the video testimonial card, matching the
-	// aspect ratio of the placeholder video itself
 	function placeholderPoster() {
 		const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"><rect width="1080" height="1920" fill="#574443"/><text x="540" y="960" font-family="sans-serif" font-size="72" font-weight="700" fill="white" text-anchor="middle">Video</text></svg>`;
 		return `data:image/svg+xml;utf8,${encodeURIComponent(svg)}`;
@@ -109,8 +102,6 @@
 		{ name: 'Soylent', src: placeholderLogo('Soylent') }
 	];
 
-	// --- Feature Split ---
-
 	const editorBullets = [
 		'Markdown shortcuts for all the formatting you need',
 		'Paste, drag and drop, or pick images from Unsplash',
@@ -119,13 +110,13 @@
 
 	const speedBullets = ['Automatic webp conversion', 'Aggressive edge caching', 'Global CDN'];
 
-	// --- Testimonials ---
-
 	const testimonialReviews: ComponentProps<typeof Testimonials>['reviews'] = [
 		{
 			type: 'text',
 			name: 'Lionel S.',
 			role: 'Blogger',
+			imageUrl: 'https://i.pravatar.cc/150?img=12',
+			summary: 'The WordPress bloat, solved',
 			quote:
 				'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
 		},
@@ -135,6 +126,7 @@
 			role: 'Newsletter creator',
 			company: 'Draft & Send',
 			companyUrl: 'https://example.com',
+			imageUrl: 'https://i.pravatar.cc/150?img=45',
 			videoUrl: 'https://placeholdervideo.dev/1080x1920',
 			posterUrl: placeholderPoster(),
 			summary: 'Amazing Product'
@@ -144,6 +136,8 @@
 			name: 'Manoj P.',
 			role: 'Senior Application Engineer',
 			company: 'Nordwind Labs',
+			imageUrl: 'https://i.pravatar.cc/150?img=68',
+			summary: 'Seamless for readers and writers',
 			quote:
 				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
 		},
@@ -151,17 +145,19 @@
 			type: 'text',
 			name: 'Aisha K.',
 			role: 'Newsletter writer',
+			imageUrl: 'https://i.pravatar.cc/150?img=32',
+			summary: 'Painless migration',
 			quote: 'Migrating was painless, and the editor is the best I have used for long-form writing.'
 		},
 		{
 			type: 'text',
 			name: 'Diego R.',
 			role: 'Indie hacker',
+			imageUrl: 'https://i.pravatar.cc/150?img=15',
+			summary: 'It just works',
 			quote: 'Fast, simple, and it just works. Exactly what I wanted for my blog.'
 		}
 	];
-
-	// --- All Features Accordion ---
 
 	const featureCategories = [
 		{
@@ -289,8 +285,6 @@
 			]
 		}
 	];
-
-	// --- FAQ ---
 
 	const faqItems = [
 		{ q: 'Is there a free trial?', a: 'Yes, every plan starts with a 14-day free trial.' },

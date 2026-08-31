@@ -457,12 +457,14 @@
 </p>
 
 <p>
-	<b>Text reviews</b> show the quote with a generated identicon. <b>Video reviews</b> show the
+	<b>Text reviews</b> show a faded quote mark, an optional <code>summary</code> headline, then the
+	quote, then the reviewer's details. <b>Video reviews</b> show the
 	<code>posterUrl</code> image with a play button and the optional <code>summary</code> headline
 	overlaid; tapping play swaps in a <code>&lt;video&gt;</code> with native controls and the card
 	grows. Pausing brings the poster overlay (and <code>summary</code>) back with a "Resume" button.
-	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the bottom
-	of every card.
+	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the
+	bottom of every card, next to their <code>imageUrl</code> photo (text reviews fall back to a generated
+	identicon).
 </p>
 
 <h3>Properties</h3>
@@ -551,9 +553,28 @@
 	</TableRow>
 
 	<TableRow>
+		<div><code>imageUrl</code></div>
+		<div>both</div>
+		<div>
+			Optional. Reviewer photo, cropped to a 46px circle, shown next to the name at the bottom of
+			the card. Text reviews fall back to a generated identicon when it's unset; video reviews show
+			nothing.
+		</div>
+	</TableRow>
+
+	<TableRow>
 		<div><code>quote</code></div>
 		<div><code>'text'</code></div>
 		<div>The quote text.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>summary</code></div>
+		<div>both</div>
+		<div>
+			Optional. Short headline. On text reviews it sits above the quote; on video reviews it's shown
+			over the poster, and again whenever the video is paused.
+		</div>
 	</TableRow>
 
 	<TableRow>
@@ -566,14 +587,6 @@
 		<div><code>posterUrl</code></div>
 		<div><code>'video'</code></div>
 		<div>Optional. Poster image shown before the video plays and while it is paused.</div>
-	</TableRow>
-
-	<TableRow>
-		<div><code>summary</code></div>
-		<div><code>'video'</code></div>
-		<div>
-			Optional. Short headline shown over the poster, and again whenever the video is paused.
-		</div>
 	</TableRow>
 </Table>
 
@@ -589,6 +602,8 @@
 					role: 'Blogger',
 					company: 'Solo Press',
 					companyUrl: 'https://example.com',
+					imageUrl: '/testimonials/lionel.jpg',
+					summary: 'The WordPress bloat, solved',
 					quote:
 						'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
 				},
@@ -597,6 +612,7 @@
 					name: 'Nadia F.',
 					role: 'Newsletter creator',
 					company: 'Draft & Send',
+					imageUrl: '/testimonials/nadia-avatar.jpg',
 					videoUrl: '/testimonials/nadia.mp4',
 					posterUrl: '/testimonials/nadia.jpg',
 					summary: 'Amazing Product'
@@ -605,6 +621,7 @@
 					type: 'text',
 					name: 'Manoj P.',
 					role: 'Senior Application Engineer',
+					summary: 'Seamless for readers and writers',
 					quote:
 						'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
 				}

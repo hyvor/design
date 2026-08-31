@@ -5,6 +5,8 @@
 		role: string;
 		company?: string;
 		companyUrl?: string;
+		imageUrl?: string;
+		summary?: string;
 		quote: string;
 	}
 
@@ -14,6 +16,7 @@
 		role: string;
 		company?: string;
 		companyUrl?: string;
+		imageUrl?: string;
 		videoUrl?: string;
 		posterUrl?: string;
 		summary?: string;
@@ -109,7 +112,12 @@
 {#snippet companyLine(review: Review)}
 	{#if review.company}
 		{#if review.companyUrl}
-			<a class="company" href={review.companyUrl} target="_blank" rel="noopener">
+			<a
+				class="company"
+				href={review.companyUrl}
+				target="_blank"
+				rel="nofollow noopener noreferrer"
+			>
 				{review.company}
 			</a>
 		{:else}
@@ -140,16 +148,30 @@
 			{#if review.type === 'text'}
 				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
-					<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
-						{#each av.cells as cell}
-							<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
-						{/each}
+					<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
+						<path
+							d="M10 7c-3.3 0-6 2.7-6 6v4h6v-6H7c0-1.7 1.3-3 3-3V7zm10 0c-3.3 0-6 2.7-6 6v4h6v-6h-3c0-1.7 1.3-3 3-3V7z"
+						/>
 					</svg>
+					{#if review.summary}
+						<p class="text-summary">{review.summary}</p>
+					{/if}
 					<blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
 					<figcaption>
-						<span class="name">{review.name}</span>
-						<span class="role">{review.role}</span>
-						{@render companyLine(review)}
+						{#if review.imageUrl}
+							<img class="avatar photo" src={review.imageUrl} alt={review.name} />
+						{:else}
+							<svg class="avatar" viewBox="0 0 5 5" style="background: {av.bg}" aria-hidden="true">
+								{#each av.cells as cell}
+									<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
+								{/each}
+							</svg>
+						{/if}
+						<span class="caption-text">
+							<span class="name">{review.name}</span>
+							<span class="role">{review.role}</span>
+							{@render companyLine(review)}
+						</span>
 					</figcaption>
 				</figure>
 			{:else}
@@ -198,9 +220,14 @@
 						</button>
 
 						<figcaption>
-							<span class="name">{review.name}</span>
-							<span class="role">{review.role}</span>
-							{@render companyLine(review)}
+							{#if review.imageUrl}
+								<img class="avatar photo" src={review.imageUrl} alt={review.name} />
+							{/if}
+							<span class="caption-text">
+								<span class="name">{review.name}</span>
+								<span class="role">{review.role}</span>
+								{@render companyLine(review)}
+							</span>
 						</figcaption>
 					{/if}
 				</figure>
@@ -284,6 +311,15 @@
 		flex-direction: column;
 	}
 
+	.quote-mark {
+		width: 40px;
+		height: 40px;
+		margin-bottom: 20px;
+		fill: var(--accent);
+		opacity: 0.14;
+		flex-shrink: 0;
+	}
+
 	.avatar {
 		width: 46px;
 		height: 46px;
@@ -293,18 +329,38 @@
 		shape-rendering: crispEdges;
 	}
 
+	.avatar.photo {
+		object-fit: cover;
+	}
+
+	.text-summary {
+		margin: 0 0 14px;
+		font-family: var(--font-serif);
+		font-size: 18px;
+		font-weight: 800;
+		line-height: 1.25;
+		letter-spacing: -0.01em;
+		color: var(--text);
+	}
+
 	blockquote {
 		font-size: 16px;
 		line-height: 1.7;
 		color: var(--text);
-		margin: 20px 0 0;
+		margin: 0 0 20px;
 		flex: 1;
 	}
 
 	.text-card figcaption {
 		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.caption-text {
+		display: flex;
 		flex-direction: column;
-		gap: 0;
+		min-width: 0;
 	}
 
 	.name {
@@ -434,7 +490,12 @@
 		padding: 40px 20px 20px;
 		background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
 		display: flex;
-		flex-direction: column;
+		align-items: center;
+		gap: 12px;
+	}
+
+	.video-card .avatar.photo {
+		border: 2px solid rgba(255, 255, 255, 0.7);
 	}
 
 	.video-card .name {

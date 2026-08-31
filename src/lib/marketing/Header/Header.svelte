@@ -97,11 +97,7 @@
 		<span class="mobile-nav-wrap">
 			<Dropdown bind:show={mobileOpen} align="end" width={300} contentPadding={8}>
 				{#snippet trigger()}
-					<IconButton
-						variant="invisible"
-						aria-label={menuLabel}
-						aria-expanded={mobileOpen}
-					>
+					<IconButton variant="invisible" aria-label={menuLabel} aria-expanded={mobileOpen}>
 						{#if mobileOpen}
 							<IconX size={18} />
 						{:else}

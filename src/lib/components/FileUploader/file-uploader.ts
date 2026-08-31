@@ -5,15 +5,30 @@ export let selectedFile = writable<null | SelectedFile>(null);
 
 export type UploadType = 'image' | 'audio' | 'file';
 
+export interface UnsplashImage {
+	url: string;
+	author: string;
+	author_url: string;
+	title: string | null;
+	alt: string | null;
+}
+
+export interface MediaItem {
+	id: string | number;
+	url: string;
+	name: string;
+}
+
 export interface FileUploaderConfig {
 	/**
 	 * image:
-	 *  - shows unsplash and excalidraw tabs
+	 *  - shows unsplash and excalidraw tabs (if configured)
 	 * audio:
 	 *  - shows audio preview
 	 * file
 	 *  - allows any file type
 	 *  - preview tries to detect file type (image/audio/other)
+	 *  - hides the media library tab
 	 */
 	type: UploadType;
 
@@ -28,25 +43,29 @@ export interface FileUploaderConfig {
 	// frontend max file size in MB (make sure to validate in the backend)
 	maxFileSizeInMB?: number;
 
-	// mediaLoader?: undefined |
+	// shows the "Media Library" tab, and is called to load a page of media items
+	// return fewer items than requested (or an empty array) to signal there are no more
+	mediaLoad?: (page: number) => Promise<MediaItem[]>;
+
+	// shows the "Unsplash" tab (image type only), and is called to search Unsplash
+	// return an empty array to signal there are no more results
+	unsplashSearch?: (search: string, page: number) => Promise<UnsplashImage[]>;
+
+	// shows the "Excalidraw" tab (image type only)
+	// Excalidraw is loaded on demand directly in the browser, no dependency is installed for it
+	excalidraw?: boolean;
 }
 
-const defaults: Required<FileUploaderConfig> = {
-	type: 'image',
-	uploader: null as any,
-	allowedMimeTypes: [],
-	maxFileSizeInMB: 10
-};
+const defaults: Required<Omit<FileUploaderConfig, 'mediaLoad' | 'unsplashSearch' | 'excalidraw'>> =
+	{
+		type: 'image',
+		uploader: null as any,
+		allowedMimeTypes: [],
+		maxFileSizeInMB: 10
+	};
 
 export type SelectedFileFrom = 'upload' | 'media' | 'unsplash' | 'excalidraw';
-export type SelectedFileUploadType = 'paste' | 'dnd' | 'browse' | 'url';
-export interface UnsplashImage {
-	url: string;
-	author: string;
-	author_url: string;
-	title: string | null;
-	alt: string | null;
-}
+export type SelectedFileUploadType = 'paste' | 'dnd' | 'browse' | 'url' | 'excalidraw';
 
 // a selected file, pending upload (or maybe already uploaded)
 export interface SelectedFile {
@@ -62,11 +81,7 @@ export interface SelectedFile {
 	};
 
 	unsplash?: UnsplashImage;
-	// excalidraw?: {
-	//     elements: readonly ExcalidrawElement[],
-	//     appState: AppState,
-	// },
-	// media?: Media,
+	media?: MediaItem;
 }
 
 export interface UploadedFile {
@@ -74,16 +89,19 @@ export interface UploadedFile {
 	selectedFile: SelectedFile;
 }
 
-export type FileUploaderConfigInternal = Required<FileUploaderConfig> & {
-	onCancel: () => void;
-	onUpload: (file: UploadedFile) => void;
-};
+export type FileUploaderConfigInternal = Required<
+	Omit<FileUploaderConfig, 'mediaLoad' | 'unsplashSearch' | 'excalidraw'>
+> &
+	Pick<FileUploaderConfig, 'mediaLoad' | 'unsplashSearch' | 'excalidraw'> & {
+		onCancel: () => void;
+		onUpload: (file: UploadedFile) => void;
+	};
 
 // UploadedFile is uploaded
 // null means cancelled
 export function uploadFile(config: FileUploaderConfig) {
 	return new Promise<UploadedFile | null>((resolve, reject) => {
-		const finalConfig = {
+		const finalConfig: FileUploaderConfigInternal = {
 			...defaults,
 			...config,
 			onCancel: () => {

@@ -244,8 +244,38 @@
 	}
 
 	@media (max-width: 768px) {
+		.hds-all-features-accordion {
+			padding: 56px 0;
+		}
+
+		.section-header {
+			margin-bottom: 32px;
+		}
+
+		.section-header h2 {
+			font-size: 26px;
+		}
+
+		.section-header p {
+			font-size: 0.9rem;
+		}
+
+		.accordion-trigger {
+			gap: 12px;
+			padding: 16px 14px;
+		}
+
+		.cat-label {
+			font-size: 15px;
+		}
+
+		.accordion-content {
+			padding: 4px 14px 20px;
+		}
+
 		.features-grid {
 			grid-template-columns: 1fr;
+			gap: 18px;
 		}
 	}
 </style>

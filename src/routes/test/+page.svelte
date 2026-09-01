@@ -108,7 +108,8 @@
 			company: 'Lionel Writes',
 			imageUrl: 'https://i.pravatar.cc/150?img=12',
 			summary: 'The WordPress bloat, solved',
-			quote: 'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
+			quote:
+				'I need a simple, easy-to-use, fast, beautiful and mature blogging tool that resolves the WordPress bloat. Hyvor Blogs handles this beautifully.'
 		},
 		{
 			type: 'video',
@@ -127,7 +128,8 @@
 			role: 'Senior Application Engineer',
 			company: 'Nordwind Labs',
 			summary: 'Seamless for readers and writers',
-			quote: 'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
+			quote:
+				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'
 		},
 		{
 			type: 'text',
@@ -163,8 +165,7 @@
 				{
 					icon: IconImage,
 					title: 'Images',
-					description:
-						'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
+					description: 'Upload, paste, drag and drop, Unsplash, and more ways to add images.'
 				},
 				{
 					icon: IconCode,
@@ -324,8 +325,7 @@
 		<HeaderLanguageToggle
 			languages={LANGUAGES}
 			current={currentLang}
-			href={(code) =>
-				buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
+			href={(code) => buildLocalizedUrl($page.url.pathname, currentLang, code, DEFAULT_LANGUAGE)}
 		/>
 	{/snippet}
 	{#snippet end()}

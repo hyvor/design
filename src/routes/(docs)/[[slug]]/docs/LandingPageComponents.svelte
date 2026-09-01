@@ -463,8 +463,8 @@
 	overlaid; tapping play swaps in a <code>&lt;video&gt;</code> with native controls and the card
 	grows. Pausing brings the poster overlay (and <code>summary</code>) back with a "Resume" button.
 	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the
-	bottom of every card, next to their <code>imageUrl</code> photo. When <code>imageUrl</code> is
-	unset, no avatar is shown.
+	bottom of every card, next to their <code>imageUrl</code> photo. When <code>imageUrl</code> is unset,
+	no avatar is shown.
 </p>
 
 <h3>Properties</h3>

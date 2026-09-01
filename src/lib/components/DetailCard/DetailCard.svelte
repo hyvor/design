@@ -9,7 +9,8 @@
 
 	let { label, content, children }: Props = $props();
 
-	const labelId = `detail-card-${Math.random().toString(36).substring(2, 15)}`;
+	const uid = $props.id();
+	const labelId = `detail-card-${uid}`;
 </script>
 
 <div class="detail-card" role="region" aria-labelledby={labelId}>

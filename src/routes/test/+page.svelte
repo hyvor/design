@@ -127,7 +127,6 @@
 			name: 'Manoj P.',
 			role: 'Senior Application Engineer',
 			company: 'Nordwind Labs',
-			imageUrl: 'https://i.pravatar.cc/150?img=68',
 			summary: 'Seamless for readers and writers',
 			quote:
 				'The platform offers a seamless and user-friendly experience for both bloggers and readers. The customization options are extensive.'

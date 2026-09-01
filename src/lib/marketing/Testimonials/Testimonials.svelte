@@ -38,28 +38,6 @@
 		handwrittenNames = true
 	}: Props = $props();
 
-	function identicon(seed: string) {
-		let hash = 0;
-		for (let i = 0; i < seed.length; i++) {
-			hash = (hash * 31 + seed.charCodeAt(i)) | 0;
-		}
-		const hue = Math.abs(hash) % 360;
-		const cells: { x: number; y: number }[] = [];
-		for (let col = 0; col < 3; col++) {
-			for (let row = 0; row < 5; row++) {
-				const bit = (hash >> (col * 5 + row)) & 1;
-				if (!bit) continue;
-				cells.push({ x: col, y: row });
-				if (col < 2) cells.push({ x: 4 - col, y: row });
-			}
-		}
-		return {
-			bg: `hsl(${hue} 45% 92%)`,
-			fg: `hsl(${hue} 50% 40%)`,
-			cells
-		};
-	}
-
 	let scrollEl: HTMLDivElement | undefined = $state();
 	let dragging = $state(false);
 	let dragStartX = 0;
@@ -147,21 +125,9 @@
 	>
 		{#each reviews as review, i}
 			{#if review.type === 'text'}
-				{@const av = identicon(review.name)}
 				<figure class="card text-card hds-box">
 					{#if review.imageUrl}
 						<img class="avatar photo card-avatar" src={review.imageUrl} alt={review.name} />
-					{:else}
-						<svg
-							class="avatar card-avatar"
-							viewBox="0 0 5 5"
-							style="background: {av.bg}"
-							aria-hidden="true"
-						>
-							{#each av.cells as cell}
-								<rect x={cell.x} y={cell.y} width="1" height="1" fill={av.fg} />
-							{/each}
-						</svg>
 					{/if}
 					<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
 						<path

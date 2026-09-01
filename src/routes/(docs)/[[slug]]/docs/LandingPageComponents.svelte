@@ -463,8 +463,8 @@
 	overlaid; tapping play swaps in a <code>&lt;video&gt;</code> with native controls and the card
 	grows. Pausing brings the poster overlay (and <code>summary</code>) back with a "Resume" button.
 	Each reviewer's <code>name</code>, <code>role</code> and optional <code>company</code> sit at the
-	bottom of every card, next to their <code>imageUrl</code> photo (text reviews fall back to a generated
-	identicon).
+	bottom of every card, next to their <code>imageUrl</code> photo. When <code>imageUrl</code> is unset,
+	no avatar is shown.
 </p>
 
 <h3>Properties</h3>
@@ -525,10 +525,7 @@
 	<TableRow>
 		<div><code>name</code></div>
 		<div>both</div>
-		<div>
-			Reviewer name. When no photo is set on a text review, a deterministic, non-photographic
-			identicon is generated from it.
-		</div>
+		<div>Reviewer name, shown at the bottom of the card.</div>
 	</TableRow>
 
 	<TableRow>
@@ -557,8 +554,7 @@
 		<div>both</div>
 		<div>
 			Optional. Reviewer photo, cropped to a 46px circle, shown next to the name at the bottom of
-			the card. Text reviews fall back to a generated identicon when it's unset; video reviews show
-			nothing.
+			the card. When unset, no avatar is shown.
 		</div>
 	</TableRow>
 

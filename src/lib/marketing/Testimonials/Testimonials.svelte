@@ -63,7 +63,7 @@
 
 	function onPointerDown(e: PointerEvent) {
 		if (!scrollEl) return;
-		// let clicks and native <video> controls work
+		if (e.pointerType !== 'mouse') return;
 		if ((e.target as HTMLElement).closest('button, video, a')) return;
 		dragging = true;
 		dragStartX = e.clientX;
@@ -211,6 +211,7 @@
 		background: var(--accent-lightest);
 		padding: 100px 0 96px;
 		overflow: hidden;
+		scroll-margin-top: calc(var(--header-height, 55px) + 20px);
 	}
 
 	.head {
@@ -237,10 +238,11 @@
 	}
 
 	.scroll-row {
-		--side-padding: max(15px, calc((100vw - 1000px) / 2));
+		--side-padding: clamp(20px, 4vw, 72px);
 
 		display: flex;
 		align-items: stretch;
+		justify-content: safe center;
 		gap: 20px;
 		overflow-x: auto;
 		overflow-y: visible;
@@ -249,7 +251,7 @@
 		padding: 32px var(--side-padding) 36px;
 		scrollbar-width: none;
 		-webkit-overflow-scrolling: touch;
-		touch-action: pan-y;
+		touch-action: pan-x pan-y;
 		user-select: none;
 		-webkit-user-select: none;
 	}
@@ -276,6 +278,8 @@
 	}
 
 	.text-card {
+		height: auto;
+		min-height: 440px;
 		padding: 28px;
 		display: flex;
 		flex-direction: column;
@@ -494,13 +498,6 @@
 		color: rgba(255, 255, 255, 0.9);
 	}
 
-	@media (max-width: 600px) {
-		.scroll-row {
-			--side-padding: max(20px, calc((100vw - 1000px) / 2));
-			padding: 32px var(--side-padding) 36px;
-		}
-	}
-
 	@media (max-width: 768px) {
 		.head {
 			text-align: center;
@@ -510,6 +507,11 @@
 		.card {
 			width: 280px;
 			height: 400px;
+		}
+
+		.text-card {
+			height: auto;
+			min-height: 400px;
 		}
 
 		.video-card {

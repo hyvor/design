@@ -12,7 +12,10 @@
 	import IconInfoCircle from '@hyvor/icons/IconInfoCircle';
 	import { createOrganization } from '../OrganizationCreator/organizationCreatorState.svelte.js';
 	import { toast } from '$lib/components/index.js';
-	import { addToLoadedOrganizations } from '../OrganizationSwitcher/organizationSwitcherState.svelte.js';
+	import {
+		addToLoadedOrganizations,
+		switchOrganization
+	} from '../OrganizationSwitcher/organizationSwitcherState.svelte.js';
 	import FormControl from '$lib/components/FormControl/FormControl.svelte';
 	import Validation from '$lib/components/FormControl/Validation.svelte';
 
@@ -100,7 +103,10 @@
 
 		// same as OrganizationCreator.svelte
 		addToLoadedOrganizations(org);
-		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
+
+		// switch the server session to the new org, then let the product re-init
+		const switcher = switchOrganization(org.id);
+		callbacks.onOrganizationSwitch(switcher);
 	}
 
 	$effect(() => {

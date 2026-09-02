@@ -13,6 +13,7 @@
 		getCreatorOpened,
 		setCreatorOpened
 	} from './organizationCreatorState.svelte.js';
+	import { switchOrganization } from '../OrganizationSwitcher/organizationSwitcherState.svelte.js';
 
 	let name = $state('');
 	let input: HTMLInputElement | undefined = $state(undefined);
@@ -45,7 +46,10 @@
 
 		// same below is done in ResourceCreator.svelte
 		addToLoadedOrganizations(org);
-		callbacks.onOrganizationSwitch(new Promise((resolve) => resolve(org)));
+
+		// switch the server session to the new org, then let the product re-init
+		const switcher = switchOrganization(org.id);
+		callbacks.onOrganizationSwitch(switcher);
 	}
 
 	$effect(() => {

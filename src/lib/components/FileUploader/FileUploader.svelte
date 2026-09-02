@@ -127,10 +127,6 @@
 </div>
 
 <style lang="scss">
-	.image-uploader :global(.wrap) {
-		z-index: 1000 !important;
-	}
-
 	.image-uploader :global(.inner) {
 		height: 100%;
 		width: 1100px !important;

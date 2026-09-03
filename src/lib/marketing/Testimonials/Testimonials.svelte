@@ -38,14 +38,12 @@
 		handwrittenNames = true
 	}: Props = $props();
 
-	let scrollEl: HTMLDivElement | undefined = $state();
-	let dragging = $state(false);
-	let dragStartX = 0;
-	let dragStartScroll = 0;
-
 	let started: boolean[] = $state(reviews.map(() => false));
 	let playing: boolean[] = $state(reviews.map(() => false));
 	let videoEls: (HTMLVideoElement | undefined)[] = $state([]);
+
+	let rowEl: HTMLDivElement | undefined = $state();
+	let activeIndex = $state(0);
 
 	function play(i: number) {
 		started[i] = true;
@@ -61,23 +59,48 @@
 		playing[i] = false;
 	}
 
-	function onPointerDown(e: PointerEvent) {
-		if (!scrollEl) return;
-		if (e.pointerType !== 'mouse') return;
-		if ((e.target as HTMLElement).closest('button, video, a')) return;
-		dragging = true;
-		dragStartX = e.clientX;
-		dragStartScroll = scrollEl.scrollLeft;
-		scrollEl.setPointerCapture(e.pointerId);
+	function onCardClick(e: MouseEvent, i: number) {
+		if ((e.target as HTMLElement).closest('a')) return;
+		if (!started[i]) {
+			play(i);
+			return;
+		}
+		const video = videoEls[i];
+		if (!video) return;
+		if (playing[i]) {
+			video.pause();
+		} else {
+			video.play().catch(() => {});
+		}
 	}
 
-	function onPointerMove(e: PointerEvent) {
-		if (!dragging || !scrollEl) return;
-		scrollEl.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+	function onCardKeydown(e: KeyboardEvent, i: number) {
+		if (e.key !== 'Enter' && e.key !== ' ') return;
+		e.preventDefault();
+		onCardClick(e as unknown as MouseEvent, i);
 	}
 
-	function onPointerUp() {
-		dragging = false;
+	function goTo(i: number) {
+		if (!rowEl) return;
+		const card = rowEl.children[i] as HTMLElement | undefined;
+		card?.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+		activeIndex = i;
+	}
+
+	function onRowScroll() {
+		if (!rowEl) return;
+		const rowCenter = rowEl.getBoundingClientRect().left + rowEl.clientWidth / 2;
+		let closest = 0;
+		let closestDist = Infinity;
+		Array.from(rowEl.children).forEach((child, i) => {
+			const rect = (child as HTMLElement).getBoundingClientRect();
+			const dist = Math.abs(rect.left + rect.width / 2 - rowCenter);
+			if (dist < closestDist) {
+				closestDist = dist;
+				closest = i;
+			}
+		});
+		activeIndex = closest;
 	}
 </script>
 
@@ -111,98 +134,118 @@
 		<h2>{@html title}</h2>
 	</div>
 
-	<!-- svelte-ignore a11y_no_static_element_interactions -->
-	<div
-		class="scroll-row"
-		class:dragging
-		bind:this={scrollEl}
-		onpointerdown={onPointerDown}
-		onpointermove={onPointerMove}
-		onpointerup={onPointerUp}
-		onpointerleave={onPointerUp}
-		role="region"
-		aria-label={label}
-	>
-		{#each reviews as review, i}
-			{#if review.type === 'text'}
-				<figure class="card text-card hds-box">
-					{#if review.imageUrl}
-						<img class="avatar photo card-avatar" src={review.imageUrl} alt={review.name} />
-					{/if}
-					<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
-						<path
-							d="M10 7c-3.3 0-6 2.7-6 6v4h6v-6H7c0-1.7 1.3-3 3-3V7zm10 0c-3.3 0-6 2.7-6 6v4h6v-6h-3c0-1.7 1.3-3 3-3V7z"
-						/>
-					</svg>
-					{#if review.summary}
-						<p class="text-summary">{review.summary}</p>
-					{/if}
-					<blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
-					<figcaption>
-						<span class="caption-text">
-							<span class="name">{review.name}</span>
-							{@render meta(review)}
-						</span>
-					</figcaption>
-				</figure>
-			{:else}
-				<figure class="card video-card hds-box" class:playing={playing[i]}>
-					{#if started[i]}
-						<!-- svelte-ignore a11y_media_has_caption -->
-						<video
-							class="video"
-							src={review.videoUrl}
-							poster={review.posterUrl}
-							controls={playing[i]}
-							playsinline
-							bind:this={videoEls[i]}
-							use:autoplayVideo
-							onplay={() => (playing[i] = true)}
-							onpause={(e) => onVideoPause(e, i)}
-							onended={() => (playing[i] = false)}
-						></video>
-					{:else}
-						<div class="poster">
-							<img src={review.posterUrl} alt="" />
-						</div>
-					{/if}
-
-					{#if !playing[i]}
-						<div class="poster-scrim"></div>
-
-						{#if review.summary}
-							<p class="video-summary">“{review.summary}”</p>
+	<div class="hds-container-max cards-wrap">
+		<div
+			class="cards-row"
+			bind:this={rowEl}
+			onscroll={onRowScroll}
+			role="region"
+			aria-label={label}
+		>
+			{#each reviews as review, i}
+				{#if review.type === 'text'}
+					<figure class="card text-card hds-box">
+						{#if review.imageUrl}
+							<img class="avatar photo card-avatar" src={review.imageUrl} alt={review.name} />
 						{/if}
-
-						<button
-							class="play-btn"
-							aria-label={started[i] ? 'Resume video testimonial' : 'Play video testimonial'}
-							onclick={() => play(i)}
-						>
-							<svg
-								width="20"
-								height="20"
-								viewBox="0 0 16 16"
-								fill="currentColor"
-								aria-hidden="true"
-							>
-								<path d="M5 3.5v9l8-4.5-8-4.5z" />
-							</svg>
-						</button>
-
+						<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
+							<path
+								d="M10 7c-3.3 0-6 2.7-6 6v4h6v-6H7c0-1.7 1.3-3 3-3V7zm10 0c-3.3 0-6 2.7-6 6v4h6v-6h-3c0-1.7 1.3-3 3-3V7z"
+							/>
+						</svg>
+						{#if review.summary}
+							<p class="text-summary">{review.summary}</p>
+						{/if}
+						<blockquote>&ldquo;{review.quote}&rdquo;</blockquote>
 						<figcaption>
-							{#if review.imageUrl}
-								<img class="avatar photo" src={review.imageUrl} alt={review.name} />
-							{/if}
 							<span class="caption-text">
 								<span class="name">{review.name}</span>
 								{@render meta(review)}
 							</span>
 						</figcaption>
-					{/if}
-				</figure>
-			{/if}
-		{/each}
+					</figure>
+				{:else}
+					<!-- svelte-ignore a11y_no_noninteractive_element_to_interactive_role -->
+					<figure
+						class="card video-card hds-box"
+						class:playing={playing[i]}
+						role="button"
+						tabindex="0"
+						aria-label={playing[i]
+							? 'Pause video testimonial'
+							: started[i]
+								? 'Resume video testimonial'
+								: 'Play video testimonial'}
+						onclick={(e) => onCardClick(e, i)}
+						onkeydown={(e) => onCardKeydown(e, i)}
+					>
+						{#if started[i]}
+							<!-- svelte-ignore a11y_media_has_caption -->
+							<video
+								class="video"
+								src={review.videoUrl}
+								poster={review.posterUrl}
+								playsinline
+								bind:this={videoEls[i]}
+								use:autoplayVideo
+								onplay={() => (playing[i] = true)}
+								onpause={(e) => onVideoPause(e, i)}
+								onended={() => (playing[i] = false)}
+							></video>
+						{:else}
+							<div class="poster">
+								<img src={review.posterUrl} alt="" />
+							</div>
+						{/if}
+
+						{#if !playing[i]}
+							<div class="poster-scrim"></div>
+
+							{#if review.summary}
+								<p class="video-summary">“{review.summary}”</p>
+							{/if}
+
+							<div class="play-btn" aria-hidden="true">
+								<svg
+									width="20"
+									height="20"
+									viewBox="0 0 16 16"
+									fill="currentColor"
+									aria-hidden="true"
+								>
+									<path d="M5 3.5v9l8-4.5-8-4.5z" />
+								</svg>
+							</div>
+
+							<figcaption>
+								{#if review.imageUrl}
+									<img class="avatar photo" src={review.imageUrl} alt={review.name} />
+								{/if}
+								<span class="caption-text">
+									<span class="name">{review.name}</span>
+									{@render meta(review)}
+								</span>
+							</figcaption>
+						{/if}
+					</figure>
+				{/if}
+			{/each}
+		</div>
+
+		{#if reviews.length > 1}
+			<div class="dots" role="tablist" aria-label="Testimonials navigation">
+				{#each reviews as _, i}
+					<button
+						class="dot"
+						class:active={i === activeIndex}
+						role="tab"
+						aria-selected={i === activeIndex}
+						aria-label={`Go to testimonial ${i + 1}`}
+						onclick={() => goTo(i)}
+					></button>
+				{/each}
+			</div>
+		{/if}
 	</div>
 </section>
 
@@ -237,32 +280,17 @@
 		font-family: var(--font-serif);
 	}
 
-	.scroll-row {
-		--side-padding: clamp(20px, 4vw, 72px);
+	.cards-wrap {
+		padding: 32px 15px 4px;
+		box-sizing: border-box;
+	}
 
+	.cards-row {
 		display: flex;
+		flex-wrap: wrap;
 		align-items: stretch;
-		justify-content: safe center;
+		justify-content: center;
 		gap: 20px;
-		overflow-x: auto;
-		overflow-y: visible;
-		scroll-behavior: smooth;
-		cursor: grab;
-		padding: 32px var(--side-padding) 36px;
-		scrollbar-width: none;
-		-webkit-overflow-scrolling: touch;
-		touch-action: pan-x pan-y;
-		user-select: none;
-		-webkit-user-select: none;
-	}
-
-	.scroll-row.dragging {
-		cursor: grabbing;
-		scroll-behavior: auto;
-	}
-
-	.scroll-row::-webkit-scrollbar {
-		display: none;
 	}
 
 	.card {
@@ -387,15 +415,14 @@
 	}
 
 	.video-card {
-		width: 280px;
 		overflow: hidden;
 		padding: 0;
+		cursor: pointer;
 	}
 
-	.video-card.playing {
-		width: 340px;
-		height: 520px;
-		z-index: 1;
+	.video-card:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 2px;
 	}
 
 	.poster {
@@ -498,6 +525,28 @@
 		color: rgba(255, 255, 255, 0.9);
 	}
 
+	.dots {
+		display: none;
+	}
+
+	.dot {
+		width: 8px;
+		height: 8px;
+		padding: 0;
+		border: none;
+		border-radius: 50%;
+		background: var(--border);
+		cursor: pointer;
+		transition:
+			background 0.2s,
+			transform 0.2s;
+	}
+
+	.dot.active {
+		background: var(--accent);
+		transform: scale(1.3);
+	}
+
 	@media (max-width: 768px) {
 		.head {
 			text-align: center;
@@ -513,14 +562,40 @@
 			height: auto;
 			min-height: 400px;
 		}
+	}
 
-		.video-card {
-			width: 240px;
+	@media (max-width: 640px) {
+		.cards-wrap {
+			padding: 24px 0 4px;
 		}
 
-		.video-card.playing {
-			width: 280px;
-			height: 460px;
+		.cards-row {
+			flex-wrap: nowrap;
+			justify-content: flex-start;
+			overflow-x: auto;
+			scroll-snap-type: x mandatory;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+			padding: 0 24px;
+		}
+
+		.cards-row::-webkit-scrollbar {
+			display: none;
+		}
+
+		.card {
+			flex: 0 0 calc(100% - 32px);
+			width: calc(100% - 32px);
+			max-width: 360px;
+			scroll-snap-align: center;
+		}
+
+		.dots {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			gap: 8px;
+			margin-top: 20px;
 		}
 	}
 </style>

@@ -451,9 +451,9 @@
 <h2 id="testimonials">Testimonials</h2>
 
 <p>
-	A horizontally-scrolling row of customer quotes and (optionally) video reviews. There's no limit
-	on how many <code>reviews</code> you pass in: once they don't all fit on screen, the row becomes swipeable:
-	touch/trackpad swipe and mouse drag both work, and it snaps to each card as you scroll.
+	A responsive, wrapping row of customer quotes and (optionally) video reviews. There's no limit on
+	how many <code>reviews</code> you pass in: cards wrap onto new lines as needed, so the layout never
+	overflows the screen.
 </p>
 
 <p>
@@ -481,7 +481,7 @@
 		<div></div>
 		<div>
 			Required. An array of text or video reviews, see the shape below. Any number of reviews can be
-			passed; the row scrolls once they overflow the screen.
+			passed; cards wrap onto new lines once they don't fit the current row width.
 		</div>
 	</TableRow>
 

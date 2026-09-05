@@ -55,7 +55,11 @@
 					</Button>
 				{:else}
 					<TabNav>
-						<TabNavItem name="upload" active={tab === 'upload'} onclick={() => (tab = 'upload')}>
+						<TabNavItem
+							name="upload"
+							active={tab === 'upload'}
+							onclick={() => (tab = 'upload')}
+						>
 							{#snippet start()}
 								<IconCloudUpload />
 							{/snippet}
@@ -63,7 +67,11 @@
 						</TabNavItem>
 
 						{#if showMedia}
-							<TabNavItem name="media" active={tab === 'media'} onclick={() => (tab = 'media')}>
+							<TabNavItem
+								name="media"
+								active={tab === 'media'}
+								onclick={() => (tab = 'media')}
+							>
 								{#snippet start()}
 									<IconCardImage />
 								{/snippet}
@@ -85,7 +93,9 @@
 										fill="currentColor"
 										viewBox="0 0 24 24"
 										xmlns="http://www.w3.org/2000/svg"
-										><path d="M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z" /></svg
+										><path
+											d="M7.5 6.75V0h9v6.75h-9zm9 3.75H24V24H0V10.5h7.5v6.75h9V10.5z"
+										/></svg
 									>
 								{/snippet}
 								Unsplash
@@ -127,10 +137,6 @@
 </div>
 
 <style lang="scss">
-	.image-uploader :global(.wrap) {
-		z-index: 1000 !important;
-	}
-
 	.image-uploader :global(.inner) {
 		height: 100%;
 		width: 1100px !important;

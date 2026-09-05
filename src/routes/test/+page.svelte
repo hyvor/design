@@ -117,9 +117,10 @@
 			role: 'Newsletter creator',
 			company: 'Draft & Send',
 			companyUrl: 'https://example.com',
-			imageUrl: 'https://i.pravatar.cc/150?img=45',
-			videoUrl: 'https://placeholdervideo.dev/1080x1920',
-			posterUrl: placeholderPoster(),
+			videoUrl:
+				'https://res.cloudinary.com/dqabfne6s/video/upload/v1788611249/kyzon-testimonial_sevpfe.mp4',
+			posterUrl:
+				'https://res.cloudinary.com/dqabfne6s/image/upload/v1788442170/kyzon-review-post_nl91hf.png',
 			summary: 'Amazing Product'
 		},
 		{

@@ -41,6 +41,8 @@
 	let started: boolean[] = $state(reviews.map(() => false));
 	let playing: boolean[] = $state(reviews.map(() => false));
 	let videoEls: (HTMLVideoElement | undefined)[] = $state([]);
+	let currentTime: number[] = $state(reviews.map(() => 0));
+	let duration: number[] = $state(reviews.map(() => 0));
 
 	let rowEl: HTMLDivElement | undefined = $state();
 	let activeIndex = $state(0);
@@ -78,6 +80,32 @@
 		if (e.key !== 'Enter' && e.key !== ' ') return;
 		e.preventDefault();
 		onCardClick(e as unknown as MouseEvent, i);
+	}
+
+	function seekFromEvent(e: MouseEvent, i: number) {
+		const video = videoEls[i];
+		if (!video || !duration[i]) return;
+		const track = e.currentTarget as HTMLElement;
+		const rect = track.getBoundingClientRect();
+		const ratio = Math.min(1, Math.max(0, (e.clientX - rect.left) / rect.width));
+		video.currentTime = ratio * duration[i];
+	}
+
+	function onSeekClick(e: MouseEvent, i: number) {
+		e.stopPropagation();
+		seekFromEvent(e, i);
+	}
+
+	function onSeekKeydown(e: KeyboardEvent, i: number) {
+		const video = videoEls[i];
+		if (!video) return;
+		if (e.key === 'ArrowRight') {
+			e.preventDefault();
+			video.currentTime = Math.min(duration[i], video.currentTime + 5);
+		} else if (e.key === 'ArrowLeft') {
+			e.preventDefault();
+			video.currentTime = Math.max(0, video.currentTime - 5);
+		}
 	}
 
 	function goTo(i: number) {
@@ -187,6 +215,8 @@
 								poster={review.posterUrl}
 								playsinline
 								bind:this={videoEls[i]}
+								bind:currentTime={currentTime[i]}
+								bind:duration={duration[i]}
 								use:autoplayVideo
 								onplay={() => (playing[i] = true)}
 								onpause={(e) => onVideoPause(e, i)}
@@ -195,6 +225,26 @@
 						{:else}
 							<div class="poster">
 								<img src={review.posterUrl} alt="" />
+							</div>
+						{/if}
+
+						{#if started[i]}
+							<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+							<div
+								class="progress-track"
+								role="slider"
+								aria-label="Seek video"
+								aria-valuemin={0}
+								aria-valuemax={100}
+								aria-valuenow={duration[i] ? Math.round((currentTime[i] / duration[i]) * 100) : 0}
+								tabindex="0"
+								onclick={(e) => onSeekClick(e, i)}
+								onkeydown={(e) => onSeekKeydown(e, i)}
+							>
+								<div
+									class="progress-fill"
+									style="width: {duration[i] ? (currentTime[i] / duration[i]) * 100 : 0}%"
+								></div>
 							</div>
 						{/if}
 
@@ -418,11 +468,24 @@
 		overflow: hidden;
 		padding: 0;
 		cursor: pointer;
+		transition:
+			width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+			height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+			transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+			box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 	}
 
 	.video-card:focus-visible {
 		outline: 2px solid var(--accent);
 		outline-offset: 2px;
+	}
+
+	.video-card.playing {
+		z-index: 5;
+		transform: scale(1.08);
+		box-shadow:
+			0 30px 60px -15px rgba(20, 14, 12, 0.4),
+			0 12px 24px -12px rgba(20, 14, 12, 0.3);
 	}
 
 	.poster {
@@ -495,6 +558,32 @@
 		height: 100%;
 		object-fit: cover;
 		background: #000;
+	}
+
+	.progress-track {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 4;
+		height: 4px;
+		background: rgba(255, 255, 255, 0.25);
+		cursor: pointer;
+		transition: height 0.15s;
+	}
+
+	.progress-track:hover,
+	.progress-track:focus-visible {
+		height: 7px;
+	}
+
+	.progress-track:focus-visible {
+		outline: none;
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: #fff;
 	}
 
 	.video-card figcaption {

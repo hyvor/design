@@ -117,8 +117,7 @@
 			role: 'Newsletter creator',
 			company: 'Draft & Send',
 			companyUrl: 'https://example.com',
-			imageUrl: 'https://i.pravatar.cc/150?img=45',
-			videoUrl: 'https://placeholdervideo.dev/1080x1920',
+			videoUrl: 'dummy-video.mp4',
 			posterUrl: placeholderPoster(),
 			summary: 'Amazing Product'
 		},

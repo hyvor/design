@@ -139,6 +139,7 @@ export async function run(argv: string[]) {
 					cache[relSource] ??= {};
 					cache[relSource][lang.code] = hash;
 					translatedCount++;
+					saveCache(cacheFile, cache);
 				} catch (err) {
 					failedCount++;
 					console.error(
@@ -149,8 +150,6 @@ export async function run(argv: string[]) {
 			}
 		}
 	}
-
-	saveCache(cacheFile, cache);
 
 	console.log(
 		`Done. Translated ${translatedCount}, skipped ${skippedCount}, ignored ${ignoredCount}, failed ${failedCount}.`

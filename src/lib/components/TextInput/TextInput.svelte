@@ -89,7 +89,7 @@
 	{/if}
 </label>
 
-<style lang="scss">
+<style>
 	.slot {
 		display: inline-flex;
 		align-items: center;

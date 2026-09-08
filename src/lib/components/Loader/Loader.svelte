@@ -120,7 +120,7 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style>
 	.loader {
 		display: inline-flex;
 		align-items: center;

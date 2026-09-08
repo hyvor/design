@@ -12,7 +12,7 @@
 	{@render children?.()}
 </div>
 
-<style lang="scss">
+<style>
 	.button-group {
 		display: inline-flex;
 	}
@@ -48,7 +48,6 @@
 		border-bottom-right-radius: 0;
 	}
 
-	// for overlap borders inb buttons
 	.button-group:not(.column) :global(> .button:not(:first-child)) {
 		margin-left: -1px;
 	}

@@ -80,7 +80,7 @@
 	{/if}
 </svelte:element>
 
-<style lang="scss">
+<style>
 	span {
 		vertical-align: middle;
 		border-radius: 20px;

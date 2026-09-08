@@ -67,7 +67,7 @@
 	</div>
 {/if}
 
-<style lang="scss">
+<style>
 	.split-control {
 		display: flex;
 		flex-direction: row;

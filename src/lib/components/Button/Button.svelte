@@ -96,7 +96,7 @@
 	{/if}
 </svelte:element>
 
-<style lang="scss">
+<style>
 	.slot.start {
 		margin-right: 6px;
 		display: inline-flex;
@@ -165,7 +165,7 @@
 
 	/* Sizes */
 	.button.x-small {
-		// height: 20px;
+		/* height: 20px; */
 		padding: 4px 8px;
 		font-size: 12px;
 		--local-hover-shadow-size: 1px;
@@ -175,7 +175,7 @@
 	}
 
 	.button.small {
-		// height: 26px;
+		/* height: 26px; */
 		padding: 6px 12px;
 
 		--local-hover-shadow-size: 2px;
@@ -191,11 +191,11 @@
 		}
 	}
 	.button.medium {
-		// height: 30px;
+		/* height: 30px; */
 		padding: 8px 14px;
 	}
 	.button.large {
-		// height: 36px;
+		/* height: 36px; */
 		padding: 11px 20px;
 		--local-hover-shadow-size: 3px;
 		&:active {
@@ -204,7 +204,7 @@
 	}
 
 	.button.x-large {
-		// height: 40px;
+		/* height: 40px; */
 		padding: 12px 26px;
 		font-size: 16px;
 	}

@@ -126,7 +126,7 @@
 	</Modal>
 </div>
 
-<style lang="scss">
+<style>
 	.image-uploader :global(.inner) {
 		height: 100%;
 		width: 1100px !important;

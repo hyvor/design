@@ -72,7 +72,7 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style>
 	.media {
 		height: 100%;
 		display: flex;

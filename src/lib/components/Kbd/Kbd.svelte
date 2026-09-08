@@ -78,7 +78,7 @@
 
 <kbd aria-label={ariaLabel} class={sizeClass} style={sizeStyle} {...rest}>{display}</kbd>
 
-<style lang="scss">
+<style>
 	kbd {
 		display: inline-flex;
 		align-items: center;

@@ -62,7 +62,7 @@
 	{/if}
 </span>
 
-<style lang="scss">
+<style>
 	.dropdown {
 		position: relative;
 		display: inline-block;

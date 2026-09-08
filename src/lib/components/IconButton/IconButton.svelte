@@ -77,7 +77,7 @@
 	{@render children?.()}
 </svelte:element>
 
-<style lang="scss">
+<style>
 	.button {
 		border-radius: 50%;
 		display: inline-flex;
@@ -106,7 +106,7 @@
 		--local-hover-shadow-size: 3px;
 	}
 
-	//styles for variant fill with colors
+	/* styles for variant fill with colors */
 	.button {
 		&.fill {
 			transition: 0.2s box-shadow;
@@ -192,7 +192,7 @@
 			}
 		}
 
-		//styles for variant outline with colors
+		/* styles for variant outline with colors */
 		&.outline {
 			border: 1px solid;
 
@@ -233,7 +233,7 @@
 			}
 		}
 
-		//styles for variant outline-fill with colors
+		/* styles for variant outline-fill with colors */
 		&.outline-fill {
 			border: 1px solid;
 
@@ -280,7 +280,7 @@
 			}
 		}
 
-		//styles for variant invisible with colors
+		/* styles for variant invisible with colors */
 		&.invisible {
 			background-color: transparent;
 			transition: 0.2s background-color;

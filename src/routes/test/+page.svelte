@@ -475,18 +475,7 @@
 	</FooterLinkList>
 </Footer>
 
-<style lang="scss">
-	// media queries
-	@media (max-width: 768px) {
-		.footer-wrap {
-			padding: 20px;
-		}
-		.footer {
-			flex-direction: column;
-			gap: 20px;
-		}
-	}
-
+<style>
 	.visual-placeholder {
 		display: flex;
 		flex-direction: column;

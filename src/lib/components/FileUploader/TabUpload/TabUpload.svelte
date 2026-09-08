@@ -235,7 +235,7 @@
 	{/if}
 </div>
 
-<style lang="scss">
+<style>
 	.tab {
 		height: 100%;
 		display: flex;

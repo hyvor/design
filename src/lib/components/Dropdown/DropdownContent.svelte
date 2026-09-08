@@ -142,7 +142,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.content-wrap {
 		position: fixed;
 		z-index: 1000000;

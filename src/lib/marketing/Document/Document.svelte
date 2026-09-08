@@ -51,7 +51,7 @@
 	</div>
 </section>
 
-<style lang="scss">
+<style>
 	* {
 		line-height: 30px;
 	}

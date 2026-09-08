@@ -116,7 +116,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.unsplash {
 		display: flex;
 		flex-direction: column;

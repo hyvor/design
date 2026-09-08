@@ -48,7 +48,7 @@
 	{@render children?.()}
 </label>
 
-<style lang="scss">
+<style>
 	label {
 		position: relative;
 		padding-left: 30px;

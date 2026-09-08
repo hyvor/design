@@ -67,7 +67,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.wrap {
 		padding: 25px;
 		max-height: calc(100vh - var(--header-height) - 50px);

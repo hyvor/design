@@ -28,6 +28,7 @@
 	let s2 = $state(true);
 	let s3 = $state(true);
 	let s4 = $state(true);
+	let s5 = $state(false);
 
 	//dropdown align and position states
 	let paAlign: 'start' | 'center' | 'end' = $state('start');
@@ -117,6 +118,16 @@
 		<div><code>relative</code></div>
 		<div><code>false</code></div>
 		<div>Whether the dropdown should be positioned relative to the trigger element.</div>
+	</TableRow>
+
+	<TableRow>
+		<div><code>keepInDom</code></div>
+		<div><code>false</code></div>
+		<div>
+			By default, the dropdown content is only added to the DOM when it is shown. Set this to
+			<code>true</code> to keep the content in the DOM (visually hidden) at all times, which is useful
+			for static HTML pages that need the content to be present in the markup (e.g. for SEO).
+		</div>
 	</TableRow>
 </Table>
 
@@ -517,6 +528,63 @@
 						{/snippet}
 					</ActionListItem>
 				</ActionListGroup>
+			</ActionList>
+		{/snippet}
+	</Dropdown>
+</CodeResult>
+
+<h3 id="keep-in-dom">Keep in DOM</h3>
+
+<p>
+	Keep the content in the DOM (visually hidden) even while closed, instead of mounting/unmounting it
+	on show. This is needed for static HTML pages that must have the content present in the markup.
+</p>
+
+<CodeBlock
+	code={`
+    <Dropdown bind:show={showDropdown} keepInDom>
+        {#snippet trigger()}
+            <Button color="gray">
+                Page
+                {#snippet end()}
+                    <IconCaretDown />
+                {/snippet}
+            </Button>
+        {/snippet}
+        {#snippet content()}
+            <ActionList>
+                {#each [1,2,3] as i}
+                    <ActionListItem onselect={() => {showDropdown = false}}>
+                        Action {i}
+                    </ActionListItem>
+                {/each}
+            </ActionList>
+        {/snippet}
+    </Dropdown>
+`}
+	language="svelte"
+/>
+
+<CodeResult>
+	<Dropdown bind:show={s5} relative closeOnOutsideClick={false} keepInDom>
+		{#snippet trigger()}
+			<Button color="gray">
+				Page {#snippet end()}
+					<IconCaretDown />
+				{/snippet}
+			</Button>
+		{/snippet}
+		{#snippet content()}
+			<ActionList>
+				{#each [1, 2, 3] as i}
+					<ActionListItem
+						onselect={() => {
+							s5 = false;
+						}}
+					>
+						Action {i}
+					</ActionListItem>
+				{/each}
 			</ActionList>
 		{/snippet}
 	</Dropdown>

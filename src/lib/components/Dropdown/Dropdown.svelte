@@ -13,6 +13,7 @@
 		trigger?: Snippet;
 		content?: Snippet;
 		contentPadding?: number;
+		keepInDom?: boolean;
 	}
 
 	let {
@@ -24,7 +25,8 @@
 		position = 'bottom',
 		trigger,
 		content,
-		contentPadding
+		contentPadding,
+		keepInDom = false
 	}: Props = $props();
 
 	let triggerEl: HTMLElement | undefined = $state();
@@ -45,7 +47,7 @@
 		{@render trigger?.()}
 	</span>
 
-	{#if show}
+	{#if show || keepInDom}
 		<DropdownContent
 			bind:show
 			{width}

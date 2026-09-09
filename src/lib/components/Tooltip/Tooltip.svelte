@@ -33,6 +33,7 @@
 	let wrap: HTMLDivElement | undefined = $state();
 	let tooltipEl: HTMLDivElement | undefined = $state();
 	let showTimeout: ReturnType<typeof setTimeout>;
+	const tooltipId = $props.id();
 
 	function positionTooltip() {
 		if (wrap && tooltipEl && show) {
@@ -101,7 +102,7 @@
 	class="tooltip-wrap {color}"
 	onmouseenter={handleMouseEnter}
 	onmouseleave={handleMouseLeave}
-	role="tooltip"
+	aria-describedby={!disabled && show ? tooltipId : undefined}
 	bind:this={wrap}
 	{...wrapperProps}
 >
@@ -109,9 +110,11 @@
 
 	{#if !disabled && show}
 		<div
+			id={tooltipId}
 			class="tooltip {position}"
 			style:max-width={maxWidth + 'px'}
 			bind:this={tooltipEl}
+			role="tooltip"
 			transition:fade={{ duration: 100 }}
 		>
 			{#if tooltip}

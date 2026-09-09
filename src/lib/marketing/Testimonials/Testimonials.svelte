@@ -28,15 +28,9 @@
 		label?: string;
 		title?: string;
 		reviews: Review[];
-		handwrittenNames?: boolean;
 	}
 
-	let {
-		label = 'Testimonials',
-		title = 'Loved by our customers.',
-		reviews,
-		handwrittenNames = true
-	}: Props = $props();
+	let { label = 'Testimonials', title = 'Loved by our customers.', reviews }: Props = $props();
 
 	let started: boolean[] = $state(reviews.map(() => false));
 	let playing: boolean[] = $state(reviews.map(() => false));
@@ -132,12 +126,6 @@
 	}
 </script>
 
-<svelte:head>
-	{#if handwrittenNames}
-		<link href="https://fonts.bunny.net/css?family=caveat:600,700" rel="stylesheet" />
-	{/if}
-</svelte:head>
-
 {#snippet meta(review: Review)}
 	<div class="role">
 		{review.role}, <br />
@@ -156,7 +144,7 @@
 	</div>
 {/snippet}
 
-<section class="hds-testimonials" class:handwritten={handwrittenNames}>
+<section class="hds-testimonials">
 	<div class="hds-container head">
 		<p class="label">{label}</p>
 		<h2>{@html title}</h2>
@@ -426,24 +414,16 @@
 	}
 
 	.name {
-		font-size: 16px;
+		font-size: 18px;
 		font-weight: 600;
 		color: var(--text);
 		line-height: 1.3;
-	}
-
-	.handwritten .name {
-		font-family: 'Caveat', cursive;
-		font-size: 28px;
-		font-weight: 600;
-		line-height: 1.15;
 	}
 
 	.role {
 		font-size: 14px;
 		line-height: 1.35;
 		color: var(--text-light);
-		margin-top: 4px;
 		font-family: var(--font-serif);
 	}
 
@@ -458,10 +438,6 @@
 
 	a.company:hover {
 		text-decoration: underline;
-	}
-
-	.handwritten .company {
-		font-weight: 600;
 	}
 
 	.video-card {

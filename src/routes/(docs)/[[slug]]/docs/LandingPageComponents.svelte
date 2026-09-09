@@ -496,15 +496,6 @@
 		<div><code>"Loved by our customers."</code></div>
 		<div>The section heading.</div>
 	</TableRow>
-
-	<TableRow>
-		<div><code>handwrittenNames</code></div>
-		<div><code>true</code></div>
-		<div>
-			Sets the reviewer name in a handwritten-style font (Caveat, loaded from Bunny Fonts). Turn off
-			to use the regular typeface instead, e.g. if the host page can't reach an external font host.
-		</div>
-	</TableRow>
 </Table>
 
 <h4>The <code>reviews</code> shape</h4>

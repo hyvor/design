@@ -1,0 +1,222 @@
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-arabic-400-normal.BzB5iZVu.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-arabic-400-normal.CRluTl2A.woff) format("woff");
+    unicode-range: U+6??, U+750-77F, U+870-88E, U+890-891, U+897-8E1, U+8E3-8FF, U+200C-200E, U+2010-2011, U+204F,
+        U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF,
+        U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B,
+        U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D,
+        U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E,
+        U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-vietnamese-400-normal.DAQS1QRE.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-vietnamese-400-normal.DRTbt2AX.woff) format("woff");
+    unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309,
+        U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-latin-ext-400-normal.CDeDBhe3.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-latin-ext-400-normal.DzeKRH4q.woff) format("woff");
+    unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-latin-400-normal.BZtYQVaG.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-latin-400-normal.SP_jEUAw.woff) format("woff");
+    unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-arabic-600-normal.BHxn1TEo.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-arabic-600-normal.9mhVJBMn.woff) format("woff");
+    unicode-range: U+6??, U+750-77F, U+870-88E, U+890-891, U+897-8E1, U+8E3-8FF, U+200C-200E, U+2010-2011, U+204F,
+        U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+102E0-102FB, U+10E60-10E7E, U+10EC2-10EC4, U+10EFC-10EFF,
+        U+1EE00-1EE03, U+1EE05-1EE1F, U+1EE21-1EE22, U+1EE24, U+1EE27, U+1EE29-1EE32, U+1EE34-1EE37, U+1EE39, U+1EE3B,
+        U+1EE42, U+1EE47, U+1EE49, U+1EE4B, U+1EE4D-1EE4F, U+1EE51-1EE52, U+1EE54, U+1EE57, U+1EE59, U+1EE5B, U+1EE5D,
+        U+1EE5F, U+1EE61-1EE62, U+1EE64, U+1EE67-1EE6A, U+1EE6C-1EE72, U+1EE74-1EE77, U+1EE79-1EE7C, U+1EE7E,
+        U+1EE80-1EE89, U+1EE8B-1EE9B, U+1EEA1-1EEA3, U+1EEA5-1EEA9, U+1EEAB-1EEBB, U+1EEF0-1EEF1;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-vietnamese-600-normal.CvqEbH36.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-vietnamese-600-normal.BT-w1HBH.woff) format("woff");
+    unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309,
+        U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-latin-ext-600-normal.DvstIQFU.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-latin-ext-600-normal.DRKkFP2q.woff) format("woff");
+    unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: Readex Pro;
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/readex-pro-latin-600-normal.C3IhmgOg.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/readex-pro-latin-600-normal.CeYg1m9V.woff) format("woff");
+    unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-ext-400-normal.CWV284fw.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-ext-400-normal.DLkyKLvH.woff) format("woff");
+    unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-400-normal.C44pakCn.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-400-normal.B8Z6Jvzv.woff) format("woff");
+    unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-greek-400-normal.Cw5-AHNN.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-greek-400-normal.BccYJ-vZ.woff) format("woff");
+    unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-vietnamese-400-normal.BbG3LG1A.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-vietnamese-400-normal.DR1UuFon.woff) format("woff");
+    unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309,
+        U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-ext-400-normal.Cp7z-ARB.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-ext-400-normal.CEpydyUl.woff) format("woff");
+    unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-400-normal.DJ5YJwmz.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-400-normal.Dn3IlU-Z.woff) format("woff");
+    unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-ext-600-normal.D_E8FDgP.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-ext-600-normal.DiT2IGQm.woff) format("woff");
+    unicode-range: U+460-52F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-600-normal.BDP5YDHD.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-cyrillic-600-normal.DFnC3vAY.woff) format("woff");
+    unicode-range: U+301, U+400-45F, U+490-491, U+4B0-4B1, U+2116;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-greek-600-normal.DdRkKr-1.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-greek-600-normal.DhXQw1Kl.woff) format("woff");
+    unicode-range: U+370-377, U+37A-37F, U+384-38A, U+38C, U+38E-3A1, U+3A3-3FF;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-vietnamese-600-normal.CznyfUKR.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-vietnamese-600-normal.B0WJbuqT.woff) format("woff");
+    unicode-range: U+102-103, U+110-111, U+128-129, U+168-169, U+1A0-1A1, U+1AF-1B0, U+300-301, U+303-304, U+308-309,
+        U+323, U+329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-ext-600-normal.0sIUyHMO.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-ext-600-normal.C6NNqpJh.woff) format("woff");
+    unicode-range: U+100-2BA, U+2BD-2C5, U+2C7-2CC, U+2CE-2D7, U+2DD-2FF, U+304, U+308, U+329, U+1D00-1DBF, U+1E00-1E9F,
+        U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+    font-family: "Source Serif 4";
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src:
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-600-normal.DouSKlru.woff2) format("woff2"),
+        url(https://media.hyvor.com/fonts/source-serif-4-latin-600-normal.DMD1h6_f.woff) format("woff");
+    unicode-range: U+??, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC, U+304, U+308, U+329, U+2000-206F, U+20AC,
+        U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

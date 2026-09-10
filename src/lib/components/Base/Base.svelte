@@ -1,12 +1,9 @@
 <script lang="ts">
 	import ConfirmModalProvider from './../Modal/ConfirmModalProvider.svelte';
 	import DarkProvider from './../Dark/DarkProvider.svelte';
-	import '@fontsource/readex-pro/400.css';
-	import '@fontsource/readex-pro/600.css';
-	import '@fontsource/source-serif-4/400.css';
-	import '@fontsource/source-serif-4/600.css';
 	import ToastProvider from '../Toast/ToastProvider.svelte';
 	import FileUploaderProvider from '../FileUploader/FileUploaderProvider.svelte';
+	import fontsCss from './fonts.css?inline';
 
 	interface Props {
 		dark?: boolean;
@@ -15,6 +12,11 @@
 
 	let { dark = false, children }: Props = $props();
 </script>
+
+<svelte:head>
+	<link rel="preconnect" href="https://media.hyvor.com" />
+	{@html '<style>' + fontsCss + '</style>'}
+</svelte:head>
 
 <div id="hds-base">
 	{@render children?.()}

@@ -3,7 +3,7 @@
 	"version": "2.0.0",
 	"license": "MIT",
 	"private": false,
-	"sideEffects": false,
+	"sideEffects": ["./dist/index.js", "./dist/index.css", "**/*.css"],
 	"repository": {
 		"url": "https://github.com/hyvor/design"
 	},

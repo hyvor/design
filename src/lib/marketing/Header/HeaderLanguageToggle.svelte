@@ -73,7 +73,7 @@
 		</HeaderMobileSection>
 	{:else}
 		<div class="header-language-toggle">
-			<Dropdown bind:show {align} {position} contentPadding={8}>
+			<Dropdown bind:show {align} {position} contentPadding={8} keepInDom>
 				{#snippet trigger()}
 					<HeaderNavLink aria-label={label} aria-expanded={show}>
 						<span class="flag">{currentLanguage.flag}</span>

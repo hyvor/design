@@ -164,6 +164,7 @@
 									size="small"
 									variant="invisible"
 									color="input"
+									aria-label={emailCopied ? copiedLabel : copyEmailLabel}
 									onclick={handleCopyEmail}
 									onmouseleave={() => (emailCopied = false)}
 								>

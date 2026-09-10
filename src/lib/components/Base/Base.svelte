@@ -46,7 +46,7 @@
 		--border: #e1e1e1;
 
 		--text: #000;
-		--text-light: #777;
+		--text-light: #545454;
 		--text-white: #fff;
 
 		/*

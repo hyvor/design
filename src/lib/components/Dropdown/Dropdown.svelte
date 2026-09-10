@@ -13,6 +13,7 @@
 		trigger?: Snippet;
 		content?: Snippet;
 		contentPadding?: number;
+		keepInDom?: boolean;
 	}
 
 	let {
@@ -24,18 +25,18 @@
 		position = 'bottom',
 		trigger,
 		content,
-		contentPadding
+		contentPadding,
+		keepInDom = false
 	}: Props = $props();
 
 	let triggerEl: HTMLElement | undefined = $state();
 </script>
 
 <span class="dropdown" class:relative>
+	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
 	<span
 		class="trigger"
 		onclick={() => (show = !show)}
-		role="listbox"
-		tabindex="0"
 		onkeyup={(e) => {
 			if (e.key === 'Escape') {
 				show = false;
@@ -46,7 +47,7 @@
 		{@render trigger?.()}
 	</span>
 
-	{#if show}
+	{#if show || keepInDom}
 		<DropdownContent
 			bind:show
 			{width}

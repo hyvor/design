@@ -101,6 +101,7 @@
 	$effect(() => {
 		position;
 		align;
+		show;
 		positionWrap();
 	});
 
@@ -129,8 +130,9 @@
 
 <div
 	class="content-wrap {align} {position}"
+	class:visually-hidden={!show}
 	use:clickOutside={{
-		enabled: closeOnOutsideClick,
+		enabled: closeOnOutsideClick && show,
 		callback: () => (show = false)
 	}}
 	bind:this={contentWrap}
@@ -148,6 +150,10 @@
 		z-index: 1000000;
 		display: flex;
 		flex-direction: column;
+	}
+
+	.content-wrap.visually-hidden {
+		display: none;
 	}
 
 	.content {

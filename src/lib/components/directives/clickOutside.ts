@@ -6,11 +6,13 @@ interface Options {
 
 type Input = Options | Function;
 
-export function clickOutside(node: HTMLElement, input: Input) {
-	const options: Options = typeof input === 'function' ? { callback: input } : input;
+function normalize(input: Input): Options {
+	return typeof input === 'function' ? { callback: input } : input;
+}
 
-	const enabled = options.enabled === undefined ? true : options.enabled;
-	if (!enabled) return;
+export function clickOutside(node: HTMLElement, input: Input) {
+	let options = normalize(input);
+	let listening = false;
 
 	const handleClick = (event: MouseEvent) => {
 		if (!node.contains(event.target as HTMLElement)) {
@@ -20,12 +22,29 @@ export function clickOutside(node: HTMLElement, input: Input) {
 		}
 	};
 
-	setTimeout(() => {
-		document.addEventListener('click', handleClick);
-	}, 0);
+	function sync() {
+		const enabled = options.enabled === undefined ? true : options.enabled;
+
+		if (enabled && !listening) {
+			listening = true;
+			setTimeout(() => {
+				if (listening) document.addEventListener('click', handleClick);
+			}, 0);
+		} else if (!enabled && listening) {
+			listening = false;
+			document.removeEventListener('click', handleClick);
+		}
+	}
+
+	sync();
 
 	return {
+		update(newInput: Input) {
+			options = normalize(newInput);
+			sync();
+		},
 		destroy() {
+			listening = false;
 			document.removeEventListener('click', handleClick);
 		}
 	};

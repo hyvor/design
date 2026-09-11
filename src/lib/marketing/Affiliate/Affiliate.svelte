@@ -63,9 +63,9 @@
 			on:confirm={handleConsent}
 		>
 			<div class="notice">
-				You visited our site through our affiliate partner <strong>{partner}</strong>. To track
-				this referral, we will place a small cookie in your browser. This cookie helps us identify
-				which affiliate partner referred you if you sign up. It does not collect any personal data.
+				You visited our site through our affiliate partner <strong>{partner}</strong>. To track this
+				referral, we will place a small cookie in your browser. This cookie helps us identify which
+				affiliate partner referred you if you sign up. It does not collect any personal data.
 			</div>
 			<p>
 				You can read more in our <Link href="https://hyvor.com/privacy" target="_blank"

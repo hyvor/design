@@ -3,7 +3,9 @@
 	"version": "2.0.0",
 	"license": "MIT",
 	"private": false,
-	"sideEffects": ["**/*.css"],
+	"sideEffects": [
+		"**/*.css"
+	],
 	"repository": {
 		"url": "https://github.com/hyvor/design"
 	},

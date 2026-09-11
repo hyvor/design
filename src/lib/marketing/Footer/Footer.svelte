@@ -67,8 +67,7 @@
 		fromFranceText = 'From France'
 	}: Props = $props();
 
-	// Tooltip is loaded lazily so its code isn't part of the initial bundle;
-	// the plain icon button still renders on the server / before hydration
+	// load Tooltip after mount to avoid including it in builds
 	let tooltipReady = $state(false);
 	onMount(() => {
 		tooltipReady = true;
@@ -169,29 +168,15 @@
 							</a>
 							{#if tooltipReady}
 								{#await import('$lib/components/Tooltip/Tooltip.svelte') then m}
-									<m.default text={emailCopied ? copiedLabel : copyEmailLabel} position="top">
-										<IconButton
-											size="small"
-											variant="invisible"
-											color="input"
-											onclick={handleCopyEmail}
-											onmouseleave={() => (emailCopied = false)}
-										>
-											<IconCopy size={12} />
-										</IconButton>
+									<m.default
+										text={emailCopied ? copiedLabel : copyEmailLabel}
+										position="top"
+									>
+										{@render CopyButton()}
 									</m.default>
 								{/await}
 							{:else}
-								<IconButton
-									size="small"
-									variant="invisible"
-									color="input"
-									aria-label={emailCopied ? copiedLabel : copyEmailLabel}
-									onclick={handleCopyEmail}
-									onmouseleave={() => (emailCopied = false)}
-								>
-									<IconCopy size={12} />
-								</IconButton>
+								{@render CopyButton()}
 							{/if}
 						</div>
 					{/if}
@@ -200,7 +185,12 @@
 						{#each SOCIAL_PLATFORMS as platform (platform.key)}
 							{@const href = socialLinks[platform.key]}
 							{#if href}
-								<a {href} target="_blank" rel="nofollow" aria-label={platform.label}>
+								<a
+									{href}
+									target="_blank"
+									rel="nofollow"
+									aria-label={platform.label}
+								>
 									<platform.icon size={16} />
 								</a>
 							{/if}
@@ -229,7 +219,11 @@
 								<svg class="ring" viewBox="0 0 32 32" aria-hidden="true">
 									<circle cx="16" cy="16" r="16" fill="#173a8a" />
 									{#each gdprStars as s}
-										<path d={gdprStarPath} fill="#ffcd3c" transform="translate({s.x}, {s.y})" />
+										<path
+											d={gdprStarPath}
+											fill="#ffcd3c"
+											transform="translate({s.x}, {s.y})"
+										/>
 									{/each}
 								</svg>
 								<span class="lock"><IconLockFill size={10} /></span>
@@ -254,6 +248,19 @@
 		<RecordVisit />
 	{/if}
 </div>
+
+{#snippet CopyButton()}
+	<IconButton
+		size="small"
+		variant="invisible"
+		color="input"
+		aria-label={emailCopied ? copiedLabel : copyEmailLabel}
+		onclick={handleCopyEmail}
+		onmouseleave={() => (emailCopied = false)}
+	>
+		<IconCopy size={12} />
+	</IconButton>
+{/snippet}
 
 <style>
 	.footer-outer {

@@ -8,9 +8,10 @@
 	interface Props {
 		dark?: boolean;
 		children?: import('svelte').Snippet;
+		marketing?: boolean;
 	}
 
-	let { dark = false, children }: Props = $props();
+	let { dark = false, children, marketing = false }: Props = $props();
 
 	let needsToast = $state(false);
 	let needsConfirm = $state(false);
@@ -29,7 +30,31 @@
 
 <svelte:head>
 	<link rel="preconnect" href="https://media.hyvor.com" />
+	<link rel="preconnect" href="https://media.hyvor.com" crossorigin="" />
+
 	{@html '<style>' + fontsCss + '</style>'}
+
+	{#if marketing}
+		<link
+			rel="preload"
+			href="https://media.hyvor.com/fonts/source-serif-4-latin-600-normal.DouSKlru.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin=""
+		/>
+		<link
+			rel="preload"
+			href="https://media.hyvor.com/fonts/source-serif-4-latin-400-normal.DJ5YJwmz.woff2"
+			as="font"
+			type="font/woff2"
+			crossorigin=""
+		/>
+		<style>
+			:root {
+				font-family: var(--font-serif) !important;
+			}
+		</style>
+	{/if}
 </svelte:head>
 
 <div id="hds-base">

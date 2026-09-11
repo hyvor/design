@@ -3,7 +3,7 @@
 	import type { HTMLAttributes } from 'svelte/elements';
 
 	interface ComponentProps {
-		children: Snippet;
+		children?: Snippet;
 	}
 
 	type Props = ComponentProps & HTMLAttributes<HTMLDivElement>;
@@ -14,5 +14,5 @@
 </script>
 
 <div role={head ? 'columnheader' : 'cell'} {...rest}>
-	{@render children()}
+	{@render children?.()}
 </div>

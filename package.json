@@ -3,7 +3,9 @@
 	"version": "2.0.0",
 	"license": "MIT",
 	"private": false,
-	"sideEffects": ["./dist/index.js", "./dist/index.css", "**/*.css"],
+	"sideEffects": [
+		"**/*.css"
+	],
 	"repository": {
 		"url": "https://github.com/hyvor/design"
 	},
@@ -63,8 +65,6 @@
 	},
 	"dependencies": {
 		"@apidevtools/json-schema-ref-parser": "^16.0.2",
-		"@fontsource/readex-pro": "^5.3.0",
-		"@fontsource/source-serif-4": "^5.3.0",
 		"@hyvor/icons": "^1.1.1",
 		"deepmerge-ts": "^8.0.2",
 		"emojibase-data": "^17.0.0",

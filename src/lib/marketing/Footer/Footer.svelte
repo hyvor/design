@@ -11,11 +11,11 @@
 	import IconBluesky from '@hyvor/icons/IconBluesky';
 	import IconLockFill from '@hyvor/icons/IconLockFill';
 	import IconButton from '$lib/components/IconButton/IconButton.svelte';
-	import Tooltip from '$lib/components/Tooltip/Tooltip.svelte';
 	import LanguageToggle from '$lib/components/Internationalization/LanguageToggle.svelte';
 	import { SOCIAL_LINKS, type Socials } from '../social.js';
 	import Affiliate from '../Affiliate/Affiliate.svelte';
 	import RecordVisit from './RecordVisit.svelte';
+	import { onMount } from 'svelte';
 
 	const year = new Date().getFullYear();
 
@@ -66,6 +66,14 @@
 		gdprText = 'GDPR Compliant',
 		fromFranceText = 'From France'
 	}: Props = $props();
+
+	// Tooltip is loaded lazily so its code isn't part of the initial bundle;
+	// the plain icon button still renders on the server / before hydration
+	let tooltipReady = $state(false);
+	onMount(() => {
+		tooltipReady = true;
+	});
+
 	const mascotLogo = $derived(
 		logo || (product ? `${instance}/api/public/logo/${product}.svg` : undefined)
 	);
@@ -159,7 +167,21 @@
 								<IconEnvelope size={14} />
 								{email}
 							</a>
-							<Tooltip text={emailCopied ? copiedLabel : copyEmailLabel} position="top">
+							{#if tooltipReady}
+								{#await import('$lib/components/Tooltip/Tooltip.svelte') then m}
+									<m.default text={emailCopied ? copiedLabel : copyEmailLabel} position="top">
+										<IconButton
+											size="small"
+											variant="invisible"
+											color="input"
+											onclick={handleCopyEmail}
+											onmouseleave={() => (emailCopied = false)}
+										>
+											<IconCopy size={12} />
+										</IconButton>
+									</m.default>
+								{/await}
+							{:else}
 								<IconButton
 									size="small"
 									variant="invisible"
@@ -170,7 +192,7 @@
 								>
 									<IconCopy size={12} />
 								</IconButton>
-							</Tooltip>
+							{/if}
 						</div>
 					{/if}
 

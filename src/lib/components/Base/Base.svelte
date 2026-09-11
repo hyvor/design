@@ -1,9 +1,9 @@
 <script lang="ts">
-	import ConfirmModalProvider from './../Modal/ConfirmModalProvider.svelte';
-	import DarkProvider from './../Dark/DarkProvider.svelte';
-	import ToastProvider from '../Toast/ToastProvider.svelte';
-	import FileUploaderProvider from '../FileUploader/FileUploaderProvider.svelte';
 	import fontsCss from './fonts.css?inline';
+	import DarkProvider from './../Dark/DarkProvider.svelte';
+	import { toastStore } from '../Toast/toast.js';
+	import { confirmStore } from '../Modal/confirm.js';
+	import { fileUploaderConfig } from '../FileUploader/file-uploader.js';
 
 	interface Props {
 		dark?: boolean;
@@ -11,6 +11,20 @@
 	}
 
 	let { dark = false, children }: Props = $props();
+
+	let needsToast = $state(false);
+	let needsConfirm = $state(false);
+	let needsFileUploader = $state(false);
+
+	$effect(() => {
+		if ($toastStore.length > 0) needsToast = true;
+	});
+	$effect(() => {
+		if ($confirmStore !== null) needsConfirm = true;
+	});
+	$effect(() => {
+		if ($fileUploaderConfig !== null) needsFileUploader = true;
+	});
 </script>
 
 <svelte:head>
@@ -26,9 +40,23 @@
 	<DarkProvider />
 {/if}
 
-<ToastProvider />
-<ConfirmModalProvider />
-<FileUploaderProvider />
+{#if needsToast}
+	{#await import('../Toast/ToastProvider.svelte') then m}
+		<m.default />
+	{/await}
+{/if}
+
+{#if needsConfirm}
+	{#await import('../Modal/ConfirmModalProvider.svelte') then m}
+		<m.default />
+	{/await}
+{/if}
+
+{#if needsFileUploader}
+	{#await import('../FileUploader/FileUploaderProvider.svelte') then m}
+		<m.default />
+	{/await}
+{/if}
 
 <style>
 	:global(:root) {

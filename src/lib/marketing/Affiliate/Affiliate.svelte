@@ -1,11 +1,12 @@
 <script lang="ts">
 	import Link from '$lib/components/Link/Link.svelte';
-	import Modal from '$lib/components/Modal/Modal.svelte';
 	import { replaceState } from '$app/navigation';
 	import { onMount } from 'svelte';
 
 	let partner: string | null = $state(null);
 	let showModal = $state(false);
+	// Modal (and its Loader dependency) is only loaded once we actually need to show it
+	let modalNeeded = $state(false);
 
 	onMount(() => {
 		const params = new URLSearchParams(window.location.search);
@@ -13,6 +14,7 @@
 
 		if (partner) {
 			showModal = true;
+			modalNeeded = true;
 		}
 	});
 
@@ -44,31 +46,35 @@
 	}
 </script>
 
-<Modal
-	title="Referred by {partner}"
-	bind:show={showModal}
-	closeOnOutsideClick={false}
-	footer={{
-		cancel: {
-			text: 'Do not track'
-		},
-		confirm: {
-			text: 'Ok, Visit Site'
-		}
-	}}
-	on:confirm={handleConsent}
->
-	<div class="notice">
-		You visited our site through our affiliate partner <strong>{partner}</strong>. To track this
-		referral, we will place a small cookie in your browser. This cookie helps us identify which
-		affiliate partner referred you if you sign up. It does not collect any personal data.
-	</div>
-	<p>
-		You can read more in our <Link href="https://hyvor.com/privacy" target="_blank"
-			>Privacy Policy</Link
-		>.
-	</p>
-</Modal>
+{#if modalNeeded}
+	{#await import('$lib/components/Modal/Modal.svelte') then m}
+		<m.default
+			title="Referred by {partner}"
+			bind:show={showModal}
+			closeOnOutsideClick={false}
+			footer={{
+				cancel: {
+					text: 'Do not track'
+				},
+				confirm: {
+					text: 'Ok, Visit Site'
+				}
+			}}
+			on:confirm={handleConsent}
+		>
+			<div class="notice">
+				You visited our site through our affiliate partner <strong>{partner}</strong>. To track
+				this referral, we will place a small cookie in your browser. This cookie helps us identify
+				which affiliate partner referred you if you sign up. It does not collect any personal data.
+			</div>
+			<p>
+				You can read more in our <Link href="https://hyvor.com/privacy" target="_blank"
+					>Privacy Policy</Link
+				>.
+			</p>
+		</m.default>
+	{/await}
+{/if}
 
 <style>
 	.notice {

@@ -138,6 +138,45 @@ export function getI18n() {
 	language="svelte"
 ></CodeBlock>
 
+<h2 id="persistence">Language Persistence</h2>
+
+<p>
+	<code>LanguageToggle</code> renders a language switcher and saves the choice. Set
+	<code>deployment</code> on the provider to choose where it is saved.
+</p>
+
+<CodeBlock
+	code={`
+    <InternationalizationProvider
+        deployment="cloud"
+        forceLanguage={user.language ?? undefined}
+        {languages}
+    >
+        <LanguageToggle
+            onSaved={() => toast.success(I18n.t('common.save.saved'))}
+            onError={() => toast.error(I18n.t('common.wentWrong'))}
+        />
+    </InternationalizationProvider>
+`}
+	language="svelte"
+></CodeBlock>
+
+<ul>
+	<li>
+		<code>on-prem</code> (the default) saves to <code>localStorage</code>.
+	</li>
+	<li>
+		<code>cloud</code> saves to the user's HYVOR account, so the language follows them across
+		devices and products. Wrap your app in a <code>CloudContext</code> (from
+		<code>@hyvor/design/cloud</code>), and set <code>forceLanguage</code> to the user's saved
+		language — <code>CloudContext</code>'s <code>user.language</code> carries it.
+	</li>
+</ul>
+
+<Callout type="info">
+	To save the choice somewhere else, call <code>i18n.setPersister(fn)</code> with your own handler.
+</Callout>
+
 <h2 id="strings">Strings</h2>
 
 <p>

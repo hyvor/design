@@ -83,6 +83,7 @@ export interface CloudContextUser {
 	username?: string;
 	email: string;
 	picture_url: string | null;
+	language?: string | null;
 }
 
 export interface CloudContextOrganization {

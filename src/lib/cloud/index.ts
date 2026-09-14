@@ -10,6 +10,7 @@ export {
 	type ResolvedLicense,
 	type ResolvedComplimentaryLicense
 } from './CloudContext/cloudContextState.svelte.js';
+export { saveUserLanguage } from './CloudContext/language.js';
 
 export { default as HyvorBar } from './HyvorBar/HyvorBar.svelte';
 export { bar as hyvorBar } from './HyvorBar/bar.js';

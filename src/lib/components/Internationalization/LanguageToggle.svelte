@@ -17,6 +17,8 @@
 		size?: 'medium' | 'small';
 		staticPage?: boolean;
 		goto?: Function; // sveltekit goto function, required for static pages
+		onSaved?: () => void;
+		onError?: (e: unknown) => void;
 	}
 
 	let {
@@ -26,13 +28,16 @@
 		icon = false,
 		size = 'medium',
 		staticPage = false,
-		goto
+		goto,
+		onSaved,
+		onError
 	}: Props = $props();
 
 	const i18n = getContext<InternationalizationService>('i18n');
 	const currentLanguage = i18n ? i18n.localeLanguage : undefined;
 
 	let show = $state(false);
+	let saving = $state(false);
 
 	async function handleClick(language: Language) {
 		show = false;
@@ -53,7 +58,18 @@
 			}
 		}
 
-		i18n.setLocale(language.code);
+		saving = true;
+
+		try {
+			await i18n.setLocale(language.code);
+			onSaved?.();
+		} catch (e) {
+			// The locale is applied before it is saved, so the UI already shows
+			// the new language. Saving it (Cloud API on cloud) failed.
+			onError?.(e);
+		} finally {
+			saving = false;
+		}
 	}
 </script>
 
@@ -62,11 +78,11 @@
 		{#snippet trigger()}
 			<span>
 				{#if icon}
-					<IconButton color="input" {size}>
+					<IconButton color="input" {size} disabled={saving}>
 						{$currentLanguage.flag}
 					</IconButton>
 				{:else}
-					<Button color="input" {size}>
+					<Button color="input" {size} disabled={saving}>
 						{#snippet start()}
 							<span>{$currentLanguage.flag}</span>
 						{/snippet}

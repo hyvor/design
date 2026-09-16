@@ -100,12 +100,14 @@
 		</div>
 	</div>
 
-	<div class="scroll-indicator anim anim-4" aria-hidden="true">
-		<div class="scroll-mouse">
-			<div class="scroll-dot"></div>
+	{#if fullHeight}
+		<div class="scroll-indicator anim anim-4" aria-hidden="true">
+			<div class="scroll-mouse">
+				<div class="scroll-dot"></div>
+			</div>
+			<IconChevronDown size={12} />
 		</div>
-		<IconChevronDown size={12} />
-	</div>
+	{/if}
 </section>
 
 <style>

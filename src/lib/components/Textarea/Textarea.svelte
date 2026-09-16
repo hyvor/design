@@ -52,7 +52,8 @@
 		class="state-{state}"
 		{rows}
 		{cols}
-		{...rest}></textarea>
+		{...rest}
+	></textarea>
 
 	{#if end}
 		<span class="slot end">

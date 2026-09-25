@@ -5,6 +5,7 @@
 		role: string;
 		company?: string;
 		companyUrl?: string;
+		companyUrlDofollow?: boolean;
 		imageUrl?: string;
 		summary?: string;
 		quote: string;
@@ -16,6 +17,7 @@
 		role: string;
 		company: string;
 		companyUrl?: string;
+		companyUrlDofollow?: boolean;
 		imageUrl?: string;
 		videoUrl?: string;
 		posterUrl?: string;
@@ -134,7 +136,7 @@
 				class="company"
 				href={review.companyUrl}
 				target="_blank"
-				rel="nofollow noopener noreferrer"
+				rel={review.companyUrlDofollow ? 'noopener noreferrer' : 'nofollow noopener noreferrer'}
 			>
 				{review.company}
 			</a>

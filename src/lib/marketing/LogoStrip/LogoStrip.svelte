@@ -81,11 +81,7 @@
 			<div class="marquee-track" style:--ls-copies={copies}>
 				{#each Array.from({ length: copies }) as _, setIndex (setIndex)}
 					{@const hidden = setIndex > 0}
-					<div
-						class="marquee-set"
-						bind:clientWidth={setWidths[setIndex]}
-						aria-hidden={hidden}
-					>
+					<div class="marquee-set" bind:clientWidth={setWidths[setIndex]} aria-hidden={hidden}>
 						{#each logos as logo}
 							{#if logo.href}
 								<a

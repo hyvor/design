@@ -164,11 +164,7 @@
 				{#if review.type === 'text'}
 					<figure class="card text-card hds-box">
 						{#if review.imageUrl}
-							<img
-								class="avatar photo card-avatar"
-								src={review.imageUrl}
-								alt={review.name}
-							/>
+							<img class="avatar photo card-avatar" src={review.imageUrl} alt={review.name} />
 						{/if}
 						<svg class="quote-mark" viewBox="0 0 24 24" aria-hidden="true">
 							<path
@@ -230,18 +226,14 @@
 								aria-label="Seek video"
 								aria-valuemin={0}
 								aria-valuemax={100}
-								aria-valuenow={duration[i]
-									? Math.round((currentTime[i] / duration[i]) * 100)
-									: 0}
+								aria-valuenow={duration[i] ? Math.round((currentTime[i] / duration[i]) * 100) : 0}
 								tabindex="0"
 								onclick={(e) => onSeekClick(e, i)}
 								onkeydown={(e) => onSeekKeydown(e, i)}
 							>
 								<div
 									class="progress-fill"
-									style="width: {duration[i]
-										? (currentTime[i] / duration[i]) * 100
-										: 0}%"
+									style="width: {duration[i] ? (currentTime[i] / duration[i]) * 100 : 0}%"
 								></div>
 							</div>
 						{/if}
@@ -267,11 +259,7 @@
 
 							<figcaption>
 								{#if review.imageUrl}
-									<img
-										class="avatar photo"
-										src={review.imageUrl}
-										alt={review.name}
-									/>
+									<img class="avatar photo" src={review.imageUrl} alt={review.name} />
 								{/if}
 								<span class="caption-text">
 									<span class="name">{review.name}</span>

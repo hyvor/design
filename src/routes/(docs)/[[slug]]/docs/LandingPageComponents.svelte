@@ -541,6 +541,15 @@
 	</TableRow>
 
 	<TableRow>
+		<div><code>companyUrlDofollow</code></div>
+		<div>both</div>
+		<div>
+			Optional. Defaults to <code>false</code>, so the <code>companyUrl</code> link gets
+			<code>rel="nofollow"</code>. Set to <code>true</code> to make it a dofollow link.
+		</div>
+	</TableRow>
+
+	<TableRow>
 		<div><code>imageUrl</code></div>
 		<div>both</div>
 		<div>

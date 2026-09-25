@@ -60,7 +60,12 @@
 			<div class="logos">
 				{#each logos as logo}
 					{#if logo.href}
-						<a href={logo.href} target="_blank" rel="noopener" class="logo-link">
+						<a
+							href={logo.href}
+							target="_blank"
+							rel="nofollow noopener noreferrer"
+							class="logo-link"
+						>
 							{@render logoImg(logo)}
 						</a>
 					{:else}
@@ -76,13 +81,17 @@
 			<div class="marquee-track" style:--ls-copies={copies}>
 				{#each Array.from({ length: copies }) as _, setIndex (setIndex)}
 					{@const hidden = setIndex > 0}
-					<div class="marquee-set" bind:clientWidth={setWidths[setIndex]} aria-hidden={hidden}>
+					<div
+						class="marquee-set"
+						bind:clientWidth={setWidths[setIndex]}
+						aria-hidden={hidden}
+					>
 						{#each logos as logo}
 							{#if logo.href}
 								<a
 									href={logo.href}
 									target="_blank"
-									rel="noopener"
+									rel="nofollow noopener noreferrer"
 									class="logo-link"
 									tabindex={hidden ? -1 : undefined}
 								>

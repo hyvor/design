@@ -37,7 +37,6 @@ import Kbd from './docs/Kbd.svelte';
 import DocsDocs from './docs/DocsDocs/DocsDocs.svelte';
 import Slider from './docs/Slider.svelte';
 import ConsoleLoader from './docs/ConsoleLoader.svelte';
-import Document from './docs/Document/Document.svelte';
 import Usage from './docs/Usage.svelte';
 import BoxShadowPicker from './docs/BoxShadowPicker.svelte';
 import DetailCard from './docs/DetailCard.svelte';
@@ -48,8 +47,6 @@ import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
 import HeaderDoc from './docs/Header.svelte';
-import FooterDoc from './docs/Footer.svelte';
-import LandingPageComponents from './docs/LandingPageComponents.svelte';
 import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
 import Confetti from './docs/Confetti.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
@@ -157,15 +154,7 @@ const SECTIONS: NavSectionConfig[] = [
 				content: PageStructure
 			},
 			{ type: 'page', name: 'Header', slug: 'header', content: HeaderDoc },
-			{ type: 'page', name: 'Footer', slug: 'footer', content: FooterDoc },
-			{
-				type: 'page',
-				name: 'Homepage Components',
-				slug: 'homepage-components',
-				content: LandingPageComponents
-			},
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
-			{ type: 'page', name: 'Document', slug: 'document', content: Document },
 			{
 				type: 'page',
 				name: 'Details Accordion',

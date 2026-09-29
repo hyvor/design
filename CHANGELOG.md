@@ -1,3 +1,7 @@
+## Unreleased
+
+- BREAKING: removed landing page components from `@hyvor/design/marketing`: `Footer`, `FooterLinkList`, `Hero`, `FeatureSplit`, `Testimonials`, `FullTrialSignup`, `SpotlightSplit`, `LogoStrip`, `FAQ`, `AllFeaturesAccordion`, `AllFeaturesAccordionFeature`, `Seal`, `GdprSeal`, `CcpaSeal`, `SsoSeal`, `IsoSeal`, `Document`. They now live in hyvor/core with the marketing pages.
+
 ## 2.0.7
 
 - TabNav supports basePath for URL-based activation

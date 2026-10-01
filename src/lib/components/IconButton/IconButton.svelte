@@ -87,7 +87,6 @@
 		font-size: 1em;
 
 		--local-hover-shadow-size: 2.5px;
-		--local-hover-shadow-color: var(--accent-light);
 		&:active {
 			--local-hover-shadow-size: 4px;
 		}
@@ -102,238 +101,81 @@
 		}
 	}
 
-	.button.large {
-		--local-hover-shadow-size: 3px;
+	/* Colors: --c (main), --c-light, --c-text (text on fill) */
+	.button {
+		--c: var(--accent);
+		--c-light: var(--accent-light);
+		--c-text: var(--text-white);
+	}
+	.accent {
+		--c-text: var(--accent-text);
+	}
+	.gray {
+		--c: var(--gray-dark);
+		--c-light: var(--gray-light);
+	}
+	.green {
+		--c: var(--green-dark);
+		--c-light: var(--green-light);
+	}
+	.red {
+		--c: var(--red-dark);
+		--c-light: var(--red-light);
+	}
+	.blue {
+		--c: var(--blue-dark);
+		--c-light: var(--blue-light);
+	}
+	.orange {
+		--c: var(--orange-dark);
+		--c-light: var(--orange-light);
+	}
+	.input {
+		--c: var(--text);
+		--c-light: var(--input);
+		--c-text: var(--text);
 	}
 
-	/* styles for variant fill with colors */
-	.button {
-		&.fill {
-			transition: 0.2s box-shadow;
-
-			&.accent {
-				background-color: var(--accent);
-				color: var(--accent-text);
-				--local-hover-shadow-color: var(--accent-light);
-			}
-
-			&.gray {
-				background-color: var(--gray-dark);
-				color: var(--text-white);
-				--local-hover-shadow-color: var(--gray-light);
-			}
-
-			&.input {
-				background-color: var(--input);
-				color: var(--text);
-				--local-hover-shadow-color: var(--gray-light);
-			}
-
-			&.green {
-				background-color: var(--green-dark);
-				color: var(--text-white);
-				--local-hover-shadow-color: var(--green-light);
-			}
-
-			&.red {
-				background-color: var(--red-dark);
-				color: var(--text-white);
-				--local-hover-shadow-color: var(--red-light);
-			}
-
-			&.blue {
-				background-color: var(--blue-dark);
-				color: var(--text-white);
-				--local-hover-shadow-color: var(--blue-light);
-			}
-
-			&.orange {
-				background-color: var(--orange-dark);
-				color: var(--text-white);
-				--local-hover-shadow-color: var(--orange-light);
-			}
+	/* Variants */
+	.fill {
+		background-color: var(--c);
+		color: var(--c-text);
+		--local-hover-shadow-color: var(--c-light);
+		&.input {
+			background-color: var(--input);
+			--local-hover-shadow-color: var(--gray-light);
 		}
-
-		&.fill-light {
-			&.accent {
-				background-color: var(--accent-light);
-				color: var(--accent);
-				--local-hover-shadow-color: var(--accent-light);
-			}
-
-			&.gray {
-				background-color: var(--gray-light);
-				color: var(--gray-dark);
-				--local-hover-shadow-color: color-mix(in srgb, var(--gray-light) 40%, transparent);
-			}
-
-			&.green {
-				background-color: var(--green-light);
-				color: var(--green-dark);
-				--local-hover-shadow-color: color-mix(in srgb, var(--green-light) 40%, transparent);
-			}
-
-			&.red {
-				background-color: var(--red-light);
-				color: var(--red-dark);
-				--local-hover-shadow-color: color-mix(in srgb, var(--red-light) 40%, transparent);
-			}
-
-			&.blue {
-				background-color: var(--blue-light);
-				color: var(--blue-dark);
-				--local-hover-shadow-color: color-mix(in srgb, var(--blue-light) 40%, transparent);
-			}
-
-			&.orange {
-				background-color: var(--orange-light);
-				color: var(--orange-dark);
-				--local-hover-shadow-color: color-mix(in srgb, var(--orange-light) 40%, transparent);
-			}
+	}
+	.fill-light,
+	.outline-fill {
+		background-color: var(--c-light);
+		color: var(--c);
+	}
+	.fill-light {
+		--local-hover-shadow-color: color-mix(in srgb, var(--c-light) 40%, transparent);
+		&.accent {
+			--local-hover-shadow-color: var(--accent-light);
 		}
-
-		/* styles for variant outline with colors */
-		&.outline {
-			border: 1px solid;
-
-			&.accent {
-				border-color: var(--accent);
-				color: var(--accent);
-				--local-hover-shadow-color: var(--accent-light);
-			}
-
-			&.gray {
-				border-color: var(--gray-dark);
-				color: var(--gray-dark);
-				--local-hover-shadow-color: var(--gray-light);
-			}
-
-			&.green {
-				border-color: var(--green-dark);
-				color: var(--green-dark);
-				--local-hover-shadow-color: var(--green-light);
-			}
-
-			&.red {
-				border-color: var(--red-dark);
-				color: var(--red-dark);
-				--local-hover-shadow-color: var(--red-light);
-			}
-
-			&.blue {
-				border-color: var(--blue-dark);
-				color: var(--blue-dark);
-				--local-hover-shadow-color: var(--blue-light);
-			}
-
-			&.orange {
-				border-color: var(--orange-dark);
-				color: var(--orange-dark);
-				--local-hover-shadow-color: var(--orange-light);
-			}
+	}
+	.outline,
+	.outline-fill {
+		border: 1px solid var(--c);
+		color: var(--c);
+		--local-hover-shadow-color: var(--c-light);
+	}
+	.outline-fill.accent {
+		--local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
+	}
+	.invisible {
+		background-color: transparent;
+		transition: 0.2s background-color;
+		box-shadow: none !important;
+		&:hover {
+			background-color: var(--c-light);
+			color: var(--c);
 		}
-
-		/* styles for variant outline-fill with colors */
-		&.outline-fill {
-			border: 1px solid;
-
-			&.accent {
-				background-color: var(--accent-light);
-				border-color: var(--accent);
-				color: var(--accent);
-				--local-hover-shadow-color: color-mix(in srgb, var(--accent-light) 40%, transparent);
-			}
-
-			&.gray {
-				background-color: var(--gray-light);
-				border-color: var(--gray-dark);
-				color: var(--gray-dark);
-				--local-hover-shadow-color: var(--gray-light);
-			}
-
-			&.green {
-				background-color: var(--green-light);
-				border-color: var(--green-dark);
-				color: var(--green-dark);
-				--local-hover-shadow-color: var(--green-light);
-			}
-
-			&.red {
-				background-color: var(--red-light);
-				border-color: var(--red-dark);
-				color: var(--red-dark);
-				--local-hover-shadow-color: var(--red-light);
-			}
-
-			&.blue {
-				background-color: var(--blue-light);
-				border-color: var(--blue-dark);
-				color: var(--blue-dark);
-				--local-hover-shadow-color: var(--blue-light);
-			}
-
-			&.orange {
-				background-color: var(--orange-light);
-				border-color: var(--orange-dark);
-				color: var(--orange-dark);
-				--local-hover-shadow-color: var(--orange-light);
-			}
-		}
-
-		/* styles for variant invisible with colors */
-		&.invisible {
-			background-color: transparent;
-			transition: 0.2s background-color;
-			box-shadow: none !important;
-
-			&.accent {
-				&:hover {
-					background-color: var(--accent-light);
-					color: var(--text-light);
-				}
-			}
-
-			&.gray {
-				&:hover {
-					background-color: var(--gray-light);
-					color: var(--gray-dark);
-				}
-			}
-
-			&.input {
-				&:hover {
-					background-color: var(--input);
-					color: var(--text);
-				}
-			}
-
-			&.green {
-				&:hover {
-					background-color: var(--green-light);
-					color: var(--green-dark);
-				}
-			}
-
-			&.red {
-				&:hover {
-					background-color: var(--red-light);
-					color: var(--red-dark);
-				}
-			}
-
-			&.blue {
-				&:hover {
-					background-color: var(--blue-light);
-					color: var(--blue-dark);
-				}
-			}
-
-			&.orange {
-				&:hover {
-					background-color: var(--orange-light);
-					color: var(--orange-dark);
-				}
-			}
+		&.accent:hover {
+			color: var(--text-light);
 		}
 	}
 

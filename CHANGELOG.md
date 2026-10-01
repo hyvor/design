@@ -1,7 +1,9 @@
 ## 2.2.0
 
 - BREAKING: removed landing page components from `@hyvor/design/marketing`: `Footer`, `FooterLinkList`, `Hero`, `FeatureSplit`, `Testimonials`, `FullTrialSignup`, `SpotlightSplit`, `LogoStrip`, `FAQ`, `AllFeaturesAccordion`, `AllFeaturesAccordionFeature`, `Seal`, `GdprSeal`, `CcpaSeal`, `SsoSeal`, `IsoSeal`, `Document`. They now live in hyvor/core with the marketing pages.
-- BREAKING: removed `Header`, `HeaderNavLink`, `HeaderNavMenu`, `HeaderLanguageToggle`, `buildLocalizedUrl`, `LanguageOption` and `Container` from `@hyvor/design/marketing`. The header now lives in hyvor/core; use the `.hds-container` / `.hds-container-max` classes instead of `Container`.
+- BREAKING: removed `HeaderNavMenu`, `HeaderLanguageToggle`, `buildLocalizedUrl` and `LanguageOption` from `@hyvor/design/marketing`. The language toggle now lives in hyvor/core.
+- BREAKING: removed `Container` from `@hyvor/design/marketing`. Use the `.hds-container` / `.hds-container-max` classes instead.
+- BREAKING: `Header` no longer fetches the HYVOR update notification itself. Pass your own bar via the new `notification` snippet.
 
 ## 2.0.7
 

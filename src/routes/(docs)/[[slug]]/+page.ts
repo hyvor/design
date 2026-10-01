@@ -47,6 +47,7 @@ import CloudContextDoc from './cloud/CloudContextDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
 import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
+import HeaderDoc from './docs/Header.svelte';
 import Confetti from './docs/Confetti.svelte';
 import { loadDocsPage } from '$lib/marketing/Docs/fulldocs.js';
 import type { NavSectionConfig } from '$lib/marketing/Docs/types.js';
@@ -152,6 +153,7 @@ const SECTIONS: NavSectionConfig[] = [
 				slug: 'page-structure',
 				content: PageStructure
 			},
+			{ type: 'page', name: 'Header', slug: 'header', content: HeaderDoc },
 			{ type: 'page', name: 'Docs', slug: 'docs', content: DocsDocs },
 			{
 				type: 'page',

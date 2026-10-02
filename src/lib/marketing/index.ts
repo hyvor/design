@@ -7,7 +7,8 @@ export { default as HeaderNavLink } from './Header/HeaderNavLink.svelte';
 // # Docs
 export { default as Docs } from './Docs/Docs.svelte';
 export { default as DocsImage } from './Docs/DocsImage.svelte';
-export { loadDocsPage } from './Docs/fulldocs.js';
+export { loadDocsPage, getDocsBreadcrumbs } from './Docs/fulldocs.js';
+export type { DocsBreadcrumb } from './Docs/fulldocs.js';
 export type {
 	NavSectionConfig,
 	NavConfig,

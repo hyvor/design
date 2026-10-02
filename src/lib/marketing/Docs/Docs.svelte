@@ -1,7 +1,7 @@
 <script lang="ts">
 	import NavItem from './NavItem.svelte';
 	import Sidebar from './Sidebar/Sidebar.svelte';
-	import { getSubSectionPathForSlug, getFirstPageSlug } from './fulldocs.js';
+	import { getSubSectionPathForSlug, getFirstPageSlug, getDocsHref } from './fulldocs.js';
 	import type { NavPageConfig, NavSectionConfig } from './types.js';
 	import { clickOutside } from '../../components/index.js';
 	import IconList from '@hyvor/icons/IconList';
@@ -90,12 +90,12 @@
 			use:clickOutside={{ callback: () => (mobileNavOpen = false) }}
 		>
 			<div class="breadcrumb">
-				<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sections) ?? '')}>
+				<a class="breadcrumb-item" href={getDocsHref(basepath, getFirstPageSlug(sections))}>
 					{rootName}
 				</a>
 				{#each subSectionPath as sub}
 					<span class="breadcrumb-sep"></span>
-					<a class="breadcrumb-item" href={basepath + '/' + (getFirstPageSlug(sub.sections) ?? '')}>
+					<a class="breadcrumb-item" href={getDocsHref(basepath, getFirstPageSlug(sub.sections))}>
 						{sub.name}
 					</a>
 				{/each}

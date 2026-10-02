@@ -120,3 +120,38 @@ function getFirstPageSlugInNavs(navs: NavConfig[]): string | undefined {
 		}
 	}
 }
+
+export function getDocsHref(basepath: string, slug: string | undefined): string {
+	return slug ? basepath + '/' + slug : basepath || '/';
+}
+
+export interface DocsBreadcrumb {
+	name: string;
+	href: string;
+}
+
+/**
+ * Breadcrumb trail of a docs page: root, sub-sections, and the page itself.
+ * Useful for BreadcrumbList structured data.
+ */
+export function getDocsBreadcrumbs(data: {
+	basepath: string;
+	rootName: string;
+	sections: NavSectionConfig[];
+	page: NavPageConfig;
+}): DocsBreadcrumb[] {
+	const { basepath, rootName, sections, page } = data;
+
+	const crumbs: DocsBreadcrumb[] = [
+		{ name: rootName, href: getDocsHref(basepath, getFirstPageSlug(sections)) }
+	];
+
+	for (const sub of getSubSectionPathForSlug(sections, page.slug) ?? []) {
+		crumbs.push({ name: sub.name, href: getDocsHref(basepath, getFirstPageSlug(sub.sections)) });
+	}
+
+	crumbs.push({ name: page.name, href: getDocsHref(basepath, page.slug) });
+
+	// the first page of a section links to the section itself, so drop duplicates
+	return crumbs.filter((crumb, i) => crumbs.findIndex((c) => c.href === crumb.href) === i);
+}

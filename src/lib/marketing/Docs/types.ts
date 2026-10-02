@@ -14,6 +14,10 @@ export interface NavPageConfig {
 	name: string;
 	slug: string;
 	content: Component;
+	// SEO title of the page (<title> and og:title). defaults to name
+	metaTitle?: string;
+	// SEO description of the page (<meta name="description"> and og:description)
+	description?: string;
 	// when true, the page content takes the full width of the content area
 	// (no fixed reading-width column, no right sidebar) - useful for API references
 	wide?: boolean;

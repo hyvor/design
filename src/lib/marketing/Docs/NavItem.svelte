@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { NavConfig } from './types.js';
-	import { getFirstPageSlug } from './fulldocs.js';
+	import { getFirstPageSlug, getDocsHref } from './fulldocs.js';
 	import IconCaretRight from '@hyvor/icons/IconCaretRight';
 	import IconArrowRight from '@hyvor/icons/IconArrowRight';
 	import NavItem from './NavItem.svelte';
@@ -17,9 +17,9 @@
 
 	const href = $derived.by(() => {
 		if (nav.type === 'page') {
-			return basepath + '/' + nav.slug;
+			return getDocsHref(basepath, nav.slug);
 		} else if (nav.type === 'sub-section') {
-			return basepath + '/' + (getFirstPageSlug(nav.sections) ?? '');
+			return getDocsHref(basepath, getFirstPageSlug(nav.sections));
 		}
 	});
 </script>

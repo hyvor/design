@@ -120,3 +120,7 @@ function getFirstPageSlugInNavs(navs: NavConfig[]): string | undefined {
 		}
 	}
 }
+
+export function getDocsHref(basepath: string, slug: string | undefined): string {
+	return slug ? basepath + '/' + slug : basepath || '/';
+}

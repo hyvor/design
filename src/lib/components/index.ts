@@ -114,6 +114,8 @@ export { default as InternationalizationProvider } from './Internationalization/
 export { default as LanguageToggle } from './Internationalization/LanguageToggle.svelte';
 export {
 	type Language as InternationalizationLanguage,
+	type I18nDeployment,
+	type LocalePersister,
 	InternationalizationService
 } from './Internationalization/i18n.js';
 export {

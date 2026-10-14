@@ -8,6 +8,10 @@ export type i18nLoaderType = () => Promise<Record<string, any>>;
 
 export const LOCALE_LOCAL_STORAGE_KEY = 'hds-language';
 
+export type LocalePersister = (code: string) => void | Promise<void>;
+
+export type I18nDeployment = 'cloud' | 'on-prem';
+
 interface LanguageBase {
 	name: string;
 	flag: string;
@@ -33,7 +37,16 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 	public stringsCache = new Map<string, Record<string, any>>();
 	public defaultStrings: Record<string, any>;
 
-	constructor(languages: Language[], forceLanguage?: string) {
+	public deployment: I18nDeployment;
+	private persister: LocalePersister | null = null;
+
+	constructor(
+		languages: Language[],
+		forceLanguage?: string,
+		deployment: I18nDeployment = 'on-prem'
+	) {
+		this.deployment = deployment;
+
 		const defaultLanguage = languages.find((l) => l.default);
 
 		if (!defaultLanguage) {
@@ -58,21 +71,40 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 			this.register(language);
 		}
 
-		const localeStorageLocale = InternationalizationService.getLocaleFromLocalStorage();
-		const browserLocale =
-			typeof navigator !== 'undefined'
-				? InternationalizationService.getClosestLanguageCode(
-						navigator.language,
-						this.languages.map((l) => l.code)
-					)
-				: null;
+		/**
+		 * Resolution order:
+		 *   cloud    forceLanguage (the user's saved language) -> navigator -> default
+		 *   on-prem  localStorage -> navigator -> default
+		 */
+		const storedLocale =
+			deployment === 'on-prem' ? InternationalizationService.getLocaleFromLocalStorage() : null;
+		const browserLocale = typeof navigator !== 'undefined' ? navigator.language : null;
 
-		if (forceLanguage) {
-			this.setLocale(forceLanguage);
-		} else if (localeStorageLocale) {
-			this.setLocale(localeStorageLocale);
-		} else if (browserLocale) {
-			this.setLocale(browserLocale);
+		const requested = forceLanguage ?? storedLocale ?? browserLocale;
+		const resolved = requested
+			? InternationalizationService.getClosestLanguageCode(
+					requested,
+					this.languages.map((l) => l.code)
+				)
+			: null;
+
+		if (resolved) {
+			void this.applyLocale(resolved);
+		}
+	}
+
+	setPersister(persister: LocalePersister) {
+		this.persister = persister;
+	}
+
+	private async persist(code: string) {
+		if (this.persister) {
+			await this.persister(code);
+			return;
+		}
+
+		if (this.deployment === 'on-prem') {
+			this.setLocaleOnLocalStorage(code);
 		}
 	}
 
@@ -97,29 +129,33 @@ export class InternationalizationService<StringsT extends I18nStrings = I18nStri
 		this.strings.set(merged);
 	}
 
-	async setLocale(code: string) {
+	private async applyLocale(code: string) {
 		if (this.stringsCache.has(code)) {
 			this.setStrings(code);
 			this.locale.set(code);
-		} else {
-			const language = this.languageByCode(code);
-
-			if (!language) {
-				throw new Error(`Language with code ${code} not found`);
-			}
-
-			let strings = language.strings;
-
-			if (!strings) {
-				strings = await language.loader();
-			}
-
-			this.stringsCache.set(code, strings);
-			this.setStrings(code);
-			this.locale.set(code);
+			return;
 		}
 
-		this.setLocaleOnLocalStorage(code);
+		const language = this.languageByCode(code);
+
+		if (!language) {
+			throw new Error(`Language with code ${code} not found`);
+		}
+
+		let strings = language.strings;
+
+		if (!strings) {
+			strings = await language.loader();
+		}
+
+		this.stringsCache.set(code, strings);
+		this.setStrings(code);
+		this.locale.set(code);
+	}
+
+	async setLocale(code: string) {
+		await this.applyLocale(code);
+		await this.persist(code);
 	}
 
 	getLocale(): string {

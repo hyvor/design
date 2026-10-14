@@ -91,11 +91,12 @@ share the cache and its avoided API cost.
 ### Incremental updates
 
 When a target file already exists (e.g. `fr.json`, or after `--force`), its
-current content is sent to the model alongside the updated English source,
-with instructions to make minimal edits — keeping existing wording wherever
-the English didn't meaningfully change, and only updating the parts that
-did. This keeps re-translations close to the previous version instead of
-rephrasing the whole file from scratch every time.
+current content (with line numbers) is sent to the model alongside the
+updated English source, and the model replies with only the line ranges that
+need to change. The edits are applied locally, so unchanged lines are kept
+byte-for-byte and output tokens are spent only on what changed. If the
+response can't be applied (malformed or overlapping edits), the whole file is
+re-translated from scratch.
 
 ## Local development
 

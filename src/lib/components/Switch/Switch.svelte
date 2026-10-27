@@ -4,6 +4,7 @@
 	const bubble = createBubbler();
 	interface Props {
 		checked?: boolean;
+		disabled?: boolean;
 		input?: any;
 		children?: import('svelte').Snippet;
 		[key: string]: any;
@@ -11,6 +12,7 @@
 
 	let {
 		checked = $bindable(false),
+		disabled = false,
 		input = $bindable({} as HTMLInputElement),
 		children,
 		...rest
@@ -23,6 +25,7 @@
 			type="checkbox"
 			bind:checked
 			bind:this={input}
+			{disabled}
 			{...rest}
 			onkeyup={bubble('keyup')}
 			onkeydown={bubble('keydown')}
@@ -111,5 +114,32 @@
 
 	input:checked + .slider:before {
 		transform: translateX(16px);
+	}
+
+	input:disabled + .slider {
+		opacity: 0.6;
+		cursor: not-allowed;
+		box-shadow: inset 0 0 0 1px var(--border) !important;
+	}
+
+	input:disabled + .slider:before {
+		background-color: var(--gray);
+	}
+
+	input:disabled:checked + .slider {
+		background-color: var(--accent-light);
+		box-shadow: none !important;
+	}
+
+	input:disabled:checked + .slider:before {
+		background-color: var(--accent-text);
+	}
+
+	.switch-wrap:has(input:disabled) {
+		cursor: not-allowed;
+	}
+
+	.switch-wrap:has(input:disabled) .message {
+		opacity: 0.6;
 	}
 </style>

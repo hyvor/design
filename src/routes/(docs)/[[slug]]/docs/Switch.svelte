@@ -40,6 +40,20 @@
 	<Switch>Enable notifications</Switch>
 </CodeResult>
 
+<h3 id="disabled">Disabled</h3>
+
+<CodeBlock
+	code={`
+    <Switch disabled>
+        Enable notifications
+    </Switch>
+`}
+/>
+
+<CodeResult>
+	<Switch disabled>Enable notifications</Switch>
+</CodeResult>
+
 <p>
 	Additionally, see <a href="/split-control#nested">this example</a> for usage with a
 	<code>SplitControl</code>.

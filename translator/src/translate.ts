@@ -19,8 +19,24 @@ Rules:
 - Do not add, remove, or reorder keys/elements/attributes. Do not add comments, notes, or explanations of your own.
 - Output ONLY the fully translated file content and nothing else: no markdown code fences, no preamble, no trailing remarks.`;
 
+	const fullOutputRule = isUpdate ? shared.replace(/\n- Output ONLY[^\n]*$/, '') : shared;
+
 	const updateHint = isUpdate
-		? `You are updating an existing ${langName} translation to match an updated English source, given as <existing_translation> and <updated_source> below. Make MINIMAL changes: keep the existing translation's wording, phrasing, and structure wherever the corresponding English text is unchanged in meaning. Only retranslate the specific parts where the English content actually changed, was added, or was removed. Do not rewrite, rephrase, or "improve" parts that didn't change in the source, even if you would have translated them differently starting from scratch. Still output the full updated file, matching the structure of <updated_source> — not a diff or partial excerpt.`
+		? `You are updating an existing ${langName} translation to match an updated English source. You are given <existing_translation> (with line numbers in the form "12| text", the number and "| " are not part of the file) and <updated_source>. Make MINIMAL changes: keep the existing translation wherever the corresponding English text is unchanged in meaning, even if you would have translated it differently from scratch.
+
+Do NOT output the whole file. Instead output only the edits needed, each as:
+
+<edit start="N" end="M">
+replacement lines (without line numbers)
+</edit>
+
+- start/end are inclusive line numbers of the existing translation to replace.
+- To delete lines, leave the body empty.
+- To insert without replacing, use end = start - 1 (insert before line "start"; to append at the end of the file, use start = last line + 1 and end = last line).
+- Edits must not overlap. Keep each edit as small as possible and include only lines that change.
+- The result after applying all edits must match the structure of <updated_source>.
+- If nothing needs to change, output exactly <no_changes/>.
+- Output nothing but the edit blocks (or <no_changes/>). This overrides the "output the fully translated file" rule above.`
 		: undefined;
 
 	const hints: Record<string, string> = {
@@ -30,7 +46,7 @@ Rules:
 		'.mdx': `This is an MDX file (Markdown with embedded JSX). Translate the prose the same way as Markdown. Do NOT translate JSX component/prop names, code fences, inline code, or URLs.`
 	};
 
-	return [shared, updateHint, hints[ext]].filter(Boolean).join('\n\n');
+	return [fullOutputRule, updateHint, hints[ext]].filter(Boolean).join('\n\n');
 }
 
 // ---------------------------------------------------------------------------
@@ -89,23 +105,12 @@ function stripCodeFence(text: string): string {
 	return trimmed;
 }
 
-export async function translateContent(
+async function callModel(
 	anthropic: Anthropic,
 	model: string,
-	filePath: string,
-	langName: string,
-	langCode: string,
-	content: string,
-	previousTranslation?: string
+	system: string,
+	userContent: string
 ): Promise<string> {
-	const ext = path.extname(filePath);
-	const system = buildSystemPrompt(ext, langName, langCode, previousTranslation !== undefined);
-
-	const userContent =
-		previousTranslation !== undefined
-			? `<existing_translation lang="${langCode}">\n${previousTranslation}\n</existing_translation>\n\n<updated_source lang="en">\n${content}\n</updated_source>`
-			: content;
-
 	const maxAttempts = 3;
 
 	for (let attempt = 1; attempt <= maxAttempts; attempt++) {
@@ -126,9 +131,7 @@ export async function translateContent(
 
 			const text = await stream.finalText();
 			preview.clear();
-
-			const translated = stripCodeFence(text);
-			return translated + (content.endsWith('\n') && !translated.endsWith('\n') ? '\n' : '');
+			return text;
 		} catch (err) {
 			preview.clear();
 			const status = err instanceof Anthropic.APIError ? err.status : undefined;
@@ -141,4 +144,100 @@ export async function translateContent(
 	}
 
 	throw new Error('unreachable');
+}
+
+function splitLines(text: string): { lines: string[]; trailingNewline: boolean } {
+	const trailingNewline = text.endsWith('\n');
+	const lines = (trailingNewline ? text.slice(0, -1) : text).split('\n');
+	return { lines, trailingNewline };
+}
+
+/**
+ * Applies <edit start end>...</edit> blocks (1-based, inclusive line ranges
+ * of `previous`) and returns the new file. Throws if the response is malformed
+ * so the caller can fall back to a full translation.
+ */
+export function applyEdits(previous: string, response: string): string {
+	const { lines, trailingNewline } = splitLines(previous);
+
+	if (/<no_changes\s*\/>/.test(response) && !/<edit\s/.test(response)) {
+		return previous;
+	}
+
+	const edits: { start: number; end: number; body: string[] }[] = [];
+	const re = /<edit start="(\d+)" end="(\d+)">\n?([\s\S]*?)\n?<\/edit>/g;
+	let match: RegExpExecArray | null;
+	while ((match = re.exec(response)) !== null) {
+		const start = Number(match[1]);
+		const end = Number(match[2]);
+		const body = match[3] ?? '';
+		if (start < 1 || start > lines.length + 1 || end < start - 1 || end > lines.length) {
+			throw new Error(`Edit range ${start}-${end} is out of bounds`);
+		}
+		edits.push({ start, end, body: body === '' ? [] : body.split('\n') });
+	}
+
+	if (edits.length === 0) {
+		throw new Error('No edits found in model response');
+	}
+
+	edits.sort((a, b) => a.start - b.start || a.end - b.end);
+	for (let i = 1; i < edits.length; i++) {
+		if (edits[i]!.start <= edits[i - 1]!.end) {
+			throw new Error('Overlapping edits in model response');
+		}
+	}
+
+	// apply bottom-up so earlier line numbers stay valid
+	for (const { start, end, body } of edits.reverse()) {
+		lines.splice(start - 1, end - start + 1, ...body);
+	}
+
+	return lines.join('\n') + (trailingNewline ? '\n' : '');
+}
+
+export async function translateContent(
+	anthropic: Anthropic,
+	model: string,
+	filePath: string,
+	langName: string,
+	langCode: string,
+	content: string,
+	previousTranslation?: string
+): Promise<string> {
+	const ext = path.extname(filePath);
+
+	const finish = (text: string) => {
+		const translated = stripCodeFence(text);
+		return translated + (content.endsWith('\n') && !translated.endsWith('\n') ? '\n' : '');
+	};
+
+	if (previousTranslation !== undefined) {
+		const { lines } = splitLines(previousTranslation);
+		const numbered = lines.map((line, i) => `${i + 1}| ${line}`).join('\n');
+		const userContent = `<existing_translation lang="${langCode}">\n${numbered}\n</existing_translation>\n\n<updated_source lang="en">\n${content}\n</updated_source>`;
+
+		try {
+			const response = await callModel(
+				anthropic,
+				model,
+				buildSystemPrompt(ext, langName, langCode, true),
+				userContent
+			);
+			return applyEdits(previousTranslation, response);
+		} catch (err) {
+			if (err instanceof Anthropic.APIError) throw err;
+			console.warn(
+				`Could not apply incremental edits (${err instanceof Error ? err.message : err}); re-translating the whole file.`
+			);
+		}
+	}
+
+	const text = await callModel(
+		anthropic,
+		model,
+		buildSystemPrompt(ext, langName, langCode, false),
+		content
+	);
+	return finish(text);
 }

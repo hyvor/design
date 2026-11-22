@@ -44,6 +44,7 @@ import EmojiPicker from './docs/EmojiPicker.svelte';
 import FileUploader from './docs/FileUploader.svelte';
 import Accordion from './docs/Accordion.svelte';
 import CloudContextDoc from './cloud/CloudContextDoc.svelte';
+import UsageLimitDoc from './cloud/UsageLimitDoc.svelte';
 import Select from './docs/Select.svelte';
 import TernaryStatus from './docs/TernaryStatus.svelte';
 import DetailsAccordionDoc from './docs/DetailsAccordion.svelte';
@@ -142,7 +143,10 @@ const SECTIONS: NavSectionConfig[] = [
 	},
 	{
 		name: 'Cloud',
-		navs: [{ type: 'page', name: 'Cloud Context', slug: 'cloud-context', content: CloudContextDoc }]
+		navs: [
+			{ type: 'page', name: 'Cloud Context', slug: 'cloud-context', content: CloudContextDoc },
+			{ type: 'page', name: 'Usage Limit', slug: 'usage-limit', content: UsageLimitDoc }
+		]
 	},
 	{
 		name: 'Marketing',

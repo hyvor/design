@@ -38,7 +38,7 @@
 		onclose
 	}: Props = $props();
 
-	const context = getCloudContext();
+	const context = $derived(getCloudContext());
 
 	let wrap: HTMLDivElement | undefined = $state();
 

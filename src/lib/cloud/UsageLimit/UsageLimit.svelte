@@ -46,7 +46,7 @@
 		format = (v) => String(v)
 	}: Props = $props();
 
-	const context = getCloudContext();
+	const context = $derived(getCloudContext());
 
 	let show = $state(false);
 

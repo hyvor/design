@@ -226,6 +226,8 @@
 		width: 750px;
 		max-width: 100%;
 		transition: 0.3s width;
+		max-height: calc(100% - 40px);
+		overflow: auto;
 	}
 
 	.content {

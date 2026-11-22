@@ -19,3 +19,6 @@ export { default as OrganizationMemberSearch } from './OrganizationMembers/Organ
 
 export { default as OrganizationCreator } from './OrganizationCreator/OrganizationCreator.svelte';
 export { default as OrganizationSwitcher } from './OrganizationSwitcher/OrganizationSwitcher.svelte';
+
+export { default as UsageLimit } from './UsageLimit/UsageLimit.svelte';
+export { default as UpgradeModal } from './UsageLimit/UpgradeModal.svelte';
